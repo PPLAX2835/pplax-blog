@@ -21,6 +21,12 @@
 
     <modules>
 
+        <module>pplax-base</module>
+        <module>pplax-modules</module>
+        <module>pplax-starter</module>
+        <module>common-api</module>
+        <module>service</module>
+        <module>support</module>
     </modules>
 
 

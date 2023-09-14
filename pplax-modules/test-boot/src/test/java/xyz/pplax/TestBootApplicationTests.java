@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.admin.dao.AdminRouterDao;
 import xyz.pplax.admin.dao.PPLAXAdminSidebarDao;
+import xyz.pplax.admin.dao.PPLAXNavigationDao;
 import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
 import xyz.pplax.admin.po.AdminRouter;
 import xyz.pplax.admin.po.AdminSidebar;
+import xyz.pplax.admin.po.Navigation;
 import xyz.pplax.admin.po.Role;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
@@ -142,4 +144,15 @@ class TestBootApplicationTests {
     }
 
 
+    @Autowired
+    PPLAXNavigationDao pplaxNavigationDao;
+    @Test
+    public void PPLAXNavigationDaoTest() {
+        Navigation navigation = new Navigation();
+        navigation.setUid(123L);
+        navigation.setTitle("pplax");
+        navigation.setPath("/");
+        navigation.setUserUid(456L);
+        pplaxNavigationDao.insert(navigation);
+    }
 }

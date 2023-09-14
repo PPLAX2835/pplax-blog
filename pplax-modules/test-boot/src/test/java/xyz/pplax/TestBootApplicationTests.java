@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
+import xyz.pplax.admin.po.Role;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
 import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
@@ -15,9 +17,15 @@ import xyz.pplax.auth.service.PPLAXOauthClientDetailsService;
 import xyz.pplax.auth.service.PPLAXOauthCodeService;
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 class TestBootApplicationTests {
+
+
+    /**
+     * 这里用的是pplax_auth_server表
+     */
 
     @Autowired
     PPLAXLoginInfoDao pplaxLoginInfoDao;
@@ -93,5 +101,21 @@ class TestBootApplicationTests {
         oauthCode.setAuthentication(456L);
         pplaxOauthCodeService.insert(oauthCode);
     }
+
+
+    /**
+     * 这里用的是pplax_admin数据库
+     */
+
+
+    @Autowired
+    PermissionRelationDaoExt permissionRelationDaoExt;
+    @Test
+    public void PermissionRelationDaoExtTest() {
+        List<Role> roles = permissionRelationDaoExt.loadAllRoleByUserUid(1);
+        System.out.println(roles);
+    }
+
+
 
 }

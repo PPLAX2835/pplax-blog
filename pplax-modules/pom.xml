@@ -20,6 +20,6 @@
     </properties>
 
     <modules>
-
+        <module>test-boot</module>
     </modules>
 </project>

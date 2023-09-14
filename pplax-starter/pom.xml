@@ -21,7 +21,7 @@
     </properties>
 
     <modules>
-
+        <module>pplax-amqp-starter</module>
     </modules>
 
 </project>

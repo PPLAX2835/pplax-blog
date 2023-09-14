@@ -16,6 +16,7 @@ import xyz.pplax.auth.po.OauthCode;
 import xyz.pplax.auth.service.PPLAXLoginInfoService;
 import xyz.pplax.auth.service.PPLAXOauthClientDetailsService;
 import xyz.pplax.auth.service.PPLAXOauthCodeService;
+import xyz.pplax.data.entity.Condition;
 
 import java.util.Date;
 import java.util.List;
@@ -226,5 +227,15 @@ class TestBootApplicationTests {
     public void PPLAXUserRoleDaoTest() {
         UserRoleRelationship userRoleRelationship = pplaxUserRoleDao.queryById(12L);
         System.out.println(userRoleRelationship);
+    }
+
+
+    @Autowired
+    PPLAXWhiteUrlDao pplaxWhiteUrlDao;
+    @Test
+    public void PPLAXWhiteUrlDaoTest() {
+        Condition<WhiteUrl> condition = new Condition<>();
+        List<WhiteUrl> whiteUrls = pplaxWhiteUrlDao.queryListByCondition(condition);
+        System.out.println(whiteUrls);
     }
 }

@@ -18,7 +18,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(title = "router_permission数据表的实体类")
+@Schema(title = "au_router_permission数据表的实体类")
 public class RouterPermission implements Serializable {
 
 private static final long serialVersionUID = 13247652346523L;

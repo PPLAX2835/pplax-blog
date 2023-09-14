@@ -238,4 +238,17 @@ class TestBootApplicationTests {
         List<WhiteUrl> whiteUrls = pplaxWhiteUrlDao.queryListByCondition(condition);
         System.out.println(whiteUrls);
     }
+
+
+    @Autowired
+    PPLAXRouterPermissionDao pplaxRouterPermissionDao;
+    @Test
+    public void RouterPermissionDaoTest() {
+        RouterPermission routerPermission = new RouterPermission();
+        routerPermission.setUid(1L);
+        routerPermission.setAdminRouterUid(1L);
+        routerPermission.setPermissionUid(1L);
+        pplaxRouterPermissionDao.insert(routerPermission);
+    }
+
 }

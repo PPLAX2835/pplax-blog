@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import xyz.pplax.admin.dao.AdminRouterDao;
-import xyz.pplax.admin.dao.PPLAXAdminSidebarDao;
-import xyz.pplax.admin.dao.PPLAXNavigationDao;
-import xyz.pplax.admin.dao.PPLAXPermissionDao;
+import xyz.pplax.admin.dao.*;
 import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
 import xyz.pplax.admin.po.*;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
@@ -161,5 +158,13 @@ class TestBootApplicationTests {
     public void PPLAXPermissionDaoTest() {
         Permission permission = pplaxPermissionDao.queryById(12L);
         System.out.println(permission);
+    }
+
+    @Autowired
+    PPLAXRoleDao pplaxRoleDao;
+    @Test
+    public void PPLAXRoleDaoTest() {
+        Role role = pplaxRoleDao.queryById(3L);
+        System.out.println(role);
     }
 }

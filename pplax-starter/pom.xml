@@ -30,6 +30,7 @@
         <module>pplax-redis-starter</module>
         <module>pplax-seata-starter</module>
         <module>pplax-security-starter</module>
+        <module>pplax-sentinel-starter</module>
     </modules>
 
 </project>

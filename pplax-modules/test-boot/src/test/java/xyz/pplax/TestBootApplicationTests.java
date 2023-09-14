@@ -1,5 +1,6 @@
 package xyz.pplax;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +10,7 @@ import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
 import xyz.pplax.auth.po.LoginInfo;
 import xyz.pplax.auth.po.OauthClientDetails;
 import xyz.pplax.auth.po.OauthCode;
+import xyz.pplax.auth.service.PPLAXLoginInfoService;
 
 import java.util.Date;
 
@@ -53,5 +55,15 @@ class TestBootApplicationTests {
 
         pplaxOauthCodeDao.insert(oauthCode);
     }
+
+
+    @Autowired
+    PPLAXLoginInfoService pplaxLoginInfoService;
+    @Test
+    public void PPLAXLoginInfoServiceTest() {
+        LoginInfo loginInfo = pplaxLoginInfoService.queryById(123456L);
+        System.out.println(JSON.toJSONString(loginInfo));
+    }
+
 
 }

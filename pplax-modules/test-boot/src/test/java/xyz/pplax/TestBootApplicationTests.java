@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.admin.dao.AdminRouterDao;
+import xyz.pplax.admin.dao.PPLAXAdminSidebarDao;
 import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
 import xyz.pplax.admin.po.AdminRouter;
+import xyz.pplax.admin.po.AdminSidebar;
 import xyz.pplax.admin.po.Role;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
@@ -118,12 +120,25 @@ class TestBootApplicationTests {
         System.out.println(roles);
     }
 
+
     @Autowired
     AdminRouterDao adminRouterDao;
     @Test
     public void AdminRouterDaoTest() {
         AdminRouter adminRouter = adminRouterDao.queryById(5L);
         System.out.println(adminRouter);
+    }
+
+
+    @Autowired
+    PPLAXAdminSidebarDao pplaxAdminSidebarDao;
+    @Test
+    public void PPLAXAdminSidebarDaoTest() {
+        AdminSidebar adminSidebar = new AdminSidebar();
+        adminSidebar.setUid(1L);
+        adminSidebar.setTitle("pplax");
+        adminSidebar.setPath("/");
+        pplaxAdminSidebarDao.insert(adminSidebar);
     }
 
 

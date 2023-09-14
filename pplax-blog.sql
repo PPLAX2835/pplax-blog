@@ -566,23 +566,23 @@ UNLOCK TABLES;
 
 
 --
--- Table structure for table `admin_router`
+-- Table structure for table `au_admin_router`
 --
-DROP TABLE  IF EXISTS `admin_router`;
+DROP TABLE  IF EXISTS `au_admin_router`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `admin_router` (
+CREATE TABLE `au_admin_router` (
     `uid` bigint NOT NULL AUTO_INCREMENT,
     `title` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `single_layout` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `requires_auth` bool NOT NULL ,
-    `keepalive` bool NOT NULL ,
+    `requires_auth` tinyint NOT NULL DEFAULT '0',
+    `keepalive` tinyint NOT NULL DEFAULT '0',
     `icon` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `local_icon` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `hide` bool NOT NULL,
+    `hide` tinyint NOT NULL DEFAULT '0',
     `href` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `order` int NOT NULL,
-    `affix` bool NOT NULL,
+    `affix` tinyint NOT NULL DEFAULT '0',
     `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
     `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -597,9 +597,9 @@ CREATE TABLE `admin_router` (
 -- Dumping data for table `au_setting`
 --
 
-LOCK TABLES `admin_router` WRITE;
-/*!40000 ALTER TABLE `admin_router` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admin_router` ENABLE KEYS */;
+LOCK TABLES `au_admin_router` WRITE;
+/*!40000 ALTER TABLE `au_admin_router` DISABLE KEYS */;
+/*!40000 ALTER TABLE `au_admin_router` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

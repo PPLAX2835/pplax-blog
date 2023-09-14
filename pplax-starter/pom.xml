@@ -31,6 +31,7 @@
         <module>pplax-seata-starter</module>
         <module>pplax-security-starter</module>
         <module>pplax-sentinel-starter</module>
+        <module>pplax-swagger-starter</module>
     </modules>
 
 </project>

@@ -167,4 +167,14 @@ class TestBootApplicationTests {
         Role role = pplaxRoleDao.queryById(3L);
         System.out.println(role);
     }
+
+
+    @Autowired
+    PPLAXRolePermissionDao pplaxRolePermissionDao;
+    @Test
+    public void PPLAXRolePermissionDaoTest() {
+        Permission permission = pplaxPermissionDao.queryById(5L);
+        System.out.println(JSON.toJSONString(permission));
+    }
+
 }

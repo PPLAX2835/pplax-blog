@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
+import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
 import xyz.pplax.auth.po.LoginInfo;
+import xyz.pplax.auth.po.OauthClientDetails;
 
 import java.util.Date;
 
@@ -13,7 +15,6 @@ class TestBootApplicationTests {
 
     @Autowired
     PPLAXLoginInfoDao pplaxLoginInfoDao;
-
     @Test
     public void PPLAXLoginInfoDaoTest() {
         LoginInfo loginInfo = new LoginInfo();
@@ -29,4 +30,14 @@ class TestBootApplicationTests {
         pplaxLoginInfoDao.insert(loginInfo);
     }
 
+
+    @Autowired
+    PPLAXOauthClientDetailsDao pplaxOauthClientDetailsDao;
+    @Test
+    public void PPLAXOauthClientDetailsDaoTest() {
+        OauthClientDetails oauthClientDetails = new OauthClientDetails();
+        oauthClientDetails.setClientId("pplax123");
+        oauthClientDetails.setClientSecret("123");
+        pplaxOauthClientDetailsDao.insert(oauthClientDetails);
+    }
 }

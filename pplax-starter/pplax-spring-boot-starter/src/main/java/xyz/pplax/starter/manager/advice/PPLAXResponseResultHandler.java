@@ -53,6 +53,8 @@ public class PPLAXResponseResultHandler implements ResponseBodyAdvice<Object> {
 
 
         String path = request.getURI().getPath();
+
+        // TODO 这个以后往配置文件放吧
         if ("/v3/api-docs/swagger-config".equals(path)) {
             // 解决springdoc不能在ControllerAdvice上使用的问题
             return responseBody;

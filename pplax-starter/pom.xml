@@ -32,6 +32,7 @@
         <module>pplax-security-starter</module>
         <module>pplax-sentinel-starter</module>
         <module>pplax-swagger-starter</module>
+        <module>pplax-spring-boot-starter</module>
     </modules>
 
 </project>

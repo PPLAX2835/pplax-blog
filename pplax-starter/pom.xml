@@ -28,6 +28,7 @@
         <module>pplax-nacos-starter</module>
         <module>pplax-oauth2-starter</module>
         <module>pplax-redis-starter</module>
+        <module>pplax-seata-starter</module>
     </modules>
 
 </project>

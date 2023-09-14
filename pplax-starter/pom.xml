@@ -25,6 +25,7 @@
         <module>pplax-datasource-starter</module>
         <module>pplax-feign-starter</module>
         <module>pplax-mybatis-starter</module>
+        <module>pplax-nacos-starter</module>
     </modules>
 
 </project>

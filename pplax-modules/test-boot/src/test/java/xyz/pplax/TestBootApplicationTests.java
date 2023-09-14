@@ -197,4 +197,17 @@ class TestBootApplicationTests {
         site.setUserUid(2L);
         pplaxSiteDao.insert(site);
     }
+
+
+    @Autowired
+    PPLAXSocialDao pplaxSocialDao;
+    @Test
+    public void PPLAXSocialDaoTest() {
+        Social social = new Social();
+        social.setUid(1L);
+        social.setSocialName("pplax");
+        social.setSocialIcon("pplax");
+        social.setSocialUrl("/");
+        pplaxSocialDao.insert(social);
+    }
 }

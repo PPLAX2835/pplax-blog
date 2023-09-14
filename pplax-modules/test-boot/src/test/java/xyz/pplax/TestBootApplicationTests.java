@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
+import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
 import xyz.pplax.auth.po.LoginInfo;
 import xyz.pplax.auth.po.OauthClientDetails;
+import xyz.pplax.auth.po.OauthCode;
 
 import java.util.Date;
 
@@ -40,4 +42,16 @@ class TestBootApplicationTests {
         oauthClientDetails.setClientSecret("123");
         pplaxOauthClientDetailsDao.insert(oauthClientDetails);
     }
+
+    @Autowired
+    PPLAXOauthCodeDao pplaxOauthCodeDao;
+    @Test
+    public void PPLAXOauthCodeDaoTest() {
+        OauthCode oauthCode = new OauthCode();
+        oauthCode.setCode("123");
+        oauthCode.setAuthentication(123L);
+
+        pplaxOauthCodeDao.insert(oauthCode);
+    }
+
 }

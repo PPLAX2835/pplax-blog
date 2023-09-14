@@ -11,6 +11,7 @@ import xyz.pplax.auth.po.LoginInfo;
 import xyz.pplax.auth.po.OauthClientDetails;
 import xyz.pplax.auth.po.OauthCode;
 import xyz.pplax.auth.service.PPLAXLoginInfoService;
+import xyz.pplax.auth.service.PPLAXOauthClientDetailsService;
 
 import java.util.Date;
 
@@ -64,6 +65,24 @@ class TestBootApplicationTests {
         LoginInfo loginInfo = pplaxLoginInfoService.queryById(123456L);
         System.out.println(JSON.toJSONString(loginInfo));
     }
+
+
+    @Autowired
+    PPLAXOauthClientDetailsService pplaxOauthClientDetailsService;
+    @Test
+    public void PPLAXOauthClientDetailsServiceTest() {
+        LoginInfo loginInfo = new LoginInfo();
+        loginInfo.setLoginIp("127.0.0.1");
+        loginInfo.setLoginLocation("hebei");
+        loginInfo.setCreateTime("2023-09-14 19:31");
+        loginInfo.setMessage("aaa");
+        loginInfo.setStatus(true);
+        loginInfo.setUid(1234567L);
+        loginInfo.setUsername("PPLAX");
+        loginInfo.setOperationSystemInfo("Windows 11");
+        pplaxLoginInfoService.insert(loginInfo);
+    }
+
 
 
 }

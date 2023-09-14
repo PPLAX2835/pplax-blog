@@ -12,6 +12,7 @@ import xyz.pplax.auth.po.OauthClientDetails;
 import xyz.pplax.auth.po.OauthCode;
 import xyz.pplax.auth.service.PPLAXLoginInfoService;
 import xyz.pplax.auth.service.PPLAXOauthClientDetailsService;
+import xyz.pplax.auth.service.PPLAXOauthCodeService;
 
 import java.util.Date;
 
@@ -83,6 +84,14 @@ class TestBootApplicationTests {
         pplaxLoginInfoService.insert(loginInfo);
     }
 
-
+    @Autowired
+    PPLAXOauthCodeService pplaxOauthCodeService;
+    @Test
+    public void PPLAXOauthCodeServiceTest() {
+        OauthCode oauthCode = new OauthCode();
+        oauthCode.setCode("456");
+        oauthCode.setAuthentication(456L);
+        pplaxOauthCodeService.insert(oauthCode);
+    }
 
 }

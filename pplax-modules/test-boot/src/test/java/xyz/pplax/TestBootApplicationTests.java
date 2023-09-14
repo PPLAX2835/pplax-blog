@@ -177,4 +177,12 @@ class TestBootApplicationTests {
         System.out.println(JSON.toJSONString(permission));
     }
 
+
+    @Autowired
+    PPLAXSettingDao pplaxSettingDao;
+    @Test
+    public void PPLAXSettingDaoTest() {
+        Setting setting = pplaxSettingDao.queryById(1L);
+        System.out.println(setting);
+    }
 }

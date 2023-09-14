@@ -3,26 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>MicroserviceBlogSystem</artifactId>
-        <groupId>xyz.pplax</groupId>
+        <artifactId>pplax-starter</artifactId>
+        <groupId>xyz.pplax.starter</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>xyz.pplax.starter</groupId>
-    <artifactId>pplax-starter</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>pplax-datasource-starter</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <modules>
-        <module>pplax-amqp-starter</module>
-        <module>pplax-datasource-starter</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

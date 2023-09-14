@@ -251,4 +251,12 @@ class TestBootApplicationTests {
         pplaxRouterPermissionDao.insert(routerPermission);
     }
 
+
+    @Autowired
+    SiteSettingDao siteSettingDao;
+    @Test
+    public void SiteSettingDaoTest() {
+        SiteSetting siteSetting = siteSettingDao.queryById(1L);
+        System.out.println(siteSetting);
+    }
 }

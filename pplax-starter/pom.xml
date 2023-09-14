@@ -26,6 +26,7 @@
         <module>pplax-feign-starter</module>
         <module>pplax-mybatis-starter</module>
         <module>pplax-nacos-starter</module>
+        <module>pplax-oauth2-starter</module>
     </modules>
 
 </project>

@@ -218,4 +218,13 @@ class TestBootApplicationTests {
         User user = pplaxUserDao.queryById(1634877081002713088L);
         System.out.println(user);
     }
+
+
+    @Autowired
+    PPLAXUserRoleDao pplaxUserRoleDao;
+    @Test
+    public void PPLAXUserRoleDaoTest() {
+        UserRoleRelationship userRoleRelationship = pplaxUserRoleDao.queryById(12L);
+        System.out.println(userRoleRelationship);
+    }
 }

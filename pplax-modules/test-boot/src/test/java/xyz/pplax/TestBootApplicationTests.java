@@ -185,4 +185,16 @@ class TestBootApplicationTests {
         Setting setting = pplaxSettingDao.queryById(1L);
         System.out.println(setting);
     }
+
+
+    @Autowired
+    PPLAXSiteDao pplaxSiteDao;
+    @Test
+    public void PPLAXSiteDaoTest() {
+        Site site = new Site();
+        site.setUid(1L);
+        site.setTitle("pplax");
+        site.setUserUid(2L);
+        pplaxSiteDao.insert(site);
+    }
 }

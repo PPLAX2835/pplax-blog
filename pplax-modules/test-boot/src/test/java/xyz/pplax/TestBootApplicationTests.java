@@ -7,11 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.admin.dao.AdminRouterDao;
 import xyz.pplax.admin.dao.PPLAXAdminSidebarDao;
 import xyz.pplax.admin.dao.PPLAXNavigationDao;
+import xyz.pplax.admin.dao.PPLAXPermissionDao;
 import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
-import xyz.pplax.admin.po.AdminRouter;
-import xyz.pplax.admin.po.AdminSidebar;
-import xyz.pplax.admin.po.Navigation;
-import xyz.pplax.admin.po.Role;
+import xyz.pplax.admin.po.*;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
 import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
@@ -154,5 +152,14 @@ class TestBootApplicationTests {
         navigation.setPath("/");
         navigation.setUserUid(456L);
         pplaxNavigationDao.insert(navigation);
+    }
+
+
+    @Autowired
+    PPLAXPermissionDao pplaxPermissionDao;
+    @Test
+    public void PPLAXPermissionDaoTest() {
+        Permission permission = pplaxPermissionDao.queryById(12L);
+        System.out.println(permission);
     }
 }

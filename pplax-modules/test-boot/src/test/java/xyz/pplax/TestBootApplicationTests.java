@@ -210,4 +210,12 @@ class TestBootApplicationTests {
         social.setSocialUrl("/");
         pplaxSocialDao.insert(social);
     }
+
+    @Autowired
+    PPLAXUserDao pplaxUserDao;
+    @Test
+    public void PPLAXUserDaoTest() {
+        User user = pplaxUserDao.queryById(1634877081002713088L);
+        System.out.println(user);
+    }
 }

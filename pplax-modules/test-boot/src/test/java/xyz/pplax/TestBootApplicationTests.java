@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.admin.dao.*;
 import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
 import xyz.pplax.admin.po.*;
+import xyz.pplax.article.dao.ext.PPLAXArticleExtDao;
+import xyz.pplax.article.po.Article;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
 import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
@@ -258,5 +260,18 @@ class TestBootApplicationTests {
     public void SiteSettingDaoTest() {
         SiteSetting siteSetting = siteSettingDao.queryById(1L);
         System.out.println(siteSetting);
+    }
+
+
+    /**
+     * 这里用的是pplax_article数据库
+     */
+
+    @Autowired
+    PPLAXArticleExtDao pplaxArticleExtDao;
+    @Test
+    public void PPLAXArticleExtDaoTest() {
+        Article article = pplaxArticleExtDao.queryByIdForUpdate(1L);
+        System.out.println(article);
     }
 }

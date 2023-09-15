@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.admin.dao.*;
 import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
 import xyz.pplax.admin.po.*;
+import xyz.pplax.article.dao.PPLAXArticleDao;
 import xyz.pplax.article.dao.ext.PPLAXArticleExtDao;
 import xyz.pplax.article.po.Article;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
@@ -273,5 +274,19 @@ class TestBootApplicationTests {
     public void PPLAXArticleExtDaoTest() {
         Article article = pplaxArticleExtDao.queryByIdForUpdate(1L);
         System.out.println(article);
+    }
+
+
+    @Autowired
+    PPLAXArticleDao pplaxArticleDao;
+    @Test
+    public void PPLAXArticleDaoTest() {
+        Article article = new Article();
+        article.setTitle("PPLAX");
+        article.setUserUid(1L);
+        article.setUid(1L);
+        article.setContent("Thins is an Article");
+
+        pplaxArticleDao.insert(article);
     }
 }

@@ -28,6 +28,7 @@
         <module>article-api</module>
         <module>comment-api</module>
         <module>mail-api</module>
+        <module>amqp-api</module>
     </modules>
 
 </project>

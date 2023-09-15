@@ -10,10 +10,12 @@ import xyz.pplax.admin.po.*;
 import xyz.pplax.article.dao.PPLAXArticleDao;
 import xyz.pplax.article.dao.PPLAXBulletinDao;
 import xyz.pplax.article.dao.PPLAXCategoryDao;
+import xyz.pplax.article.dao.PPLAXLinkDao;
 import xyz.pplax.article.dao.ext.PPLAXArticleExtDao;
 import xyz.pplax.article.po.Article;
 import xyz.pplax.article.po.Bulletin;
 import xyz.pplax.article.po.Category;
+import xyz.pplax.article.po.Link;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
 import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
@@ -317,5 +319,16 @@ class TestBootApplicationTests {
         category.setUserUid(1L);
         category.setSummary("This is a summary");
         pplaxCategoryDao.insert(category);
+    }
+
+
+    @Autowired
+    PPLAXLinkDao pplaxLinkDao;
+    @Test
+    public void PPLAXLinkDaoTest() {
+        Link link = pplaxLinkDao.queryById(1L);
+        System.out.println(link);
+
+
     }
 }

@@ -27,6 +27,7 @@
         <module>admin-api</module>
         <module>article-api</module>
         <module>comment-api</module>
+        <module>mail-api</module>
     </modules>
 
 </project>

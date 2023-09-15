@@ -339,4 +339,13 @@ class TestBootApplicationTests {
         tag.setUserUid(1L);
         pplaxTagDao.insert(tag);
     }
+
+
+    @Autowired
+    PPLAXTalkDao pplaxTalkDao;
+    @Test
+    public void PPLAXTalkDaoTest() {
+        Tag tag = pplaxTagDao.queryById(1L);
+        System.out.println(tag);
+    }
 }

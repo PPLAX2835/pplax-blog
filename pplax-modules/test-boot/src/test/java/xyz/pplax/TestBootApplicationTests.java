@@ -19,6 +19,8 @@ import xyz.pplax.auth.po.OauthCode;
 import xyz.pplax.auth.service.PPLAXLoginInfoService;
 import xyz.pplax.auth.service.PPLAXOauthClientDetailsService;
 import xyz.pplax.auth.service.PPLAXOauthCodeService;
+import xyz.pplax.comment.dao.PPLAXCommentDao;
+import xyz.pplax.comment.po.Comment;
 import xyz.pplax.data.entity.Condition;
 
 import java.util.Date;
@@ -347,5 +349,17 @@ class TestBootApplicationTests {
     public void PPLAXTalkDaoTest() {
         Tag tag = pplaxTagDao.queryById(1L);
         System.out.println(tag);
+    }
+
+
+    /**
+     * 这里是pplax_comment数据库
+     */
+    @Autowired
+    PPLAXCommentDao pplaxCommentDao;
+    @Test
+    public void PPLAXCommentDaoTest() {
+        Comment comment = pplaxCommentDao.queryById(1L);
+        System.out.println(comment);
     }
 }

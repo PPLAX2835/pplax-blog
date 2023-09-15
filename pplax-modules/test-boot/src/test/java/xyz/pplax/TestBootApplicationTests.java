@@ -22,6 +22,9 @@ import xyz.pplax.auth.service.PPLAXOauthCodeService;
 import xyz.pplax.comment.dao.PPLAXCommentDao;
 import xyz.pplax.comment.po.Comment;
 import xyz.pplax.data.entity.Condition;
+import xyz.pplax.file.dao.PPLAXFileDao;
+import xyz.pplax.file.dao.ext.FileExtDao;
+import xyz.pplax.file.po.File;
 
 import java.util.Date;
 import java.util.List;
@@ -361,5 +364,31 @@ class TestBootApplicationTests {
     public void PPLAXCommentDaoTest() {
         Comment comment = pplaxCommentDao.queryById(1L);
         System.out.println(comment);
+    }
+
+
+    /**
+     * 这里是pplax_file数据库
+     */
+
+    @Autowired
+    PPLAXFileDao fileDao;
+    @Autowired
+    FileExtDao fileExtDao;
+    @Test
+    public void PPLAXFileDaoTest() {
+        File file = new File();
+        file.setUid(1L);
+        file.setUserUid(1L);
+        file.setFileName("file name");
+        file.setSize(100L);
+        file.setSummary("This is a file");
+        file.setPath("/");
+        file.setStoragePath("/");
+        file.setStorageMode(1);
+        fileDao.insert(file);
+
+        List<String> strings = fileExtDao.selectAllFileFormat(1L);
+        System.out.println(strings);
     }
 }

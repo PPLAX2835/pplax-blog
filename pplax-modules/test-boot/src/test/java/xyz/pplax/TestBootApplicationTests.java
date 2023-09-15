@@ -7,15 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.admin.dao.*;
 import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
 import xyz.pplax.admin.po.*;
-import xyz.pplax.article.dao.PPLAXArticleDao;
-import xyz.pplax.article.dao.PPLAXBulletinDao;
-import xyz.pplax.article.dao.PPLAXCategoryDao;
-import xyz.pplax.article.dao.PPLAXLinkDao;
+import xyz.pplax.article.dao.*;
 import xyz.pplax.article.dao.ext.PPLAXArticleExtDao;
-import xyz.pplax.article.po.Article;
-import xyz.pplax.article.po.Bulletin;
-import xyz.pplax.article.po.Category;
-import xyz.pplax.article.po.Link;
+import xyz.pplax.article.po.*;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
 import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
@@ -330,5 +324,19 @@ class TestBootApplicationTests {
         System.out.println(link);
 
 
+    }
+
+
+    @Autowired
+    PPLAXTagDao pplaxTagDao;
+    @Test
+    public void PPLAXTagDaoTest() {
+        Tag tag = new Tag();
+        tag.setUid(1L);
+        tag.setTitle("pplax");
+        tag.setSummary("This is a tag");
+        tag.setCoverUrl("/");
+        tag.setUserUid(1L);
+        pplaxTagDao.insert(tag);
     }
 }

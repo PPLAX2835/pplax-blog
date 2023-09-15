@@ -23,6 +23,7 @@
     <modules>
 
         <module>oauth-api</module>
+        <module>gateway-api</module>
     </modules>
 
 </project>

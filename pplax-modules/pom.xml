@@ -21,5 +21,6 @@
 
     <modules>
         <module>test-boot</module>
+        <module>auth-server-boot</module>
     </modules>
 </project>

@@ -25,6 +25,7 @@
         <module>oauth-api</module>
         <module>gateway-api</module>
         <module>admin-api</module>
+        <module>article-api</module>
     </modules>
 
 </project>

@@ -9,9 +9,11 @@ import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
 import xyz.pplax.admin.po.*;
 import xyz.pplax.article.dao.PPLAXArticleDao;
 import xyz.pplax.article.dao.PPLAXBulletinDao;
+import xyz.pplax.article.dao.PPLAXCategoryDao;
 import xyz.pplax.article.dao.ext.PPLAXArticleExtDao;
 import xyz.pplax.article.po.Article;
 import xyz.pplax.article.po.Bulletin;
+import xyz.pplax.article.po.Category;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
 import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
@@ -302,5 +304,18 @@ class TestBootApplicationTests {
         bulletin.setTitle("pplax");
         bulletin.setContent("This is an bulletin");
         pplaxBulletinDao.insert(bulletin);
+    }
+
+
+    @Autowired
+    PPLAXCategoryDao pplaxCategoryDao;
+    @Test
+    public void PPLAXCategoryDaoTest() {
+        Category category = new Category();
+        category.setUid(1L);
+        category.setTitle("pplax");
+        category.setUserUid(1L);
+        category.setSummary("This is a summary");
+        pplaxCategoryDao.insert(category);
     }
 }

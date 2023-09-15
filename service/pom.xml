@@ -26,6 +26,7 @@
         <module>article-service</module>
         <module>comment-service</module>
         <module>file-service</module>
+        <module>message-service</module>
     </modules>
 
     <build>

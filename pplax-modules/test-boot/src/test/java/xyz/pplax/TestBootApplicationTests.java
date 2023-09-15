@@ -8,8 +8,10 @@ import xyz.pplax.admin.dao.*;
 import xyz.pplax.admin.dao.ext.PermissionRelationDaoExt;
 import xyz.pplax.admin.po.*;
 import xyz.pplax.article.dao.PPLAXArticleDao;
+import xyz.pplax.article.dao.PPLAXBulletinDao;
 import xyz.pplax.article.dao.ext.PPLAXArticleExtDao;
 import xyz.pplax.article.po.Article;
+import xyz.pplax.article.po.Bulletin;
 import xyz.pplax.auth.dao.PPLAXLoginInfoDao;
 import xyz.pplax.auth.dao.PPLAXOauthClientDetailsDao;
 import xyz.pplax.auth.dao.PPLAXOauthCodeDao;
@@ -288,5 +290,17 @@ class TestBootApplicationTests {
         article.setContent("Thins is an Article");
 
         pplaxArticleDao.insert(article);
+    }
+
+
+    @Autowired
+    PPLAXBulletinDao pplaxBulletinDao;
+    @Test
+    public void PPLAXBulletinDaoTest() {
+        Bulletin bulletin = new Bulletin();
+        bulletin.setUid(1L);
+        bulletin.setTitle("pplax");
+        bulletin.setContent("This is an bulletin");
+        pplaxBulletinDao.insert(bulletin);
     }
 }

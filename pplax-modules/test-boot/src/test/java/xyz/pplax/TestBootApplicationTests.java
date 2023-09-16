@@ -2,6 +2,9 @@ package xyz.pplax;
 
 import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import xyz.pplax.admin.dao.*;
@@ -26,8 +29,8 @@ import xyz.pplax.file.dao.PPLAXFileDao;
 import xyz.pplax.file.dao.ext.FileExtDao;
 import xyz.pplax.file.po.File;
 
-import java.util.Date;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @SpringBootTest
 class TestBootApplicationTests {
@@ -391,4 +394,34 @@ class TestBootApplicationTests {
         List<String> strings = fileExtDao.selectAllFileFormat(1L);
         System.out.println(strings);
     }
+
+
+
+
+
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+    @Test
+    void contextLoads() {
+        //Message需要自己构造一个;定义消息体内容和消息头
+        //rabbitTemplate.send(exchange,routeKey,message);
+
+        //object默认当成消息体,只需要传入要发送的对象,自动序列化发送给rabbitmq
+        //rabbitTemplate.convertAndSend(exchange,routeKey,object);
+
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("msg", "这是第一个消息");
+//        map.put("data", Arrays.asList("helloword", 123, true));
+//        rabbitTemplate.convertAndSend("exchange.direct", "atguigu.news", map);
+
+        //创建RabbitAdmin 用于操作队列
+        RabbitAdmin admin = new RabbitAdmin(rabbitTemplate);
+        org.springframework.amqp.core.Queue springQueue = new org.springframework.amqp.core.Queue("SpringQueue");
+        admin.declareQueue(springQueue);
+        rabbitTemplate.convertAndSend("SpringQueue","Hello Spring Rabbit");
+
+    }
+
+
 }

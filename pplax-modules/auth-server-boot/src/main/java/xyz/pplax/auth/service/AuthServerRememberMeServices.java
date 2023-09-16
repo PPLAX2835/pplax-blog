@@ -8,6 +8,7 @@ import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import xyz.pplax.auth.constant.OauthJwtConstant;
+import xyz.pplax.auth.util.RequestUtils;
 import xyz.pplax.starter.properties.PPLAXProperties;
 
 import javax.servlet.http.Cookie;
@@ -49,11 +50,11 @@ public class AuthServerRememberMeServices implements RememberMeServices {
      */
     protected void setCookie(int maxAge, HttpServletRequest request, HttpServletResponse response, Authentication successfulAuthentication) {
         // 获得cookie的值
-        String cookieValue = encodeCookie(calculateExpiryTime(maxAge), retrieveUserName(successfulAuthentication));
+        String cookieValue = RequestUtils.encodeCookie(RequestUtils.calculateExpiryTime(maxAge), retrieveUserName(successfulAuthentication));
         // 添加cookie
         Cookie cookie = new Cookie(OauthJwtConstant.COOKIE_STORAGE_LOGIN_SUCCESS_STATUS, cookieValue);
         cookie.setMaxAge(maxAge);
-        cookie.setPath(getCookiePath(request));
+        cookie.setPath(RequestUtils.getCookiePath(request));
 
         if (StringUtils.hasLength(pplaxAuthProperties.getCookieDomain())) {
             cookie.setDomain(pplaxAuthProperties.getCookieDomain());
@@ -67,36 +68,6 @@ public class AuthServerRememberMeServices implements RememberMeServices {
         response.addCookie(cookie);
     }
 
-    /**
-     * 计算cookie失效时间
-     * @param maxAge
-     * @return
-     */
-    private long calculateExpiryTime(int maxAge) {
-        long currentTimeMillis = System.currentTimeMillis();
-        return currentTimeMillis + (maxAge * 1000L);
-    }
-
-    /**
-     * 获取path
-     * @param request
-     * @return
-     */
-    private String getCookiePath(HttpServletRequest request) {
-        String contextPath = request.getContextPath();
-        return (contextPath.length() > 0) ? contextPath : "/";
-    }
-
-    /**
-     * 对失效时间和用户名进行编码
-     * @param cookieExpiryTime
-     * @param username
-     * @return
-     */
-    protected String encodeCookie(long cookieExpiryTime, String username) {
-        String data = username + ":" + cookieExpiryTime + ":" + OauthJwtConstant.STORAGE_COOKIE_SECRET_KEY;
-        return Base64.encode(data);
-    }
 
     /**
      * 获取用户名

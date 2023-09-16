@@ -33,6 +33,7 @@ class TestBootApplicationTests {
     public void OauthClientDetailsServiceInsertTest() {
         OauthClientDetailsPojo oauthClientDetailsPojo = new OauthClientDetailsPojo();
         oauthClientDetailsPojo.setClientId("PPLAX");
+        oauthClientDetailsPojo.setScope("All");
         oauthClientDetailsPojo.setAuthorizedGrantTypes("authorization_code,client_credentials,refresh_token,password");
         oauthClientDetailsPojo.setClientSecret("pplax123456");
         oauthClientDetailsService.insertOauthClient(oauthClientDetailsPojo);
@@ -43,7 +44,7 @@ class TestBootApplicationTests {
      */
     @Test
     public void OauthClientDetailsServiceQueryTest() {
-        Condition<OauthClientDetailsPojo> condition = new Condition<>();
+        Condition<Object> condition = new Condition<>();
         condition.setPageNum(0);
         condition.setPageSize(10);
         PageData<OauthClientDetailsVO> oauthClientDetailsVOPageData = oauthClientDetailsService.queryListOauthClientByCondition(condition);

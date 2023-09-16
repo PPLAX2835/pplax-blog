@@ -118,7 +118,7 @@ public class OauthClientDetailsService {
      * @param condition
      * @return
      */
-    public PageData<OauthClientDetailsVO> queryListOauthClientByCondition(Condition<OauthClientDetailsPojo> condition) {
+    public PageData<OauthClientDetailsVO> queryListOauthClientByCondition(Condition<Object> condition) {
         return PageUtils.copyPageDataResult(pplaxOauthClientDetailsService.queryListByCondition(condition), OauthClientDetailsVO.class);
     }
 

@@ -22,5 +22,6 @@
     <modules>
         <module>test-boot</module>
         <module>auth-server-boot</module>
+        <module>gateway-boot</module>
     </modules>
 </project>

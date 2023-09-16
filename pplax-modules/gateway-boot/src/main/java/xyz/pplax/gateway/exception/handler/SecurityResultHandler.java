@@ -1,4 +1,4 @@
-package xyz.pplax.gateway.util;
+package xyz.pplax.gateway.exception.handler;
 
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;

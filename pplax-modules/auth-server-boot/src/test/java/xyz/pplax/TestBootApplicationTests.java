@@ -1,10 +1,12 @@
-package xyz.pplax.auth;
+package xyz.pplax;
 
 import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.UserDetails;
 import xyz.pplax.auth.pojo.OauthClientDetailsPojo;
+import xyz.pplax.auth.service.JwtTokenUserDetailsService;
 import xyz.pplax.auth.service.OauthClientDetailsService;
 import xyz.pplax.auth.vo.OauthClientDetailsVO;
 import xyz.pplax.data.entity.Condition;
@@ -54,4 +56,11 @@ class TestBootApplicationTests {
     }
 
 
+    @Autowired
+    JwtTokenUserDetailsService jwtTokenUserDetailsService;
+    @Test
+    public void JwtTokenUserDetailsServiceTest() {
+        UserDetails pplax = jwtTokenUserDetailsService.loadUserByUsername("pplax");
+        System.out.println(JSON.toJSONString(pplax));
+    }
 }

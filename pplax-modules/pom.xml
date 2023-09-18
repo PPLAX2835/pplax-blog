@@ -26,5 +26,6 @@
         <module>admin-boot</module>
         <module>article-boot</module>
         <module>comment-boot</module>
+        <module>file-boot</module>
     </modules>
 </project>

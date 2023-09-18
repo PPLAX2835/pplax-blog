@@ -1,0 +1,2 @@
+org.springframework.boot.SpringApplicationRunListener=\
+xyz.pplax.admin.listener.PPLAXSpringApplicationRunListener

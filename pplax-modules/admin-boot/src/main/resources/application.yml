@@ -1,0 +1,19 @@
+server:
+  compression:
+    enabled: false
+  port: 8081
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-circular-references: true
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - VirtualBox Host-Only Network
+        - VMware Network Adapter VMnet1
+        - VMware Network Adapter VMnet8
+springdoc:
+  swagger-ui:
+    use-root-path: true

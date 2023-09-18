@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.annotation.Order;
+import xyz.pplax.admin.manager.task.LoadRolePermissionInfo;
+import xyz.pplax.admin.manager.task.LoadWhiteUrlInfo;
 
 import java.time.Duration;
 
@@ -23,9 +25,9 @@ public class PPLAXSpringApplicationRunListener implements SpringApplicationRunLi
     @Override
     public void ready(ConfigurableApplicationContext context, Duration timeTaken) {
         SpringApplicationRunListener.super.ready(context,timeTaken);
-        /*LoadRolePermissionInfo loadRolePermissionInfo = context.getBean(LoadRolePermissionInfo.class);
-        loadRolePermissionInfo.storagePermissionInfoToRedis();
-        // 将mysql中的白名单数据加载到redis中
-        context.getBean(LoadWhiteUrlInfo.class).storageWhiteUrlInfoToRedis();*/
+//        LoadRolePermissionInfo loadRolePermissionInfo = context.getBean(LoadRolePermissionInfo.class);
+//        loadRolePermissionInfo.storagePermissionInfoToRedis();
+//        // 将mysql中的白名单数据加载到redis中
+//        context.getBean(LoadWhiteUrlInfo.class).storageWhiteUrlInfoToRedis();
     }
 }

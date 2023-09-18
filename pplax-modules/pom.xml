@@ -25,5 +25,6 @@
         <module>gateway-boot</module>
         <module>admin-boot</module>
         <module>article-boot</module>
+        <module>comment-boot</module>
     </modules>
 </project>

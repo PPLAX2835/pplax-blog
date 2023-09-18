@@ -1,37 +1,117 @@
-# pplax-cloud-Backend
+# pplax-cloud-backend
 
 #### 介绍
+
 springcloud博客后端
 
-#### 软件架构
-软件架构说明
+‍
 
+#### 环境搭建
 
-#### 安装教程
+Docker
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+docker-compose
 
-#### 使用说明
+java11
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+##### nacos-mysql8
 
-#### 参与贡献
+[nacos-mysql-docker.7z](assets/nacos-mysql-docker-20230903174538-xpzibp8.7z)
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+在`/nacos-mysql-docker`​目录中执行如下命令启动
 
+```bash
+docker-compose -f example/standalone-mysql-8.yaml up
+```
 
-#### 特技
+如果之前没有安装mysql8，nacos启动时会报错
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+将以下数据库脚本导入，重新执行命令即可
+
+[pplax.blog.sql](assets/pplax.blog-20230918160640-feohkzv.sql)
+
+‍
+
+##### seata-docker
+
+[seata-docker.7z](assets/seata-docker-20230918104149-no2zy9o.7z)
+
+​`/seata-docker/docker-compose.yml`​的配置如下
+
+​​![image](assets/image-20230918103015-pfbyq8a.png)​​
+
+​`/seata-server/config/registry.conf`​的配置如下
+
+​​![image](assets/image-20230918103051-a22zg9e.png)​
+
+​`/seata-server/config/file.conf`​的配置如下
+
+​![image](assets/image-20230918103131-rfwqfs9.png)​​
+
+这个file.conf文件需要拷贝到容器内
+
+```bash
+docker cp file.conf seata-docker_seata-server_1:/root/seata-config/
+```
+
+启动命令
+
+```bash
+docker-compose -f docker-compose.yml up
+```
+
+‍
+
+##### redis-sentinel-docker
+
+[redis-sentinel-docker.7z](assets/redis-sentinel-docker-20230903175612-tvr0z7u.7z)
+
+启动命令
+
+```bash
+docker-compose -f docker-compose.yml up
+```
+
+##### RabbitMQ-docker
+
+[RabbitMQ-docker.7z](assets/RabbitMQ-docker-20230903175711-tvclprn.7z)
+
+启动命令
+
+```bash
+docker-compose -f docker-compose.yml up
+```
+
+以上都启动后，访问[http://127.0.0.1:8848/nacos](http://127.0.0.1:8848/nacos)
+
+​![image](assets/image-20230903175850-9hdwn0f.png)​
+
+​![image](assets/image-20230903175909-j1gsmre.png)​
+
+​![image](assets/image-20230903175943-gldohvs.png)​
+
+‍
+
+​![image](assets/image-20230903180020-my3rywi.png)​
+
+​![image](assets/image-20230903180135-r4f4nal.png)​
+
+‍
+
+#### 启动
+
+这几个都启动起来就行了
+
+​![image](assets/image-20230903180222-e2aq4k6.png)​
+
+​![image](assets/image-20230903180239-boyofda.png)​
+
+‍
+
+#### swagger
+
+访问地址
+
+[Swagger UI](http://localhost:8080/webjars/swagger-ui/index.html)
+
+​![image](assets/image-20230903180413-dcx6mid.png)​

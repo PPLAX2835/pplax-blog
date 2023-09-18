@@ -27,5 +27,6 @@
         <module>article-boot</module>
         <module>comment-boot</module>
         <module>file-boot</module>
+        <module>message-boot</module>
     </modules>
 </project>

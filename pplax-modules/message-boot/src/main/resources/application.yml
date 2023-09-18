@@ -1,0 +1,13 @@
+server:
+  port: 8086
+
+spring:
+  bootstrap:
+    enable: true
+#  profiles:
+#    active: dev
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

@@ -5,6 +5,7 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+        namespace: a6b1905f-d8c6-4a43-8f21-fe662f62bdae
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yaml

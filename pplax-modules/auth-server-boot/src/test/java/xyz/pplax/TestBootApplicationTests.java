@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import xyz.pplax.auth.pojo.OauthClientDetailsPojo;
 import xyz.pplax.auth.service.JwtTokenUserDetailsService;
@@ -13,6 +14,7 @@ import xyz.pplax.data.entity.Condition;
 import xyz.pplax.data.entity.PageData;
 
 import java.util.List;
+import java.util.Set;
 
 @SpringBootTest
 class TestBootApplicationTests {
@@ -63,5 +65,14 @@ class TestBootApplicationTests {
     public void JwtTokenUserDetailsServiceTest() {
         UserDetails pplax = jwtTokenUserDetailsService.loadUserByUsername("pplax");
         System.out.println(JSON.toJSONString(pplax));
+    }
+
+
+    @Autowired
+    RedisTemplate redisTemplate;
+    @Test
+    public void doR() {
+        Set keys = redisTemplate.keys("*");
+        redisTemplate.delete(keys);
     }
 }

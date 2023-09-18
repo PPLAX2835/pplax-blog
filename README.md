@@ -115,3 +115,78 @@ docker-compose -f docker-compose.yml up
 [Swagger UI](http://localhost:8080/webjars/swagger-ui/index.html)
 
 ​![image](assets/image-20230903180413-dcx6mid.png)​
+
+[127.0.0.1:8080/admin/user/insertUser](http://127.0.0.1:8080/admin/user/insertUser)
+
+​![image](assets/image-20230918174135-73hi06w.png)​
+
+```json
+{
+    "uid":1634902506689014559,
+    "userSummary":"这是用户简介",
+    "nickname":"PPLAX",
+    "gender":"MALE",
+    "password":"lax123456",
+    "username":"PPLAX"
+}
+```
+
+注册后会将数据存到`pplax_admin.au_user`​中
+
+‍
+
+‍
+
+‍
+
+#### 注册、登录流程
+
+##### 1.用户注册
+
+[127.0.0.1:8080/admin/user/insertUser](http://127.0.0.1:8080/admin/user/insertUser)
+
+​![image](assets/image-20230918174350-kl4zwyk.png)​
+
+```json
+{
+    "uid":1634902506689014559,
+    "userSummary":"这是用户简介",
+    "nickname":"PPLAX",
+    "gender":"MALE",
+    "password":"lax123456",
+    "username":"PPLAX"
+}
+```
+
+这是会将数据存到表`pplax_admin.au_user`​中
+
+##### 2.登录
+
+###### 1.申请OauthClient
+
+[127.0.0.1:8080/auth/oauthClient/insertOauthClient](http://127.0.0.1:8080/auth/oauthClient/insertOauthClient)
+
+​![image](assets/image-20230918174551-ooueysx.png)​
+
+```json
+{
+    "clientId": "PPLAX",
+    "clientSecret": "lax123456",
+    "scope": "All",
+    "authorizedGrantTypes": "authorization_code,client_credentials,refresh_token,password"
+}
+```
+
+这时会将这个信息存到表`pplax_auth_server.oauth_client_details`​中
+
+###### 2.申请token
+
+[127.0.0.1:8080/oauth/token](http://127.0.0.1:8080/oauth/token)
+
+​![image](assets/image-20230918174719-o3d0xge.png)​
+
+```json
+[{"key":"username","value":"PPLAX","description":"","type":"default","enabled":true},{"key":"password","value":"lax123456","description":"","type":"default","enabled":true},{"key":"client_id","value":"PPLAX","description":"","type":"default","enabled":true},{"key":"client_secret","value":"lax123456","description":"","type":"default","enabled":true},{"key":"grant_type","value":"password","description":"","type":"default","enabled":true}]
+```
+
+此时会从表`pplax_admin.au_user`​中查找用户，如果用户存在，返回token，否则返回错误信息

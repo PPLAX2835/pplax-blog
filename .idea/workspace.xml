@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="README" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/auth-server-boot/src/test/java/xyz/pplax/TestBootApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/auth-server-boot/src/test/java/xyz/pplax/TestBootApplicationTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,7 +109,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Compound.RunAll">
+  <component name="RunManager" selected="JUnit.TestBootApplicationTests.doR">
     <configuration name="RunAll" type="CompoundRunConfigurationType">
       <toRun name="AuthServerRun" type="SpringBootApplicationConfigurationType" />
       <toRun name="PPLAXAdminRun" type="SpringBootApplicationConfigurationType" />
@@ -160,6 +163,22 @@
       <option name="PACKAGE_NAME" value="xyz.pplax" />
       <option name="MAIN_CLASS_NAME" value="xyz.pplax.TestBootApplicationTests" />
       <option name="METHOD_NAME" value="OauthClientDetailsServiceInsertTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBootApplicationTests.doR" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-server-boot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.pplax.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="xyz.pplax" />
+      <option name="MAIN_CLASS_NAME" value="xyz.pplax.TestBootApplicationTests" />
+      <option name="METHOD_NAME" value="doR" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -260,9 +279,11 @@
       <item itemvalue="JUnit.TestBootApplicationTests.OauthClientDetailsServiceInsertTest" />
       <item itemvalue="JUnit.PPLAXArticleRunTests.TalkServiceTest" />
       <item itemvalue="JUnit.PPLAXAdminRunTests.PermissionAdminRouterRelationshipServiceTest" />
+      <item itemvalue="JUnit.TestBootApplicationTests.doR" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestBootApplicationTests.doR" />
         <item itemvalue="JUnit.PPLAXAdminRunTests.PermissionAdminRouterRelationshipServiceTest" />
         <item itemvalue="JUnit.PPLAXArticleRunTests.TalkServiceTest" />
         <item itemvalue="JUnit.TestBootApplicationTests.OauthClientDetailsServiceInsertTest" />
@@ -284,14 +305,7 @@
       <workItem from="1694831715374" duration="9307000" />
       <workItem from="1694845131553" duration="12933000" />
       <workItem from="1694996361998" duration="15929000" />
-      <workItem from="1695022428462" duration="5843000" />
-    </task>
-    <task id="LOCAL-00095" summary="gateway-boot:&#10;    添加工具类">
-      <created>1694851139794</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1694851139794</updated>
+      <workItem from="1695022428462" duration="7731000" />
     </task>
     <task id="LOCAL-00096" summary="gateway-boot:&#10;    添加实体类">
       <created>1694851186905</created>
@@ -629,7 +643,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695024552903</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="配置文件">
+      <created>1695028471621</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1695028471621</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +685,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="admin-boot:&#10;    WhiteUrlService" />
     <MESSAGE value="admin-boot:&#10;    verify" />
     <MESSAGE value="admin-boot:&#10;    manager.task 还没有往redis里存" />
     <MESSAGE value="admin-boot:&#10;    消息队列" />
@@ -689,7 +709,8 @@
     <MESSAGE value="message-boot：&#10;    amqp" />
     <MESSAGE value="message-boot：&#10;    配置、拦截器、controller" />
     <MESSAGE value="README" />
-    <option name="LAST_COMMIT_MESSAGE" value="README" />
+    <MESSAGE value="配置文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="配置文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

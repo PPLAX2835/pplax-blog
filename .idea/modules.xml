@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common-api/admin-api/admin-api.iml" filepath="$PROJECT_DIR$/common-api/admin-api/admin-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/admin-boot/admin-boot.iml" filepath="$PROJECT_DIR$/pplax-modules/admin-boot/admin-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/admin-common/admin-common.iml" filepath="$PROJECT_DIR$/pplax-base/admin-common/admin-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/admin-service/admin-service.iml" filepath="$PROJECT_DIR$/service/admin-service/admin-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/amqp-api/amqp-api.iml" filepath="$PROJECT_DIR$/common-api/amqp-api/amqp-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/amqp-common/amqp-common.iml" filepath="$PROJECT_DIR$/pplax-base/amqp-common/amqp-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/amqp-mail-api/amqp-mail-api.iml" filepath="$PROJECT_DIR$/common-api/amqp-mail-api/amqp-mail-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/article-api/article-api.iml" filepath="$PROJECT_DIR$/common-api/article-api/article-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/article-boot/article-boot.iml" filepath="$PROJECT_DIR$/pplax-modules/article-boot/article-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/article-common/article-common.iml" filepath="$PROJECT_DIR$/pplax-base/article-common/article-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/article-service/article-service.iml" filepath="$PROJECT_DIR$/service/article-service/article-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/auth-common/auth-common.iml" filepath="$PROJECT_DIR$/pplax-base/auth-common/auth-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/auth-server-boot/auth-server-boot.iml" filepath="$PROJECT_DIR$/pplax-modules/auth-server-boot/auth-server-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/auth-server-service/auth-server-service.iml" filepath="$PROJECT_DIR$/service/auth-server-service/auth-server-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/comment-api/comment-api.iml" filepath="$PROJECT_DIR$/common-api/comment-api/comment-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/comment-boot/comment-boot.iml" filepath="$PROJECT_DIR$/pplax-modules/comment-boot/comment-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/comment-common/comment-common.iml" filepath="$PROJECT_DIR$/pplax-base/comment-common/comment-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/comment-service/comment-service.iml" filepath="$PROJECT_DIR$/service/comment-service/comment-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/common-api.iml" filepath="$PROJECT_DIR$/common-api/common-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/data-common/data-common.iml" filepath="$PROJECT_DIR$/pplax-base/data-common/data-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/file-boot/file-boot.iml" filepath="$PROJECT_DIR$/pplax-modules/file-boot/file-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/file-common/file-common.iml" filepath="$PROJECT_DIR$/pplax-base/file-common/file-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/file-service/file-service.iml" filepath="$PROJECT_DIR$/service/file-service/file-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/gateway-api/gateway-api.iml" filepath="$PROJECT_DIR$/common-api/gateway-api/gateway-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/gateway-boot/gateway-boot.iml" filepath="$PROJECT_DIR$/pplax-modules/gateway-boot/gateway-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/mail-api/mail-api.iml" filepath="$PROJECT_DIR$/common-api/mail-api/mail-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/message-boot/message-boot.iml" filepath="$PROJECT_DIR$/pplax-modules/message-boot/message-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/message-common/message-common.iml" filepath="$PROJECT_DIR$/pplax-base/message-common/message-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/message-service/message-service.iml" filepath="$PROJECT_DIR$/service/message-service/message-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-api/oauth-api/oauth-api.iml" filepath="$PROJECT_DIR$/common-api/oauth-api/oauth-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/pplax-amqp-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/pplax-amqp-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/pplax-base.iml" filepath="$PROJECT_DIR$/pplax-base/pplax-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-cloud-backend.iml" filepath="$PROJECT_DIR$/pplax-cloud-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/pplax-core/pplax-core.iml" filepath="$PROJECT_DIR$/pplax-base/pplax-core/pplax-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-datasource-starter/pplax-datasource-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-datasource-starter/pplax-datasource-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-feign-starter/pplax-feign-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-feign-starter/pplax-feign-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-modules.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pplax-mybatis-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pplax-mybatis-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-nacos-starter/pplax-nacos-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-nacos-starter/pplax-nacos-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-oauth2-starter/pplax-oauth2-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-oauth2-starter/pplax-oauth2-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-redis-starter/pplax-redis-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/pplax-redis-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-seata-starter/pplax-seata-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-seata-starter/pplax-seata-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-sentinel-starter/pplax-sentinel-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-sentinel-starter/pplax-sentinel-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-spring-boot-starter/pplax-spring-boot-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-spring-boot-starter/pplax-spring-boot-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/pplax-swagger-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/pplax-swagger-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/support/support.iml" filepath="$PROJECT_DIR$/support/support.iml" />
+      <module fileurl="file://$PROJECT_DIR$/support/support-service/support-service.iml" filepath="$PROJECT_DIR$/support/support-service/support-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/test-boot/test-boot.iml" filepath="$PROJECT_DIR$/pplax-modules/test-boot/test-boot.iml" />
+    </modules>
+  </component>
+</project>

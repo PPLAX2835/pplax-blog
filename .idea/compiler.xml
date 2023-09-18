@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="comment-boot" />
+        <module name="support-service" />
+        <module name="pplax-swagger-starter" />
+        <module name="pplax-nacos-starter" />
+        <module name="admin-boot" />
+        <module name="file-service" />
+        <module name="message-service" />
+        <module name="comment-service" />
+        <module name="mail-api" />
+        <module name="pplax-redis-starter" />
+        <module name="auth-server-boot" />
+        <module name="data-common" />
+        <module name="auth-common" />
+        <module name="auth-server-service" />
+        <module name="admin-common" />
+        <module name="oauth-api" />
+        <module name="article-boot" />
+        <module name="article-common" />
+        <module name="pplax-oauth2-starter" />
+        <module name="comment-common" />
+        <module name="file-boot" />
+        <module name="comment-api" />
+        <module name="message-common" />
+        <module name="pplax-feign-starter" />
+        <module name="pplax-seata-starter" />
+        <module name="admin-api" />
+        <module name="gateway-boot" />
+        <module name="gateway-api" />
+        <module name="pplax-security-starter" />
+        <module name="pplax-amqp-starter" />
+        <module name="pplax-sentinel-starter" />
+        <module name="test-boot" />
+        <module name="amqp-common" />
+        <module name="article-api" />
+        <module name="amqp-mail-api" />
+        <module name="pplax-core" />
+        <module name="amqp-api" />
+        <module name="article-service" />
+        <module name="file-common" />
+        <module name="pplax-mybatis-starter" />
+        <module name="pplax-datasource-starter" />
+        <module name="message-boot" />
+        <module name="admin-service" />
+        <module name="pplax-spring-boot-starter" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="11">
+      <module name="admin-api" target="11" />
+      <module name="admin-boot" target="11" />
+      <module name="admin-common" target="11" />
+      <module name="admin-service" target="11" />
+      <module name="amqp-api" target="11" />
+      <module name="amqp-common" target="11" />
+      <module name="amqp-mail-api" target="11" />
+      <module name="article-api" target="11" />
+      <module name="article-boot" target="11" />
+      <module name="article-common" target="11" />
+      <module name="article-service" target="11" />
+      <module name="auth-common" target="11" />
+      <module name="auth-server-boot" target="11" />
+      <module name="auth-server-service" target="11" />
+      <module name="comment-api" target="11" />
+      <module name="comment-boot" target="11" />
+      <module name="comment-common" target="11" />
+      <module name="comment-service" target="11" />
+      <module name="common-api" target="11" />
+      <module name="data-common" target="11" />
+      <module name="file-boot" target="11" />
+      <module name="file-common" target="11" />
+      <module name="file-service" target="11" />
+      <module name="gateway-api" target="11" />
+      <module name="gateway-boot" target="11" />
+      <module name="mail-api" target="11" />
+      <module name="message-boot" target="11" />
+      <module name="message-common" target="11" />
+      <module name="message-service" target="11" />
+      <module name="oauth-api" target="11" />
+      <module name="pplax-amqp-starter" target="11" />
+      <module name="pplax-base" target="11" />
+      <module name="pplax-cloud-backend" target="11" />
+      <module name="pplax-core" target="11" />
+      <module name="pplax-datasource-starter" target="11" />
+      <module name="pplax-feign-starter" target="11" />
+      <module name="pplax-modules" target="11" />
+      <module name="pplax-mybatis-starter" target="11" />
+      <module name="pplax-nacos-starter" target="11" />
+      <module name="pplax-oauth2-starter" target="11" />
+      <module name="pplax-redis-starter" target="11" />
+      <module name="pplax-seata-starter" target="11" />
+      <module name="pplax-security-starter" target="11" />
+      <module name="pplax-sentinel-starter" target="11" />
+      <module name="pplax-spring-boot-starter" target="11" />
+      <module name="pplax-starter" target="11" />
+      <module name="pplax-swagger-starter" target="11" />
+      <module name="service" target="11" />
+      <module name="support" target="11" />
+      <module name="support-service" target="11" />
+      <module name="test-boot" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="admin-api" options="-parameters" />
+      <module name="admin-boot" options="-parameters" />
+      <module name="admin-common" options="-parameters" />
+      <module name="admin-service" options="-parameters" />
+      <module name="amqp-api" options="-parameters" />
+      <module name="amqp-common" options="-parameters" />
+      <module name="amqp-mail-api" options="-parameters" />
+      <module name="article-api" options="-parameters" />
+      <module name="article-boot" options="-parameters" />
+      <module name="article-common" options="-parameters" />
+      <module name="article-service" options="-parameters" />
+      <module name="auth-common" options="-parameters" />
+      <module name="auth-server-boot" options="-parameters" />
+      <module name="auth-server-service" options="-parameters" />
+      <module name="comment-api" options="-parameters" />
+      <module name="comment-boot" options="-parameters" />
+      <module name="comment-common" options="-parameters" />
+      <module name="comment-service" options="-parameters" />
+      <module name="data-common" options="-parameters" />
+      <module name="file-boot" options="-parameters" />
+      <module name="file-common" options="-parameters" />
+      <module name="file-service" options="-parameters" />
+      <module name="gateway-api" options="-parameters" />
+      <module name="gateway-boot" options="-parameters" />
+      <module name="mail-api" options="-parameters" />
+      <module name="message-boot" options="-parameters" />
+      <module name="message-common" options="-parameters" />
+      <module name="message-service" options="-parameters" />
+      <module name="oauth-api" options="-parameters" />
+      <module name="pplax-amqp-starter" options="-parameters" />
+      <module name="pplax-core" options="-parameters" />
+      <module name="pplax-datasource-starter" options="-parameters" />
+      <module name="pplax-feign-starter" options="-parameters" />
+      <module name="pplax-mybatis-starter" options="-parameters" />
+      <module name="pplax-nacos-starter" options="-parameters" />
+      <module name="pplax-oauth2-starter" options="-parameters" />
+      <module name="pplax-redis-starter" options="-parameters" />
+      <module name="pplax-seata-starter" options="-parameters" />
+      <module name="pplax-security-starter" options="-parameters" />
+      <module name="pplax-sentinel-starter" options="-parameters" />
+      <module name="pplax-spring-boot-starter" options="-parameters" />
+      <module name="pplax-swagger-starter" options="-parameters" />
+      <module name="support-service" options="-parameters" />
+    </option>
+  </component>
+</project>

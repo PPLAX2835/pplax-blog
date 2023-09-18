@@ -1,0 +1,25 @@
+server:
+  compression:
+    enabled: false
+  port: 8083
+
+spring:
+  cloud:
+    bootstrap:
+      enable: true
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+management:
+  endpoints:
+    web:
+      base-path: /rest/actuator
+      exposure:
+        include: '*'
+springdoc:
+  swagger-ui:
+    persist-authorization: true
+

@@ -24,5 +24,6 @@
         <module>auth-server-boot</module>
         <module>gateway-boot</module>
         <module>admin-boot</module>
+        <module>article-boot</module>
     </modules>
 </project>

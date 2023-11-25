@@ -8,50 +8,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="comment-boot" />
-        <module name="support-service" />
-        <module name="pplax-swagger-starter" />
-        <module name="pplax-nacos-starter" />
-        <module name="admin-boot" />
-        <module name="file-service" />
-        <module name="message-service" />
-        <module name="comment-service" />
-        <module name="mail-api" />
-        <module name="pplax-redis-starter" />
-        <module name="auth-server-boot" />
-        <module name="data-common" />
-        <module name="auth-common" />
-        <module name="auth-server-service" />
-        <module name="admin-common" />
-        <module name="oauth-api" />
-        <module name="article-boot" />
-        <module name="article-common" />
-        <module name="pplax-oauth2-starter" />
-        <module name="comment-common" />
-        <module name="file-boot" />
-        <module name="comment-api" />
-        <module name="message-common" />
-        <module name="pplax-feign-starter" />
-        <module name="pplax-seata-starter" />
-        <module name="admin-api" />
-        <module name="gateway-boot" />
-        <module name="gateway-api" />
-        <module name="pplax-security-starter" />
-        <module name="pplax-amqp-starter" />
-        <module name="pplax-sentinel-starter" />
-        <module name="test-boot" />
-        <module name="amqp-common" />
-        <module name="article-api" />
-        <module name="amqp-mail-api" />
-        <module name="pplax-core" />
-        <module name="amqp-api" />
-        <module name="article-service" />
-        <module name="file-common" />
-        <module name="pplax-mybatis-starter" />
-        <module name="pplax-datasource-starter" />
-        <module name="message-boot" />
-        <module name="admin-service" />
-        <module name="pplax-spring-boot-starter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
@@ -84,6 +40,7 @@
       <module name="message-boot" target="11" />
       <module name="message-common" target="11" />
       <module name="message-service" target="11" />
+      <module name="MicroserviceBlogSystem" target="1.8" />
       <module name="oauth-api" target="11" />
       <module name="pplax-amqp-starter" target="11" />
       <module name="pplax-base" target="11" />

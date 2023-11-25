@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-xyz.pplax.amqp.config.RabbitMQAutoConfig

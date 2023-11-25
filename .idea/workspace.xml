@@ -184,6 +184,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="amqp-api" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="amqp-api" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AuthServerRun" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="auth-server-boot" />
       <extension name="coverage">
@@ -269,6 +282,10 @@
     </configuration>
     <list>
       <item itemvalue="Compound.RunAll" />
+      <item itemvalue="JUnit.TestBootApplicationTests.OauthClientDetailsServiceInsertTest" />
+      <item itemvalue="JUnit.PPLAXArticleRunTests.TalkServiceTest" />
+      <item itemvalue="JUnit.PPLAXAdminRunTests.PermissionAdminRouterRelationshipServiceTest" />
+      <item itemvalue="JUnit.TestBootApplicationTests.doR" />
       <item itemvalue="Spring Boot.PPLAXCommentRun" />
       <item itemvalue="Spring Boot.PPLAXGateWayRun" />
       <item itemvalue="Spring Boot.PPLAXAdminRun" />
@@ -276,10 +293,6 @@
       <item itemvalue="Spring Boot.PPLAXArticleRun" />
       <item itemvalue="Spring Boot.PPLAXFileRun" />
       <item itemvalue="Spring Boot.PPLAXMessageRun" />
-      <item itemvalue="JUnit.TestBootApplicationTests.OauthClientDetailsServiceInsertTest" />
-      <item itemvalue="JUnit.PPLAXArticleRunTests.TalkServiceTest" />
-      <item itemvalue="JUnit.PPLAXAdminRunTests.PermissionAdminRouterRelationshipServiceTest" />
-      <item itemvalue="JUnit.TestBootApplicationTests.doR" />
     </list>
     <recent_temporary>
       <list>

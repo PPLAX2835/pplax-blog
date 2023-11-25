@@ -1,0 +1,97 @@
+Index: pplax-modules/test-boot/src/main/java/xyz/pplax/TestBootApplication.java
+===================================================================
+diff --git a/pplax-modules/test-boot/src/main/java/xyz/pplax/TestBootApplication.java b/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/WebApplication.java
+rename from pplax-modules/test-boot/src/main/java/xyz/pplax/TestBootApplication.java
+rename to pplax-web/src/main/java/xyz/pplax/pplaxblog/web/WebApplication.java
+--- a/pplax-modules/test-boot/src/main/java/xyz/pplax/TestBootApplication.java	
++++ b/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/WebApplication.java	
+@@ -1,13 +1,11 @@
+-package xyz.pplax;
++package xyz.pplax.pplaxblog.web;
+ 
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+ 
+ @SpringBootApplication
+-public class TestBootApplication {
+-
++public class WebApplication {
+     public static void main(String[] args) {
+-        SpringApplication.run(TestBootApplication.class, args);
++        SpringApplication.run(WebApplication.class, args);
+     }
+-
+ }
+Index: pplax-modules/file-boot/src/main/java/xyz/PPLAXFileRun.java
+===================================================================
+diff --git a/pplax-modules/file-boot/src/main/java/xyz/PPLAXFileRun.java b/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/XoApplication.java
+rename from pplax-modules/file-boot/src/main/java/xyz/PPLAXFileRun.java
+rename to pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/XoApplication.java
+--- a/pplax-modules/file-boot/src/main/java/xyz/PPLAXFileRun.java	
++++ b/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/XoApplication.java	
+@@ -1,12 +1,11 @@
+-package xyz;
++package xyz.pplax.pplaxblog.xo;
+ 
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+ 
+-
+ @SpringBootApplication
+-public class PPLAXFileRun {
++public class XoApplication {
+     public static void main(String[] args) {
+-        SpringApplication.run(PPLAXFileRun.class, args);
++        SpringApplication.run(XoApplication.class, args);
+     }
+ }
+Index: pplax-modules/comment-boot/src/main/java/xyz/pplax/PPLAXCommentRun.java
+===================================================================
+diff --git a/pplax-modules/comment-boot/src/main/java/xyz/pplax/PPLAXCommentRun.java b/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java
+rename from pplax-modules/comment-boot/src/main/java/xyz/pplax/PPLAXCommentRun.java
+rename to pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java
+--- a/pplax-modules/comment-boot/src/main/java/xyz/pplax/PPLAXCommentRun.java	
++++ b/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java	
+@@ -1,14 +1,11 @@
+-package xyz.pplax;
++package xyz.pplax.pplaxblog.admin;
+ 
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+-import org.springframework.cloud.openfeign.EnableFeignClients;
+-
+ 
+ @SpringBootApplication
+-@EnableFeignClients
+-public class PPLAXCommentRun {
++public class AdminApplication {
+     public static void main(String[] args) {
+-        SpringApplication.run(PPLAXCommentRun.class, args);
++        SpringApplication.run(AdminApplication.class, args);
+     }
+ }
+Index: pplax-modules/article-boot/src/main/java/xyz/pplax/PPLAXArticleRun.java
+===================================================================
+diff --git a/pplax-modules/article-boot/src/main/java/xyz/pplax/PPLAXArticleRun.java b/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/BaseApplication.java
+rename from pplax-modules/article-boot/src/main/java/xyz/pplax/PPLAXArticleRun.java
+rename to pplax-base/src/main/java/xyz/pplax/pplaxblog/base/BaseApplication.java
+--- a/pplax-modules/article-boot/src/main/java/xyz/pplax/PPLAXArticleRun.java	
++++ b/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/BaseApplication.java	
+@@ -1,14 +1,11 @@
+-package xyz.pplax;
+-
++package xyz.pplax.pplaxblog.base;
+ 
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+-import org.springframework.cloud.openfeign.EnableFeignClients;
+ 
+-@EnableFeignClients
+ @SpringBootApplication
+-public class PPLAXArticleRun {
++public class BaseApplication {
+     public static void main(String[] args) {
+-        SpringApplication.run(PPLAXArticleRun.class, args);
++        SpringApplication.run(BaseApplication.class, args);
+     }
+ }

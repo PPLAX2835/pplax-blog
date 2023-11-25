@@ -3,6 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MicroserviceBlogSystem.iml" filepath="$PROJECT_DIR$/MicroserviceBlogSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-admin/pplax-admin.iml" filepath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-base/pplax-base.iml" filepath="$PROJECT_DIR$/pplax-base/pplax-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-config/pplax-config.iml" filepath="$PROJECT_DIR$/pplax-config/pplax-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-utils/pplax-utils.iml" filepath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-web/pplax-web.iml" filepath="$PROJECT_DIR$/pplax-web/pplax-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-xo/pplax-xo.iml" filepath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" />
     </modules>
   </component>
 </project>

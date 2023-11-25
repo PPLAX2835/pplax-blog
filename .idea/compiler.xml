@@ -8,6 +8,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="pplax-base" />
+        <module name="pplax-admin" />
+        <module name="pplax-config" />
+        <module name="pplax-utils" />
+        <module name="pplax-xo" />
+        <module name="pplax-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
@@ -42,9 +48,11 @@
       <module name="message-service" target="11" />
       <module name="MicroserviceBlogSystem" target="1.8" />
       <module name="oauth-api" target="11" />
+      <module name="pplax-admin" target="1.8" />
       <module name="pplax-amqp-starter" target="11" />
-      <module name="pplax-base" target="11" />
+      <module name="pplax-base" target="1.8" />
       <module name="pplax-cloud-backend" target="11" />
+      <module name="pplax-config" target="1.8" />
       <module name="pplax-core" target="11" />
       <module name="pplax-datasource-starter" target="11" />
       <module name="pplax-feign-starter" target="11" />
@@ -59,6 +67,9 @@
       <module name="pplax-spring-boot-starter" target="11" />
       <module name="pplax-starter" target="11" />
       <module name="pplax-swagger-starter" target="11" />
+      <module name="pplax-utils" target="1.8" />
+      <module name="pplax-web" target="1.8" />
+      <module name="pplax-xo" target="1.8" />
       <module name="service" target="11" />
       <module name="support" target="11" />
       <module name="support-service" target="11" />
@@ -96,7 +107,10 @@
       <module name="message-common" options="-parameters" />
       <module name="message-service" options="-parameters" />
       <module name="oauth-api" options="-parameters" />
+      <module name="pplax-admin" options="-parameters" />
       <module name="pplax-amqp-starter" options="-parameters" />
+      <module name="pplax-base" options="-parameters" />
+      <module name="pplax-config" options="-parameters" />
       <module name="pplax-core" options="-parameters" />
       <module name="pplax-datasource-starter" options="-parameters" />
       <module name="pplax-feign-starter" options="-parameters" />
@@ -109,6 +123,9 @@
       <module name="pplax-sentinel-starter" options="-parameters" />
       <module name="pplax-spring-boot-starter" options="-parameters" />
       <module name="pplax-swagger-starter" options="-parameters" />
+      <module name="pplax-utils" options="-parameters" />
+      <module name="pplax-web" options="-parameters" />
+      <module name="pplax-xo" options="-parameters" />
       <module name="support-service" options="-parameters" />
     </option>
   </component>

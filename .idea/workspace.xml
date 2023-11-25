@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/pplax-admin.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-config/pplax-admin.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +67,6 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base" />
@@ -237,14 +240,7 @@
       <workItem from="1695022428462" duration="7731000" />
       <workItem from="1700891357080" duration="478000" />
       <workItem from="1700891849325" duration="270000" />
-      <workItem from="1700892131814" duration="3205000" />
-    </task>
-    <task id="LOCAL-00101" summary="gateway-boot:&#10;    添加全局过滤器，检查token的；切面有点问题；ip2region.xdb放错位置了">
-      <created>1694858288818</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1694858288818</updated>
+      <workItem from="1700892131814" duration="3895000" />
     </task>
     <task id="LOCAL-00102" summary="gateway-boot:&#10;    配置">
       <created>1694858875638</created>
@@ -582,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700895619654</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="初始化-引入maven">
+      <created>1700896120206</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1700896120206</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +620,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="admin-boot:&#10;    添加controller" />
     <MESSAGE value="添加命名空间" />
     <MESSAGE value="article-boot" />
     <MESSAGE value="article-boot:&#10;    添加工具类" />
@@ -642,7 +644,8 @@
     <MESSAGE value="调整包结构" />
     <MESSAGE value="初始化-添加工具类（maven尚未引入）" />
     <MESSAGE value="初始化-各种基类（maven尚未引入）" />
-    <option name="LAST_COMMIT_MESSAGE" value="初始化-各种基类（maven尚未引入）" />
+    <MESSAGE value="初始化-引入maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="初始化-引入maven" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

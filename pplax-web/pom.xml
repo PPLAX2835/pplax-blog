@@ -18,15 +18,25 @@
     </properties>
 
     <dependencies>
+        <!-- 引入pplax-xo相关 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-xo</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- 引入pplax-utils相关 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- 引入mogu_config相关 -->
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-config</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/controller/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/dao/BaseDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/entity/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/enums/EChannel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/enums/EStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/BaseConf.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/SysConf.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/WebConf.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/helper/BaseHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClientCluster.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClientPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/service/BaseSO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/serviceImpl/BaseSOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +150,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BaseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pplax-base" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.base.BaseApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ConfigApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="pplax-config" />
       <extension name="coverage">
@@ -243,14 +237,7 @@
       <workItem from="1695022428462" duration="7731000" />
       <workItem from="1700891357080" duration="478000" />
       <workItem from="1700891849325" duration="270000" />
-      <workItem from="1700892131814" duration="2893000" />
-    </task>
-    <task id="LOCAL-00100" summary="gateway-boot:&#10;    加上个切面，没写逻辑">
-      <created>1694857154822</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1694857154823</updated>
+      <workItem from="1700892131814" duration="3205000" />
     </task>
     <task id="LOCAL-00101" summary="gateway-boot:&#10;    添加全局过滤器，检查token的；切面有点问题；ip2region.xdb放错位置了">
       <created>1694858288818</created>
@@ -588,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700895207528</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="初始化-各种基类（maven尚未引入）">
+      <created>1700895619654</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1700895619654</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,7 +617,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="admin-boot:&#10;    缓存包，有些问题还没改" />
     <MESSAGE value="admin-boot:&#10;    添加controller" />
     <MESSAGE value="添加命名空间" />
     <MESSAGE value="article-boot" />
@@ -648,7 +641,8 @@
     <MESSAGE value="蘑菇博客前端" />
     <MESSAGE value="调整包结构" />
     <MESSAGE value="初始化-添加工具类（maven尚未引入）" />
-    <option name="LAST_COMMIT_MESSAGE" value="初始化-添加工具类（maven尚未引入）" />
+    <MESSAGE value="初始化-各种基类（maven尚未引入）" />
+    <option name="LAST_COMMIT_MESSAGE" value="初始化-各种基类（maven尚未引入）" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

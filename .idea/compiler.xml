@@ -78,6 +78,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MicroserviceBlogSystem" options="-parameters" />
       <module name="admin-api" options="-parameters" />
       <module name="admin-boot" options="-parameters" />
       <module name="admin-common" options="-parameters" />

@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/controller/BaseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/dao/BaseDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/entity/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/enums/EChannel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/enums/EStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/BaseConf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/SysConf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/WebConf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/helper/BaseHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClientCluster.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClientPool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/service/BaseSO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/serviceImpl/BaseSOImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +79,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-xo/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -81,11 +96,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\java\xyz\pplax\pplaxblog\base" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-utils\src\main\java\xyz\pplax\pplaxblog\utils" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-web\src\main\resources" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-utils\src\main\resources" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-config\src\main\resources" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-cloud-backend\service\auth-server-service\src\main\resources\xyz\pplax\auth\dao" />
@@ -228,14 +243,7 @@
       <workItem from="1695022428462" duration="7731000" />
       <workItem from="1700891357080" duration="478000" />
       <workItem from="1700891849325" duration="270000" />
-      <workItem from="1700892131814" duration="2389000" />
-    </task>
-    <task id="LOCAL-00099" summary="gateway-boot:&#10;    token配置">
-      <created>1694856820908</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1694856820908</updated>
+      <workItem from="1700892131814" duration="2893000" />
     </task>
     <task id="LOCAL-00100" summary="gateway-boot:&#10;    加上个切面，没写逻辑">
       <created>1694857154822</created>
@@ -573,7 +581,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700895014881</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="初始化-添加工具类（maven尚未引入）">
+      <created>1700895207528</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1700895207528</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,7 +623,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="admin-boot:&#10;    试了试初始化缓存，没弄出来" />
     <MESSAGE value="admin-boot:&#10;    缓存包，有些问题还没改" />
     <MESSAGE value="admin-boot:&#10;    添加controller" />
     <MESSAGE value="添加命名空间" />
@@ -633,7 +647,8 @@
     <MESSAGE value="初始化" />
     <MESSAGE value="蘑菇博客前端" />
     <MESSAGE value="调整包结构" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整包结构" />
+    <MESSAGE value="初始化-添加工具类（maven尚未引入）" />
+    <option name="LAST_COMMIT_MESSAGE" value="初始化-添加工具类（maven尚未引入）" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

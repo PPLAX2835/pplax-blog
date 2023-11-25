@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -154,11 +152,11 @@
       <module name="pplax-config" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.config.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.ConfigApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.config.ConfigApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -167,11 +165,11 @@
       <module name="pplax-utils" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.UtilsApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.utils.UtilsApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -180,11 +178,11 @@
       <module name="pplax-web" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.web.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.WebApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.web.WebApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -193,11 +191,11 @@
       <module name="pplax-xo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.xo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.XoApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.xo.XoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -230,14 +228,7 @@
       <workItem from="1695022428462" duration="7731000" />
       <workItem from="1700891357080" duration="478000" />
       <workItem from="1700891849325" duration="270000" />
-      <workItem from="1700892131814" duration="1864000" />
-    </task>
-    <task id="LOCAL-00097" summary="gateway-boot:&#10;    添加异常及处理类">
-      <created>1694851763152</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1694851763152</updated>
+      <workItem from="1700892131814" duration="2072000" />
     </task>
     <task id="LOCAL-00098" summary="gateway-boot:&#10;    添加鉴权管理类">
       <created>1694853801727</created>
@@ -575,7 +566,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700893408315</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="蘑菇博客前端">
+      <created>1700894695946</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1700894695946</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +608,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="admin-boot:&#10;    manager.task 还没有往redis里存" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="admin-boot:&#10;    消息队列" />
     <MESSAGE value="admin-boot:&#10;    试了试初始化缓存，没弄出来" />
     <MESSAGE value="admin-boot:&#10;    缓存包，有些问题还没改" />
@@ -635,7 +633,8 @@
     <MESSAGE value="README" />
     <MESSAGE value="配置文件" />
     <MESSAGE value="初始化" />
-    <option name="LAST_COMMIT_MESSAGE" value="初始化" />
+    <MESSAGE value="蘑菇博客前端" />
+    <option name="LAST_COMMIT_MESSAGE" value="蘑菇博客前端" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

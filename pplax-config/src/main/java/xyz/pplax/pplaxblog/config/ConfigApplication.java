@@ -1,11 +1,11 @@
-package xyz.pplax.pplaxblog;
+package xyz.pplax.pplaxblog.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class XoApplication {
+public class ConfigApplication {
     public static void main(String[] args) {
-        SpringApplication.run(XoApplication.class, args);
+        SpringApplication.run(ConfigApplication.class, args);
     }
 }

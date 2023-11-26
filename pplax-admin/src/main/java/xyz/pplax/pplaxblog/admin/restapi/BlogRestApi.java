@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.base.enums.EStatus;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
+import xyz.pplax.pplaxblog.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.service.BlogService;
 import xyz.pplax.pplaxblog.base.global.SysConf;
@@ -18,6 +19,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,7 +31,6 @@ import java.util.List;
 @RequestMapping("/blog")
 @Api(value="博客RestApi", tags={"BlogRestApi"})
 public class BlogRestApi {
-
 
 	@Autowired
 	BlogService blogService;
@@ -47,9 +48,16 @@ public class BlogRestApi {
 		if(!keyword.isEmpty()) {
 			queryWrapper.like(SysConf.title, keyword);
 		}
+
+		//分页插件还没导入，暂时分页没用
 		Page<Blog> page = new Page<>();
 		page.setCurrent(currentPage);
 		page.setSize(pageSize);
+
+		queryWrapper.eq(SysConf.status, EStatus.ENABLE);
+
+		queryWrapper.orderByDesc(SysConf.createtime);
+
 		IPage<Blog> pageList = blogService.page(page, queryWrapper);
 		List<Blog> list = pageList.getRecords();
 		log.info("返回结果");
@@ -63,19 +71,65 @@ public class BlogRestApi {
 					  @ApiParam(name = "summary", value = "博客简介",required = false) @RequestParam(name = "summary", required = false) String summary,
 					  @ApiParam(name = "content", value = "博客正文",required = false) @RequestParam(name = "content", required = false) String content,
 					  @ApiParam(name = "taguid", value = "标签UID",required = false) @RequestParam(name = "taguid", required = false) String taguid,
-					  @ApiParam(name = "photo", value = "标题图",required = false) @RequestParam(name = "photo", required = false) String photo		) {
+					  @ApiParam(name = "photo", value = "标题图",required = false) @RequestParam(name = "photo", required = false) String photo	) {
 
+		if(StringUtils.isEntity(title) || StringUtils.isEntity(content)) {
+			return ResultUtil.result(SysConf.ERROR, "必填项不能为空");
+		}
 		Blog blog = new Blog();
 		blog.setTitle(title);
 		blog.setSummary(summary);
 		blog.setContent(content);
 		blog.setTaguid(taguid);
 		blog.setClickcount(0);
+		blog.setPhoto(photo);
 		blog.setStatus(EStatus.ENABLE);
+		blog.setCreatetime(new Date());
+		blog.setUpdatetime(new Date());
 		blog.insert();
 		return ResultUtil.result(SysConf.SUCCESS, "添加成功");
 	}
 
+	@ApiOperation(value="编辑博客", notes="编辑博客", response = String.class)
+	@PostMapping("/edit")
+	public String edit(HttpServletRequest request,
+					   @ApiParam(name = "uid", value = "唯一UID",required = true) @RequestParam(name = "uid", required = true) String uid,
+					   @ApiParam(name = "title", value = "博客标题",required = false) @RequestParam(name = "title", required = false) String title,
+					   @ApiParam(name = "summary", value = "博客简介",required = false) @RequestParam(name = "summary", required = false) String summary,
+					   @ApiParam(name = "content", value = "博客正文",required = false) @RequestParam(name = "content", required = false) String content,
+					   @ApiParam(name = "taguid", value = "标签UID",required = false) @RequestParam(name = "taguid", required = false) String taguid,
+					   @ApiParam(name = "photo", value = "标题图",required = false) @RequestParam(name = "photo", required = false) String photo ) {
+
+		if(StringUtils.isEntity(uid)) {
+			return ResultUtil.result(SysConf.ERROR, "数据错误");
+		}
+
+		Blog blog = blogService.getById(uid);
+		blog.setTitle(title);
+		blog.setSummary(summary);
+		blog.setContent(content);
+		blog.setTaguid(taguid);
+		blog.setPhoto(photo);
+		blog.setStatus(EStatus.ENABLE);
+		blog.setUpdatetime(new Date());
+		blog.updateById();
+		return ResultUtil.result(SysConf.SUCCESS, "编辑成功");
+	}
+
+	@ApiOperation(value="删除博客", notes="删除博客", response = String.class)
+	@PostMapping("/delete")
+	public String delete(HttpServletRequest request,
+						 @ApiParam(name = "uid", value = "唯一UID",required = true) @RequestParam(name = "uid", required = true) String uid			) {
+
+		if(StringUtils.isEntity(uid)) {
+			return ResultUtil.result(SysConf.ERROR, "数据错误");
+		}
+		Blog blog = blogService.getById(uid);
+		blog.setUpdatetime(new Date());
+		blog.setStatus(EStatus.DISABLED);
+		blog.updateById();
+		return ResultUtil.result(SysConf.SUCCESS, "删除成功");
+	}
 
 
 }

@@ -78,7 +78,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="MicroserviceBlogSystem" options="-parameters" />
+      <module name="MicroserviceBlogSystem" options="" />
       <module name="admin-api" options="-parameters" />
       <module name="admin-boot" options="-parameters" />
       <module name="admin-common" options="-parameters" />
@@ -108,10 +108,10 @@
       <module name="message-common" options="-parameters" />
       <module name="message-service" options="-parameters" />
       <module name="oauth-api" options="-parameters" />
-      <module name="pplax-admin" options="-parameters" />
+      <module name="pplax-admin" options="" />
       <module name="pplax-amqp-starter" options="-parameters" />
-      <module name="pplax-base" options="-parameters" />
-      <module name="pplax-config" options="-parameters" />
+      <module name="pplax-base" options="" />
+      <module name="pplax-config" options="" />
       <module name="pplax-core" options="-parameters" />
       <module name="pplax-datasource-starter" options="-parameters" />
       <module name="pplax-feign-starter" options="-parameters" />
@@ -124,9 +124,9 @@
       <module name="pplax-sentinel-starter" options="-parameters" />
       <module name="pplax-spring-boot-starter" options="-parameters" />
       <module name="pplax-swagger-starter" options="-parameters" />
-      <module name="pplax-utils" options="-parameters" />
-      <module name="pplax-web" options="-parameters" />
-      <module name="pplax-xo" options="-parameters" />
+      <module name="pplax-utils" options="" />
+      <module name="pplax-web" options="" />
+      <module name="pplax-xo" options="" />
       <module name="support-service" options="-parameters" />
     </option>
   </component>

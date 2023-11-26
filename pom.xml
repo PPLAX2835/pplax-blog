@@ -21,19 +21,9 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.4</version>
+        <version>1.4.0.RELEASE</version>
         <relativePath/>
     </parent>
-
-    <modules>
-        <module>pplax-admin</module>
-        <module>pplax-base</module>
-        <module>pplax-config</module>
-        <module>pplax-utils</module>
-        <module>pplax-xo</module>
-        <module>pplax-web</module>
-    </modules>
-
 
     <dependencies>
         <dependency>
@@ -159,5 +149,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <modules>
+        <module>pplax-admin</module>
+        <module>pplax-base</module>
+        <module>pplax-config</module>
+        <module>pplax-utils</module>
+        <module>pplax-xo</module>
+        <module>pplax-web</module>
+    </modules>
 
 </project>

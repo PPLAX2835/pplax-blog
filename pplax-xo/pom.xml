@@ -20,35 +20,35 @@
     <dependencies>
         <dependency>
             <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-config</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-utils</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>xyz.pplax</groupId>
             <artifactId>pplax-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+
     </dependencies>
 
+    <!-- Package as an executable jar -->
     <build>
         <finalName>pplax-xo</finalName>
         <resources>
             <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.yml</include>
-                    <include>**/*.xml</include>
+                    <include>**.*</include>
+                    <include>**/*.*</include><!-- i18n能读取到 -->
+                    <include>**/*/*.*</include>
                 </includes>
             </resource>
         </resources>
     </build>
-
 </project>

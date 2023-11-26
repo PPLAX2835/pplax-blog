@@ -18,17 +18,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <!-- 引入pplax-xo相关 -->
         <dependency>
             <groupId>xyz.pplax</groupId>
@@ -36,29 +25,33 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- 引入pplax-utils相关 -->
-        <dependency>
-            <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-utils</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!-- 引入pplax-config相关 -->
-        <dependency>
-            <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-config</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
     </dependencies>
 
     <!--spring boot打包的话需要指定一个唯一的入门-->
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**.*</include>
+                    <include>**/*.*</include><!-- i18n能读取到 -->
+                    <include>**/*/*.*</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <!-- 如果没有该配置，devtools不会生效 -->
                     <!-- 指定该Main Class为全局的唯一入口 -->
                     <mainClass>xyz.pplax.pplaxblog.admin.AdminApplication</mainClass>
                     <layout>ZIP</layout>
@@ -72,6 +65,7 @@
                 </executions>
             </plugin>
         </plugins>
+        <finalName>pplax-admin</finalName>
     </build>
 
 </project>

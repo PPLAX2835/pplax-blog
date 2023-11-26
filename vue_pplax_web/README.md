@@ -1,4 +1,4 @@
-# pplax_blog
+# mogu_blog
 
 > A Vue.js project
 

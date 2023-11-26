@@ -1,13 +1,9 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,15 +12,9 @@ import java.util.List;
  * </p>
  */
 @TableName("t_blog")
-public class Blog extends Model<Blog> {
+public class Blog extends SuperEntity<Blog> {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 唯一uid
-     */
-    @TableId(value = "uid", type = IdType.UUID)
-    private String uid;
 
     /**
      * 博客标题
@@ -44,164 +34,113 @@ public class Blog extends Model<Blog> {
     /**
      * 标签uid
      */
-    private String taguid;
+    private String tagUid;
 
     /**
      * 博客点击数
      */
-    private Integer clickcount;
+    private Integer clickCount;
 
     /**
      * 博客收藏数
      */
-    private Integer collectcount;
+    private Integer collectCount;
 
     /**
-     * 标题图片
+     * 标题图片UID
      */
-    private String photo;
+    private String fileUid;
 
+   
     /**
-     * 状态
-     */
-    private int status;
-
-    /**
-     * 创建时间
-     */
-    private Date createtime;
-
-    /**
-     * 更新时间
-     */
-    private Date updatetime;
-
-
-    /**
-     * 以下字段不存入数据库，封装为了方便使用
+     * 以下字段不存入数据库，封装为了方便使用 
      */
     @TableField(exist = false)
     private List<Tag> tagList; //标签,一篇博客对应多个标签
 
-    public String getUid() {
-        return uid;
-    }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public String getSummary() {
-        return summary;
-    }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+	public String getSummary() {
+		return summary;
+	}
 
-    public String getContent() {
-        return content;
-    }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 
-    public String getTaguid() {
-        return taguid;
-    }
 
-    public void setTaguid(String taguid) {
-        this.taguid = taguid;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public Integer getClickcount() {
-        return clickcount;
-    }
 
-    public void setClickcount(Integer clickcount) {
-        this.clickcount = clickcount;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public Integer getCollectcount() {
-        return collectcount;
-    }
 
-    public void setCollectcount(Integer collectcount) {
-        this.collectcount = collectcount;
-    }
+	public String getTagUid() {
+		return tagUid;
+	}
 
-    public String getPhoto() {
-        return photo;
-    }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
+	public void setTagUid(String tagUid) {
+		this.tagUid = tagUid;
+	}
 
-    public int getStatus() {
-        return status;
-    }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+	public Integer getClickCount() {
+		return clickCount;
+	}
 
-    public Date getCreatetime() {
-        return createtime;
-    }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
+	public void setClickCount(Integer clickCount) {
+		this.clickCount = clickCount;
+	}
 
-    public Date getUpdatetime() {
-        return updatetime;
-    }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
+	public Integer getCollectCount() {
+		return collectCount;
+	}
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
 
-    public List<Tag> getTagList() {
-        return tagList;
-    }
+	public void setCollectCount(Integer collectCount) {
+		this.collectCount = collectCount;
+	}
 
-    public void setTagList(List<Tag> tagList) {
-        this.tagList = tagList;
-    }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.uid;
-    }
+	public String getFileUid() {
+		return fileUid;
+	}
 
-    @Override
-    public String toString() {
-        return "Blog{" +
-                ", uid=" + uid +
-                ", title=" + title +
-                ", summary=" + summary +
-                ", content=" + content +
-                ", taguid=" + taguid +
-                ", clickcount=" + clickcount +
-                ", collectcount=" + collectcount +
-                ", photo=" + photo +
-                ", status=" + status +
-                ", createtime=" + createtime +
-                ", updatetime=" + updatetime +
-                "}";
-    }
+
+	public void setFileUid(String fileUid) {
+		this.fileUid = fileUid;
+	}
+
+
+	public List<Tag> getTagList() {
+		return tagList;
+	}
+
+
+	public void setTagList(List<Tag> tagList) {
+		this.tagList = tagList;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+    
 }

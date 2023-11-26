@@ -1,13 +1,8 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -16,25 +11,19 @@ import java.util.Date;
  * </p>
  */
 @TableName("t_admin")
-public class Admin extends Model<Admin> {
+public class Admin extends SuperEntity<Admin> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 唯一uid
-     */
-    @TableId(value = "uid", type = IdType.UUID)
-    private String uid;
-
-    /**
      * 用户名
      */
-    private String username;
+    private String userName;
 
     /**
      * 密码
      */
-    private String password;
+    private String passWord;
 
     /**
      * 性别(1:男2:女)
@@ -64,7 +53,7 @@ public class Admin extends Model<Admin> {
     /**
      * 邮箱验证码
      */
-    private String validcode;
+    private String validCode;
 
     /**
      * 自我简介最多150字
@@ -74,190 +63,116 @@ public class Admin extends Model<Admin> {
     /**
      * 登录次数
      */
-    private Integer logincount;
+    private Integer loginCount;
 
     /**
      * 最后登录时间
      */
-    private Date lastlogintime;
+    private Date lastLoginTime;
 
     /**
      * 最后登录IP
      */
-    private String lastloginip;
+    private String lastLoginIp;
 
-    /**
-     * 状态
-     */
-    private int status;
+	public String getUserName() {
+		return userName;
+	}
 
-    /**
-     * 创建时间
-     */
-    private Date createtime;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    /**
-     * 更新时间
-     */
-    private Date updatetime;
+	public String getPassWord() {
+		return passWord;
+	}
 
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
 
-    public String getUid() {
-        return uid;
-    }
+	public int getGender() {
+		return gender;
+	}
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getAvatar() {
+		return avatar;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public int getGender() {
-        return gender;
-    }
+	public Date getBirthday() {
+		return birthday;
+	}
 
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
-    public String getAvatar() {
-        return avatar;
-    }
+	public String getMobile() {
+		return mobile;
+	}
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getValidCode() {
+		return validCode;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setValidCode(String validCode) {
+		this.validCode = validCode;
+	}
 
-    public Date getBirthday() {
-        return birthday;
-    }
+	public String getSummary() {
+		return summary;
+	}
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 
-    public String getMobile() {
-        return mobile;
-    }
+	public Integer getLoginCount() {
+		return loginCount;
+	}
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
+	public void setLoginCount(Integer loginCount) {
+		this.loginCount = loginCount;
+	}
 
-    public String getValidcode() {
-        return validcode;
-    }
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
 
-    public void setValidcode(String validcode) {
-        this.validcode = validcode;
-    }
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
 
-    public String getSummary() {
-        return summary;
-    }
+	public String getLastLoginIp() {
+		return lastLoginIp;
+	}
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+	public void setLastLoginIp(String lastLoginIp) {
+		this.lastLoginIp = lastLoginIp;
+	}
 
-    public Integer getLogincount() {
-        return logincount;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    public void setLogincount(Integer logincount) {
-        this.logincount = logincount;
-    }
-
-    public Date getLastlogintime() {
-        return lastlogintime;
-    }
-
-    public void setLastlogintime(Date lastlogintime) {
-        this.lastlogintime = lastlogintime;
-    }
-
-    public String getLastloginip() {
-        return lastloginip;
-    }
-
-    public void setLastloginip(String lastloginip) {
-        this.lastloginip = lastloginip;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
-    public Date getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
-    @Override
-    protected Serializable pkVal() {
-        return this.uid;
-    }
-
-    @Override
-    public String toString() {
-        return "Admin{" +
-                ", uid=" + uid +
-                ", username=" + username +
-                ", password=" + password +
-                ", gender=" + gender +
-                ", avatar=" + avatar +
-                ", email=" + email +
-                ", birthday=" + birthday +
-                ", mobile=" + mobile +
-                ", validcode=" + validcode +
-                ", summary=" + summary +
-                ", logincount=" + logincount +
-                ", lastlogintime=" + lastlogintime +
-                ", lastloginip=" + lastloginip +
-                ", status=" + status +
-                ", createtime=" + createtime +
-                ", updatetime=" + updatetime +
-                "}";
-    }
 }

@@ -1,7 +1,8 @@
 package xyz.pplax.pplaxblog.xo.mapper;
 
-import xyz.pplax.pplaxblog.xo.entity.Feedback;
+
 import xyz.pplax.pplaxblog.base.mapper.SuperMapper;
+import xyz.pplax.pplaxblog.xo.entity.Feedback;
 
 /**
  * <p>

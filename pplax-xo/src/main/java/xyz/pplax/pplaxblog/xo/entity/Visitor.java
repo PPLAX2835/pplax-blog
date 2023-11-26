@@ -3,10 +3,9 @@ package xyz.pplax.pplaxblog.xo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Date;
  * </p>
  */
 @TableName("t_visitor")
-public class Visitor extends Model<Visitor> {
+public class Visitor extends SuperEntity<Visitor> {
 
     private static final long serialVersionUID = 1L;
 
@@ -99,50 +98,50 @@ public class Visitor extends Model<Visitor> {
     }
 
     public Date getLastlogintime() {
-        return lastlogintime;
-    }
+		return lastlogintime;
+	}
 
-    public void setLastlogintime(Date lastlogintime) {
-        this.lastlogintime = lastlogintime;
-    }
+	public void setLastlogintime(Date lastlogintime) {
+		this.lastlogintime = lastlogintime;
+	}
 
-    public String getLastloginip() {
-        return lastloginip;
-    }
+	public String getLastloginip() {
+		return lastloginip;
+	}
 
-    public void setLastloginip(String lastloginip) {
-        this.lastloginip = lastloginip;
-    }
+	public void setLastloginip(String lastloginip) {
+		this.lastloginip = lastloginip;
+	}
+	
+	public int getStatus() {
+		return status;
+	}
 
-    public int getStatus() {
-        return status;
-    }
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+	public Date getCreatetime() {
+		return createtime;
+	}
 
-    public Date getCreatetime() {
-        return createtime;
-    }
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
+	}
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
+	public Date getUpdatetime() {
+		return updatetime;
+	}
 
-    public Date getUpdatetime() {
-        return updatetime;
-    }
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
+	}
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
-    @Override
+	@Override
     protected Serializable pkVal() {
         return this.uid;
     }
@@ -150,15 +149,15 @@ public class Visitor extends Model<Visitor> {
     @Override
     public String toString() {
         return "Visitor{" +
-                ", uid=" + uid +
-                ", username=" + username +
-                ", email=" + email +
-                ", logincount=" + logincount +
-                ", lastlogintime=" + lastlogintime +
-                ", lastloginip=" + lastloginip +
-                ", status=" + status +
-                ", createtime=" + createtime +
-                ", updatetime=" + updatetime +
-                "}";
+        ", uid=" + uid +
+        ", username=" + username +
+        ", email=" + email +
+        ", logincount=" + logincount +
+        ", lastlogintime=" + lastlogintime +
+        ", lastloginip=" + lastloginip +
+        ", status=" + status +
+        ", createtime=" + createtime +
+        ", updatetime=" + updatetime +
+        "}";
     }
 }

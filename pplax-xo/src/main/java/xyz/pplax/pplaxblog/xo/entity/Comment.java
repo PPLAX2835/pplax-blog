@@ -3,10 +3,9 @@ package xyz.pplax.pplaxblog.xo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Date;
  * </p>
  */
 @TableName("t_comment")
-public class Comment extends Model<Comment> {
+public class Comment extends SuperEntity<Comment> {
 
     private static final long serialVersionUID = 1L;
 
@@ -69,7 +68,7 @@ public class Comment extends Model<Comment> {
      * 更新时间
      */
     private Date updatetime;
-
+    
 
     public String getUid() {
         return uid;
@@ -128,34 +127,34 @@ public class Comment extends Model<Comment> {
     }
 
     public int getStatus() {
-        return status;
-    }
+		return status;
+	}
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
-    public Date getCreatetime() {
-        return createtime;
-    }
+	public Date getCreatetime() {
+		return createtime;
+	}
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
+	}
 
-    public Date getUpdatetime() {
-        return updatetime;
-    }
+	public Date getUpdatetime() {
+		return updatetime;
+	}
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
+	}
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    @Override
+	@Override
     protected Serializable pkVal() {
         return this.uid;
     }
@@ -163,16 +162,16 @@ public class Comment extends Model<Comment> {
     @Override
     public String toString() {
         return "Comment{" +
-                ", uid=" + uid +
-                ", useruid=" + useruid +
-                ", touid=" + touid +
-                ", touseruid=" + touseruid +
-                ", username=" + username +
-                ", content=" + content +
-                ", bloguid=" + bloguid +
-                ", status=" + status +
-                ", createtime=" + createtime +
-                ", updatetime=" + updatetime +
-                "}";
+        ", uid=" + uid +
+        ", useruid=" + useruid +
+        ", touid=" + touid +
+        ", touseruid=" + touseruid +
+        ", username=" + username +
+        ", content=" + content +
+        ", bloguid=" + bloguid +
+        ", status=" + status +
+        ", createtime=" + createtime +
+        ", updatetime=" + updatetime +
+        "}";
     }
 }

@@ -1,13 +1,7 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
+import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 
 /**
  * <p>
@@ -15,108 +9,45 @@ import java.util.Date;
  * </p>
  */
 @TableName("t_tag")
-public class Tag extends Model<Tag> {
+public class Tag extends SuperEntity<Tag> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 唯一uid
-     */
-    @TableId(value = "uid", type = IdType.UUID)
-    private String uid;
 
     /**
      * 标签内容
      */
     private String content;
 
-    /**
-     * 状态
-     */
-    private int status;
-
-    /**
-     * 创建时间
-     */
-    private Date createtime;
-
-    /**
-     * 更新时间
-     */
-    private Date updatetime;
 
     /**
      * 标签简介
      */
-    private  int clickcount;
+    private  int clickCount;
 
 
-    public String getUid() {
-        return uid;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 
-    public String getContent() {
-        return content;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
 
-    public int getStatus() {
-        return status;
-    }
+	public int getClickCount() {
+		return clickCount;
+	}
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
-    public Date getCreatetime() {
-        return createtime;
-    }
+	public void setClickCount(int clickCount) {
+		this.clickCount = clickCount;
+	}
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
 
-    public Date getUpdatetime() {
-        return updatetime;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
-    public Integer getClickcount() {
-        return clickcount;
-    }
-
-    public void setClickcount(Integer clickcount) {
-        this.clickcount = clickcount;
-    }
-
-    @Override
-    protected Serializable pkVal() {
-        return this.uid;
-    }
-
-    @Override
-    public String toString() {
-        return "Tag{" +
-                ", uid=" + uid +
-                ", content=" + content +
-                ", status=" + status +
-                ", createtime=" + createtime +
-                ", updatetime=" + updatetime +
-                ", clickcount=" + clickcount +
-                "}";
-    }
 }

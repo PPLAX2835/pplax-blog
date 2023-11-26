@@ -3,10 +3,9 @@ package xyz.pplax.pplaxblog.xo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,7 +14,7 @@ import java.util.Date;
  * </p>
  */
 @TableName("t_feedback")
-public class Feedback extends Model<Feedback> {
+public class Feedback extends SuperEntity<Feedback> {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +22,7 @@ public class Feedback extends Model<Feedback> {
      * 唯一uid
      */
     @TableId(value = "uid", type = IdType.UUID)
-    private String uid;
+    private String uid;	
 
     /**
      * 用户uid
@@ -74,36 +73,36 @@ public class Feedback extends Model<Feedback> {
     public void setContent(String content) {
         this.content = content;
     }
-
+    
     public int getStatus() {
-        return status;
-    }
+		return status;
+	}
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
-    public Date getCreatetime() {
-        return createtime;
-    }
+	public Date getCreatetime() {
+		return createtime;
+	}
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
+	}
 
-    public Date getUpdatetime() {
-        return updatetime;
-    }
+	public Date getUpdatetime() {
+		return updatetime;
+	}
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
+	}
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    @Override
+	@Override
     protected Serializable pkVal() {
         return this.uid;
     }
@@ -111,12 +110,12 @@ public class Feedback extends Model<Feedback> {
     @Override
     public String toString() {
         return "Feedback{" +
-                ", uid=" + uid +
-                ", useruid=" + useruid +
-                ", content=" + content +
-                ", status=" + status +
-                ", createtime=" + createtime +
-                ", updatetime=" + updatetime +
-                "}";
+        ", uid=" + uid +
+        ", useruid=" + useruid +
+        ", content=" + content +
+        ", status=" + status +
+        ", createtime=" + createtime +
+        ", updatetime=" + updatetime +
+        "}";
     }
 }

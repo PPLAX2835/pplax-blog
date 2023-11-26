@@ -1,0 +1,16 @@
+{
+  "groups": [],
+  "properties": [
+    {
+      "name": "spring.datasource.login-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "javax.sql.DataSource"
+    },
+    {
+      "name": "spring.datasource.login-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "javax.sql.DataSource"
+    }
+  ],
+  "hints": []
+}

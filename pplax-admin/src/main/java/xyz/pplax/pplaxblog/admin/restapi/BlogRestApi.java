@@ -9,6 +9,7 @@ import xyz.pplax.pplaxblog.base.enums.EStatus;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
+import xyz.pplax.pplaxblog.xo.entity.Tag;
 import xyz.pplax.pplaxblog.xo.service.BlogService;
 import xyz.pplax.pplaxblog.base.global.SysConf;
 import io.swagger.annotations.Api;
@@ -17,8 +18,10 @@ import io.swagger.annotations.ApiParam;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import xyz.pplax.pplaxblog.xo.service.TagService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +38,9 @@ public class BlogRestApi {
 	@Autowired
 	BlogService blogService;
 
+	@Autowired
+	TagService tagService;
+
 	private static Logger log = LogManager.getLogger(AdminRestApi.class);
 
 	@ApiOperation(value="获取博客列表", notes="获取博客列表", response = String.class)
@@ -45,7 +51,7 @@ public class BlogRestApi {
 						  @ApiParam(name = "pageSize", value = "每页显示数目",required = false) @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize) {
 
 		QueryWrapper<Blog> queryWrapper = new QueryWrapper<Blog>();
-		if(!keyword.isEmpty()) {
+		if(!StringUtils.isEntity(keyword)) {
 			queryWrapper.like(SysConf.title, keyword);
 		}
 
@@ -60,8 +66,22 @@ public class BlogRestApi {
 
 		IPage<Blog> pageList = blogService.page(page, queryWrapper);
 		List<Blog> list = pageList.getRecords();
+		for(Blog item : list) {
+			if(item != null && !StringUtils.isEntity(item.getTaguid())) {
+				String uids[] = item.getTaguid().split(",");
+				List<Tag> tagList = new ArrayList<Tag>();
+				for(String uid : uids) {
+					Tag tag = tagService.getById(uid);
+					if(tag != null && tag.getStatus() != EStatus.DISABLED) {
+						tagList.add(tag);
+					}
+				}
+				item.setTagList(tagList);
+			}
+		}
 		log.info("返回结果");
-		return ResultUtil.result(SysConf.SUCCESS, list);
+		pageList.setRecords(list);
+		return ResultUtil.result(SysConf.SUCCESS, pageList);
 	}
 
 	@ApiOperation(value="增加博客", notes="增加博客", response = String.class)
@@ -70,7 +90,7 @@ public class BlogRestApi {
 					  @ApiParam(name = "title", value = "博客标题",required = true) @RequestParam(name = "title", required = true) String title,
 					  @ApiParam(name = "summary", value = "博客简介",required = false) @RequestParam(name = "summary", required = false) String summary,
 					  @ApiParam(name = "content", value = "博客正文",required = false) @RequestParam(name = "content", required = false) String content,
-					  @ApiParam(name = "taguid", value = "标签UID",required = false) @RequestParam(name = "taguid", required = false) String taguid,
+					  @ApiParam(name = "taguid", value = "标签uid",required = false) @RequestParam(name = "taguid", required = false) String taguid,
 					  @ApiParam(name = "photo", value = "标题图",required = false) @RequestParam(name = "photo", required = false) String photo	) {
 
 		if(StringUtils.isEntity(title) || StringUtils.isEntity(content)) {
@@ -84,7 +104,9 @@ public class BlogRestApi {
 		blog.setClickcount(0);
 		blog.setPhoto(photo);
 		blog.setStatus(EStatus.ENABLE);
-		blog.insert();
+		blog.setCreatetime(new Date());
+		blog.setUpdatetime(new Date());
+		blogService.save(blog);
 		return ResultUtil.result(SysConf.SUCCESS, "添加成功");
 	}
 
@@ -101,7 +123,6 @@ public class BlogRestApi {
 		if(StringUtils.isEntity(uid)) {
 			return ResultUtil.result(SysConf.ERROR, "数据错误");
 		}
-
 		Blog blog = blogService.getById(uid);
 		blog.setTitle(title);
 		blog.setSummary(summary);

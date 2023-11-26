@@ -1,12 +1,14 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -73,6 +75,13 @@ public class Blog extends Model<Blog> {
      * 更新时间
      */
     private Date updatetime;
+
+
+    /**
+     * 以下字段不存入数据库，封装为了方便使用
+     */
+    @TableField(exist = false)
+    private List<Tag> tagList; //标签,一篇博客对应多个标签
 
     public String getUid() {
         return uid;
@@ -164,6 +173,14 @@ public class Blog extends Model<Blog> {
 
     public static long getSerialversionuid() {
         return serialVersionUID;
+    }
+
+    public List<Tag> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<Tag> tagList) {
+        this.tagList = tagList;
     }
 
     @Override

@@ -4,13 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="博客增删完善">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/DruidConfig.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-admin/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-admin/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-config/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-web/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/AdminMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/BlogMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/CollectMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/CommentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/FeedbackMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/TagMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/VisitorMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TagRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TagRestApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/tag.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/tag.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/tag/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/tag/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,14 +259,7 @@
       <workItem from="1700891357080" duration="478000" />
       <workItem from="1700891849325" duration="270000" />
       <workItem from="1700892131814" duration="10764000" />
-      <workItem from="1700962893024" duration="13865000" />
-    </task>
-    <task id="LOCAL-00117" summary="admin-boot:&#10;    UserRoleRelationshipService">
-      <created>1694998971536</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1694998971536</updated>
+      <workItem from="1700962893024" duration="15665000" />
     </task>
     <task id="LOCAL-00118" summary="admin-boot:&#10;    UserService">
       <created>1694999128193</created>
@@ -590,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700981357742</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="引入druid，引入热部署">
+      <created>1700982151438</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1700982151438</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +640,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="article-boot:&#10;    comment-boot 拦截器等" />
     <MESSAGE value="article-boot:&#10;    file-boot" />
     <MESSAGE value="article-boot:&#10;    file-boot 文件工具类，之后把它封装到一起" />
     <MESSAGE value="article-boot:&#10;    file-boot controller什么的" />
@@ -651,7 +664,8 @@
     <MESSAGE value="调整eneity，后台增加添加博客功能" />
     <MESSAGE value="后台管理，博客增删改功能" />
     <MESSAGE value="博客增删完善" />
-    <option name="LAST_COMMIT_MESSAGE" value="博客增删完善" />
+    <MESSAGE value="引入druid，引入热部署" />
+    <option name="LAST_COMMIT_MESSAGE" value="引入druid，引入热部署" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

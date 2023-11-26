@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ComponentScan(basePackages = {
         "xyz.pplax.pplaxblog.admin.config",
-        "xyz.pplax.pplaxblog.admin.controller",
+        "xyz.pplax.pplaxblog.admin.restapi",
         "xyz.pplax.pplaxblog.xo.service"})
 public class AdminApplication {
     public static void main(String[] args) {

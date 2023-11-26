@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -42,7 +43,7 @@ public class Visitor extends Model<Visitor> {
     /**
      * 最后登录时间
      */
-    private LocalDateTime lastlogintime;
+    private Date lastlogintime;
 
     /**
      * 最后登录IP
@@ -52,17 +53,17 @@ public class Visitor extends Model<Visitor> {
     /**
      * 状态
      */
-    private Boolean status;
+    private int status;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createtime;
+    private Date createtime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updatetime;
+    private Date updatetime;
 
 
     public String getUid() {
@@ -97,11 +98,11 @@ public class Visitor extends Model<Visitor> {
         this.logincount = logincount;
     }
 
-    public LocalDateTime getLastlogintime() {
+    public Date getLastlogintime() {
         return lastlogintime;
     }
 
-    public void setLastlogintime(LocalDateTime lastlogintime) {
+    public void setLastlogintime(Date lastlogintime) {
         this.lastlogintime = lastlogintime;
     }
 
@@ -113,28 +114,32 @@ public class Visitor extends Model<Visitor> {
         this.lastloginip = lastloginip;
     }
 
-    public Boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public LocalDateTime getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(LocalDateTime createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 
-    public LocalDateTime getUpdatetime() {
+    public Date getUpdatetime() {
         return updatetime;
     }
 
-    public void setUpdatetime(LocalDateTime updatetime) {
+    public void setUpdatetime(Date updatetime) {
         this.updatetime = updatetime;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     @Override
@@ -145,15 +150,15 @@ public class Visitor extends Model<Visitor> {
     @Override
     public String toString() {
         return "Visitor{" +
-        ", uid=" + uid +
-        ", username=" + username +
-        ", email=" + email +
-        ", logincount=" + logincount +
-        ", lastlogintime=" + lastlogintime +
-        ", lastloginip=" + lastloginip +
-        ", status=" + status +
-        ", createtime=" + createtime +
-        ", updatetime=" + updatetime +
-        "}";
+                ", uid=" + uid +
+                ", username=" + username +
+                ", email=" + email +
+                ", logincount=" + logincount +
+                ", lastlogintime=" + lastlogintime +
+                ", lastloginip=" + lastloginip +
+                ", status=" + status +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                "}";
     }
 }

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -22,7 +23,7 @@ public class Feedback extends Model<Feedback> {
      * 唯一uid
      */
     @TableId(value = "uid", type = IdType.UUID)
-    private String uid;	
+    private String uid;
 
     /**
      * 用户uid
@@ -37,17 +38,17 @@ public class Feedback extends Model<Feedback> {
     /**
      * 状态
      */
-    private Boolean status;
+    private int status;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createtime;
+    private Date createtime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updatetime;
+    private Date updatetime;
 
 
     public String getUid() {
@@ -74,28 +75,32 @@ public class Feedback extends Model<Feedback> {
         this.content = content;
     }
 
-    public Boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public LocalDateTime getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(LocalDateTime createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 
-    public LocalDateTime getUpdatetime() {
+    public Date getUpdatetime() {
         return updatetime;
     }
 
-    public void setUpdatetime(LocalDateTime updatetime) {
+    public void setUpdatetime(Date updatetime) {
         this.updatetime = updatetime;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     @Override
@@ -106,12 +111,12 @@ public class Feedback extends Model<Feedback> {
     @Override
     public String toString() {
         return "Feedback{" +
-        ", uid=" + uid +
-        ", useruid=" + useruid +
-        ", content=" + content +
-        ", status=" + status +
-        ", createtime=" + createtime +
-        ", updatetime=" + updatetime +
-        "}";
+                ", uid=" + uid +
+                ", useruid=" + useruid +
+                ", content=" + content +
+                ", status=" + status +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                "}";
     }
 }

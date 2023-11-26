@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -18,12 +18,10 @@ public class Blog extends Model<Blog> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "oid", type = IdType.AUTO)
-    private Integer oid;
-
     /**
      * 唯一uid
      */
+    @TableId(value = "uid", type = IdType.UUID)
     private String uid;
 
     /**
@@ -64,26 +62,17 @@ public class Blog extends Model<Blog> {
     /**
      * 状态
      */
-    private Boolean status;
+    private int status;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createtime;
+    private Date createtime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updatetime;
-
-
-    public Integer getOid() {
-        return oid;
-    }
-
-    public void setOid(Integer oid) {
-        this.oid = oid;
-    }
+    private Date updatetime;
 
     public String getUid() {
         return uid;
@@ -149,50 +138,53 @@ public class Blog extends Model<Blog> {
         this.photo = photo;
     }
 
-    public Boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public LocalDateTime getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(LocalDateTime createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 
-    public LocalDateTime getUpdatetime() {
+    public Date getUpdatetime() {
         return updatetime;
     }
 
-    public void setUpdatetime(LocalDateTime updatetime) {
+    public void setUpdatetime(Date updatetime) {
         this.updatetime = updatetime;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     @Override
     protected Serializable pkVal() {
-        return this.oid;
+        return this.uid;
     }
 
     @Override
     public String toString() {
         return "Blog{" +
-        ", oid=" + oid +
-        ", uid=" + uid +
-        ", title=" + title +
-        ", summary=" + summary +
-        ", content=" + content +
-        ", taguid=" + taguid +
-        ", clickcount=" + clickcount +
-        ", collectcount=" + collectcount +
-        ", photo=" + photo +
-        ", status=" + status +
-        ", createtime=" + createtime +
-        ", updatetime=" + updatetime +
-        "}";
+                ", uid=" + uid +
+                ", title=" + title +
+                ", summary=" + summary +
+                ", content=" + content +
+                ", taguid=" + taguid +
+                ", clickcount=" + clickcount +
+                ", collectcount=" + collectcount +
+                ", photo=" + photo +
+                ", status=" + status +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                "}";
     }
 }

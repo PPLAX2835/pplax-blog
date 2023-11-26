@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -57,17 +58,17 @@ public class Comment extends Model<Comment> {
     /**
      * 状态
      */
-    private Boolean status;
+    private int status;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createtime;
+    private Date createtime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updatetime;
+    private Date updatetime;
 
 
     public String getUid() {
@@ -126,28 +127,32 @@ public class Comment extends Model<Comment> {
         this.bloguid = bloguid;
     }
 
-    public Boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public LocalDateTime getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(LocalDateTime createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 
-    public LocalDateTime getUpdatetime() {
+    public Date getUpdatetime() {
         return updatetime;
     }
 
-    public void setUpdatetime(LocalDateTime updatetime) {
+    public void setUpdatetime(Date updatetime) {
         this.updatetime = updatetime;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     @Override
@@ -158,16 +163,16 @@ public class Comment extends Model<Comment> {
     @Override
     public String toString() {
         return "Comment{" +
-        ", uid=" + uid +
-        ", useruid=" + useruid +
-        ", touid=" + touid +
-        ", touseruid=" + touseruid +
-        ", username=" + username +
-        ", content=" + content +
-        ", bloguid=" + bloguid +
-        ", status=" + status +
-        ", createtime=" + createtime +
-        ", updatetime=" + updatetime +
-        "}";
+                ", uid=" + uid +
+                ", useruid=" + useruid +
+                ", touid=" + touid +
+                ", touseruid=" + touseruid +
+                ", username=" + username +
+                ", content=" + content +
+                ", bloguid=" + bloguid +
+                ", status=" + status +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                "}";
     }
 }

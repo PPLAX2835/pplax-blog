@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -18,12 +19,10 @@ public class Collect extends Model<Collect> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "oid", type = IdType.AUTO)
-    private Integer oid;
-
     /**
      * 唯一uid
      */
+    @TableId(value = "oid", type = IdType.UUID)
     private String uid;
 
     /**
@@ -39,26 +38,18 @@ public class Collect extends Model<Collect> {
     /**
      * 状态
      */
-    private Boolean status;
+    private int status;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createtime;
+    private Date createtime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updatetime;
+    private Date updatetime;
 
-
-    public Integer getOid() {
-        return oid;
-    }
-
-    public void setOid(Integer oid) {
-        this.oid = oid;
-    }
 
     public String getUid() {
         return uid;
@@ -84,45 +75,48 @@ public class Collect extends Model<Collect> {
         this.bloguid = bloguid;
     }
 
-    public Boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public LocalDateTime getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(LocalDateTime createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 
-    public LocalDateTime getUpdatetime() {
+    public Date getUpdatetime() {
         return updatetime;
     }
 
-    public void setUpdatetime(LocalDateTime updatetime) {
+    public void setUpdatetime(Date updatetime) {
         this.updatetime = updatetime;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     @Override
     protected Serializable pkVal() {
-        return this.oid;
+        return this.uid;
     }
 
     @Override
     public String toString() {
         return "Collect{" +
-        ", oid=" + oid +
-        ", uid=" + uid +
-        ", useruid=" + useruid +
-        ", bloguid=" + bloguid +
-        ", status=" + status +
-        ", createtime=" + createtime +
-        ", updatetime=" + updatetime +
-        "}";
+                ", uid=" + uid +
+                ", useruid=" + useruid +
+                ", bloguid=" + bloguid +
+                ", status=" + status +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                "}";
     }
 }

@@ -15,10 +15,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @ComponentScan(basePackages = {
-        "xyz.pplax.pplaxblog.admin.config",
+        "xyz.pplax.pplaxblog.config",
         "xyz.pplax.pplaxblog.admin.restapi",
-        "xyz.pplax.pplaxblog.xo.service"})
+        "xyz.pplax.pplaxblog.xo.service",
+        "xyz.pplax.pplaxblog.xo.mapper"})
 public class AdminApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(AdminApplication.class, args);
     }
@@ -41,4 +43,5 @@ public class AdminApplication {
         source.registerCorsConfiguration("/**", buildConfig()); // 4
         return new CorsFilter(source);
     }
+
 }

@@ -67,7 +67,7 @@ public class TagRestApi {
         }
         Tag tag = new Tag();
         tag.setContent(content);
-        tag.setClickCount(0);
+        tag.setClickCount(clickCount);
         tag.setStatus(EStatus.ENABLE);
         tag.insert();
         return ResultUtil.result(SysConf.SUCCESS, "添加成功");

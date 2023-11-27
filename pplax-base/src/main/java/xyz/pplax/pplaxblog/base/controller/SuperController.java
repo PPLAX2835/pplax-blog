@@ -10,7 +10,7 @@ import java.util.Map;
  * Controller基类
  */
 public class SuperController {
-	
+
 	/**
 	 * 将map转换成json字符串
 	 * @param map
@@ -19,11 +19,11 @@ public class SuperController {
 	public String toJson(Map<String, Object> map) {
 		return JSONObject.fromObject(map).toString();
 	}
-	
+
 	public <T> String toJson(List<T> list) {
 		return JSONObject.fromObject(list).toString();
 	}
-	
+
 	/**
 	 * 获取一个map
 	 * @return

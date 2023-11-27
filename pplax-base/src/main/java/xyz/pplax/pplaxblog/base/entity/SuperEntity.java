@@ -17,29 +17,29 @@ import java.util.Date;
 public class SuperEntity<T extends Model> extends Model<T> {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -4851055162892178225L;
-	
+
 	@TableId(value = "uid", type = IdType.UUID)
 	private String uid; // 唯一uid	
-	
+
 	private int status; // 0 失效  1 生效
-	
+
 	/**
 	 * @TableField 配置需要填充的字段
 	 */
 	@TableField(fill = FieldFill.INSERT_UPDATE)
 	private Date createTime; //创建时间
-	
+
 	@TableField(fill = FieldFill.INSERT_UPDATE)
 	private Date updateTime; //更新时间
-	
+
 	public SuperEntity() {
-		
+
 		this.status = 1;
-		this.createTime = new Date(); 
-		this.updateTime = new Date(); 
+		this.createTime = new Date();
+		this.updateTime = new Date();
 	}
 
 	public String getUid() {

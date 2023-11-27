@@ -71,7 +71,7 @@ public class BlogRestApi {
 				String uids[] = item.getTagUid().split(",");
 				List<Tag> tagList = new ArrayList<Tag>();
 				for(String uid : uids) {
-					Tag tag = tagService.getById(uid);
+					Tag  tag = tagService.getById(uid);
 					if(tag != null && tag.getStatus() != EStatus.DISABLED) {
 						tagList.add(tag);
 					}

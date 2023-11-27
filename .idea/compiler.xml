@@ -9,11 +9,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="pplax-base" />
+        <module name="pplax-xo" />
+        <module name="pplax-web" />
         <module name="pplax-admin" />
         <module name="pplax-config" />
         <module name="pplax-utils" />
-        <module name="pplax-xo" />
-        <module name="pplax-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -21,9 +21,11 @@
       <module name="pplax-admin" target="1.8" />
       <module name="pplax-base" target="1.8" />
       <module name="pplax-config" target="1.8" />
+      <module name="pplax-picture" target="1.8" />
       <module name="pplax-utils" target="1.8" />
       <module name="pplax-web" target="1.8" />
       <module name="pplax-xo" target="1.8" />
+      <module name="pplax_picture" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

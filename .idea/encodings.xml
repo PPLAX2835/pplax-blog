@@ -46,6 +46,7 @@
     <file url="file://$PROJECT_DIR$/pplax-modules/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/test-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/test-boot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-picture/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-datasource-starter/src/main/java" charset="UTF-8" />
@@ -75,6 +76,7 @@
     <file url="file://$PROJECT_DIR$/pplax-utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-xo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax_picture/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/admin-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/article-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/auth-server-service/src/main/java" charset="UTF-8" />

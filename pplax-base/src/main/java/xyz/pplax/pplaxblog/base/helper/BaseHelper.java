@@ -13,25 +13,25 @@ import java.util.Map;
  */
 @Component
 public class BaseHelper implements ApplicationContextAware{
-	
-	private static ApplicationContext applicationContext;
-	/**
-	 * 获取一个map
-	 * @return
-	 */
-	public static Map<String, Object> getMap() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		return map;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public static ApplicationContext getApplicationContext() {
-		return applicationContext;
-	}
-	
+
+    private static ApplicationContext applicationContext;
+    /**
+     * 获取一个map
+     * @return
+     */
+    public static Map<String, Object> getMap() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        return map;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
+
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

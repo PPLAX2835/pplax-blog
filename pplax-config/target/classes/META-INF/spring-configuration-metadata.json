@@ -5,17 +5,10 @@
     "sourceType": "xyz.pplax.pplaxblog.config.durid.DruidConfig",
     "sourceMethod": "druid()"
   }],
-  "properties": [
-    {
-      "name": "spring.datasource.login-timeout",
-      "type": "java.lang.Integer",
-      "sourceType": "javax.sql.DataSource"
-    },
-    {
-      "name": "spring.datasource.login-timeout",
-      "type": "java.lang.Integer",
-      "sourceType": "javax.sql.DataSource"
-    }
-  ],
+  "properties": [{
+    "name": "spring.datasource.login-timeout",
+    "type": "java.lang.Integer",
+    "sourceType": "javax.sql.DataSource"
+  }],
   "hints": []
 }

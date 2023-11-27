@@ -4,11 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="解决了mapper无法注入的问题，但是为什么只能用@MapperScan不能用@Mapper呢">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-config/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-config/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-web/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/PictureRestApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/PictureSortRestApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/mybatis/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/mybatis/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/mybatis/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/mybatis/Swagger2.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/Swagger2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/PictureMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/PictureSortMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/PictureService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/PictureSortService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/PictureServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/PictureSortServiceImpl.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +83,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-picture/src/main/java/xyz/pplax/pplaxblog/picture" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -80,7 +92,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25740552" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.ignored.files" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="ReactorSettings">
@@ -88,11 +100,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-picture\src\main\java\xyz\pplax\pplaxblog\picture" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-config\src\main\java\xyz\pplax\pplaxblog\config" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\java\xyz\pplax\pplaxblog\base" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\entity" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-picture\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\entity" />
@@ -245,14 +257,7 @@
       <workItem from="1700891849325" duration="270000" />
       <workItem from="1700892131814" duration="10764000" />
       <workItem from="1700962893024" duration="19530000" />
-      <workItem from="1701045740792" duration="8319000" />
-    </task>
-    <task id="LOCAL-00123" summary="admin-boot:&#10;    试了试初始化缓存，没弄出来">
-      <created>1695001023709</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1695001023709</updated>
+      <workItem from="1701045740792" duration="11374000" />
     </task>
     <task id="LOCAL-00124" summary="admin-boot:&#10;    缓存包，有些问题还没改">
       <created>1695001165471</created>
@@ -590,7 +595,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701053280033</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="解决了mapper无法注入的问题，但是为什么只能用@MapperScan不能用@Mapper呢">
+      <created>1701054544731</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1701054544731</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +638,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="message-boot：&#10;    amqp" />
     <MESSAGE value="message-boot：&#10;    配置、拦截器、controller" />
     <MESSAGE value="README" />
     <MESSAGE value="配置文件" />
@@ -651,7 +662,8 @@
     <MESSAGE value="新增图片相关数据库，调整项目" />
     <MESSAGE value="调整数据库表，调整配置类" />
     <MESSAGE value="调整" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整" />
+    <MESSAGE value="解决了mapper无法注入的问题，但是为什么只能用@MapperScan不能用@Mapper呢" />
+    <option name="LAST_COMMIT_MESSAGE" value="解决了mapper无法注入的问题，但是为什么只能用@MapperScan不能用@Mapper呢" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

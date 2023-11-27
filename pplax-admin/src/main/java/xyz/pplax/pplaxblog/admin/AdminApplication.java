@@ -19,7 +19,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.config",
         "xyz.pplax.pplaxblog.admin.restapi",
         "xyz.pplax.pplaxblog.xo.service"})
-@MapperScan(basePackages = "xyz.pplax.pplaxblog.xo.mapper")
 public class AdminApplication {
 
     public static void main(String[] args) {

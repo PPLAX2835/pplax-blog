@@ -21,11 +21,10 @@
       <module name="pplax-admin" target="1.8" />
       <module name="pplax-base" target="1.8" />
       <module name="pplax-config" target="1.8" />
-      <module name="pplax-picture" target="1.8" />
+      <module name="pplax-file" target="1.8" />
       <module name="pplax-utils" target="1.8" />
       <module name="pplax-web" target="1.8" />
       <module name="pplax-xo" target="1.8" />
-      <module name="pplax_picture" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -19,7 +19,6 @@ import xyz.pplax.pplaxblog.xo.entity.Tag;
 import xyz.pplax.pplaxblog.xo.service.TagService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 /**
  * <p>
@@ -70,8 +69,6 @@ public class TagRestApi {
         tag.setContent(content);
         tag.setClickCount(0);
         tag.setStatus(EStatus.ENABLE);
-        tag.setCreateTime(new Date());
-        tag.setUpdateTime(new Date());
         tag.insert();
         return ResultUtil.result(SysConf.SUCCESS, "添加成功");
     }

@@ -11,4 +11,3 @@ public class BaseSQLConf {
 	public final static String UPDATE_TIME = "update_time";
 	public final static String STATUS = "status";
 }
-

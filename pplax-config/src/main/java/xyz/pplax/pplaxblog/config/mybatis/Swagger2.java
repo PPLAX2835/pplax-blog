@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.admin.config;
+package xyz.pplax.pplaxblog.config.mybatis;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,7 @@ public class Swagger2 {
 	
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("接口文档")
+				.title("蘑菇云接口文档")
 				.description("简单优雅的restfun风格")
 				.version("1.0")
 				.build();

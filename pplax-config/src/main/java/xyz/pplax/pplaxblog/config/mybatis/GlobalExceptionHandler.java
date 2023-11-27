@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.admin.config;
+package xyz.pplax.pplaxblog.config.mybatis;
 
 import com.baomidou.mybatisplus.extension.api.ApiResult;
 import com.baomidou.mybatisplus.extension.api.IErrorCode;

@@ -23,7 +23,6 @@ import xyz.pplax.pplaxblog.xo.service.TagService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -106,8 +105,6 @@ public class BlogRestApi {
 		blog.setClickCount(clickCount);
 		blog.setFileUid(fileUid);
 		blog.setStatus(EStatus.ENABLE);
-		blog.setCreateTime(new Date());
-		blog.setUpdateTime(new Date());
 		blogService.save(blog);
 		return ResultUtil.result(SysConf.SUCCESS, "添加成功");
 	}

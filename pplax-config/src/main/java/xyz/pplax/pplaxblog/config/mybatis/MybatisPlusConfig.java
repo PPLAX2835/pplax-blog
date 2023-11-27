@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.admin.config;
+package xyz.pplax.pplaxblog.config.mybatis;
 
 import com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
@@ -20,9 +20,10 @@ public class MybatisPlusConfig {
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();
-        scannerConfigurer.setBasePackage("xyz.pplax.pplaxblog.xo.mapper*");
+        scannerConfigurer.setBasePackage("com.moxi.mogublog.xo.mapper*");
         return scannerConfigurer;
     }
+    
 
     /**
      * mybatis-plus分页插件
@@ -30,13 +31,15 @@ public class MybatisPlusConfig {
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        return paginationInterceptor;
     }
 
     @Bean
     public H2KeyGenerator getH2KeyGenerator() {
         return new H2KeyGenerator();
     }
+
 
     /**
      * 性能分析拦截器，不建议生产使用

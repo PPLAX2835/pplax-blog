@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.admin.config;
+package xyz.pplax.pplaxblog.config.durid;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
-import xyz.pplax.pplaxblog.xo.entity.Admin;
-import xyz.pplax.pplaxblog.xo.service.AdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

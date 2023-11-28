@@ -34,7 +34,7 @@ public class Permission extends SuperEntity<Permission> {
     /**
      * 父节点id
      */
-    private String pid;
+    private String parentId;
 
     public Permission() {}
 }

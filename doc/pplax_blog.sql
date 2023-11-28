@@ -17,11 +17,11 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`pplax_blog` /*!40100 DEFAULT CHARACTER 
 
 USE `pplax_blog`;
 
-/*Table structure for table `t_admin` */
+/*Table structure for table `t_user` */
 
-DROP TABLE IF EXISTS `t_admin`;
+DROP TABLE IF EXISTS `t_user`;
 
-CREATE TABLE `t_admin` (
+CREATE TABLE `t_user` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
   `user_name` varchar(255) NOT NULL COMMENT '用户名',
   `pass_word` varchar(32) NOT NULL COMMENT '密码',
@@ -29,7 +29,7 @@ CREATE TABLE `t_admin` (
   `picture_uid` varchar(255) DEFAULT NULL COMMENT '个人头像 图片uid',
   `email` varchar(255) NOT NULL COMMENT '邮箱',
   `birthday` date DEFAULT NULL COMMENT '出生年月日',
-  `mobile` varchar(11) DEFAULT NULL COMMENT '手机',
+  `mobile` varchar(50) DEFAULT NULL COMMENT '手机',
   `valid_code` varchar(50) DEFAULT NULL COMMENT '邮箱验证码',
   `summary` varchar(200) DEFAULT NULL COMMENT '自我简介最多150字',
   `login_count` int(11) unsigned DEFAULT '0' COMMENT '登录次数',
@@ -39,11 +39,11 @@ CREATE TABLE `t_admin` (
   `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-/*Data for the table `t_admin` */
+/*Data for the table `t_user` */
 
-insert  into `t_admin`(`uid`,`user_name`,`pass_word`,`gender`,`picture_uid`,`email`,`birthday`,`mobile`,`valid_code`,`summary`,`login_count`,`last_login_time`,`last_login_ip`,`status`,`create_time`,`update_time`) values ('5821462bc29a4570ad80e87f3aa3f02d','admin','21232f297a57a5a743894a0e4a801fc3',1,'测试头像','xzx19950624@qq.com','2018-09-20','1597531973','123465789','测试表情',1,'2018-09-20 14:49:00','127.0.0.1',1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+insert  into `t_user`(`uid`,`user_name`,`pass_word`,`gender`,`picture_uid`,`email`,`birthday`,`mobile`,`valid_code`,`summary`,`login_count`,`last_login_time`,`last_login_ip`,`status`,`create_time`,`update_time`) values ('5821462bc29a4570ad80e87f3aa3f02d','admin','21232f297a57a5a743894a0e4a801fc3',1,'测试头像','xzx19950624@qq.com','2018-09-20','1597531973','123465789','测试表情',1,'2018-09-20 14:49:00','127.0.0.1',1,'0000-00-00 00:00:00','0000-00-00 00:00:00');
 
 /*Table structure for table `t_blog` */
 
@@ -59,7 +59,7 @@ CREATE TABLE `t_blog` (
   `collect_count` int(11) DEFAULT '0' COMMENT '博客收藏数',
   `picture_uid` varchar(255) DEFAULT NULL COMMENT '标题图片uid',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `admin_uid` varchar(32) DEFAULT NULL COMMENT '管理员uid',
+  `user_uid` varchar(32) DEFAULT NULL COMMENT '用户uid',
   `is_original` varchar(1) DEFAULT '1' COMMENT '是否原创（0:不是 1：是）',
   `author` varchar(255) DEFAULT NULL COMMENT '作者',
   `articles_part` varchar(255) DEFAULT NULL COMMENT '文章出处',
@@ -72,7 +72,7 @@ CREATE TABLE `t_blog` (
 
 /*Data for the table `t_blog` */
 
-INSERT INTO t_blog (uid, blog_content_uid, title, summary, tag_uid, click_count, collect_count, picture_uid, status, admin_uid, is_original, author, articles_part, blog_sort_uid, level, create_time, update_time) VALUES
+INSERT INTO t_blog (uid, blog_content_uid, title, summary, tag_uid, click_count, collect_count, picture_uid, status, user_uid, is_original, author, articles_part, blog_sort_uid, level, create_time, update_time) VALUES
 	('1a6b52726c6c4c2b954b84fec3e36107', 'd60acd0f680747fe84216856f82e2dc3', '测试博客009 ', '测试博客009 ', 'e2c7913050cf4ab9aa92902316aaf075 ', '1 ', '0 ', 'dde8800dd17c4b8c9de9169fbb0a49f9 ', '1 ', '1 ', '1 ', '陌溪_ ', '蘑菇博客 ', '093d8bdd01c84890a928e923d5c235fe ', '0 ', '2018-09-27 15:14:27 ', '2018-09-27 15:14:27 '),
 	('6ed5e0d7081a415ab77d92c0bd991c57', '163d5ddba6a048698db66f3cc20547a1', '测试 ', '测试 ', 'a9a747d944c24845815356f72723ef8e ', '1 ', '0 ', '720cc8699ccb484caf1c20a477c66382 ', '1 ', '1 ', '1 ', '陌溪_ ', '蘑菇博客 ', '093d8bdd01c84890a928e923d5c235fe ', '1 ', '2018-09-27 15:24:46 ', '2018-09-27 15:24:46 '),
 	('03dc51d5c94f4c0e80a120b732940b60', '55b4f9f6bc2143c88cff020406cf6c53', '别让这些闹心的套路，毁了你的网页设计! ', '别让这些闹心的套路，毁了你的网页设计! ', '7e0e93ea6cdb44ae92e58f48e6496ed7 ', '0 ', '0 ', '"95ebbd393dc9432a9d65ac0d7b35cd5c,720cc8699ccb484caf1c20a477c66382,dde8800dd17c4b8c9de9169fbb0a49f9,35e191c4bfcd45bca64d3b21533ca6b6,829ad31089404f0eb52baa1a8e19705c" ', '1 ', '1 ', '1 ', '陌溪_ ', '蘑菇博客 ', '2c93dfab0e754006866f8ed486923a41 ', '0 ', '2018-09-25 10:34:19 ', '2018-09-25 10:34:19 '),
@@ -227,7 +227,7 @@ CREATE TABLE `t_permission` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
   `name` varchar(255) NOT NULL COMMENT '权限名',
   `url` varchar(255) DEFAULT NULL COMMENT '权限url',
-  `pid` varchar(255) NOT NULL COMMENT '父节点id',
+  `parent_id` varchar(255) NOT NULL COMMENT '父节点id',
   `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态',
@@ -289,6 +289,8 @@ CREATE TABLE `t_role` (
 
 /*Data for the table `t_role` */
 
+insert into `t_role` (uid, role_name, create_time, update_time, status) VALUES ('352af55485b0198631adc4f3f589bb3f', '管理员', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),('ffca2113713df757e0293c6dfd3b4e32', '普通用户', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),('fc5fea59ae7309773f8f70074a27eec4', '游客', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1);
+
 /*Table structure for table `t_role_permission` */
 
 DROP TABLE IF EXISTS `t_role_permission`;
@@ -322,32 +324,6 @@ CREATE TABLE `t_tag` (
 /*Data for the table `t_tag` */
 
 insert  into `t_tag`(`uid`,`content`,`status`,`click_count`,`create_time`,`update_time`) values ('53c5a0f3142e4f54820315936f78383b','Spring Boot',1,1,'2018-09-21 20:11:06','2018-09-21 20:11:06'),('7e0e93ea6cdb44ae92e58f48e6496ed7','Java',1,1,'2018-09-21 20:12:52','2018-09-21 20:12:52'),('a9a747d944c24845815356f72723ef8e','前端开发',1,2,'2018-09-20 14:51:39','2018-09-20 14:51:39'),('ca928e8718654aa5a802e2f69277b137','生活琐事',1,2,'2018-09-21 20:13:41','2018-09-21 20:13:41'),('e2c7913050cf4ab9aa92902316aaf075','校园生活',1,1,'2018-09-21 20:13:51','2018-09-21 20:13:51'),('f90d3c2fd9434302951130e897a89164','Vue',1,1,'2018-09-21 20:09:50','2018-09-21 20:09:50');
-
-/*Table structure for table `t_user` */
-
-DROP TABLE IF EXISTS `t_user`;
-
-CREATE TABLE `t_user` (
-  `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `user_name` varchar(255) NOT NULL COMMENT '用户名',
-  `pass_word` varchar(32) NOT NULL COMMENT '密码',
-  `gender` tinyint(1) unsigned DEFAULT NULL COMMENT '性别(1:男2:女)',
-  `picture_uid` varchar(255) DEFAULT NULL COMMENT '个人头像 图片uid',
-  `email` varchar(255) NOT NULL COMMENT '邮箱',
-  `birthday` date DEFAULT NULL COMMENT '出生年月日',
-  `mobile` varchar(50) DEFAULT NULL COMMENT '手机',
-  `valid_code` varchar(50) DEFAULT NULL COMMENT '邮箱验证码',
-  `summary` varchar(200) DEFAULT NULL COMMENT '自我简介最多150字',
-  `login_count` int(11) unsigned DEFAULT '0' COMMENT '登录次数',
-  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `last_login_ip` varchar(50) DEFAULT '127.0.0.1' COMMENT '最后登录IP',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
-
-/*Data for the table `t_user` */
 
 /*Table structure for table `t_visitor` */
 

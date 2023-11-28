@@ -1,54 +1,41 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import java.util.Date;
+import java.util.List;
+import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 
 /**
- * 图片实体类
+ * @description 图片表
+ * @author PPLAX
+ * @date 2023-11-28
  */
-
+@EqualsAndHashCode(callSuper = true)
+@Data
 @TableName("t_picture")
 public class Picture extends SuperEntity<Picture> {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
-	 * 
+	 * 文件uid
 	 */
-	private static final long serialVersionUID = 2646201532621057453L;
-	
+	private String fileUid;
 
-	private String fileUid; //图片的UID
+	/**
+	 * 图片名
+	 */
+	private String pictureName;
 
-	private String picName; //图片名称
+	/**
+	 * 分类uid
+	 */
+	private String pictureSortUid;
 
-	private String pictureSortUid; //所属相册分类id
-
-
-	public String getFileUid() {
-		return fileUid;
-	}
-
-	public void setFileUid(String fileUid) {
-		this.fileUid = fileUid;
-	}
-
-	public String getPicName() {
-		return picName;
-	}
-
-	public void setPicName(String picName) {
-		this.picName = picName;
-	}
-
-	public String getPictureSortUid() {
-		return pictureSortUid;
-	}
-
-	public void setPictureSortUid(String pictureSortUid) {
-		this.pictureSortUid = pictureSortUid;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	public Picture() {}
 }

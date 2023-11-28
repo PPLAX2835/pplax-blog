@@ -7,9 +7,7 @@ import xyz.pplax.pplaxblog.base.serviceImpl.SuperServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
- * <p>
  * 标签表 服务实现类
- * </p>
  */
 @Service
 public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements TagService {

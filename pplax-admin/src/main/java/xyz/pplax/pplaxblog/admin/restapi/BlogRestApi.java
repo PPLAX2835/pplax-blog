@@ -100,10 +100,10 @@ public class BlogRestApi {
 		Blog blog = new Blog();
 		blog.setTitle(title);
 		blog.setSummary(summary);
-		blog.setContent(content);
+//		blog.setContent(content);
 		blog.setTagUid(tagUid);
 		blog.setClickCount(clickCount);
-		blog.setFileUid(fileUid);
+		blog.setPictureUid(fileUid);
 		blog.setStatus(EStatus.ENABLE);
 		blogService.save(blog);
 		return ResultUtil.result(SysConf.SUCCESS, "添加成功");
@@ -126,9 +126,9 @@ public class BlogRestApi {
 		Blog blog = blogService.getById(uid);
 		blog.setTitle(title);
 		blog.setSummary(summary);
-		blog.setContent(content);
+//		blog.setContent(content);
 		blog.setTagUid(tagUid);
-		blog.setFileUid(fileUid);
+		blog.setPictureUid(fileUid);
 		blog.setClickCount(clickCount);
 		blog.setStatus(EStatus.ENABLE);
 		blog.updateById();

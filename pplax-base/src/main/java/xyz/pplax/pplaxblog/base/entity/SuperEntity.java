@@ -24,6 +24,9 @@ public class SuperEntity<T extends Model> extends Model<T> {
 	@TableId(value = "uid", type = IdType.UUID)
 	private String uid; // 唯一uid	
 
+	/**
+	 * 状态
+	 */
 	private int status; // 0 失效  1 生效
 
 	/**

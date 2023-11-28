@@ -12,18 +12,111 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- <spring-data-releasetrain.version>Fowler-SR2</spring-data-releasetrain.version> -->
-        <java.version>1.8</java.version>
-    </properties>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.0.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- <spring-data-releasetrain.version>Fowler-SR2</spring-data-releasetrain.version> -->
+        <java.version>1.8</java.version>
+
+        <mybatis-plus-boot-starter.version>3.0-RC1</mybatis-plus-boot-starter.version>
+        <mysql-connector-java.version>8.0.31</mysql-connector-java.version>
+        <fastjson.version>1.2.73</fastjson.version>
+        <jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
+        <velocity-engine-core.version>2.0</velocity-engine-core.version>
+        <mail.version>1.4</mail.version>
+        <json-lib.version>2.4</json-lib.version>
+        <jjwt.version>0.7.0</jjwt.version>
+        <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
+        <springfox-swagger-ui.version>2.6.1</springfox-swagger-ui.version>
+        <druid.version>1.1.8</druid.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- mybatisPlus 会自动的维护Mybatis 以及MyBatis-spring相关的依赖-->
+            <!-- mybatis-plus begin -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <!-- mybatis-plus end -->
+
+            <!-- jdbc -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- json相关 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.json-lib</groupId>
+                <artifactId>json-lib</artifactId>
+                <version>${json-lib.version}</version>
+                <classifier>jdk15</classifier>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${jackson-mapper-asl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity-engine-core.version}</version>
+            </dependency>
+
+            <!-- email -->
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${mail.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox-swagger2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger-ui.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -40,24 +133,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- mp依赖
-             mybatisPlus 会自动的维护Mybatis 以及MyBatis-spring相关的依赖
-         -->
-        <!-- mybatis-plus begin -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0-RC1</version>
-        </dependency>
-        <!-- mybatis-plus end -->
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.31</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -77,22 +152,9 @@
             <artifactId>solr-solrj</artifactId>
         </dependency>
 
-        <!-- 格式化对象，方便输出日志 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.6</version>
-        </dependency>
-
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
         </dependency>
 
         <!-- sfl4j -->
@@ -105,26 +167,6 @@
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <!-- email -->
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4</version>
-        </dependency>
-
-        <!-- 引入Json相关 -->
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-            <classifier>jdk15</classifier>
-        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -145,24 +187,6 @@
              <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency> -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
-        </dependency>
-
-        <!-- swagger -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.6.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.6.1</version>
-        </dependency>
 
     </dependencies>
 

@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogContentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogSortMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/LinkMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PermissionMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PictureMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PictureSortMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/RoleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/RolePermissionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Permission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/CollectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/CollectMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/CommentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/FeedbackMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/FeedbackMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/TagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/TagMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/VisitorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/VisitorMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,21 +250,7 @@
       <workItem from="1701094401800" duration="845000" />
       <workItem from="1701136687372" duration="659000" />
       <workItem from="1701137377549" duration="20072000" />
-      <workItem from="1701217686126" duration="8776000" />
-    </task>
-    <task id="LOCAL-00130" summary="article-boot:&#10;    配置类">
-      <created>1695012278030</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1695012278030</updated>
-    </task>
-    <task id="LOCAL-00131" summary="article-boot:&#10;    mq消费类">
-      <created>1695012633611</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1695012633612</updated>
+      <workItem from="1701217686126" duration="11070000" />
     </task>
     <task id="LOCAL-00132" summary="article-boot:&#10;    controller">
       <created>1695013000913</created>
@@ -609,7 +581,21 @@
       <option name="project" value="LOCAL" />
       <updated>1701225447330</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <task id="LOCAL-00179" summary="把mapper.xml补上，调整sql脚本">
+      <created>1701227678787</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1701227678787</updated>
+    </task>
+    <task id="LOCAL-00180" summary="临时提交">
+      <created>1701227903824</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1701227903824</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,8 +631,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="初始化-各种基类（maven尚未引入）" />
-    <MESSAGE value="初始化-引入maven" />
     <MESSAGE value="pplax-xo中添加数据库表相关类" />
     <MESSAGE value="初始化，调整springboot版本" />
     <MESSAGE value="初始化" />
@@ -670,7 +654,9 @@
     <MESSAGE value="临时提交,先让它跑起来" />
     <MESSAGE value="整理一下包结构" />
     <MESSAGE value="调整blog表的查询，调整数据库设计" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整blog表的查询，调整数据库设计" />
+    <MESSAGE value="把mapper.xml补上，调整sql脚本" />
+    <MESSAGE value="临时提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="临时提交" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

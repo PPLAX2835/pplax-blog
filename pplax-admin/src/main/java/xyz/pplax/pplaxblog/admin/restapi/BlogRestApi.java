@@ -70,7 +70,7 @@ public class BlogRestApi {
 		page.setSize(pageSize);
 
 		// 查询状态正常的
-//		queryWrapper.eq(SQLConf.STATUS, EStatus.ENABLE);
+//		queryWrapper.eq(SQLConf.STATUS, EStatus.ENABLE);			// 这个在前台就要取消注释
 		// 按创建时间排序
 		queryWrapper.orderByDesc(SQLConf.CREATE_TIME);
 

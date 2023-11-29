@@ -6,15 +6,15 @@
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Tag">
         <id column="uid" property="uid" />
         <result column="content" property="content" />
+        <result column="click_count" property="clickCount" />
         <result column="status" property="status" />
-        <result column="createtime" property="createtime" />
-        <result column="updatetime" property="updatetime" />
-        <result column="clickcount" property="clickcount" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        uid, content, status, createtime, updatetime, clickcount
+        `uid`, `content`, `click_count`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

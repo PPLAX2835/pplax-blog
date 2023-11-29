@@ -33,11 +33,6 @@ public class Comment extends SuperEntity<Comment> {
     private String toUserUid;
 
     /**
-     * 用户名
-     */
-    private String userName;
-
-    /**
      * 评论内容
      */
     private String content;

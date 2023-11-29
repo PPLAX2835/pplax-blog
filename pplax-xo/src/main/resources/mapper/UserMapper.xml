@@ -5,26 +5,26 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.User">
         <id column="uid" property="uid" />
-        <result column="username" property="username" />
-        <result column="password" property="password" />
+        <result column="username" property="userName" />
+        <result column="password" property="passWord" />
+        <result column="nick_name" property="nickName" />
         <result column="gender" property="gender" />
-        <result column="avatar" property="avatar" />
+        <result column="picture_uid" property="pictureUid" />
         <result column="email" property="email" />
         <result column="birthday" property="birthday" />
         <result column="mobile" property="mobile" />
-        <result column="validcode" property="validcode" />
+        <result column="valid_code" property="validCode" />
         <result column="summary" property="summary" />
-        <result column="logincount" property="logincount" />
-        <result column="lastlogintime" property="lastlogintime" />
-        <result column="lastloginip" property="lastloginip" />
+        <result column="login_count" property="loginCount" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="last_login_ip" property="lastLoginIp" />
         <result column="status" property="status" />
-        <result column="createtime" property="createtime" />
-        <result column="updatetime" property="updatetime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        oid, uid, username, password, gender, avatar, email, birthday, mobile, validcode, summary, logincount, lastlogintime, lastloginip, status, createtime, updatetime
+        `uid`, `user_name`, `pass_word`, `nick_name`, `gender`, `picture_uid`, `email`, `birthday`, `mobile`, `valid_code`, `summary`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`
     </sql>
-
 </mapper>

@@ -5,20 +5,19 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Comment">
         <id column="uid" property="uid" />
-        <result column="useruid" property="useruid" />
-        <result column="touid" property="touid" />
-        <result column="touseruid" property="touseruid" />
-        <result column="username" property="username" />
+        <result column="user_uid" property="userUid" />
+        <result column="to_uid" property="toUid" />
+        <result column="to_user_uid" property="toUserUid" />
         <result column="content" property="content" />
-        <result column="bloguid" property="bloguid" />
+        <result column="blog_uid" property="content" />
         <result column="status" property="status" />
-        <result column="createtime" property="createtime" />
-        <result column="updatetime" property="updatetime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        uid, useruid, touid, touseruid, username, content, bloguid, status, createtime, updatetime
+        `uid`, `user_uid`, `to_uid`, `to_user_uid`, `content`, `blog_uid`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

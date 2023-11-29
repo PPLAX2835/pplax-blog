@@ -5,16 +5,16 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Feedback">
         <id column="uid" property="uid" />
-        <result column="useruid" property="useruid" />
+        <result column="user_uid" property="userUid" />
         <result column="content" property="content" />
         <result column="status" property="status" />
-        <result column="createtime" property="createtime" />
-        <result column="updatetime" property="updatetime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        uid, useruid, content, status, createtime, updatetime
+        `uid`, `useruid`, `content`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

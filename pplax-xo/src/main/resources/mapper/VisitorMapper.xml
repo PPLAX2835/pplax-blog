@@ -5,19 +5,19 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Visitor">
         <id column="uid" property="uid" />
-        <result column="username" property="username" />
+        <result column="user_name" property="userName" />
         <result column="email" property="email" />
-        <result column="logincount" property="logincount" />
-        <result column="lastlogintime" property="lastlogintime" />
-        <result column="lastloginip" property="lastloginip" />
+        <result column="login_count" property="loginCount" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="last_login_ip" property="lastLoginIp" />
         <result column="status" property="status" />
-        <result column="createtime" property="createtime" />
-        <result column="updatetime" property="updatetime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        uid, username, email, logincount, lastlogintime, lastloginip, status, createtime, updatetime
+        `uid`, `user_name`, `email`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

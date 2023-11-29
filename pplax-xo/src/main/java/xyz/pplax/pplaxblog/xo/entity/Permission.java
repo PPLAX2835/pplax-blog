@@ -24,7 +24,7 @@ public class Permission extends SuperEntity<Permission> {
     /**
      * 权限名
      */
-    private String name;
+    private String permissionName;
 
     /**
      * 权限url

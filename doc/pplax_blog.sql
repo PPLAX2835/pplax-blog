@@ -157,7 +157,6 @@ CREATE TABLE `t_comment` (
   `user_uid` varchar(32) DEFAULT NULL COMMENT '用户uid',
   `to_uid` varchar(32) DEFAULT NULL COMMENT '回复某条评论的uid',
   `to_user_uid` varchar(32) DEFAULT NULL COMMENT '回复某个人的uid',
-  `user_name` varchar(255) DEFAULT NULL COMMENT '用户名',
   `content` varchar(1000) DEFAULT NULL COMMENT '评论内容',
   `blog_uid` varchar(32) DEFAULT NULL COMMENT '博客uid',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
@@ -242,7 +241,7 @@ DROP TABLE IF EXISTS `t_permission`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `t_permission` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `name` varchar(255) NOT NULL COMMENT '权限名',
+  `permission_name` varchar(255) NOT NULL COMMENT '权限名',
   `url` varchar(255) DEFAULT NULL COMMENT '权限url',
   `parent_id` varchar(255) NOT NULL COMMENT '父节点id',
   `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',

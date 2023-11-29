@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="xyz.pplax.pplaxblog.xo.mapper.CollectMapper">
+<mapper namespace="xyz.pplax.pplaxblog.xo.mapper.PictureSortMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Collect">
+    <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.PictureSort">
         <id column="uid" property="uid" />
-        <result column="user_uid" property="userUid" />
-        <result column="blog_uid" property="blogUid" />
+        <result column="file_uid" property="fileUid" />
+        <result column="sort_name" property="sortName" />
+        <result column="parent_uid" property="parentUid" />
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -14,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `user_uid`, `blog_uid`, `status`, `create_time`, `update_time`
+        `uid`, `file_uid`, `sort_name`, `status`, `create_time`, `update_time`, `parent_uid`
     </sql>
 
 </mapper>

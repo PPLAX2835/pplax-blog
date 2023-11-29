@@ -42,8 +42,8 @@ CREATE TABLE `t_file` (
   `file_url` varchar(255) DEFAULT NULL COMMENT '文件地址',
   `file_sort_uid` varchar(36) DEFAULT NULL COMMENT '文件分类uid',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='文件表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -70,8 +70,8 @@ CREATE TABLE `t_file_sort` (
   `sort_name` varchar(255) DEFAULT NULL COMMENT '分类名',
   `url` varchar(255) DEFAULT NULL COMMENT '分类路径',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='文件分类表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -98,8 +98,8 @@ CREATE TABLE `t_storage` (
   `user_uid` varchar(32) NOT NULL COMMENT '用户uid',
   `storage_size` bigint NOT NULL,
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `max_storage_size` bigint DEFAULT '0' COMMENT '最大容量大小',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='存储信息表';

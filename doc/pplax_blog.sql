@@ -45,8 +45,8 @@ CREATE TABLE `t_blog` (
   `articles_part` varchar(255) DEFAULT NULL COMMENT '文章出处',
   `blog_sort_uid` varchar(32) DEFAULT NULL COMMENT '博客分类UID',
   `level` tinyint(1) DEFAULT '0' COMMENT '推荐等级(0:正常)',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='博客表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -72,8 +72,8 @@ CREATE TABLE `t_blog_content` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
   `content` longtext COMMENT '博客内容',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='博客内容表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -100,8 +100,8 @@ CREATE TABLE `t_blog_sort` (
   `sort_name` varchar(255) DEFAULT NULL COMMENT '分类名',
   `summary` varchar(200) DEFAULT NULL COMMENT '分类简介',
   `content` varchar(255) DEFAULT NULL COMMENT '分类内容',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   `parent_uid` varchar(32) DEFAULT NULL COMMENT '父级分类uid',
   PRIMARY KEY (`uid`)
@@ -130,8 +130,8 @@ CREATE TABLE `t_collect` (
   `user_uid` varchar(32) NOT NULL COMMENT '用户的uid',
   `blog_uid` varchar(32) NOT NULL COMMENT '博客的uid',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='收藏表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -160,8 +160,8 @@ CREATE TABLE `t_comment` (
   `content` varchar(1000) DEFAULT NULL COMMENT '评论内容',
   `blog_uid` varchar(32) DEFAULT NULL COMMENT '博客uid',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='评论表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -187,8 +187,8 @@ CREATE TABLE `t_feedback` (
   `user_uid` varchar(32) NOT NULL COMMENT '用户uid',
   `content` varchar(1000) DEFAULT NULL COMMENT '反馈的内容',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='反馈表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -215,8 +215,8 @@ CREATE TABLE `t_link` (
   `summary` varchar(255) DEFAULT NULL COMMENT '友情链接介绍',
   `url` varchar(255) DEFAULT NULL COMMENT '友情链接URL',
   `click_count` int DEFAULT '0' COMMENT '点击数',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='友情链接表';
@@ -244,8 +244,8 @@ CREATE TABLE `t_permission` (
   `permission_name` varchar(255) NOT NULL COMMENT '权限名',
   `url` varchar(255) DEFAULT NULL COMMENT '权限url',
   `parent_id` varchar(255) NOT NULL COMMENT '父节点id',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='权限表';
@@ -273,8 +273,8 @@ CREATE TABLE `t_picture` (
   `picture_name` varchar(255) DEFAULT NULL COMMENT '图片名',
   `picture_sort_uid` varchar(32) DEFAULT NULL COMMENT '分类uid',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='图片表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -301,8 +301,8 @@ CREATE TABLE `t_picture_sort` (
   `file_uid` varchar(32) DEFAULT NULL COMMENT '文件uid',
   `sort_name` varchar(255) DEFAULT NULL COMMENT '分类名',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `parent_uid` varchar(32) DEFAULT NULL COMMENT '父级分类uid',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='图片分类表';
@@ -328,8 +328,8 @@ DROP TABLE IF EXISTS `t_role`;
 CREATE TABLE `t_role` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
   `role_name` varchar(255) NOT NULL COMMENT '角色名',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='角色表';
@@ -356,8 +356,8 @@ CREATE TABLE `t_role_permission` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
   `role_uid` varchar(32) NOT NULL COMMENT '角色id',
   `permission_uid` varchar(32) NOT NULL COMMENT '权限id',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='角色权限表';
@@ -384,8 +384,8 @@ CREATE TABLE `t_tag` (
   `content` varchar(1000) DEFAULT NULL COMMENT '标签内容',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   `click_count` int DEFAULT '0' COMMENT '标签简介',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='标签表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -423,8 +423,8 @@ CREATE TABLE `t_user` (
   `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
   `last_login_ip` varchar(50) DEFAULT '127.0.0.1' COMMENT '最后登录IP',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -454,8 +454,8 @@ CREATE TABLE `t_visitor` (
   `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
   `last_login_ip` varchar(50) DEFAULT '127.0.0.1' COMMENT '最后登录IP',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='游客表';
 /*!40101 SET character_set_client = @saved_cs_client */;

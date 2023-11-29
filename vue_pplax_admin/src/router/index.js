@@ -38,9 +38,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
+    path: '/admin',
     component: Layout,
-    redirect: '/example/blog',
+    redirect: '/admin/blog',
     name: '博客管理',
     meta: { title: '博客管理', icon: 'example' },
     children: [
@@ -54,9 +54,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
+    path: '/admin',
     component: Layout,
-    redirect: '/example/comment',
+    redirect: '/admin/comment',
     name: '评论管理',
     meta: { title: '评论管理', icon: 'example' },
     children: [
@@ -70,9 +70,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
+    path: '/admin',
     component: Layout,
-    redirect: '/example/tag',
+    redirect: '/admin/tag',
     name: '标签管理',
     meta: { title: '标签管理', icon: 'example' },
     children: [
@@ -86,9 +86,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
+    path: '/admin',
     component: Layout,
-    redirect: '/example/feedback',
+    redirect: '/admin/feedback',
     name: '反馈管理',
     meta: { title: '反馈管理', icon: 'example' },
     children: [
@@ -102,9 +102,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
+    path: '/admin',
     component: Layout,
-    redirect: '/example/user',
+    redirect: '/admin/user',
     name: '用户管理',
     meta: { title: '用户管理', icon: 'example' },
     children: [
@@ -118,9 +118,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
+    path: '/admin',
     component: Layout,
-    redirect: '/example/collect',
+    redirect: '/admin/collect',
     name: '收藏管理',
     meta: { title: '收藏管理', icon: 'example' },
     children: [
@@ -134,9 +134,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
+    path: '/admin',
     component: Layout,
-    redirect: '/example/visitor',
+    redirect: '/admin/visitor',
     name: '游客管理',
     meta: { title: '游客管理', icon: 'example' },
     children: [

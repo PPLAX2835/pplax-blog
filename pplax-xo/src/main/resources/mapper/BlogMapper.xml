@@ -14,7 +14,6 @@
         <result column="picture_uid" property="pictureUid" />
         <result column="user_uid" property="userUid" />
         <result column="is_original" property="isOriginal" />
-        <result column="author" property="author" />
         <result column="articles_part" property="articlesPart" />
         <result column="blog_sort_uid" property="blogSortUid" />
         <result column="level" property="level" />

@@ -33,6 +33,11 @@ public class User extends SuperEntity<User> {
     private String passWord;
 
     /**
+     * 昵称
+     */
+    private String nickName;
+
+    /**
      * 性别(1:男2:女)
      */
     private Integer gender;

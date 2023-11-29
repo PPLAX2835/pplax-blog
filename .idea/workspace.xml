@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogSortServiceImpl.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整理一下包结构">
+      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/dto/BaseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/response/ResponseCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/response/ResponseResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AdminRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AdminRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/swagger/Swagger2.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/swagger/Swagger2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/AdminMapper.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/BlogMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,7 +80,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/response" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -94,13 +97,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\java\xyz\pplax\pplaxblog\base\response" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-picture\src\main\java\xyz\pplax\pplaxblog\picture" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-config\src\main\java\xyz\pplax\pplaxblog\config" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\java\xyz\pplax\pplaxblog\base" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\entity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\entity" />
       <recent name="G:\Workspace\IDEA\pplax-cloud-backend\service\auth-server-service\src\main\resources\xyz\pplax\auth\dao" />
     </key>
@@ -108,11 +112,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.admin.restapi" />
       <recent name="xyz.pplax.pplaxblog.xo.service.impl" />
       <recent name="xyz.pplax.pplaxblog.xo.service" />
       <recent name="xyz.pplax.pplaxblog.base.entity" />
       <recent name="xyz.pplax.pplaxblog.base.global" />
-      <recent name="xyz.pplax.pplaxblog.config.durid" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -255,21 +259,8 @@
       <workItem from="1701065023060" duration="678000" />
       <workItem from="1701094401800" duration="845000" />
       <workItem from="1701136687372" duration="659000" />
-      <workItem from="1701137377549" duration="15879000" />
-    </task>
-    <task id="LOCAL-00127" summary="article-boot">
-      <created>1695010436274</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1695010436274</updated>
-    </task>
-    <task id="LOCAL-00128" summary="article-boot:&#10;    添加工具类">
-      <created>1695010793177</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1695010793177</updated>
+      <workItem from="1701137377549" duration="20072000" />
+      <workItem from="1701217686126" duration="6600000" />
     </task>
     <task id="LOCAL-00129" summary="article-boot:&#10;    service">
       <created>1695011879212</created>
@@ -600,7 +591,21 @@
       <option name="project" value="LOCAL" />
       <updated>1701177079908</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="临时提交,先让它跑起来">
+      <created>1701178811277</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1701178811278</updated>
+    </task>
+    <task id="LOCAL-00177" summary="整理一下包结构">
+      <created>1701178921592</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1701178921592</updated>
+    </task>
+    <option name="localTasksCounter" value="178" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,8 +641,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="蘑菇博客前端" />
-    <MESSAGE value="调整包结构" />
     <MESSAGE value="初始化-添加工具类（maven尚未引入）" />
     <MESSAGE value="初始化-各种基类（maven尚未引入）" />
     <MESSAGE value="初始化-引入maven" />
@@ -661,7 +664,9 @@
     <MESSAGE value="调整数据库设计，这是中间过渡，我觉得可以把user表和admin表合起来" />
     <MESSAGE value="调整数据库，把admin表和user表合起来了" />
     <MESSAGE value="整理maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理maven" />
+    <MESSAGE value="临时提交,先让它跑起来" />
+    <MESSAGE value="整理一下包结构" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理一下包结构" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -17,7 +17,7 @@
 		  
 			 <el-table-column label="标题图" width="160">
 			<template slot-scope="scope">
-				<span>{{scope.row.fileUid}}</span>
+				<!-- <span>{{scope.row.pictureList}}</span> -->
 			</template>
 		  </el-table-column>
 			  
@@ -33,7 +33,19 @@
 			</template>
 		  </el-table-column>
 		  
-			 <el-table-column label="标签" width="100">
+		  <el-table-column label="作者" width="100">
+			<template slot-scope="scope">
+			  <span>{{ scope.row.user.nickName }}</span>
+			</template>
+		  </el-table-column>
+		  
+		  <el-table-column label="分类" width="100">
+			<template slot-scope="scope">
+			  <span>{{ scope.row.blogSort.sortName }}</span>
+			</template>
+		  </el-table-column>
+		  
+		 <el-table-column label="标签" width="100">
 			<template slot-scope="scope">
 				<template>		
 				  <el-tag type="warning"  v-if="item" :key="index" v-for="(item, index) in scope.row.tagList">{{item.content}}</el-tag>		
@@ -41,10 +53,27 @@
 			</template>
 		  </el-table-column>
   
-			  <el-table-column label="点击数" width="100">
-			<template slot-scope="scope">
-			  <span>{{ scope.row.clickCount }}</span>
-			</template>
+			<el-table-column label="点击数" width="80">
+				<template slot-scope="scope">
+					<span>{{ scope.row.clickCount }}</span>
+				</template>
+			</el-table-column>
+
+			<el-table-column label="收藏数" width="80">
+				<template slot-scope="scope">
+					<span>{{ scope.row.collectCount }}</span>
+				</template>
+			</el-table-column>
+
+			<el-table-column label="是否原创" width="100">
+			   <template slot-scope="scope">
+				   <template v-if="scope.row.isOriginal == 1">
+				  <span>是</span>
+				</template>
+				<template v-if="scope.row.isOriginal == 0">
+				  <span>否</span>
+				</template>
+			   </template>
 		  </el-table-column>
 		  
 		  <el-table-column label="创建时间" width="160">
@@ -59,7 +88,7 @@
 				  <span>正常</span>
 				</template>
 				<template v-if="scope.row.status == 2">
-				  <span>推荐</span>
+				  <span>冻结</span>
 				</template>
 				<template v-if="scope.row.status == 0">
 				  <span>已删除</span>

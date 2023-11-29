@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.admin.restapi;
 
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -8,18 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.global.SQLConf;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.base.enums.EStatus;
+import xyz.pplax.pplaxblog.base.response.ResponseResult;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
-import xyz.pplax.pplaxblog.xo.entity.Blog;
-import xyz.pplax.pplaxblog.xo.entity.Tag;
-import xyz.pplax.pplaxblog.xo.service.BlogService;
+import xyz.pplax.pplaxblog.xo.entity.*;
+import xyz.pplax.pplaxblog.xo.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.pplax.pplaxblog.xo.service.TagService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -41,16 +41,25 @@ public class BlogRestApi {
 	@Autowired
 	TagService tagService;
 
-	private static Logger log = LogManager.getLogger(BlogRestApi.class);
+	@Autowired
+	PictureService pictureService;
+
+	@Autowired
+	UserService userService;
+
+	@Autowired
+	BlogSortService blogSortService;
+
+	private static final Logger log = LogManager.getLogger(BlogRestApi.class);
 
 	@ApiOperation(value="获取博客列表", notes="获取博客列表", response = String.class)
-	@RequestMapping(value = "/getList", method = RequestMethod.GET)
+	@GetMapping(value = "/getList")
 	public String getList(HttpServletRequest request,
 						  @ApiParam(name = "keyword", value = "关键字",required = false) @RequestParam(name = "keyword", required = false) String keyword,
 						  @ApiParam(name = "currentPage", value = "当前页数",required = false) @RequestParam(name = "currentPage", required = false, defaultValue = "1") Long currentPage,
 						  @ApiParam(name = "pageSize", value = "每页显示数目",required = false) @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize) {
 
-		QueryWrapper<Blog> queryWrapper = new QueryWrapper<Blog>();
+		QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
 		if(!StringUtils.isEmpty(keyword)) {
 			queryWrapper.like(SQLConf.TITLE, keyword);
 		}
@@ -60,28 +69,64 @@ public class BlogRestApi {
 		page.setCurrent(currentPage);
 		page.setSize(pageSize);
 
-		queryWrapper.eq(SQLConf.STATUS, EStatus.ENABLE);
-
+		// 查询状态正常的
+//		queryWrapper.eq(SQLConf.STATUS, EStatus.ENABLE);
+		// 按创建时间排序
 		queryWrapper.orderByDesc(SQLConf.CREATE_TIME);
 
+		// 查询
 		IPage<Blog> pageList = blogService.page(page, queryWrapper);
-		List<Blog> list = pageList.getRecords();
-		for(Blog item : list) {
-			if(item != null && !StringUtils.isEmpty(item.getTagUid())) {
-				String uids[] = item.getTagUid().split(",");
-				List<Tag> tagList = new ArrayList<Tag>();
-				for(String uid : uids) {
+		List<Blog> blogList = pageList.getRecords();
+
+		for(Blog blog : blogList) {
+			// 添加标签
+			if(blog != null && !StringUtils.isEmpty(blog.getTagUid())) {
+				String[] tagUids = blog.getTagUid().split(",");
+				List<Tag> tagList = new ArrayList<>();
+				for(String uid : tagUids) {
 					Tag  tag = tagService.getById(uid);
-					if(tag != null && tag.getStatus() != EStatus.DISABLED) {
+					if(tag != null) {
 						tagList.add(tag);
 					}
 				}
-				item.setTagList(tagList);
+				blog.setTagList(tagList);
+			}
+
+			// 添加标题图片
+			if(blog != null && !StringUtils.isEmpty(blog.getPictureUid())) {
+				String[] pictureUids = blog.getPictureUid().split(",");
+				List<Picture> pictureList = new ArrayList<>();
+				for (String uid : pictureUids) {
+					Picture picture = pictureService.getById(uid);
+					if(picture != null) {
+						pictureList.add(picture);
+					}
+				}
+				blog.setPictureList(pictureList);
+			}
+
+			// 添加用户
+			if(blog != null && !StringUtils.isEmpty(blog.getUserUid())) {
+				User user = userService.getById(blog.getUserUid());
+				if (user != null) {
+					user.setPassWord(null);
+					blog.setUser(user);
+				}
+			}
+
+			// 添加分类
+			if(blog != null && !StringUtils.isEmpty(blog.getBlogSortUid())) {
+				BlogSort blogSort = blogSortService.getById(blog.getBlogSortUid());
+				if (blogSort != null) {
+					blog.setBlogSort(blogSort);
+				}
 			}
 		}
+
 		log.info("返回结果");
-		pageList.setRecords(list);
-		return ResultUtil.result(SysConf.SUCCESS, pageList);
+		pageList.setRecords(blogList);
+
+		return JSON.toJSONString(ResponseResult.success(pageList));
 	}
 
 	@ApiOperation(value="增加博客", notes="增加博客", response = String.class)

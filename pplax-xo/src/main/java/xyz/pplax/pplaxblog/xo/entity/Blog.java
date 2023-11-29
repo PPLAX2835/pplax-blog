@@ -63,12 +63,7 @@ public class Blog extends SuperEntity<Blog>{
 	/**
 	 * 是否原创（0:不是 1：是）
 	 */
-	private String isOriginal;
-
-	/**
-	 * 作者
-	 */
-	private String author;
+	private Integer isOriginal;
 
 	/**
 	 * 文章出处
@@ -92,7 +87,16 @@ public class Blog extends SuperEntity<Blog>{
 	private List<Tag> tagList; //标签,一篇博客对应多个标签
 
 	@TableField(exist = false)
-	private String blogContent; // 内容，不主动查这个默认应该空，提升效率
+	private List<Picture> pictureList; // 标题图片，看来有可能配多张
+
+	@TableField(exist = false)
+	private User user;
+
+	@TableField(exist = false)
+	private BlogSort blogSort;
+
+	@TableField(exist = false)
+	private BlogContent blogContent; // 内容，不主动查这个,默认应该空，提升效率
 
 	public Blog() {}
 }

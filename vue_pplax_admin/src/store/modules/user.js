@@ -35,7 +35,6 @@ const user = {
         params.append('password', password)
 
         login(params).then(response => {
-          console.log(response)
           const data = response.data
           setToken(data.token)
           commit('SET_TOKEN', data.token)

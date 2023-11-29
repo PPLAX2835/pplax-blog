@@ -11,7 +11,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.admin.global.SQLConf;
+import xyz.pplax.pplaxblog.admin.global.BlogSQLConf;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.base.dto.BaseDto;
 import xyz.pplax.pplaxblog.base.enums.EStatus;
@@ -53,7 +53,7 @@ public class TestRestApi {
 
 		QueryWrapper<Blog> queryWrapper = new QueryWrapper<Blog>();
 		if(!StringUtils.isEmpty(keyword)) {
-			queryWrapper.like(SQLConf.TITLE, keyword);
+			queryWrapper.like(BlogSQLConf.TITLE, keyword);
 		}
 
 		//分页
@@ -61,9 +61,9 @@ public class TestRestApi {
 		page.setCurrent(currentPage);
 		page.setSize(pageSize);
 
-		queryWrapper.eq(SQLConf.STATUS, EStatus.ENABLE);
+		queryWrapper.eq(BlogSQLConf.STATUS, EStatus.ENABLE);
 
-		queryWrapper.orderByDesc(SQLConf.CREATE_TIME);
+		queryWrapper.orderByDesc(BlogSQLConf.CREATE_TIME);
 
 		IPage<Blog> pageList = blogService.page(page, queryWrapper);
 		List<Blog> list = pageList.getRecords();

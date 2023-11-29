@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import java.util.Date;
@@ -41,6 +42,9 @@ public class BlogSort extends SuperEntity<BlogSort> {
      * 父级分类uid
      */
     private String parentUid;
+
+    @TableField(exist = false)
+    private BlogSort parentBlogSort; // 父级分类
 
     public BlogSort() {}
 }

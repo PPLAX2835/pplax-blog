@@ -87,7 +87,6 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(response => {
-            console.log("反馈", response);
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.admin.global.SQLConf;
+import xyz.pplax.pplaxblog.admin.global.BlogSQLConf;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.base.enums.EStatus;
 import xyz.pplax.pplaxblog.base.response.ResponseResult;
@@ -26,9 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
  * 博客表 RestApi
- * </p>
  */
 @RestController
 @RequestMapping("/blog")
@@ -61,7 +59,7 @@ public class BlogRestApi {
 
 		QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
 		if(!StringUtils.isEmpty(keyword)) {
-			queryWrapper.like(SQLConf.TITLE, keyword);
+			queryWrapper.like(BlogSQLConf.TITLE, keyword);
 		}
 
 		//分页
@@ -72,7 +70,7 @@ public class BlogRestApi {
 		// 查询状态正常的
 //		queryWrapper.eq(SQLConf.STATUS, EStatus.ENABLE);			// 这个在前台就要取消注释
 		// 按创建时间排序
-		queryWrapper.orderByDesc(SQLConf.CREATE_TIME);
+		queryWrapper.orderByDesc(BlogSQLConf.CREATE_TIME);
 
 		// 查询
 		IPage<Blog> pageList = blogService.page(page, queryWrapper);

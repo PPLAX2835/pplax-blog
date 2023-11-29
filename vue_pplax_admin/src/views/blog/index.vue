@@ -54,7 +54,6 @@
 		  <template slot-scope="scope">
 			<template>
 			  <el-tag
-				type="warning"
 				v-if="item"
 				:key="index"
 				v-for="(item, index) in scope.row.tagList"
@@ -209,8 +208,8 @@
   
   <script>
    import { getBlogList, addBlog, editBlog, deleteBlog } from "@/api/blog";
-   import { EStatus } from "../../base/EStatus";
-   import { ResponseCode } from '../../base/ResponseCode';
+   import EStatus from "../../base/EStatus";
+   import ResponseCode from '../../base/ResponseCode';
    import { formatData } from '@/utils/webUtils'
    export default {
   data() {
@@ -240,6 +239,7 @@
   created() {
 	var that = this;
   
+	console.log(ResponseCode)
 	// 请求获得博客列表
 	var params = new URLSearchParams();
 	params.append("keyword", this.keyword);
@@ -257,7 +257,10 @@
 			  this.pageSize = response.data.size;
 			  this.total = response.data.total;
 		  } else {
-			  console.log()
+			this.$message({
+			  type: "error",
+			  message: response.message
+			});
 		  }
 	  });
   },

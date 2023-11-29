@@ -1,11 +1,13 @@
 package xyz.pplax.pplaxblog.admin.restapi;
 
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
+import xyz.pplax.pplaxblog.base.response.ResponseResult;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import io.swagger.annotations.Api;
@@ -62,9 +64,9 @@ public class AdminRestApi {
 		if(username.equals("admin") && password.equals("admin")) {
 			Map<String, Object> result = new HashMap<>();
 			result.put(SysConf.TOKEN, "admin");
-			return ResultUtil.result(SysConf.SUCCESS, result);
+			return JSON.toJSONString(ResponseResult.success(result));
 		}
-		return ResultUtil.result(SysConf.ERROR, "error");
+		return JSON.toJSONString(ResponseResult.error("error"));
 	}
 
 	@ApiOperation(value = "用户信息", notes = "用户信息", response = String.class)
@@ -76,13 +78,13 @@ public class AdminRestApi {
 		List<String> list = new ArrayList<String>();
 		list.add("admin");
 		map.put("roles", list);
-		return ResultUtil.result(SysConf.SUCCESS, map);
+		return JSON.toJSONString(ResponseResult.success(map));
 	}
 
 	@ApiOperation(value = "退出登录", notes = "退出登录", response = String.class)
 	@PostMapping(value = "/logout")
 	public String logout(@ApiParam(name = "token", value = "token令牌",required = false) @RequestParam(name = "token", required = false) String token) {
-		return ResultUtil.result(SysConf.SUCCESS, null);
+		return JSON.toJSONString(ResponseResult.success());
 	}
 
 }

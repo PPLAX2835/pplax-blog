@@ -56,6 +56,22 @@ export const constantRouterMap = [
   {
     path: '/admin',
     component: Layout,
+    redirect: '/admin/blogSort',
+    name: '博客分类管理',
+    meta: { title: '博客分类管理', icon: 'example' },
+    children: [
+      {
+        path: 'blogSort',
+        name: '博客分类管理',
+        component: () => import('@/views/blogSort/index'),
+        meta: { title: '博客分类管理', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/admin',
+    component: Layout,
     redirect: '/admin/comment',
     name: '评论管理',
     meta: { title: '评论管理', icon: 'example' },

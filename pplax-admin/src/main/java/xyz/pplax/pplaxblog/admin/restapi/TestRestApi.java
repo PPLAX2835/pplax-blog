@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.admin.restapi;
 
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -15,6 +16,7 @@ import xyz.pplax.pplaxblog.admin.global.BlogSQLConf;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.base.dto.BaseDto;
 import xyz.pplax.pplaxblog.base.enums.EStatus;
+import xyz.pplax.pplaxblog.base.response.ResponseResult;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
@@ -83,6 +85,15 @@ public class TestRestApi {
 		log.info("返回结果");
 		pageList.setRecords(list);
 		return ResultUtil.result(SysConf.SUCCESS, pageList);
+	}
+
+
+	@ApiOperation(value="添加博客分类", notes="添加博客分类", response = String.class)
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String edit(HttpServletRequest request
+	) {
+
+		return JSON.toJSONString(ResponseResult.success());
 	}
 
 }

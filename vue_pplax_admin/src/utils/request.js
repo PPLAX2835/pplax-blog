@@ -14,7 +14,16 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['X-Token'] = getToken()                                      // 让每个请求携带自定义token
+    } 
+
+    
+    if (config.method === 'get') {
+
+    }
+    else if (config.method === 'post') {
+      config.headers['Content-Type'] = 'application/json'                         // 给那些通过请求体传递参数的方法设置请求头
+      config.data = JSON.stringify(config.data)
     }
     return config
   },

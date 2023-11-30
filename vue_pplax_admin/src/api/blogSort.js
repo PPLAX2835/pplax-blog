@@ -2,7 +2,7 @@ import service from '@/utils/request'
 
 export function getBlogSortList(params) {
   return service({
-    url: '/blogSort/getList',
+    url: '/blogSort',
     method: 'get',
     params
   })
@@ -10,15 +10,14 @@ export function getBlogSortList(params) {
 
 export function checkSortNameExists(params) {
   return service({
-    url: '/blogSort/checkSortNameExists',
-    method: 'get',
-    params
+    url: '/blogSort/' + params.sortName + '/exists',
+    method: 'get'
   })
 }
 
 export function addBlogSort(data) {
   return service({
-    url: '/blogSort/add',
+    url: '/blogSort',
     method: 'post',
     data: data
   })
@@ -26,16 +25,15 @@ export function addBlogSort(data) {
 
 export function editBlogSort(data) {
   return service({
-    url: '/blogSort/edit',
-    method: 'post',
+    url: '/blogSort/' + data.uid,
+    method: 'put',
     data: data
   })
 }
 
-export function deleteBlogSort(data) {
+export function physicalDelete(data) {
   return service({
-    url: '/blogSort/physicalDelete',
-    method: 'post',
-    data: data
+    url: '/blogSort/' + data.uid,
+    method: 'delete'
   })
 }

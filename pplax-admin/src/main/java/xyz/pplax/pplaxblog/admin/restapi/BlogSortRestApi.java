@@ -12,15 +12,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.dto.add.BlogSortAddDto;
-import xyz.pplax.pplaxblog.admin.dto.delete.BlogSortDeleteDto;
 import xyz.pplax.pplaxblog.admin.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.admin.global.BlogSQLConf;
 import xyz.pplax.pplaxblog.admin.global.BlogSortSQLConf;
-import xyz.pplax.pplaxblog.admin.global.SysConf;
-import xyz.pplax.pplaxblog.base.enums.EStatus;
 import xyz.pplax.pplaxblog.base.response.ResponseCode;
 import xyz.pplax.pplaxblog.base.response.ResponseResult;
-import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
@@ -45,9 +41,11 @@ public class BlogSortRestApi {
      * @return
      */
     @ApiOperation(value="检查是否重名", notes="检查是否重名", response = String.class)
-    @GetMapping(value = "/checkSortNameExists")
-    public String checkSortNameExists(HttpServletRequest request,
-                          @ApiParam(name = "sortName", value = "分类名",required = true) @RequestParam(name = "sortName", required = true) String sortName) {
+    @GetMapping(value = "/{sortName}/exists")
+    public String checkSortNameExists(
+            HttpServletRequest request,
+            @ApiParam(name = "sortName", value = "分类名",required = true) @PathVariable String sortName
+    ) {
 
         QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(BlogSortSQLConf.SORT_NAME, sortName);
@@ -76,11 +74,12 @@ public class BlogSortRestApi {
      * @return
      */
     @ApiOperation(value="获取博客分类列表", notes="获取博客分类列表", response = String.class)
-    @GetMapping(value = "/getList")
+    @GetMapping(value = "")
     public String getList(HttpServletRequest request,
                           @ApiParam(name = "keyword", value = "关键字",required = false) @RequestParam(name = "keyword", required = false) String keyword,
                           @ApiParam(name = "currentPage", value = "当前页数",required = false) @RequestParam(name = "currentPage", required = false, defaultValue = "1") Long currentPage,
-                          @ApiParam(name = "pageSize", value = "每页显示数目",required = false) @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize) {
+                          @ApiParam(name = "pageSize", value = "每页显示数目",required = false) @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize
+    ) {
 
         QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(keyword)) {
@@ -124,8 +123,11 @@ public class BlogSortRestApi {
      * @return
      */
     @ApiOperation(value="增加博客分类", notes="增加博客分类", response = String.class)
-    @PostMapping("/add")
-    public String add(HttpServletRequest request, @RequestBody BlogSortAddDto blogSortAddDto) {
+    @PostMapping("")
+    public String add(
+            HttpServletRequest request,
+            @RequestBody BlogSortAddDto blogSortAddDto
+    ) {
 
         if(StringUtils.isEmpty(blogSortAddDto.getSortName()) || blogSortAddDto.getStatus() == null) {
             return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "必填项不能为空"));
@@ -150,15 +152,19 @@ public class BlogSortRestApi {
      * @return
      */
     @ApiOperation(value="编辑博客分类", notes="编辑博客分类", response = String.class)
-    @PostMapping("/edit")
-    public String edit(HttpServletRequest request, @RequestBody BlogSortEditDto blogSortEditDto) {
+    @PutMapping("/{uid}")
+    public String edit(
+            HttpServletRequest request,
+            @ApiParam(name = "uid", value = "唯一标识符",required = true) @PathVariable String uid,
+            @RequestBody BlogSortEditDto blogSortEditDto
+    ) {
 
-        if(StringUtils.isEmpty(blogSortEditDto.getUid())) {
+        if(StringUtils.isEmpty(uid)) {
             return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "数据错误"));
         }
 
         BlogSort blogSort = new BlogSort();
-        blogSort.setUid(blogSortEditDto.getUid());
+        blogSort.setUid(uid);
         blogSort.setSortName(blogSortEditDto.getSortName());
         blogSort.setSummary(blogSortEditDto.getSummary());
         blogSort.setContent(blogSortEditDto.getContent());
@@ -172,18 +178,21 @@ public class BlogSortRestApi {
     /**
      * 物理删除博客分类
      * @param request
-     * @param blogSortDeleteDto
+     * @param uid
      * @return
      */
     @ApiOperation(value="物理删除博客分类", notes="物理删除博客分类", response = String.class)
-    @PostMapping("/physicalDelete")
-    public String delete(HttpServletRequest request, @RequestBody BlogSortDeleteDto blogSortDeleteDto) {
+    @DeleteMapping("/{uid}")
+    public String delete(
+            HttpServletRequest request,
+            @ApiParam(name = "uid", value = "唯一标识符",required = true) @PathVariable String uid
+    ) {
 
-        if(StringUtils.isEmpty(blogSortDeleteDto.getUid())) {
+        if(StringUtils.isEmpty(uid)) {
             return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "数据错误"));
         }
 
-        blogSortService.removeById(blogSortDeleteDto.getUid());
+        blogSortService.removeById(uid);
 
         return JSON.toJSONString(ResponseResult.success("删除成功"));
     }

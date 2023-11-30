@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/LoginDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/add/BlogSortAddDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/delete/BlogSortDeleteDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AdminRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AdminRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -261,14 +253,7 @@
       <workItem from="1701136687372" duration="659000" />
       <workItem from="1701137377549" duration="20072000" />
       <workItem from="1701217686126" duration="16606000" />
-      <workItem from="1701308296463" duration="9555000" />
-    </task>
-    <task id="LOCAL-00136" summary="article-boot:&#10;    file-boot">
-      <created>1695021820167</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1695021820167</updated>
+      <workItem from="1701308296463" duration="10934000" />
     </task>
     <task id="LOCAL-00137" summary="article-boot:&#10;    file-boot 文件工具类，之后把它封装到一起">
       <created>1695021922220</created>
@@ -606,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701311529572</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <task id="LOCAL-00185" summary="文章分类的增删改">
+      <created>1701327442538</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1701327442538</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,7 +634,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="pplax-admin引入swagger" />
     <MESSAGE value="controller调整为restful风格的api" />
     <MESSAGE value="后台初始化" />
     <MESSAGE value="调整eneity，后台增加添加博客功能" />
@@ -667,7 +658,8 @@
     <MESSAGE value="简单调整" />
     <MESSAGE value="后端：调整基本sql字段类；&#10;前端：全局的响应结果处理；BlogSort列表基本完成；BlogSort编辑表弄好了，表单提交还没好" />
     <MESSAGE value="前端：全局的响应结果处理和请求头请求体设置；BlogSort列表基本完成；BlogSort编辑表弄好了，表单提交还没好。  之前提交的时候没add上" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端：全局的响应结果处理和请求头请求体设置；BlogSort列表基本完成；BlogSort编辑表弄好了，表单提交还没好。  之前提交的时候没add上" />
+    <MESSAGE value="文章分类的增删改" />
+    <option name="LAST_COMMIT_MESSAGE" value="文章分类的增删改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

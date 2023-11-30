@@ -8,8 +8,8 @@ import lombok.Data;
 @ApiModel(description = "编辑博客分类的dto")
 public class BlogSortEditDto {
 
-    @ApiModelProperty(example = "", notes = "唯一标识符", required = false)
-    private String uid;
+//    @ApiModelProperty(example = "", notes = "唯一标识符", required = false)
+//    private String uid;
 
     @ApiModelProperty(example = "怪物猎人", notes = "分类名", required = true)
     private String sortName;

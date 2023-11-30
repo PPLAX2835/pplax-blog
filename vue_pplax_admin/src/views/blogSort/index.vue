@@ -198,7 +198,7 @@
 </template>
 
 <script>
-import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, deleteBlogSort } from '../../api/blogSort';
+import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, physicalDelete } from '../../api/blogSort';
 import EStatus from "../../base/EStatus";
 
 export default {
@@ -363,7 +363,7 @@ export default {
         let params = {
           uid: row.uid
         }
-        deleteBlogSort(params).then(response=> {
+        physicalDelete(params).then(response=> {
           this.$message({
             type: "success",
             message: response.data

@@ -229,7 +229,7 @@ CREATE TABLE `t_link` (
 
 LOCK TABLES `t_link` WRITE;
 /*!40000 ALTER TABLE `t_link` DISABLE KEYS */;
-INSERT INTO `t_link` (`uid`, `title`, `summary`, `url`, `click_count`, `create_time`, `update_time`, `status`) VALUES ('bb418e0a9d27490bb71972bd8da5afa6','IT大本营','IT大本营 - 专注于技术分享的开发者社区','http://www.itarea.cn/',1,'2018-09-26 05:55:33','2018-09-26 05:55:33',1),('dcc01149be71492dabd55821c22f6061','Mybatis-plus','MyBatis-Plus 为简化开发而生','http://mp.baomidou.com/',1,'2018-09-26 10:52:58','2018-09-26 10:52:58',1);
+INSERT INTO `t_link` (`uid`, `title`, `summary`, `url`, `click_count`, `create_time`, `update_time`, `status`) VALUES ('bb418e0a9d27490bb71972bd8da5afa6','IT大本营','IT大本营 - 专注于技术分享的开发者社区','http://www.itarea.cn/',1,'2018-09-26 05:55:33','2018-09-26 05:55:33',1),('dcc01149be71492dabd55821c22f6061','Mybatis-plus','MyBatis-Plus 为简化开发而生','http://mp.baomidou.com/',3,'2018-09-26 10:52:58','2018-09-26 10:52:58',1),('fd20ae3970bd4a06832411269ae837d3','PPLAX','皮某人的网站','pplax.xyz',2837,'2023-11-30 12:17:54','2023-11-30 12:17:54',1);
 /*!40000 ALTER TABLE `t_link` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,4 +479,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30 17:41:19
+-- Dump completed on 2023-11-30 20:42:51

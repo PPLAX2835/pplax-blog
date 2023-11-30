@@ -132,6 +132,22 @@ export const constantRouterMap = [
       }
     ]
   },
+  
+  {
+    path: '/admin',
+    component: Layout,
+    redirect: '/admin/link',
+    name: '友情链接管理',
+    meta: { title: '友情链接管理', icon: 'example' },
+    children: [
+      {
+        path: 'link',
+        name: '友情链接管理',
+        component: () => import('@/views/link/index'),
+        meta: { title: '友情链接管理', icon: 'table' }
+      }
+    ]
+  },
 
   {
     path: '/admin',

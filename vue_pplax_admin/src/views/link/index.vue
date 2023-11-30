@@ -6,10 +6,10 @@
         type="primary"
         @click="handleAdd"
         icon="el-icon-edit"
-      >添加反馈</el-button
+      >添加友情链接</el-button
       >
     </div>
-
+    
     <el-table :data="tableData" style="width: 100%">
       <el-table-column type="selection"></el-table-column>
 
@@ -18,25 +18,37 @@
           <span>{{scope.$index + 1}}</span>
         </template>
       </el-table-column>
-
-      <el-table-column label="反馈用户" width="150">
+      
+      <el-table-column label="标题" width="150">
         <template slot-scope="scope">
-          {{ scope.row.user.nickName }}
+          {{ scope.row.title }}
         </template>
       </el-table-column>
       
-      <el-table-column label="内容" width="200">
+      <el-table-column label="介绍" width="200">
         <template slot-scope="scope">
-          {{ scope.row.content }}
+          {{ scope.row.summary }}
         </template>
       </el-table-column>
 
+      <el-table-column label="URL" width="200">
+        <template slot-scope="scope">
+          <a :href="base_api + '/link/redirect/?url=' + scope.row.url + '&uid=' + scope.row.uid" target="_blank">{{ scope.row.url }}</a>
+        </template>
+      </el-table-column>
+      
+      <el-table-column label="点击数" width="100">
+        <template slot-scope="scope">
+          {{ scope.row.clickCount }}
+        </template>
+      </el-table-column>
+    
       <el-table-column label="创建时间" width="160">
         <template slot-scope="scope">
           <span>{{ scope.row.createTime }}</span>
         </template>
       </el-table-column>
-
+      
       <el-table-column label="状态" width="100">
         <template slot-scope="scope">
           <template v-if="scope.row.status == status.ENABLE">
@@ -78,7 +90,7 @@
       >
       </el-pagination>
     </div>
-
+    
     <!-- 添加或修改对话框 -->
     <el-dialog
       :title="title"
@@ -87,44 +99,39 @@
       >
       <el-form ref="form" :model="form" :rules="editRules">
       
-        <el-form-item
-          v-if="isEditForm == true"
-          label="反馈UID"
-          :label-width="formLabelWidth"
-        >
-          <el-input v-model="form.uid" auto-complete="off" disabled></el-input>
-        </el-form-item>
-
-        <el-form-item label="反馈用户名" :label-width="formLabelWidth" required>
-          <el-select
-            v-model="form.userUid"
-            size="small"
-            filterable
-            remote
-            reserve-keyword
-            placeholder="请输入用户名"
-            :remote-method="getFeedbackUserList"
-            :loading="loading"
-          >
-            <el-option
-              filterable
-              remote
-              v-for="item in userOptions"
-              :key="item.uid"
-              :label="item.userName"
-              :value="item.uid"
-            >
-            </el-option>
-          </el-select>
-        </el-form-item>
-
-        
-        <el-form-item label="内容" :label-width="formLabelWidth" prop="content" required>
+        <el-form-item label="标题" :label-width="formLabelWidth" prop="title" required>
           <el-input
-            v-model="form.content"
+            v-model="form.title"
             auto-complete="off"
             placeholder="请输入内容"
           ></el-input>
+        </el-form-item>
+
+        <el-form-item label="介绍" :label-width="formLabelWidth" prop="summary">
+          <el-input
+            v-model="form.summary"
+            auto-complete="off"
+            placeholder="请输入内容"
+          ></el-input>
+        </el-form-item>
+      
+        <el-form-item label="url" :label-width="formLabelWidth" prop="url" required>
+          <el-input
+            :min="0"
+            v-model="form.url"
+            auto-complete="off"
+            placeholder="请输入内容"
+          ></el-input>
+        </el-form-item>
+        
+        <el-form-item label="点击数" :label-width="formLabelWidth">
+          <el-input-number
+            :precision="0"
+            :controls="false"
+            v-model="form.clickCount"
+            auto-complete="off"
+            placeholder="请输入点击数"
+          ></el-input-number>
         </el-form-item>
       
         <el-form-item
@@ -148,10 +155,8 @@
             </el-option>
           </el-select>
         </el-form-item>
-
-
+      
       </el-form>
-    
     
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -160,14 +165,10 @@
     </el-dialog>
 
   </div>
-
-
-
 </template>
 
 <script>
-import { getFeedbackList, addFeedback, editFeedback, physicalDeleteFeedback } from '../../api/feedback';
-import { getUserList } from '../../api/user';
+import { getLinkList, addLink, editLink, physicalDeleteLink } from '../../api/link';
 import EStatus from "../../base/EStatus";
 
 export default {
@@ -181,10 +182,11 @@ export default {
       pageSize: 10,
       status: EStatus,
       total: 0, //总数量
-      title: "增加反馈",
+      title: "增加友情链接",
       dialogFormVisible: false, //控制弹出框
       formLabelWidth: '120px',
       isEditForm: false ,
+      base_api: process.env.BASE_API,
       statusOptions: [{
         value: 1,
         label: '激活'
@@ -198,21 +200,25 @@ export default {
         value: 3,
         label: '置顶'
       }],
-      userOptions: [],
       editRules: {
-        status: [
-          { required: true, trigger: 'blur', message: '请选择状态' }
+        title: [
+          { required: true, trigger: 'blur', message: '请输入标题' }
         ],
-        content: [
-          { required: true, trigger: 'blur', message: '请输入内容' }
-        ]
-          
+        url: [
+          { required: true, trigger: 'blur', message: '请输入url' },
+          {
+            pattern: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/,
+            trigger: 'blur',
+            message: '请输入正确的url'
+          }
+        ],
 
       },
       form: {
         uid: null,
-        userUid: null,
-        content: null,
+        summary: null,
+        url: null,
+        clickCount: null,
         status: null
       },
     }
@@ -226,7 +232,7 @@ export default {
       currentPage: this.currentPage,
       pageSize: this.pageSize
     }
-    this.feedbackList(params);
+    this.linkList(params);
   },
   methods: {
 
@@ -234,8 +240,8 @@ export default {
      * 获取反馈列表
      * @param {*} params
      */
-     feedbackList: function(params) {
-      getFeedbackList(params).then(response => {
+     linkList: function(params) {
+      getLinkList(params).then(response => {
         this.tableData = response.data.records;
         this.currentPage = response.data.current;
         this.pageSize = response.data.size;
@@ -264,7 +270,7 @@ export default {
         currentPage: this.currentPage,
         pageSize: this.pageSize
       }
-      this.feedbackList(params);
+      this.linkList(params);
     },
     /**
      * 添加按钮单击事件，弹出窗口
@@ -273,12 +279,13 @@ export default {
       this.dialogFormVisible = true;
       this.form = {
         uid: null,
-        userUid: null,
-        content: null,
+        summary: null,
+        url: null,
+        clickCount: null,
         status: EStatus.ENABLE
       };
       this.isEditForm = false;
-      this.title = '添加反馈'
+      this.title = '添加友情链接'
     },
     /**
      * 处理编辑按钮单击事件
@@ -289,28 +296,6 @@ export default {
       this.dialogFormVisible = true;
       this.isEditForm = true;
       this.title = '编辑反馈'
-    },
-    /**
-     * 选择框的输入事件，获得父级分类列表
-     * @param {*} query
-     */
-    getFeedbackUserList(query) {
-      this.loading = true;
-
-      if(query.trim() != '') {
-        var params = {
-          keyword: query,
-          currentPage: 1,
-          pageSize: 10
-        }
-
-        getUserList(params).then(response => {
-          this.userOptions = response.data.records
-
-          this.loading = false;
-        });
-
-      }
     },
     /**
      * 处理删除按钮单击事件
@@ -327,12 +312,12 @@ export default {
         let params = {
           uid: row.uid
         }
-        physicalDeleteFeedback(params).then(response=> {
+        physicalDeleteLink(params).then(response=> {
           this.$message({
             type: "success",
             message: response.data
           });
-          that.feedbackList();
+          that.linkList();
         })
       }).catch(() => {
         this.$message({
@@ -352,36 +337,32 @@ export default {
           const params = this.form ;
           if(this.isEditForm) {
             // 编辑分类的提交
-            editFeedback(params).then(response=> {
+            editLink(params).then(response=> {
               this.$message({
                 type: "success",
                 message: response.data
               });
 
               this.dialogFormVisible = false;
-              this.feedbackList();
+              this.linkList();
             })
 
           } else {
             // 添加分类的提交
-            addFeedback(params).then(response=> {
+            addLink(params).then(response=> {
               this.$message({
                 type: "success",
                 message: response.data
               });
 
               this.dialogFormVisible = false;
-              this.feedbackList();
+              this.linkList();
             })
           }
         }
       })
 
     },
-
-
-
-
 
   }
 }

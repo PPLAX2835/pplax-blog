@@ -27,14 +27,12 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
-      const username = userInfo.username.trim()
-      const password = userInfo.username.trim()
+      userInfo.username.trim()
+      userInfo.username.trim()
+      console.log(userInfo)
       return new Promise((resolve, reject) => {
-        var params = new URLSearchParams()
-        params.append('username', username)
-        params.append('password', password)
 
-        login(params).then(response => {
+        login(userInfo).then(response => {
           const data = response.data
           setToken(data.token)
           commit('SET_TOKEN', data.token)

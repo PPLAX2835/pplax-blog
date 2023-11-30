@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.admin.dto.LoginDto;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.base.response.ResponseResult;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
@@ -55,8 +56,10 @@ public class AdminRestApi {
 	@ApiOperation(value="用户登录", notes="用户登录")
 	@PostMapping("/login")
 	public String login(HttpServletRequest request,
-						@ApiParam(name = "username", value = "用户名", required = true) @RequestParam(name = "username", required = true) String username,
-						@ApiParam(name = "password", value = "密码", required = true) @RequestParam(name = "password", required = true) String password) {
+						@ApiParam(name = "username", value = "用户名", required = true) @RequestBody LoginDto loginDto) {
+
+		String username = loginDto.getUsername();
+		String password = loginDto.getPassword();
 
 		if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
 			return ResultUtil.result(SysConf.ERROR, "账号或密码不能为空");

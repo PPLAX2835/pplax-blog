@@ -8,6 +8,14 @@ export function getBlogSortList(params) {
   })
 }
 
+export function checkSortNameExists(params) {
+  return service({
+    url: '/blogSort/checkSortNameExists',
+    method: 'get',
+    params
+  })
+}
+
 export function addBlogSort(data) {
   return service({
     url: '/blogSort/add',
@@ -26,7 +34,7 @@ export function editBlogSort(data) {
 
 export function deleteBlogSort(data) {
   return service({
-    url: '/blogSort/delete',
+    url: '/blogSort/physicalDelete',
     method: 'post',
     data: data
   })

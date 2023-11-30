@@ -10,13 +10,17 @@ import io.swagger.annotations.ApiParam;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.admin.dto.add.BlogSortAddDto;
+import xyz.pplax.pplaxblog.admin.dto.delete.BlogSortDeleteDto;
+import xyz.pplax.pplaxblog.admin.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.admin.global.BlogSQLConf;
 import xyz.pplax.pplaxblog.admin.global.BlogSortSQLConf;
+import xyz.pplax.pplaxblog.admin.global.SysConf;
+import xyz.pplax.pplaxblog.base.enums.EStatus;
+import xyz.pplax.pplaxblog.base.response.ResponseCode;
 import xyz.pplax.pplaxblog.base.response.ResponseResult;
+import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
@@ -34,6 +38,43 @@ public class BlogSortRestApi {
 
     private static final Logger log = LogManager.getLogger(BlogSortRestApi.class);
 
+    /**
+     * 检查是否重名，get方法
+     * @param request
+     * @param sortName
+     * @return
+     */
+    @ApiOperation(value="检查是否重名", notes="检查是否重名", response = String.class)
+    @GetMapping(value = "/checkSortNameExists")
+    public String checkSortNameExists(HttpServletRequest request,
+                          @ApiParam(name = "sortName", value = "分类名",required = true) @RequestParam(name = "sortName", required = true) String sortName) {
+
+        QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(BlogSortSQLConf.SORT_NAME, sortName);
+
+        //分页
+        Page<BlogSort> page = new Page<>();
+        page.setCurrent(1);
+        page.setSize(1);
+
+        // 查询
+        IPage<BlogSort> pageList = blogSortService.page(page, queryWrapper);
+        List<BlogSort> blogSortListList = pageList.getRecords();
+
+        Boolean result = (blogSortListList.size() == 0);
+        log.info("返回结果");
+
+        return JSON.toJSONString(ResponseResult.success(result));
+    }
+
+    /**
+     * 获取博客分类列表，get方法
+     * @param request
+     * @param keyword
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
     @ApiOperation(value="获取博客分类列表", notes="获取博客分类列表", response = String.class)
     @GetMapping(value = "/getList")
     public String getList(HttpServletRequest request,
@@ -75,4 +116,75 @@ public class BlogSortRestApi {
         return JSON.toJSONString(ResponseResult.success(pageList));
     }
 
+
+    /**
+     *  新增博客分类，post方法
+     * @param request
+     * @param blogSortAddDto
+     * @return
+     */
+    @ApiOperation(value="增加博客分类", notes="增加博客分类", response = String.class)
+    @PostMapping("/add")
+    public String add(HttpServletRequest request, @RequestBody BlogSortAddDto blogSortAddDto) {
+
+        if(StringUtils.isEmpty(blogSortAddDto.getSortName()) || blogSortAddDto.getStatus() == null) {
+            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "必填项不能为空"));
+        }
+
+        BlogSort blogSort = new BlogSort();
+        blogSort.setSortName(blogSortAddDto.getSortName());
+        blogSort.setSummary(blogSortAddDto.getSummary());
+        blogSort.setContent(blogSortAddDto.getContent());
+        blogSort.setStatus(blogSortAddDto.getStatus());
+        blogSort.setParentUid(blogSortAddDto.getParentBlogSortUid());
+
+        blogSortService.save(blogSort);
+        return JSON.toJSONString(ResponseResult.success("添加成功"));
+    }
+
+
+    /**
+     * 编辑博客分类，get方法
+     * @param request
+     * @param blogSortEditDto
+     * @return
+     */
+    @ApiOperation(value="编辑博客分类", notes="编辑博客分类", response = String.class)
+    @PostMapping("/edit")
+    public String edit(HttpServletRequest request, @RequestBody BlogSortEditDto blogSortEditDto) {
+
+        if(StringUtils.isEmpty(blogSortEditDto.getUid())) {
+            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "数据错误"));
+        }
+
+        BlogSort blogSort = new BlogSort();
+        blogSort.setUid(blogSortEditDto.getUid());
+        blogSort.setSortName(blogSortEditDto.getSortName());
+        blogSort.setSummary(blogSortEditDto.getSummary());
+        blogSort.setContent(blogSortEditDto.getContent());
+        blogSort.setStatus(blogSortEditDto.getStatus());
+        blogSort.setParentUid(blogSortEditDto.getParentBlogSortUid());
+
+        blogSortService.updateById(blogSort);
+        return JSON.toJSONString(ResponseResult.success("修改成功"));
+    }
+
+    /**
+     * 物理删除博客分类
+     * @param request
+     * @param blogSortDeleteDto
+     * @return
+     */
+    @ApiOperation(value="物理删除博客分类", notes="物理删除博客分类", response = String.class)
+    @PostMapping("/physicalDelete")
+    public String delete(HttpServletRequest request, @RequestBody BlogSortDeleteDto blogSortDeleteDto) {
+
+        if(StringUtils.isEmpty(blogSortDeleteDto.getUid())) {
+            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "数据错误"));
+        }
+
+        blogSortService.removeById(blogSortDeleteDto.getUid());
+
+        return JSON.toJSONString(ResponseResult.success("删除成功"));
+    }
 }

@@ -11,9 +11,10 @@
         <result column="gender" property="gender" />
         <result column="picture_uid" property="pictureUid" />
         <result column="email" property="email" />
+        <result column="is_email_enabled" property="isEmailEnabled" />
         <result column="birthday" property="birthday" />
         <result column="mobile" property="mobile" />
-        <result column="valid_code" property="validCode" />
+        <result column="is_mobile_enabled" property="isMobileEnabled" />
         <result column="summary" property="summary" />
         <result column="login_count" property="loginCount" />
         <result column="last_login_time" property="lastLoginTime" />
@@ -25,6 +26,6 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `user_name`, `pass_word`, `nick_name`, `gender`, `picture_uid`, `email`, `birthday`, `mobile`, `valid_code`, `summary`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`
+        `uid`, `user_name`, `pass_word`, `nick_name`, `gender`, `picture_uid`, `email`, `is_email_enabled`, `birthday`, `mobile`, `is_mobile_enabled`, `summary`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`
     </sql>
 </mapper>

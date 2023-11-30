@@ -53,6 +53,11 @@ public class User extends SuperEntity<User> {
     private String email;
 
     /**
+     * 邮箱是否激活（0:不是 1：是）
+     */
+    private Integer isEmailEnabled;
+
+    /**
      * 出生年月日
      */
     private Date birthday;
@@ -63,9 +68,9 @@ public class User extends SuperEntity<User> {
     private String mobile;
 
     /**
-     * 邮箱验证码
+     * 手机是否激活（0:不是 1：是）
      */
-    private String validCode;
+    private Integer isMobileEnabled;
 
     /**
      * 自我简介最多150字
@@ -95,7 +100,6 @@ public class User extends SuperEntity<User> {
     public void sensitiveDataRemove () {
         this.passWord = null;
         this.mobile = null;
-        this.validCode = null;
         this.loginCount = null;
         this.lastLoginIp = null;
         this.email = null;

@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/add/LinkAddDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/LinkEditDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/global/LinkSQLConf.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/LinkRestApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/link.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/feedback/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/feedback/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,14 +252,7 @@
       <workItem from="1701136687372" duration="659000" />
       <workItem from="1701137377549" duration="20072000" />
       <workItem from="1701217686126" duration="16606000" />
-      <workItem from="1701308296463" duration="21749000" />
-    </task>
-    <task id="LOCAL-00142" summary="message-boot：&#10;    配置、拦截器、controller">
-      <created>1695023507443</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1695023507443</updated>
+      <workItem from="1701308296463" duration="23641000" />
     </task>
     <task id="LOCAL-00143" summary="README">
       <created>1695024552901</created>
@@ -603,7 +590,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701337346511</updated>
     </task>
-    <option name="localTasksCounter" value="191" />
+    <task id="LOCAL-00191" summary=" 友情链接的增删改">
+      <created>1701348333483</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1701348333483</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -639,7 +633,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="后台管理，博客增删改功能" />
     <MESSAGE value="博客增删完善" />
     <MESSAGE value="引入druid，引入热部署" />
     <MESSAGE value="标签的增删改" />
@@ -664,7 +657,8 @@
     <MESSAGE value="简单调整" />
     <MESSAGE value="反馈的增删改" />
     <MESSAGE value="添加一些数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加一些数据" />
+    <MESSAGE value=" 友情链接的增删改" />
+    <option name="LAST_COMMIT_MESSAGE" value=" 友情链接的增删改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

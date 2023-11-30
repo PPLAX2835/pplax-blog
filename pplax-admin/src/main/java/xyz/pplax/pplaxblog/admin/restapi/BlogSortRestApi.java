@@ -163,6 +163,10 @@ public class BlogSortRestApi {
             return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "数据错误"));
         }
 
+        if(StringUtils.isEmpty(blogSortEditDto.getSortName()) || blogSortEditDto.getStatus() == null) {
+            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "必填项不能为空"));
+        }
+
         BlogSort blogSort = new BlogSort();
         blogSort.setUid(uid);
         blogSort.setSortName(blogSortEditDto.getSortName());

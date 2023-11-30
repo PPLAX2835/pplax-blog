@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/delete/BlogSortDeleteDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/add/FeedBackAddDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/FeedBackEditDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/global/FeedBackSQLConf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/UserRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/FeedbackRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/FeedbackRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Feedback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/feedback.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/feedback.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/feedback/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/feedback/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,11 +114,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.admin.dto.edit" />
       <recent name="xyz.pplax.pplaxblog.admin.global" />
       <recent name="xyz.pplax.pplaxblog.admin.restapi" />
       <recent name="xyz.pplax.pplaxblog.xo.service.impl" />
       <recent name="xyz.pplax.pplaxblog.xo.service" />
-      <recent name="xyz.pplax.pplaxblog.base.entity" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -250,14 +263,7 @@
       <workItem from="1701136687372" duration="659000" />
       <workItem from="1701137377549" duration="20072000" />
       <workItem from="1701217686126" duration="16606000" />
-      <workItem from="1701308296463" duration="11862000" />
-    </task>
-    <task id="LOCAL-00139" summary="message-boot">
-      <created>1695022975008</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1695022975008</updated>
+      <workItem from="1701308296463" duration="16705000" />
     </task>
     <task id="LOCAL-00140" summary="message-boot：&#10;    service">
       <created>1695023130516</created>
@@ -595,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701328827609</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="简单调整">
+      <created>1701330066792</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1701330066792</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -107,7 +107,7 @@ public class BlogRestApi {
 			if(blog != null && !StringUtils.isEmpty(blog.getUserUid())) {
 				User user = userService.getById(blog.getUserUid());
 				if (user != null) {
-					user.setPassWord(null);
+					user.sensitiveDataRemove();
 					blog.setUser(user);
 				}
 			}

@@ -88,4 +88,16 @@ public class User extends SuperEntity<User> {
     private String lastLoginIp;
 
     public User() {}
+
+    /**
+     * 移除敏感数据
+     */
+    public void sensitiveDataRemove () {
+        this.passWord = null;
+        this.mobile = null;
+        this.validCode = null;
+        this.loginCount = null;
+        this.lastLoginIp = null;
+        this.email = null;
+    }
 }

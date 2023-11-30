@@ -31,7 +31,7 @@ export function editBlogSort(data) {
   })
 }
 
-export function physicalDelete(data) {
+export function physicalDeleteBlogSort(data) {
   return service({
     url: '/blogSort/' + data.uid,
     method: 'delete'

@@ -1,8 +1,8 @@
-import request from '@/utils/request'
+import service from '@/utils/request'
 
-export function getList(params) {
-  return request({
-    url: '/user/getList',
+export function getUserList(params) {
+  return service({
+    url: '/user',
     method: 'get',
     params
   })

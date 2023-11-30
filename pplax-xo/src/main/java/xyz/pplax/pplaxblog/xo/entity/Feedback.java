@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import java.util.Date;
@@ -22,7 +23,6 @@ public class Feedback extends SuperEntity<Feedback> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(type = IdType.AUTO)
     /**
      * 用户uid
      */
@@ -32,6 +32,12 @@ public class Feedback extends SuperEntity<Feedback> {
      * 反馈的内容
      */
     private String content;
+
+    /**
+     * 反馈用户
+     */
+    @TableField(exist = false)
+    private User user;
 
     public Feedback() {}
 }

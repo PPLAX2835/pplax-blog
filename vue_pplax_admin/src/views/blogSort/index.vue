@@ -198,7 +198,7 @@
 </template>
 
 <script>
-import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, physicalDelete } from '../../api/blogSort';
+import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, physicalDeleteBlogSort } from '../../api/blogSort';
 import EStatus from "../../base/EStatus";
 
 export default {
@@ -336,6 +336,7 @@ export default {
         parentBlogSortUid: null
       };
       this.isEditForm = false;
+      this.title = '添加博客分类'
     },
     /**
      * 处理编辑按钮单击事件
@@ -346,7 +347,7 @@ export default {
       this.currentEditName = row.sortName
       this.dialogFormVisible = true;
       this.isEditForm = true;
-
+      this.title = '编辑博客分类'
     },
     /**
      * 处理删除按钮单击事件
@@ -363,7 +364,7 @@ export default {
         let params = {
           uid: row.uid
         }
-        physicalDelete(params).then(response=> {
+        physicalDeleteBlogSort(params).then(response=> {
           this.$message({
             type: "success",
             message: response.data

@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/delete/BlogSortDeleteDto.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,21 +250,7 @@
       <workItem from="1701136687372" duration="659000" />
       <workItem from="1701137377549" duration="20072000" />
       <workItem from="1701217686126" duration="16606000" />
-      <workItem from="1701308296463" duration="10934000" />
-    </task>
-    <task id="LOCAL-00137" summary="article-boot:&#10;    file-boot 文件工具类，之后把它封装到一起">
-      <created>1695021922220</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1695021922220</updated>
-    </task>
-    <task id="LOCAL-00138" summary="article-boot:&#10;    file-boot controller什么的">
-      <created>1695022734040</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1695022734040</updated>
+      <workItem from="1701308296463" duration="11862000" />
     </task>
     <task id="LOCAL-00139" summary="message-boot">
       <created>1695022975008</created>
@@ -598,7 +581,21 @@
       <option name="project" value="LOCAL" />
       <updated>1701327442538</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="文章分类的接口修改为restful风格">
+      <created>1701328734125</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1701328734125</updated>
+    </task>
+    <task id="LOCAL-00187" summary="简单调整">
+      <created>1701328827609</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1701328827609</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,7 +631,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="controller调整为restful风格的api" />
     <MESSAGE value="后台初始化" />
     <MESSAGE value="调整eneity，后台增加添加博客功能" />
     <MESSAGE value="后台管理，博客增删改功能" />
@@ -655,11 +651,12 @@
     <MESSAGE value="把mapper.xml补上，调整sql脚本" />
     <MESSAGE value="临时提交" />
     <MESSAGE value="调整数据库设计" />
-    <MESSAGE value="简单调整" />
     <MESSAGE value="后端：调整基本sql字段类；&#10;前端：全局的响应结果处理；BlogSort列表基本完成；BlogSort编辑表弄好了，表单提交还没好" />
     <MESSAGE value="前端：全局的响应结果处理和请求头请求体设置；BlogSort列表基本完成；BlogSort编辑表弄好了，表单提交还没好。  之前提交的时候没add上" />
     <MESSAGE value="文章分类的增删改" />
-    <option name="LAST_COMMIT_MESSAGE" value="文章分类的增删改" />
+    <MESSAGE value="文章分类的接口修改为restful风格" />
+    <MESSAGE value="简单调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="简单调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

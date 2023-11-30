@@ -146,7 +146,7 @@ public class BlogSortRestApi {
 
 
     /**
-     * 编辑博客分类，get方法
+     * 编辑博客分类，put方法
      * @param request
      * @param blogSortEditDto
      * @return
@@ -176,7 +176,7 @@ public class BlogSortRestApi {
     }
 
     /**
-     * 物理删除博客分类
+     * 物理删除博客分类 delete方法
      * @param request
      * @param uid
      * @return

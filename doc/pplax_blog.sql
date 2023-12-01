@@ -96,6 +96,7 @@ CREATE TABLE `t_blog_sort` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   `parent_uid` varchar(32) DEFAULT NULL COMMENT '父级分类uid',
+  `click_count` int(11) DEFAULT '0' COMMENT '点击数',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='博客分类表';
 /*!40101 SET character_set_client = @saved_cs_client */;

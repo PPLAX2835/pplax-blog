@@ -1,7 +1,24 @@
 <template>
   <div class="app-container">
     <!-- 查询和其他操作 -->
+
     <div class="filter-container" style="margin: 10px 0 10px 0">
+    <el-input
+        clearable
+        @keyup.enter.native="handleFind"
+        class="filter-item"
+        style="width: 200px;"
+        v-model="searchForm.keyword"
+        placeholder="请输入分类名"
+      ></el-input>
+
+      <el-button 
+        class="filter-item" 
+        type="primary" 
+        icon="el-icon-search" 
+        @click="handleFind" 
+        >查找</el-button>
+
       <el-button
         class="filter-item"
         type="primary"
@@ -9,9 +26,35 @@
         icon="el-icon-edit"
       >添加博客分类</el-button
       >
+      
+      <el-button
+        class="filter-item"
+        type="info"
+        @click="handleBlogSortByClickCount"
+        icon="el-icon-document"
+      >点击量排序</el-button>
+      
+      <el-button 
+        class="filter-item" 
+        type="warning" 
+        @click="handleLogicalDeleteBatch" 
+        icon="el-icon-delete" 
+      >删除选中（逻辑）</el-button>
+      
+      <el-button 
+        class="filter-item" 
+        type="danger" 
+        @click="handleDeleteBatch" 
+        icon="el-icon-delete" 
+      >删除选中（物理）</el-button>
+
     </div>
 
-    <el-table :data="tableData" style="width: 100%">
+    <el-table 
+      :data="tableData" 
+      style="width: 100%"
+      @selection-change="handleSelectionChange"
+      >
       <el-table-column type="selection"></el-table-column>
 
       <el-table-column label="序号" width="60">
@@ -22,7 +65,7 @@
 
       <el-table-column label="分类名" width="100">
         <template slot-scope="scope">
-          <el-tag>{{ scope.row.sortName }}</el-tag>
+          {{ scope.row.sortName }}
         </template>
       </el-table-column>
 
@@ -43,10 +86,17 @@
       >
         </template>
       </el-table-column>
+      
+      <el-table-column label="点击数" width="100">
+        <template slot-scope="scope">
+          {{ scope.row.clickCount }}
+        </template>
+      </el-table-column>
 
       <el-table-column label="父级分类名" width="150">
         <template slot-scope="scope">
           <el-tag
+            type="warning"
             v-if="scope.row.parentBlogSort != null"
           >{{ scope.row.parentBlogSort.sortName }}</el-tag
           >
@@ -78,7 +128,7 @@
 
       <el-table-column label="操作" fixed="right" min-width="170">
         <template slot-scope="scope">
-          <el-button @click="handleEdit(scope.row)" type="primary" size="small"
+          <el-button @click="handleEdit(scope.row)" type="warning" size="small"
           >编辑</el-button
           >
           <el-button @click="handleDelete(scope.row)" type="danger" size="small"
@@ -92,8 +142,8 @@
     <div class="block">
       <el-pagination
         @current-change="handleCurrentChange"
-        :current-page.sync="currentPage"
-        :page-size="pageSize"
+        :current-page.sync="searchForm.currentPage"
+        :page-size="searchForm.pageSize"
         layout="total, prev, pager, next, jumper"
         :total="total"
       >
@@ -198,7 +248,7 @@
 </template>
 
 <script>
-import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, physicalDeleteBlogSort } from '../../api/blogSort';
+import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, logicalDeleteBatchBlogSort, physicalDeleteBlogSort, physicalDeleteBatchBlogSort } from '../../api/blogSort';
 import EStatus from "../../base/EStatus";
 
 export default {
@@ -207,9 +257,13 @@ export default {
     return {
       loading: false,
       tableData: [], //博客分类数据
-      keyword: "",
-      currentPage: 1,
-      pageSize: 10,
+      multipleSelection: [], //多选，用于批量删除
+      searchForm: {
+        keyword: "",
+        sortByClickCount: false,
+        currentPage: 1,
+        pageSize: 10,
+      },
       status: EStatus,
       total: 0, //总数量
       title: "增加博客分类",
@@ -255,12 +309,7 @@ export default {
     var that = this;
 
     // 请求获得博客分类列表
-    var params = {
-      keyword: this.keyword,
-      currentPage: this.currentPage,
-      pageSize: this.pageSize
-    }
-    this.blogSortList(params);
+    this.blogSortList(this.searchForm);
 
   },
   methods: {
@@ -271,8 +320,8 @@ export default {
     blogSortList: function(params) {
       getBlogSortList(params).then(response => {
         this.tableData = response.data.records;
-        this.currentPage = response.data.current;
-        this.pageSize = response.data.size;
+        this.searchForm.currentPage = response.data.current;
+        this.searchForm.pageSize = response.data.size;
         this.total = response.data.total;
       });
     },
@@ -283,7 +332,7 @@ export default {
     getParentBlogSortList(query) {
       this.loading = true;
 
-      if(query.trim() != '') {
+      if(query != '') {
         var params = {
           keyword: query,
           currentPage: 1,
@@ -310,17 +359,31 @@ export default {
       return str;
     },
     /**
+     * 改变多选
+     */
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+    },
+    /**
+     * 查找按钮单击事件
+     */
+    handleFind() {
+      this.blogSortList(this.searchForm);
+    },
+    /**
+     * 点击量排序按钮单击事件
+     */
+    handleBlogSortByClickCount() {
+      this.searchForm.sortByClickCount = !this.searchForm.sortByClickCount;
+      this.blogSortList(this.searchForm);
+    },
+    /**
      * 换页
      * @param {*} val
      */
     handleCurrentChange: function(val) {
-      this.currentPage = val;
-      var params = {
-        keyword: this.keyword,
-        currentPage: this.currentPage,
-        pageSize: this.pageSize
-      }
-      this.blogSortList(params);
+      this.searchForm.currentPage = val;
+      this.blogSortList(this.searchForm);
     },
     /**
      * 添加按钮单击事件，弹出窗口
@@ -348,6 +411,72 @@ export default {
       this.dialogFormVisible = true;
       this.isEditForm = true;
       this.title = '编辑博客分类'
+    },
+    /**
+     * 处理批量逻辑删除按钮单击事件
+     */
+    handleLogicalDeleteBatch() {
+      var that = this;
+      if(that.multipleSelection.length <= 0 ) {
+        this.$message({
+            type: "error",
+            message: "请先选中需要删除的内容!"
+          });
+        return;
+      }
+
+      this.$confirm('此操作将删除选中的内容, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        let uids = this.multipleSelection.map(item => item.uid);
+        logicalDeleteBatchBlogSort(uids).then(response=> {
+          this.$message({
+            type: "success",
+            message: response.data
+          });
+          that.blogSortList();
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
+    },
+    /**
+     * 处理批量删除按钮单击事件
+     */
+    handleDeleteBatch () {
+      var that = this;
+      if(that.multipleSelection.length <= 0 ) {
+        this.$message({
+            type: "error",
+            message: "请先选中需要删除的内容!"
+          });
+        return;
+      }
+
+      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'error'
+      }).then(() => {
+        let uids = this.multipleSelection.map(item => item.uid);
+        physicalDeleteBatchBlogSort(uids).then(response=> {
+          this.$message({
+            type: "success",
+            message: response.data
+          });
+          that.blogSortList();
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
     },
     /**
      * 处理删除按钮单击事件

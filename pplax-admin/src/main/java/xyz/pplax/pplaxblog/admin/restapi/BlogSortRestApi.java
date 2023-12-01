@@ -22,6 +22,7 @@ import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -78,7 +79,8 @@ public class BlogSortRestApi {
     public String getList(HttpServletRequest request,
                           @ApiParam(name = "keyword", value = "关键字",required = false) @RequestParam(name = "keyword", required = false) String keyword,
                           @ApiParam(name = "currentPage", value = "当前页数",required = false) @RequestParam(name = "currentPage", required = false, defaultValue = "1") Long currentPage,
-                          @ApiParam(name = "pageSize", value = "每页显示数目",required = false) @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize
+                          @ApiParam(name = "pageSize", value = "每页显示数目",required = false) @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize,
+                          @ApiParam(name = "sortByClickCount", value = "是否按点击量排序", required = false) @RequestParam(name = "sortByClickCount", required = false) boolean sortByClickCount
     ) {
 
         QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
@@ -91,8 +93,13 @@ public class BlogSortRestApi {
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        // 按创建时间排序
-        queryWrapper.orderByDesc(BlogSQLConf.CREATE_TIME);
+        if (sortByClickCount) {
+            // 按点击量排序
+            queryWrapper.orderByDesc(BlogSortSQLConf.CLICK_COUNT);
+        } else {
+            // 按创建时间排序
+            queryWrapper.orderByDesc(BlogSortSQLConf.CREATE_TIME);
+        }
 
         // 查询
         IPage<BlogSort> pageList = blogSortService.page(page, queryWrapper);
@@ -180,6 +187,32 @@ public class BlogSortRestApi {
     }
 
     /**
+     * 批量逻辑删除博客分类 delete方法
+     * @param request
+     * @param uids
+     * @return
+     */
+    @ApiOperation(value="批量逻辑删除博客分类", notes="批量逻辑删除博客分类", response = String.class)
+    @DeleteMapping("/logic-batch")
+    public String logicBatchDelete(
+            HttpServletRequest request,
+            @ApiParam(name = "uids", value = "唯一标识符列表", required = true) @RequestBody List<String> uids
+    ) {
+        if (uids == null || uids.isEmpty()) {
+            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "请选择要删除的记录"));
+        }
+
+        // 逻辑删除代码
+        Collection<BlogSort> blogSorts = blogSortService.listByIds(uids);
+        for (BlogSort blogSort : blogSorts) {
+            blogSort.setStatus(0);
+        }
+        blogSortService.updateBatchById(blogSorts);
+
+        return JSON.toJSONString(ResponseResult.success("批量删除成功"));
+    }
+
+    /**
      * 物理删除博客分类 delete方法
      * @param request
      * @param uid
@@ -187,7 +220,7 @@ public class BlogSortRestApi {
      */
     @ApiOperation(value="物理删除博客分类", notes="物理删除博客分类", response = String.class)
     @DeleteMapping("/{uid}")
-    public String delete(
+    public String physicalDelete(
             HttpServletRequest request,
             @ApiParam(name = "uid", value = "唯一标识符",required = true) @PathVariable String uid
     ) {
@@ -200,4 +233,28 @@ public class BlogSortRestApi {
 
         return JSON.toJSONString(ResponseResult.success("删除成功"));
     }
+
+    /**
+     * 批量物理删除博客分类 delete方法
+     * @param request
+     * @param uids
+     * @return
+     */
+    @ApiOperation(value="批量物理删除博客分类", notes="批量物理删除博客分类", response = String.class)
+    @DeleteMapping("/batch")
+    public String physicalBatchDelete(
+            HttpServletRequest request,
+            @ApiParam(name = "uids", value = "唯一标识符列表", required = true) @RequestBody List<String> uids
+    ) {
+        if (uids == null || uids.isEmpty()) {
+            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "请选择要删除的记录"));
+        }
+
+        blogSortService.removeByIds(uids);
+
+        return JSON.toJSONString(ResponseResult.success("批量删除成功"));
+    }
+
+
+
 }

@@ -12,11 +12,14 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="parent_uid" property="parentUid" />
+        <result column="click_count" property="clickCount" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `sort_name`, `summary`, `content`, `create_time`, `update_time`, `status`, `parent_uid`
+        `uid`, `sort_name`, `summary`, `content`, `create_time`, `update_time`, `status`, `parent_uid`, `click_count`
     </sql>
+
+<!--    <update id="updateBatchStatus" parameterType="arraylist" -->
 
 </mapper>

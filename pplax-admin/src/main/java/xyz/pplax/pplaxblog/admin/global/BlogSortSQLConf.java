@@ -12,5 +12,6 @@ public final class BlogSortSQLConf extends BaseSQLConf {
 	public final static String SUMMARY = "summary";
 	public final static String CONTENT = "content";
 	public final static String PARENT_UID = "parent_uid";
+	public final static String CLICK_COUNT = "click_count";
 
 }

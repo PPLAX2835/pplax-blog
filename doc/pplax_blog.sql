@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `pplax_blog`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `pplax_blog` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `pplax_blog`;
-
---
 -- Table structure for table `t_blog`
 --
 
@@ -234,34 +226,6 @@ INSERT INTO `t_link` (`uid`, `title`, `summary`, `url`, `click_count`, `create_t
 UNLOCK TABLES;
 
 --
--- Table structure for table `t_permission`
---
-
-DROP TABLE IF EXISTS `t_permission`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_permission` (
-  `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `permission_name` varchar(255) NOT NULL COMMENT '权限名',
-  `url` varchar(255) DEFAULT NULL COMMENT '权限url',
-  `parent_id` varchar(255) NOT NULL COMMENT '父节点id',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='权限表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_permission`
---
-
-LOCK TABLES `t_permission` WRITE;
-/*!40000 ALTER TABLE `t_permission` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_permission` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `t_picture`
 --
 
@@ -344,33 +308,6 @@ LOCK TABLES `t_role` WRITE;
 /*!40000 ALTER TABLE `t_role` DISABLE KEYS */;
 INSERT INTO `t_role` (`uid`, `role_name`, `create_time`, `update_time`, `status`) VALUES ('352af55485b0198631adc4f3f589bb3f','管理员','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('fc5fea59ae7309773f8f70074a27eec4','游客','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('ffca2113713df757e0293c6dfd3b4e32','普通用户','0000-00-00 00:00:00','0000-00-00 00:00:00',1);
 /*!40000 ALTER TABLE `t_role` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `t_role_permission`
---
-
-DROP TABLE IF EXISTS `t_role_permission`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_role_permission` (
-  `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `role_uid` varchar(32) NOT NULL COMMENT '角色id',
-  `permission_uid` varchar(32) NOT NULL COMMENT '权限id',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='角色权限表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_role_permission`
---
-
-LOCK TABLES `t_role_permission` WRITE;
-/*!40000 ALTER TABLE `t_role_permission` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_role_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -481,4 +418,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30 21:17:24
+-- Dump completed on 2023-12-01  9:29:56

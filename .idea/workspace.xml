@@ -4,16 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="博客分类表调整；增加查找、根据点击量排序、批量删除功能">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="博客分类表调整；增加查找、根据点击量排序、批量物理和逻辑删除功能。后续把公共的mapper类定义一些公共方法">
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/resources/mapper/SuperMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]3/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_5.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/global/BlogSortSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/global/BlogSortSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/global/BlogSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/BlogSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/global/BlogSortSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/BlogSortSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/global/FeedBackSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/FeedBackSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/global/LinkSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/LinkSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/FeedbackRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/FeedbackRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/LinkRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/LinkRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/UserRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/UserRestApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/mapper/SuperMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/mapper/SuperMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/BlogSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/BlogSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/serviceImpl/SuperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/serviceImpl/SuperServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/mybatis/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-config/src/main/java/xyz/pplax/pplaxblog/config/mybatis/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogContentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogContentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogSortMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogSortMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +91,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -93,8 +108,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\java\xyz\pplax\pplaxblog\base\response" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-picture\src\main\java\xyz\pplax\pplaxblog\picture" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-config\src\main\java\xyz\pplax\pplaxblog\config" />
@@ -258,14 +273,8 @@
       <workItem from="1701137377549" duration="20072000" />
       <workItem from="1701217686126" duration="16606000" />
       <workItem from="1701308296463" duration="24333000" />
-      <workItem from="1701393718722" duration="7523000" />
-    </task>
-    <task id="LOCAL-00145" summary="初始化">
-      <created>1700893408314</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1700893408315</updated>
+      <workItem from="1701393718722" duration="10627000" />
+      <workItem from="1701566737985" duration="1570000" />
     </task>
     <task id="LOCAL-00146" summary="蘑菇博客前端">
       <created>1700894695946</created>
@@ -603,7 +612,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701394278773</updated>
     </task>
-    <option name="localTasksCounter" value="194" />
+    <task id="LOCAL-00194" summary="博客分类表调整；增加查找、根据点击量排序、批量物理和逻辑删除功能。后续把公共的mapper类定义一些公共方法">
+      <created>1701402198311</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1701402198311</updated>
+    </task>
+    <option name="localTasksCounter" value="195" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,8 +654,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="标签的增删改" />
     <MESSAGE value="调整项目" />
     <MESSAGE value="新增图片相关数据库，调整项目" />
     <MESSAGE value="调整数据库表，调整配置类" />
@@ -664,7 +678,8 @@
     <MESSAGE value=" 友情链接的增删改" />
     <MESSAGE value="修改user表" />
     <MESSAGE value="删除两个表" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除两个表" />
+    <MESSAGE value="博客分类表调整；增加查找、根据点击量排序、批量物理和逻辑删除功能。后续把公共的mapper类定义一些公共方法" />
+    <option name="LAST_COMMIT_MESSAGE" value="博客分类表调整；增加查找、根据点击量排序、批量物理和逻辑删除功能。后续把公共的mapper类定义一些公共方法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

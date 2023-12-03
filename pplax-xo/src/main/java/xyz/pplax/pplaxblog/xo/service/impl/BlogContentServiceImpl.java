@@ -6,6 +6,8 @@ import xyz.pplax.pplaxblog.xo.entity.BlogContent;
 import xyz.pplax.pplaxblog.xo.mapper.BlogContentMapper;
 import xyz.pplax.pplaxblog.xo.service.BlogContentService;
 
+import java.util.List;
+
 /**
  * 博客表 服务实现类
  */

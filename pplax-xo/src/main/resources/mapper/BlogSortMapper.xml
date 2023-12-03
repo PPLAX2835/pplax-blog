@@ -20,6 +20,4 @@
         `uid`, `sort_name`, `summary`, `content`, `create_time`, `update_time`, `status`, `parent_uid`, `click_count`
     </sql>
 
-<!--    <update id="updateBatchStatus" parameterType="arraylist" -->
-
 </mapper>

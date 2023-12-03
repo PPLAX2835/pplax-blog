@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.xo.global.BlogSQLConf;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.base.enums.EStatus;
-import xyz.pplax.pplaxblog.base.response.ResponseResult;
+import xyz.pplax.pplaxblog.base.global.response.ResponseResult;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.*;

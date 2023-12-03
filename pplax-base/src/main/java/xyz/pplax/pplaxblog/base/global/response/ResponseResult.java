@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.base.response;
+package xyz.pplax.pplaxblog.base.global.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,37 +1,25 @@
 package xyz.pplax.pplaxblog.base.dto;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import xyz.pplax.pplaxblog.base.validator.annotion.IdValid;
+import xyz.pplax.pplaxblog.base.validator.group.Delete;
+import xyz.pplax.pplaxblog.base.validator.group.Update;
 
 /**
  * dto基类
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "基本参数")
-public class BaseDto {
+public class BaseDto<T> extends PageDto<T> {
 
     /**
-     * 查询关键字
+     * 唯一UID
      */
-    @ApiModelProperty(name = "keyWord", value = "查询关键字", required = false)
-    private String keyWord;
+    @IdValid(groups = {Update.class, Delete.class})
+    private String uid;
 
-    /**
-     * 当前页
-     */
-    @ApiModelProperty(name = "currentPage", value = "当前页", required = false)
-    private Long currentPage;
-
-    /**
-     * 页码大小
-     */
-    @ApiModelProperty(name = "pageSize", value = "页码大小", required = false)
-    private Long pageSize;
-
-
-    BaseDto () {
-        this.currentPage = 1L;
-        this.pageSize = 10L;
-    }
+    private Integer status;
 }

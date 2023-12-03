@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.config.mybatis;
+package xyz.pplax.pplaxblog.commons.mybatis;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

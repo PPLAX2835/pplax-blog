@@ -35,6 +35,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="pplax-commons" />
     <orderEntry type="module" module-name="pplax-xo" />
     <orderEntry type="module" module-name="pplax-base" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:1.4.0.RELEASE" level="project" />
@@ -91,7 +92,7 @@
     <orderEntry type="library" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
-    <orderEntry type="module" module-name="pplax-config" />
+    <orderEntry type="module" module-name="pplax-commons" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.8" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-boot-starter:3.0-RC1" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus:3.0-RC1" level="project" />

@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.config.swagger;
+package xyz.pplax.pplaxblog.commons.swagger;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

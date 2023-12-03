@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.config;
+package xyz.pplax.pplaxblog.commons;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

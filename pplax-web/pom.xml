@@ -32,10 +32,10 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- 引入mogu_config相关 -->
+        <!-- 引入pplax-commons相关 -->
         <dependency>
             <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-config</artifactId>
+            <artifactId>pplax-commons</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

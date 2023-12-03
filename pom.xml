@@ -206,7 +206,7 @@
     <modules>
         <module>pplax-admin</module>
         <module>pplax-base</module>
-        <module>pplax-config</module>
+        <module>pplax-commons</module>
         <module>pplax-utils</module>
         <module>pplax-xo</module>
         <module>pplax-web</module>

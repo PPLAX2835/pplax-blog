@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.config.exception;
+package xyz.pplax.pplaxblog.commons.exception;
 
 import com.baomidou.mybatisplus.extension.api.ApiResult;
 import com.baomidou.mybatisplus.extension.api.IErrorCode;

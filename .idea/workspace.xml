@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="调整dto">
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/IdsValid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IdsValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/BlogSortDto.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/dto/BaseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/dto/BaseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/BaseMessageConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/BaseMessageConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IdValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IdValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/BlogSortService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/BlogSortService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogSortServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/feedback/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/feedback/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/tag/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/tag/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,14 +256,7 @@
       <workItem from="1701566737985" duration="1570000" />
       <workItem from="1701569973481" duration="2694000" />
       <workItem from="1701652410618" duration="4801000" />
-      <workItem from="1705291941914" duration="5650000" />
-    </task>
-    <task id="LOCAL-00149" summary="初始化-各种基类（maven尚未引入）">
-      <created>1700895619654</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1700895619654</updated>
+      <workItem from="1705291941914" duration="7492000" />
     </task>
     <task id="LOCAL-00150" summary="初始化-引入maven">
       <created>1700896120206</created>
@@ -618,7 +594,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701589303956</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="重构：弃用物理删除，所有删除都用逻辑删除目前BlogSort表弄好了">
+      <created>1705301095830</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1705301095830</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -653,7 +636,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整数据库表，调整配置类" />
     <MESSAGE value="调整" />
     <MESSAGE value="解决了mapper无法注入的问题，但是为什么只能用@MapperScan不能用@Mapper呢" />
     <MESSAGE value="调整数据库设计，这是中间过渡，我觉得可以把user表和admin表合起来" />
@@ -678,7 +660,8 @@
     <MESSAGE value="简单调整" />
     <MESSAGE value="添加一些基本类" />
     <MESSAGE value="调整dto" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整dto" />
+    <MESSAGE value="重构：弃用物理删除，所有删除都用逻辑删除目前BlogSort表弄好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="重构：弃用物理删除，所有删除都用逻辑删除目前BlogSort表弄好了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -36,17 +36,10 @@
       
       <el-button 
         class="filter-item" 
-        type="warning" 
-        @click="handleLogicalDeleteBatch" 
-        icon="el-icon-delete" 
-      >删除选中（逻辑）</el-button>
-      
-      <el-button 
-        class="filter-item" 
         type="danger" 
         @click="handleDeleteBatch" 
         icon="el-icon-delete" 
-      >删除选中（物理）</el-button>
+      >删除选中</el-button>
 
     </div>
 
@@ -112,16 +105,13 @@
       <el-table-column label="状态" width="100">
         <template slot-scope="scope">
           <template v-if="scope.row.status == status.ENABLE">
-            <span>正常</span>
+            <el-tag type="success">激活</el-tag>
           </template>
           <template v-if="scope.row.status == status.FREEZE">
-            <span>冻结</span>
-          </template>
-          <template v-if="scope.row.status == status.DISABLED">
-            <span>已删除</span>
+            <el-tag type="primary">冻结</el-tag>
           </template>
           <template v-if="scope.row.status == status.STICK">
-            <span>顶置</span>
+            <el-tag type="warning" >顶置</el-tag>
           </template>
         </template>
       </el-table-column>
@@ -132,7 +122,7 @@
           >编辑</el-button
           >
           <el-button @click="handleDelete(scope.row)" type="danger" size="small"
-          >物理删除</el-button
+          >删除</el-button
           >
         </template>
       </el-table-column>
@@ -248,7 +238,7 @@
 </template>
 
 <script>
-import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, logicalDeleteBatchBlogSort, physicalDeleteBlogSort, physicalDeleteBatchBlogSort } from '../../api/blogSort';
+import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, deleteBlogSort, deleteBatchBlogSort } from '../../api/blogSort';
 import EStatus from "../../base/EStatus";
 
 export default {
@@ -262,7 +252,7 @@ export default {
         keyword: "",
         sortByClickCount: false,
         currentPage: 1,
-        pageSize: 10,
+        pageSize: 10
       },
       status: EStatus,
       total: 0, //总数量
@@ -274,9 +264,6 @@ export default {
       statusOptions: [{
         value: 1,
         label: '激活'
-      }, {
-        value: 0,
-        label: '删除'
       }, {
         value: 2,
         label: '冻结'
@@ -415,7 +402,7 @@ export default {
     /**
      * 处理批量逻辑删除按钮单击事件
      */
-    handleLogicalDeleteBatch() {
+    handleDeleteBatch() {
       var that = this;
       if(that.multipleSelection.length <= 0 ) {
         this.$message({
@@ -431,40 +418,11 @@ export default {
         type: 'warning'
       }).then(() => {
         let uids = this.multipleSelection.map(item => item.uid);
-        logicalDeleteBatchBlogSort(uids).then(response=> {
-          this.$message({
-            type: "success",
-            message: response.data
-          });
-          that.blogSortList();
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
-      });
-    },
-    /**
-     * 处理批量删除按钮单击事件
-     */
-    handleDeleteBatch () {
-      var that = this;
-      if(that.multipleSelection.length <= 0 ) {
-        this.$message({
-            type: "error",
-            message: "请先选中需要删除的内容!"
-          });
-        return;
-      }
-
-      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'error'
-      }).then(() => {
-        let uids = this.multipleSelection.map(item => item.uid);
-        physicalDeleteBatchBlogSort(uids).then(response=> {
+        let params = {
+          "uids": uids
+        }
+        
+        deleteBatchBlogSort(params).then(response=> {
           this.$message({
             type: "success",
             message: response.data
@@ -493,7 +451,7 @@ export default {
         let params = {
           uid: row.uid
         }
-        physicalDeleteBlogSort(params).then(response=> {
+        deleteBlogSort(params).then(response=> {
           this.$message({
             type: "success",
             message: response.data
@@ -516,7 +474,7 @@ export default {
      */
     checkExistSortName(rule, value, callback) {
       checkSortNameExists({sortName: value}).then(response => {
-        if (!response.data && value != this.currentEditName) {
+        if (response.data && value != this.currentEditName) {
           return callback(new Error('分类名已存在'))
         } else {
           return callback()
@@ -565,3 +523,18 @@ export default {
 }
 </script>
 
+<style rel="stylesheet/scss" lang="scss" scoped>
+
+.enabled {
+  color: #00bc12;
+}
+
+.freeze {
+  color: #1685a9;
+}
+
+.stick {
+  color: #d9b611;
+}
+
+</style>

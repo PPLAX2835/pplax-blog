@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.dto.add.BlogSortAddDto;
 import xyz.pplax.pplaxblog.admin.dto.edit.BlogSortEditDto;
+import xyz.pplax.pplaxblog.base.global.BaseMessageConf;
+import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.global.BlogSortSQLConf;
 import xyz.pplax.pplaxblog.base.global.response.ResponseCode;
 import xyz.pplax.pplaxblog.base.global.response.ResponseResult;
@@ -35,37 +37,6 @@ public class BlogSortRestApi {
     private static final Logger log = LogManager.getLogger(BlogSortRestApi.class);
 
     /**
-     * 检查是否重名，get方法
-     * @param request
-     * @param sortName
-     * @return
-     */
-    @ApiOperation(value="检查是否重名", notes="检查是否重名", response = String.class)
-    @GetMapping(value = "/{sortName}/exists")
-    public String checkSortNameExists(
-            HttpServletRequest request,
-            @ApiParam(name = "sortName", value = "分类名",required = true) @PathVariable String sortName
-    ) {
-
-        QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(BlogSortSQLConf.SORT_NAME, sortName);
-
-        //分页
-        Page<BlogSort> page = new Page<>();
-        page.setCurrent(1);
-        page.setSize(1);
-
-        // 查询
-        IPage<BlogSort> pageList = blogSortService.page(page, queryWrapper);
-        List<BlogSort> blogSortListList = pageList.getRecords();
-
-        Boolean result = (blogSortListList.size() == 0);
-        log.info("返回结果");
-
-        return JSON.toJSONString(ResponseResult.success(result));
-    }
-
-    /**
      * 获取博客分类列表，get方法
      * @param request
      * @param keyword
@@ -79,82 +50,64 @@ public class BlogSortRestApi {
                           @ApiParam(name = "keyword", value = "关键字",required = false) @RequestParam(name = "keyword", required = false) String keyword,
                           @ApiParam(name = "currentPage", value = "当前页数",required = false) @RequestParam(name = "currentPage", required = false, defaultValue = "1") Long currentPage,
                           @ApiParam(name = "pageSize", value = "每页显示数目",required = false) @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize,
+                          @ApiParam(name = "status", value = "状态",required = false) @RequestParam(name = "status", required = false, defaultValue = "10") Integer status,
                           @ApiParam(name = "sortByClickCount", value = "是否按点击量排序", required = false) @RequestParam(name = "sortByClickCount", required = false) boolean sortByClickCount
     ) {
-
-        QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
-        if(!StringUtils.isEmpty(keyword)) {
-            queryWrapper.like(BlogSortSQLConf.SORT_NAME, keyword);
-        }
-
-        //分页
-        Page<BlogSort> page = new Page<>();
-        page.setCurrent(currentPage);
-        page.setSize(pageSize);
-
-        if (sortByClickCount) {
-            // 按点击量排序
-            queryWrapper.orderByDesc(BlogSortSQLConf.CLICK_COUNT);
-        } else {
-            // 按创建时间排序
-            queryWrapper.orderByDesc(BlogSortSQLConf.CREATE_TIME);
-        }
-
-        // 查询
-        IPage<BlogSort> pageList = blogSortService.page(page, queryWrapper);
-        List<BlogSort> blogSortListList = pageList.getRecords();
-
-        for(BlogSort blogSort : blogSortListList) {
-            // 添加父级分类
-            if(blogSort != null && !StringUtils.isEmpty(blogSort.getParentUid())) {
-                String parentUid = blogSort.getParentUid();
-                BlogSort parentBlogSort = blogSortService.getById(parentUid);
-                if(parentBlogSort != null) {
-                    blogSort.setParentBlogSort(parentBlogSort);
-                }
-            }
-        }
+        // 封装
+        BlogSortDto blogSortDto = new BlogSortDto();
+        blogSortDto.setKeyword(keyword);
+        blogSortDto.setCurrentPage(currentPage);
+        blogSortDto.setPageSize(pageSize);
+        blogSortDto.setStatus(status);
+        blogSortDto.setSortByClickCount(sortByClickCount);
 
         log.info("返回结果");
-        pageList.setRecords(blogSortListList);
 
-        return JSON.toJSONString(ResponseResult.success(pageList));
+        return JSON.toJSONString(ResponseResult.success(blogSortService.getPageList(blogSortDto)));
     }
 
+    /**
+     * 检查是否重名，get方法
+     * @param request
+     * @param sortName
+     * @return
+     */
+    @ApiOperation(value="检查是否重名", notes="检查是否重名", response = String.class)
+    @GetMapping(value = "/{sortName}/exists")
+    public String checkSortNameExists(
+            HttpServletRequest request,
+            @ApiParam(name = "sortName", value = "分类名",required = true) @PathVariable String sortName
+    ) {
+
+        // 封装
+        BlogSortDto blogSortDto = new BlogSortDto();
+        blogSortDto.setSortName(sortName);
+
+        return JSON.toJSONString(ResponseResult.success(blogSortService.checkSortNameExists(blogSortDto)));
+    }
 
     /**
      *  新增博客分类，post方法
      * @param request
-     * @param blogSortAddDto
+     * @param blogSortDto
      * @return
      */
     @ApiOperation(value="增加博客分类", notes="增加博客分类", response = String.class)
     @PostMapping("")
     public String add(
             HttpServletRequest request,
-            @RequestBody BlogSortAddDto blogSortAddDto
+            @RequestBody BlogSortDto blogSortDto
     ) {
 
-        if(StringUtils.isEmpty(blogSortAddDto.getSortName()) || blogSortAddDto.getStatus() == null) {
-            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "必填项不能为空"));
-        }
-
-        BlogSort blogSort = new BlogSort();
-        blogSort.setSortName(blogSortAddDto.getSortName());
-        blogSort.setSummary(blogSortAddDto.getSummary());
-        blogSort.setContent(blogSortAddDto.getContent());
-        blogSort.setStatus(blogSortAddDto.getStatus());
-        blogSort.setParentUid(blogSortAddDto.getParentBlogSortUid());
-
-        blogSortService.save(blogSort);
-        return JSON.toJSONString(ResponseResult.success("添加成功"));
+        log.info("返回结果");
+        return blogSortService.addBlogSort(blogSortDto);
     }
 
 
     /**
      * 编辑博客分类，put方法
      * @param request
-     * @param blogSortEditDto
+     * @param blogSortDto
      * @return
      */
     @ApiOperation(value="编辑博客分类", notes="编辑博客分类", response = String.class)
@@ -162,96 +115,46 @@ public class BlogSortRestApi {
     public String edit(
             HttpServletRequest request,
             @ApiParam(name = "uid", value = "唯一标识符",required = true) @PathVariable String uid,
-            @RequestBody BlogSortEditDto blogSortEditDto
+            @RequestBody BlogSortDto blogSortDto
     ) {
+        blogSortDto.setUid(uid);
 
-        if(StringUtils.isEmpty(uid)) {
-            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "数据错误"));
-        }
-
-        if(StringUtils.isEmpty(blogSortEditDto.getSortName()) || blogSortEditDto.getStatus() == null) {
-            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "必填项不能为空"));
-        }
-
-        BlogSort blogSort = new BlogSort();
-        blogSort.setUid(uid);
-        blogSort.setSortName(blogSortEditDto.getSortName());
-        blogSort.setSummary(blogSortEditDto.getSummary());
-        blogSort.setContent(blogSortEditDto.getContent());
-        blogSort.setStatus(blogSortEditDto.getStatus());
-        blogSort.setParentUid(blogSortEditDto.getParentBlogSortUid());
-
-        blogSortService.updateById(blogSort);
-        return JSON.toJSONString(ResponseResult.success("修改成功"));
+        log.info("返回结果");
+        return  blogSortService.editBlogSort(blogSortDto);
     }
 
     /**
-     * 批量逻辑删除博客分类 delete方法
-     * @param request
-     * @param uids
-     * @return
-     */
-    @ApiOperation(value="批量逻辑删除博客分类", notes="批量逻辑删除博客分类", response = String.class)
-    @DeleteMapping("/logic-batch")
-    public String logicBatchDelete(
-            HttpServletRequest request,
-            @ApiParam(name = "uids", value = "唯一标识符列表", required = true) @RequestBody List<String> uids
-    ) {
-        if (uids == null || uids.isEmpty()) {
-            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "请选择要删除的记录"));
-        }
-
-        // 逻辑删除代码
-        Collection<BlogSort> blogSorts = blogSortService.listByIds(uids);
-        for (BlogSort blogSort : blogSorts) {
-            blogSort.setStatus(0);
-        }
-        blogSortService.updateBatchById(blogSorts);
-
-        return JSON.toJSONString(ResponseResult.success("批量删除成功"));
-    }
-
-    /**
-     * 物理删除博客分类 delete方法
+     * 删除博客分类 delete方法
      * @param request
      * @param uid
      * @return
      */
-    @ApiOperation(value="物理删除博客分类", notes="物理删除博客分类", response = String.class)
+    @ApiOperation(value="删除博客分类", notes="删除博客分类", response = String.class)
     @DeleteMapping("/{uid}")
     public String physicalDelete(
             HttpServletRequest request,
             @ApiParam(name = "uid", value = "唯一标识符",required = true) @PathVariable String uid
     ) {
 
-        if(StringUtils.isEmpty(uid)) {
-            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "数据错误"));
-        }
-
-        blogSortService.removeById(uid);
-
-        return JSON.toJSONString(ResponseResult.success("删除成功"));
+        log.info("返回结果");
+        return blogSortService.logicDelete(uid);
     }
 
     /**
-     * 批量物理删除博客分类 delete方法
+     * 批量删除博客分类 delete方法
      * @param request
-     * @param uids
+     * @param blogSortDto
      * @return
      */
-    @ApiOperation(value="批量物理删除博客分类", notes="批量物理删除博客分类", response = String.class)
+    @ApiOperation(value="批量删除博客分类", notes="批量删除博客分类", response = String.class)
     @DeleteMapping("/batch")
     public String physicalBatchDelete(
             HttpServletRequest request,
-            @ApiParam(name = "uids", value = "唯一标识符列表", required = true) @RequestBody List<String> uids
+            @RequestBody BlogSortDto blogSortDto
     ) {
-        if (uids == null || uids.isEmpty()) {
-            return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, "请选择要删除的记录"));
-        }
 
-        blogSortService.removeByIds(uids);
-
-        return JSON.toJSONString(ResponseResult.success("批量删除成功"));
+        log.info("返回结果");
+        return blogSortService.logicBatchDelete(blogSortDto);
     }
 
 

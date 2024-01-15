@@ -23,6 +23,10 @@ public class BaseMessageConf {
     public static final String PLEASE_SET_LOCAL = "请先配置本地图片域名";
     public static final String PICTURE_UID_IS_NULL = "图片UID不能为空";
 
+    public static final String REQUIRED_IS_NULL = "必填项不能为空";
+
+    public static final String PLEASE_SELECT_A_RECORD_TO_DELETE = "请选择要删除的记录";
+
     public static final String KEYWORD_IS_NOT_EMPTY = "关键字不能为空";
 
     public static final String COMMENT_IS_NOT_EXIST = "该评论不存在";

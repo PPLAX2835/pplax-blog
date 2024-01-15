@@ -11,6 +11,8 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.base.dto.BaseDto;
+import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.service.BlogService;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
 import xyz.pplax.pplaxblog.xo.service.TagService;
@@ -39,12 +41,11 @@ public class TestRestApi {
 	private static final Logger log = LogManager.getLogger(TestRestApi.class);
 
 
-	@GetMapping(value = "/superMapperTest")
-	public String superMapperTest() {
-		List<String> uids = new ArrayList<>();
-		uids.add("fbef6ff4be704781a0e0c4aeb7a2b64b");
-		uids.add("ba52e210f5174a4f943680033dc03d3e");
-//		blogSortService.updateBatchStatusByIds( uids, 0);
+	@PostMapping(value = "/dtoTest")
+	@ApiOperation(value="dtoTest", notes="dtoTest", response = String.class)
+	public String dtoTest(@RequestBody BlogSortDto blogSortDto) {
+
+		log.info(JSON.toJSONString(blogSortDto));
 
 		return "yes";
 	}

@@ -31,22 +31,14 @@ export function editBlogSort(data) {
   })
 }
 
-export function logicalDeleteBatchBlogSort(data) {
-  return service({
-    url: '/blogSort/logic-batch',
-    method: 'delete',
-    data: data
-  })
-}
-
-export function physicalDeleteBlogSort(data) {
+export function deleteBlogSort(data) {
   return service({
     url: '/blogSort/' + data.uid,
     method: 'delete'
   })
 }
 
-export function physicalDeleteBatchBlogSort(data) {
+export function deleteBatchBlogSort(data) {
   return service({
     url: '/blogSort/batch',
     method: 'delete',

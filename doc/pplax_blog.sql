@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: pplax_blog
 -- ------------------------------------------------------
--- Server version	8.0.33
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -96,7 +96,7 @@ CREATE TABLE `t_blog_sort` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   `parent_uid` varchar(32) DEFAULT NULL COMMENT '父级分类uid',
-  `click_count` int(11) DEFAULT '0' COMMENT '点击数',
+  `click_count` int DEFAULT '0' COMMENT '点击数',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='博客分类表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -107,7 +107,7 @@ CREATE TABLE `t_blog_sort` (
 
 LOCK TABLES `t_blog_sort` WRITE;
 /*!40000 ALTER TABLE `t_blog_sort` DISABLE KEYS */;
-INSERT INTO `t_blog_sort` (`uid`, `sort_name`, `summary`, `content`, `create_time`, `update_time`, `status`, `parent_uid`) VALUES ('093d8bdd01c84890a928e923d5c235fe','时光轴','时光轴的简介','时光飞逝，机会就在我们眼前，何时找到了灵感，就要把握机遇，我们需要智慧和勇气去把握机会','2018-09-24 09:14:59','2023-11-29 12:03:29',1,NULL),('265c29f1807440aeaf745075e949c971','原神','你说得对，后边忘了',NULL,'2023-11-30 03:36:37','2023-11-30 03:36:37',1,'3ae899e993b744c99fb78dccafac8e66'),('2c93dfab0e754006866f8ed486923a41','慢生活','慢生活的简介','慢生活，不是懒惰，放慢速度不是拖延时间，而是让我们在生活中寻找到平衡','2018-09-24 08:29:33','2023-11-29 12:03:29',1,NULL),('3ae899e993b744c99fb78dccafac8e66','游戏','游戏的简介','玩游戏玩的','2023-11-29 11:18:55','2023-11-29 12:03:29',1,NULL),('3cf89eab5cf2484f8023f088dd3f3cd5','编程','编程 简介','内容','2023-11-30 03:34:12','2023-11-30 03:34:12',1,NULL),('ba52e210f5174a4f943680033dc03d3e','怪物猎人','怪物猎人的简介','玩太刀玩的','2023-11-29 11:19:30','2023-11-29 12:03:29',1,'3ae899e993b744c99fb78dccafac8e66'),('fbef6ff4be704781a0e0c4aeb7a2b64b','美食',NULL,NULL,'2023-11-30 07:21:42','2023-11-30 07:21:42',1,'2c93dfab0e754006866f8ed486923a41');
+INSERT INTO `t_blog_sort` (`uid`, `sort_name`, `summary`, `content`, `create_time`, `update_time`, `status`, `parent_uid`, `click_count`) VALUES ('093d8bdd01c84890a928e923d5c235fe','时光轴','时光轴的简介','时光飞逝，机会就在我们眼前，何时找到了灵感，就要把握机遇，我们需要智慧和勇气去把握机会','2018-09-24 09:14:59','2023-11-29 12:03:29',1,NULL,0),('218b8f96728541d3847099737c3ef947','怪物猎人：世界','第一代高清化怪猎',NULL,'2024-01-15 14:37:06','2024-01-15 06:37:24',1,'ba52e210f5174a4f943680033dc03d3e',0),('265c29f1807440aeaf745075e949c971','原神','你说得对，后边忘了',NULL,'2023-11-30 03:36:37','2024-01-15 06:00:26',1,'3ae899e993b744c99fb78dccafac8e66',0),('2c93dfab0e754006866f8ed486923a41','慢生活','慢生活的简介','慢生活，不是懒惰，放慢速度不是拖延时间，而是让我们在生活中寻找到平衡','2018-09-24 08:29:33','2023-11-29 12:03:29',1,NULL,0),('3ae899e993b744c99fb78dccafac8e66','游戏','游戏的简介','玩游戏玩的','2023-11-29 11:18:55','2023-11-29 12:03:29',1,NULL,0),('3cf89eab5cf2484f8023f088dd3f3cd5','编程','编程 简介','内容','2023-11-30 03:34:12','2023-11-30 03:34:12',1,NULL,0),('9bf8bc845c124195839a34473d88aff4','灭尽龙','本体封面怪，脑婆~',NULL,'2024-01-15 14:35:39','2024-01-15 06:36:15',1,'218b8f96728541d3847099737c3ef947',0),('ba52e210f5174a4f943680033dc03d3e','怪物猎人','怪物猎人的简介','玩太刀玩的','2023-11-29 11:19:30','2024-01-15 06:37:24',1,'3ae899e993b744c99fb78dccafac8e66',0),('fbef6ff4be704781a0e0c4aeb7a2b64b','美食',NULL,NULL,'2023-11-30 07:21:42','2023-11-30 07:21:42',1,'2c93dfab0e754006866f8ed486923a41',0);
 /*!40000 ALTER TABLE `t_blog_sort` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -419,4 +419,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-01  9:29:56
+-- Dump completed on 2024-01-15 14:38:42

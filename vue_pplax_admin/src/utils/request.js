@@ -40,7 +40,7 @@ service.interceptors.response.use(
      */
     if (res.code != ResponseCode.SUCCESS.code) {
       Message({
-        message: res.code + ': ' + res.message,
+        message: res.code + ': ' + res.message + (res.data !== '' ? ', ' + res.data : ''),
         type: 'error',
         duration: 5 * 1000
       })

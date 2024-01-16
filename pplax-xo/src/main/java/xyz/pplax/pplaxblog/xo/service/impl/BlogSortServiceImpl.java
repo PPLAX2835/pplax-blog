@@ -18,6 +18,7 @@ import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 import xyz.pplax.pplaxblog.xo.global.BlogSQLConf;
 import xyz.pplax.pplaxblog.xo.global.BlogSortSQLConf;
+import xyz.pplax.pplaxblog.xo.mapper.BlogMapper;
 import xyz.pplax.pplaxblog.xo.mapper.BlogSortMapper;
 import xyz.pplax.pplaxblog.xo.service.BlogService;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
@@ -33,10 +34,10 @@ import java.util.List;
 public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSort> implements BlogSortService {
 
     @Autowired
-    private BlogSortService blogSortService;
+    private BlogSortMapper blogSortMapper;
 
     @Autowired
-    private BlogService blogService;
+    private BlogMapper blogMapper;
 
     /**
      * 获取博客分类列表
@@ -73,14 +74,14 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         }
 
         // 查询
-        IPage<BlogSort> pageList = blogSortService.page(page, queryWrapper);
+        IPage<BlogSort> pageList = blogSortMapper.selectPage(page, queryWrapper);
         List<BlogSort> blogSortListList = pageList.getRecords();
 
         for(BlogSort blogSort : blogSortListList) {
             // 添加父级分类
             if(blogSort != null && !StringUtils.isEmpty(blogSort.getParentUid())) {
                 String parentUid = blogSort.getParentUid();
-                BlogSort parentBlogSort = blogSortService.getById(parentUid);
+                BlogSort parentBlogSort = blogSortMapper.selectById(parentUid);
                 if(parentBlogSort != null) {
                     blogSort.setParentBlogSort(parentBlogSort);
                 }
@@ -101,7 +102,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
     public Boolean checkSortNameExists(BlogSortDto blogSortDto) {
         QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(BlogSortSQLConf.SORT_NAME, blogSortDto.getSortName());
-        BlogSort tempSort = blogSortService.getOne(queryWrapper);
+        BlogSort tempSort = blogSortMapper.selectOne(queryWrapper);
 
         return tempSort != null;
     }
@@ -132,7 +133,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         blogSort.setStatus(blogSortDto.getStatus());
         blogSort.setParentUid(blogSortDto.getParentBlogSortUid());
 
-        blogSortService.save(blogSort);
+        blogSortMapper.insert(blogSort);
         return JSON.toJSONString(ResponseResult.success(BaseMessageConf.INSERT_SUCCESS));
     }
 
@@ -149,13 +150,13 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         }
 
         // 检查是否存在
-        BlogSort blogSort = blogSortService.getById(blogSortDto.getUid());
+        BlogSort blogSort = blogSortMapper.selectById(blogSortDto.getUid());
 
         if (!blogSort.getSortName().equals(blogSortDto.getSortName())) {
             // 名字被改了，检查有没有重的
             QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq(BlogSortSQLConf.SORT_NAME, blogSortDto.getSortName());
-            BlogSort tempSort = blogSortService.getOne(queryWrapper);
+            BlogSort tempSort = blogSortMapper.selectOne(queryWrapper);
             if (tempSort != null) {
                 // 确实重了
                 return JSON.toJSONString(ResponseResult.error(ResponseCode.ERROR, BaseMessageConf.ENTITY_EXIST));
@@ -170,7 +171,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         blogSort.setStatus(blogSortDto.getStatus());
         blogSort.setParentUid(blogSortDto.getParentBlogSortUid());
 
-        blogSortService.updateById(blogSort);
+        blogSortMapper.updateById(blogSort);
         return JSON.toJSONString(ResponseResult.success(BaseMessageConf.UPDATE_SUCCESS));
     }
 
@@ -204,9 +205,9 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
 
         // 判断要删除的分类，是否有博客
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
-        blogQueryWrapper.ne(BlogSortSQLConf.STATUS, EStatus.ENABLE);
+        blogQueryWrapper.ne(BlogSortSQLConf.STATUS, EStatus.DISABLED);
         blogQueryWrapper.in(BlogSQLConf.BLOG_SORT_UID, uids);
-        if (blogService.count(blogQueryWrapper) > 0) {
+        if (blogMapper.selectCount(blogQueryWrapper) > 0) {
             return JSON.toJSONString(ResponseResult.error(ResponseCode.SERVER_ERROR, BaseMessageConf.BLOG_UNDER_THIS_SORT));
         }
 
@@ -214,14 +215,14 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         UpdateWrapper<BlogSort> blogSortUpdateWrapper = new UpdateWrapper<>();
         blogSortUpdateWrapper.in(BlogSortSQLConf.PARENT_UID, uids);
         blogSortUpdateWrapper.set(BlogSortSQLConf.PARENT_UID, null);
-        blogSortService.update(new BlogSort(), blogSortUpdateWrapper);
+        blogSortMapper.update(new BlogSort(), blogSortUpdateWrapper);
 
         // 逻辑删除代码
-        Collection<BlogSort> blogSorts = blogSortService.listByIds(blogSortDto.getUids());
+        Collection<BlogSort> blogSorts = blogSortMapper.selectBatchIds(blogSortDto.getUids());
         for (BlogSort blogSort : blogSorts) {
             blogSort.setStatus(EStatus.DISABLED);
+            blogSortMapper.updateById(blogSort);
         }
-        blogSortService.updateBatchById(blogSorts);
 
         return JSON.toJSONString(ResponseResult.success(BaseMessageConf.DELETE_SUCCESS));
     }

@@ -1,11 +1,10 @@
 package xyz.pplax.pplaxblog.commons.exception;
 
-import com.baomidou.mybatisplus.extension.api.ApiResult;
 import com.baomidou.mybatisplus.extension.api.IErrorCode;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.enums.ApiErrorCode;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,8 +21,8 @@ import java.util.Map;
  * </p>
  */
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
      * <p>
@@ -34,18 +33,18 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = Exception.class)
-    public ApiResult<Object> handleBadRequest(Exception e) {
+    public R<Object> handleBadRequest(Exception e) {
         /*
          * 业务逻辑异常
          */
         if (e instanceof ApiException) {
             IErrorCode errorCode = ((ApiException) e).getErrorCode();
             if (null != errorCode) {
-                logger.debug("Rest request error, {}", errorCode.toString());
-                return ApiResult.failed(errorCode);
+                log.debug("Rest request error, {}", errorCode.toString());
+                return R.failed(errorCode);
             }
-            logger.debug("Rest request error, {}", e.getMessage());
-            return ApiResult.failed(e.getMessage());
+            log.debug("Rest request error, {}", e.getMessage());
+            return R.failed(e.getMessage());
         }
 
         /*
@@ -61,14 +60,14 @@ public class GlobalExceptionHandler {
                     jsonObject.put("msg", fieldError.getDefaultMessage());
                     jsonList.add(jsonObject);
                 });
-                return ApiResult.restResult(jsonList, ApiErrorCode.FAILED);
+                return R.restResult(jsonList, ApiErrorCode.FAILED);
             }
         }
 
         /**
          * 系统内部异常，打印异常栈
          */
-        logger.error("Error: handleBadRequest StackTrace : {}", e);
-        return ApiResult.failed(ApiErrorCode.FAILED);
+        log.error("Error: handleBadRequest StackTrace : {}", e);
+        return R.failed(ApiErrorCode.FAILED);
     }
 }

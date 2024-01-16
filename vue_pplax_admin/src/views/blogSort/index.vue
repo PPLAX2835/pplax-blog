@@ -33,6 +33,13 @@
         @click="handleBlogSortByClickCount"
         icon="el-icon-document"
       >点击量排序</el-button>
+
+      <el-button
+        class="filter-item"
+        type="info"
+        @click="handleBlogSortByCites"
+        icon="el-icon-document"
+      >引用量排序</el-button>
       
       <el-button 
         class="filter-item" 
@@ -251,6 +258,7 @@ export default {
       searchForm: {
         keyword: "",
         sortByClickCount: false,
+        sortByCites: false,
         currentPage: 1,
         pageSize: 10
       },
@@ -361,8 +369,21 @@ export default {
      * 点击量排序按钮单击事件
      */
     handleBlogSortByClickCount() {
-      this.searchForm.sortByClickCount = !this.searchForm.sortByClickCount;
-      this.blogSortList(this.searchForm);
+      if (!this.searchForm.sortByClickCount) {
+        this.searchForm.sortByClickCount = true;
+        this.searchForm.sortByCites = false;
+        this.blogSortList(this.searchForm);
+      }
+    },
+    /**
+     * 引用量排序按钮单击事件
+     */
+    handleBlogSortByCites() {
+      if (!this.searchForm.sortByCites) {
+        this.searchForm.sortByCites = true;
+        this.searchForm.sortByClickCount = false;
+        this.blogSortList(this.searchForm);
+      }
     },
     /**
      * 换页

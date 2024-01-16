@@ -56,6 +56,11 @@ public class Blog extends SuperEntity<Blog>{
 	private String pictureUid;
 
 	/**
+	 * 是否发布：0：否，1：是
+	 */
+	private String isPublish;
+
+	/**
 	 * 用户uid
 	 */
 	private String userUid;

@@ -39,6 +39,7 @@ public class BlogSortRestApi {
                           @ApiParam(name = "currentPage", value = "当前页数",required = false) @RequestParam(name = "currentPage", required = false, defaultValue = "1") Long currentPage,
                           @ApiParam(name = "pageSize", value = "每页显示数目",required = false) @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize,
                           @ApiParam(name = "status", value = "状态",required = false) @RequestParam(name = "status", required = false, defaultValue = "10") Integer status,
+                          @ApiParam(name = "sortByCites", value = "是否按引用量排序", required = false) @RequestParam(name = "sortByCites", required = false) boolean sortByCites,
                           @ApiParam(name = "sortByClickCount", value = "是否按点击量排序", required = false) @RequestParam(name = "sortByClickCount", required = false) boolean sortByClickCount
     ) {
         // 封装
@@ -47,6 +48,7 @@ public class BlogSortRestApi {
         blogSortDto.setCurrentPage(currentPage);
         blogSortDto.setPageSize(pageSize);
         blogSortDto.setStatus(status);
+        blogSortDto.setSortByCites(sortByCites);
         blogSortDto.setSortByClickCount(sortByClickCount);
 
         log.info("返回结果");

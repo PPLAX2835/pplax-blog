@@ -15,6 +15,7 @@ public final class BlogSQLConf extends BaseSQLConf {
 	public final static String CLICK_COUNT = "click_count";
 	public final static String COLLECT_COUNT = "collect_count";
 	public final static String PICTURE_UID = "picture_uid";
+	public final static String IS_PUBLISH = "is_publish";
 	public final static String USER_UID = "user_uid";
 	public final static String IS_ORIGINAL = "user_uid";
 	public final static String ARTICLES_PART = "articles_part";

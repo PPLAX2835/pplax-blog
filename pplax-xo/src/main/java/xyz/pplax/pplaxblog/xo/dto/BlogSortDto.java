@@ -37,4 +37,7 @@ public class BlogSortDto extends BaseDto<BlogSortDto> {
     @ApiModelProperty(example = "false", notes = "根据点击量排序", required = false)
     private Boolean sortByClickCount;
 
+    @ApiModelProperty(example = "false", notes = "根据引用量排序", required = false)
+    private Boolean sortByCites;
+
 }

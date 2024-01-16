@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.base.enums.EStatus;
 import xyz.pplax.pplaxblog.base.global.BaseMessageConf;
-import xyz.pplax.pplaxblog.base.global.BaseSQLConf;
 import xyz.pplax.pplaxblog.base.global.response.ResponseCode;
 import xyz.pplax.pplaxblog.base.global.response.ResponseResult;
 import xyz.pplax.pplaxblog.base.serviceImpl.SuperServiceImpl;
@@ -58,11 +57,16 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         page.setSize(blogSortDto.getPageSize());
 
         // 获得非删除状态的
-        queryWrapper.ne(BaseSQLConf.STATUS, EStatus.DISABLED);
+        queryWrapper.ne(BlogSortSQLConf.STATUS, EStatus.DISABLED);
 
+        // 排序
         if (blogSortDto.getSortByClickCount()) {
             // 按点击量排序
             queryWrapper.orderByDesc(BlogSortSQLConf.CLICK_COUNT);
+        } else if (blogSortDto.getSortByCites()) {
+            // 按引用量排序
+
+
         } else {
             // 按创建时间排序
             queryWrapper.orderByDesc(BlogSortSQLConf.CREATE_TIME);
@@ -200,7 +204,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
 
         // 判断要删除的分类，是否有博客
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
-        blogQueryWrapper.ne(BaseSQLConf.STATUS, EStatus.ENABLE);
+        blogQueryWrapper.ne(BlogSortSQLConf.STATUS, EStatus.ENABLE);
         blogQueryWrapper.in(BlogSQLConf.BLOG_SORT_UID, uids);
         if (blogService.count(blogQueryWrapper) > 0) {
             return JSON.toJSONString(ResponseResult.error(ResponseCode.SERVER_ERROR, BaseMessageConf.BLOG_UNDER_THIS_SORT));

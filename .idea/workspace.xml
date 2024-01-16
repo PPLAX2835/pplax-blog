@@ -4,10 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="简单清理一下冗余代码">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_annotation_3_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_extension_3_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_yulichang_mybatis_plus_join_adapter_base_1_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_yulichang_mybatis_plus_join_adapter_v33x_1_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_yulichang_mybatis_plus_join_adapter_v3431_1_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_yulichang_mybatis_plus_join_adapter_v352_1_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_yulichang_mybatis_plus_join_annotation_1_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_yulichang_mybatis_plus_join_boot_starter_1_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_yulichang_mybatis_plus_join_core_1_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_yulichang_mybatis_plus_join_extension_1_4_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/enums/EPublish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_3_0_RC1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_3_3_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_annotation_3_0_RC1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_3_0_RC1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_3_3_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_core_3_0_RC1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_core_3_3_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_extension_3_0_RC1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_generator_3_0_RC1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_velocity_velocity_engine_core_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_25_incubating.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_4_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_configuration_processor_1_4_0_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/dto/edit/BlogSortEditDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/pplax-base.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-base/pplax-base.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/mybatis/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/mybatis/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-web/pplax-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-web/pplax-web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/BlogSortDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/BlogSortDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/BlogSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/BlogSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogSortServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +107,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/doc" />
@@ -102,11 +142,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.base.enums" />
       <recent name="xyz.pplax.pplaxblog.base.dto" />
       <recent name="xyz.pplax.pplaxblog.base.global" />
       <recent name="xyz.pplax.pplaxblog.admin.dto.add" />
       <recent name="xyz.pplax.pplaxblog.admin.dto.edit" />
-      <recent name="xyz.pplax.pplaxblog.admin.global" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -176,19 +216,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UtilsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="pplax-utils" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.utils.UtilsApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="WebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="pplax-web" />
       <extension name="coverage">
@@ -215,13 +242,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.AdminApplication" />
+      <item itemvalue="Spring Boot.BaseApplication" />
+      <item itemvalue="Spring Boot.AdminApplication" />
+      <item itemvalue="Spring Boot.WebApplication" />
+      <item itemvalue="Spring Boot.XoApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.AdminApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.XoApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="Spring Boot.UtilsApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -256,14 +289,9 @@
       <workItem from="1701566737985" duration="1570000" />
       <workItem from="1701569973481" duration="2694000" />
       <workItem from="1701652410618" duration="4801000" />
-      <workItem from="1705291941914" duration="7492000" />
-    </task>
-    <task id="LOCAL-00150" summary="初始化-引入maven">
-      <created>1700896120206</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1700896120206</updated>
+      <workItem from="1705291941914" duration="10448000" />
+      <workItem from="1705306789911" duration="6367000" />
+      <workItem from="1705370890764" duration="7493000" />
     </task>
     <task id="LOCAL-00151" summary="初始化-引入maven">
       <created>1700896849543</created>
@@ -601,7 +629,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705301095830</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="简单清理一下冗余代码">
+      <created>1705303442045</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1705303442045</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +671,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整" />
     <MESSAGE value="解决了mapper无法注入的问题，但是为什么只能用@MapperScan不能用@Mapper呢" />
     <MESSAGE value="调整数据库设计，这是中间过渡，我觉得可以把user表和admin表合起来" />
     <MESSAGE value="调整数据库，把admin表和user表合起来了" />
@@ -661,7 +695,8 @@
     <MESSAGE value="添加一些基本类" />
     <MESSAGE value="调整dto" />
     <MESSAGE value="重构：弃用物理删除，所有删除都用逻辑删除目前BlogSort表弄好了" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构：弃用物理删除，所有删除都用逻辑删除目前BlogSort表弄好了" />
+    <MESSAGE value="简单清理一下冗余代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="简单清理一下冗余代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

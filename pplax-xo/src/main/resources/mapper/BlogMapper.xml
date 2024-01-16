@@ -12,6 +12,7 @@
         <result column="click_count" property="clickCount" />
         <result column="collect_count" property="collectCount" />
         <result column="picture_uid" property="pictureUid" />
+        <result column="is_publish" property="isPublish" />
         <result column="user_uid" property="userUid" />
         <result column="is_original" property="isOriginal" />
         <result column="articles_part" property="articlesPart" />
@@ -24,7 +25,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `title`, `summary`, `blog_content_uid`, `tag_uid`, `click_count`, `collect_count`, `picture_uid`, `status`, `user_uid`, `is_original`, `author`, `articles_part`, `blog_sort_uid`, `level`, `create_time`, `update_time`
+        `uid`, `title`, `summary`, `blog_content_uid`, `tag_uid`, `click_count`, `collect_count`, `picture_uid`, `status`, `is_publish`, `user_uid`, `is_original`, `author`, `articles_part`, `blog_sort_uid`, `level`, `create_time`, `update_time`
     </sql>
 
 </mapper>

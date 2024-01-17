@@ -60,7 +60,7 @@ public class LinkRestApi {
         page.setSize(pageSize);
 
         // 按创建时间排序
-        queryWrapper.orderByDesc(LinkSQLConf.CREATE_TIME);
+//        queryWrapper.orderByDesc(LinkSQLConf.CREATE_TIME);
 
         // 查询
         IPage<Link> pageList = linkService.page(page, queryWrapper);

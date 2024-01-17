@@ -20,7 +20,6 @@ import xyz.pplax.pplaxblog.xo.global.BlogSQLConf;
 import xyz.pplax.pplaxblog.xo.global.BlogSortSQLConf;
 import xyz.pplax.pplaxblog.xo.mapper.BlogMapper;
 import xyz.pplax.pplaxblog.xo.mapper.BlogSortMapper;
-import xyz.pplax.pplaxblog.xo.service.BlogService;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
 
 import java.util.ArrayList;
@@ -60,21 +59,30 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         // 获得非删除状态的
         queryWrapper.ne(BlogSortSQLConf.STATUS, EStatus.DISABLED);
 
+        IPage<BlogSort> pageList = null;
+
         // 排序
         if (blogSortDto.getSortByClickCount()) {
             // 按点击量排序
             queryWrapper.orderByDesc(BlogSortSQLConf.CLICK_COUNT);
+            // 查询
+            pageList = blogSortMapper.selectPage(page, queryWrapper);
         } else if (blogSortDto.getSortByCites()) {
             // 按引用量排序
-
-
+            queryWrapper.and(
+                    i -> i.ne(BlogSQLConf.STATUS, EStatus.DISABLED)
+                            .or().isNull(BlogSQLConf.STATUS)
+            );
+            // 查询
+            pageList = blogSortMapper.selectListOrderByCites(page, queryWrapper);
         } else {
             // 按创建时间排序
             queryWrapper.orderByDesc(BlogSortSQLConf.CREATE_TIME);
+            // 查询
+            pageList = blogSortMapper.selectPage(page, queryWrapper);
         }
 
-        // 查询
-        IPage<BlogSort> pageList = blogSortMapper.selectPage(page, queryWrapper);
+        // 获得列表
         List<BlogSort> blogSortListList = pageList.getRecords();
 
         for(BlogSort blogSort : blogSortListList) {

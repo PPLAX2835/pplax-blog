@@ -70,7 +70,7 @@ public class BlogRestApi {
 		// 查询状态正常的
 //		queryWrapper.eq(SQLConf.STATUS, EStatus.ENABLE);			// 这个在前台就要取消注释
 		// 按创建时间排序
-		queryWrapper.orderByDesc(BlogSQLConf.CREATE_TIME);
+//		queryWrapper.orderByDesc(BlogSQLConf.CREATE_TIME);
 
 		// 查询
 		IPage<Blog> pageList = blogService.page(page, queryWrapper);

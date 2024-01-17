@@ -1,12 +1,10 @@
 package xyz.pplax.pplaxblog.xo.global;
 
 
-import xyz.pplax.pplaxblog.base.global.BaseSQLConf;
-
 /**
  * 友情链接表SQL字段常量
  */
-public class LinkSQLConf extends BaseSQLConf {
+public class LinkSQLConf {
 
     public static String TITLE = "title";
     public static String SUMMARY = "summary";

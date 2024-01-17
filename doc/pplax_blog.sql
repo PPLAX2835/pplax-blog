@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: pplax_blog
+-- Host: 127.0.0.1    Database: t_blog
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -228,62 +228,6 @@ INSERT INTO `t_link` (`uid`, `title`, `summary`, `url`, `click_count`, `create_t
 UNLOCK TABLES;
 
 --
--- Table structure for table `t_picture`
---
-
-DROP TABLE IF EXISTS `t_picture`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_picture` (
-  `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `file_uid` varchar(32) DEFAULT NULL COMMENT '文件uid',
-  `picture_name` varchar(255) DEFAULT NULL COMMENT '图片名',
-  `picture_sort_uid` varchar(32) DEFAULT NULL COMMENT '分类uid',
-  `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='图片表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_picture`
---
-
-LOCK TABLES `t_picture` WRITE;
-/*!40000 ALTER TABLE `t_picture` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_picture` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `t_picture_sort`
---
-
-DROP TABLE IF EXISTS `t_picture_sort`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_picture_sort` (
-  `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `file_uid` varchar(32) DEFAULT NULL COMMENT '文件uid',
-  `sort_name` varchar(255) DEFAULT NULL COMMENT '分类名',
-  `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `parent_uid` varchar(32) DEFAULT NULL COMMENT '父级分类uid',
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='图片分类表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_picture_sort`
---
-
-LOCK TABLES `t_picture_sort` WRITE;
-/*!40000 ALTER TABLE `t_picture_sort` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_picture_sort` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `t_role`
 --
 
@@ -418,4 +362,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-16 14:48:31
+-- Dump completed on 2024-01-17 19:00:55

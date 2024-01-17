@@ -92,9 +92,6 @@ public class Blog extends SuperEntity<Blog>{
 	private List<Tag> tagList; //标签,一篇博客对应多个标签
 
 	@TableField(exist = false)
-	private List<Picture> pictureList; // 标题图片，看来有可能配多张
-
-	@TableField(exist = false)
 	private User user;
 
 	@TableField(exist = false)

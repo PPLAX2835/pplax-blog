@@ -40,9 +40,6 @@ public class BlogRestApi {
 	TagService tagService;
 
 	@Autowired
-	PictureService pictureService;
-
-	@Autowired
 	UserService userService;
 
 	@Autowired
@@ -91,17 +88,8 @@ public class BlogRestApi {
 			}
 
 			// 添加标题图片
-			if(blog != null && !StringUtils.isEmpty(blog.getPictureUid())) {
-				String[] pictureUids = blog.getPictureUid().split(",");
-				List<Picture> pictureList = new ArrayList<>();
-				for (String uid : pictureUids) {
-					Picture picture = pictureService.getById(uid);
-					if(picture != null) {
-						pictureList.add(picture);
-					}
-				}
-				blog.setPictureList(pictureList);
-			}
+
+
 
 			// 添加用户
 			if(blog != null && !StringUtils.isEmpty(blog.getUserUid())) {

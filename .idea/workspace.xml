@@ -4,9 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PictureMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PictureSortMapper.xml" beforeDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="去掉两个mapper.xml，启动的时候注入失败了">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_spotbugs_spotbugs_annotations_4_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_17_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_minio_minio_7_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_jcip_jcip_annotations_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_qual_2_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_simpleframework_simple_xml_2_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xpp3_xpp3_1_1_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/minio/MinioConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-file/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-file/pplax-file.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/FileApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-file/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/FileStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/FileStorageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/FileStorageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/FileStorageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/FileStorageMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_18_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_25_1_jre.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/pplax-base.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-base/pplax-base.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-utils/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-web/pplax-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-web/pplax-web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +106,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-file/src/main/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -87,11 +123,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-file\src\main\resources" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\java\xyz\pplax\pplaxblog\base\global" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\java\xyz\pplax\pplaxblog\base" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-base\src\main\java\xyz\pplax\pplaxblog\base\response" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
@@ -116,7 +152,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AdminApplication">
+  <component name="RunManager" selected="Application.FileApplication">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -136,6 +172,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="xyz.pplax.pplaxblog.admin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.file.FileApplication" />
+      <module name="pplax-file" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.file.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -176,6 +225,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pplax-file" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.file.FileApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="pplax-web" />
       <extension name="coverage">
@@ -204,13 +260,16 @@
     </configuration>
     <list>
       <item itemvalue="Application.AdminApplication" />
+      <item itemvalue="Application.FileApplication" />
       <item itemvalue="Spring Boot.BaseApplication" />
+      <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.XoApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FileApplication" />
         <item itemvalue="Application.AdminApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.XoApplication" />
@@ -254,13 +313,8 @@
       <workItem from="1705370890764" duration="22048000" />
       <workItem from="1705462025104" duration="1081000" />
       <workItem from="1705488760922" duration="760000" />
-    </task>
-    <task id="LOCAL-00154" summary="初始化，调整springboot版本">
-      <created>1700965117327</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1700965117327</updated>
+      <workItem from="1705550951883" duration="1331000" />
+      <workItem from="1705552335240" duration="2011000" />
     </task>
     <task id="LOCAL-00155" summary="初始化">
       <created>1700972022604</created>
@@ -598,7 +652,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705458346184</updated>
     </task>
-    <option name="localTasksCounter" value="203" />
+    <task id="LOCAL-00203" summary="去掉两个mapper.xml，启动的时候注入失败了">
+      <created>1705544372547</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1705544372547</updated>
+    </task>
+    <option name="localTasksCounter" value="204" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +694,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理maven" />
     <MESSAGE value="临时提交,先让它跑起来" />
     <MESSAGE value="整理一下包结构" />
     <MESSAGE value="调整blog表的查询，调整数据库设计" />
@@ -658,7 +718,8 @@
     <MESSAGE value="mybatis-plus版本上调，blog添加is_publish字段" />
     <MESSAGE value="调整service层，修改删除已经存在博客的分类时仍然会删除的bug" />
     <MESSAGE value="调整sql常量类的值，博客分类实现引用量排序" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整sql常量类的值，博客分类实现引用量排序" />
+    <MESSAGE value="去掉两个mapper.xml，启动的时候注入失败了" />
+    <option name="LAST_COMMIT_MESSAGE" value="去掉两个mapper.xml，启动的时候注入失败了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

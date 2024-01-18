@@ -1,11 +1,11 @@
 #app
 server:
-  port: 8080
+  port: 8081
 
 #spring
 spring:
   application:
-    name: admin-server
+    name: file-server
   thymeleaf:
     cache: true   #关闭缓存
   devtools:
@@ -18,7 +18,7 @@ spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/pplax_blog?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/pplax_file?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
@@ -70,3 +70,12 @@ mybatis-plus:
 ##logging
 logging:
   level: warn
+
+
+minio:
+  endpoint: 127.0.0.1
+  port: 9001
+  accesskey: root
+  secretkey: password
+  secure: false                #如果是true，则用的是https而不是http,默认值是true
+  bucketName: test             #默认存储桶

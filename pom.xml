@@ -26,6 +26,7 @@
 
         <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
         <mysql-connector-java.version>8.0.31</mysql-connector-java.version>
+        <minio.version>7.0.2</minio.version>
         <fastjson.version>1.2.73</fastjson.version>
         <jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
         <velocity-engine-core.version>2.0</velocity-engine-core.version>
@@ -35,6 +36,7 @@
         <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
         <springfox-swagger-ui.version>2.6.1</springfox-swagger-ui.version>
         <druid.version>1.1.8</druid.version>
+
     </properties>
 
     <dependencyManagement>
@@ -62,6 +64,13 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+
+            <!-- minio -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
             </dependency>
 
             <!-- json相关 -->
@@ -210,6 +219,7 @@
         <module>pplax-utils</module>
         <module>pplax-xo</module>
         <module>pplax-web</module>
+        <module>pplax-file</module>
     </modules>
 
 </project>

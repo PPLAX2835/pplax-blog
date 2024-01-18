@@ -39,6 +39,12 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
+  # 配置文件上传大小限制
+  http:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
 
 #mybatis
 mybatis-plus:
@@ -73,9 +79,7 @@ logging:
 
 
 minio:
-  endpoint: 127.0.0.1
-  port: 9001
-  accesskey: root
-  secretkey: password
-  secure: false                #如果是true，则用的是https而不是http,默认值是true
-  bucketName: test             #默认存储桶
+  endpoint: http://127.0.0.1:9002 #Minio服务所在地址
+  accessKey: root #访问的key
+  secretKey: password #访问的秘钥
+  bucketName: pplax-blog  #存储桶名称

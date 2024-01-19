@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="先创建一个file服务">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/StorageRestApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UploadRestApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +70,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-file/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-file/src/main/java/xyz/pplax/pplaxblog/file" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -281,13 +279,6 @@
       <workItem from="1705488760922" duration="760000" />
       <workItem from="1705550951883" duration="1331000" />
       <workItem from="1705552335240" duration="6474000" />
-    </task>
-    <task id="LOCAL-00156" summary="初始化">
-      <created>1700972652400</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1700972652400</updated>
     </task>
     <task id="LOCAL-00157" summary="初始化">
       <created>1700973003681</created>
@@ -625,7 +616,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705554500598</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="处理了一下注入失败问题">
+      <created>1705629476617</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1705629476618</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +658,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理一下包结构" />
     <MESSAGE value="调整blog表的查询，调整数据库设计" />
     <MESSAGE value="把mapper.xml补上，调整sql脚本" />
     <MESSAGE value="临时提交" />
@@ -685,7 +682,8 @@
     <MESSAGE value="调整sql常量类的值，博客分类实现引用量排序" />
     <MESSAGE value="去掉两个mapper.xml，启动的时候注入失败了" />
     <MESSAGE value="先创建一个file服务" />
-    <option name="LAST_COMMIT_MESSAGE" value="先创建一个file服务" />
+    <MESSAGE value="处理了一下注入失败问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="处理了一下注入失败问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

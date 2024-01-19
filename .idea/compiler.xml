@@ -18,11 +18,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="pplax-admin" target="1.8" />
+      <module name="pplax-admin" target="8" />
       <module name="pplax-base" target="1.8" />
       <module name="pplax-blog" target="1.8" />
       <module name="pplax-commons" target="1.8" />
-      <module name="pplax-file" target="1.8" />
+      <module name="pplax-file" target="8" />
+      <module name="pplax-modules" target="8" />
       <module name="pplax-utils" target="1.8" />
       <module name="pplax-web" target="1.8" />
       <module name="pplax-xo" target="1.8" />

@@ -213,13 +213,12 @@
     </build>
 
     <modules>
-        <module>pplax-admin</module>
         <module>pplax-base</module>
         <module>pplax-commons</module>
         <module>pplax-utils</module>
         <module>pplax-xo</module>
         <module>pplax-web</module>
-        <module>pplax-file</module>
+        <module>pplax-modules</module>
     </modules>
 
 </project>

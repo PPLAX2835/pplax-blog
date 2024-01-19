@@ -12,8 +12,6 @@
     <file url="file://$PROJECT_DIR$/common-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/oauth-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pplax-admin/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pplax-admin/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-base/admin-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-base/admin-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-base/amqp-common/src/main/java" charset="UTF-8" />
@@ -35,7 +33,6 @@
     <file url="file://$PROJECT_DIR$/pplax-base/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-commons/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pplax-file/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/admin-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/article-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/auth-server-boot/src/main/java" charset="UTF-8" />
@@ -43,6 +40,10 @@
     <file url="file://$PROJECT_DIR$/pplax-modules/file-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/gateway-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/message-boot/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/test-boot/src/main/java" charset="UTF-8" />

@@ -12,16 +12,16 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "minio")
 public class MinioConfig {
 
-    @Value("${minio.endpoint}")
+    @Value("${pplax.minio.endpoint}")
     private String endpoint;
 
-    @Value("${minio.accessKey}")
+    @Value("${pplax.minio.accessKey}")
     private String accessKey;
 
-    @Value("${minio.secretKey}")
+    @Value("${pplax.minio.secretKey}")
     private String secretKey;
 
-    @Value("${minio.bucketName}")
+    @Value("${pplax.minio.bucketName}")
     private String bucketName;
 
     /**

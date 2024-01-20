@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  */
 @RestController
-@RequestMapping("/collect")
+@RequestMapping("${pplax.request.base-path}/collect")
 public class CollectRestApi {
 
 }

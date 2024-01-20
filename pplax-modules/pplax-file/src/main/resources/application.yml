@@ -78,8 +78,12 @@ logging:
   level: warn
 
 
-minio:
-  endpoint: http://127.0.0.1:9002 #Minio服务所在地址
-  accessKey: root #访问的key
-  secretKey: password #访问的秘钥
-  bucketName: pplax-blog  #存储桶名称
+# 自定义配置
+pplax:
+  request:
+    base-path: /api   # 统一父级请求路径
+  minio:
+    endpoint: http://127.0.0.1:9002 #Minio服务所在地址
+    accessKey: root #访问的key
+    secretKey: password #访问的秘钥
+    bucketName: pplax-blog  #存储桶名称

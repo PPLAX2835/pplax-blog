@@ -33,7 +33,7 @@ public class MinioUtil {
     @Autowired
     private MinioClient minioClient;
 
-    @Value("${minio.bucketName}")
+    @Value("${pplax.minio.bucketName}")
     private String bucketName;
     /**
      * description: 判断bucket是否存在，不存在则创建

@@ -2,8 +2,6 @@ package xyz.pplax.pplaxblog.xo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 

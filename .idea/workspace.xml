@@ -4,64 +4,115 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="api设置一个统一的父级路径，nacos晚点弄">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_redis_1_4_0_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_keyvalue_1_1_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_redis_1_7_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_oauth_spring_security_oauth2_2_3_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_4_1_1_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_4_1_1_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_4_1_1_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_3_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_4_3_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-base/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-commons/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/AuthApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/RedisTokenStoreConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/WebSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/EmailUnactivatedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/MobileUnactivatedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/UsernameNullException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-utils/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/BlogContentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/BlogMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/BlogSortMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/CollectMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/CommentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/FeedbackMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/FileStorageMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/LinkMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/RoleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/TagMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/target/classes/mapper/VisitorMapper.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="建了一个认证服务，使用redis方式">
+      <change afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/exception/BaseException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_transaction_javax_transaction_api_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_0_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_0_9_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_entitymanager_5_0_9_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_javax_persistence_hibernate_jpa_2_1_api_1_0_0_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_0_0_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_1_4_0_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_1_4_0_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_1_10_2_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_4_3_2_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_4_3_2_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_4_01.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-admin/pplax-admin.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/pplax-base.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/BaseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/BaseApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/controller/SuperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/controller/SuperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/dto/BaseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/dto/BaseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/dto/PageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/dto/PageDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/entity/SuperEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/entity/SuperEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/enums/EChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/enums/EChannel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/enums/EPublish.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/enums/EPublish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/enums/EStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/enums/EStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/BaseMessageConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/global/BaseMessageConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/BaseRedisConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/global/BaseRedisConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/BaseSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/global/BaseSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/BaseSysConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/global/BaseSysConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/global/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/global/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/response/ResponseCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/global/response/ResponseCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/global/response/ResponseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/global/response/ResponseResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/helper/BaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/helper/BaseHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClientCluster.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClientCluster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClientPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/jedis/JedisClientPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/mapper/SuperMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/mapper/SuperMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/service/SuperService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/service/SuperService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/serviceImpl/SuperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/serviceImpl/SuperServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/Messages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/BooleanNotNULL.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/BooleanNotNULL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/IdValid.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/IdValid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/IdsValid.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/IdsValid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/IntegerNotNull.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/IntegerNotNull.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/LongNotNull.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/LongNotNull.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/NotBlank.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/NotBlank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/Numeric.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/Numeric.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/annotion/Range.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/BooleanValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/BooleanValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IdValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IdValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IdsValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IdsValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IntegerValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/IntegerValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/LongValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/LongValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/NumericValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/NumericValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/RangValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/RangValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/StringValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/constraint/StringValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/group/Delete.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/group/Delete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/group/GetList.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/group/GetList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/group/GetOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/group/GetOne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/group/Insert.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/group/Insert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/java/xyz/pplax/pplaxblog/base/validator/group/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/validator/group/Update.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-base/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/ConfigApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/config/ConfigApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/durid/DruidConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/config/durid/DruidConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/minio/MinioConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/config/minio/MinioConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/mybatis/MetaObjectHandlerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/config/mybatis/MetaObjectHandlerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/mybatis/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/config/mybatis/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/swagger/Swagger2.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/config/swagger/Swagger2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/EmailUnactivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/exception/EmailUnactivatedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/MobileUnactivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/exception/MobileUnactivatedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/UsernameNullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/base/exception/UsernameNullException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/FileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/FileApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-web/pplax-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-web/pplax-web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/BlogSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/BlogSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Collect.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Collect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Feedback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Link.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/BlogSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/BlogSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/BlogSortSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/BlogSortSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/FeedBackSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/FeedBackSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/LinkSQLConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/global/LinkSQLConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/BlogSortMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/BlogSortMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogContentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogContentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/FileStorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/FileStorageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/LinkServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/LinkServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +176,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/oauth" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -142,11 +193,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-commons\src\main\java\xyz\pplax\pplaxblog\commons\oauth" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-auth\src\main\java\xyz\pplax\pplaxblog\auth" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-auth\src\main\java\xyz\pplax\pplaxblog\auth\config" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-auth\src\main\resources" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-file\src\main\java\xyz\pplax\pplaxblog\file" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules" />
@@ -159,11 +210,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.commons.oauth.service" />
+      <recent name="xyz.pplax.pplaxblog.commons.oauth" />
       <recent name="xyz.pplax.pplaxblog.auth.exception" />
       <recent name="xyz.pplax.pplaxblog.auth.service" />
       <recent name="xyz.pplax.pplaxblog.commons.minio" />
-      <recent name="xyz.pplax.pplaxblog.file.restapi" />
-      <recent name="xyz.pplax.pplaxblog.base.enums" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -173,7 +224,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FileApplication">
+  <component name="RunManager" selected="Spring Boot.AuthApplication">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -183,48 +234,6 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="amqp-api" />
       <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AdminApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.admin.AdminApplication" />
-      <module name="pplax-admin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.admin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FileApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.file.FileApplication" />
-      <module name="pplax-file" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.file.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AuthTestApplication.userMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="pplax-auth" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.auth.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="xyz.pplax.pplaxblog.auth" />
-      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.auth.AuthTestApplication" />
-      <option name="METHOD_NAME" value="userMapperTest" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -242,21 +251,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AdminApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="pplax-auth" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.admin.AdminApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-admin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.admin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.admin.AdminApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -275,13 +271,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BaseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="pplax-base" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.base.BaseApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-file" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.file.FileApplication" />
@@ -296,24 +285,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.AdminApplication" />
-      <item itemvalue="Application.FileApplication" />
-      <item itemvalue="Spring Boot.BaseApplication" />
-      <item itemvalue="Spring Boot.FileApplication" />
-      <item itemvalue="Spring Boot.AdminApplication (1)" />
-      <item itemvalue="Spring Boot.WebApplication" />
-      <item itemvalue="Spring Boot.AdminApplication" />
-      <item itemvalue="Spring Boot.AuthApplication" />
-      <item itemvalue="JUnit.AuthTestApplication.userMapperTest" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FileApplication" />
-        <item itemvalue="Application.AdminApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="JUnit.AuthTestApplication.userMapperTest" />
-        <item itemvalue="Spring Boot.AdminApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -357,14 +331,7 @@
       <workItem from="1705552335240" duration="6474000" />
       <workItem from="1705714012628" duration="1214000" />
       <workItem from="1705718658279" duration="6569000" />
-      <workItem from="1705802036587" duration="14824000" />
-    </task>
-    <task id="LOCAL-00160" summary="controller调整为restful风格的api">
-      <created>1700976331742</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1700976331742</updated>
+      <workItem from="1705802036587" duration="17504000" />
     </task>
     <task id="LOCAL-00161" summary="后台初始化">
       <created>1700978245987</created>
@@ -702,7 +669,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705719853406</updated>
     </task>
-    <option name="localTasksCounter" value="209" />
+    <task id="LOCAL-00209" summary="建了一个认证服务，使用redis方式">
+      <created>1705819236255</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1705819236256</updated>
+    </task>
+    <option name="localTasksCounter" value="210" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -737,7 +711,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整数据库设计" />
     <MESSAGE value="后端：调整基本sql字段类；&#10;前端：全局的响应结果处理；BlogSort列表基本完成；BlogSort编辑表弄好了，表单提交还没好" />
     <MESSAGE value="前端：全局的响应结果处理和请求头请求体设置；BlogSort列表基本完成；BlogSort编辑表弄好了，表单提交还没好。  之前提交的时候没add上" />
     <MESSAGE value="文章分类的增删改" />
@@ -762,7 +735,8 @@
     <MESSAGE value="先弄到这里，先做用户相关的吧" />
     <MESSAGE value="整理项目结构" />
     <MESSAGE value="api设置一个统一的父级路径，nacos晚点弄" />
-    <option name="LAST_COMMIT_MESSAGE" value="api设置一个统一的父级路径，nacos晚点弄" />
+    <MESSAGE value="建了一个认证服务，使用redis方式" />
+    <option name="LAST_COMMIT_MESSAGE" value="建了一个认证服务，使用redis方式" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

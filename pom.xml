@@ -237,7 +237,6 @@
     </build>
 
     <modules>
-        <module>pplax-base</module>
         <module>pplax-commons</module>
         <module>pplax-utils</module>
         <module>pplax-xo</module>

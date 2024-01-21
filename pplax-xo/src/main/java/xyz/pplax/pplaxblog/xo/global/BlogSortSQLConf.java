@@ -1,10 +1,12 @@
 package xyz.pplax.pplaxblog.xo.global;
 
 
+import xyz.pplax.pplaxblog.base.global.BaseSQLConf;
+
 /**
  * BlogSort表SQL字段常量
  */
-public final class BlogSortSQLConf {
+public final class BlogSortSQLConf extends BaseSQLConf {
 
 	public final static String UID = "t_blog_sort.uid";
 	public final static String CREATE_TIME = "t_blog_sort.create_time";

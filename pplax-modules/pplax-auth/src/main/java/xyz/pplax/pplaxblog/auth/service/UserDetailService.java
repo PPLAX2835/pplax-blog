@@ -7,11 +7,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import xyz.pplax.pplaxblog.auth.exception.EmailUnactivatedException;
-import xyz.pplax.pplaxblog.auth.exception.MobileUnactivatedException;
-import xyz.pplax.pplaxblog.auth.exception.UsernameNullException;
+import xyz.pplax.pplaxblog.base.exception.EmailUnactivatedException;
+import xyz.pplax.pplaxblog.base.exception.MobileUnactivatedException;
+import xyz.pplax.pplaxblog.base.exception.UsernameNullException;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.User;
@@ -23,9 +22,6 @@ import java.util.regex.Pattern;
 
 @Service
 public class UserDetailService  implements UserDetailsService {
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserMapper userMapper;

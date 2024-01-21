@@ -1,10 +1,12 @@
 package xyz.pplax.pplaxblog.xo.global;
 
 
+import xyz.pplax.pplaxblog.base.global.BaseSQLConf;
+
 /**
  * Blog表SQL字段常量
  */
-public final class BlogSQLConf {
+public final class BlogSQLConf extends BaseSQLConf {
 
 	public final static String UID = "t_blog.uid";
 	public final static String CREATE_TIME = "t_blog.create_time";

@@ -12,9 +12,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackages = {
         "xyz.pplax.pplaxblog.auth.config",
         "xyz.pplax.pplaxblog.auth.service",
-        "xyz.pplax.pplaxblog.commons.durid",
-//        "xyz.pplax.pplaxblog.commons.exception",      // 扫描这个在访问/oauth/authorize时就会抛异常，还不明白原理
-        "xyz.pplax.pplaxblog.commons.mybatis",
+        "xyz.pplax.pplaxblog.config.durid",
+        "xyz.pplax.pplaxblog.config.mybatis",
         "xyz.pplax.pplaxblog.xo.service"
 })
 public class AuthApplication {

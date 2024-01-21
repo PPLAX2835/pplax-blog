@@ -1,7 +1,6 @@
 package xyz.pplax.pplaxblog.auth.config;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

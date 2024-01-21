@@ -80,7 +80,7 @@ logging:
 
 # 自定义配置
 pplax:
-  request:
+  api:
     base-path: /api   # 统一父级请求路径
   minio:
     endpoint: http://127.0.0.1:9002 #Minio服务所在地址

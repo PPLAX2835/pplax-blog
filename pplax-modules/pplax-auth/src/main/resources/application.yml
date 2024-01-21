@@ -61,5 +61,5 @@ logging:
 
 # 自定义配置
 pplax:
-  request:
+  api:
     base-path: /api   # 统一父级请求路径

@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.config.minio;
+package xyz.pplax.pplaxblog.file.config;
 
 import io.minio.MinioClient;
 import lombok.Data;

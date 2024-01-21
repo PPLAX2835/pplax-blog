@@ -12,6 +12,7 @@
         <module name="pplax-xo" />
         <module name="pplax-web" />
         <module name="pplax-commons" />
+        <module name="pplax-auth" />
         <module name="pplax-admin" />
         <module name="pplax-utils" />
         <module name="pplax-file" />
@@ -19,6 +20,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="pplax-admin" target="8" />
+      <module name="pplax-auth" target="8" />
       <module name="pplax-base" target="1.8" />
       <module name="pplax-blog" target="1.8" />
       <module name="pplax-commons" target="1.8" />

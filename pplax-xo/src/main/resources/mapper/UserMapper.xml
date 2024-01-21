@@ -5,16 +5,18 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.User">
         <id column="uid" property="uid" />
-        <result column="username" property="userName" />
-        <result column="password" property="passWord" />
-        <result column="nick_name" property="nickName" />
+        <result column="role_uid" property="roleUid" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="nickname" property="nickname" />
         <result column="gender" property="gender" />
-        <result column="picture_uid" property="pictureUid" />
+        <result column="avatar_picture_uid" property="avatarPictureUid" />
         <result column="email" property="email" />
-        <result column="is_email_enabled" property="isEmailEnabled" />
+        <result column="is_email_enabled" property="isEmailActivated" />
         <result column="birthday" property="birthday" />
         <result column="mobile" property="mobile" />
-        <result column="is_mobile_enabled" property="isMobileEnabled" />
+        <result column="is_mobile_enabled" property="isMobileActivated" />
         <result column="summary" property="summary" />
         <result column="login_count" property="loginCount" />
         <result column="last_login_time" property="lastLoginTime" />
@@ -26,6 +28,6 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `user_name`, `pass_word`, `nick_name`, `gender`, `picture_uid`, `email`, `is_email_enabled`, `birthday`, `mobile`, `is_mobile_enabled`, `summary`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`
+        `uid`, `role_uid`, `username`, `password`, `salt`, `nickname`, `gender`, `avatar_picture_uid`, `email`, `is_email_activated`, `birthday`, `mobile`, `is_mobile_activated`, `summary`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`
     </sql>
 </mapper>

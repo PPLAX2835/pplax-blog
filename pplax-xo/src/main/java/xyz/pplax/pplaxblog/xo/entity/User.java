@@ -1,12 +1,9 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import java.util.Date;
-import java.util.List;
-import java.io.Serializable;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.base.entity.SuperEntity;
 
@@ -23,19 +20,29 @@ public class User extends SuperEntity<User> {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 角色uid
+     */
+    private String roleUid;
+
+    /**
      * 用户名
      */
-    private String userName;
+    private String username;
 
     /**
      * 密码
      */
-    private String passWord;
+    private String password;
+
+    /**
+     * 加密盐
+     */
+    private String salt;
 
     /**
      * 昵称
      */
-    private String nickName;
+    private String nickname;
 
     /**
      * 性别(1:男2:女)
@@ -45,7 +52,7 @@ public class User extends SuperEntity<User> {
     /**
      * 个人头像 图片uid
      */
-    private String pictureUid;
+    private String avatarPictureUid;
 
     /**
      * 邮箱
@@ -55,7 +62,7 @@ public class User extends SuperEntity<User> {
     /**
      * 邮箱是否激活（0:不是 1：是）
      */
-    private Integer isEmailEnabled;
+    private Boolean isEmailActivated;
 
     /**
      * 出生年月日
@@ -70,7 +77,7 @@ public class User extends SuperEntity<User> {
     /**
      * 手机是否激活（0:不是 1：是）
      */
-    private Integer isMobileEnabled;
+    private Boolean isMobileActivated;
 
     /**
      * 自我简介最多150字
@@ -94,11 +101,15 @@ public class User extends SuperEntity<User> {
 
     public User() {}
 
+    @TableField(exist = false)
+    private Role role; // 角色
+
     /**
      * 移除敏感数据
      */
     public void sensitiveDataRemove () {
-        this.passWord = null;
+        this.password = null;
+        this.salt = null;
         this.mobile = null;
         this.loginCount = null;
         this.lastLoginIp = null;

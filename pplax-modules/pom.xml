@@ -34,7 +34,6 @@
                 <artifactId>pplax-commons</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -42,5 +41,6 @@
     <modules>
         <module>pplax-admin</module>
         <module>pplax-file</module>
+        <module>pplax-auth</module>
     </modules>
 </project>

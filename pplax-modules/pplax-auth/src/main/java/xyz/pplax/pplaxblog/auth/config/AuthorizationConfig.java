@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,6 +32,18 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private TokenStore redisTokenStore;
 
+    @Value("${pplax.sso.admin.client-id}")
+    private String clientId;
+
+    @Value("${pplax.sso.admin.client-secret}")
+    private String clientSecret;
+
+    @Value("${pplax.sso.admin.resource-id}")
+    private String resourceId;
+
+    @Value("${pplax.sso.admin.redirect-uri}")
+    private String redirectUri;
+
     /**
      * redis token 方式
      */
@@ -44,15 +57,14 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("user-client")
-                .secret(passwordEncoder.encode("user-secret"))
+                .withClient(clientId)
+                .secret(passwordEncoder.encode(clientSecret))
                 .authorizedGrantTypes("refresh_token", "authorization_code", "password")
                 .accessTokenValiditySeconds(3600)
                 .scopes("all")
-                .resourceIds("test_resource")
-                .redirectUris("https://www.bilibili.com/");
+                .resourceIds(resourceId)
+                .redirectUris(redirectUri);
     }
-//    http://localhost:8082/oauth/authorize?client_id=user-client&client_secret=user-secret&response_type=code&redirect_uri=https://www.bilibili.com/
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {

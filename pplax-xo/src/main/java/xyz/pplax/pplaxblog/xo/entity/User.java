@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import java.util.Date;
 import lombok.EqualsAndHashCode;
-import xyz.pplax.pplaxblog.base.entity.SuperEntity;
+import xyz.pplax.pplaxblog.commons.base.entity.SuperEntity;
 
 /**
  * @description 用户表

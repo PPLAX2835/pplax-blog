@@ -3,7 +3,7 @@ package xyz.pplax.pplaxblog.xo.service.impl;
 import xyz.pplax.pplaxblog.xo.entity.Tag;
 import xyz.pplax.pplaxblog.xo.mapper.TagMapper;
 import xyz.pplax.pplaxblog.xo.service.TagService;
-import xyz.pplax.pplaxblog.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.commons.base.serviceImpl.SuperServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

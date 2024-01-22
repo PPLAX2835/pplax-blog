@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import xyz.pplax.pplaxblog.base.dto.BaseDto;
+import xyz.pplax.pplaxblog.commons.base.dto.BaseDto;
 
 /**
  * 博客分类参数

@@ -15,10 +15,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @ComponentScan(basePackages = {
-        "xyz.pplax.pplaxblog.base.handler",
-        "xyz.pplax.pplaxblog.config.durid",
-        "xyz.pplax.pplaxblog.config.mybatis",
-        "xyz.pplax.pplaxblog.config.swagger",
+        "xyz.pplax.pplaxblog.commons.base.handler",
+        "xyz.pplax.pplaxblog.commons.config.durid",
+        "xyz.pplax.pplaxblog.commons.config.mybatis",
+        "xyz.pplax.pplaxblog.commons.config.swagger",
         "xyz.pplax.pplaxblog.admin.restapi",
         "xyz.pplax.pplaxblog.xo.service"})
 public class AdminApplication {

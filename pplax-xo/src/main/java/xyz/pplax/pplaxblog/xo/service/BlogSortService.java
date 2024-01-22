@@ -1,7 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import xyz.pplax.pplaxblog.base.service.SuperService;
+import xyz.pplax.pplaxblog.commons.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 

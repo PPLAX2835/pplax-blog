@@ -1,7 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
 import org.springframework.stereotype.Service;
-import xyz.pplax.pplaxblog.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.commons.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.entity.BlogContent;
 import xyz.pplax.pplaxblog.xo.mapper.BlogContentMapper;
 import xyz.pplax.pplaxblog.xo.service.BlogContentService;

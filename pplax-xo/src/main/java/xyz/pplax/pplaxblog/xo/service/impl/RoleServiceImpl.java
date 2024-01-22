@@ -1,7 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
 import org.springframework.stereotype.Service;
-import xyz.pplax.pplaxblog.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.commons.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
 import xyz.pplax.pplaxblog.xo.service.RoleService;

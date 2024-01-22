@@ -1,6 +1,6 @@
 package xyz.pplax.pplaxblog.admin.global;
 
-import xyz.pplax.pplaxblog.base.global.BaseSysConf;
+import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
 
 /**
  * 系统常量

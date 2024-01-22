@@ -1,7 +1,7 @@
 package xyz.pplax.pplaxblog.xo.global;
 
 
-import xyz.pplax.pplaxblog.base.global.BaseSQLConf;
+import xyz.pplax.pplaxblog.commons.base.global.BaseSQLConf;
 
 /**
  * Blog表SQL字段常量

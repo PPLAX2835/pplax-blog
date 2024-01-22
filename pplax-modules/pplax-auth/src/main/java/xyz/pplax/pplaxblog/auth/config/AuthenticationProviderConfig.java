@@ -11,6 +11,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import xyz.pplax.pplaxblog.auth.service.UserDetailService;
+import xyz.pplax.pplaxblog.commons.base.global.BaseMessageConf;
+import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
 
 import java.util.Map;
 
@@ -36,8 +38,8 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
         final Map<String, String> passwordMsg = JSON.parseObject(userDetails.getPassword(), new TypeReference<Map<String, String>>(){});
 
         // 获得查库拿到密码密文、盐
-        final String dbPassword = passwordMsg.get("password");
-        final String dbSalt = passwordMsg.get("salt");
+        final String dbPassword = passwordMsg.get(BaseSysConf.PASSWORD);
+        final String dbSalt = passwordMsg.get(BaseSysConf.SALT);
 
         // 进行密码的比对
         boolean flag = passwordEncoder.matches(password + dbSalt, dbPassword);
@@ -49,7 +51,7 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
         }
 
         // 校验失败
-        throw new AuthenticationException("用户密码错误") {};
+        throw new AuthenticationException(BaseMessageConf.ERROR_PASSWORD) {};
     }
 
     @Override

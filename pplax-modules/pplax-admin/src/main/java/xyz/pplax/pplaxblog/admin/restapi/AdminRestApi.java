@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.dto.LoginDto;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
-import xyz.pplax.pplaxblog.base.global.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import io.swagger.annotations.Api;

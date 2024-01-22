@@ -8,9 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import xyz.pplax.pplaxblog.commons.base.exception.EmailUnactivatedException;
-import xyz.pplax.pplaxblog.commons.base.exception.MobileUnactivatedException;
-import xyz.pplax.pplaxblog.commons.base.exception.UsernameNullException;
+import xyz.pplax.pplaxblog.auth.exception.UsernameNullException;
 import xyz.pplax.pplaxblog.commons.base.global.BaseMessageConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseRegexConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseSQLConf;
@@ -55,7 +53,7 @@ public class UserDetailService  implements UserDetailsService {
             user = userMapper.selectOne(userQueryWrapper);
 
             if (user.getIsEmailActivated() == null || !user.getIsEmailActivated()) {
-                throw new EmailUnactivatedException(BaseMessageConf.EMAIL_UNACTIVATED);
+                return new org.springframework.security.core.userdetails.User(BaseMessageConf.EMAIL_UNACTIVATED, BaseMessageConf.EMAIL_UNACTIVATED, new ArrayList<>());
             }
         } else if (Pattern.matches(mobileRegex, username)) {
             // 根据手机查询
@@ -63,12 +61,16 @@ public class UserDetailService  implements UserDetailsService {
             user = userMapper.selectOne(userQueryWrapper);
 
             if (user.getIsMobileActivated() == null || !user.getIsMobileActivated()) {
-                throw new MobileUnactivatedException(BaseMessageConf.MOBILE_UNACTIVATED);
+                return new org.springframework.security.core.userdetails.User(BaseMessageConf.MOBILE_UNACTIVATED, BaseMessageConf.MOBILE_UNACTIVATED, new ArrayList<>());
             }
         } else {
             // 根据用户名查询
             userQueryWrapper.eq(UserSQLConf.USERNAME, username);
             user = userMapper.selectOne(userQueryWrapper);
+        }
+
+        if (user == null) {
+            return new org.springframework.security.core.userdetails.User(BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
         }
 
         // 添加角色

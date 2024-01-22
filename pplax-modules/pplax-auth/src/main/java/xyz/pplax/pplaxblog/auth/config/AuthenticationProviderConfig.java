@@ -11,6 +11,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import xyz.pplax.pplaxblog.auth.service.UserDetailService;
+import xyz.pplax.pplaxblog.auth.exception.AccountIsNotRegisteredException;
+import xyz.pplax.pplaxblog.auth.exception.EmailUnactivatedException;
+import xyz.pplax.pplaxblog.auth.exception.MobileUnactivatedException;
 import xyz.pplax.pplaxblog.commons.base.global.BaseMessageConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
 
@@ -33,6 +36,15 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
 
         // 获取封装用户信息的对象
         UserDetails userDetails = userDetailService.loadUserByUsername(username);
+
+        // 验证一下userDetails有没有问题
+        if (BaseMessageConf.EMAIL_UNACTIVATED.equals(userDetails.getUsername())) {
+            throw new EmailUnactivatedException(BaseMessageConf.EMAIL_UNACTIVATED);
+        } else if (BaseMessageConf.MOBILE_UNACTIVATED.equals(userDetails.getUsername())) {
+            throw new MobileUnactivatedException(BaseMessageConf.EMAIL_UNACTIVATED);
+        } else if (BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED.equals(userDetails.getUsername())) {
+            throw new AccountIsNotRegisteredException(BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED);
+        }
 
         // 获得密文密码和盐 密码中包含盐和密码密文，这里先获得一个map
         final Map<String, String> passwordMsg = JSON.parseObject(userDetails.getPassword(), new TypeReference<Map<String, String>>(){});

@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackages = {
         "xyz.pplax.pplaxblog.auth.config",
         "xyz.pplax.pplaxblog.auth.service",
+//        "xyz.pplax.pplaxblog.commons.base.handler",
         "xyz.pplax.pplaxblog.commons.config.durid",
         "xyz.pplax.pplaxblog.commons.config.mybatis",
         "xyz.pplax.pplaxblog.xo.service"

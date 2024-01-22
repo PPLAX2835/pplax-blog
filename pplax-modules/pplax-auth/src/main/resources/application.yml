@@ -70,3 +70,5 @@ pplax:
       resource-id: admin-server
       redirect-uri: http://127.0.0.1:8081/callback.html
 # http://localhost:8082/oauth/authorize?client_id=admin&client_secret=admin123456t&response_type=code&redirect_uri=http://127.0.0.1:8081/callback.html
+# http://localhost:8082/oauth/token
+#[{"key":"client_id","value":"admin","equals":true,"description":"","enabled":true},{"key":"client_secret","value":"admin123456","equals":true,"description":"","enabled":true},{"key":"grant_type","value":"password","equals":true,"description":"","enabled":true},{"key":"password","value":"123456","equals":true,"description":"","enabled":true},{"key":"username","value":"lucky","equals":true,"description":"","enabled":true}]

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * 博客表 RestApi
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("${pplax.api.basePath}/user")
 @Api(value="用户RestApi", tags={"UserRestApi"})
 public class UserRestApi {
 

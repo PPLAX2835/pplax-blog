@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2024/1/18 14:37
  */
 @RestController
-@RequestMapping("/api/upload")
+@RequestMapping("${pplax.api.basePath}/upload")
 @Api(value = "文件上传服务相关接口", tags = {"文件上传相关接口"})
 @Slf4j
 public class UploadRestApi {

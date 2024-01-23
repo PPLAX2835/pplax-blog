@@ -22,7 +22,7 @@ import java.util.Map;
  * 管理员表 RestApi
  */
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("${pplax.api.basePath}/admin")
 @Api(value="管理员RestApi",tags={"AdminRestApi"})
 public class AdminRestApi {
 

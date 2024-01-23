@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,9 +14,8 @@ import org.springframework.web.filter.CorsFilter;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableTransactionManagement
-@SpringBootApplication
+@SpringCloudApplication
 @EnableSwagger2
-@EnableDiscoveryClient
 @ComponentScan(basePackages = {
         "xyz.pplax.pplaxblog.commons.base.handler",
         "xyz.pplax.pplaxblog.commons.config.durid",

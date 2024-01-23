@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/link")
+@RequestMapping("${pplax.api.basePath}/link")
 @Api(value="友情链接RestApi", tags={"LinkRestApi"})
 public class LinkRestApi {
 

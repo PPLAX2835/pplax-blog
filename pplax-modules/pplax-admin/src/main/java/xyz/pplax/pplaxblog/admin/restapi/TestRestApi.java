@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.service.BlogService;
@@ -18,7 +20,7 @@ import xyz.pplax.pplaxblog.xo.service.TagService;
  * 测试 RestApi
  */
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("${pplax.api.basePath}/test")
 @Api(value="测试RestApi", tags={"TestRestApi"})
 public class TestRestApi {
 
@@ -41,6 +43,14 @@ public class TestRestApi {
 		log.info(JSON.toJSONString(blogSortDto));
 
 		return "yes";
+	}
+
+	@Value("${pplax.api.basePath}")
+	private String basePath;
+
+	@RequestMapping(value = "/nacosconftest")
+	public String nacosConfTest() {
+		return basePath;
 	}
 
 }

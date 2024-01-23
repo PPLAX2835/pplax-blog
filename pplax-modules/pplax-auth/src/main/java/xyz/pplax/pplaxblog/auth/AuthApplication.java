@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -9,10 +10,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableTransactionManagement
 @SpringBootApplication
 @EnableSwagger2
+@EnableDiscoveryClient
 @ComponentScan(basePackages = {
         "xyz.pplax.pplaxblog.auth.config",
         "xyz.pplax.pplaxblog.auth.service",
-//        "xyz.pplax.pplaxblog.commons.base.handler",
         "xyz.pplax.pplaxblog.commons.config.durid",
         "xyz.pplax.pplaxblog.commons.config.mybatis",
         "xyz.pplax.pplaxblog.xo.service"

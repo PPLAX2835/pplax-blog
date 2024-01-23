@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 712185cc-1239-4192-9cb1-c71d5b242f91
+        group: PPLAX_BLOG
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 712185cc-1239-4192-9cb1-c71d5b242f91
+        username: nacos
+        password: nacos
+        group: PPLAX_BLOG

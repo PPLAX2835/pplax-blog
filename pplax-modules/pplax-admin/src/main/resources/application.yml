@@ -69,7 +69,8 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl     #打印sql日志
 ##logging
 logging:
-  level: warn
+  root:
+    level: warn
 
 # 自定义配置
 pplax:

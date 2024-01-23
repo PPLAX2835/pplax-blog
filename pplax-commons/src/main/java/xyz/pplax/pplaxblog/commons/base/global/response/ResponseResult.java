@@ -21,7 +21,7 @@ public class ResponseResult<T> {
      * @return
      */
     public static <V> ResponseResult<V> success() {
-        return new ResponseResult<>(ResponseCode.SUCCESS.code, ResponseCode.SUCCESS.message);
+        return new ResponseResult<V>(ResponseCode.SUCCESS.code, ResponseCode.SUCCESS.message);
     }
 
     /**
@@ -31,7 +31,7 @@ public class ResponseResult<T> {
      * @return
      */
     public static <V> ResponseResult<V> success(V data) {
-        return new ResponseResult<>(ResponseCode.SUCCESS.code, ResponseCode.SUCCESS.message, data);
+        return new ResponseResult<V>(ResponseCode.SUCCESS.code, ResponseCode.SUCCESS.message, data);
     }
 
     /**
@@ -41,7 +41,7 @@ public class ResponseResult<T> {
      * @return
      */
     public static <V> ResponseResult<V> error(ResponseCode errorInfo) {
-        return new ResponseResult<>(errorInfo.code, errorInfo.message);
+        return new ResponseResult<V>(errorInfo.code, errorInfo.message);
     }
 
     /**
@@ -51,7 +51,7 @@ public class ResponseResult<T> {
      * @return
      */
     public static <V> ResponseResult<V> error(String str) {
-        return new ResponseResult<>(ResponseCode.ERROR.code, str);
+        return new ResponseResult<V>(ResponseCode.ERROR.code, str);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ResponseResult<T> {
      * @return
      */
     public static <V> ResponseResult<V> error(Integer code, String message, V data) {
-        return new ResponseResult<>(code, message, data);
+        return new ResponseResult<V>(code, message, data);
     }
 
     /**
@@ -69,7 +69,7 @@ public class ResponseResult<T> {
      * @return
      */
     public static <V> ResponseResult<V> error(ResponseCode responseCode, V data) {
-        return new ResponseResult<>(responseCode.code, responseCode.message, data);
+        return new ResponseResult<V>(responseCode.code, responseCode.message, data);
     }
 
     public ResponseResult(ResponseCode responseCode, T data) {

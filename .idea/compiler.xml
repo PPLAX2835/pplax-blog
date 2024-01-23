@@ -20,20 +20,18 @@
     <bytecodeTargetLevel target="8">
       <module name="pplax-admin" target="8" />
       <module name="pplax-auth" target="8" />
-      <module name="pplax-base" target="1.8" />
-      <module name="pplax-blog" target="1.8" />
-      <module name="pplax-commons" target="1.8" />
+      <module name="pplax-blog" target="8" />
+      <module name="pplax-commons" target="8" />
       <module name="pplax-file" target="8" />
       <module name="pplax-modules" target="8" />
-      <module name="pplax-utils" target="1.8" />
-      <module name="pplax-web" target="1.8" />
-      <module name="pplax-xo" target="1.8" />
+      <module name="pplax-utils" target="8" />
+      <module name="pplax-web" target="8" />
+      <module name="pplax-xo" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="pplax-admin" options="" />
-      <module name="pplax-base" options="" />
       <module name="pplax-blog" options="" />
       <module name="pplax-commons" options="" />
       <module name="pplax-utils" options="" />

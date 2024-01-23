@@ -2,7 +2,6 @@ package xyz.pplax.pplaxblog.utils;
 /**
  * 对时间的操作的工具类
  */
-import org.apache.log4j.Logger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,8 +11,6 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class DateUtil {
-	
-	public static Logger log = Logger.getLogger(DateUtil.class);
 	
 	public static final String STARTTIME=" 00:00:00";
 	public static final String ENDTIME=" 23:59:59";

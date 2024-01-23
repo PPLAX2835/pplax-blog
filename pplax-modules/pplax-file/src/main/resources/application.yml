@@ -40,7 +40,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
   # 配置文件上传大小限制
-  http:
+  servlet:
     multipart:
       max-file-size: 200MB
       max-request-size: 200MB
@@ -75,7 +75,8 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl     #打印sql日志
 ##logging
 logging:
-  level: warn
+  root:
+    level: warn
 
 
 # 自定义配置

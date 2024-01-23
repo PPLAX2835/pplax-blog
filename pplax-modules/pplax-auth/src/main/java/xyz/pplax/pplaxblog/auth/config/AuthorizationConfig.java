@@ -59,7 +59,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient(clientId)
-                .secret(clientSecret)               // 这里之后要改回密文的
+                .secret(passwordEncoder.encode(clientSecret))               // 这里之后要改回密文的
                 .authorizedGrantTypes(BaseSysConf.PASSWORD)
                 .accessTokenValiditySeconds(3600)
                 .scopes("all")

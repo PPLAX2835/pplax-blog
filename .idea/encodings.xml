@@ -33,6 +33,7 @@
     <file url="file://$PROJECT_DIR$/pplax-base/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-commons/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-commons/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/admin-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/article-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/auth-server-boot/src/main/java" charset="UTF-8" />
@@ -43,6 +44,7 @@
     <file url="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/src/main/java" charset="UTF-8" />
@@ -78,6 +80,7 @@
     <file url="file://$PROJECT_DIR$/pplax-utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-xo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-xo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax_picture/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/admin-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/article-service/src/main/java" charset="UTF-8" />

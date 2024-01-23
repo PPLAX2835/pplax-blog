@@ -214,7 +214,7 @@ public class StringUtils {
 	 */
 	public static List<Long> changeStringToLong(String str, String code) {
 		String[] split = split(str, code);
-		List<Long> lnums = new ArrayList<>();
+		List<Long> lnums = new ArrayList<Long>();
 		for (String s : split) {
 			if (!isEmpty(s)) {
 				long lnum = getLong(s, 0L);
@@ -233,7 +233,7 @@ public class StringUtils {
 	 */
 	public static List<String> changeStringToString(String str, String code) {
 		String[] split = split(str, code);
-		List<String> lnums = new ArrayList<>();
+		List<String> lnums = new ArrayList<String>();
 		for (String s : split) {
 			//long lnum = getLong(s, 0l);
 			lnums.add(s);
@@ -249,7 +249,7 @@ public class StringUtils {
 	 */
 	public static List<Integer> changeStringToInteger(String str, String code) {
 		String[] split = split(str, code);
-		List<Integer> inums = new ArrayList<>();
+		List<Integer> inums = new ArrayList<Integer>();
 		for (String s : split) {
 			int inum = getInt(s, 0);
 			inums.add(inum);

@@ -53,9 +53,9 @@ public class GlobalExceptionHandler {
         if (e instanceof BindException) {
             BindingResult bindingResult = ((BindException) e).getBindingResult();
             if (null != bindingResult && bindingResult.hasErrors()) {
-                List<Object> jsonList = new ArrayList<>();
+                List<Object> jsonList = new ArrayList<Object>();
                 bindingResult.getFieldErrors().stream().forEach(fieldError -> {
-                    Map<String, Object> jsonObject = new HashMap<>(2);
+                    Map<String, Object> jsonObject = new HashMap<String, Object>(2);
                     jsonObject.put("name", fieldError.getField());
                     jsonObject.put("msg", fieldError.getDefaultMessage());
                     jsonList.add(jsonObject);

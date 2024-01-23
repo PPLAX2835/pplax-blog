@@ -18,7 +18,7 @@ import xyz.pplax.pplaxblog.xo.service.TagService;
  * 测试 RestApi
  */
 @RestController
-@RequestMapping("${pplax.api.base-path}/test")
+@RequestMapping("/api/test")
 @Api(value="测试RestApi", tags={"TestRestApi"})
 public class TestRestApi {
 

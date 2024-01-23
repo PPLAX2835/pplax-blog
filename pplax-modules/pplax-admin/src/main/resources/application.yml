@@ -71,8 +71,3 @@ mybatis-plus:
 logging:
   root:
     level: warn
-
-# 自定义配置
-pplax:
-  api:
-    base-path: /api   # 统一父级请求路径

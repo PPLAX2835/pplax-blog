@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2024/1/18 14:37
  */
 @RestController
-@RequestMapping("${pplax.api.base-path}/storage")
+@RequestMapping("/api/storage")
 @Api(value = "文件存储服务相关接口", tags = {"文件存储服务相关接口"})
 public class StorageRestApi {
     private static final Logger log = LogManager.getLogger(StorageRestApi.class);

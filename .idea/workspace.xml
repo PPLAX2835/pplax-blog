@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/FileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/FileApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,14 +220,7 @@
       <workItem from="1705714012628" duration="1214000" />
       <workItem from="1705718658279" duration="6569000" />
       <workItem from="1705802036587" duration="17504000" />
-      <workItem from="1705977756632" duration="14420000" />
-    </task>
-    <task id="LOCAL-00169" summary="新增图片相关数据库，调整项目">
-      <created>1701046798964</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1701046798964</updated>
+      <workItem from="1705977756632" duration="15022000" />
     </task>
     <task id="LOCAL-00170" summary="调整数据库表，调整配置类">
       <created>1701049448082</created>
@@ -571,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705999221003</updated>
     </task>
-    <option name="localTasksCounter" value="218" />
+    <task id="LOCAL-00218" summary="配置挪到nacos中了">
+      <created>1706000935179</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1706000935180</updated>
+    </task>
+    <option name="localTasksCounter" value="219" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="删除两个表" />
     <MESSAGE value="博客分类表调整；增加查找、根据点击量排序、批量物理和逻辑删除功能。后续把公共的mapper类定义一些公共方法" />
     <MESSAGE value="简单调整" />
     <MESSAGE value="添加一些基本类" />
@@ -631,7 +624,8 @@
     <MESSAGE value="整合nacos" />
     <MESSAGE value="修改接口，不用配置的方案了，直接在接口写就好" />
     <MESSAGE value="又改回来了 （流汗黄豆）" />
-    <option name="LAST_COMMIT_MESSAGE" value="又改回来了 （流汗黄豆）" />
+    <MESSAGE value="配置挪到nacos中了" />
+    <option name="LAST_COMMIT_MESSAGE" value="配置挪到nacos中了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

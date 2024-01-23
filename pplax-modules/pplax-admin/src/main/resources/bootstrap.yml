@@ -11,5 +11,10 @@ spring:
         username: nacos
         password: nacos
         shared-configs:
-          - data-id: pplax-config.yaml
+          - data-id: pplax-config.yaml                    # 自定义配置
+            group: PPLAX_BLOG
+        extension-configs:
+          - data-id: database-config.yaml                 # 数据库的相关配置
+            group: PPLAX_BLOG
+          - data-id: mybatis-plus-config.yaml             # mybatis-plus的相关配置
             group: PPLAX_BLOG

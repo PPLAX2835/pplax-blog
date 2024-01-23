@@ -42,9 +42,6 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Value("${pplax.sso.admin.resource-id}")
     private String resourceId;
 
-    @Value("${pplax.sso.admin.redirect-uri}")
-    private String redirectUri;
-
     /**
      * redis token 方式
      */
@@ -63,8 +60,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes(BaseSysConf.PASSWORD)
                 .accessTokenValiditySeconds(3600)
                 .scopes("all")
-                .resourceIds(resourceId)
-                .redirectUris(redirectUri);
+                .resourceIds(resourceId);
     }
 
     @Override

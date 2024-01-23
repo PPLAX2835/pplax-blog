@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.base.jedis;
+package xyz.pplax.pplaxblog.utils.jedis;
 
 import redis.clients.jedis.JedisCluster;
 

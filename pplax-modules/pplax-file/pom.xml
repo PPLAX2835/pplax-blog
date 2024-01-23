@@ -32,6 +32,24 @@
             <artifactId>pplax-commons</artifactId>
         </dependency>
 
+        <!-- 引入pplax-utils相关 -->
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-utils</artifactId>
+        </dependency>
+
+        <!-- minio -->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
+
+        <!-- commons-io -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
         <!-- jdbc -->
         <dependency>
             <groupId>mysql</groupId>

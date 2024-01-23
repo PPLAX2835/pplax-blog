@@ -33,6 +33,7 @@
         <fastjson.version>1.2.73</fastjson.version>
         <jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
         <velocity-engine-core.version>2.0</velocity-engine-core.version>
+        <commons-io.version>1.3.2</commons-io.version>
         <mail.version>1.4</mail.version>
         <json-lib.version>2.4</json-lib.version>
         <jjwt.version>0.7.0</jjwt.version>
@@ -129,6 +130,13 @@
                 <version>${mail.version}</version>
             </dependency>
 
+            <!-- commons-io -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
@@ -168,58 +176,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-        </dependency>
-
-        <!-- Redis客户端 -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-
-        <!--solr客户端solrj的依赖 -->
-        <dependency>
-            <groupId>org.apache.solr</groupId>
-            <artifactId>solr-solrj</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-        </dependency>
-
-        <!-- sfl4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <!-- spring-security 和 jwt -->
-        <!--  <dependency>
-             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency> -->
+<!--        &lt;!&ndash;solr客户端solrj的依赖 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.solr</groupId>-->
+<!--            <artifactId>solr-solrj</artifactId>-->
+<!--        </dependency>-->
 
     </dependencies>
 

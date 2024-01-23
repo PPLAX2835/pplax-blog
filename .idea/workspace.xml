@@ -5,17 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/AccountIsNotRegisteredException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_1_3_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_solr_solr_solrj_5_5_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_zookeeper_zookeeper_3_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_woodstox_stax2_api_3_1_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_woodstox_woodstox_core_asl_4_4_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_noggit_noggit_0_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/exception/EmailUnactivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/EmailUnactivatedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/exception/MobileUnactivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/MobileUnactivatedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/exception/UsernameNullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/UsernameNullException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/global/BaseMessageConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/global/BaseMessageConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/AuthApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-blog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/jedis/JedisClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/src/main/java/xyz/pplax/pplaxblog/utils/jedis/JedisClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/jedis/JedisClientCluster.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/src/main/java/xyz/pplax/pplaxblog/utils/jedis/JedisClientCluster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/jedis/JedisClientPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/src/main/java/xyz/pplax/pplaxblog/utils/jedis/JedisClientPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-modules.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-modules.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-utils/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-web/pplax-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-web/pplax-web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

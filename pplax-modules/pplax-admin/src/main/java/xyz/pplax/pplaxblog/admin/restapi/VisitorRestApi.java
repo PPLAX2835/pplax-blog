@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  */
 @RestController
-@RequestMapping("${pplax.api.basePath}/visitor")
+@RequestMapping("${pplax.api.basePath}/admin/visitor")
 public class VisitorRestApi {
 
 }

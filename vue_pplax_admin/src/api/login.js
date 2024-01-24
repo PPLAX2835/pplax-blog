@@ -2,7 +2,7 @@ import service from '@/utils/request'
 
 export function login(param) {
   return service({
-    url: '/admin/oauth/token',
+    url: '/oauth/token',
     method: 'post',
     data: param
   })
@@ -10,7 +10,7 @@ export function login(param) {
 
 export function getInfo(token) {
   return service({
-    url: '/admin/oauth/info',
+    url: '/oauth/info',
     method: 'get',
     params: { token }
   })
@@ -18,7 +18,7 @@ export function getInfo(token) {
 
 export function logout() {
   return service({
-    url: '/admin/oauth/logout',
+    url: '/oauth/logout',
     method: 'post'
   })
 }

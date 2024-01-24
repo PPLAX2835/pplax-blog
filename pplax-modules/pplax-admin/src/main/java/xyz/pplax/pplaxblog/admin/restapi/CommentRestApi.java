@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  */
 @RestController
-@RequestMapping("${pplax.api.basePath}/comment")
+@RequestMapping("${pplax.api.basePath}/admin/comment")
 public class CommentRestApi {
 
 }

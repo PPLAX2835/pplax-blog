@@ -15,7 +15,7 @@ import xyz.pplax.pplaxblog.xo.service.BlogSortService;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("${pplax.api.basePath}/blogSort")
+@RequestMapping("${pplax.api.basePath}/admin/blogSort")
 @Api(value="博客分类RestApi", tags={"BlogSortRestApi"})
 public class BlogSortRestApi {
 

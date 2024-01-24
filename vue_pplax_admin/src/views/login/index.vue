@@ -34,7 +34,7 @@
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
-import { setToken } from '@/utils/auth'
+import { setToken, getToken } from '@/utils/auth'
 
 export default {
   name: 'Login',
@@ -90,7 +90,9 @@ export default {
           this.$store.dispatch('Login', this.loginForm).then(response => {
             
             // 存token
-            setToken(response.data.access_token)
+            setToken('bearer' + response.data.access_token)
+
+            console.log(getToken());
 
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })

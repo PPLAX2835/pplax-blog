@@ -29,7 +29,7 @@ import java.util.List;
  * 反馈表 RestApi
  */
 @RestController
-@RequestMapping("${pplax.api.basePath}/feedback")
+@RequestMapping("${pplax.api.basePath}/admin/feedback")
 public class FeedbackRestApi {
 
     @Autowired

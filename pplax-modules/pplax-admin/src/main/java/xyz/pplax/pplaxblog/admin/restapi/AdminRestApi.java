@@ -2,20 +2,18 @@ package xyz.pplax.pplaxblog.admin.restapi;
 
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.admin.dto.LoginDto;
 import xyz.pplax.pplaxblog.admin.feign.auth.AuthFeignClient;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
+import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
 import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
-import xyz.pplax.pplaxblog.utils.ResultUtil;
-import xyz.pplax.pplaxblog.utils.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,39 +51,25 @@ public class AdminRestApi {
 	@Autowired
 	AuthFeignClient authFeignClient;
 
+	@Value("${pplax.sso.admin.client-id}")
+	private String clientId;
+
+	@Value("${pplax.sso.admin.client-secret}")
+	private String clientSecret;
+
 	@ApiOperation(value="获取token", notes="获取token")
 	@PostMapping("/oauth/token")
-	public String getToken(
-			@RequestParam("client_id") String client_id,
-			@RequestParam("client_secret") String client_secret,
-			@RequestParam("grant_type") String grant_type,
-			@RequestParam("username") String username,
-			@RequestParam("password") String password
-	) {
-		return JSON.toJSONString(ResponseResult.success(JSON.parseObject(authFeignClient.getToken(client_id, client_secret, grant_type, username, password))));
-	}
-
-	@ApiOperation(value="用户登录", notes="用户登录")
-	@PostMapping("/login")
-	public String login(HttpServletRequest request,
-						@ApiParam(name = "username", value = "用户名", required = true) @RequestBody LoginDto loginDto) {
-
-		String username = loginDto.getUsername();
-		String password = loginDto.getPassword();
-
-		if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
-			return ResultUtil.result(SysConf.ERROR, "账号或密码不能为空");
-		}
-		if(username.equals("admin") && password.equals("admin")) {
-			Map<String, Object> result = new HashMap<>();
-			result.put(SysConf.TOKEN, "admin");
-			return JSON.toJSONString(ResponseResult.success(result));
-		}
-		return JSON.toJSONString(ResponseResult.error("error"));
+	public String getToken(@RequestBody LoginDto loginDto) {
+		return JSON.toJSONString(ResponseResult.success(JSON.parseObject(authFeignClient.getToken(
+				clientId,
+				clientSecret,
+				BaseSysConf.PASSWORD,
+				loginDto.getUsername(),
+				loginDto.getPassword()))));
 	}
 
 	@ApiOperation(value = "用户信息", notes = "用户信息", response = String.class)
-	@GetMapping(value = "/info")
+	@GetMapping(value = "/oauth/info")
 	public String info(@ApiParam(name = "token", value = "token令牌",required = false) @RequestParam(name = "token", required = false) String token) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(SysConf.TOKEN, "admin");
@@ -97,7 +81,7 @@ public class AdminRestApi {
 	}
 
 	@ApiOperation(value = "退出登录", notes = "退出登录", response = String.class)
-	@PostMapping(value = "/logout")
+	@PostMapping(value = "/oauth/logout")
 	public String logout(@ApiParam(name = "token", value = "token令牌",required = false) @RequestParam(name = "token", required = false) String token) {
 		return JSON.toJSONString(ResponseResult.success());
 	}

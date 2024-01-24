@@ -34,6 +34,7 @@
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
+import { setToken } from '@/utils/auth'
 
 export default {
   name: 'Login',
@@ -54,8 +55,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: 'admin'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -87,6 +88,10 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(response => {
+            
+            // 存token
+            setToken(response.data.access_token)
+
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {

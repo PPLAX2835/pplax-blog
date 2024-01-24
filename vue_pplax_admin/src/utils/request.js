@@ -14,7 +14,8 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['X-Token'] = getToken()                                      // 让每个请求携带自定义token
+      console.log(getToken())
+      config.headers['Authorization'] = getToken()                                      // 让每个请求携带自定义token
     } 
 
     if (config.method === 'post' || config.method === 'put') {

@@ -40,7 +40,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     private String clientSecret;
 
     @Value("${pplax.sso.admin.resource-id}")
-    private String resourceId;
+    private String adminResourceId;
 
     /**
      * redis token 方式
@@ -55,12 +55,13 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
+                // admin服务的配置
                 .withClient(clientId)
-                .secret(passwordEncoder.encode(clientSecret))               // 这里之后要改回密文的
+                .secret(passwordEncoder.encode(clientSecret))
                 .authorizedGrantTypes(BaseSysConf.PASSWORD)
                 .accessTokenValiditySeconds(3600)
                 .scopes("all")
-                .resourceIds(resourceId);
+                .resourceIds(adminResourceId);
     }
 
     @Override

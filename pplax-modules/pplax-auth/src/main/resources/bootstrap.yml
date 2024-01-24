@@ -18,3 +18,5 @@ spring:
             group: PPLAX_BLOG
           - data-id: mybatis-plus-config.yaml             # mybatis-plus的相关配置
             group: PPLAX_BLOG
+          - data-id: redis-config.yaml            # redis的相关配置
+            group: PPLAX_BLOG

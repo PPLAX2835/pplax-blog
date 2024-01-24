@@ -8,7 +8,7 @@ import xyz.pplax.pplaxblog.file.components.MinioUtil;
 import java.util.List;
 
 @RestController
-@RequestMapping("${pplax.api.basePath}/123")
+@RequestMapping("${pplax.api.basePath}/fileTest")
 public class TestController {
     @Autowired
     private MinioUtil minioUtil;

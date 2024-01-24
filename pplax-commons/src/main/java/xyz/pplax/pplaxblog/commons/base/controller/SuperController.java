@@ -1,10 +1,10 @@
 package xyz.pplax.pplaxblog.commons.base.controller;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import xyz.pplax.pplaxblog.commons.base.global.response.ResponseCode;
+import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Controller基类
@@ -12,24 +12,64 @@ import java.util.Map;
 public class SuperController {
 
 	/**
-	 * 将map转换成json字符串
-	 * @param map
+	 * 将对象转为json串
+	 * @param object
 	 * @return
 	 */
-	public String toJson(Map<String, Object> map) {
-		return JSONObject.fromObject(map).toString();
-	}
-
-	public <T> String toJson(List<T> list) {
-		return JSONObject.fromObject(list).toString();
+	public String toJson(Object object) {
+		return JSON.toJSONString(object);
 	}
 
 	/**
-	 * 获取一个map
+	 * 将json串转为map对象
 	 * @return
 	 */
-	public static Map<String, Object> getMap() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		return map;
+	public HashMap toMap(String json) {
+		return JSON.parseObject(json, HashMap.class);
 	}
+
+	/**
+	 * 自定义响应
+	 * @param responseCode
+	 * @param data
+	 * @return
+	 */
+	public String response(ResponseCode responseCode, Object data) {
+		return JSON.toJSONString(new ResponseResult<>(responseCode, data));
+	}
+
+	/**
+	 * 自定义响应
+	 * @param responseCode
+	 * @param message
+	 * @return
+	 */
+	public String response(ResponseCode responseCode, String message) {
+		return JSON.toJSONString(new ResponseResult<>(responseCode, message));
+	}
+
+	/**
+	 * 返回一个成功响应
+	 * @return
+	 */
+	public String success() {
+		return JSON.toJSONString(ResponseResult.success());
+	}
+
+	/**
+	 * 返回一个成功响应且携带数据
+	 * @return
+	 */
+	public String success(Object object) {
+		return JSON.toJSONString(ResponseResult.success(object));
+	}
+
+	/**
+	 * 返回一个失败响应，携带错误信息
+	 * @return
+	 */
+	public String error(String message) {
+		return JSON.toJSONString(ResponseResult.error(message));
+	}
+
 }

@@ -15,4 +15,8 @@ public class BaseRegexConf {
      */
     public static final String EMAIL_REGEX = "[a-zA-Z0-9_]+@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+";
 
+    /**
+     * json正则
+     */
+    public static final String JSON_REGEX = "\\{\\s*\"(?:[^\"\\\\]|\\\\.)*\"\\s*:\\s*(?:\"(?:[^\"\\\\]|\\\\.)*\"|(?:-?\\d+(?:\\.\\d*)?(?:[eE][+-]?\\d+)?|true|false|null)\\s*)(?:,\\s*\"(?:[^\"\\\\]|\\\\.)*\"\\s*:\\s*(?:\"(?:[^\"\\\\]|\\\\.)*\"|(?:-?\\d+(?:\\.\\d*)?(?:[eE][+-]?\\d+)?|true|false|null)\\s*))*\\s*\\}";
 }

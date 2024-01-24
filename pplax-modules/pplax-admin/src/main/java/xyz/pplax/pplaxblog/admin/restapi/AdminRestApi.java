@@ -2,8 +2,11 @@ package xyz.pplax.pplaxblog.admin.restapi;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.dto.LoginDto;
+import xyz.pplax.pplaxblog.admin.feign.auth.AuthFeignClient;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
 import xyz.pplax.pplaxblog.utils.ResultUtil;
@@ -46,6 +49,21 @@ public class AdminRestApi {
 //		log.info(list.toString());
 //		return ResultUtil.result(SysConf.SUCCESS, list);
 //	}
+
+	@Autowired
+	AuthFeignClient authFeignClient;
+
+	@ApiOperation(value="获取token", notes="获取token")
+	@PostMapping("/oauth/token")
+	public String getToken(
+			@RequestParam("client_id") String client_id,
+			@RequestParam("client_secret") String client_secret,
+			@RequestParam("grant_type") String grant_type,
+			@RequestParam("username") String username,
+			@RequestParam("password") String password
+	) {
+		return JSON.toJSONString(ResponseResult.success(JSON.parseObject(authFeignClient.getToken(client_id, client_secret, grant_type, username, password))));
+	}
 
 	@ApiOperation(value="用户登录", notes="用户登录")
 	@PostMapping("/login")

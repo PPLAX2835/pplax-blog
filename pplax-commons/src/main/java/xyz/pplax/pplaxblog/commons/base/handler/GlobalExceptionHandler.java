@@ -1,19 +1,24 @@
 package xyz.pplax.pplaxblog.commons.base.handler;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.api.IErrorCode;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.enums.ApiErrorCode;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import xyz.pplax.pplaxblog.commons.base.global.BaseRegexConf;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -63,6 +68,26 @@ public class GlobalExceptionHandler {
                 return R.restResult(jsonList, ApiErrorCode.FAILED);
             }
         }
+
+        /*
+         * 登录认证异常
+         */
+        if (e instanceof FeignException) {
+            // 先获取异常信息中包含的json
+            String message = e.getMessage();
+            String regex = BaseRegexConf.JSON_REGEX;
+
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(message);
+
+            if (matcher.find()) {
+
+                return R.restResult(matcher.group(0), ApiErrorCode.FAILED);
+            } else {
+                return R.failed(ApiErrorCode.FAILED);
+            }
+        }
+
 
         /**
          * 系统内部异常，打印异常栈

@@ -92,8 +92,6 @@ export default {
             // 存token
             setToken('bearer' + response.data.access_token)
 
-            console.log(getToken());
-
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {

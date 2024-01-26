@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.admin.feign.file.FileFeignClient;
 import xyz.pplax.pplaxblog.commons.base.global.BaseRegexConf;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.service.BlogService;
@@ -76,6 +78,21 @@ public class TestRestApi {
 		} else {
 			return "匹配失败";
 		}
+	}
+
+
+	@Autowired
+	private FileFeignClient fileFeignClient;
+
+	@RequestMapping(value = "/fileUploadFeignTest")
+	public String upload(@RequestParam("file") MultipartFile[] files) throws Exception {
+
+		for (MultipartFile multipartFile : files) {
+			log.error(multipartFile.getOriginalFilename());
+		}
+
+		fileFeignClient.upload(files);
+		return fileFeignClient.upload(files);
 	}
 }
 

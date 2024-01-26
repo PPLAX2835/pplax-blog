@@ -19,9 +19,12 @@ public class TestController {
     public String upload(@RequestParam("file") MultipartFile[] files) throws Exception {
 
         for (MultipartFile multipartFile : files) {
+
+            System.out.println(multipartFile.getOriginalFilename());
+
             minioUtils.putObject("pplax-blog", multipartFile, "/files/" + multipartFile.getOriginalFilename());
         }
 
-        return "";
+        return "123";
     }
 }

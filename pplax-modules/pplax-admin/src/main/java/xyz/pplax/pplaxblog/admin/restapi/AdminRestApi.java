@@ -49,7 +49,7 @@ public class AdminRestApi {
 //	}
 
 	@Autowired
-	AuthFeignClient authFeignClient;
+	private AuthFeignClient authFeignClient;
 
 	@Value("${pplax.sso.admin.client-id}")
 	private String clientId;

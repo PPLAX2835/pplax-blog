@@ -1,10 +1,10 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
+import org.springframework.stereotype.Service;
+import xyz.pplax.pplaxblog.commons.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.entity.Visitor;
 import xyz.pplax.pplaxblog.xo.mapper.VisitorMapper;
 import xyz.pplax.pplaxblog.xo.service.VisitorService;
-import xyz.pplax.pplaxblog.commons.base.serviceImpl.SuperServiceImpl;
-import org.springframework.stereotype.Service;
 
 /**
  * 博主表 服务实现类

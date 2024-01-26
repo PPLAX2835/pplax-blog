@@ -295,15 +295,10 @@ CREATE TABLE `t_user` (
   `username` varchar(255) NOT NULL COMMENT '用户名',
   `password` varchar(255) NOT NULL COMMENT '密码',
   `salt` varchar(36) NOT NULL COMMENT '加密盐',
-  `nickname` varchar(32) NOT NULL COMMENT '昵称',
-  `gender` tinyint unsigned DEFAULT NULL COMMENT '性别(1:男2:女)',
-  `avatar_picture_uid` varchar(255) DEFAULT NULL COMMENT '个人头像 图片uid',
   `email` varchar(255) NOT NULL COMMENT '邮箱',
   `is_email_activated` tinyint(1) DEFAULT '1' COMMENT '邮箱是否激活（0:不是 1：是）',
-  `birthday` date DEFAULT NULL COMMENT '出生年月日',
   `mobile` varchar(50) DEFAULT NULL COMMENT '手机',
   `is_mobile_activated` tinyint(1) DEFAULT '1' COMMENT '手机是否激活（0:不是 1：是）',
-  `summary` varchar(200) DEFAULT NULL COMMENT '自我简介最多150字',
   `login_count` int unsigned DEFAULT '0' COMMENT '登录次数',
   `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
   `last_login_ip` varchar(50) DEFAULT '127.0.0.1' COMMENT '最后登录IP',
@@ -320,8 +315,40 @@ CREATE TABLE `t_user` (
 
 LOCK TABLES `t_user` WRITE;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` (`uid`, `role_uid`, `username`, `password`, `salt`, `nickname`, `gender`, `avatar_picture_uid`, `email`, `is_email_activated`, `birthday`, `mobile`, `is_mobile_activated`, `summary`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`) VALUES ('103e0baa6d964e3bbb3e3deda94fc0e3','ffca2113713df757e0293c6dfd3b4e32','testUser','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','测试用户',NULL,NULL,'123456@qq.com',NULL,NULL,'13712341234',NULL,NULL,NULL,NULL,NULL,1,'2024-01-21 03:29:42','2024-01-21 05:32:39'),('a2fc23c7668a4b6386b75584d72498a5','ffca2113713df757e0293c6dfd3b4e32','lucky','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','李康勇',1,'测试头像1','xzx19950627@qq.com',1,'2018-09-20','13712341235',1,'测试表情',0,'2018-09-20 14:49:00','127.0.0.1',1,'2023-11-30 07:26:36','2024-01-21 05:39:18'),('ee515eca338c4d358baea8d2c9930a45','ffca2113713df757e0293c6dfd3b4e32','yuanhulong','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','怨虎龙',1,'测试头像3','xzx19950629@qq.com',1,'2018-09-20','13712341236',1,'测试表情',0,'2018-09-20 14:49:00','127.0.0.1',1,'2023-11-30 07:26:36','2024-01-21 05:39:18');
+INSERT INTO `t_user` (`uid`, `role_uid`, `username`, `password`, `salt`, `email`, `is_email_activated`, `mobile`, `is_mobile_activated`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`) VALUES ('103e0baa6d964e3bbb3e3deda94fc0e3','ffca2113713df757e0293c6dfd3b4e32','lucky','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123456@qq.com',1,'18819439264',1,0,NULL,'127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('a2fc23c7668a4b6386b75584d72498a5','ffca2113713df757e0293c6dfd3b4e32','testuser','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123466@qq.com',1,'18819439265',1,0,NULL,'127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('ee515eca338c4d358baea8d2c9930a45','ffca2113713df757e0293c6dfd3b4e32','123321','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123476@qq.com',1,'18819439266',1,0,NULL,'127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08');
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_user_info`
+--
+
+DROP TABLE IF EXISTS `t_user_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_user_info` (
+  `uid` varchar(32) NOT NULL COMMENT '唯一uid',
+  `user_uid` varchar(32) DEFAULT NULL COMMENT '用户uid',
+  `nickname` varchar(32) NOT NULL COMMENT '昵称',
+  `gender` tinyint unsigned DEFAULT NULL COMMENT '性别(1:男2:女)',
+  `avatar_picture_uid` varchar(255) DEFAULT NULL COMMENT '个人头像 图片uid',
+  `birthday` date DEFAULT NULL COMMENT '出生年月日',
+  `summary` varchar(200) DEFAULT NULL COMMENT '自我简介最多150字',
+  `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='用户信息表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_user_info`
+--
+
+LOCK TABLES `t_user_info` WRITE;
+/*!40000 ALTER TABLE `t_user_info` DISABLE KEYS */;
+INSERT INTO `t_user_info` (`uid`, `user_uid`, `nickname`, `gender`, `avatar_picture_uid`, `birthday`, `summary`, `status`, `create_time`, `update_time`) VALUES ('A4A7B8FBB8E9623FA72556F13A97ED5F','103e0baa6d964e3bbb3e3deda94fc0e3','测试用户',NULL,NULL,NULL,NULL,1,'2024-01-26 03:32:47','2024-01-26 03:32:47'),('A7C9AACDC396292E3825639379041442','a2fc23c7668a4b6386b75584d72498a5','李康勇',1,'测试头像1','2018-09-20','测试表情',1,'2024-01-26 03:32:47','2024-01-26 03:32:47'),('D218CD2BB34F0A91565390458A20E871','ee515eca338c4d358baea8d2c9930a45','怨虎龙',1,'测试头像3','2018-09-20','测试表情',1,'2024-01-26 03:32:47','2024-01-26 03:32:47');
+/*!40000 ALTER TABLE `t_user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -363,4 +390,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-21 14:20:50
+-- Dump completed on 2024-01-26 13:06:15

@@ -3,9 +3,10 @@ package xyz.pplax.pplaxblog.xo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import java.util.Date;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.commons.base.entity.SuperEntity;
+
+import java.util.Date;
 
 /**
  * @description 用户表
@@ -40,21 +41,6 @@ public class User extends SuperEntity<User> {
     private String salt;
 
     /**
-     * 昵称
-     */
-    private String nickname;
-
-    /**
-     * 性别(1:男2:女)
-     */
-    private Integer gender;
-
-    /**
-     * 个人头像 图片uid
-     */
-    private String avatarPictureUid;
-
-    /**
      * 邮箱
      */
     private String email;
@@ -65,11 +51,6 @@ public class User extends SuperEntity<User> {
     private Boolean isEmailActivated;
 
     /**
-     * 出生年月日
-     */
-    private Date birthday;
-
-    /**
      * 手机
      */
     private String mobile;
@@ -78,11 +59,6 @@ public class User extends SuperEntity<User> {
      * 手机是否激活（0:不是 1：是）
      */
     private Boolean isMobileActivated;
-
-    /**
-     * 自我简介最多150字
-     */
-    private String summary;
 
     /**
      * 登录次数

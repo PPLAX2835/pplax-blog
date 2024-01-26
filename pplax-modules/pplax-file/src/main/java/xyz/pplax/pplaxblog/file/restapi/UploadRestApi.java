@@ -4,6 +4,7 @@ import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,19 @@ import java.util.List;
 @Api(value = "文件上传服务相关接口", tags = {"文件上传相关接口"})
 @Slf4j
 public class UploadRestApi {
+
+//    @ApiOperation(value = "头像上传", notes = "头像上传")
+//    @PostMapping(value = "/avatar")
+//    public String cropperPicture(@RequestParam("file") MultipartFile file) {
+//
+//        FileStorage fileStorage = new FileStorage();
+//        fileStorage.setFileName(file.getOriginalFilename());
+//        fileStorage.set
+//
+//        List<MultipartFile> multipartFileList = new ArrayList<>();
+//        multipartFileList.add(file);
+//        return fileService.cropperPicture(multipartFileList);
+//    }
 
 
 //    @ApiOperation(value = "截图上传", notes = "截图上传")

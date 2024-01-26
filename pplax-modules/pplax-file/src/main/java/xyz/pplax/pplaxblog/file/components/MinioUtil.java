@@ -3,7 +3,10 @@ package xyz.pplax.pplaxblog.file.components;
 import io.minio.*;
 import io.minio.messages.DeleteError;
 import io.minio.messages.DeleteObject;
+import io.minio.messages.Item;
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -30,10 +33,13 @@ import java.util.stream.Collectors;
  */
 @Component
 public class MinioUtil {
+
+	private static Logger log = LogManager.getLogger(MinioUtil.class);
+
     @Autowired
     private MinioClient minioClient;
 
-    @Value("${pplax.minio.bucketName}")
+    @Value("${pplax.storage.minio.bucketName}")
     private String bucketName;
     /**
      * description: 判断bucket是否存在，不存在则创建
@@ -84,14 +90,20 @@ public class MinioUtil {
         }
         return true;
     }
-    /**
-     * description: 上传文件
-     *
-     * @param multipartFile
-     * @return: java.lang.String
 
+    /**
+     * 在桶的根目录上传文件
+     * @param multipartFile
+     * @return
      */
     public List<String> upload(MultipartFile[] multipartFile) {
+        return upload("", multipartFile);
+    }
+
+    /**
+     * 指定目录 上传文件
+     */
+    public List<String> upload(String path, MultipartFile[] multipartFile) {
         List<String> names = new ArrayList<>(multipartFile.length);
         for (MultipartFile file : multipartFile) {
             String fileName = file.getOriginalFilename();
@@ -106,7 +118,7 @@ public class MinioUtil {
                 in = file.getInputStream();
                 minioClient.putObject(PutObjectArgs.builder()
                         .bucket(bucketName)
-                        .object(fileName)
+                        .object(path + fileName)
                         .stream(in, in.available(), -1)
                         .contentType(file.getContentType())
                         .build()
@@ -180,21 +192,21 @@ public class MinioUtil {
      * @return 存储bucket内文件对象信息
      */
     public List<FileStorage> listObjects(String bucketName) {
-//        Iterable<Result<Item>> results = minioClient.listObjects(
-//                ListObjectsArgs.builder().bucket(bucketName).build());
+        Iterable<Result<Item>> results = minioClient.listObjects(
+                ListObjectsArgs.builder().bucket(bucketName).build());
         List<FileStorage> objectItems = new ArrayList<>();
-//        try {
-//            for (Result<Item> result : results) {
-//                Item item = result.get();
-//                FileStorage objectItem = new FileStorage();
-//                objectItem.setFileName(item.objectName());
-//                objectItem.setFileSize(item.fi());
-//                objectItems.add(objectItem);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
+        try {
+            for (Result<Item> result : results) {
+                Item item = result.get();
+                FileStorage objectItem = new FileStorage();
+                objectItem.setFileName(item.objectName());
+                objectItem.setFileSize(item.size());
+                objectItems.add(objectItem);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
         return objectItems;
     }
 

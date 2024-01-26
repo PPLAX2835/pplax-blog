@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.file.restapi;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,13 +17,14 @@ public class TestController {
     @PostMapping("/upload")
     public Object upload(@RequestParam("file") MultipartFile[] files) {
 
-        List<String> upload = minioUtil.upload(files);
+        List<String> upload = minioUtil.upload("/111/222/abc", files);
 
         return upload.get(0);
     }
 
     @GetMapping("/test")
     public String test() {
-        return "test";
+
+        return JSON.toJSONString(minioUtil.listObjects("pplax-blog"));
     }
 }

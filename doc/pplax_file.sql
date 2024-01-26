@@ -28,7 +28,7 @@ CREATE TABLE `t_file` (
   `file_name` varchar(255) DEFAULT NULL COMMENT '文件名',
   `extend_name` varchar(255) DEFAULT NULL COMMENT '文件扩展名',
   `file_path` varchar(255) DEFAULT NULL COMMENT '文件地址',
-  `file_size` int DEFAULT '0' COMMENT '文件大小',
+  `file_size` bigint DEFAULT '0' COMMENT '文件大小',
   `is_directory` int NOT NULL COMMENT '是否是目录',
   `storage_mode` varchar(255) DEFAULT 'LOCAL_STORAGE' COMMENT '文件存储的模式，(七牛云、Minio、本地、阿里云OSS什么的)',
   `file_url` varchar(255) DEFAULT NULL COMMENT '文件地址',

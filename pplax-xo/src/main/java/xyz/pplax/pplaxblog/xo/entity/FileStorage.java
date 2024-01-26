@@ -52,7 +52,7 @@ public class FileStorage extends SuperEntity<FileStorage> {
      * 文件大小
      * </pre>
      */
-    private Integer	fileSize;
+    private Long fileSize;
 
     /**
      * <pre>

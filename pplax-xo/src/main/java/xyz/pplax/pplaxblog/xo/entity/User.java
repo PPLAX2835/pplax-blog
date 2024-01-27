@@ -26,6 +26,11 @@ public class User extends SuperEntity<User> {
     private String roleUid;
 
     /**
+     * 用户信息uid
+     */
+    private String userInfoUid;
+
+    /**
      * 用户名
      */
     private String username;
@@ -79,6 +84,9 @@ public class User extends SuperEntity<User> {
 
     @TableField(exist = false)
     private Role role; // 角色
+
+    @TableField(exist = false)
+    private UserInfo userInfo; // 用户
 
     /**
      * 移除敏感数据

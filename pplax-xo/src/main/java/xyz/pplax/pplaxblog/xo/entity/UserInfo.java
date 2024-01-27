@@ -21,11 +21,6 @@ public class UserInfo extends SuperEntity<UserInfo> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户uid
-     */
-    private String userUid;
-
-    /**
      * 昵称
      */
     private String nickname;
@@ -51,8 +46,5 @@ public class UserInfo extends SuperEntity<UserInfo> {
     private String summary;
 
     public UserInfo() {}
-
-    @TableField(exist = false)
-    private User user; // 用户
 
 }

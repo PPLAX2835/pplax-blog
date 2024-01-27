@@ -34,10 +34,10 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     private TokenStore redisTokenStore;
 
     @Value("${pplax.sso.admin.client-id}")
-    private String clientId;
+    private String adminClientId;
 
     @Value("${pplax.sso.admin.client-secret}")
-    private String clientSecret;
+    private String adminClientSecret;
 
     @Value("${pplax.sso.admin.resource-id}")
     private String adminResourceId;
@@ -56,8 +56,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 // admin服务的配置
-                .withClient(clientId)
-                .secret(passwordEncoder.encode(clientSecret))
+                .withClient(adminClientId)
+                .secret(passwordEncoder.encode(adminClientSecret))
                 .authorizedGrantTypes(BaseSysConf.PASSWORD)
                 .accessTokenValiditySeconds(3600)
                 .scopes("all")

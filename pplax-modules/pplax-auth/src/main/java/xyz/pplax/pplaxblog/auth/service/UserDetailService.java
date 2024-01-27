@@ -78,12 +78,12 @@ public class UserDetailService  implements UserDetailsService {
         roleQueryWrapper.eq(BaseSQLConf.UID, user.getRoleUid());
         Role role = roleMapper.selectOne(roleQueryWrapper);
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        authorities.add(new SimpleGrantedAuthority(role.getUid()));
 
-        // 密码得携带盐过去
+        // 密码得携带点信息过去，不规范的写法，后续继承一下这个User类
         Map<String, String> map = new HashMap<>();
-        map.put(BaseSysConf.PASSWORD, user.getPassword());
-        map.put(BaseSysConf.SALT, user.getSalt());
+        map.put(BaseSysConf.PASSWORD, user.getPassword());          // 密码密文
+        map.put(BaseSysConf.SALT, user.getSalt());                  // 盐
 
         // 返回
         return new org.springframework.security.core.userdetails.User(user.getUsername(), JSON.toJSONString(map), authorities);

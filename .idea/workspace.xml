@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整理maven">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,13 +230,6 @@
       <workItem from="1705977756632" duration="21756000" />
       <workItem from="1706056872473" duration="26082000" />
       <workItem from="1706158699799" duration="631000" />
-    </task>
-    <task id="LOCAL-00180" summary="临时提交">
-      <created>1701227903824</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1701227903824</updated>
     </task>
     <task id="LOCAL-00181" summary="调整数据库设计">
       <created>1701252518437</created>
@@ -578,7 +567,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706319917652</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="调整user类和userInfo类">
+      <created>1706346487920</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1706346487920</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,7 +609,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="去掉两个mapper.xml，启动的时候注入失败了" />
     <MESSAGE value="先创建一个file服务" />
     <MESSAGE value="处理了一下注入失败问题" />
     <MESSAGE value="先弄到这里，先做用户相关的吧" />
@@ -638,7 +633,8 @@
     <MESSAGE value="修改文件工具类" />
     <MESSAGE value="踩feign调用文件接口的坑" />
     <MESSAGE value="整理maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理maven" />
+    <MESSAGE value="调整user类和userInfo类" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整user类和userInfo类" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

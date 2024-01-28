@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class IpUtils {
 
-    public static String getIpAddr(HttpServletRequest request) {
+    public static String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("X-Forwarded-For");
         if(!StringUtils.isEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)){
             //多次反向代理后会有多个ip值，第一个ip才是真实ip

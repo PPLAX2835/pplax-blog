@@ -73,20 +73,16 @@ public class UserDetailService  implements UserDetailsService {
             return new org.springframework.security.core.userdetails.User(BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
         }
 
-        // 添加角色
-        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
-        roleQueryWrapper.eq(BaseSQLConf.UID, user.getRoleUid());
-        Role role = roleMapper.selectOne(roleQueryWrapper);
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(role.getUid()));
-
-        // 密码得携带点信息过去，不规范的写法，后续继承一下这个User类
+        // 添加点查询用户信息会用到的信息
         Map<String, String> map = new HashMap<>();
-        map.put(BaseSysConf.PASSWORD, user.getPassword());          // 密码密文
-        map.put(BaseSysConf.SALT, user.getSalt());                  // 盐
+        map.put(BaseSysConf.UID, user.getUid());                    // 用户uid
+        map.put(BaseSysConf.SALT, user.getSalt());                  // 加密盐
+
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(JSON.toJSONString(map)));
 
         // 返回
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), JSON.toJSONString(map), authorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 
 }

@@ -8,15 +8,23 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import xyz.pplax.pplaxblog.auth.service.UserDetailService;
 import xyz.pplax.pplaxblog.auth.exception.AccountIsNotRegisteredException;
 import xyz.pplax.pplaxblog.auth.exception.EmailUnactivatedException;
 import xyz.pplax.pplaxblog.auth.exception.MobileUnactivatedException;
 import xyz.pplax.pplaxblog.commons.base.global.BaseMessageConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
+import xyz.pplax.pplaxblog.xo.entity.User;
 
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Configuration
@@ -46,12 +54,16 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
             throw new AccountIsNotRegisteredException(BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED);
         }
 
-        // 获得密文密码和盐 密码中包含盐和密码密文，这里先获得一个map
-        final Map<String, String> passwordMsg = JSON.parseObject(userDetails.getPassword(), new TypeReference<Map<String, String>>(){});
+        // 获得密文密码和盐 密码中包含盐和密码密文
+        Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+        SimpleGrantedAuthority simpleGrantedAuthority = (SimpleGrantedAuthority) userDetails.getAuthorities().toArray()[BaseSysConf.ZERO];
+        // 强制转换成map对象，可以去除转义符
+        Map<String, String> simpleGrantedAuthorityMap = (Map<String, String>) JSON.parse(JSON.toJSONString(simpleGrantedAuthority));
+        Map<String, String> authorityMap = JSON.parseObject(simpleGrantedAuthorityMap.get("authority"), new TypeReference<Map<String, String>>(){});
 
         // 获得查库拿到密码密文、盐
-        final String dbPassword = passwordMsg.get(BaseSysConf.PASSWORD);
-        final String dbSalt = passwordMsg.get(BaseSysConf.SALT);
+        final String dbPassword = userDetails.getPassword();
+        final String dbSalt = authorityMap.get(BaseSysConf.SALT);
 
         // 进行密码的比对
         boolean flag = passwordEncoder.matches(password + dbSalt, dbPassword);

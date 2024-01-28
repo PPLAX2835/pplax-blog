@@ -13,11 +13,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
+import xyz.pplax.pplaxblog.xo.entity.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 /**
  * 管理员表 RestApi
@@ -59,7 +58,16 @@ public class AdminRestApi {
 
 	@ApiOperation(value="获取token", notes="获取token")
 	@PostMapping("/oauth/token")
-	public String getToken(@RequestBody LoginDto loginDto) {
+	public String getToken(HttpServletRequest httpServletRequest, @RequestBody LoginDto loginDto) {
+
+
+//		// 记录登录ip、登录次数、登录时间
+//		User user = new User();
+//		user.setUid(authorityMap.get(BaseSysConf.UID));     // 存uid
+//		user.setLastLoginTime(new Date());
+//		System.out.println(JSON.toJSONString(authentication.getAuthorities()));
+////            user.setLastLoginIp(userDetails.g);
+
 		return JSON.toJSONString(ResponseResult.success(JSON.parseObject(authFeignClient.getToken(
 				clientId,
 				clientSecret,

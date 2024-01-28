@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="调整">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AdminRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AdminRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-utils/src/main/java/xyz/pplax/pplaxblog/utils/IpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-utils/src/main/java/xyz/pplax/pplaxblog/utils/IpUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/FileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,21 +159,21 @@
     </configuration>
     <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-admin" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.admin.AdminApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AdminApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-auth" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.auth.AuthApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AuthApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="FileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-file" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.file.FileApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.FileApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

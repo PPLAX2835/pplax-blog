@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.file;
+package xyz.pplax.pplaxblog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;

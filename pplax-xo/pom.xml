@@ -18,6 +18,7 @@
     </properties>
 
     <dependencies>
+        <!-- 引入pplax-commons -->
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-commons</artifactId>

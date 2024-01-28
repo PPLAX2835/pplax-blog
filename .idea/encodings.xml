@@ -34,6 +34,8 @@
     <file url="file://$PROJECT_DIR$/pplax-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-commons/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-commons/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-feign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-feign/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/admin-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/article-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/auth-server-boot/src/main/java" charset="UTF-8" />

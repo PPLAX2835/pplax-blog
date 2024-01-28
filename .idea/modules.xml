@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-blog.iml" filepath="$PROJECT_DIR$/pplax-blog.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-commons/pplax-commons.iml" filepath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-feign/pplax-feign.iml" filepath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-modules.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-utils/pplax-utils.iml" filepath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" />

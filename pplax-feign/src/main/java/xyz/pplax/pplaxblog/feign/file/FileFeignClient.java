@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.admin.feign.file;
+package xyz.pplax.pplaxblog.feign.file;
 
 
 import org.springframework.cloud.openfeign.FeignClient;

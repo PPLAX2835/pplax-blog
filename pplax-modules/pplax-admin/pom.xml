@@ -19,6 +19,12 @@
     </properties>
 
     <dependencies>
+        <!-- 引入pplax-feign相关 -->
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-feign</artifactId>
+        </dependency>
+
         <!-- 引入pplax-xo相关 -->
         <dependency>
             <groupId>xyz.pplax</groupId>

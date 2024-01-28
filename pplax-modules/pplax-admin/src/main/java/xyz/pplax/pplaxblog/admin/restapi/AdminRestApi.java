@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.admin.feign.auth.AuthFeignClient;
+import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
 import xyz.pplax.pplaxblog.admin.global.SysConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
 import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;

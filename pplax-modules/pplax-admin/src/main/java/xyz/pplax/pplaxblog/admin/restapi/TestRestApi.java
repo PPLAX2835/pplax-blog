@@ -12,7 +12,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import xyz.pplax.pplaxblog.admin.feign.file.FileFeignClient;
+import xyz.pplax.pplaxblog.feign.file.FileFeignClient;
 import xyz.pplax.pplaxblog.commons.base.global.BaseRegexConf;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.service.BlogService;

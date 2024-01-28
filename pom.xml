@@ -206,6 +206,7 @@
 
     <modules>
         <module>pplax-commons</module>
+        <module>pplax-feign</module>
         <module>pplax-utils</module>
         <module>pplax-xo</module>
         <module>pplax-web</module>

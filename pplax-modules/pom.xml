@@ -20,6 +20,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- 引入pplax-feign相关 -->
+            <dependency>
+                <groupId>xyz.pplax</groupId>
+                <artifactId>pplax-feign</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
 
             <!-- 引入pplax-xo相关 -->
             <dependency>

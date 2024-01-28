@@ -24,7 +24,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.commons.config.cors",
         "xyz.pplax.pplaxblog.admin.restapi",
         "xyz.pplax.pplaxblog.admin.config",
-        "xyz.pplax.pplaxblog.admin.feign",
+        "xyz.pplax.pplaxblog.feign",
         "xyz.pplax.pplaxblog.xo.service"
 })
 public class AdminApplication {

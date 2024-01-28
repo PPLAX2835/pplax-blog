@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.admin.feign.auth;
+package xyz.pplax.pplaxblog.feign.auth;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

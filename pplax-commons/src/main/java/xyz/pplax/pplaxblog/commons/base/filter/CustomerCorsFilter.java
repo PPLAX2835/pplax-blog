@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.config.cors;
+package xyz.pplax.pplaxblog.commons.base.filter;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

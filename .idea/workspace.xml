@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/config/cors/CustomerCorsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/filter/CustomerCorsFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,14 +239,7 @@
       <workItem from="1706056872473" duration="26082000" />
       <workItem from="1706158699799" duration="631000" />
       <workItem from="1706421168484" duration="5474000" />
-      <workItem from="1706495008076" duration="1612000" />
-    </task>
-    <task id="LOCAL-00185" summary="文章分类的增删改">
-      <created>1701327442538</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1701327442538</updated>
+      <workItem from="1706495008076" duration="1936000" />
     </task>
     <task id="LOCAL-00186" summary="文章分类的接口修改为restful风格">
       <created>1701328734125</created>
@@ -591,7 +577,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706495320699</updated>
     </task>
-    <option name="localTasksCounter" value="234" />
+    <task id="LOCAL-00234" summary="先加上网关空服务，然后删掉web，这个还不知道怎么用">
+      <created>1706501133465</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1706501133465</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +619,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="api设置一个统一的父级路径，nacos晚点弄" />
     <MESSAGE value="建了一个认证服务，使用redis方式" />
     <MESSAGE value="继续整理项目" />
     <MESSAGE value="调整统一接口配置命名" />
@@ -651,7 +643,8 @@
     <MESSAGE value="把FeignClient都拿出来了" />
     <MESSAGE value="修改登录接口，使其能够存放登录ip、登录次数、登录时间" />
     <MESSAGE value="移除资源服务器认证配置，接下来打算整合网关" />
-    <option name="LAST_COMMIT_MESSAGE" value="移除资源服务器认证配置，接下来打算整合网关" />
+    <MESSAGE value="先加上网关空服务，然后删掉web，这个还不知道怎么用" />
+    <option name="LAST_COMMIT_MESSAGE" value="先加上网关空服务，然后删掉web，这个还不知道怎么用" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

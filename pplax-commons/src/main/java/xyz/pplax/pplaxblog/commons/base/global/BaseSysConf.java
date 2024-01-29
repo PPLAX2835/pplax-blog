@@ -10,28 +10,10 @@ public class BaseSysConf {
 	public final static String OID = "oid";
 
 	/**
-	 * picture相关
+	 * 用户信息相关
 	 */
-	public final static String USER_UID = "userUid";
-	public final static String BLOG = "blog";
-	public final static String USER_NAME = "userName";
-	public final static String ADMIN_UID = "adminUid";
+	public final static String USER_INFO = "userInfo";
 	public final static String ROLE = "role";
-	public final static String PROJECT_NAME = "projectName";
-	public final static String SORT_NAME = "sortName";
-	public final static String PIC_NAME = "picName";
-	public final static String FILE_NAME = "fileName";
-	public final static String UPLOADED = "uploaded";
-	public final static String QI_NIU_URL = "qiNiuUrl";
-	public final static String PIC_URL = "picUrl";
-	public final static String MINIO_URL = "minioUrl";
-	public final static String URL = "url";
-	public final static String MESSAGE = "message";
-	public final static String EXPANDED_NAME = "expandedName";
-	public final static String FILE_OLD_NAME = "fileOldName";
-	public final static String PICTURE_LIST = "pictureList";
-	public final static String NAME = "name";
-	public final static String SOURCE = "source";
 
 
 	/**
@@ -41,7 +23,6 @@ public class BaseSysConf {
 	public final static String BROWSER = "BROWSER";
 	public final static String IP = "ip";
 	public final static String UTF_8 = "utf-8";
-
 
 	public final static String SUCCESS = "success";
 	public final static String ERROR = "error";
@@ -84,14 +65,6 @@ public class BaseSysConf {
 	public final static String CURRENT_PAGE = "currentPage";
 	public final static String BLOG_LIST = "blogList";
 	public final static String PAGE_SIZE = "pageSize";
-
-	/**
-	 * blog
-	 */
-	public final static String BLOG_UID = "blogUid";
-	public final static String LEVEL = "level";
-
-	public final static String START_EMAIL_NOTIFICATION = "startEmailNotification";
 
 
 	/**

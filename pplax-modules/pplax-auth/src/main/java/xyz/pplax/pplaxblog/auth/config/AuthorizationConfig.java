@@ -31,7 +31,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private TokenStore redisTokenStore;
+    private TokenStore jwtTokenStore;
 
     @Value("${pplax.sso.admin.client-id}")
     private String adminClientId;
@@ -49,7 +49,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)  // 调用此方法才能支持 password 模式
                 .userDetailsService(userDetailsService)     // 设置用户验证服务
-                .tokenStore(redisTokenStore);                   //指定 token 的存储方式
+                .tokenStore(jwtTokenStore);                   //指定 token 的存储方式
     }
 
     @Override

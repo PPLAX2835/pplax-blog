@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.auth.exception.UsernameNullException;
+import xyz.pplax.pplaxblog.auth.model.SecurityUserDetails;
 import xyz.pplax.pplaxblog.commons.base.global.BaseMessageConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseRegexConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseSQLConf;
@@ -16,8 +17,10 @@ import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
 import xyz.pplax.pplaxblog.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.User;
+import xyz.pplax.pplaxblog.xo.entity.UserInfo;
 import xyz.pplax.pplaxblog.xo.global.UserSQLConf;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
+import xyz.pplax.pplaxblog.xo.mapper.UserInfoMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
 
 import java.util.*;
@@ -28,6 +31,9 @@ public class UserDetailService  implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     @Autowired
     private RoleMapper roleMapper;
@@ -73,16 +79,27 @@ public class UserDetailService  implements UserDetailsService {
             return new org.springframework.security.core.userdetails.User(BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
         }
 
-        // 添加点查询用户信息会用到的信息
-        Map<String, String> map = new HashMap<>();
-        map.put(BaseSysConf.UID, user.getUid());                    // 用户uid
-        map.put(BaseSysConf.SALT, user.getSalt());                  // 加密盐
+        // 添加点查询用户信息会用到的认证信息
+        SecurityUserDetails securityUserDetails = new SecurityUserDetails(user.getUsername(), user.getPassword(), new ArrayList<>());
+        securityUserDetails.setUid(user.getUid());      // 用户uid
+        securityUserDetails.setSalt(user.getSalt());    // 加密盐
 
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(JSON.toJSONString(map)));
+        // 查询用户信息
+        QueryWrapper<UserInfo> userInfoQueryWrapper = new QueryWrapper<>();
+        userInfoQueryWrapper.eq(BaseSysConf.UID, user.getUserInfoUid());
+        UserInfo userInfo = userInfoMapper.selectOne(userInfoQueryWrapper);
+        // 添加
+        securityUserDetails.setUserInfo(userInfo);
+
+        // 查询角色
+        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
+        roleQueryWrapper.eq(BaseSysConf.UID, user.getRoleUid());
+        Role role = roleMapper.selectOne(roleQueryWrapper);
+        // 添加
+        securityUserDetails.setRole(role);
 
         // 返回
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+        return securityUserDetails;
     }
 
 }

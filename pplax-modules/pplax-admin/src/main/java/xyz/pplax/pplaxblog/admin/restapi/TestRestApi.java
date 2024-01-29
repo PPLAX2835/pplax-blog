@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.feign.file.FileFeignClient;
@@ -97,17 +97,17 @@ public class TestRestApi {
 	}
 
 
-	@RequestMapping(value = "/oauthUserInfoTest")
-	public String oauthUserInfoTest(Authentication authentication) throws Exception {
-		Object principal = authentication.getPrincipal();
-
-
-		System.out.println(JSON.toJSONString(authentication.getCredentials()));
-		System.out.println(JSON.toJSONString(authentication.getAuthorities()));
-		System.out.println(JSON.toJSONString(authentication.getDetails()));
-
-
-		return "JSON.toJSONString(principal)";
-	}
+//	@RequestMapping(value = "/oauthUserInfoTest")
+//	public String oauthUserInfoTest(Authentication authentication) throws Exception {
+//		Object principal = authentication.getPrincipal();
+//
+//
+//		System.out.println(JSON.toJSONString(authentication.getCredentials()));
+//		System.out.println(JSON.toJSONString(authentication.getAuthorities()));
+//		System.out.println(JSON.toJSONString(authentication.getDetails()));
+//
+//
+//		return "JSON.toJSONString(principal)";
+//	}
 }
 

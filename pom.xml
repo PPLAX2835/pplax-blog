@@ -209,7 +209,6 @@
         <module>pplax-feign</module>
         <module>pplax-utils</module>
         <module>pplax-xo</module>
-        <module>pplax-web</module>
         <module>pplax-modules</module>
     </modules>
 

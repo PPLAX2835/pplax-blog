@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,6 +178,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pplax-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-web" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.web.WebApplication" />
@@ -182,6 +198,7 @@
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -229,13 +246,7 @@
       <workItem from="1706056872473" duration="26082000" />
       <workItem from="1706158699799" duration="631000" />
       <workItem from="1706421168484" duration="5474000" />
-    </task>
-    <task id="LOCAL-00184" summary="前端：全局的响应结果处理和请求头请求体设置；BlogSort列表基本完成；BlogSort编辑表弄好了，表单提交还没好。  之前提交的时候没add上">
-      <created>1701311529572</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1701311529572</updated>
+      <workItem from="1706495008076" duration="1612000" />
     </task>
     <task id="LOCAL-00185" summary="文章分类的增删改">
       <created>1701327442538</created>
@@ -573,7 +584,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706432112278</updated>
     </task>
-    <option name="localTasksCounter" value="233" />
+    <task id="LOCAL-00233" summary="移除资源服务器认证配置，接下来打算整合网关">
+      <created>1706495320698</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1706495320699</updated>
+    </task>
+    <option name="localTasksCounter" value="234" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,7 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理项目结构" />
     <MESSAGE value="api设置一个统一的父级路径，nacos晚点弄" />
     <MESSAGE value="建了一个认证服务，使用redis方式" />
     <MESSAGE value="继续整理项目" />
@@ -633,7 +650,8 @@
     <MESSAGE value="把各个服务的启动类向上移动一级" />
     <MESSAGE value="把FeignClient都拿出来了" />
     <MESSAGE value="修改登录接口，使其能够存放登录ip、登录次数、登录时间" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改登录接口，使其能够存放登录ip、登录次数、登录时间" />
+    <MESSAGE value="移除资源服务器认证配置，接下来打算整合网关" />
+    <option name="LAST_COMMIT_MESSAGE" value="移除资源服务器认证配置，接下来打算整合网关" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

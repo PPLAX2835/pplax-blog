@@ -28,7 +28,7 @@ import java.util.*;
  * 登录认证相关 RestApi
  */
 @RestController
-@RequestMapping("${pplax.api.basePath}/admin")
+@RequestMapping("/oauth")
 @Api(value="登录认证相关RestApi",tags={"AuthRestApi"})
 public class AuthRestApi {
 
@@ -47,7 +47,7 @@ public class AuthRestApi {
 	private String clientSecret;
 
 	@ApiOperation(value="获取token", notes="获取token")
-	@PostMapping("/oauth/token")
+	@PostMapping("/token")
 	public String getToken(HttpServletRequest httpServletRequest, @RequestBody LoginDto loginDto) {
 
 		String resp = JSON.toJSONString(ResponseResult.success(JSON.parseObject(authFeignClient.getToken(
@@ -80,7 +80,7 @@ public class AuthRestApi {
 	}
 
 	@ApiOperation(value = "用户信息", notes = "用户信息", response = String.class)
-	@GetMapping(value = "/oauth/info")
+	@GetMapping(value = "/info")
 	public String info(@ApiParam(name = "token", value = "token令牌",required = false) @RequestParam(name = "token", required = false) String token) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(SysConf.TOKEN, "admin");
@@ -92,7 +92,7 @@ public class AuthRestApi {
 	}
 
 	@ApiOperation(value = "退出登录", notes = "退出登录", response = String.class)
-	@PostMapping(value = "/oauth/logout")
+	@PostMapping(value = "/logout")
 	public String logout(@ApiParam(name = "token", value = "token令牌",required = false) @RequestParam(name = "token", required = false) String token) {
 		return JSON.toJSONString(ResponseResult.success());
 	}

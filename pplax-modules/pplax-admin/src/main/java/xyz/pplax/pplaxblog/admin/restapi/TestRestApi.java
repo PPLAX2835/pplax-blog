@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  * 测试 RestApi
  */
 @RestController
-@RequestMapping("${pplax.api.basePath}/admin/adminTest")
+@RequestMapping("/adminTest")
 @Api(value="测试RestApi", tags={"TestRestApi"})
 public class TestRestApi {
 

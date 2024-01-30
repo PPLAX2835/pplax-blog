@@ -29,7 +29,7 @@ import java.util.List;
  * 博客表 RestApi
  */
 @RestController
-@RequestMapping("${pplax.api.basePath}/admin/blog")
+@RequestMapping("/blog")
 @Api(value="博客RestApi", tags={"BlogRestApi"})
 public class BlogRestApi {
 

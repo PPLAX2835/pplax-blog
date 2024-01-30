@@ -4,30 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="oauth添加jwt方案，且改为此方案">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/resources/bootstrap.yml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="調整端口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AuthRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AuthRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/CollectRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/CollectRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/CommentRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/CommentRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/FeedbackRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/FeedbackRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/LinkRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/LinkRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/UserRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/UserRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/VisitorRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/VisitorRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/filter/CustomerCorsFilter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/build/webpack.prod.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/build/webpack.prod.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,11 +105,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.commons.base.filter" />
+      <recent name="xyz.pplax.pplaxblog.admin.config" />
       <recent name="xyz.pplax.pplaxblog.gateway.filter" />
       <recent name="xyz.pplax.pplaxblog.xo.service.impl" />
       <recent name="xyz.pplax.pplaxblog.xo.service" />
-      <recent name="xyz.pplax.pplaxblog.file.config" />
-      <recent name="xyz.pplax.pplaxblog.admin.config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -254,14 +234,7 @@
       <workItem from="1706158699799" duration="631000" />
       <workItem from="1706421168484" duration="5474000" />
       <workItem from="1706495008076" duration="4937000" />
-      <workItem from="1706528225156" duration="14820000" />
-    </task>
-    <task id="LOCAL-00189" summary="反馈的增删改">
-      <created>1701337124515</created>
-      <option name="number" value="00189" />
-      <option name="presentableId" value="LOCAL-00189" />
-      <option name="project" value="LOCAL" />
-      <updated>1701337124515</updated>
+      <workItem from="1706528225156" duration="21313000" />
     </task>
     <task id="LOCAL-00190" summary="添加一些数据">
       <created>1701337346510</created>
@@ -599,7 +572,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706602455206</updated>
     </task>
-    <option name="localTasksCounter" value="238" />
+    <task id="LOCAL-00238" summary="調整端口">
+      <created>1706605567650</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
+      <option name="project" value="LOCAL" />
+      <updated>1706605567650</updated>
+    </task>
+    <option name="localTasksCounter" value="239" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,7 +614,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="认证服务器大概就是这样。接下来的思路：登录访问admin的接口，然后这个接口通过feign向auth获取code,然后获取token。先弄feign试试可行性" />
     <MESSAGE value="升级spring boot版本，引入spring cloud alibaba" />
     <MESSAGE value="整合nacos" />
     <MESSAGE value="修改接口，不用配置的方案了，直接在接口写就好" />
@@ -659,7 +638,8 @@
     <MESSAGE value="简单调整" />
     <MESSAGE value="oauth添加jwt方案，且改为此方案" />
     <MESSAGE value="整理maven，网关路由转发踩坑结束，以后父级maven什么都不要引，指不定出什么岔子，这次是因为父级maven引了spring-boot-starter-web导致网关服务不进行转发了" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理maven，网关路由转发踩坑结束，以后父级maven什么都不要引，指不定出什么岔子，这次是因为父级maven引了spring-boot-starter-web导致网关服务不进行转发了" />
+    <MESSAGE value="調整端口" />
+    <option name="LAST_COMMIT_MESSAGE" value="調整端口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -671,6 +651,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="4" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
+          <option name="timeStamp" value="6" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://E:/Environment/Maven/Repository/org/springframework/cloud/spring-cloud-gateway-core/2.2.2.RELEASE/spring-cloud-gateway-core-2.2.2.RELEASE.jar!/org/springframework/cloud/gateway/filter/ReactiveLoadBalancerClientFilter.class</url>

@@ -17,10 +17,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-xo</artifactId>
-        </dependency>
 
         <!-- redis -->
         <dependency>

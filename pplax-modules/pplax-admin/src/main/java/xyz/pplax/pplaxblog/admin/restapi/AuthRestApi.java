@@ -40,10 +40,10 @@ public class AuthRestApi {
 	@Autowired
 	private AuthFeignClient authFeignClient;
 
-	@Value("${pplax.sso.admin.client-id}")
+	@Value("${pplax.oauth.client-id}")
 	private String clientId;
 
-	@Value("${pplax.sso.admin.client-secret}")
+	@Value("${pplax.oauth.client-secret}")
 	private String clientSecret;
 
 	@ApiOperation(value="获取token", notes="获取token")

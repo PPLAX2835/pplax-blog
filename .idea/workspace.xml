@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="調整端口">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="解决跨域问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/base/filter/CustomerCorsFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/StorageRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/StorageRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UploadRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UploadRestApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,14 +236,8 @@
       <workItem from="1706158699799" duration="631000" />
       <workItem from="1706421168484" duration="5474000" />
       <workItem from="1706495008076" duration="4937000" />
-      <workItem from="1706528225156" duration="21313000" />
-    </task>
-    <task id="LOCAL-00190" summary="添加一些数据">
-      <created>1701337346510</created>
-      <option name="number" value="00190" />
-      <option name="presentableId" value="LOCAL-00190" />
-      <option name="project" value="LOCAL" />
-      <updated>1701337346511</updated>
+      <workItem from="1706528225156" duration="21431000" />
+      <workItem from="1706679389108" duration="329000" />
     </task>
     <task id="LOCAL-00191" summary=" 友情链接的增删改">
       <created>1701348333483</created>
@@ -579,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706605567650</updated>
     </task>
-    <option name="localTasksCounter" value="239" />
+    <task id="LOCAL-00239" summary="解决跨域问题">
+      <created>1706620181779</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1706620181779</updated>
+    </task>
+    <option name="localTasksCounter" value="240" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +617,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="升级spring boot版本，引入spring cloud alibaba" />
     <MESSAGE value="整合nacos" />
     <MESSAGE value="修改接口，不用配置的方案了，直接在接口写就好" />
     <MESSAGE value="又改回来了 （流汗黄豆）" />
@@ -639,7 +641,8 @@
     <MESSAGE value="oauth添加jwt方案，且改为此方案" />
     <MESSAGE value="整理maven，网关路由转发踩坑结束，以后父级maven什么都不要引，指不定出什么岔子，这次是因为父级maven引了spring-boot-starter-web导致网关服务不进行转发了" />
     <MESSAGE value="調整端口" />
-    <option name="LAST_COMMIT_MESSAGE" value="調整端口" />
+    <MESSAGE value="解决跨域问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="解决跨域问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

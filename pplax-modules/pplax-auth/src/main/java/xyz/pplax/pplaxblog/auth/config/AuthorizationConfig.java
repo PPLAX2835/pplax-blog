@@ -33,14 +33,11 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private TokenStore jwtTokenStore;
 
-    @Value("${pplax.sso.admin.client-id}")
+    @Value("${pplax.oauth.client-id}")
     private String adminClientId;
 
-    @Value("${pplax.sso.admin.client-secret}")
+    @Value("${pplax.oauth.client-secret}")
     private String adminClientSecret;
-
-    @Value("${pplax.sso.admin.resource-id}")
-    private String adminResourceId;
 
     /**
      * redis token 方式
@@ -60,8 +57,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .secret(passwordEncoder.encode(adminClientSecret))
                 .authorizedGrantTypes(BaseSysConf.PASSWORD)
                 .accessTokenValiditySeconds(3600)
-                .scopes("all")
-                .resourceIds(adminResourceId);
+                .scopes("all");
     }
 
     @Override

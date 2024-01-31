@@ -24,7 +24,7 @@ import java.util.Map;
 @Configuration
 public class TokenStoreConfig {
 
-    @Value("${pplax.sso.secret-key}")
+    @Value("${pplax.oauth.secret-key}")
     private String secretKey;
 
     @Autowired

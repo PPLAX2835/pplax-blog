@@ -52,14 +52,6 @@ public class TestRestApi {
 		return "yes";
 	}
 
-	@Value("${pplax.api.basePath}")
-	private String basePath;
-
-	@RequestMapping(value = "/nacosconftest")
-	public String nacosConfTest() {
-		return basePath;
-	}
-
 	@RequestMapping(value = "/feignServerTest")
 	public String feignServerTest(@RequestParam("param") String param) {
 		return "feignServerTest";

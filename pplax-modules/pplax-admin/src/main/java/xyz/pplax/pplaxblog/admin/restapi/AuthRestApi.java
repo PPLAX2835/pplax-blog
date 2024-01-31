@@ -15,7 +15,7 @@ import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import xyz.pplax.pplaxblog.utils.IpUtils;
+import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.global.UserSQLConf;

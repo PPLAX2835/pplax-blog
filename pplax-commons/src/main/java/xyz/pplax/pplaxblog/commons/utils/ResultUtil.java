@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.utils;
+package xyz.pplax.pplaxblog.commons.utils;
 
 import java.util.HashMap;
 import java.util.Map;

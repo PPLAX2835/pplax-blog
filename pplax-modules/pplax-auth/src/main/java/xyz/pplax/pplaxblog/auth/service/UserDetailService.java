@@ -1,9 +1,7 @@
 package xyz.pplax.pplaxblog.auth.service;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,9 +10,8 @@ import xyz.pplax.pplaxblog.auth.exception.UsernameNullException;
 import xyz.pplax.pplaxblog.auth.model.SecurityUserDetails;
 import xyz.pplax.pplaxblog.commons.base.global.BaseMessageConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseRegexConf;
-import xyz.pplax.pplaxblog.commons.base.global.BaseSQLConf;
 import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
-import xyz.pplax.pplaxblog.utils.StringUtils;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.entity.UserInfo;

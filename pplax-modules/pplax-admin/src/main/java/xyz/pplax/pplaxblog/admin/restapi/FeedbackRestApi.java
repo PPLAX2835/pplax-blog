@@ -16,7 +16,7 @@ import xyz.pplax.pplaxblog.admin.dto.edit.FeedBackEditDto;
 import xyz.pplax.pplaxblog.xo.global.FeedBackSQLConf;
 import xyz.pplax.pplaxblog.commons.base.global.response.ResponseCode;
 import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
-import xyz.pplax.pplaxblog.utils.StringUtils;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Feedback;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.service.FeedbackService;

@@ -10,7 +10,6 @@
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-modules.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-modules.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pplax-utils/pplax-utils.iml" filepath="$PROJECT_DIR$/pplax-utils/pplax-utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-xo/pplax-xo.iml" filepath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" />
     </modules>
   </component>

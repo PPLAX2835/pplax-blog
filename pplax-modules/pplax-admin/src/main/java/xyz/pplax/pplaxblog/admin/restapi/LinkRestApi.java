@@ -17,7 +17,7 @@ import xyz.pplax.pplaxblog.admin.dto.edit.LinkEditDto;
 import xyz.pplax.pplaxblog.xo.global.LinkSQLConf;
 import xyz.pplax.pplaxblog.commons.base.global.response.ResponseCode;
 import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
-import xyz.pplax.pplaxblog.utils.StringUtils;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Link;
 import xyz.pplax.pplaxblog.xo.service.LinkService;
 

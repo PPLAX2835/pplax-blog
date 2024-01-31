@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.utils;
+package xyz.pplax.pplaxblog.commons.utils;
 /**
  * 对时间的操作的工具类
  */

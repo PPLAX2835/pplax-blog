@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.utils;
+package xyz.pplax.pplaxblog.commons.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

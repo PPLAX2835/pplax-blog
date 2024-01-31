@@ -2,7 +2,7 @@ package xyz.pplax.pplaxblog.commons.base.validator.constraint;
 
 import xyz.pplax.pplaxblog.commons.base.global.Constants;
 import xyz.pplax.pplaxblog.commons.base.validator.annotion.IdsValid;
-import xyz.pplax.pplaxblog.utils.StringUtils;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

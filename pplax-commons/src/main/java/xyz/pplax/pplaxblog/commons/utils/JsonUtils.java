@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.utils;
+package xyz.pplax.pplaxblog.commons.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

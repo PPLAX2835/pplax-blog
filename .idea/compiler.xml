@@ -14,7 +14,6 @@
         <module name="pplax-gateway" />
         <module name="pplax-auth" />
         <module name="pplax-admin" />
-        <module name="pplax-utils" />
         <module name="pplax-file" />
       </profile>
     </annotationProcessing>

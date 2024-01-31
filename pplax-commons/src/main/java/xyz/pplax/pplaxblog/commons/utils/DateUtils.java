@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.utils;
+package xyz.pplax.pplaxblog.commons.utils;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;

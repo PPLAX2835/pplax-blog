@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.config.mybatis;
+package xyz.pplax.pplaxblog.starter.mybatis;
 
 import com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;

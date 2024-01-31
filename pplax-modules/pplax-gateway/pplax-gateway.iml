@@ -54,7 +54,6 @@
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.zaxxer:HikariCP:3.4.2" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.13" level="project" />
-    <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.8" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-boot-starter:3.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus:3.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-extension:3.3.2" level="project" />

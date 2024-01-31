@@ -1,6 +1,9 @@
 package xyz.pplax.pplaxblog;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,8 +23,10 @@ import reactor.core.publisher.Mono;
 
 @EnableTransactionManagement
 @SpringCloudApplication
+@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 //@EnableSwagger2
 @ComponentScan(basePackages = {
+
 })
 public class GatewayApplication {
 

@@ -209,6 +209,7 @@
         <module>pplax-feign</module>
         <module>pplax-xo</module>
         <module>pplax-modules</module>
+        <module>pplax-starter</module>
     </modules>
 
 </project>

@@ -55,10 +55,13 @@
     <file url="file://$PROJECT_DIR$/pplax-modules/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/test-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-modules/test-boot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-mybatis-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-datasource-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-datasource-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-starter/pplax-durid-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-starter/pplax-durid-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-feign-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-feign-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/src/main/java" charset="UTF-8" />

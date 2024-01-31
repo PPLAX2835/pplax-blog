@@ -8,10 +8,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="pplax-durid-starter" />
         <module name="pplax-feign" />
         <module name="pplax-xo" />
+        <module name="pplax-swagger-starter" />
         <module name="pplax-commons" />
         <module name="pplax-gateway" />
+        <module name="pplax-mybatis-starter" />
         <module name="pplax-auth" />
         <module name="pplax-admin" />
         <module name="pplax-file" />
@@ -22,10 +25,14 @@
       <module name="pplax-auth" target="8" />
       <module name="pplax-blog" target="8" />
       <module name="pplax-commons" target="8" />
+      <module name="pplax-durid-starter" target="8" />
       <module name="pplax-feign" target="8" />
       <module name="pplax-file" target="8" />
       <module name="pplax-gateway" target="8" />
       <module name="pplax-modules" target="8" />
+      <module name="pplax-mybatis-starter" target="8" />
+      <module name="pplax-starter" target="8" />
+      <module name="pplax-swagger-starter" target="8" />
       <module name="pplax-utils" target="8" />
       <module name="pplax-web" target="8" />
       <module name="pplax-xo" target="8" />

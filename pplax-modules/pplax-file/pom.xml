@@ -20,6 +20,22 @@
     </properties>
 
     <dependencies>
+
+        <!-- 引入starter 相关 -->
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-durid-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-swagger-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-mybatis-starter</artifactId>
+        </dependency>
+        <!-- starter end -->
+
         <!-- 引入pplax-xo相关 -->
         <dependency>
             <groupId>xyz.pplax</groupId>

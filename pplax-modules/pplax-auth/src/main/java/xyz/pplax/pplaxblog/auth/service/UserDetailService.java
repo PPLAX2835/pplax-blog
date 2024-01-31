@@ -81,19 +81,11 @@ public class UserDetailService  implements UserDetailsService {
         securityUserDetails.setUid(user.getUid());      // 用户uid
         securityUserDetails.setSalt(user.getSalt());    // 加密盐
 
-        // 查询用户信息
-        QueryWrapper<UserInfo> userInfoQueryWrapper = new QueryWrapper<>();
-        userInfoQueryWrapper.eq(BaseSysConf.UID, user.getUserInfoUid());
-        UserInfo userInfo = userInfoMapper.selectOne(userInfoQueryWrapper);
-        // 添加
-        securityUserDetails.setUserInfo(userInfo);
+        // 添加用户信息uid
+        securityUserDetails.setUserInfoUid(user.getUserInfoUid());
 
-        // 查询角色
-        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
-        roleQueryWrapper.eq(BaseSysConf.UID, user.getRoleUid());
-        Role role = roleMapper.selectOne(roleQueryWrapper);
-        // 添加
-        securityUserDetails.setRole(role);
+        // 添加角色uid
+        securityUserDetails.setRoleUid(user.getRoleUid());
 
         // 返回
         return securityUserDetails;

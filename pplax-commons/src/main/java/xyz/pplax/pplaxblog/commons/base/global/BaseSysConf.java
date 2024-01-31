@@ -14,6 +14,8 @@ public class BaseSysConf {
 	 */
 	public final static String USER_INFO = "userInfo";
 	public final static String ROLE = "role";
+	public final static String USER_INFO_UID = "userInfoUid";
+	public final static String ROLE_UID = "roleUid";
 
 
 	/**

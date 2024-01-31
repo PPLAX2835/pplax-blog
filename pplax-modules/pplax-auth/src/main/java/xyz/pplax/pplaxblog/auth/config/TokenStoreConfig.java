@@ -76,10 +76,10 @@ public class TokenStoreConfig {
             LinkedHashMap<String, Object> extendInformation = new LinkedHashMap<>();
 
             // 添加信息
-            extendInformation.put(BaseSysConf.UID, user.getUid());                  // 用户uid
-            extendInformation.put(BaseSysConf.SALT, user.getSalt());                // 加密盐
-            extendInformation.put(BaseSysConf.USER_INFO, user.getUserInfo());       // 用户信息实体
-            extendInformation.put(BaseSysConf.ROLE, user.getRole());                // 用户的角色实体
+            extendInformation.put(BaseSysConf.UID, user.getUid());                          // 用户uid
+            extendInformation.put(BaseSysConf.SALT, user.getSalt());                        // 加密盐
+            extendInformation.put(BaseSysConf.USER_INFO_UID, user.getUserInfoUid());        // 用户信息uid
+            extendInformation.put(BaseSysConf.ROLE_UID, user.getRoleUid());                 // 用户的角色uid
 
             // 将extendInformation添加到额外的信息中
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(extendInformation);

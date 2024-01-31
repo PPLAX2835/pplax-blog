@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.auth.exception;
+package xyz.pplax.pplaxblog.starter.security.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

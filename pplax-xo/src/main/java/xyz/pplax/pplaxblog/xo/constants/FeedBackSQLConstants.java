@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.xo.global;
+package xyz.pplax.pplaxblog.xo.constants;
 
 import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
 

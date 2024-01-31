@@ -28,6 +28,10 @@
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-mybatis-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-security-starter</artifactId>
+        </dependency>
         <!-- starter end -->
 
         <!-- 引入pplax-xo相关 -->

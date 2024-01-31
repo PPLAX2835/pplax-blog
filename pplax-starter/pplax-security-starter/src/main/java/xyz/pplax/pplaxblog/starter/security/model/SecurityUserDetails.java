@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.auth.model;
+package xyz.pplax.pplaxblog.starter.security.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,9 +13,9 @@ public class SecurityUserDetails extends User {
 
     private String salt;
 
-    private String userInfoUid;
+    private UserInfo userInfo;
 
-    private String roleUid;
+    private Role role;
 
     public SecurityUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
@@ -42,19 +42,19 @@ public class SecurityUserDetails extends User {
         this.salt = salt;
     }
 
-    public String getUserInfoUid() {
-        return userInfoUid;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setUserInfoUid(String userInfoUid) {
-        this.userInfoUid = userInfoUid;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
-    public String getRoleUid() {
-        return roleUid;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleUid(String roleUid) {
-        this.roleUid = roleUid;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

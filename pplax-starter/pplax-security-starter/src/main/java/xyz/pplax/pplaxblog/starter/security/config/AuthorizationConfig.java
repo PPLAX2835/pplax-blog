@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.auth.config;
+package xyz.pplax.pplaxblog.starter.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

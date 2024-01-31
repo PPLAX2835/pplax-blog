@@ -10,8 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringCloudApplication
 @EnableSwagger2
 @ComponentScan(basePackages = {
-        "xyz.pplax.pplaxblog.auth.config",
-        "xyz.pplax.pplaxblog.auth.service",
+        "xyz.pplax.pplaxblog.starter.security",
         "xyz.pplax.pplaxblog.starter.durid",
         "xyz.pplax.pplaxblog.starter.mybatis",
         "xyz.pplax.pplaxblog.xo.service"

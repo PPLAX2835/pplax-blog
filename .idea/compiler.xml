@@ -18,6 +18,7 @@
         <module name="pplax-auth" />
         <module name="pplax-admin" />
         <module name="pplax-file" />
+        <module name="pplax-security-starter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -31,6 +32,7 @@
       <module name="pplax-gateway" target="8" />
       <module name="pplax-modules" target="8" />
       <module name="pplax-mybatis-starter" target="8" />
+      <module name="pplax-security-starter" target="8" />
       <module name="pplax-starter" target="8" />
       <module name="pplax-swagger-starter" target="8" />
       <module name="pplax-utils" target="8" />

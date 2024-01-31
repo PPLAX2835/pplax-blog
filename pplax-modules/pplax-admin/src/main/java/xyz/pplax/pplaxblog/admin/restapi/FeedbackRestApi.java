@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.dto.add.FeedBackAddDto;
 import xyz.pplax.pplaxblog.admin.dto.edit.FeedBackEditDto;
-import xyz.pplax.pplaxblog.xo.global.FeedBackSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.FeedBackSQLConstants;
 import xyz.pplax.pplaxblog.commons.response.ResponseCode;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;

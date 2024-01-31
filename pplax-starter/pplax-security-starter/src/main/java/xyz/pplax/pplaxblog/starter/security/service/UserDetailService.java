@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.auth.service;
+package xyz.pplax.pplaxblog.starter.security.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,13 +6,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import xyz.pplax.pplaxblog.auth.exception.UsernameNullException;
-import xyz.pplax.pplaxblog.auth.model.SecurityUserDetails;
+import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
+import xyz.pplax.pplaxblog.starter.security.exception.UsernameNullException;
+import xyz.pplax.pplaxblog.starter.security.model.SecurityUserDetails;
 import xyz.pplax.pplaxblog.commons.constants.BaseMessageConstants;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.global.UserSQLConstants;
+import xyz.pplax.pplaxblog.xo.entity.UserInfo;
+import xyz.pplax.pplaxblog.xo.constants.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserInfoMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
@@ -78,11 +81,19 @@ public class UserDetailService  implements UserDetailsService {
         securityUserDetails.setUid(user.getUid());      // 用户uid
         securityUserDetails.setSalt(user.getSalt());    // 加密盐
 
-        // 添加用户信息uid
-        securityUserDetails.setUserInfoUid(user.getUserInfoUid());
+        // 查询并添加用户信息uid
+        QueryWrapper<UserInfo> userInfoQueryWrapper = new QueryWrapper<>();
+        userInfoQueryWrapper.eq(BaseSQLConstants.UID, user.getUserInfoUid());
+        // 查询
+        UserInfo userInfo = userInfoMapper.selectOne(userInfoQueryWrapper);
+        securityUserDetails.setUserInfo(userInfo);
 
         // 添加角色uid
-        securityUserDetails.setRoleUid(user.getRoleUid());
+        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
+        roleQueryWrapper.eq(BaseSQLConstants.UID, user.getRoleUid());
+        // 查询
+        Role role = roleMapper.selectOne(roleQueryWrapper);
+        securityUserDetails.setRole(role);
 
         // 返回
         return securityUserDetails;

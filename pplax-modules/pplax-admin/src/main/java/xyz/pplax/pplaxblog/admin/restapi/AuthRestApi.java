@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiParam;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.global.UserSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;

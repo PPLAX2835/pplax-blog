@@ -9,6 +9,7 @@
         <module>pplax-durid-starter</module>
         <module>pplax-mybatis-starter</module>
         <module>pplax-swagger-starter</module>
+        <module>pplax-security-starter</module>
     </modules>
 
     <parent>
@@ -22,5 +23,29 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+                <groupId>xyz.pplax</groupId>
+                <artifactId>pplax-commons</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.pplax</groupId>
+                <artifactId>pplax-xo</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.pplax</groupId>
+                <artifactId>pplax-security-starter</artifactId>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
 
 </project>

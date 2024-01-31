@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import xyz.pplax.pplaxblog.admin.dto.add.LinkAddDto;
 import xyz.pplax.pplaxblog.admin.dto.edit.LinkEditDto;
-import xyz.pplax.pplaxblog.xo.global.LinkSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.LinkSQLConstants;
 import xyz.pplax.pplaxblog.commons.response.ResponseCode;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;

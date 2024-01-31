@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
-import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
 
 import javax.servlet.http.HttpServletRequest;

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import xyz.pplax.pplaxblog.admin.dto.add.LinkAddDto;
 import xyz.pplax.pplaxblog.admin.dto.edit.LinkEditDto;
-import xyz.pplax.pplaxblog.xo.global.LinkSQLConf;
-import xyz.pplax.pplaxblog.commons.base.global.response.ResponseCode;
-import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
+import xyz.pplax.pplaxblog.xo.global.LinkSQLConstants;
+import xyz.pplax.pplaxblog.commons.response.ResponseCode;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Link;
 import xyz.pplax.pplaxblog.xo.service.LinkService;
@@ -51,7 +51,7 @@ public class LinkRestApi {
 
         QueryWrapper<Link> queryWrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(keyword)) {
-            queryWrapper.like(LinkSQLConf.TITLE, keyword);
+            queryWrapper.like(LinkSQLConstants.TITLE, keyword);
         }
 
         //分页

@@ -8,17 +8,17 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
+import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
-import xyz.pplax.pplaxblog.admin.global.SysConf;
-import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
+import xyz.pplax.pplaxblog.admin.global.SysConstants;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.global.UserSQLConf;
+import xyz.pplax.pplaxblog.xo.global.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +53,7 @@ public class AuthRestApi {
 		String resp = JSON.toJSONString(ResponseResult.success(JSON.parseObject(authFeignClient.getToken(
 				clientId,
 				clientSecret,
-				BaseSysConf.PASSWORD,
+				BaseSysConstants.PASSWORD,
 				loginDto.getUsername(),
 				loginDto.getPassword()))));
 
@@ -62,7 +62,7 @@ public class AuthRestApi {
 
 			// 记录登录ip、登录次数、登录时间
 			QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-			userQueryWrapper.eq(UserSQLConf.USERNAME, loginDto.getUsername());
+			userQueryWrapper.eq(UserSQLConstants.USERNAME, loginDto.getUsername());
 
 			// 修改登录信息
 			User user = userService.getOne(userQueryWrapper);
@@ -83,8 +83,8 @@ public class AuthRestApi {
 	@GetMapping(value = "/info")
 	public String info(@ApiParam(name = "token", value = "token令牌",required = false) @RequestParam(name = "token", required = false) String token) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(SysConf.TOKEN, "admin");
-		map.put(SysConf.AVATAR, "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+		map.put(SysConstants.TOKEN, "admin");
+		map.put(SysConstants.AVATAR, "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
 		List<String> list = new ArrayList<String>();
 		list.add("admin");
 		map.put("roles", list);

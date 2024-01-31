@@ -6,10 +6,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.xo.global.BlogSQLConf;
-import xyz.pplax.pplaxblog.admin.global.SysConf;
-import xyz.pplax.pplaxblog.commons.base.enums.EStatus;
-import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
+import xyz.pplax.pplaxblog.xo.global.BlogSQLConstants;
+import xyz.pplax.pplaxblog.admin.global.SysConstants;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.ResultUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.*;
@@ -56,7 +56,7 @@ public class BlogRestApi {
 
 		QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
 		if(!StringUtils.isEmpty(keyword)) {
-			queryWrapper.like(BlogSQLConf.TITLE, keyword);
+			queryWrapper.like(BlogSQLConstants.TITLE, keyword);
 		}
 
 		//分页
@@ -126,7 +126,7 @@ public class BlogRestApi {
 					  @ApiParam(name = "fileUid", value = "标题图Uid",required = false) @RequestParam(name = "fileUid", required = false) String fileUid) {
 
 		if(StringUtils.isEmpty(title) || StringUtils.isEmpty(content)) {
-			return ResultUtil.result(SysConf.ERROR, "必填项不能为空");
+			return ResultUtil.result(SysConstants.ERROR, "必填项不能为空");
 		}
 		Blog blog = new Blog();
 		blog.setTitle(title);
@@ -137,7 +137,7 @@ public class BlogRestApi {
 		blog.setPictureUid(fileUid);
 		blog.setStatus(EStatus.ENABLE);
 		blogService.save(blog);
-		return ResultUtil.result(SysConf.SUCCESS, "添加成功");
+		return ResultUtil.result(SysConstants.SUCCESS, "添加成功");
 	}
 
 	@ApiOperation(value="编辑博客", notes="编辑博客", response = String.class)
@@ -152,7 +152,7 @@ public class BlogRestApi {
 					   @ApiParam(name = "fileUid", value = "标题图UID",required = false) @RequestParam(name = "fileUid", required = false) String fileUid ) {
 
 		if(StringUtils.isEmpty(uid)) {
-			return ResultUtil.result(SysConf.ERROR, "数据错误");
+			return ResultUtil.result(SysConstants.ERROR, "数据错误");
 		}
 		Blog blog = blogService.getById(uid);
 		blog.setTitle(title);
@@ -163,7 +163,7 @@ public class BlogRestApi {
 		blog.setClickCount(clickCount);
 		blog.setStatus(EStatus.ENABLE);
 		blog.updateById();
-		return ResultUtil.result(SysConf.SUCCESS, "编辑成功");
+		return ResultUtil.result(SysConstants.SUCCESS, "编辑成功");
 	}
 
 	@ApiOperation(value="删除博客", notes="删除博客", response = String.class)
@@ -172,12 +172,12 @@ public class BlogRestApi {
 						 @ApiParam(name = "uid", value = "唯一UID",required = true) @RequestParam(name = "uid", required = true) String uid			) {
 
 		if(StringUtils.isEmpty(uid)) {
-			return ResultUtil.result(SysConf.ERROR, "数据错误");
+			return ResultUtil.result(SysConstants.ERROR, "数据错误");
 		}
 		Blog blog = blogService.getById(uid);
 		blog.setStatus(EStatus.DISABLED);
 		blog.updateById();
-		return ResultUtil.result(SysConf.SUCCESS, "删除成功");
+		return ResultUtil.result(SysConstants.SUCCESS, "删除成功");
 	}
 
 

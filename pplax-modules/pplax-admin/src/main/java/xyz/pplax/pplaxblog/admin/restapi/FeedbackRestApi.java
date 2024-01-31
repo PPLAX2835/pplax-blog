@@ -13,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.dto.add.FeedBackAddDto;
 import xyz.pplax.pplaxblog.admin.dto.edit.FeedBackEditDto;
-import xyz.pplax.pplaxblog.xo.global.FeedBackSQLConf;
-import xyz.pplax.pplaxblog.commons.base.global.response.ResponseCode;
-import xyz.pplax.pplaxblog.commons.base.global.response.ResponseResult;
+import xyz.pplax.pplaxblog.xo.global.FeedBackSQLConstants;
+import xyz.pplax.pplaxblog.commons.response.ResponseCode;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.Feedback;
 import xyz.pplax.pplaxblog.xo.entity.User;
@@ -58,7 +58,7 @@ public class FeedbackRestApi {
 
         QueryWrapper<Feedback> queryWrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(keyword)) {
-            queryWrapper.like(FeedBackSQLConf.CONTENT, keyword);
+            queryWrapper.like(FeedBackSQLConstants.CONTENT, keyword);
         }
 
         //分页

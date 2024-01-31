@@ -7,13 +7,11 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 //import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.feign.file.FileFeignClient;
-import xyz.pplax.pplaxblog.commons.base.global.BaseRegexConf;
+import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.service.BlogService;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
@@ -60,7 +58,7 @@ public class TestRestApi {
 	@RequestMapping(value = "/regextest")
 	public String regexTest() {
 		String str = "[401] during [POST] to [http://auth-server/oauth/token?client_id=admin&client_secret=admin123456&grant_type=password&username=lucky&password=12345] [AuthFeignClient#getToken(String,String,String,String,String)]: [{\"error\":\"unauthorized\",\"error_description\":\"密码错误\"}]";
-		String regex = BaseRegexConf.JSON_REGEX;
+		String regex = BaseRegexConstants.JSON_REGEX;
 
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(str);

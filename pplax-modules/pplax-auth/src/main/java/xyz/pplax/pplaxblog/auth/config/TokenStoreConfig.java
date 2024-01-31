@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.auth.config;
 
-import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,17 +8,14 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import xyz.pplax.pplaxblog.auth.model.SecurityUserDetails;
-import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
+import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 @Configuration
 public class TokenStoreConfig {
@@ -76,10 +72,10 @@ public class TokenStoreConfig {
             LinkedHashMap<String, Object> extendInformation = new LinkedHashMap<>();
 
             // 添加信息
-            extendInformation.put(BaseSysConf.UID, user.getUid());                          // 用户uid
-            extendInformation.put(BaseSysConf.SALT, user.getSalt());                        // 加密盐
-            extendInformation.put(BaseSysConf.USER_INFO_UID, user.getUserInfoUid());        // 用户信息uid
-            extendInformation.put(BaseSysConf.ROLE_UID, user.getRoleUid());                 // 用户的角色uid
+            extendInformation.put(BaseSysConstants.UID, user.getUid());                          // 用户uid
+            extendInformation.put(BaseSysConstants.SALT, user.getSalt());                        // 加密盐
+            extendInformation.put(BaseSysConstants.USER_INFO_UID, user.getUserInfoUid());        // 用户信息uid
+            extendInformation.put(BaseSysConstants.ROLE_UID, user.getRoleUid());                 // 用户的角色uid
 
             // 将extendInformation添加到额外的信息中
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(extendInformation);

@@ -8,14 +8,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.auth.exception.UsernameNullException;
 import xyz.pplax.pplaxblog.auth.model.SecurityUserDetails;
-import xyz.pplax.pplaxblog.commons.base.global.BaseMessageConf;
-import xyz.pplax.pplaxblog.commons.base.global.BaseRegexConf;
-import xyz.pplax.pplaxblog.commons.base.global.BaseSysConf;
+import xyz.pplax.pplaxblog.commons.constants.BaseMessageConstants;
+import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
-import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.entity.UserInfo;
-import xyz.pplax.pplaxblog.xo.global.UserSQLConf;
+import xyz.pplax.pplaxblog.xo.global.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserInfoMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
@@ -40,40 +37,40 @@ public class UserDetailService  implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (StringUtils.isEmpty(username)) {
-            throw new UsernameNullException(BaseMessageConf.USERNAME_IS_NULL);
+            throw new UsernameNullException(BaseMessageConstants.USERNAME_IS_NULL);
         }
 
         // 邮箱的正则
-        String emailRegex = BaseRegexConf.EMAIL_REGEX;
+        String emailRegex = BaseRegexConstants.EMAIL_REGEX;
         // 手机的正则
-        String mobileRegex = BaseRegexConf.MOBILE_REGEX;
+        String mobileRegex = BaseRegexConstants.MOBILE_REGEX;
 
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         User user = null;
         if (Pattern.matches(emailRegex, username)) {
             // 根据邮箱查询
-            userQueryWrapper.eq(UserSQLConf.EMAIL, username);
+            userQueryWrapper.eq(UserSQLConstants.EMAIL, username);
             user = userMapper.selectOne(userQueryWrapper);
 
             if (user.getIsEmailActivated() == null || !user.getIsEmailActivated()) {
-                return new org.springframework.security.core.userdetails.User(BaseMessageConf.EMAIL_UNACTIVATED, BaseMessageConf.EMAIL_UNACTIVATED, new ArrayList<>());
+                return new org.springframework.security.core.userdetails.User(BaseMessageConstants.EMAIL_UNACTIVATED, BaseMessageConstants.EMAIL_UNACTIVATED, new ArrayList<>());
             }
         } else if (Pattern.matches(mobileRegex, username)) {
             // 根据手机查询
-            userQueryWrapper.eq(UserSQLConf.MOBILE, username);
+            userQueryWrapper.eq(UserSQLConstants.MOBILE, username);
             user = userMapper.selectOne(userQueryWrapper);
 
             if (user.getIsMobileActivated() == null || !user.getIsMobileActivated()) {
-                return new org.springframework.security.core.userdetails.User(BaseMessageConf.MOBILE_UNACTIVATED, BaseMessageConf.MOBILE_UNACTIVATED, new ArrayList<>());
+                return new org.springframework.security.core.userdetails.User(BaseMessageConstants.MOBILE_UNACTIVATED, BaseMessageConstants.MOBILE_UNACTIVATED, new ArrayList<>());
             }
         } else {
             // 根据用户名查询
-            userQueryWrapper.eq(UserSQLConf.USERNAME, username);
+            userQueryWrapper.eq(UserSQLConstants.USERNAME, username);
             user = userMapper.selectOne(userQueryWrapper);
         }
 
         if (user == null) {
-            return new org.springframework.security.core.userdetails.User(BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConf.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
+            return new org.springframework.security.core.userdetails.User(BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
         }
 
         // 添加点查询用户信息会用到的认证信息

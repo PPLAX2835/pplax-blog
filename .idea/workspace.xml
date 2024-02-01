@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/AccountIsNotRegisteredException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/AccountIsNotRegisteredException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/EmailUnactivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/EmailUnactivatedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/MobileUnactivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/MobileUnactivatedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/UsernameNullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/UsernameNullException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,14 +236,7 @@
       <workItem from="1706495008076" duration="4937000" />
       <workItem from="1706528225156" duration="21431000" />
       <workItem from="1706679389108" duration="329000" />
-      <workItem from="1706751658342" duration="1237000" />
-    </task>
-    <task id="LOCAL-00195" summary="简单调整">
-      <created>1701570221164</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1701570221165</updated>
+      <workItem from="1706751658342" duration="1833000" />
     </task>
     <task id="LOCAL-00196" summary="添加一些基本类">
       <created>1701572798322</created>
@@ -583,7 +574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706752765940</updated>
     </task>
-    <option name="localTasksCounter" value="244" />
+    <task id="LOCAL-00244" summary="合并弄错了点">
+      <created>1706753084149</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1706753084149</updated>
+    </task>
+    <option name="localTasksCounter" value="245" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -618,7 +616,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改启动类注解" />
     <MESSAGE value="实现admin服务通过feign调用auth服务的接口获取token" />
     <MESSAGE value="admin服务配置oauth2鉴权" />
     <MESSAGE value="调整接口,资源服务器配置redis的token存储方案，防止默认从内存中读取导致认证失败，解决跨域问题" />
@@ -643,7 +640,8 @@
     <MESSAGE value="添加starter模块，将配置放到这里" />
     <MESSAGE value="整理commons模块" />
     <MESSAGE value=" security-starter部分类移到auth服务中，再次修改SecurityUserDetails" />
-    <option name="LAST_COMMIT_MESSAGE" value=" security-starter部分类移到auth服务中，再次修改SecurityUserDetails" />
+    <MESSAGE value="合并弄错了点" />
+    <option name="LAST_COMMIT_MESSAGE" value="合并弄错了点" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

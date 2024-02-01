@@ -19,16 +19,13 @@
 
 
     <dependencies>
+
+        <!-- 引入starter 相关 -->
         <dependency>
             <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-commons</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-webmvc</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>pplax-security-starter</artifactId>
         </dependency>
+        <!-- starter end -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

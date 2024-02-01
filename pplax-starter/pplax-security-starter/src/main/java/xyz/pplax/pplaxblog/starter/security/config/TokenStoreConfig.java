@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.starter.security.model.SecurityUserDetails;
 
 import java.util.LinkedHashMap;
@@ -77,10 +78,10 @@ public class TokenStoreConfig {
             LinkedHashMap<String, Object> extendInformation = new LinkedHashMap<>();
 
             // 添加信息
-            extendInformation.put("uid", user.getUid());                          // 用户uid
-            extendInformation.put("salt", user.getSalt());                        // 加密盐
-            extendInformation.put("userInfoUid", user.getUserInfoUid());        // 用户信息uid
-            extendInformation.put("roleUid", user.getRoleUid());                 // 用户的角色uid
+            extendInformation.put(BaseSysConstants.UID, user.getUid());                          // 用户uid
+            extendInformation.put(BaseSysConstants.SALT, user.getSalt());                        // 加密盐
+            extendInformation.put(BaseSysConstants.USER_INFO_UID, user.getUserInfoUid());        // 用户信息uid
+            extendInformation.put(BaseSysConstants.ROLE_UID, user.getRoleUid());                 // 用户的角色uid
 
             // 将extendInformation添加到额外的信息中
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(extendInformation);

@@ -13,7 +13,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.starter.security",
         "xyz.pplax.pplaxblog.starter.durid",
         "xyz.pplax.pplaxblog.starter.mybatis",
-        "xyz.pplax.pplaxblog.xo.service"
+        "xyz.pplax.pplaxblog.xo.service",
+        "xyz.pplax.pplaxblog.auth.config",
+        "xyz.pplax.pplaxblog.auth.service"
 })
 public class AuthApplication {
 

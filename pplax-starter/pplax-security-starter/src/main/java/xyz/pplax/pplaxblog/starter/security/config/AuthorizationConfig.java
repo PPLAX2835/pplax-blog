@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 
 /**
  * 这是redis token方式
@@ -55,7 +54,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // admin服务的配置
                 .withClient(adminClientId)
                 .secret(passwordEncoder.encode(adminClientSecret))
-                .authorizedGrantTypes(BaseSysConstants.PASSWORD)
+                .authorizedGrantTypes("password")
                 .accessTokenValiditySeconds(3600)
                 .scopes("all");
     }

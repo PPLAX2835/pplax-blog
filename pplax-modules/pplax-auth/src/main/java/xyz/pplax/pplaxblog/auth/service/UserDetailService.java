@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.starter.security.service;
+package xyz.pplax.pplaxblog.auth.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,19 +81,11 @@ public class UserDetailService  implements UserDetailsService {
         securityUserDetails.setUid(user.getUid());      // 用户uid
         securityUserDetails.setSalt(user.getSalt());    // 加密盐
 
-        // 查询并添加用户信息uid
-        QueryWrapper<UserInfo> userInfoQueryWrapper = new QueryWrapper<>();
-        userInfoQueryWrapper.eq(BaseSQLConstants.UID, user.getUserInfoUid());
-        // 查询
-        UserInfo userInfo = userInfoMapper.selectOne(userInfoQueryWrapper);
-        securityUserDetails.setUserInfo(userInfo);
+        // 添加用户信息uid
+        securityUserDetails.setUserInfoUid(user.getUserInfoUid());
 
         // 添加角色uid
-        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
-        roleQueryWrapper.eq(BaseSQLConstants.UID, user.getRoleUid());
-        // 查询
-        Role role = roleMapper.selectOne(roleQueryWrapper);
-        securityUserDetails.setRole(role);
+        securityUserDetails.setRoleUid(user.getRoleUid());
 
         // 返回
         return securityUserDetails;

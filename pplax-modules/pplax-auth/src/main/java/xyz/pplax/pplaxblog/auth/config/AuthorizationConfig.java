@@ -11,8 +11,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
+import xyz.pplax.pplaxblog.starter.security.config.JwtAccessTokenEnhancer;
 
 /**
  * 这是redis token方式
@@ -46,7 +48,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)  // 调用此方法才能支持 password 模式
                 .userDetailsService(userDetailsService)     // 设置用户验证服务
-                .tokenStore(jwtTokenStore);                   //指定 token 的存储方式
+                .tokenStore(jwtTokenStore)                   //指定 token 的存储方式
+                .tokenEnhancer(new JwtAccessTokenEnhancer());   // 指定自己的tokenEnhancer
     }
 
     @Override

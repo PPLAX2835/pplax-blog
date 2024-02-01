@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/config/GatewaySecurityConfigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/JwtAuthenticationManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/config/JwtAccessTokenEnhancer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/WebSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/config/GatewaySecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/config/GatewaySecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/config/TokenStoreConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/config/TokenStoreConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +78,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -102,11 +102,11 @@
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-feign" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-gateway\src\main\java\xyz\pplax\pplaxblog\gateway\config" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-file\src\main\java\xyz\pplax\pplaxblog\file" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-file\src\main\java\xyz\pplax\pplaxblog\file\restapi" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\entity" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="xyz.pplax" />
@@ -669,6 +669,11 @@
           <url>jar://E:/Environment/Maven/Repository/org/springframework/cloud/spring-cloud-gateway-core/2.2.2.RELEASE/spring-cloud-gateway-core-2.2.2.RELEASE.jar!/org/springframework/cloud/gateway/filter/ReactiveLoadBalancerClientFilter.class</url>
           <line>41</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/JwtAuthenticationManager.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

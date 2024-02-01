@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 //@EnableSwagger2
 @ComponentScan(basePackages = {
+    "xyz.pplax.pplaxblog.starter.security",
     "xyz.pplax.pplaxblog.gateway.config"
 })
 public class GatewayApplication {

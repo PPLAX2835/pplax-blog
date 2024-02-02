@@ -60,11 +60,9 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // admin服务的配置
                 .withClient(clientId)
                 .secret(passwordEncoder.encode(clientSecret))
-                .authorizedGrantTypes(BaseSysConstants.PASSWORD)
-                .accessTokenValiditySeconds(3600)
+                .authorizedGrantTypes(BaseSysConstants.PASSWORD)            // 使用密码模式
                 .scopes("all")
-                .accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(86400);
+                .accessTokenValiditySeconds(3600);
     }
 
     @Override

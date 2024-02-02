@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="token存储方式改为redis存储就没事了，why??">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseMessageConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseMessageConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/JwtAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/JwtAuthenticationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,14 +238,7 @@
       <workItem from="1706528225156" duration="21431000" />
       <workItem from="1706679389108" duration="329000" />
       <workItem from="1706751658342" duration="1833000" />
-      <workItem from="1706834941788" duration="6909000" />
-    </task>
-    <task id="LOCAL-00198" summary="重构：弃用物理删除，所有删除都用逻辑删除目前BlogSort表弄好了">
-      <created>1705301095830</created>
-      <option name="number" value="00198" />
-      <option name="presentableId" value="LOCAL-00198" />
-      <option name="project" value="LOCAL" />
-      <updated>1705301095830</updated>
+      <workItem from="1706834941788" duration="8509000" />
     </task>
     <task id="LOCAL-00199" summary="简单清理一下冗余代码">
       <created>1705303442045</created>
@@ -582,7 +576,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706840330930</updated>
     </task>
-    <option name="localTasksCounter" value="247" />
+    <task id="LOCAL-00247" summary="token存储方式改为redis存储就没事了，why??">
+      <created>1706842068350</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1706842068350</updated>
+    </task>
+    <option name="localTasksCounter" value="248" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +618,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整接口,资源服务器配置redis的token存储方案，防止默认从内存中读取导致认证失败，解决跨域问题" />
     <MESSAGE value="redis配置移到nacos中" />
     <MESSAGE value="用户表分表，分成敏感数据和非敏感数据的" />
     <MESSAGE value="调整文件服务，修改文件表file_size类型" />
@@ -642,7 +642,8 @@
     <MESSAGE value="合并弄错了点" />
     <MESSAGE value="发现auth-server返回的token不是jwt的，现在改了" />
     <MESSAGE value="网关配置token鉴权，但是token解析报错目前还未解决" />
-    <option name="LAST_COMMIT_MESSAGE" value="网关配置token鉴权，但是token解析报错目前还未解决" />
+    <MESSAGE value="token存储方式改为redis存储就没事了，why??" />
+    <option name="LAST_COMMIT_MESSAGE" value="token存储方式改为redis存储就没事了，why??" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

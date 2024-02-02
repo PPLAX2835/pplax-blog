@@ -43,7 +43,13 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
         }
 
         // 鉴权
-
+        /*
+         * 目前想法：
+         * 游客只能使用get方法
+         * 普通用户只能操作自己的，且访问不了admin路径
+         * 管理员可以使用get、post等、但不能使用delete
+         * 超级管理员都可以
+         */
 
 
 

@@ -4,14 +4,151 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整理">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/controller/SuperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/controller/SuperController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/response/ResponseCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/response/ResponseCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/response/ResponseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/response/ResponseResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/BlogSortService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/BlogSortService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogSortServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.postcssrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/build/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/build/check-versions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/build/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/build/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/build/vue-loader.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/build/webpack.base.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/build/webpack.dev.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/build/webpack.prod.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/config/dev.env.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/config/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/config/prod.env.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/config/test.env.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/BlogFooter/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/BlogHead/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/router/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/about.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/gbook.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/info.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/life.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/list.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/share.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/time.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/css/m.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/5794.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/about.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/ad.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/alipay.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/alipayimg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/auicon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/author.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/avatar.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/b01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/b02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/b03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/b04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/b05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/b06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/b07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/banner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/banner01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/banner02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/banner03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/bi01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/bi02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/bi03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/bi04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/bi05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/bi06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/blank.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/cd-top-arrow.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/date.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/datepng.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/dsbz.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/dzbg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/gzbg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/jdbg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/lanmbq.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/logo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/mb01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/mb02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/mb03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/mb04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/mb05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/mb06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/mb07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/mb08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/navbg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/navline.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/navt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/newsbg01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/newsbg02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/newsbg03 (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/newsbg03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/newsbg04.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/obscure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/page_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/page_time.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/posttime.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/radio1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/radio2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/searchbg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/t01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/t02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/t03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/tbg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/text01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/text02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/titlebg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/top.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/toppic01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/toppic02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/v1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/v2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/wechat.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/weipayimg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/wx.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/zd01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/zd02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/zd03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/images/》》》》》2018 - 快捷方式.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/jquery-2.1.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/jquery.easyfader.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/menu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/modernizr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/page2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/static/js/scrollReveal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/test/e2e/custom-assertions/elementCount.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/test/e2e/nightwatch.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/test/e2e/runner.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/test/e2e/specs/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/test/unit/.eslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/test/unit/jest.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/test/unit/setup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/test/unit/specs/HelloWorld.spec.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,13 +378,6 @@
       <workItem from="1706679389108" duration="329000" />
       <workItem from="1706751658342" duration="1833000" />
       <workItem from="1706834941788" duration="8509000" />
-    </task>
-    <task id="LOCAL-00199" summary="简单清理一下冗余代码">
-      <created>1705303442045</created>
-      <option name="number" value="00199" />
-      <option name="presentableId" value="LOCAL-00199" />
-      <option name="project" value="LOCAL" />
-      <updated>1705303442045</updated>
     </task>
     <task id="LOCAL-00200" summary="mybatis-plus版本上调，blog添加is_publish字段">
       <created>1705384217232</created>
@@ -585,7 +715,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706842068350</updated>
     </task>
-    <option name="localTasksCounter" value="248" />
+    <task id="LOCAL-00248" summary="整理一下响应相关的常量">
+      <created>1706854324728</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
+      <option name="project" value="LOCAL" />
+      <updated>1706854324728</updated>
+    </task>
+    <option name="localTasksCounter" value="249" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,7 +757,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="redis配置移到nacos中" />
     <MESSAGE value="用户表分表，分成敏感数据和非敏感数据的" />
     <MESSAGE value="调整文件服务，修改文件表file_size类型" />
     <MESSAGE value="修改文件工具类" />
@@ -645,7 +781,8 @@
     <MESSAGE value="发现auth-server返回的token不是jwt的，现在改了" />
     <MESSAGE value="网关配置token鉴权，但是token解析报错目前还未解决" />
     <MESSAGE value="token存储方式改为redis存储就没事了，why??" />
-    <option name="LAST_COMMIT_MESSAGE" value="token存储方式改为redis存储就没事了，why??" />
+    <MESSAGE value="整理一下响应相关的常量" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理一下响应相关的常量" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

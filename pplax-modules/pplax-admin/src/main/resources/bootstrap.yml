@@ -20,3 +20,5 @@ spring:
             group: PPLAX_BLOG
           - data-id: redis-config.yaml            # redis的相关配置
             group: PPLAX_BLOG
+          - data-id: oauth-config.yaml            # oauth的相关配置
+            group: PPLAX_BLOG

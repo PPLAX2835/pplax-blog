@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
@@ -30,27 +31,27 @@ public interface BlogSortService extends SuperService<BlogSort> {
      *
      * @param blogSortDto
      */
-    public String addBlogSort(BlogSortDto blogSortDto);
+    public ResponseResult addBlogSort(BlogSortDto blogSortDto);
 
     /**
      * 编辑博客分类
      *
      * @param blogSortDto
      */
-    public String editBlogSort(BlogSortDto blogSortDto);
+    public ResponseResult editBlogSort(BlogSortDto blogSortDto);
 
     /**
      * 逻辑删除
      * @param uid
      * @return
      */
-    public String logicDelete(String uid);
+    public ResponseResult logicDelete(String uid);
 
     /**
      * 批量逻辑删除
      * @param blogSortDto
      * @return
      */
-    public String logicBatchDelete(BlogSortDto blogSortDto);
+    public ResponseResult logicBatchDelete(BlogSortDto blogSortDto);
 
 }

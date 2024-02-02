@@ -8,6 +8,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.service.BlogSortService;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/blogSort")
 @Api(value="博客分类RestApi", tags={"BlogSortRestApi"})
-public class BlogSortRestApi {
+public class BlogSortRestApi extends SuperController {
 
     @Autowired
     private BlogSortService blogSortService;
@@ -73,7 +74,7 @@ public class BlogSortRestApi {
         BlogSortDto blogSortDto = new BlogSortDto();
         blogSortDto.setSortName(sortName);
 
-        return JSON.toJSONString(ResponseResult.success(blogSortService.checkSortNameExists(blogSortDto)));
+        return success(blogSortService.checkSortNameExists(blogSortDto));
     }
 
     /**
@@ -90,7 +91,7 @@ public class BlogSortRestApi {
     ) {
 
         log.info("返回结果");
-        return blogSortService.addBlogSort(blogSortDto);
+        return toJson(blogSortService.addBlogSort(blogSortDto));
     }
 
 
@@ -110,7 +111,7 @@ public class BlogSortRestApi {
         blogSortDto.setUid(uid);
 
         log.info("返回结果");
-        return  blogSortService.editBlogSort(blogSortDto);
+        return toJson(blogSortService.editBlogSort(blogSortDto));
     }
 
     /**
@@ -127,7 +128,7 @@ public class BlogSortRestApi {
     ) {
 
         log.info("返回结果");
-        return blogSortService.logicDelete(uid);
+        return toJson(blogSortService.logicDelete(uid));
     }
 
     /**
@@ -144,7 +145,7 @@ public class BlogSortRestApi {
     ) {
 
         log.info("返回结果");
-        return blogSortService.logicBatchDelete(blogSortDto);
+        return toJson(blogSortService.logicBatchDelete(blogSortDto));
     }
 
 

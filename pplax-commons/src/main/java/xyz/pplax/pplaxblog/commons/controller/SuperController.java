@@ -34,8 +34,8 @@ public class SuperController {
 	 * @param data
 	 * @return
 	 */
-	public String response(ResponseCode responseCode, Object data) {
-		return JSON.toJSONString(new ResponseResult<>(responseCode, data));
+	public String response(Integer responseCode, Object data) {
+		return JSON.toJSONString(new ResponseResult(responseCode, data));
 	}
 
 	/**
@@ -44,8 +44,19 @@ public class SuperController {
 	 * @param message
 	 * @return
 	 */
-	public String response(ResponseCode responseCode, String message) {
-		return JSON.toJSONString(new ResponseResult<>(responseCode, message));
+	public String response(Integer responseCode, String message) {
+		return JSON.toJSONString(new ResponseResult(responseCode, message));
+	}
+
+	/**
+	 * 自定义响应
+	 * @param responseCode
+	 * @param data
+	 * @param message
+	 * @return
+	 */
+	public String response(Integer responseCode, Object data, String message) {
+		return JSON.toJSONString(new ResponseResult(responseCode, data, message));
 	}
 
 	/**

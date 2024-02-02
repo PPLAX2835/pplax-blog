@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.commons.handler;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.api.IErrorCode;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.enums.ApiErrorCode;
@@ -69,7 +70,7 @@ public class GlobalExceptionHandler {
         }
 
         /*
-         * 登录认证异常
+         * Feign异常，目前只是针对调用oauth相关接口的非200返回，将来可能还要继续完善
          */
         if (e instanceof FeignException) {
             // 先获取异常信息中包含的json
@@ -81,7 +82,7 @@ public class GlobalExceptionHandler {
 
             if (matcher.find()) {
 
-                return R.restResult(matcher.group(0), ApiErrorCode.FAILED);
+                return R.restResult(JSON.parseObject(matcher.group(0)), ApiErrorCode.FAILED);
             } else {
                 return R.failed(ApiErrorCode.FAILED);
             }
@@ -91,7 +92,7 @@ public class GlobalExceptionHandler {
         /**
          * 系统内部异常，打印异常栈
          */
-        log.error("Error: handleBadRequest StackTrace : {}", e);
+        log.error("Error: handleBadRequest StackTrace : %s", e);
         return R.failed(ApiErrorCode.FAILED);
     }
 }

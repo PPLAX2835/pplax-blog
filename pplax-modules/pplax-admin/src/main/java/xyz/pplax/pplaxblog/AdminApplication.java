@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableFeignClients
 @ComponentScan(basePackages = {
-        "xyz.pplax.pplaxblog.commons.base.handler",
+        "xyz.pplax.pplaxblog.commons.handler",
         "xyz.pplax.pplaxblog.starter.durid",
         "xyz.pplax.pplaxblog.starter.mybatis",
         "xyz.pplax.pplaxblog.starter.swagger",

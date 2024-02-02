@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="将nacos中的配置拆开；先删除前台">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/properties/GatewayProperty.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/config/GatewaySecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/config/GatewaySecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,8 +95,8 @@
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-auth\src\main\java\xyz\pplax\pplaxblog\auth\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-gateway\src\main\java\xyz\pplax\pplaxblog\gateway\config" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-gateway\src\main\java\xyz\pplax\pplaxblog\gateway\config" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-file\src\main\java\xyz\pplax\pplaxblog\file" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-file\src\main\java\xyz\pplax\pplaxblog\file\restapi" />
@@ -105,11 +105,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.auth.handler" />
       <recent name="xyz.pplax.pplaxblog.gateway.handler" />
       <recent name="xyz.pplax.pplaxblog.commons.base.filter" />
       <recent name="xyz.pplax.pplaxblog.admin.config" />
       <recent name="xyz.pplax.pplaxblog.gateway.filter" />
-      <recent name="xyz.pplax.pplaxblog.xo.service.impl" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -238,13 +238,6 @@
       <workItem from="1706679389108" duration="329000" />
       <workItem from="1706751658342" duration="1833000" />
       <workItem from="1706834941788" duration="8509000" />
-    </task>
-    <task id="LOCAL-00201" summary="调整service层，修改删除已经存在博客的分类时仍然会删除的bug">
-      <created>1705386300473</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1705386300473</updated>
     </task>
     <task id="LOCAL-00202" summary="调整sql常量类的值，博客分类实现引用量排序">
       <created>1705458346184</created>
@@ -582,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706855177455</updated>
     </task>
-    <option name="localTasksCounter" value="250" />
+    <task id="LOCAL-00250" summary="白名单配置错了，改一下">
+      <created>1706864482129</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1706864482129</updated>
+    </task>
+    <option name="localTasksCounter" value="251" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +617,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整文件服务，修改文件表file_size类型" />
     <MESSAGE value="修改文件工具类" />
     <MESSAGE value="踩feign调用文件接口的坑" />
     <MESSAGE value="整理maven" />
@@ -642,7 +641,8 @@
     <MESSAGE value="token存储方式改为redis存储就没事了，why??" />
     <MESSAGE value="整理一下响应相关的常量" />
     <MESSAGE value="将nacos中的配置拆开；先删除前台" />
-    <option name="LAST_COMMIT_MESSAGE" value="将nacos中的配置拆开；先删除前台" />
+    <MESSAGE value="白名单配置错了，改一下" />
+    <option name="LAST_COMMIT_MESSAGE" value="白名单配置错了，改一下" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

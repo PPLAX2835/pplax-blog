@@ -56,7 +56,7 @@ public class UserDetailService  implements UserDetailsService {
             user = userMapper.selectOne(userQueryWrapper);
 
             if (user.getIsEmailActivated() == null || !user.getIsEmailActivated()) {
-                return new org.springframework.security.core.userdetails.User(BaseMessageConstants.EMAIL_UNACTIVATED, BaseMessageConstants.EMAIL_UNACTIVATED, new ArrayList<>());
+                return new SecurityUserDetails(BaseMessageConstants.EMAIL_UNACTIVATED, BaseMessageConstants.EMAIL_UNACTIVATED, new ArrayList<>());
             }
         } else if (Pattern.matches(mobileRegex, username)) {
             // 根据手机查询
@@ -64,7 +64,7 @@ public class UserDetailService  implements UserDetailsService {
             user = userMapper.selectOne(userQueryWrapper);
 
             if (user.getIsMobileActivated() == null || !user.getIsMobileActivated()) {
-                return new org.springframework.security.core.userdetails.User(BaseMessageConstants.MOBILE_UNACTIVATED, BaseMessageConstants.MOBILE_UNACTIVATED, new ArrayList<>());
+                return new SecurityUserDetails(BaseMessageConstants.MOBILE_UNACTIVATED, BaseMessageConstants.MOBILE_UNACTIVATED, new ArrayList<>());
             }
         } else {
             // 根据用户名查询
@@ -73,7 +73,7 @@ public class UserDetailService  implements UserDetailsService {
         }
 
         if (user == null) {
-            return new org.springframework.security.core.userdetails.User(BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
+            return new SecurityUserDetails(BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
         }
 
         // 将该用户所拥有的角色uid放入集合中

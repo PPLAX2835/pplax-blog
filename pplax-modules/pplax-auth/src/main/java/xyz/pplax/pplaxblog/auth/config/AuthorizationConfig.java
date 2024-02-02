@@ -34,7 +34,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private TokenStore jwtTokenStore;
+    private TokenStore redisTokenStore;
 
     @Value("${pplax.oauth.client-id}")
     private String clientId;
@@ -49,7 +49,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)          // 调用此方法才能支持 password 模式
                 .userDetailsService(userDetailsService)                 // 设置用户验证服务
-                .tokenStore(jwtTokenStore)                              //指定 token 的存储方式
+                .tokenStore(redisTokenStore)                              //指定 token 的存储方式
                 .tokenEnhancer(new JwtAccessTokenEnhancer())            // 指定自己的tokenEnhancer
                 .allowedTokenEndpointRequestMethods(HttpMethod.POST);   // 只允许POST提交访问令牌，uri：/oauth/token，可以添加多个
     }
@@ -60,7 +60,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // admin服务的配置
                 .withClient(clientId)
                 .secret(passwordEncoder.encode(clientSecret))
-                .authorizedGrantTypes(BaseSysConstants.PASSWORD, "refresh_token")
+                .authorizedGrantTypes(BaseSysConstants.PASSWORD)
                 .accessTokenValiditySeconds(3600)
                 .scopes("all")
                 .accessTokenValiditySeconds(3600)

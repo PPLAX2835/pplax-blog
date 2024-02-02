@@ -23,7 +23,7 @@ public class JwtAuthenticationManager implements ReactiveAuthenticationManager {
      * 使用JWT令牌进行解析令牌
      */
     @Autowired
-    private TokenStore jwtTokenStore;
+    private TokenStore redisTokenStore;
 
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {
@@ -32,20 +32,14 @@ public class JwtAuthenticationManager implements ReactiveAuthenticationManager {
                 .cast(BearerTokenAuthenticationToken.class)
                 .map(BearerTokenAuthenticationToken::getToken)
                 .flatMap((accessToken -> {
-
-                    System.out.println(accessToken);
-
-                    OAuth2AccessToken oAuth2AccessToken = jwtTokenStore.readAccessToken(accessToken);
-
-                    System.out.println(oAuth2AccessToken);
-
+                    OAuth2AccessToken oAuth2AccessToken = redisTokenStore.readAccessToken(accessToken);
                     // 根据access_token从数据库获取不到OAuth2AccessToken
                     if (oAuth2AccessToken == null) {
                         return Mono.error(new InvalidTokenException("无效的token！"));
                     } else if (oAuth2AccessToken.isExpired()) {
                         return Mono.error(new InvalidTokenException("token已过期！"));
                     }
-                    OAuth2Authentication oAuth2Authentication = jwtTokenStore.readAuthentication(accessToken);
+                    OAuth2Authentication oAuth2Authentication = redisTokenStore.readAuthentication(accessToken);
                     if (oAuth2Authentication == null) {
                         return Mono.error(new InvalidTokenException("无效的token！"));
                     } else {

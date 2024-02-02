@@ -16,3 +16,5 @@ spring:
         extension-configs:
           - data-id: gateway-config.yaml
             group: PPLAX_BLOG
+          - data-id: redis-config.yaml            # redis的相关配置
+            group: PPLAX_BLOG

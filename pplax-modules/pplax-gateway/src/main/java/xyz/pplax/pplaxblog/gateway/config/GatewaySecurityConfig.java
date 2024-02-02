@@ -22,6 +22,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
+import xyz.pplax.pplaxblog.gateway.properties.GatewayProperty;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -32,6 +33,9 @@ public class GatewaySecurityConfig {
 
     @Autowired
     private ReactiveAuthenticationManager jwtAuthenticationManager;
+
+    @Autowired
+    private GatewayProperty gatewayProperty;
 
     /**
      * oauth配置
@@ -49,7 +53,7 @@ public class GatewaySecurityConfig {
                 .csrf().disable()
                 .authorizeExchange()
                 // 白名单直接放行
-                .pathMatchers("/**").permitAll()                // 白名单还没弄，先全部放行
+                .pathMatchers(gatewayProperty.getExclude()).permitAll()
                 // 其他的请求必须鉴权，使用鉴权管理器
                 .anyExchange().access(pplaxReactiveAuthorizationManager)
                 // 鉴权的异常处理，权限不足，token失效

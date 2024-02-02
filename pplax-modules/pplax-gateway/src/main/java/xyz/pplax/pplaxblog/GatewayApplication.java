@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {
     "xyz.pplax.pplaxblog.starter.security",
     "xyz.pplax.pplaxblog.gateway.config",
+    "xyz.pplax.pplaxblog.gateway.properties",
     "xyz.pplax.pplaxblog.gateway.security"
 })
 public class GatewayApplication {

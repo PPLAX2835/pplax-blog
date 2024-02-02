@@ -2,6 +2,8 @@ package xyz.pplax.pplaxblog.auth.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +21,7 @@ import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
 
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class UserDetailService  implements UserDetailsService {
@@ -73,16 +76,20 @@ public class UserDetailService  implements UserDetailsService {
             return new org.springframework.security.core.userdetails.User(BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
         }
 
+        // 将该用户所拥有的角色uid放入集合中
+        String[] roleUidArray = user.getRoleUid().split(",");
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String roleUid : roleUidArray) {
+            authorities.add(new SimpleGrantedAuthority(roleUid));
+        }
+
         // 添加点查询用户信息会用到的认证信息
-        SecurityUserDetails securityUserDetails = new SecurityUserDetails(user.getUsername(), user.getPassword(), new ArrayList<>());
+        SecurityUserDetails securityUserDetails = new SecurityUserDetails(user.getUsername(), user.getPassword(), authorities);
         securityUserDetails.setUid(user.getUid());      // 用户uid
         securityUserDetails.setSalt(user.getSalt());    // 加密盐
 
         // 添加用户信息uid
         securityUserDetails.setUserInfoUid(user.getUserInfoUid());
-
-        // 添加角色uid
-        securityUserDetails.setRoleUid(user.getRoleUid());
 
         // 返回
         return securityUserDetails;

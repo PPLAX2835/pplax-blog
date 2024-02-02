@@ -13,8 +13,6 @@ public class SecurityUserDetails extends User {
 
     private String userInfoUid;
 
-    private String roleUid;
-
     public SecurityUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
     }
@@ -46,13 +44,5 @@ public class SecurityUserDetails extends User {
 
     public void setUserInfoUid(String userInfoUid) {
         this.userInfoUid = userInfoUid;
-    }
-
-    public String getRoleUid() {
-        return roleUid;
-    }
-
-    public void setRoleUid(String roleUid) {
-        this.roleUid = roleUid;
     }
 }

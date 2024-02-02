@@ -15,7 +15,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@EnableSwagger2
 @ComponentScan(basePackages = {
     "xyz.pplax.pplaxblog.starter.security",
-    "xyz.pplax.pplaxblog.gateway.config"
+    "xyz.pplax.pplaxblog.gateway.config",
+    "xyz.pplax.pplaxblog.gateway.security"
 })
 public class GatewayApplication {
 

@@ -29,7 +29,6 @@ public class JwtAccessTokenEnhancer extends JwtAccessTokenConverter {
         extendInformation.put(BaseSysConstants.UID, user.getUid());                          // 用户uid
         extendInformation.put(BaseSysConstants.SALT, user.getSalt());                        // 加密盐
         extendInformation.put(BaseSysConstants.USER_INFO_UID, user.getUserInfoUid());        // 用户信息uid
-        extendInformation.put(BaseSysConstants.ROLE_UID, user.getRoleUid());                 // 用户的角色uid
 
         // 将extendInformation添加到额外的信息中
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(extendInformation);

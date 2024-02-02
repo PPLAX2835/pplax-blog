@@ -23,9 +23,6 @@ public class TokenStoreConfig {
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
-    @Autowired
-    private JwtAccessTokenConverter jwtAccessTokenConverter;
-
     /**
      * 获得redis的token存储bean
      * @return
@@ -41,15 +38,15 @@ public class TokenStoreConfig {
      */
     @Bean
     public TokenStore jwtTokenStore () {
-        return new JwtTokenStore(jwtAccessTokenConverter);
+        return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter(){
-        JwtAccessTokenConverter converter = new JwtAccessTokenEnhancer();
+        JwtAccessTokenConverter jwtAccessTokenEnhancer = new JwtAccessTokenEnhancer();
         // 设置秘钥
-        converter.setSigningKey(secretKey);
-        return converter;
+        jwtAccessTokenEnhancer.setSigningKey(secretKey);
+        return jwtAccessTokenEnhancer;
     }
 
     @Bean

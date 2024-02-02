@@ -90,7 +90,7 @@ export default {
           this.$store.dispatch('Login', this.loginForm).then(response => {
             
             // 存token
-            setToken('bearer' + response.data.access_token)
+            setToken('Bearer ' + response.data.access_token)
 
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })

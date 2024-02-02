@@ -3,6 +3,7 @@ package xyz.pplax.pplaxblog.auth.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,31 +37,34 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     private TokenStore jwtTokenStore;
 
     @Value("${pplax.oauth.client-id}")
-    private String adminClientId;
+    private String clientId;
 
     @Value("${pplax.oauth.client-secret}")
-    private String adminClientSecret;
+    private String clientSecret;
 
     /**
      * redis token 方式
      */
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager)  // 调用此方法才能支持 password 模式
-                .userDetailsService(userDetailsService)     // 设置用户验证服务
-                .tokenStore(jwtTokenStore)                   //指定 token 的存储方式
-                .tokenEnhancer(new JwtAccessTokenEnhancer());   // 指定自己的tokenEnhancer
+        endpoints.authenticationManager(authenticationManager)          // 调用此方法才能支持 password 模式
+                .userDetailsService(userDetailsService)                 // 设置用户验证服务
+                .tokenStore(jwtTokenStore)                              //指定 token 的存储方式
+                .tokenEnhancer(new JwtAccessTokenEnhancer())            // 指定自己的tokenEnhancer
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST);   // 只允许POST提交访问令牌，uri：/oauth/token，可以添加多个
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 // admin服务的配置
-                .withClient(adminClientId)
-                .secret(passwordEncoder.encode(adminClientSecret))
-                .authorizedGrantTypes(BaseSysConstants.PASSWORD)
+                .withClient(clientId)
+                .secret(passwordEncoder.encode(clientSecret))
+                .authorizedGrantTypes(BaseSysConstants.PASSWORD, "refresh_token")
                 .accessTokenValiditySeconds(3600)
-                .scopes("all");
+                .scopes("all")
+                .accessTokenValiditySeconds(3600)
+                .refreshTokenValiditySeconds(86400);
     }
 
     @Override

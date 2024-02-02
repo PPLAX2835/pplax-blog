@@ -22,6 +22,8 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
+import xyz.pplax.pplaxblog.gateway.handler.PPLAXAccessDeniedHandler;
+import xyz.pplax.pplaxblog.gateway.handler.PPLAXAuthenticationEntryPoint;
 import xyz.pplax.pplaxblog.gateway.properties.GatewayProperty;
 
 @Configuration
@@ -36,6 +38,12 @@ public class GatewaySecurityConfig {
 
     @Autowired
     private GatewayProperty gatewayProperty;
+
+    @Autowired
+    private PPLAXAccessDeniedHandler pplaxAccessDeniedHandler;
+
+    @Autowired
+    private PPLAXAuthenticationEntryPoint pplaxAuthenticationEntryPoint;
 
     /**
      * oauth配置
@@ -59,9 +67,9 @@ public class GatewaySecurityConfig {
                 // 鉴权的异常处理，权限不足，token失效
                 .and().exceptionHandling()
 //                // 未登录访问时处理
-//                .authenticationEntryPoint()
-//                // 访问被拒绝时处理，没有权限访问
-//                .accessDeniedHandler()
+                .authenticationEntryPoint(pplaxAuthenticationEntryPoint)
+                // 访问被拒绝时处理，没有权限访问
+                .accessDeniedHandler(pplaxAccessDeniedHandler)
                 .and()
                 // 跨域过滤器
                 .addFilterAt(corsFilter(), SecurityWebFiltersOrder.CORS)

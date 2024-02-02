@@ -56,7 +56,7 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
         /// 进行鉴权
         String url = serverHttpRequest.getURI().getPath();
         return authenticationMono
-                .map(auth -> new AuthorizationDecision(true))
+                .map(auth -> new AuthorizationDecision(true))       // false就是拒绝
                 .defaultIfEmpty(new AuthorizationDecision(false));
     }
 }

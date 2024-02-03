@@ -8,6 +8,7 @@
         <result column="nickname" property="nickname" />
         <result column="gender" property="gender" />
         <result column="avatar_picture_uid" property="avatarPictureUid" />
+        <result column="space_background_picture_uid" property="spaceBackgroundPictureUid" />
         <result column="birthday" property="birthday" />
         <result column="summary" property="summary" />
         <result column="status" property="status" />
@@ -17,6 +18,6 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `nickname`, `gender`, `avatar_picture_uid`, `birthday`, `summary`, `status`, `create_time`, `update_time`
+        `uid`, `nickname`, `gender`, `avatar_picture_uid`, `space_background_picture_uid`, `birthday`, `summary`, `status`, `create_time`, `update_time`
     </sql>
 </mapper>

@@ -35,6 +35,11 @@ public class UserInfo extends SuperEntity<UserInfo> {
     private String avatarPictureUid;
 
     /**
+     * 空间背景 图片uid
+     */
+    private String spaceBackgroundPictureUid;
+
+    /**
      * 出生年月日
      */
     private Date birthday;

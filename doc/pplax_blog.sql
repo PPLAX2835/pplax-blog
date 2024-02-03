@@ -250,7 +250,7 @@ CREATE TABLE `t_role` (
 
 LOCK TABLES `t_role` WRITE;
 /*!40000 ALTER TABLE `t_role` DISABLE KEYS */;
-INSERT INTO `t_role` (`uid`, `role_name`, `create_time`, `update_time`, `status`) VALUES ('352af55485b0198631adc4f3f589bb3f','管理员','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('fc5fea59ae7309773f8f70074a27eec4','游客','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('ffca2113713df757e0293c6dfd3b4e32','普通用户','0000-00-00 00:00:00','0000-00-00 00:00:00',1);
+INSERT INTO `t_role` (`uid`, `role_name`, `create_time`, `update_time`, `status`) VALUES ('352af55485b0198631adc4f3f589bb3f','管理员','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('cd853c7b475723fb4457aebe30fd39ac','超级管理员','2024-02-03 07:14:39','2024-02-03 07:14:39',1),('fc5fea59ae7309773f8f70074a27eec4','游客','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('ffca2113713df757e0293c6dfd3b4e32','普通用户','0000-00-00 00:00:00','0000-00-00 00:00:00',1);
 /*!40000 ALTER TABLE `t_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,10 +296,10 @@ CREATE TABLE `t_user` (
   `username` varchar(255) NOT NULL COMMENT '用户名',
   `password` varchar(255) NOT NULL COMMENT '密码',
   `salt` varchar(36) NOT NULL COMMENT '加密盐',
-  `email` varchar(255) NOT NULL COMMENT '邮箱',
-  `is_email_activated` tinyint(1) DEFAULT '1' COMMENT '邮箱是否激活（0:不是 1：是）',
+  `email` varchar(255) DEFAULT NULL COMMENT '邮箱',
+  `is_email_activated` tinyint(1) DEFAULT '0' COMMENT '邮箱是否激活（0:不是 1：是）',
   `mobile` varchar(50) DEFAULT NULL COMMENT '手机',
-  `is_mobile_activated` tinyint(1) DEFAULT '1' COMMENT '手机是否激活（0:不是 1：是）',
+  `is_mobile_activated` tinyint(1) DEFAULT '0' COMMENT '手机是否激活（0:不是 1：是）',
   `login_count` int unsigned DEFAULT '0' COMMENT '登录次数',
   `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
   `last_login_ip` varchar(50) DEFAULT '127.0.0.1' COMMENT '最后登录IP',
@@ -316,7 +316,7 @@ CREATE TABLE `t_user` (
 
 LOCK TABLES `t_user` WRITE;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` (`uid`, `role_uid`, `user_info_uid`, `username`, `password`, `salt`, `email`, `is_email_activated`, `mobile`, `is_mobile_activated`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`) VALUES ('103e0baa6d964e3bbb3e3deda94fc0e3','ffca2113713df757e0293c6dfd3b4e32','A4A7B8FBB8E9623FA72556F13A97ED5F','lucky','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123456@qq.com',1,'18819439264',1,3,'2024-01-29 10:27:10','0:0:0:0:0:0:0:1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('a2fc23c7668a4b6386b75584d72498a5','ffca2113713df757e0293c6dfd3b4e32','A7C9AACDC396292E3825639379041442','testuser','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123466@qq.com',1,'18819439265',1,0,NULL,'127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('ee515eca338c4d358baea8d2c9930a45','ffca2113713df757e0293c6dfd3b4e32','D218CD2BB34F0A91565390458A20E871','123321','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123476@qq.com',1,'18819439266',1,0,NULL,'127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08');
+INSERT INTO `t_user` (`uid`, `role_uid`, `user_info_uid`, `username`, `password`, `salt`, `email`, `is_email_activated`, `mobile`, `is_mobile_activated`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`) VALUES ('103e0baa6d964e3bbb3e3deda94fc0e3','ffca2113713df757e0293c6dfd3b4e32','A4A7B8FBB8E9623FA72556F13A97ED5F','lucky','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123456@qq.com',1,'18819439264',1,182,'2024-02-03 15:10:19','0:0:0:0:0:0:0:1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('a2fc23c7668a4b6386b75584d72498a5','ffca2113713df757e0293c6dfd3b4e32','A7C9AACDC396292E3825639379041442','testuser','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123466@qq.com',1,'18819439265',1,1,'2024-02-02 12:55:12','0:0:0:0:0:0:0:1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('ee515eca338c4d358baea8d2c9930a45','ffca2113713df757e0293c6dfd3b4e32','D218CD2BB34F0A91565390458A20E871','123321','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123476@qq.com',1,'18819439266',1,0,NULL,'127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('f8616ce5aa0c8eeacfa0d997dbdbe0d3','cd853c7b475723fb4457aebe30fd39ac','f6a7dc9f2df3544912c464e7adb9ce32','PPLAX','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123486@qq.com',1,NULL,1,0,NULL,'127.0.0.1',1,'2024-02-03 07:17:56','2024-02-03 07:17:56');
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,6 +332,7 @@ CREATE TABLE `t_user_info` (
   `nickname` varchar(32) NOT NULL COMMENT '昵称',
   `gender` tinyint unsigned DEFAULT NULL COMMENT '性别(1:男2:女)',
   `avatar_picture_uid` varchar(255) DEFAULT NULL COMMENT '个人头像 图片uid',
+  `space_background_picture_uid` varchar(255) DEFAULT NULL COMMENT '空间背景 图片uid',
   `birthday` date DEFAULT NULL COMMENT '出生年月日',
   `summary` varchar(200) DEFAULT NULL COMMENT '自我简介最多150字',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
@@ -347,7 +348,7 @@ CREATE TABLE `t_user_info` (
 
 LOCK TABLES `t_user_info` WRITE;
 /*!40000 ALTER TABLE `t_user_info` DISABLE KEYS */;
-INSERT INTO `t_user_info` (`uid`, `nickname`, `gender`, `avatar_picture_uid`, `birthday`, `summary`, `status`, `create_time`, `update_time`) VALUES ('A4A7B8FBB8E9623FA72556F13A97ED5F','测试用户',NULL,NULL,NULL,NULL,1,'2024-01-26 03:32:47','2024-01-26 03:32:47'),('A7C9AACDC396292E3825639379041442','李康勇',1,'测试头像1','2018-09-20','测试表情',1,'2024-01-26 03:32:47','2024-01-26 03:32:47'),('D218CD2BB34F0A91565390458A20E871','怨虎龙',1,'测试头像3','2018-09-20','测试表情',1,'2024-01-26 03:32:47','2024-01-26 03:32:47');
+INSERT INTO `t_user_info` (`uid`, `nickname`, `gender`, `avatar_picture_uid`, `space_background_picture_uid`, `birthday`, `summary`, `status`, `create_time`, `update_time`) VALUES ('A4A7B8FBB8E9623FA72556F13A97ED5F','测试用户',NULL,NULL,NULL,NULL,NULL,1,'2024-01-26 03:32:47','2024-01-26 03:32:47'),('A7C9AACDC396292E3825639379041442','李康勇',1,'测试头像1',NULL,'2018-09-20','测试表情',1,'2024-01-26 03:32:47','2024-01-26 03:32:47'),('D218CD2BB34F0A91565390458A20E871','怨虎龙',1,'测试头像3',NULL,'2018-09-20','测试表情',1,'2024-01-26 03:32:47','2024-01-26 03:32:47'),('f6a7dc9f2df3544912c464e7adb9ce32','普拉克斯',1,NULL,NULL,'2024-02-03',NULL,1,'2024-02-03 07:17:03','2024-02-03 07:17:03');
 /*!40000 ALTER TABLE `t_user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-29 12:14:33
+-- Dump completed on 2024-02-03 17:12:13

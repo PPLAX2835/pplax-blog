@@ -226,7 +226,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         // 逻辑删除代码
         Collection<BlogSort> blogSorts = blogSortMapper.selectBatchIds(blogSortDto.getUids());
         for (BlogSort blogSort : blogSorts) {
-            blogSort.setStatus(EStatus.DISABLED);
+            blogSort.setStatus(EStatus.DISABLED.getStatus());
             blogSortMapper.updateById(blogSort);
         }
 

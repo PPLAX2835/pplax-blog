@@ -135,7 +135,7 @@ public class BlogRestApi {
 		blog.setTagUid(tagUid);
 		blog.setClickCount(clickCount);
 		blog.setPictureUid(fileUid);
-		blog.setStatus(EStatus.ENABLE);
+		blog.setStatus(EStatus.ENABLE.getStatus());
 		blogService.save(blog);
 		return ResultUtil.result(SysConstants.SUCCESS, "添加成功");
 	}
@@ -161,7 +161,7 @@ public class BlogRestApi {
 		blog.setTagUid(tagUid);
 		blog.setPictureUid(fileUid);
 		blog.setClickCount(clickCount);
-		blog.setStatus(EStatus.ENABLE);
+		blog.setStatus(EStatus.ENABLE.getStatus());
 		blog.updateById();
 		return ResultUtil.result(SysConstants.SUCCESS, "编辑成功");
 	}
@@ -175,7 +175,7 @@ public class BlogRestApi {
 			return ResultUtil.result(SysConstants.ERROR, "数据错误");
 		}
 		Blog blog = blogService.getById(uid);
-		blog.setStatus(EStatus.DISABLED);
+		blog.setStatus(EStatus.DISABLED.getStatus());
 		blog.updateById();
 		return ResultUtil.result(SysConstants.SUCCESS, "删除成功");
 	}

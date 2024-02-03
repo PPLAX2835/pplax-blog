@@ -2,6 +2,8 @@ package xyz.pplax.pplaxblog.admin.restapi;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
+import xyz.pplax.pplaxblog.commons.controller.SuperController;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
 import xyz.pplax.pplaxblog.admin.global.SysConstants;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
@@ -30,7 +34,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/oauth")
 @Api(value="登录认证相关RestApi",tags={"AuthRestApi"})
-public class AuthRestApi {
+public class AuthRestApi extends SuperController {
 
 	private static final Logger log = LogManager.getLogger(AuthRestApi.class);
 
@@ -50,14 +54,19 @@ public class AuthRestApi {
 	@PostMapping("/token")
 	public String getToken(HttpServletRequest httpServletRequest, @RequestBody LoginDto loginDto) {
 
-		String resp = JSON.toJSONString(ResponseResult.success(JSON.parseObject(authFeignClient.getToken(
-				clientId,
-				clientSecret,
-				BaseSysConstants.PASSWORD,
-				loginDto.getUsername(),
-				loginDto.getPassword()))));
+		Map<String, String> map = JSONObject.parseObject(
+				authFeignClient.getToken(
+						clientId,
+						clientSecret,
+						BaseSysConstants.PASSWORD,
+						loginDto.getUsername(),
+						loginDto.getPassword()
+				),
+				new TypeReference<Map<String, String>>() {
+				}
+		);
 
-		if (resp.contains("access_token")) {
+		if (!StringUtils.isEmpty(map.get("access_token"))) {
 			// 获取token成功，进行登录信息的储存
 
 			// 记录登录ip、登录次数、登录时间
@@ -72,11 +81,16 @@ public class AuthRestApi {
 
 			// 更新
 			userService.updateById(user);
+
+			// 返回结果脱敏
+			map.remove(BaseSysConstants.UID);
+			map.remove(BaseSysConstants.USER_INFO_UID);
+			map.remove(BaseSysConstants.SALT);
 		}
 
 		log.info("返回结果");
 
-		return resp;
+		return success(map);
 	}
 
 	@ApiOperation(value = "用户信息", notes = "用户信息", response = String.class)

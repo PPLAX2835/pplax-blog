@@ -1,7 +1,6 @@
 package xyz.pplax.pplaxblog.commons.controller;
 
 import com.alibaba.fastjson.JSON;
-import xyz.pplax.pplaxblog.commons.response.ResponseCode;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 
 import java.util.HashMap;
@@ -73,14 +72,6 @@ public class SuperController {
 	 */
 	public String success(Object object) {
 		return JSON.toJSONString(ResponseResult.success(object));
-	}
-
-	/**
-	 * 返回一个失败响应，携带错误信息
-	 * @return
-	 */
-	public String error(String message) {
-		return JSON.toJSONString(ResponseResult.error(message));
 	}
 
 }

@@ -11,7 +11,7 @@ import xyz.pplax.pplaxblog.starter.security.exception.AccountIsNotRegisteredExce
 import xyz.pplax.pplaxblog.starter.security.exception.EmailUnactivatedException;
 import xyz.pplax.pplaxblog.starter.security.exception.MobileUnactivatedException;
 import xyz.pplax.pplaxblog.auth.service.UserDetailService;
-import xyz.pplax.pplaxblog.commons.constants.BaseMessageConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.starter.security.model.SecurityUserDetails;
 
 @Configuration
@@ -33,12 +33,12 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
         SecurityUserDetails securityUserDetails = (SecurityUserDetails) userDetailService.loadUserByUsername(username);
 
         // 验证一下userDetails有没有问题
-        if (BaseMessageConstants.EMAIL_UNACTIVATED.equals(securityUserDetails.getUsername())) {
-            throw new EmailUnactivatedException(BaseMessageConstants.EMAIL_UNACTIVATED);
-        } else if (BaseMessageConstants.MOBILE_UNACTIVATED.equals(securityUserDetails.getUsername())) {
-            throw new MobileUnactivatedException(BaseMessageConstants.EMAIL_UNACTIVATED);
-        } else if (BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED.equals(securityUserDetails.getUsername())) {
-            throw new AccountIsNotRegisteredException(BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED);
+        if (HttpStatus.EMAIL_UNACTIVATED.equals(securityUserDetails.getUsername())) {
+            throw new EmailUnactivatedException(HttpStatus.EMAIL_UNACTIVATED.getMessage());
+        } else if (HttpStatus.MOBILE_UNACTIVATED.equals(securityUserDetails.getUsername())) {
+            throw new MobileUnactivatedException(HttpStatus.EMAIL_UNACTIVATED.getMessage());
+        } else if (HttpStatus.ACCOUNT_IS_NOT_REGISTERED.equals(securityUserDetails.getUsername())) {
+            throw new AccountIsNotRegisteredException(HttpStatus.ACCOUNT_IS_NOT_REGISTERED.getMessage());
         }
 
         // 获得密文密码和盐
@@ -55,7 +55,7 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
         }
 
         // 校验失败
-        throw new AuthenticationException(BaseMessageConstants.ERROR_PASSWORD) {};
+        throw new AuthenticationException(HttpStatus.ERROR_PASSWORD.getMessage()) {};
     }
 
     @Override

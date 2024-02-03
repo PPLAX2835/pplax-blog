@@ -8,8 +8,7 @@ import org.springframework.security.web.server.authorization.ServerAccessDeniedH
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-import xyz.pplax.pplaxblog.commons.constants.BaseMessageConstants;
-import xyz.pplax.pplaxblog.commons.response.ResponseCode;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 
 import java.nio.charset.StandardCharsets;
@@ -23,7 +22,7 @@ public class PPLAXAccessDeniedHandler implements ServerAccessDeniedHandler {
     @Override
     public Mono<Void> handle(ServerWebExchange serverWebExchange, AccessDeniedException e) {
         ServerHttpResponse response = serverWebExchange.getResponse();
-        String resultJsonStr = JSON.toJSONString(ResponseResult.error(ResponseCode.NO_AUTH, BaseMessageConstants.ACCESS_DENIED));
+        String resultJsonStr = JSON.toJSONString(ResponseResult.error(HttpStatus.ACCESS_DENIED));
         DataBuffer buffer = response.bufferFactory().wrap(resultJsonStr.getBytes(StandardCharsets.UTF_8));
         return response.writeWith(Mono.just(buffer));
     }

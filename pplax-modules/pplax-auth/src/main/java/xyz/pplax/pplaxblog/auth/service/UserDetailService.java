@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.starter.security.exception.UsernameNullException;
 import xyz.pplax.pplaxblog.starter.security.model.SecurityUserDetails;
-import xyz.pplax.pplaxblog.commons.constants.BaseMessageConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.User;
@@ -21,7 +21,6 @@ import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
 
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Service
 public class UserDetailService  implements UserDetailsService {
@@ -40,7 +39,7 @@ public class UserDetailService  implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (StringUtils.isEmpty(username)) {
-            throw new UsernameNullException(BaseMessageConstants.USERNAME_IS_NULL);
+            throw new UsernameNullException(HttpStatus.USERNAME_IS_NULL.getMessage());
         }
 
         // 邮箱的正则
@@ -56,7 +55,7 @@ public class UserDetailService  implements UserDetailsService {
             user = userMapper.selectOne(userQueryWrapper);
 
             if (user.getIsEmailActivated() == null || !user.getIsEmailActivated()) {
-                return new SecurityUserDetails(BaseMessageConstants.EMAIL_UNACTIVATED, BaseMessageConstants.EMAIL_UNACTIVATED, new ArrayList<>());
+                return new SecurityUserDetails(HttpStatus.EMAIL_UNACTIVATED.getMessage(), HttpStatus.EMAIL_UNACTIVATED.getMessage(), new ArrayList<>());
             }
         } else if (Pattern.matches(mobileRegex, username)) {
             // 根据手机查询
@@ -64,7 +63,7 @@ public class UserDetailService  implements UserDetailsService {
             user = userMapper.selectOne(userQueryWrapper);
 
             if (user.getIsMobileActivated() == null || !user.getIsMobileActivated()) {
-                return new SecurityUserDetails(BaseMessageConstants.MOBILE_UNACTIVATED, BaseMessageConstants.MOBILE_UNACTIVATED, new ArrayList<>());
+                return new SecurityUserDetails(HttpStatus.MOBILE_UNACTIVATED.getMessage(), HttpStatus.MOBILE_UNACTIVATED.getMessage(), new ArrayList<>());
             }
         } else {
             // 根据用户名查询
@@ -73,7 +72,7 @@ public class UserDetailService  implements UserDetailsService {
         }
 
         if (user == null) {
-            return new SecurityUserDetails(BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, BaseMessageConstants.ACCOUNT_IS_NOT_REGISTERED, new ArrayList<>());
+            return new SecurityUserDetails(HttpStatus.ACCOUNT_IS_NOT_REGISTERED.getMessage(), HttpStatus.ACCOUNT_IS_NOT_REGISTERED.getMessage(), new ArrayList<>());
         }
 
         // 将该用户所拥有的角色uid放入集合中

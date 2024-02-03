@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
-import xyz.pplax.pplaxblog.commons.constants.BaseMessageConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 
 /**
  * JWT认证管理器，主要的作用就是对携带过来的token进行校验，比如过期时间，加密方式等
@@ -34,13 +34,13 @@ public class JwtAuthenticationManager implements ReactiveAuthenticationManager {
                     OAuth2AccessToken oAuth2AccessToken = redisTokenStore.readAccessToken(accessToken);
                     // 根据access_token从数据库获取不到OAuth2AccessToken
                     if (oAuth2AccessToken == null) {
-                        return Mono.error(new InvalidTokenException(BaseMessageConstants.INVALID_TOKEN));
+                        return Mono.error(new InvalidTokenException(HttpStatus.INVALID_TOKEN.getMessage()));
                     } else if (oAuth2AccessToken.isExpired()) {
-                        return Mono.error(new InvalidTokenException(BaseMessageConstants.EXPIRED_TOKEN));
+                        return Mono.error(new InvalidTokenException(HttpStatus.EXPIRED_TOKEN.getMessage()));
                     }
                     OAuth2Authentication oAuth2Authentication = redisTokenStore.readAuthentication(accessToken);
                     if (oAuth2Authentication == null) {
-                        return Mono.error(new InvalidTokenException(BaseMessageConstants.INVALID_TOKEN));
+                        return Mono.error(new InvalidTokenException(HttpStatus.INVALID_TOKEN.getMessage()));
                     } else {
                         return Mono.just(oAuth2Authentication);
                     }

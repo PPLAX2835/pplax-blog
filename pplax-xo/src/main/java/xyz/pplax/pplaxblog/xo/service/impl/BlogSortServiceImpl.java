@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -8,8 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
-import xyz.pplax.pplaxblog.commons.constants.BaseMessageConstants;
-import xyz.pplax.pplaxblog.commons.response.ResponseCode;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
@@ -124,13 +122,13 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
     public ResponseResult addBlogSort(BlogSortDto blogSortDto) {
         // 检查参数
         if(StringUtils.isEmpty(blogSortDto.getSortName()) || blogSortDto.getStatus() == null) {
-            return ResponseResult.error(ResponseCode.ERROR, BaseMessageConstants.REQUIRED_IS_NULL);
+            return ResponseResult.error(HttpStatus.REQUIRED_IS_NULL);
         }
 
         // 检查是否存在
         Boolean isExist = checkSortNameExists(blogSortDto);
         if (isExist) {
-            return ResponseResult.error(ResponseCode.ERROR, BaseMessageConstants.ENTITY_EXIST);
+            return ResponseResult.error(HttpStatus.ENTITY_EXIST);
         }
 
         // 封装
@@ -142,7 +140,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         blogSort.setParentUid(blogSortDto.getParentBlogSortUid());
 
         blogSortMapper.insert(blogSort);
-        return ResponseResult.success(BaseMessageConstants.INSERT_SUCCESS);
+        return ResponseResult.success(HttpStatus.INSERT_SUCCESS.getMessage());
     }
 
 
@@ -154,7 +152,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
     public ResponseResult editBlogSort(BlogSortDto blogSortDto){
         // 检查参数
         if(StringUtils.isEmpty(blogSortDto.getSortName()) || blogSortDto.getStatus() == null) {
-            return ResponseResult.error(ResponseCode.ERROR, BaseMessageConstants.REQUIRED_IS_NULL);
+            return ResponseResult.error(HttpStatus.REQUIRED_IS_NULL);
         }
 
         // 检查是否存在
@@ -167,7 +165,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
             BlogSort tempSort = blogSortMapper.selectOne(queryWrapper);
             if (tempSort != null) {
                 // 确实重了
-                return ResponseResult.error(ResponseCode.ERROR, BaseMessageConstants.ENTITY_EXIST);
+                return ResponseResult.error(HttpStatus.ENTITY_EXIST);
             }
         }
 
@@ -180,7 +178,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         blogSort.setParentUid(blogSortDto.getParentBlogSortUid());
 
         blogSortMapper.updateById(blogSort);
-        return ResponseResult.success(BaseMessageConstants.UPDATE_SUCCESS);
+        return ResponseResult.success(HttpStatus.UPDATE_SUCCESS);
     }
 
     /**
@@ -206,7 +204,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
     @Override
     public ResponseResult logicBatchDelete(BlogSortDto blogSortDto) {
         if (blogSortDto.getUids() == null || blogSortDto.getUids().isEmpty()) {
-            return ResponseResult.error(ResponseCode.ERROR, BaseMessageConstants.PLEASE_SELECT_A_RECORD_TO_DELETE);
+            return ResponseResult.error(HttpStatus.PLEASE_SELECT_A_RECORD_TO_DELETE);
         }
 
         List<String> uids = new ArrayList<>(blogSortDto.getUids());
@@ -216,7 +214,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         blogQueryWrapper.ne(BlogSortSQLConstants.STATUS, EStatus.DISABLED);
         blogQueryWrapper.in(BlogSQLConstants.BLOG_SORT_UID, uids);
         if (blogMapper.selectCount(blogQueryWrapper) > 0) {
-            return ResponseResult.error(ResponseCode.SERVER_ERROR, BaseMessageConstants.BLOG_UNDER_THIS_SORT);
+            return ResponseResult.error(HttpStatus.BLOG_UNDER_THIS_SORT);
         }
 
         // 将该分类的子分类的parentUid置空
@@ -232,6 +230,6 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
             blogSortMapper.updateById(blogSort);
         }
 
-        return ResponseResult.success(BaseMessageConstants.DELETE_SUCCESS);
+        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
     }
 }

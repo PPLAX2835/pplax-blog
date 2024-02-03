@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
-import ResponseCode from '../base/ResponseCode'
+import HttpStatus from '../base/HttpStatus'
 import { getToken } from '@/utils/auth'
 
 // 创建axios实例
@@ -36,7 +36,7 @@ service.interceptors.response.use(
     /**
      * code为非200是抛错
      */
-    if (res.code != ResponseCode.SUCCESS.code) {
+    if (res.code != HttpStatus.OK.code || (res.code >= 200000 && res.code <= 200999)) {
       Message({
         message: res.code + ': ' + res.message + (res.data !== '' ? ', ' + res.data : ''),
         type: 'error',

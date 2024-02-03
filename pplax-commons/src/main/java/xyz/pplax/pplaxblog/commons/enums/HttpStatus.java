@@ -5,9 +5,9 @@ package xyz.pplax.pplaxblog.commons.enums;
  */
 public enum HttpStatus {
 
-//    ——————————————————————————————
-//               现有规定的状态码
-//    ——————————————————————————————
+    // ——————————————————————————————
+    //            现有规定的状态码
+    // ——————————————————————————————
     // 1xx Informational
     CONTINUE(100, "Continue"),
     SWITCHING_PROTOCOLS(101, "Switching Protocols"),

@@ -75,6 +75,16 @@ public class ResponseResult {
     /**
      * 失败返回
      *
+     * @param message
+     * @return
+     */
+    public static ResponseResult error(String message) {
+        return new ResponseResult(HttpStatus.INTERNAL_SERVER_ERROR.getCode(), message);
+    }
+
+    /**
+     * 失败返回
+     *
      * @return
      */
     public static ResponseResult error(Integer responseCode, String errorMessage, Object data) {
@@ -87,6 +97,12 @@ public class ResponseResult {
     public ResponseResult(HttpStatus httpStatus) {
         this.code = httpStatus.getCode();
         this.message = httpStatus.getMessage();
+    }
+
+    public ResponseResult(HttpStatus httpStatus, Object data) {
+        this.code = httpStatus.getCode();
+        this.message = httpStatus.getMessage();
+        this.data = data;
     }
 
     public ResponseResult(Integer responseCode) {

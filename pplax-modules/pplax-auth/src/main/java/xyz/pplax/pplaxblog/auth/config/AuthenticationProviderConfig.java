@@ -33,11 +33,11 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
         SecurityUserDetails securityUserDetails = (SecurityUserDetails) userDetailService.loadUserByUsername(username);
 
         // 验证一下userDetails有没有问题
-        if (HttpStatus.EMAIL_UNACTIVATED.equals(securityUserDetails.getUsername())) {
+        if (HttpStatus.EMAIL_UNACTIVATED.getMessage().equals(securityUserDetails.getUsername())) {
             throw new EmailUnactivatedException(HttpStatus.EMAIL_UNACTIVATED.getMessage());
-        } else if (HttpStatus.MOBILE_UNACTIVATED.equals(securityUserDetails.getUsername())) {
+        } else if (HttpStatus.MOBILE_UNACTIVATED.getMessage().equals(securityUserDetails.getUsername())) {
             throw new MobileUnactivatedException(HttpStatus.EMAIL_UNACTIVATED.getMessage());
-        } else if (HttpStatus.ACCOUNT_IS_NOT_REGISTERED.equals(securityUserDetails.getUsername())) {
+        } else if (HttpStatus.ACCOUNT_IS_NOT_REGISTERED.getMessage().equals(securityUserDetails.getUsername())) {
             throw new AccountIsNotRegisteredException(HttpStatus.ACCOUNT_IS_NOT_REGISTERED.getMessage());
         }
 

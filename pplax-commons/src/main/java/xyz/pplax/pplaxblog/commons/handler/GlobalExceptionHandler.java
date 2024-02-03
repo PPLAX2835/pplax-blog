@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +40,7 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = Exception.class)
-    public R<Object> handleBadRequest(Exception e) {
+    public ResponseResult handleBadRequest(Exception e) {
         /*
          * 业务逻辑异常
          */
@@ -46,10 +48,10 @@ public class GlobalExceptionHandler {
             IErrorCode errorCode = ((ApiException) e).getErrorCode();
             if (null != errorCode) {
                 log.debug("Rest request error, {}", errorCode.toString());
-                return R.failed(errorCode);
+                return ResponseResult.error(errorCode.toString());
             }
             log.debug("Rest request error, {}", e.getMessage());
-            return R.failed(e.getMessage());
+            return ResponseResult.error(e.getMessage());
         }
 
         /*
@@ -65,7 +67,7 @@ public class GlobalExceptionHandler {
                     jsonObject.put("msg", fieldError.getDefaultMessage());
                     jsonList.add(jsonObject);
                 });
-                return R.restResult(jsonList, ApiErrorCode.FAILED);
+                return new ResponseResult(HttpStatus.BAD_REQUEST, jsonList);
             }
         }
 
@@ -81,10 +83,9 @@ public class GlobalExceptionHandler {
             Matcher matcher = pattern.matcher(message);
 
             if (matcher.find()) {
-
-                return R.restResult(JSON.parseObject(matcher.group(0)), ApiErrorCode.FAILED);
+                return new ResponseResult(HttpStatus.UNAUTHORIZED, matcher.group(0));
             } else {
-                return R.failed(ApiErrorCode.FAILED);
+                return new ResponseResult(HttpStatus.UNAUTHORIZED);
             }
         }
 
@@ -93,6 +94,6 @@ public class GlobalExceptionHandler {
          * 系统内部异常，打印异常栈
          */
         log.error("Error: handleBadRequest StackTrace : %s", e);
-        return R.failed(ApiErrorCode.FAILED);
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

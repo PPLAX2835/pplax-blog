@@ -29,12 +29,6 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
-        <!-- Redis客户端 -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>

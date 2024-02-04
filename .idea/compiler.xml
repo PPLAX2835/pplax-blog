@@ -12,6 +12,7 @@
         <module name="pplax-feign" />
         <module name="pplax-xo" />
         <module name="pplax-swagger-starter" />
+        <module name="pplax-redis-starter" />
         <module name="pplax-commons" />
         <module name="pplax-gateway" />
         <module name="pplax-mybatis-starter" />
@@ -32,6 +33,7 @@
       <module name="pplax-gateway" target="8" />
       <module name="pplax-modules" target="8" />
       <module name="pplax-mybatis-starter" target="8" />
+      <module name="pplax-redis-starter" target="8" />
       <module name="pplax-security-starter" target="8" />
       <module name="pplax-starter" target="8" />
       <module name="pplax-swagger-starter" target="8" />

@@ -4,16 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/PathAccessPermission.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/PathAccessPermissionMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/PathAccessPermissionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/PathAccessPermissionServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PathAccessPermissionMapper.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="用户信息表添加新字段">
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/pplax-redis-starter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/src/main/java/xyz/pplax/pplaxblog/starter/redis/config/FastJsonJsonRedisSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/src/main/java/xyz/pplax/pplaxblog/starter/redis/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/src/main/java/xyz/pplax/pplaxblog/starter/redis/service/RedisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_3_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/RoleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/RoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/jedis/JedisClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/jedis/JedisClientCluster.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/jedis/JedisClientPool.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/TestRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pplax-mybatis-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pplax-mybatis-starter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

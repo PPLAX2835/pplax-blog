@@ -10,6 +10,7 @@
         <module>pplax-mybatis-starter</module>
         <module>pplax-swagger-starter</module>
         <module>pplax-security-starter</module>
+        <module>pplax-redis-starter</module>
     </modules>
 
     <parent>

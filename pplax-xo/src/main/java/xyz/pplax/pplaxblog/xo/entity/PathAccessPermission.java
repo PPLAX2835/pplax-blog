@@ -6,26 +6,26 @@ import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.commons.entity.SuperEntity;
 
 /**
- * @description 角色表
+ * @description 路径访问权限表
  * @author PPLAX
- * @date 2023-11-28
+ * @date 2024-2-4
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("t_role")
-public class Role extends SuperEntity<Role> {
+@TableName("t_path_access_permission")
+public class PathAccessPermission extends SuperEntity<PathAccessPermission> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 路径访问权限表uid
+     * 访问路径的正则
      */
-    private String pathAccessPermissionUid;
+    private String pathRegex;
 
     /**
-     * 角色名
+     * 请求方法，get、post这种
      */
-    private String roleName;
+    private String method;
 
-    public Role() {}
+    public PathAccessPermission() {}
 }

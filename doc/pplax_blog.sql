@@ -228,6 +228,34 @@ INSERT INTO `t_link` (`uid`, `title`, `summary`, `url`, `click_count`, `create_t
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_path_access_permission`
+--
+
+DROP TABLE IF EXISTS `t_path_access_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_path_access_permission` (
+  `uid` varchar(32) NOT NULL COMMENT '唯一uid',
+  `path_regex` varchar(255) NOT NULL COMMENT '访问路径的正则',
+  `method` varchar(200) NOT NULL COMMENT '请求方法，get、post这种',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='路径访问权限表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_path_access_permission`
+--
+
+LOCK TABLES `t_path_access_permission` WRITE;
+/*!40000 ALTER TABLE `t_path_access_permission` DISABLE KEYS */;
+INSERT INTO `t_path_access_permission` (`uid`, `path_regex`, `method`, `create_time`, `update_time`, `status`) VALUES ('98544a8a15164fef8198b30ef3243420','^/api/test/.*$','get,post,delete,put','2024-02-04 02:03:28','2024-02-04 02:03:39',1);
+/*!40000 ALTER TABLE `t_path_access_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `t_role`
 --
 
@@ -236,6 +264,7 @@ DROP TABLE IF EXISTS `t_role`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `t_role` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
+  `path_access_permission_uid` varchar(32) NOT NULL COMMENT '路径访问权限表uid',
   `role_name` varchar(255) NOT NULL COMMENT '角色名',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -250,7 +279,7 @@ CREATE TABLE `t_role` (
 
 LOCK TABLES `t_role` WRITE;
 /*!40000 ALTER TABLE `t_role` DISABLE KEYS */;
-INSERT INTO `t_role` (`uid`, `role_name`, `create_time`, `update_time`, `status`) VALUES ('352af55485b0198631adc4f3f589bb3f','管理员','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('cd853c7b475723fb4457aebe30fd39ac','超级管理员','2024-02-03 07:14:39','2024-02-03 07:14:39',1),('fc5fea59ae7309773f8f70074a27eec4','游客','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('ffca2113713df757e0293c6dfd3b4e32','普通用户','0000-00-00 00:00:00','0000-00-00 00:00:00',1);
+INSERT INTO `t_role` (`uid`, `path_access_permission_uid`, `role_name`, `create_time`, `update_time`, `status`) VALUES ('352af55485b0198631adc4f3f589bb3f','98544a8a15164fef8198b30ef3243420','管理员','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('cd853c7b475723fb4457aebe30fd39ac','98544a8a15164fef8198b30ef3243420','超级管理员','2024-02-03 07:14:39','2024-02-03 07:14:39',1),('fc5fea59ae7309773f8f70074a27eec4','98544a8a15164fef8198b30ef3243420','游客','0000-00-00 00:00:00','0000-00-00 00:00:00',1),('ffca2113713df757e0293c6dfd3b4e32','98544a8a15164fef8198b30ef3243420','普通用户','0000-00-00 00:00:00','0000-00-00 00:00:00',1);
 /*!40000 ALTER TABLE `t_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,4 +420,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-03 17:12:13
+-- Dump completed on 2024-02-04 10:06:12

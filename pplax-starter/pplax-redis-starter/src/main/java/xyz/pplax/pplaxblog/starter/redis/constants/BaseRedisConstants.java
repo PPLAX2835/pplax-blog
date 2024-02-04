@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.constants;
+package xyz.pplax.pplaxblog.starter.redis.constants;
 
 /**
  * Redis常量基类
@@ -29,6 +29,11 @@ public class BaseRedisConstants {
      * 井号
      */
     public final static String WELL_NUMBER = "#";
+
+    /**
+     * 角色列表 携带 路径访问权限
+     */
+    public final static String ROLES_WITH_PATH_ACCESS_PERMISSION = "ROLE_LIST_WITH_PATH_ACCESS_PERMISSION";
 
     /**
      * 月份集合

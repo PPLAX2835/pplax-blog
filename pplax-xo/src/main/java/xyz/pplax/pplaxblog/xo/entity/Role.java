@@ -1,9 +1,12 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.commons.entity.SuperEntity;
+
+import java.util.List;
 
 /**
  * @description 角色表
@@ -26,6 +29,9 @@ public class Role extends SuperEntity<Role> {
      * 角色名
      */
     private String roleName;
+
+    @TableField(exist = false)
+    private List<PathAccessPermission> pathAccessPermissionList;
 
     public Role() {}
 }

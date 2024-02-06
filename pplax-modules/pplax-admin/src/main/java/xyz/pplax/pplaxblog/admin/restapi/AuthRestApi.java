@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.controller.SuperController;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
 import xyz.pplax.pplaxblog.admin.global.SysConstants;
@@ -23,6 +24,7 @@ import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.constants.UserSQLConstants;
+import xyz.pplax.pplaxblog.xo.service.auth.AuthService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +46,9 @@ public class AuthRestApi extends SuperController {
 	@Autowired
 	private AuthFeignClient authFeignClient;
 
+	@Autowired
+	private AuthService authService;
+
 	@Value("${pplax.oauth.client-id}")
 	private String clientId;
 
@@ -54,42 +59,14 @@ public class AuthRestApi extends SuperController {
 	@PostMapping("/token")
 	public String getToken(HttpServletRequest httpServletRequest, @RequestBody LoginDto loginDto) {
 
-		Map<String, String> map = JSONObject.parseObject(
-				authFeignClient.getToken(
-						clientId,
-						clientSecret,
-						BaseSysConstants.PASSWORD,
-						loginDto.getUsername(),
-						loginDto.getPassword()
-				),
-				new TypeReference<Map<String, String>>() {
-				}
-		);
+		Map<String, String> map = authService.getToken(httpServletRequest, loginDto);
 
-		if (!StringUtils.isEmpty(map.get("access_token"))) {
-			// 获取token成功，进行登录信息的储存
-
-			// 记录登录ip、登录次数、登录时间
-			QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-			userQueryWrapper.eq(UserSQLConstants.USERNAME, loginDto.getUsername());
-
-			// 修改登录信息
-			User user = userService.getOne(userQueryWrapper);
-			user.setLastLoginTime(new Date());
-			user.setLastLoginIp(IpUtils.getIpAddress(httpServletRequest));
-			user.setLoginCount(user.getLoginCount() + 1);
-
-			// 更新
-			userService.updateById(user);
-
-			// 返回结果脱敏
-			map.remove(BaseSysConstants.UID);
-			map.remove(BaseSysConstants.USER_INFO_UID);
-			map.remove(BaseSysConstants.SALT);
+		if (map == null) {
+			log.warn("token获取失败");
+			return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
 		}
 
 		log.info("返回结果");
-
 		return success(map);
 	}
 

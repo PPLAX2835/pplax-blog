@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/BlogSortRestApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AuthRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AuthRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,11 +105,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.xo.service.auth" />
       <recent name="xyz.pplax.pplaxblog.feign.role" />
       <recent name="xyz.pplax.pplaxblog.xo.service.impl" />
       <recent name="xyz.pplax.pplaxblog.xo.service" />
       <recent name="xyz.pplax.pplaxblog.xo.mapper" />
-      <recent name="xyz.pplax.pplaxblog.xo.entity" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -237,13 +240,6 @@
       <workItem from="1706834941788" duration="8509000" />
       <workItem from="1706927635493" duration="18090000" />
       <workItem from="1707011320562" duration="1311000" />
-    </task>
-    <task id="LOCAL-00212" summary="认证服务器大概就是这样。接下来的思路：登录访问admin的接口，然后这个接口通过feign向auth获取code,然后获取token。先弄feign试试可行性">
-      <created>1705887310672</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
-      <option name="project" value="LOCAL" />
-      <updated>1705887310672</updated>
     </task>
     <task id="LOCAL-00213" summary="整理maven">
       <created>1705975709010</created>
@@ -581,7 +577,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707209943921</updated>
     </task>
-    <option name="localTasksCounter" value="261" />
+    <task id="LOCAL-00261" summary="调整">
+      <created>1707216034481</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1707216034481</updated>
+    </task>
+    <option name="localTasksCounter" value="262" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +619,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="oauth添加jwt方案，且改为此方案" />
     <MESSAGE value="整理maven，网关路由转发踩坑结束，以后父级maven什么都不要引，指不定出什么岔子，这次是因为父级maven引了spring-boot-starter-web导致网关服务不进行转发了" />
     <MESSAGE value="調整端口" />
     <MESSAGE value="解决跨域问题" />
@@ -641,7 +643,8 @@
     <MESSAGE value="service的内部的类用各种包分开，以后每个服务各取所需，不统一扫描了" />
     <MESSAGE value="添加role的接口" />
     <MESSAGE value="token鉴权初步实现，目前还不够优美" />
-    <option name="LAST_COMMIT_MESSAGE" value="token鉴权初步实现，目前还不够优美" />
+    <MESSAGE value="调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

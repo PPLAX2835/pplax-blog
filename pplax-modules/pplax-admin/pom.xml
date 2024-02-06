@@ -44,6 +44,10 @@
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-mybatis-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-redis-starter</artifactId>
+        </dependency>
         <!-- starter end -->
 
         <dependency>

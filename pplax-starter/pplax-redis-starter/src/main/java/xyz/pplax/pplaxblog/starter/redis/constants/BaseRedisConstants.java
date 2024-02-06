@@ -13,7 +13,7 @@ public class BaseRedisConstants {
     /**
      * 博客分类
      */
-    public final static String BLOG_SORT_BY_MONTH = "BLOG_SORT_BY_MONTH";
+    public final static String BLOG_SORT_BY_MONTH = "BLOG_SORT";
 
     /**
      * Redis分隔符
@@ -31,19 +31,14 @@ public class BaseRedisConstants {
     public final static String WELL_NUMBER = "#";
 
     /**
-     * 角色列表 携带 路径访问权限
+     * 角色
      */
-    public final static String ROLES_WITH_PATH_ACCESS_PERMISSION = "ROLE_LIST_WITH_PATH_ACCESS_PERMISSION";
+    public final static String ROLE = "ROLE";
 
     /**
      * 月份集合
      */
     public final static String MONTH_SET = "MONTH_SET";
-
-    /**
-     * 博客等级
-     */
-    public final static String BLOG_LEVEL = "BLOG_LEVEL";
 
     /**
      * 博客点击

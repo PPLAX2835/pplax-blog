@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name="admin-server")
 public interface RoleFeignClient {
 
-    @GetMapping("/{uid}")
+    @GetMapping("/role/{uid}")
     String getByUid(@PathVariable("uid") String uid);
 
 }

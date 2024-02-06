@@ -17,6 +17,12 @@ public class BaseSysConstants {
 	public final static String USER_INFO_UID = "userInfoUid";
 	public final static String ROLE_UID = "roleUid";
 
+	/**
+	 * 权限相关
+	 */
+	public final static String PATH_ACCESS_PERMISSION = "pathAccessPermissionList";
+	public final static String PATH_REGEX = "pathRegex";
+	public final static String METHOD = "method";
 
 	/**
 	 * IP相关

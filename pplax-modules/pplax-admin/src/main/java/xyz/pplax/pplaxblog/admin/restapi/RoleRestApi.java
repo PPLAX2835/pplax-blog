@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.controller.SuperController;
-import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.service.role.RoleService;
 
 
@@ -35,7 +34,7 @@ public class RoleRestApi extends SuperController {
     ) {
 
         log.info("返回结果");
-        return toJson(ResponseResult.success(roleService.getById(uid)));
+        return success(roleService.getById(uid));
     }
 
 }

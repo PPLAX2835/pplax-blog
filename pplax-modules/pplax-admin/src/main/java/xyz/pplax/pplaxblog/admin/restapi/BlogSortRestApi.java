@@ -54,7 +54,7 @@ public class BlogSortRestApi extends SuperController {
 
         log.info("返回结果");
 
-        return JSON.toJSONString(ResponseResult.success(blogSortService.getPageList(blogSortDto)));
+        return success(blogSortService.getPageList(blogSortDto));
     }
 
     /**

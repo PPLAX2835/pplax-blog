@@ -1,5 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service.role;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.serviceImpl.SuperServiceImpl;
@@ -32,7 +34,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     @Override
     public Role getById(Serializable id) {
         // 先从缓存中找
-        Role role = (Role) redisService.getCacheObject(BaseRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION);
+        Role role = JSONObject.toJavaObject(redisService.getCacheObject(BaseRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION + id), Role.class);
 
         if (role == null) {
             // 缓存中没有
@@ -47,7 +49,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
             role.setPathAccessPermissionList(pathAccessPermissionUidList);
 
             // 存到缓存中
-            redisService.setCacheObject(BaseRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION, role);
+            redisService.setCacheObject(BaseRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION + id, role);
         }
         return role;
     }

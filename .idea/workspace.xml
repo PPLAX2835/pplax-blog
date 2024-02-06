@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/RoleRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/src/main/java/xyz/pplax/pplaxblog/starter/redis/constants/BaseRedisConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/src/main/java/xyz/pplax/pplaxblog/starter/redis/constants/BaseRedisConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pom.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="添加role的接口">
+      <change afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/role/RoleFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/RoleRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/RoleRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,11 +108,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.feign.role" />
       <recent name="xyz.pplax.pplaxblog.xo.service.impl" />
       <recent name="xyz.pplax.pplaxblog.xo.service" />
       <recent name="xyz.pplax.pplaxblog.xo.mapper" />
       <recent name="xyz.pplax.pplaxblog.xo.entity" />
-      <recent name="xyz.pplax.pplaxblog.auth.handler" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -242,13 +243,6 @@
       <workItem from="1706834941788" duration="8509000" />
       <workItem from="1706927635493" duration="18090000" />
       <workItem from="1707011320562" duration="1311000" />
-    </task>
-    <task id="LOCAL-00210" summary="继续整理项目">
-      <created>1705822960556</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
-      <option name="project" value="LOCAL" />
-      <updated>1705822960556</updated>
     </task>
     <task id="LOCAL-00211" summary="调整统一接口配置命名">
       <created>1705825566948</created>
@@ -586,7 +580,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707201187591</updated>
     </task>
-    <option name="localTasksCounter" value="259" />
+    <task id="LOCAL-00259" summary="添加role的接口">
+      <created>1707201516884</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1707201516884</updated>
+    </task>
+    <option name="localTasksCounter" value="260" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +622,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="先加上网关空服务，然后删掉web，这个还不知道怎么用" />
     <MESSAGE value="简单调整" />
     <MESSAGE value="oauth添加jwt方案，且改为此方案" />
     <MESSAGE value="整理maven，网关路由转发踩坑结束，以后父级maven什么都不要引，指不定出什么岔子，这次是因为父级maven引了spring-boot-starter-web导致网关服务不进行转发了" />
@@ -646,7 +646,8 @@
     <MESSAGE value="用户信息表添加新字段" />
     <MESSAGE value="redis单独放到starter里" />
     <MESSAGE value="service的内部的类用各种包分开，以后每个服务各取所需，不统一扫描了" />
-    <option name="LAST_COMMIT_MESSAGE" value="service的内部的类用各种包分开，以后每个服务各取所需，不统一扫描了" />
+    <MESSAGE value="添加role的接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加role的接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

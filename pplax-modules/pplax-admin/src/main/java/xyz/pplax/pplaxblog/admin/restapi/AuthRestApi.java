@@ -23,7 +23,7 @@ import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.constants.UserSQLConstants;
-import xyz.pplax.pplaxblog.xo.service.UserService;
+import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;

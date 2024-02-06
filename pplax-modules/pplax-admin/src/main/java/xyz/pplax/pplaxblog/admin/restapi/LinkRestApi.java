@@ -18,7 +18,7 @@
 //import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 //import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 //import xyz.pplax.pplaxblog.xo.entity.Link;
-//import xyz.pplax.pplaxblog.xo.service.LinkService;
+//import xyz.pplax.pplaxblog.xo.service.link.LinkService;
 //
 //import javax.servlet.http.HttpServletRequest;
 //import java.util.List;

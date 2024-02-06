@@ -10,12 +10,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringCloudApplication
 @EnableSwagger2
 @ComponentScan(basePackages = {
-        "xyz.pplax.pplaxblog.commons.base.handler",
+        "xyz.pplax.pplaxblog.commons.handler",
         "xyz.pplax.pplaxblog.starter.durid",
         "xyz.pplax.pplaxblog.starter.mybatis",
         "xyz.pplax.pplaxblog.starter.swagger",
         "xyz.pplax.pplaxblog.file.restapi",
-        "xyz.pplax.pplaxblog.xo.service",
+        "xyz.pplax.pplaxblog.xo.service.filestorage",
         "xyz.pplax.pplaxblog.file.components",
         "xyz.pplax.pplaxblog.file.config"
 })

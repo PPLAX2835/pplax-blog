@@ -18,6 +18,7 @@ import xyz.pplax.pplaxblog.xo.constants.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserInfoMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
+import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -35,7 +36,7 @@ public class UserDetailService  implements UserDetailsService {
     private RoleMapper roleMapper;
 
     @Autowired
-    private xyz.pplax.pplaxblog.xo.service.UserService userService;
+    private UserService userService;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (StringUtils.isEmpty(username)) {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
-import xyz.pplax.pplaxblog.xo.service.BlogSortService;
+import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
 
 import javax.servlet.http.HttpServletRequest;
 

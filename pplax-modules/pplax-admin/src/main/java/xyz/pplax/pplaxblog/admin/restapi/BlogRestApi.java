@@ -13,13 +13,16 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.ResultUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.*;
-import xyz.pplax.pplaxblog.xo.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
+import xyz.pplax.pplaxblog.xo.service.tag.TagService;
+import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -34,10 +37,10 @@ import java.util.List;
 public class BlogRestApi {
 
 	@Autowired
-	BlogService blogService;
+    BlogService blogService;
 
 	@Autowired
-	TagService tagService;
+    TagService tagService;
 
 	@Autowired
 	UserService userService;

@@ -13,9 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.feign.file.FileFeignClient;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
-import xyz.pplax.pplaxblog.xo.service.BlogService;
-import xyz.pplax.pplaxblog.xo.service.BlogSortService;
-import xyz.pplax.pplaxblog.xo.service.TagService;
+import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
+import xyz.pplax.pplaxblog.xo.service.tag.TagService;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

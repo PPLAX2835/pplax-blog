@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.pplax.pplaxblog.xo.service.UserService;
+import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 

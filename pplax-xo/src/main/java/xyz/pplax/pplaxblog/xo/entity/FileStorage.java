@@ -14,7 +14,7 @@ import xyz.pplax.pplaxblog.commons.entity.SuperEntity;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("t_file")
+@TableName("t_file_storage")
 public class FileStorage extends SuperEntity<FileStorage> {
 
     private static final long serialVersionUID = 1L;

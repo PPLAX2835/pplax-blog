@@ -2,11 +2,22 @@ package xyz.pplax.pplaxblog.file.restapi;
 
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
+import xyz.pplax.pplaxblog.commons.controller.SuperController;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.file.components.MinioUtils;
+import xyz.pplax.pplaxblog.file.service.StorageService;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
+import xyz.pplax.pplaxblog.xo.mapper.FileStorageMapper;
+import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,23 +27,23 @@ import java.util.List;
  * @date 2024/1/18 14:37
  */
 @RestController
-@RequestMapping("/upload")
-@Api(value = "文件上传服务相关接口", tags = {"文件上传相关接口"})
+@RequestMapping("/user/{userUid}")
+@Api(value = "用户文件上传服务相关接口", tags = {"用户文件上传相关接口"})
 @Slf4j
-public class UploadRestApi {
+public class UserFileRestApi extends SuperController {
 
-//    @ApiOperation(value = "头像上传", notes = "头像上传")
-//    @PostMapping(value = "/avatar")
-//    public String cropperPicture(@RequestParam("file") MultipartFile file) {
-//
-//        FileStorage fileStorage = new FileStorage();
-//        fileStorage.setFileName(file.getOriginalFilename());
-//        fileStorage.set
-//
-//        List<MultipartFile> multipartFileList = new ArrayList<>();
-//        multipartFileList.add(file);
-//        return fileService.cropperPicture(multipartFileList);
-//    }
+    @Autowired
+    private StorageService storageService;
+
+    @Value("${pplax.storage.mode}")
+    private String storageMode;
+
+    @ApiOperation(value = "头像上传", notes = "头像上传")
+    @PostMapping(value = "/avatar")
+    public String cropperPicture(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
+
+        return toJson(storageService.uploadAvatar(storageMode, userUid, file));
+    }
 
 
 //    @ApiOperation(value = "截图上传", notes = "截图上传")

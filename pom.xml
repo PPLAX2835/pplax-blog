@@ -35,6 +35,7 @@
         <mail.version>1.4</mail.version>
         <json-lib.version>2.4</json-lib.version>
         <jjwt.version>0.7.0</jjwt.version>
+        <imgscalr-lib.version>4.2</imgscalr-lib.version>
         <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
         <springfox-swagger-ui.version>2.6.1</springfox-swagger-ui.version>
         <druid.version>1.1.8</druid.version>
@@ -163,6 +164,13 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- 图片工具类 -->
+            <dependency>
+                <groupId>org.imgscalr</groupId>
+                <artifactId>imgscalr-lib</artifactId>
+                <version>${imgscalr-lib.version}</version>
             </dependency>
 
             <!-- swagger -->

@@ -106,6 +106,12 @@
             <artifactId>minio</artifactId>
         </dependency>
 
+        <!-- 图片工具类 -->
+        <dependency>
+            <groupId>org.imgscalr</groupId>
+            <artifactId>imgscalr-lib</artifactId>
+        </dependency>
+
         <!-- commons-io -->
         <dependency>
             <groupId>org.apache.commons</groupId>

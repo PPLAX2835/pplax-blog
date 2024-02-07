@@ -28,17 +28,24 @@ public class FileStorage extends SuperEntity<FileStorage> {
 
     /**
      * <pre>
-     * 文件名
+     * 资源原始名称
+     * </pre>
+     */
+    private String originalName;
+
+    /**3
+     * <pre>
+     * 资源名称
      * </pre>
      */
     private String	fileName;
 
     /**
      * <pre>
-     * 文件扩展名
+     * 后缀名
      * </pre>
      */
-    private String	extendName;
+    private String	suffix;
 
     /**
      * <pre>
@@ -49,7 +56,7 @@ public class FileStorage extends SuperEntity<FileStorage> {
 
     /**
      * <pre>
-     * 文件大小
+     * 文件大小，单位bit
      * </pre>
      */
     private Long fileSize;
@@ -59,7 +66,14 @@ public class FileStorage extends SuperEntity<FileStorage> {
      * 是否是目录
      * </pre>
      */
-    private Integer	isDirectory;
+    private Boolean	isDirectory;
+
+    /**
+     * <pre>
+     * 是否图片
+     * </pre>
+     */
+    private Boolean	isImage;
 
     /**
      * <pre>
@@ -70,13 +84,10 @@ public class FileStorage extends SuperEntity<FileStorage> {
 
     /**
      * <pre>
-     * 文件地址
+     * 资源路径
      * </pre>
      */
     private String	fileUrl;
-
-    @TableField(exist = false)
-    private User user; // 父级分类
 
     public FileStorage() {}
 

@@ -6,11 +6,13 @@
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.FileStorage">
         <id column="uid" property="uid" />
         <result column="user_uid" property="userUid" />
+        <result column="original_name" property="originalName" />
         <result column="file_name" property="fileName" />
-        <result column="extend_name" property="extendName" />
+        <result column="suffix" property="suffix" />
         <result column="file_path" property="filePath" />
         <result column="file_size" property="fileSize" />
         <result column="is_directory" property="isDirectory" />
+        <result column="is_image" property="isImage" />
         <result column="storage_mode" property="storageMode" />
         <result column="file_url" property="fileUrl" />
         <result column="status" property="status" />
@@ -20,7 +22,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `useruid`, `fileName`, `extendName`, `filePath`, `fileSize`, `isDirectory`, `storageMode`, `fileUrl`, `status`, `create_time`, `update_time`
+        `uid`, `user_uid`, `original_name`, `file_name`, `suffix`, `filePath`, `fileSize`, `isDirectory`, `is_image`, `storageMode`, `fileUrl`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

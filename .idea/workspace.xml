@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AuthRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AuthRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pom.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="登录认证也弄了个服务层">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/FileStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/FileStorageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/FileStorageMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,13 +240,7 @@
       <workItem from="1706834941788" duration="8509000" />
       <workItem from="1706927635493" duration="18090000" />
       <workItem from="1707011320562" duration="1311000" />
-    </task>
-    <task id="LOCAL-00213" summary="整理maven">
-      <created>1705975709010</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1705975709010</updated>
+      <workItem from="1707272423651" duration="680000" />
     </task>
     <task id="LOCAL-00214" summary="升级spring boot版本，引入spring cloud alibaba">
       <created>1705977960343</created>
@@ -584,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707216034481</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="登录认证也弄了个服务层">
+      <created>1707216957824</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1707216957824</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +620,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理maven，网关路由转发踩坑结束，以后父级maven什么都不要引，指不定出什么岔子，这次是因为父级maven引了spring-boot-starter-web导致网关服务不进行转发了" />
     <MESSAGE value="調整端口" />
     <MESSAGE value="解决跨域问题" />
     <MESSAGE value="把pplax-utils也归到pplax-commons里了" />
@@ -644,7 +644,8 @@
     <MESSAGE value="添加role的接口" />
     <MESSAGE value="token鉴权初步实现，目前还不够优美" />
     <MESSAGE value="调整" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整" />
+    <MESSAGE value="登录认证也弄了个服务层" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录认证也弄了个服务层" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

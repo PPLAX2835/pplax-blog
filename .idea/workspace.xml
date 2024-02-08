@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/AvatarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/AvatarService.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,14 +258,7 @@
       <workItem from="1706927635493" duration="18090000" />
       <workItem from="1707011320562" duration="1311000" />
       <workItem from="1707272423651" duration="18123000" />
-      <workItem from="1707359471912" duration="12367000" />
-    </task>
-    <task id="LOCAL-00219" summary="修改启动类注解">
-      <created>1706001355538</created>
-      <option name="number" value="00219" />
-      <option name="presentableId" value="LOCAL-00219" />
-      <option name="project" value="LOCAL" />
-      <updated>1706001355538</updated>
+      <workItem from="1707359471912" duration="14701000" />
     </task>
     <task id="LOCAL-00220" summary="实现admin服务通过feign调用auth服务的接口获取token">
       <created>1706062303530</created>
@@ -603,7 +596,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707376870593</updated>
     </task>
-    <option name="localTasksCounter" value="268" />
+    <task id="LOCAL-00268" summary="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了">
+      <created>1707377261505</created>
+      <option name="number" value="00268" />
+      <option name="presentableId" value="LOCAL-00268" />
+      <option name="project" value="LOCAL" />
+      <updated>1707377261505</updated>
+    </task>
+    <option name="localTasksCounter" value="269" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +638,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=" security-starter部分类移到auth服务中，再次修改SecurityUserDetails" />
     <MESSAGE value="合并弄错了点" />
     <MESSAGE value="发现auth-server返回的token不是jwt的，现在改了" />
     <MESSAGE value="网关配置token鉴权，但是token解析报错目前还未解决" />
@@ -663,7 +662,8 @@
     <MESSAGE value="头像增删改初步实现" />
     <MESSAGE value="路径访问权限增加字段，用于解决用户是否可以访问其他用户uid下的路径的问题" />
     <MESSAGE value="修改了已经被允许的访问方式 在后续循环中不允许的配置将其重新修改位false的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了已经被允许的访问方式 在后续循环中不允许的配置将其重新修改位false的问题" />
+    <MESSAGE value="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了" />
+    <option name="LAST_COMMIT_MESSAGE" value="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

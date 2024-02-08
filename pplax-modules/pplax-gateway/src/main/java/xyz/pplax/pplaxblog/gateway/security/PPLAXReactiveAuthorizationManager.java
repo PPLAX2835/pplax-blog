@@ -128,7 +128,7 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
         }
 
         // 遍历完成，鉴权
-        boolean permissionFlag = true;
+        boolean permissionFlag = false;
         for (Map pathAccessPermissionMap : pathAccessPermissionMapList) {
             /// 获得url
             String url = serverHttpRequest.getURI().getPath();
@@ -136,10 +136,18 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
             // 通过pathAccessPermissionMap提供的路径正则进行匹配
             if (Pattern.matches(pathRegex, url)) {
                 // 当前路径匹配成功，进一步对请求方法进行判断
-                if (!pathAccessPermissionMap.get(BaseSysConstants.METHOD).toString().contains(method.toString())) {
-                    // 请求方法不合法
-                    permissionFlag = false;
-                }
+
+
+                Boolean result = true;     // 这个result用于记录下面每个规则是否允许，应该是全为 与 的运算
+
+                /*
+                 * 一、判断请求方式是否合法
+                 */
+                result = result && pathAccessPermissionMap.get(BaseSysConstants.METHOD).toString().contains(method.toString());
+
+                /*
+                 * 二、判断是否允许用户访问其他用户uid下的路径
+                 */
                 if (!(Boolean) pathAccessPermissionMap.get(BaseSysConstants.OTHER_USER_ACCESS_PERMISSION)) {
                     // 不允许用户访问其他用户uid下的路径
                     JSONObject securityUserDetailJsonObject = JSON.parseObject(JSON.toJSONString(oAuth2Authentication.getUserAuthentication().getPrincipal()));
@@ -156,17 +164,22 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
                         if (endIndex != -1) {
                             String urlUid = url.substring(startIndex, endIndex);
 
-                            // 判断两个uid是否匹配
-                            permissionFlag = uid.equals(urlUid);
+
+                            result = result && uid.equals(urlUid);                                                      // 判断两个uid是否匹配
                         }
                     }
                 }
 
-            }
+                /*
+                 * 三、后续可能还会有
+                 */
 
-            if (permissionFlag) {
-                // 只要有允许的配置就可以结束循环了
-                break;
+                // 全部通过了，可以跳出循环了
+                if (result) {
+                    permissionFlag = true;
+                    break;
+                }
+
             }
         }
 

@@ -6,22 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
 import xyz.pplax.pplaxblog.commons.controller.SuperController;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
-import xyz.pplax.pplaxblog.commons.utils.StringUtils;
-import xyz.pplax.pplaxblog.file.components.MinioUtils;
-import xyz.pplax.pplaxblog.file.service.StorageService;
-import xyz.pplax.pplaxblog.xo.entity.FileStorage;
-import xyz.pplax.pplaxblog.xo.mapper.FileStorageMapper;
-import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.file.service.AvatarService;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 /**
- * 文件上传接口 【总的文件接口，需要调用本地文件、七牛云、Minio等上传服务】
+ * 用户文件上传服务相关接口
  *
  * @author PPLAX
  * @date 2024/1/18 14:37
@@ -33,17 +26,32 @@ import java.util.List;
 public class UserFileRestApi extends SuperController {
 
     @Autowired
-    private StorageService storageService;
+    private AvatarService avatarService;
 
     @Value("${pplax.storage.mode}")
     private String storageMode;
 
-    @ApiOperation(value = "头像上传", notes = "头像上传")
+    @ApiOperation(value = "用户上传自己的头像", notes = "用户上传自己的头像")
     @PostMapping(value = "/avatar")
-    public String cropperPicture(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
+    public String avatarUpload(HttpServletRequest httpServletRequest, @PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(storageService.uploadAvatar(storageMode, userUid, file));
+        return toJson(avatarService.avatarUpload(httpServletRequest, storageMode, userUid, file));
     }
+
+    @ApiOperation(value = "管理员上传头像，可以修改别人的", notes = "管理员上传头像，可以修改别人的")
+    @PutMapping(value = "/avatar")
+    public String avatarUpload(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
+
+        return toJson(avatarService.avatarUpload(storageMode, userUid, file));
+    }
+
+    @ApiOperation(value = "删除头像", notes = "删除头像")
+    @DeleteMapping(value = "/avatar/{fileUid}")
+    public String avatarDelete(@PathVariable String userUid, @PathVariable String fileUid) throws Exception {
+
+        return toJson(avatarService.avatarDelete(storageMode, fileUid));
+    }
+
 
 
 //    @ApiOperation(value = "截图上传", notes = "截图上传")

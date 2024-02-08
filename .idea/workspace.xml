@@ -5,19 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="实现文件服务的头像上传">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/StorageModeConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/StorageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/FileStorageSQLConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/UserInfoSQLConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_10_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_10_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_10_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UploadRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/FileStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/AvatarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pplax-mybatis-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pplax-mybatis-starter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +84,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -97,11 +101,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\java\xyz\pplax\pplaxblog\admin\restapi" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\service\impl" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter\pplax-redis-starter\src\main\java\xyz\pplax\pplaxblog\starter\redis\constants" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
@@ -128,7 +132,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Compound.runAll">
+  <component name="RunManager" selected="Application.JwtUtil">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -138,6 +142,19 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="amqp-api" />
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JwtUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.commons.utils.JwtUtil" />
+      <module name="pplax-commons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.commons.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -190,12 +207,18 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.JwtUtil" />
       <item itemvalue="Compound.runAll" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.JwtUtil" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -249,14 +272,8 @@
       <workItem from="1706834941788" duration="8509000" />
       <workItem from="1706927635493" duration="18090000" />
       <workItem from="1707011320562" duration="1311000" />
-      <workItem from="1707272423651" duration="14805000" />
-    </task>
-    <task id="LOCAL-00215" summary="整合nacos">
-      <created>1705991985648</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
-      <option name="project" value="LOCAL" />
-      <updated>1705991985648</updated>
+      <workItem from="1707272423651" duration="18123000" />
+      <workItem from="1707359471912" duration="5773000" />
     </task>
     <task id="LOCAL-00216" summary="修改接口，不用配置的方案了，直接在接口写就好">
       <created>1705992597297</created>
@@ -594,7 +611,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707273318948</updated>
     </task>
-    <option name="localTasksCounter" value="264" />
+    <task id="LOCAL-00264" summary="实现文件服务的头像上传">
+      <created>1707297438612</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1707297438612</updated>
+    </task>
+    <option name="localTasksCounter" value="265" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -629,7 +653,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="解决跨域问题" />
     <MESSAGE value="把pplax-utils也归到pplax-commons里了" />
     <MESSAGE value="添加starter模块，将配置放到这里" />
     <MESSAGE value="整理commons模块" />
@@ -654,7 +677,8 @@
     <MESSAGE value="调整" />
     <MESSAGE value="登录认证也弄了个服务层" />
     <MESSAGE value="调整文件表，准备弄文件服务" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整文件表，准备弄文件服务" />
+    <MESSAGE value="实现文件服务的头像上传" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现文件服务的头像上传" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

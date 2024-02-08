@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.file.service;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import io.minio.ObjectWriteResponse;
 import org.imgscalr.Scalr;
@@ -7,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.file.components.MinioUtils;
+import xyz.pplax.pplaxblog.xo.constants.FileStorageSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.UserInfoSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.entity.User;
@@ -21,14 +26,16 @@ import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.Map;
 
 @Service
-public class StorageService {
+public class AvatarService {
 
     @Autowired
     private FileStorageService fileStorageService;
@@ -49,17 +56,38 @@ public class StorageService {
     private String minioEndpoint;
 
     /**
-     * 上传头像
+     * 上传自己的头像
      * @param mode
      * @param userUid
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult uploadAvatar(String mode, String userUid, MultipartFile file) throws Exception {
+    public ResponseResult avatarUpload(HttpServletRequest httpServletRequest, String mode, String userUid, MultipartFile file) throws Exception {
+        // 解析token，看看token里的uid是否跟userUid一致
+        String token = httpServletRequest.getHeader("Authorization");
+        Map map = (Map) JSON.parseObject(JwtUtil.getPayloadByBase64(token));
+        if (!userUid.equals(map.get(BaseSysConstants.UID))) {
+            // 不匹配说明有人通过拼接的方式尝试修改他人的头像
+            return ResponseResult.error(HttpStatus.BAD_REQUEST);
+        }
+
+        return avatarUpload(mode, userUid, file);
+    }
+
+
+    /**
+     * 上传头像，可以修改别的用户的头像，管理员用
+     * @param mode
+     * @param userUid
+     * @param file
+     * @return
+     * @throws Exception
+     */
+    public ResponseResult avatarUpload(String mode, String userUid, MultipartFile file) throws Exception {
         // 存储模式参数不能为空
         if (StringUtils.isEmpty(mode)) {
-            return ResponseResult.error(HttpStatus.BAD_REQUEST);
+            return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         // 判断是否是图片
@@ -90,6 +118,7 @@ public class StorageService {
         InputStream inputStream = new ByteArrayInputStream(outStream .toByteArray());
 
         FileStorage fileStorage = new FileStorage();
+        // 判断使用什么方式存储
         if (mode.equals(StorageModeConstants.MINIO)) {      // minio的存储方式
 
             String fileStoragePath = "/users/" + userUid + "/avatar/";
@@ -113,6 +142,9 @@ public class StorageService {
             fileStorage.setFileUrl(fileUrl);
 
             fileStorageService.save(fileStorage);
+        } else if (mode.equals(StorageModeConstants.LOCAL_STORAGE)) {
+            // 本地存储
+
         }
 
         // 头像上传成功，更新用户信息
@@ -125,5 +157,35 @@ public class StorageService {
         return ResponseResult.success();
     }
 
+
+    /**
+     * 删除文件
+     * @param mode
+     * @param fileUid
+     * @return
+     * @throws Exception
+     */
+    public ResponseResult avatarDelete(String mode , String fileUid) throws Exception {
+        // 校验参数
+        if (StringUtils.isEmpty(mode) || StringUtils.isEmpty(fileUid)) {
+            return ResponseResult.error(HttpStatus.BAD_REQUEST);
+        }
+
+        // 获取这个文件的信息
+        FileStorage fileStorage = fileStorageService.getById(fileUid);
+
+        if (mode.equals(StorageModeConstants.MINIO)) {
+            // 在minio中删除
+            minioUtils.removeObject(minioBucketName, fileStorage.getFilePath() + fileStorage.getFileName());
+        }
+
+        // 逻辑删除
+        UpdateWrapper<FileStorage> fileStorageUpdateWrapper = new UpdateWrapper<>();
+        fileStorageUpdateWrapper.set(FileStorageSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        fileStorageUpdateWrapper.eq(FileStorageSQLConstants.UID, fileUid);
+        fileStorageService.update(fileStorageUpdateWrapper);
+
+        return ResponseResult.success();
+    }
 
 }

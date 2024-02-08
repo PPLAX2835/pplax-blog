@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="头像增删改初步实现">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="路径访问权限增加字段，用于解决用户是否可以访问其他用户uid下的路径的问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseSysConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseSysConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/PathAccessPermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/PathAccessPermission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PathAccessPermissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PathAccessPermissionMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,14 +258,7 @@
       <workItem from="1706927635493" duration="18090000" />
       <workItem from="1707011320562" duration="1311000" />
       <workItem from="1707272423651" duration="18123000" />
-      <workItem from="1707359471912" duration="10807000" />
-    </task>
-    <task id="LOCAL-00217" summary="又改回来了 （流汗黄豆）">
-      <created>1705999221003</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
-      <option name="project" value="LOCAL" />
-      <updated>1705999221003</updated>
+      <workItem from="1707359471912" duration="12065000" />
     </task>
     <task id="LOCAL-00218" summary="配置挪到nacos中了">
       <created>1706000935179</created>
@@ -606,7 +596,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707370574170</updated>
     </task>
-    <option name="localTasksCounter" value="266" />
+    <task id="LOCAL-00266" summary="路径访问权限增加字段，用于解决用户是否可以访问其他用户uid下的路径的问题">
+      <created>1707375707457</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1707375707457</updated>
+    </task>
+    <option name="localTasksCounter" value="267" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +638,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加starter模块，将配置放到这里" />
     <MESSAGE value="整理commons模块" />
     <MESSAGE value=" security-starter部分类移到auth服务中，再次修改SecurityUserDetails" />
     <MESSAGE value="合并弄错了点" />
@@ -666,7 +662,8 @@
     <MESSAGE value="调整文件表，准备弄文件服务" />
     <MESSAGE value="实现文件服务的头像上传" />
     <MESSAGE value="头像增删改初步实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="头像增删改初步实现" />
+    <MESSAGE value="路径访问权限增加字段，用于解决用户是否可以访问其他用户uid下的路径的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="路径访问权限增加字段，用于解决用户是否可以访问其他用户uid下的路径的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -683,11 +680,6 @@
           <url>jar://E:/Environment/Maven/Repository/org/springframework/cloud/spring-cloud-gateway-core/2.2.2.RELEASE/spring-cloud-gateway-core-2.2.2.RELEASE.jar!/org/springframework/cloud/gateway/filter/ReactiveLoadBalancerClientFilter.class</url>
           <line>41</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java</url>
-          <line>143</line>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

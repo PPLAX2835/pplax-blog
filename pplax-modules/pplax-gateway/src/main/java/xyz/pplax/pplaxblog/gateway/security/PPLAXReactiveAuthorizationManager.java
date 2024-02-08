@@ -161,6 +161,12 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
                         }
                     }
                 }
+
+            }
+
+            if (permissionFlag) {
+                // 只要有允许的配置就可以结束循环了
+                break;
             }
         }
 

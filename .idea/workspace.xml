@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="实现文件服务的头像上传">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_10_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_10_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_10_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_9.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="头像增删改初步实现">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/AvatarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pplax-mybatis-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pplax-mybatis-starter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseSysConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseSysConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/PathAccessPermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/PathAccessPermission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PathAccessPermissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/PathAccessPermissionMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,14 +261,7 @@
       <workItem from="1706927635493" duration="18090000" />
       <workItem from="1707011320562" duration="1311000" />
       <workItem from="1707272423651" duration="18123000" />
-      <workItem from="1707359471912" duration="5773000" />
-    </task>
-    <task id="LOCAL-00216" summary="修改接口，不用配置的方案了，直接在接口写就好">
-      <created>1705992597297</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
-      <option name="project" value="LOCAL" />
-      <updated>1705992597297</updated>
+      <workItem from="1707359471912" duration="10807000" />
     </task>
     <task id="LOCAL-00217" summary="又改回来了 （流汗黄豆）">
       <created>1705999221003</created>
@@ -618,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707297438612</updated>
     </task>
-    <option name="localTasksCounter" value="265" />
+    <task id="LOCAL-00265" summary="头像增删改初步实现">
+      <created>1707370574169</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1707370574170</updated>
+    </task>
+    <option name="localTasksCounter" value="266" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -653,7 +641,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="把pplax-utils也归到pplax-commons里了" />
     <MESSAGE value="添加starter模块，将配置放到这里" />
     <MESSAGE value="整理commons模块" />
     <MESSAGE value=" security-starter部分类移到auth服务中，再次修改SecurityUserDetails" />
@@ -678,7 +665,8 @@
     <MESSAGE value="登录认证也弄了个服务层" />
     <MESSAGE value="调整文件表，准备弄文件服务" />
     <MESSAGE value="实现文件服务的头像上传" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现文件服务的头像上传" />
+    <MESSAGE value="头像增删改初步实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="头像增删改初步实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -695,6 +683,11 @@
           <url>jar://E:/Environment/Maven/Repository/org/springframework/cloud/spring-cloud-gateway-core/2.2.2.RELEASE/spring-cloud-gateway-core-2.2.2.RELEASE.jar!/org/springframework/cloud/gateway/filter/ReactiveLoadBalancerClientFilter.class</url>
           <line>41</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/security/PPLAXReactiveAuthorizationManager.java</url>
+          <line>143</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

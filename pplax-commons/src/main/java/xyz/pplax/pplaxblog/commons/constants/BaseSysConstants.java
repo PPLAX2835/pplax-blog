@@ -23,6 +23,7 @@ public class BaseSysConstants {
 	public final static String PATH_ACCESS_PERMISSION = "pathAccessPermissionList";
 	public final static String PATH_REGEX = "pathRegex";
 	public final static String METHOD = "method";
+	public final static String OTHER_USER_ACCESS_PERMISSION = "otherUserAccessPermission";
 
 	/**
 	 * IP相关

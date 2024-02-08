@@ -27,5 +27,10 @@ public class PathAccessPermission extends SuperEntity<PathAccessPermission> {
      */
     private String method;
 
+    /**
+     * 访问其他用户的权限
+     */
+    private Boolean otherUserAccessPermission;
+
     public PathAccessPermission() {}
 }

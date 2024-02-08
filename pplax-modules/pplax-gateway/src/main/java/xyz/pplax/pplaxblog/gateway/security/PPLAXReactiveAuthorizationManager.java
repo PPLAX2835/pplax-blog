@@ -15,6 +15,7 @@ import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.ReactiveAuthorizationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -22,16 +23,19 @@ import org.springframework.security.web.server.authorization.AuthorizationContex
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.role.RoleFeignClient;
+import xyz.pplax.pplaxblog.starter.security.model.SecurityUserDetails;
 
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -124,7 +128,7 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
         }
 
         // 遍历完成，鉴权
-        boolean permissionFlag = false;
+        boolean permissionFlag = true;
         for (Map pathAccessPermissionMap : pathAccessPermissionMapList) {
             /// 获得url
             String url = serverHttpRequest.getURI().getPath();
@@ -132,9 +136,30 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
             // 通过pathAccessPermissionMap提供的路径正则进行匹配
             if (Pattern.matches(pathRegex, url)) {
                 // 当前路径匹配成功，进一步对请求方法进行判断
-                if (pathAccessPermissionMap.get(BaseSysConstants.METHOD).toString().contains(method.toString())) {
-                    // 请求方法也合法
-                    permissionFlag = true;
+                if (!pathAccessPermissionMap.get(BaseSysConstants.METHOD).toString().contains(method.toString())) {
+                    // 请求方法不合法
+                    permissionFlag = false;
+                }
+                if (!(Boolean) pathAccessPermissionMap.get(BaseSysConstants.OTHER_USER_ACCESS_PERMISSION)) {
+                    // 不允许用户访问其他用户uid下的路径
+                    JSONObject securityUserDetailJsonObject = JSON.parseObject(JSON.toJSONString(oAuth2Authentication.getUserAuthentication().getPrincipal()));
+                    String uid = (String) securityUserDetailJsonObject.get(BaseSysConstants.UID);       // 当前用户的uid
+
+                    // 获取访问路径的uid
+                    String keyword = "user/";
+                    int startIndex = url.indexOf(keyword);
+                    if (startIndex != -1) {
+                        // 如果找到了关键词
+                        startIndex += keyword.length(); // 跳过关键词本身
+                        int endIndex = url.indexOf("/", startIndex); // 找到下一个斜杠的位置
+
+                        if (endIndex != -1) {
+                            String urlUid = url.substring(startIndex, endIndex);
+
+                            // 判断两个uid是否匹配
+                            permissionFlag = uid.equals(urlUid);
+                        }
+                    }
                 }
             }
         }

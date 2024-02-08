@@ -31,15 +31,8 @@ public class UserFileRestApi extends SuperController {
     @Value("${pplax.storage.mode}")
     private String storageMode;
 
-    @ApiOperation(value = "用户上传自己的头像", notes = "用户上传自己的头像")
+    @ApiOperation(value = "上传头像", notes = "上传头像")
     @PostMapping(value = "/avatar")
-    public String avatarUpload(HttpServletRequest httpServletRequest, @PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
-
-        return toJson(avatarService.avatarUpload(httpServletRequest, storageMode, userUid, file));
-    }
-
-    @ApiOperation(value = "管理员上传头像，可以修改别人的", notes = "管理员上传头像，可以修改别人的")
-    @PutMapping(value = "/avatar")
     public String avatarUpload(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
 
         return toJson(avatarService.avatarUpload(storageMode, userUid, file));

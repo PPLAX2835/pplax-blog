@@ -56,28 +56,7 @@ public class AvatarService {
     private String minioEndpoint;
 
     /**
-     * 上传自己的头像
-     * @param mode
-     * @param userUid
-     * @param file
-     * @return
-     * @throws Exception
-     */
-    public ResponseResult avatarUpload(HttpServletRequest httpServletRequest, String mode, String userUid, MultipartFile file) throws Exception {
-        // 解析token，看看token里的uid是否跟userUid一致
-        String token = httpServletRequest.getHeader("Authorization");
-        Map map = (Map) JSON.parseObject(JwtUtil.getPayloadByBase64(token));
-        if (!userUid.equals(map.get(BaseSysConstants.UID))) {
-            // 不匹配说明有人通过拼接的方式尝试修改他人的头像
-            return ResponseResult.error(HttpStatus.BAD_REQUEST);
-        }
-
-        return avatarUpload(mode, userUid, file);
-    }
-
-
-    /**
-     * 上传头像，可以修改别的用户的头像，管理员用
+     * 上传头像
      * @param mode
      * @param userUid
      * @param file

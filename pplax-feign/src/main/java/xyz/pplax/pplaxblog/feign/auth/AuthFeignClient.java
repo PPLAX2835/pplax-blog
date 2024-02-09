@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.feign.auth;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,5 +27,8 @@ public interface AuthFeignClient {
             @RequestParam("password") String password
     );
 
+
+    @DeleteMapping("/oauth/access_token")
+    public String deleteToken(@RequestParam("token") String token);
 
 }

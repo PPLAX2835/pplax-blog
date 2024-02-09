@@ -17,7 +17,7 @@ export function getInfo() {
 
 export function logout() {
   return service({
-    url: '/oauth/logout',
-    method: 'post'
+    url: '/oauth/token',
+    method: 'delete'
   })
 }

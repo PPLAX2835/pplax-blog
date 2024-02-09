@@ -81,9 +81,10 @@ public class AuthRestApi extends SuperController {
 	}
 
 	@ApiOperation(value = "退出登录", notes = "退出登录", response = String.class)
-	@PostMapping(value = "/logout")
-	public String logout(@ApiParam(name = "token", value = "token令牌",required = false) @RequestParam(name = "token", required = false) String token) {
-		return JSON.toJSONString(ResponseResult.success());
+	@DeleteMapping(value = "/token")
+	public String logout(HttpServletRequest httpServletRequest) {
+		String token = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
+		return authFeignClient.deleteToken(token);
 	}
 
 }

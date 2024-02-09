@@ -14,9 +14,13 @@ public class BaseSysConstants {
 	 */
 	public final static String USER_INFO = "userInfo";
 	public final static String ROLE = "role";
+	public final static String ROLES = "roles";
 	public final static String USER_INFO_UID = "userInfoUid";
 	public final static String ROLE_UID = "roleUid";
+	public final static String NAME = "name";
+	public final static String AVATAR = "avatar";
 
+	public final static String TITLE = "title";
 	/**
 	 * 权限相关
 	 */

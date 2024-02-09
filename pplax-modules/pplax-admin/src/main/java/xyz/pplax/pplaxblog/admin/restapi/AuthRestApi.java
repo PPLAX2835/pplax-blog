@@ -9,10 +9,12 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.controller.SuperController;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
 import xyz.pplax.pplaxblog.admin.global.SysConstants;
@@ -72,14 +74,10 @@ public class AuthRestApi extends SuperController {
 
 	@ApiOperation(value = "用户信息", notes = "用户信息", response = String.class)
 	@GetMapping(value = "/info")
-	public String info(@ApiParam(name = "token", value = "token令牌",required = false) @RequestParam(name = "token", required = false) String token) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(SysConstants.TOKEN, "admin");
-		map.put(SysConstants.AVATAR, "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
-		List<String> list = new ArrayList<String>();
-		list.add("admin");
-		map.put("roles", list);
-		return JSON.toJSONString(ResponseResult.success(map));
+	public String info(HttpServletRequest httpServletRequest) {
+
+		log.info("返回结果");
+		return JSON.toJSONString(ResponseResult.success(authService.info(httpServletRequest)));
 	}
 
 	@ApiOperation(value = "退出登录", notes = "退出登录", response = String.class)

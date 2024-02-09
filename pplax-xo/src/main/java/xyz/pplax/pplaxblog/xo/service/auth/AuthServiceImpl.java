@@ -9,17 +9,23 @@ import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
+import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
 import xyz.pplax.pplaxblog.xo.constants.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
+import xyz.pplax.pplaxblog.xo.entity.FileStorage;
+import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.User;
+import xyz.pplax.pplaxblog.xo.entity.UserInfo;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
+import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
+import xyz.pplax.pplaxblog.xo.service.role.RoleService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
+import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 认证 服务实现类
@@ -31,7 +37,16 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     private UserService userService;
 
     @Autowired
+    private UserInfoService userInfoService;
+
+    @Autowired
     private AuthFeignClient authFeignClient;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     @Value("${pplax.oauth.client-id}")
     private String clientId;
@@ -78,5 +93,37 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         } else {
             return null;
         }
+    }
+
+
+    public Map<String, Object> info(HttpServletRequest httpServletRequest) {
+
+        // 解析token
+        String authorization = httpServletRequest.getHeaders("Authorization").nextElement();
+        String token = authorization.replace("Bearer ", "");
+        JSONObject jsonObject = JSONObject.parseObject(JwtUtil.getPayloadByBase64(token));
+
+        // 获得用户
+        User user = userService.getById((String) jsonObject.get(BaseSysConstants.UID));
+
+        // 获得用户信息
+        UserInfo userInfo = userInfoService.getById(user.getUserInfoUid());
+
+        // 获得角色
+        List<Role> roleList = new ArrayList<>();
+        for (String roleUid : user.getRoleUid().split(",")) {
+            roleList.add(roleService.getById(roleUid));
+        }
+
+        // 获得头像
+        FileStorage fileStorage = fileStorageService.getById(userInfo.getAvatarPictureUid());
+
+        Map<String, Object> map = new HashMap<>();
+        map.put(BaseSysConstants.ROLES, roleList);
+        map.put(BaseSysConstants.AVATAR, fileStorage.getFileUrl());
+        map.put(BaseSysConstants.UID, user.getUid());
+        map.put(BaseSysConstants.NAME, userInfo.getNickname());
+
+        return map;
     }
 }

@@ -4,6 +4,7 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 const user = {
   state: {
     token: getToken(),
+    uid: '',
     name: '',
     avatar: '',
     roles: []
@@ -12,6 +13,9 @@ const user = {
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
+    },
+    SET_UID: (state, uid) => {
+      state.uid = uid
     },
     SET_NAME: (state, name) => {
       state.name = name
@@ -34,8 +38,10 @@ const user = {
 
         login(userInfo).then(response => {
           const data = response.data
-          setToken(data.token)
-          commit('SET_TOKEN', data.token)
+          // 存token
+          setToken('Bearer ' + data.access_token)
+
+          commit('SET_TOKEN', data.access_token)
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -54,6 +60,7 @@ const user = {
             reject('getInfo: roles must be a non-null array !')
           }
           commit('SET_NAME', data.name)
+          commit('SET_UID', data.uid)
           commit('SET_AVATAR', data.avatar)
           resolve(response)
         }).catch(error => {

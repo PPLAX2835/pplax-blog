@@ -14,4 +14,6 @@ public interface AuthService extends SuperService<User> {
 
     public Map<String, String> getToken(HttpServletRequest httpServletRequest, LoginDto loginDto);
 
+    public Map<String, Object> info(HttpServletRequest httpServletRequest);
+
 }

@@ -88,10 +88,6 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(response => {
-            
-            // 存token
-            setToken('Bearer ' + response.data.access_token)
-
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {

@@ -8,11 +8,10 @@ export function login(param) {
   })
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return service({
     url: '/oauth/info',
-    method: 'get',
-    params: { token }
+    method: 'get'
   })
 }
 

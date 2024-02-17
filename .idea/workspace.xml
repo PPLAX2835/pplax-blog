@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整理项目">
-      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/src/main/java/xyz/pplax/pplaxblog/starter/redis/utils/RedisKeyUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,13 +266,6 @@
       <workItem from="1707272423651" duration="18123000" />
       <workItem from="1707359471912" duration="17402000" />
       <workItem from="1707439962895" duration="6221000" />
-    </task>
-    <task id="LOCAL-00222" summary="调整接口,资源服务器配置redis的token存储方案，防止默认从内存中读取导致认证失败，解决跨域问题">
-      <created>1706107751761</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
-      <option name="project" value="LOCAL" />
-      <updated>1706107751761</updated>
     </task>
     <task id="LOCAL-00223" summary="redis配置移到nacos中">
       <created>1706108128949</created>
@@ -618,7 +603,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708132395677</updated>
     </task>
-    <option name="localTasksCounter" value="271" />
+    <task id="LOCAL-00271" summary="重载全局查询方法，即先查缓存，后查数据库">
+      <created>1708150080692</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1708150080692</updated>
+    </task>
+    <option name="localTasksCounter" value="272" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -653,7 +645,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="网关配置token鉴权，但是token解析报错目前还未解决" />
     <MESSAGE value="token存储方式改为redis存储就没事了，why??" />
     <MESSAGE value="整理一下响应相关的常量" />
     <MESSAGE value="将nacos中的配置拆开；先删除前台" />
@@ -678,7 +669,8 @@
     <MESSAGE value="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了" />
     <MESSAGE value="继续修改鉴权，好害怕这里成为将来的坑..." />
     <MESSAGE value="调整表" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整表" />
+    <MESSAGE value="重载全局查询方法，即先查缓存，后查数据库" />
+    <option name="LAST_COMMIT_MESSAGE" value="重载全局查询方法，即先查缓存，后查数据库" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

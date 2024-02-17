@@ -2,6 +2,8 @@ package xyz.pplax.pplaxblog.xo.base.serviceImpl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.starter.redis.constants.BaseRedisConstants;
@@ -22,6 +24,8 @@ import java.lang.reflect.ParameterizedType;
  */
 
 public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M, T>  implements SuperService<T> {
+
+    private static final Logger log = LogManager.getLogger(SuperServiceImpl.class);
 
     @Autowired
     private RedisService redisService;
@@ -49,6 +53,7 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
             redisService.setCacheObject(redisKey, t);
 
         }
+        log.info("查询完毕");
 
         return t;
     }

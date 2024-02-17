@@ -3,6 +3,8 @@ package xyz.pplax.pplaxblog.xo.service.auth;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,8 @@ import java.util.*;
  */
 @Service
 public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implements AuthService {
+
+    private static final Logger log = LogManager.getLogger(AuthServiceImpl.class);
 
     @Autowired
     private UserService userService;
@@ -68,7 +72,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         );
 
         if (!StringUtils.isEmpty(map.get("access_token"))) {
-            // 获取token成功，进行登录信息的储存
+            log.info("获取token成功，进行登录信息的储存");
 
             // 记录登录ip、登录次数、登录时间
             QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
@@ -82,6 +86,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
             // 更新
             userService.updateById(user);
+            log.info("登录信息更新");
 
             // 返回结果脱敏
             map.remove(BaseSysConstants.UID);
@@ -91,6 +96,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             // 返回结果
             return map;
         } else {
+            log.warn("token未获取到");
             return null;
         }
     }
@@ -102,6 +108,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         String authorization = httpServletRequest.getHeaders("Authorization").nextElement();
         String token = authorization.replace("Bearer ", "");
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.getPayloadByBase64(token));
+        log.info("token解析完成：" + jsonObject);
 
         // 获得用户
         User user = userService.getById((String) jsonObject.get(BaseSysConstants.UID));

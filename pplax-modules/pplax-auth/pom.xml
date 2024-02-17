@@ -32,6 +32,10 @@
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-security-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-redis-starter</artifactId>
+        </dependency>
         <!-- starter end -->
 
         <!-- 引入pplax-xo相关 -->

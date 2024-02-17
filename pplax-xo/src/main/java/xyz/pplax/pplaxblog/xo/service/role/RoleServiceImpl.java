@@ -12,6 +12,7 @@ import xyz.pplax.pplaxblog.xo.entity.PathAccessPermission;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.mapper.PathAccessPermissionMapper;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
+import xyz.pplax.pplaxblog.xo.service.pathaccesspermission.PathAccessPermissionService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,37 +28,29 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     private RedisService redisService;
 
     @Autowired
-    private RoleMapper roleMapper;
-
-    @Autowired
-    private PathAccessPermissionMapper pathAccessPermissionMapper;
+    private PathAccessPermissionService pathAccessPermissionService;
 
     @Override
     public Role getById(Serializable id) {
-        // 先从缓存中找
-        Role role = JSONObject.toJavaObject(redisService.getCacheObject(RoleRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION + id), Role.class);
 
-        if (role == null) {
-            // 缓存中没有
-            role = roleMapper.selectById(id);
+        Role role = super.getById(id);
 
-            // 检查role是否正常
-            if (role == null || role.getStatus() != EStatus.ENABLE.getStatus()) {
-                return null;
-            }
+        // 检查role是否正常
+        if (role == null || role.getStatus() != EStatus.ENABLE.getStatus()) {
+            return null;
+        }
 
+        List<PathAccessPermission> pathAccessPermissionList = role.getPathAccessPermissionList();
+        if (pathAccessPermissionList == null || pathAccessPermissionList.size() == 0) {
+            // 如果角色中没有封装权限，则添加该角色的权限
             String[] pathAccessPermissionUidArray = role.getPathAccessPermissionUid().split(",");
             List<PathAccessPermission> pathAccessPermissionUidList = new ArrayList<>();
-
-            // 添加该角色的权限
             for (String pathAccessPermissionUid : pathAccessPermissionUidArray) {
-                pathAccessPermissionUidList.add(pathAccessPermissionMapper.selectById(pathAccessPermissionUid));
+                pathAccessPermissionUidList.add(pathAccessPermissionService.getById(pathAccessPermissionUid));
             }
             role.setPathAccessPermissionList(pathAccessPermissionUidList);
-
-            // 存到缓存中
-            redisService.setCacheObject(RoleRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION + id, role);
         }
+
         return role;
     }
 }

@@ -13,6 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.starter.security",
         "xyz.pplax.pplaxblog.starter.durid",
         "xyz.pplax.pplaxblog.starter.mybatis",
+        "xyz.pplax.pplaxblog.starter.redis",
         "xyz.pplax.pplaxblog.xo.service.user",
         "xyz.pplax.pplaxblog.auth.restapi",
         "xyz.pplax.pplaxblog.auth.config",

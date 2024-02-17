@@ -62,8 +62,9 @@
     <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:2.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.2.4.RELEASE" level="project" />
-    <orderEntry type="module" module-name="pplax-xo" />
     <orderEntry type="module" module-name="pplax-redis-starter" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.73" level="project" />
+    <orderEntry type="module" module-name="pplax-xo" />
     <orderEntry type="module" module-name="pplax-feign" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jetty:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: jakarta.servlet:jakarta.servlet-api:4.0.3" level="project" />
@@ -94,7 +95,6 @@
     <orderEntry type="library" name="Maven: org.eclipse.jetty.websocket:javax-websocket-client-impl:9.4.26.v20200117" level="project" />
     <orderEntry type="library" name="Maven: org.mortbay.jasper:apache-el:8.5.49" level="project" />
     <orderEntry type="module" module-name="pplax-commons" />
-    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.73" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.0" level="project" />

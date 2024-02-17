@@ -5,16 +5,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.pplax.pplaxblog.commons.enums.EStatus;
-import xyz.pplax.pplaxblog.starter.redis.constants.BaseRedisConstants;
+import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.starter.redis.utils.RedisKeyUtils;
 import xyz.pplax.pplaxblog.xo.base.mapper.SuperMapper;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
-import xyz.pplax.pplaxblog.xo.constants.redis.RoleRedisConstants;
-import xyz.pplax.pplaxblog.xo.entity.Role;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 
 
@@ -56,5 +54,44 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
         log.info("查询完毕");
 
         return t;
+    }
+
+    @Override
+    public boolean updateById(T entity) {
+        String redisKeyName = null;
+        ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
+        Class<T> entityClass = (Class<T>) superClass.getActualTypeArguments()[1];
+
+        Field field = null;
+        Class<?> currentClass = entity.getClass();
+
+        // 获取uid字段
+        while (currentClass != null) {
+            try {
+                field = currentClass.getDeclaredField(BaseSysConstants.UID);
+                break;
+            } catch  (NoSuchFieldException e) {
+                // 当前类没找到，从父类中找
+                currentClass = currentClass.getSuperclass();
+            }
+        }
+
+        if (field != null) {
+            field.setAccessible(true); // 设置可以访问私有变量
+            try {
+                redisKeyName = RedisKeyUtils.getRedisKey(entityClass.getSimpleName()) + field.get(entity);
+            } catch (IllegalAccessException e) {
+                log.error(e.getMessage());
+            }
+            log.info("获得实体uid：" + field.getName());
+        }
+
+        boolean result = super.updateById(entity);
+        if (result) {
+            log.info("更新成功，更新缓存");
+            redisService.setCacheObject(redisKeyName, entity);
+        }
+
+        return result;
     }
 }

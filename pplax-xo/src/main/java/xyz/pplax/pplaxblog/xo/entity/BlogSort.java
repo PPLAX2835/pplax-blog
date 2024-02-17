@@ -34,6 +34,11 @@ public class BlogSort extends SuperEntity<BlogSort> {
     private String content;
 
     /**
+     * 分类图标
+     */
+    private String icon;
+
+    /**
      * 父级分类uid
      */
     private String parentUid;

@@ -31,11 +31,6 @@ public class BaseRedisConstants {
     public final static String WELL_NUMBER = "#";
 
     /**
-     * 角色
-     */
-    public final static String ROLE = "ROLE";
-
-    /**
      * 月份集合
      */
     public final static String MONTH_SET = "MONTH_SET";

@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.file.service;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import io.minio.ObjectWriteResponse;
 import org.imgscalr.Scalr;
@@ -8,16 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
-import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.file.components.MinioUtils;
-import xyz.pplax.pplaxblog.xo.constants.FileStorageSQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.UserInfoSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.FileStorageSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.UserInfoSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.entity.UserInfo;
@@ -26,13 +23,11 @@ import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.Map;
 
 @Service
 public class AvatarService {

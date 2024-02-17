@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.xo.constants;
+package xyz.pplax.pplaxblog.xo.constants.sql;
 
 /**
  * FileStorage表SQL字段常量

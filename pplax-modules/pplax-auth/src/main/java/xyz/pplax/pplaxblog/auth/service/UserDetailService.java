@@ -14,7 +14,7 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.constants.UserSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserInfoMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;

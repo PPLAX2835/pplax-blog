@@ -14,8 +14,8 @@ import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
-import xyz.pplax.pplaxblog.xo.constants.BlogSQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.BlogSortSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
 import xyz.pplax.pplaxblog.xo.mapper.BlogMapper;
 import xyz.pplax.pplaxblog.xo.mapper.BlogSortMapper;
 

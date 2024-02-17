@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.xo.constants;
+package xyz.pplax.pplaxblog.xo.constants.sql;
 
 /**
  * UserInfo表SQL字段常量

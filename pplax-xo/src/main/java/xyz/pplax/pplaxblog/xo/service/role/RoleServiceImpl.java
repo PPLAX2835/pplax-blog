@@ -1,12 +1,13 @@
 package xyz.pplax.pplaxblog.xo.service.role;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.starter.redis.constants.BaseRedisConstants;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
+import xyz.pplax.pplaxblog.xo.constants.redis.RoleRedisConstants;
 import xyz.pplax.pplaxblog.xo.entity.PathAccessPermission;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.mapper.PathAccessPermissionMapper;
@@ -34,11 +35,17 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     @Override
     public Role getById(Serializable id) {
         // 先从缓存中找
-        Role role = JSONObject.toJavaObject(redisService.getCacheObject(BaseRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION + id), Role.class);
+        Role role = JSONObject.toJavaObject(redisService.getCacheObject(RoleRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION + id), Role.class);
 
         if (role == null) {
             // 缓存中没有
             role = roleMapper.selectById(id);
+
+            // 检查role是否正常
+            if (role == null || role.getStatus() != EStatus.ENABLE.getStatus()) {
+                return null;
+            }
+
             String[] pathAccessPermissionUidArray = role.getPathAccessPermissionUid().split(",");
             List<PathAccessPermission> pathAccessPermissionUidList = new ArrayList<>();
 
@@ -49,7 +56,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
             role.setPathAccessPermissionList(pathAccessPermissionUidList);
 
             // 存到缓存中
-            redisService.setCacheObject(BaseRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION + id, role);
+            redisService.setCacheObject(RoleRedisConstants.ROLE + BaseRedisConstants.SEGMENTATION + id, role);
         }
         return role;
     }

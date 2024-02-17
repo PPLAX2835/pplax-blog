@@ -12,7 +12,7 @@ import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
-import xyz.pplax.pplaxblog.xo.constants.UserSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.entity.Role;

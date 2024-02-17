@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.xo.constants.BlogSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.admin.global.SysConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;

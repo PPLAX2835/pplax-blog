@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.controller;
+package xyz.pplax.pplaxblog.xo.base.controller;
 
 import com.alibaba.fastjson.JSON;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;

@@ -1,7 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service.feedback;
 
 import org.springframework.stereotype.Service;
-import xyz.pplax.pplaxblog.commons.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.entity.Feedback;
 import xyz.pplax.pplaxblog.xo.mapper.FeedbackMapper;
 

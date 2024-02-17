@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.mapper;
+package xyz.pplax.pplaxblog.xo.base.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

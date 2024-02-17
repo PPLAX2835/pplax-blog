@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.dto;
+package xyz.pplax.pplaxblog.xo.base.dto;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;

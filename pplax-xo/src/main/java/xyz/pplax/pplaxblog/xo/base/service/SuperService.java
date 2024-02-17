@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.service;
+package xyz.pplax.pplaxblog.xo.base.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 

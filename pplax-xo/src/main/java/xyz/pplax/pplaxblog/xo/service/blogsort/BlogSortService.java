@@ -2,7 +2,7 @@ package xyz.pplax.pplaxblog.xo.service.blogsort;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
-import xyz.pplax.pplaxblog.commons.service.SuperService;
+import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 

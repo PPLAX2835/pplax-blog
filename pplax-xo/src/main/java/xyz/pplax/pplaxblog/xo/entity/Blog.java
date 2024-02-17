@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import xyz.pplax.pplaxblog.commons.entity.SuperEntity;
+import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 
 import java.util.List;
 

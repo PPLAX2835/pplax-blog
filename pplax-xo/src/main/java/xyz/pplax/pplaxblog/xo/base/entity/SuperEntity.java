@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.entity;
+package xyz.pplax.pplaxblog.xo.base.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;

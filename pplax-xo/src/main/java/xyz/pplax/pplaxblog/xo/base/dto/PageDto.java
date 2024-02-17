@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.dto;
+package xyz.pplax.pplaxblog.xo.base.dto;
 
 import xyz.pplax.pplaxblog.commons.validator.Messages;
 import xyz.pplax.pplaxblog.commons.validator.annotion.LongNotNull;

@@ -6,12 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import xyz.pplax.pplaxblog.commons.controller.SuperController;
-import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
-import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.file.service.AvatarService;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户文件上传服务相关接口

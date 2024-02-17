@@ -3,7 +3,7 @@ package xyz.pplax.pplaxblog.xo.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import xyz.pplax.pplaxblog.commons.entity.SuperEntity;
+import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 
 /**
  * @description 友情链接表

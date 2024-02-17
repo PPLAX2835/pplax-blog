@@ -1,8 +1,8 @@
-package xyz.pplax.pplaxblog.commons.serviceImpl;
+package xyz.pplax.pplaxblog.xo.base.serviceImpl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import xyz.pplax.pplaxblog.commons.mapper.SuperMapper;
-import xyz.pplax.pplaxblog.commons.service.SuperService;
+import xyz.pplax.pplaxblog.xo.base.mapper.SuperMapper;
+import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 
 
 /**

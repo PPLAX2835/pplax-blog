@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.pplax.pplaxblog.commons.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 
 @RestController
 @RequestMapping(value = "/oauth")

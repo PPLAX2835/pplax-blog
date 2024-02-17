@@ -1,6 +1,6 @@
 package xyz.pplax.pplaxblog.xo.service.auth;
 
-import xyz.pplax.pplaxblog.commons.service.SuperService;
+import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 

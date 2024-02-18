@@ -31,6 +31,6 @@ public class IdsValidator implements ConstraintValidator<IdsValid, List<String>>
     }
 
     private boolean isValidUid(String uid) {
-        return uid != null && !StringUtils.isBlank(uid) && !StringUtils.isEmpty(uid.trim()) && uid.length() == CharacterConstants.THIRTY_TWO;
+        return uid != null && !StringUtils.isBlank(uid) && !StringUtils.isEmpty(uid.trim()) && uid.length() == CharacterConstants.NUM_32;
     }
 }

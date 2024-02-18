@@ -20,6 +20,6 @@ public class IdValidator implements ConstraintValidator<IdValid, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value != null && !StringUtils.isBlank(value) && !StringUtils.isEmpty(value.trim()) && value.length() == CharacterConstants.THIRTY_TWO;
+        return value != null && !StringUtils.isBlank(value) && !StringUtils.isEmpty(value.trim()) && value.length() == CharacterConstants.NUM_32;
     }
 }

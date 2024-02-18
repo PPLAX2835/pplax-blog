@@ -142,8 +142,6 @@ public class CharacterConstants {
     public final static String DATE_FORMAT_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
 
-    public static final int THIRTY_TWO = 32;
-
     // 默认文件路径分隔符
     public static final String PATH_SEPARATOR = "/";
 

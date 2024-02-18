@@ -91,26 +91,11 @@ public class BaseSysConstants {
 	public final static String EDIT_BATCH = "editBatch";
 	public final static String DELETE_ALL = "deleteAll";
 	public final static String EXCHANGE_DIRECT = "exchange.direct";
-	public final static String MOGU_BLOG = "mogu.blog";
 
-	/**
-	 * redis相关
-	 */
-	public final static String BLOG_SORT_BY_MONTH = "BLOG_SORT_BY_MONTH";
-	/**
-	 * redis分割符
-	 */
-	public final static String REDIS_SEGMENTATION = ":";
-	public final static String EQUAL_TO = "=";
 	/**
 	 * 月份集合
 	 */
 	public final static String MONTH_SET = "MONTH_SET";
-	/**
-	 * 博客等级
-	 */
-	public final static String BLOG_LEVEL = "BLOG_LEVEL";
-
 
 	/**
 	 * 字典类型
@@ -121,52 +106,6 @@ public class BaseSysConstants {
 	 * 文件分割符
 	 */
 	public final static String FILE_SEGMENTATION = ",";
-
-	/**
-	 * 系统全局是否标识
-	 */
-	public static final int YES = 1;
-	public static final int NO = 0;
-
-	public static final int ZERO = 0;
-	public static final int ONE = 1;
-	public static final int TWO = 2;
-	public static final int THREE = 3;
-	public static final int FOUR = 4;
-	public static final int FIVE = 5;
-	public static final int SIX = 6;
-	public static final int SEVEN = 7;
-	public static final int EIGHT = 8;
-	public static final int NINE = 9;
-	public static final int TEN = 10;
-
-	public static final int TWO_TWO_FIVE = 225;
-	public static final int ONE_ZERO_TWO_FOUR = 1024;
-
-	/**
-	 * SystemConfig相关
-	 */
-	public final static String UPLOAD_QI_NIU = "uploadQiNiu";
-	public final static String UPLOAD_LOCAL = "uploadLocal";
-	public final static String UPLOAD_MINIO = "uploadMinio";
-	public final static String LOCAL_PICTURE_BASE_URL = "localPictureBaseUrl";
-	public final static String QI_NIU_PICTURE_BASE_URL = "qiNiuPictureBaseUrl";
-	public final static String MINIO_PICTURE_BASE_URL = "minioPictureBaseUrl";
-	public final static String QI_NIU_ACCESS_KEY = "qiNiuAccessKey";
-	public final static String QI_NIU_SECRET_KEY = "qiNiuSecretKey";
-	public final static String QI_NIU_BUCKET = "qiNiuBucket";
-	public final static String QI_NIU_AREA = "qiNiuArea";
-
-	public final static String MINIO_END_POINT = "minioEndPoint";
-	public final static String MINIO_ACCESS_KEY = "minioAccessKey";
-	public final static String MINIO_SECRET_KEY = "minioSecretKey";
-	public final static String MINIO_BUCKET = "minioBucket";
-
-	public final static String PICTURE_PRIORITY = "picturePriority";
-	public final static String CONTENT_PICTURE_PRIORITY = "contentPicturePriority";
-	public final static String PICTURE = "picture";
-	public final static String PICTURE_TOKEN = "pictureToken";
-	public final static String LIST = "list";
 
 
 	/**

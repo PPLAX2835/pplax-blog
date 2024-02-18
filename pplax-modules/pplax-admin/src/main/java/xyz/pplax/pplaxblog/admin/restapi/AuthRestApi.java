@@ -31,19 +31,10 @@ public class AuthRestApi extends SuperController {
 	private static final Logger log = LogManager.getLogger(AuthRestApi.class);
 
 	@Autowired
-	private UserService userService;
-
-	@Autowired
 	private AuthFeignClient authFeignClient;
 
 	@Autowired
 	private AuthService authService;
-
-	@Value("${pplax.oauth.client-id}")
-	private String clientId;
-
-	@Value("${pplax.oauth.client-secret}")
-	private String clientSecret;
 
 	@ApiOperation(value="获取token", notes="获取token")
 	@PostMapping("/token")

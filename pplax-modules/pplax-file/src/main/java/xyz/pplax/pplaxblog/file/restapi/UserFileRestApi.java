@@ -24,7 +24,7 @@ public class UserFileRestApi extends SuperController {
     @Autowired
     private AvatarService avatarService;
 
-    @Value("${pplax.storage.mode}")
+    @Value("${pplax.storage.mode:localStorage}")
     private String storageMode;
 
     @ApiOperation(value = "上传头像", notes = "上传头像")

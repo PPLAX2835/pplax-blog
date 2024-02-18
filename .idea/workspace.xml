@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="设置统一updateById">
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/CharacterConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/CharacterConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/ErrorCodeConstants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/validator/constraint/IdValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/validator/constraint/IdValidator.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="注入的配置设置默认值；redis业务存储时设置随机过期时间">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/nacos_config.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/nacos_config.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AuthRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/restapi/AuthRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/components/MinioUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/components/MinioUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/config/MinioConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/config/MinioConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/restapi/UserFileRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/AvatarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/AvatarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/config/TokenStoreConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/config/TokenStoreConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,9 +214,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="Spring Boot.FileApplication" />
-        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
+        <item itemvalue="Spring Boot.FileApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -268,13 +276,6 @@
       <workItem from="1707359471912" duration="17402000" />
       <workItem from="1707439962895" duration="6221000" />
       <workItem from="1708159272502" duration="4054000" />
-    </task>
-    <task id="LOCAL-00225" summary="调整文件服务，修改文件表file_size类型">
-      <created>1706266782351</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
-      <option name="project" value="LOCAL" />
-      <updated>1706266782351</updated>
     </task>
     <task id="LOCAL-00226" summary="修改文件工具类">
       <created>1706268918959</created>
@@ -612,7 +613,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708161580455</updated>
     </task>
-    <option name="localTasksCounter" value="274" />
+    <task id="LOCAL-00274" summary="整理">
+      <created>1708221018414</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1708221018414</updated>
+    </task>
+    <option name="localTasksCounter" value="275" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,8 +655,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="将nacos中的配置拆开；先删除前台" />
-    <MESSAGE value="白名单配置错了，改一下" />
     <MESSAGE value="全局异常处理的包扫描等bug修改" />
     <MESSAGE value="定义统一的状态码及消息" />
     <MESSAGE value="修改这次调整带来的bug" />
@@ -672,7 +678,9 @@
     <MESSAGE value="重载全局查询方法，即先查缓存，后查数据库" />
     <MESSAGE value="补充点日志打印" />
     <MESSAGE value="设置统一updateById" />
-    <option name="LAST_COMMIT_MESSAGE" value="设置统一updateById" />
+    <MESSAGE value="整理" />
+    <MESSAGE value="注入的配置设置默认值；redis业务存储时设置随机过期时间" />
+    <option name="LAST_COMMIT_MESSAGE" value="注入的配置设置默认值；redis业务存储时设置随机过期时间" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

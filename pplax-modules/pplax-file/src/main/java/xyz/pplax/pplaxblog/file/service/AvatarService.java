@@ -44,10 +44,10 @@ public class AvatarService {
     @Autowired
     private MinioUtils minioUtils;
 
-    @Value("${pplax.storage.minio.bucketName}")
+    @Value("${pplax.storage.minio.bucketName:pplax-blog}")
     private String minioBucketName;
 
-    @Value("${pplax.storage.minio.endpoint}")
+    @Value("${pplax.storage.minio.endpoint:pplax.xyz:9002}")
     private String minioEndpoint;
 
     /**

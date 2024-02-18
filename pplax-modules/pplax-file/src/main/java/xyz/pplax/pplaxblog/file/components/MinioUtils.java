@@ -32,7 +32,7 @@ public class MinioUtils {
     @Autowired
     private MinioClient minioClient;
 
-    @Value("${pplax.storage.minio.endpoint}")
+    @Value("${pplax.storage.minio.endpoint:pplax.xyz:9002}")
     private static String endpoint;
 
     private static final String SEPARATOR = "/";

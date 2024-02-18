@@ -52,10 +52,10 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     @Autowired
     private FileStorageService fileStorageService;
 
-    @Value("${pplax.oauth.client-id}")
+    @Value("${pplax.oauth.client-id:pplax}")
     private String clientId;
 
-    @Value("${pplax.oauth.client-secret}")
+    @Value("${pplax.oauth.client-secret:pplax123456}")
     private String clientSecret;
 
     public Map<String, String> getToken(HttpServletRequest httpServletRequest, LoginDto loginDto) {

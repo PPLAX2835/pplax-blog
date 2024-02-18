@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 @Configuration
 public class TokenStoreConfig {
 
-    @Value("${pplax.oauth.secret-key}")
+    @Value("${pplax.oauth.secret-key:PPLAX_RESISTS_FATE}")
     private String secretKey;
 
     @Autowired

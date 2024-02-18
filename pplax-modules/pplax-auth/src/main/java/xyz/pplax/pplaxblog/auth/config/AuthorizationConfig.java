@@ -36,10 +36,10 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private TokenStore redisTokenStore;
 
-    @Value("${pplax.oauth.client-id}")
+    @Value("${pplax.oauth.client-id:pplax}")
     private String clientId;
 
-    @Value("${pplax.oauth.client-secret}")
+    @Value("${pplax.oauth.client-secret:pplax123456}")
     private String clientSecret;
 
     /**

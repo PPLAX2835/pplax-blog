@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.starter.redis.utils.RedisKeyUtils;
@@ -14,6 +15,7 @@ import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -27,6 +29,10 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
 
     @Autowired
     private RedisService redisService;
+
+    // 默认300秒过期
+    @Value(("${spring.redis.expire:10}"))
+    private Long expire;
 
     @Override
     @SuppressWarnings("unchecked")
@@ -48,7 +54,7 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
             }
 
             // 存到缓存中
-            redisService.setCacheObject(redisKey, t);
+            redisService.setCacheObject(redisKey, t, getRandomExpire(), TimeUnit.SECONDS);
 
         }
         log.info("查询完毕");
@@ -89,9 +95,17 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
         boolean result = super.updateById(entity);
         if (result) {
             log.info("更新成功，更新缓存");
-            redisService.setCacheObject(redisKeyName, entity);
+            redisService.setCacheObject(redisKeyName, entity, getRandomExpire(), TimeUnit.SECONDS);
         }
 
         return result;
+    }
+
+    /**
+     * 获得一个随机expire时间
+     * @return
+     */
+    private Long getRandomExpire() {
+         return Math.round(Math.random() * 2 * expire);
     }
 }

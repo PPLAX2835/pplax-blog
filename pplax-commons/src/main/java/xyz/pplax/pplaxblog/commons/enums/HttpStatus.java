@@ -145,6 +145,8 @@ public enum HttpStatus {
     ERROR_PASSWORD(401005, "密码错误"),
     LOGIN_ERROR(401006, "用户名或密码错误，错误%d次后，账户将被锁定30分钟"),
     LOGIN_DISABLE(401007, "该账号已被封禁"),
+    VALIDATION_CODE_EXPIRED(401008, "验证码已失效"),
+    VALIDATION_FAIL(401009, "验证失败，请控制拼图对齐缺口"),
 
     /**
      * 权限相关     41000-41999
@@ -162,6 +164,11 @@ public enum HttpStatus {
     RESTAPI_NO_PRIVILEGE(401107, "您无权进行该操作"),
     ACCESS_NO_PRIVILEGE(401108, "该资源无权限访问"),
     LOGIN_TIMEOUT(401109, "您已退出，请重新登录"),
+
+    /**
+     * 服务器内部错误相关
+     */
+    TOKEN_GET_FAILED(500005, "token获取失败"),
 
     /**
      * 上传，更新，修改，删除，下载文件相关

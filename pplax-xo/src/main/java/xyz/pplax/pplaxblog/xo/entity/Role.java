@@ -20,18 +20,24 @@ public class Role extends SuperEntity<Role> {
 
     private static final long serialVersionUID = 1L;
 
+
     /**
-     * 路径访问权限表uid
+     * 菜单uids
      */
-    private String pathAccessPermissionUid;
+    private String menuUids;
 
     /**
      * 角色名
      */
     private String roleName;
 
+    /**
+     * 介绍
+     */
+    private String summary;
+
     @TableField(exist = false)
-    private List<PathAccessPermission> pathAccessPermissionList;
+    private List<Menu> menuList;
 
     public Role() {}
 }

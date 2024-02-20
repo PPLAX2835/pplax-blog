@@ -27,10 +27,10 @@ CREATE TABLE `t_blog` (
   `title` varchar(200) DEFAULT NULL COMMENT '博客标题',
   `summary` varchar(200) DEFAULT NULL COMMENT '博客简介',
   `blog_content_uid` varchar(32) NOT NULL COMMENT '博客内容uid',
-  `tag_uid` varchar(255) DEFAULT NULL COMMENT '标签uid',
+  `tag_uids` varchar(255) DEFAULT NULL COMMENT '标签uid',
   `click_count` int DEFAULT '0' COMMENT '博客点击数',
   `collect_count` int DEFAULT '0' COMMENT '博客收藏数',
-  `picture_uid` varchar(255) DEFAULT NULL COMMENT '标题图片uid',
+  `cover_image_uid` varchar(255) DEFAULT NULL COMMENT '标题图片uid',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   `is_publish` varchar(1) DEFAULT '1' COMMENT '是否发布：0：否，1：是',
   `user_uid` varchar(32) DEFAULT NULL COMMENT '用户uid',
@@ -50,7 +50,7 @@ CREATE TABLE `t_blog` (
 
 LOCK TABLES `t_blog` WRITE;
 /*!40000 ALTER TABLE `t_blog` DISABLE KEYS */;
-INSERT INTO `t_blog` (`uid`, `title`, `summary`, `blog_content_uid`, `tag_uid`, `click_count`, `collect_count`, `picture_uid`, `status`, `is_publish`, `user_uid`, `is_original`, `articles_part`, `blog_sort_uid`, `level`, `create_time`, `update_time`) VALUES ('211fb300fe7a4a20bfda396a9450b117','后端开发简历咋整呢',NULL,'771690201d694446b653b9f6a9eabbaf',NULL,0,0,NULL,1,'1',NULL,1,NULL,'3cf89eab5cf2484f8023f088dd3f3cd5',0,'2024-01-15 07:54:25','2024-01-15 07:54:25'),('b7dbc212bf304422be9fa22c3f2cf1a2','年轻人的第一款怪猎',NULL,'00ef773b1cb542bb8e4d262e5f23e37c',NULL,0,0,NULL,1,'1',NULL,1,NULL,'218b8f96728541d3847099737c3ef947',0,'2024-01-15 07:48:52','2024-01-15 07:51:10'),('dcf8f268a51143fb988384e7559e5650','黑龙登龙点讲解',NULL,'afa22a4ffa7e41de99863f16ab3e5c97',NULL,0,0,NULL,1,'1',NULL,1,NULL,'218b8f96728541d3847099737c3ef947',0,'2024-01-15 07:52:42','2024-01-15 07:52:42'),('f4bd17e13924496889a2eb16ae01ba30','这是一个标题',NULL,'9ddd597bb3ff4426b84f35439f553e94',NULL,0,0,NULL,1,'1',NULL,1,NULL,NULL,0,'2024-01-15 07:48:52','2024-01-15 07:48:52');
+INSERT INTO `t_blog` (`uid`, `title`, `summary`, `blog_content_uid`, `tag_uids`, `click_count`, `collect_count`, `cover_image_uid`, `status`, `is_publish`, `user_uid`, `is_original`, `articles_part`, `blog_sort_uid`, `level`, `create_time`, `update_time`) VALUES ('211fb300fe7a4a20bfda396a9450b117','后端开发简历咋整呢',NULL,'771690201d694446b653b9f6a9eabbaf',NULL,0,0,NULL,1,'1',NULL,1,NULL,'3cf89eab5cf2484f8023f088dd3f3cd5',0,'2024-01-15 07:54:25','2024-01-15 07:54:25'),('b7dbc212bf304422be9fa22c3f2cf1a2','年轻人的第一款怪猎',NULL,'00ef773b1cb542bb8e4d262e5f23e37c',NULL,0,0,NULL,1,'1',NULL,1,NULL,'218b8f96728541d3847099737c3ef947',0,'2024-01-15 07:48:52','2024-01-15 07:51:10'),('dcf8f268a51143fb988384e7559e5650','黑龙登龙点讲解',NULL,'afa22a4ffa7e41de99863f16ab3e5c97',NULL,0,0,NULL,1,'1',NULL,1,NULL,'218b8f96728541d3847099737c3ef947',0,'2024-01-15 07:52:42','2024-01-15 07:52:42'),('f4bd17e13924496889a2eb16ae01ba30','这是一个标题',NULL,'9ddd597bb3ff4426b84f35439f553e94',NULL,0,0,NULL,1,'1',NULL,1,NULL,NULL,0,'2024-01-15 07:48:52','2024-01-15 07:48:52');
 /*!40000 ALTER TABLE `t_blog` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,6 @@ CREATE TABLE `t_blog_sort` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `parent_uid` varchar(32) DEFAULT NULL COMMENT '父级分类uid',
   `click_count` int DEFAULT '0' COMMENT '点击数',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='博客分类表';
@@ -109,7 +108,7 @@ CREATE TABLE `t_blog_sort` (
 
 LOCK TABLES `t_blog_sort` WRITE;
 /*!40000 ALTER TABLE `t_blog_sort` DISABLE KEYS */;
-INSERT INTO `t_blog_sort` (`uid`, `sort_name`, `summary`, `content`, `icon`, `create_time`, `update_time`, `status`, `parent_uid`, `click_count`) VALUES ('093d8bdd01c84890a928e923d5c235fe','时光轴','时光轴的简介','时光飞逝，机会就在我们眼前，何时找到了灵感，就要把握机遇，我们需要智慧和勇气去把握机会',NULL,'2018-09-24 09:14:59','2023-11-29 12:03:29',1,NULL,0),('218b8f96728541d3847099737c3ef947','怪物猎人：世界','第一代高清化怪猎',NULL,NULL,'2024-01-15 14:37:06','2024-01-15 06:37:24',1,'ba52e210f5174a4f943680033dc03d3e',0),('265c29f1807440aeaf745075e949c971','原神','你说得对，后边忘了',NULL,NULL,'2023-11-30 03:36:37','2024-01-15 06:00:26',1,'3ae899e993b744c99fb78dccafac8e66',0),('2c93dfab0e754006866f8ed486923a41','慢生活','慢生活的简介','慢生活，不是懒惰，放慢速度不是拖延时间，而是让我们在生活中寻找到平衡',NULL,'2018-09-24 08:29:33','2023-11-29 12:03:29',1,NULL,0),('2fc443ca683bc93248873dcac0ccda9d','考研','现在考研好难哦',NULL,NULL,'2024-01-16 14:48:17','2024-01-16 14:48:17',1,NULL,0),('3ae899e993b744c99fb78dccafac8e66','游戏','游戏的简介','玩游戏玩的',NULL,'2023-11-29 11:18:55','2023-11-29 12:03:29',1,NULL,0),('3cf89eab5cf2484f8023f088dd3f3cd5','编程','编程 简介','内容',NULL,'2023-11-30 03:34:12','2023-11-30 03:34:12',1,NULL,0),('9bf8bc845c124195839a34473d88aff4','灭尽龙','本体封面怪，脑婆~',NULL,NULL,'2024-01-15 14:35:39','2024-01-15 08:18:06',1,'218b8f96728541d3847099737c3ef947',0),('ba52e210f5174a4f943680033dc03d3e','怪物猎人','怪物猎人的简介','玩太刀玩的',NULL,'2023-11-29 11:19:30','2024-01-15 06:37:24',1,'3ae899e993b744c99fb78dccafac8e66',0),('fbef6ff4be704781a0e0c4aeb7a2b64b','美食',NULL,NULL,NULL,'2023-11-30 07:21:42','2023-11-30 07:21:42',1,'2c93dfab0e754006866f8ed486923a41',0);
+INSERT INTO `t_blog_sort` (`uid`, `sort_name`, `summary`, `content`, `icon`, `create_time`, `update_time`, `status`, `click_count`) VALUES ('093d8bdd01c84890a928e923d5c235fe','时光轴','时光轴的简介','时光轴的简介',NULL,'2018-09-24 09:14:59','2024-02-19 09:48:46',1,0),('2c93dfab0e754006866f8ed486923a41','慢生活','慢生活的简介','慢生活的简介',NULL,'2018-09-24 08:29:33','2024-02-19 09:48:46',1,0),('2fc443ca683bc93248873dcac0ccda9d','考研','现在考研好难哦','现在考研好难哦',NULL,'2024-01-16 14:48:17','2024-02-19 09:48:46',1,0),('3ae899e993b744c99fb78dccafac8e66','游戏','游戏的简介','游戏的简介',NULL,'2023-11-29 11:18:55','2024-02-19 09:48:46',1,0),('3cf89eab5cf2484f8023f088dd3f3cd5','编程','编程 简介','编程 简介',NULL,'2023-11-30 03:34:12','2024-02-19 09:48:46',1,0),('fbef6ff4be704781a0e0c4aeb7a2b64b','美食',NULL,NULL,NULL,'2023-11-30 07:21:42','2023-11-30 07:21:42',1,0);
 /*!40000 ALTER TABLE `t_blog_sort` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,32 +264,39 @@ INSERT INTO `t_link` (`uid`, `title`, `summary`, `url`, `click_count`, `create_t
 UNLOCK TABLES;
 
 --
--- Table structure for table `t_path_access_permission`
+-- Table structure for table `t_menu`
 --
 
-DROP TABLE IF EXISTS `t_path_access_permission`;
+DROP TABLE IF EXISTS `t_menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_path_access_permission` (
+CREATE TABLE `t_menu` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `path_regex` varchar(255) NOT NULL COMMENT '访问路径的正则',
-  `method` varchar(200) NOT NULL COMMENT '请求方法，get、post这种',
-  `other_user_access_permission` tinyint DEFAULT '0' COMMENT '访问其他用户的权限',
+  `parent_uid` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '上级资源ID',
+  `type` varchar(32) DEFAULT NULL COMMENT '类型 menu、button',
+  `route` varchar(255) DEFAULT NULL COMMENT '路由',
+  `endpoint` varchar(255) DEFAULT NULL COMMENT 'restful端口端点',
+  `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '资源名称',
+  `level` int DEFAULT NULL COMMENT '资源级别',
+  `sort_no` int DEFAULT NULL COMMENT '排序',
+  `icon` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '资源图标',
+  `remarks` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
+  `hidden` tinyint(1) DEFAULT NULL COMMENT '是否隐藏',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='路径访问权限表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='菜单表 ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `t_path_access_permission`
+-- Dumping data for table `t_menu`
 --
 
-LOCK TABLES `t_path_access_permission` WRITE;
-/*!40000 ALTER TABLE `t_path_access_permission` DISABLE KEYS */;
-INSERT INTO `t_path_access_permission` (`uid`, `path_regex`, `method`, `other_user_access_permission`, `create_time`, `update_time`, `status`) VALUES ('2f9c0e78958742f3a46755254058a8d9','^/api/admin/.*$','GET,POST',1,'2024-02-06 06:37:54','2024-02-08 05:54:22',1),('558d6e9530fd370eb629ea8c69ec840b','^/api/file/.*$','GET,POST,DELETE,PUT',1,'2024-02-07 03:30:28','2024-02-08 05:54:22',1),('d8d7263db8a94bd2a18f3127973cf161','^/api/admin/.*$','GET,POST,DELETE,PUT',1,'2024-02-06 05:44:09','2024-02-08 05:54:22',1),('dbd1f09150ff425fb66654370c8f27a3','^/api/file/.*$','GET,DELETE,POST',0,'2024-02-08 02:40:09','2024-02-08 02:46:01',1);
-/*!40000 ALTER TABLE `t_path_access_permission` ENABLE KEYS */;
+LOCK TABLES `t_menu` WRITE;
+/*!40000 ALTER TABLE `t_menu` DISABLE KEYS */;
+INSERT INTO `t_menu` (`uid`, `parent_uid`, `type`, `route`, `endpoint`, `title`, `level`, `sort_no`, `icon`, `remarks`, `hidden`, `create_time`, `update_time`, `status`) VALUES ('17351863092649fd94c42820447b57d7','79cede9382df47a8914ef5697b38d901','button',NULL,'PUT:/api/admin/article/promote','置顶文章',3,NULL,NULL,NULL,0,'2024-02-19 06:04:36','2024-02-19 17:01:17',1),('5408004e1fd2405db45cb98c42e29d0c',NULL,'menu','/router/article',NULL,'文章管理',1,NULL,'el-icon-notebook-2',NULL,0,'2024-02-19 11:00:31','2024-02-19 11:00:31',1),('5b284b55ab7747f793498def8c776241','79cede9382df47a8914ef5697b38d901','button',NULL,'DELETE:/api/admin/article/delete','删除',3,NULL,NULL,NULL,0,'2024-02-19 06:04:36','2024-02-19 17:01:17',1),('79cede9382df47a8914ef5697b38d901',NULL,'menu','/router/article/index',NULL,'文章管理',2,NULL,'el-icon-notebook-2',NULL,0,'2024-02-19 11:03:02','2024-02-19 15:52:12',1),('82c86c8c26974f6cb8e1faa360c240d3','79cede9382df47a8914ef5697b38d901','button',NULL,'GET:/api/admin/article/getList','列表',3,NULL,NULL,NULL,0,'2024-02-19 06:04:36','2024-02-19 17:01:17',1),('88b35441dd7344b9adcf56556deda882','79cede9382df47a8914ef5697b38d901','button',NULL,'POST:/api/admin/article/add','添加',3,NULL,NULL,NULL,0,'2024-02-19 06:04:36','2024-02-19 17:01:17',1),('a2f26ceaa846401f912bcc378b96cadd','79cede9382df47a8914ef5697b38d901','button',NULL,'GET:/api/admin/article/detail','详情',3,NULL,NULL,NULL,0,'2024-02-19 06:04:36','2024-02-19 17:01:17',1),('ab92729e562d490fbc05a35fc83db90d',NULL,'menu','/router/home',NULL,'首页',1,NULL,'el-icon-s-home',NULL,0,'2024-02-19 06:04:36','2024-02-19 10:57:54',1),('b08d46d599e442a8829c7185e8ba8a83','79cede9382df47a8914ef5697b38d901','button',NULL,'PUT:/api/admin/article/edit','修改',3,NULL,NULL,NULL,0,'2024-02-19 06:04:36','2024-02-19 17:01:17',1);
+/*!40000 ALTER TABLE `t_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -302,8 +308,9 @@ DROP TABLE IF EXISTS `t_role`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `t_role` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `path_access_permission_uid` varchar(255) NOT NULL COMMENT '路径访问权限表uid，用,隔开',
+  `menu_uids` text COMMENT '菜单uid',
   `role_name` varchar(255) NOT NULL COMMENT '角色名',
+  `summary` varchar(255) DEFAULT NULL COMMENT '角色介绍',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
@@ -317,7 +324,7 @@ CREATE TABLE `t_role` (
 
 LOCK TABLES `t_role` WRITE;
 /*!40000 ALTER TABLE `t_role` DISABLE KEYS */;
-INSERT INTO `t_role` (`uid`, `path_access_permission_uid`, `role_name`, `create_time`, `update_time`, `status`) VALUES ('352af55485b0198631adc4f3f589bb3f','2f9c0e78958742f3a46755254058a8d9,558d6e9530fd370eb629ea8c69ec840b','管理员','0000-00-00 00:00:00','2024-02-08 05:50:19',1),('cd853c7b475723fb4457aebe30fd39ac','d8d7263db8a94bd2a18f3127973cf161,558d6e9530fd370eb629ea8c69ec840b','超级管理员','2024-02-03 07:14:39','2024-02-08 05:50:19',1),('fc5fea59ae7309773f8f70074a27eec4','','游客','0000-00-00 00:00:00','2024-02-08 05:50:19',1),('ffca2113713df757e0293c6dfd3b4e32','dbd1f09150ff425fb66654370c8f27a3','普通用户','0000-00-00 00:00:00','2024-02-08 05:50:19',1);
+INSERT INTO `t_role` (`uid`, `menu_uids`, `role_name`, `summary`, `create_time`, `update_time`, `status`) VALUES ('352af55485b0198631adc4f3f589bb3f',NULL,'管理员',NULL,'0000-00-00 00:00:00','2024-02-08 05:50:19',1),('cd853c7b475723fb4457aebe30fd39ac',NULL,'超级管理员',NULL,'2024-02-03 07:14:39','2024-02-08 05:50:19',1),('ffca2113713df757e0293c6dfd3b4e32',NULL,'普通用户',NULL,'0000-00-00 00:00:00','2024-02-08 05:50:19',1);
 /*!40000 ALTER TABLE `t_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -383,7 +390,7 @@ CREATE TABLE `t_user` (
 
 LOCK TABLES `t_user` WRITE;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` (`uid`, `role_uid`, `user_info_uid`, `username`, `password`, `salt`, `email`, `is_email_activated`, `mobile`, `is_mobile_activated`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`) VALUES ('103e0baa6d964e3bbb3e3deda94fc0e3','ffca2113713df757e0293c6dfd3b4e32','A4A7B8FBB8E9623FA72556F13A97ED5F','lucky','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123456@qq.com',1,'18819439264',1,216,'2024-02-09 12:26:03','127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('a2fc23c7668a4b6386b75584d72498a5','ffca2113713df757e0293c6dfd3b4e32','A7C9AACDC396292E3825639379041442','testuser','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123466@qq.com',1,'18819439265',1,1,'2024-02-02 12:55:12','0:0:0:0:0:0:0:1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('ee515eca338c4d358baea8d2c9930a45','ffca2113713df757e0293c6dfd3b4e32','D218CD2BB34F0A91565390458A20E871','123321','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123476@qq.com',1,'18819439266',1,1,'2024-02-08 15:24:29','127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('f8616ce5aa0c8eeacfa0d997dbdbe0d3','cd853c7b475723fb4457aebe30fd39ac,ffca2113713df757e0293c6dfd3b4e32','f6a7dc9f2df3544912c464e7adb9ce32','PPLAX','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123486@qq.com',1,NULL,1,40,'2024-02-17 08:57:27','127.0.0.1',1,'2024-02-03 07:17:56','2024-02-03 07:17:56');
+INSERT INTO `t_user` (`uid`, `role_uid`, `user_info_uid`, `username`, `password`, `salt`, `email`, `is_email_activated`, `mobile`, `is_mobile_activated`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`) VALUES ('103e0baa6d964e3bbb3e3deda94fc0e3','ffca2113713df757e0293c6dfd3b4e32','A4A7B8FBB8E9623FA72556F13A97ED5F','lucky','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123456@qq.com',1,'18819439264',1,216,'2024-02-09 12:26:03','127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('a2fc23c7668a4b6386b75584d72498a5','ffca2113713df757e0293c6dfd3b4e32','A7C9AACDC396292E3825639379041442','testuser','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123466@qq.com',1,'18819439265',1,1,'2024-02-02 12:55:12','0:0:0:0:0:0:0:1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('ee515eca338c4d358baea8d2c9930a45','ffca2113713df757e0293c6dfd3b4e32','D218CD2BB34F0A91565390458A20E871','123321','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123476@qq.com',1,'18819439266',1,1,'2024-02-08 15:24:29','127.0.0.1',1,'2024-01-26 03:36:37','2024-01-26 03:58:08'),('f8616ce5aa0c8eeacfa0d997dbdbe0d3','cd853c7b475723fb4457aebe30fd39ac,ffca2113713df757e0293c6dfd3b4e32','f6a7dc9f2df3544912c464e7adb9ce32','PPLAX','$2a$10$HuDCsbGXZTbBgVjXryfHeeObIJHz926y9qQTb/z9GWUFHp.9d5o4i','testSalt','123486@qq.com',1,NULL,1,45,'2024-02-20 13:48:06','127.0.0.1',1,'2024-02-03 07:17:56','2024-02-03 07:17:56');
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -428,4 +435,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-17  9:06:53
+-- Dump completed on 2024-02-20 14:05:27

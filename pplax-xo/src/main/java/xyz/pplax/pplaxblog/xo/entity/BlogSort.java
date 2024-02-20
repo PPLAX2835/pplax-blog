@@ -39,17 +39,9 @@ public class BlogSort extends SuperEntity<BlogSort> {
     private String icon;
 
     /**
-     * 父级分类uid
-     */
-    private String parentUid;
-
-    /**
      * 点击数
      */
     private Integer clickCount;
-
-    @TableField(exist = false)
-    private BlogSort parentBlogSort; // 父级分类
 
     public BlogSort() {}
 }

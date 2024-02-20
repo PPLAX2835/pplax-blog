@@ -5,8 +5,9 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Role">
         <id column="uid" property="uid" />
-        <result column="path_access_permission_uid" property="pathAccessPermissionUid" />
+        <result column="menu_uids" property="menuUids" />
         <result column="role_name" property="roleName" />
+        <result column="summary" property="status" />
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -14,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `path_access_permission_uid`, `role_name`, `create_time`, `update_time`, `status`
+        `uid`, `menu_uids`, `role_name`, `summary`, `create_time`, `update_time`, `status`
     </sql>
 
 </mapper>

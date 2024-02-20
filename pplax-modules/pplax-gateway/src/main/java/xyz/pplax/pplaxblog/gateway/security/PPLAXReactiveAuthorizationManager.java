@@ -104,92 +104,92 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
         List<Map<String, String>> pathAccessPermissionMapList = new ArrayList<>();
 
         // 遍历，获得该角色可以访问的路径权限
-        for (GrantedAuthority authority : authorities) {
-            // 获取roleUid
-            String roleUid = authority.getAuthority();          // 这个记录的是roleUid
-
-            // 获得role
-            String respJsonStr = roleFeignClient.getByUid(roleUid);
-            Map respMap = JSONObject.parseObject(respJsonStr, Map.class);
-            // 判断响应码
-            if (respMap.get(BaseSysConstants.DATA) != null) {
-                // 200，获得角色，因为没有引入role的实体类依赖，这里就用map了
-                Map roleMap = (Map) respMap.get(BaseSysConstants.DATA);
-                log.info("当前的角色:" + roleMap.toString());
-
-                // 添加路径访问权限，这里没有去重，以后在配置的时候应该是不会重复的
-                pathAccessPermissionMapList.addAll((Collection<? extends Map<String, String>>) roleMap.get(BaseSysConstants.PATH_ACCESS_PERMISSION));
-            } else {
-                // 获得不到角色，直接拒绝
-                log.warn("获得不到角色");
-                return Mono.just(new AuthorizationDecision(false));
-            }
-
-        }
+//        for (GrantedAuthority authority : authorities) {
+//            // 获取roleUid
+//            String roleUid = authority.getAuthority();          // 这个记录的是roleUid
+//
+//            // 获得role
+//            String respJsonStr = roleFeignClient.getByUid(roleUid);
+//            Map respMap = JSONObject.parseObject(respJsonStr, Map.class);
+//            // 判断响应码
+//            if (respMap.get(BaseSysConstants.DATA) != null) {
+//                // 200，获得角色，因为没有引入role的实体类依赖，这里就用map了
+//                Map roleMap = (Map) respMap.get(BaseSysConstants.DATA);
+//                log.info("当前的角色:" + roleMap.toString());
+//
+//                // 添加路径访问权限，这里没有去重，以后在配置的时候应该是不会重复的
+//                pathAccessPermissionMapList.addAll((Collection<? extends Map<String, String>>) roleMap.get(BaseSysConstants.PATH_ACCESS_PERMISSION));
+//            } else {
+//                // 获得不到角色，直接拒绝
+//                log.warn("获得不到角色");
+//                return Mono.just(new AuthorizationDecision(false));
+//            }
+//
+//        }
 
         // 遍历完成，鉴权
-        boolean permissionFlag = false;
-        for (Map pathAccessPermissionMap : pathAccessPermissionMapList) {
-            /// 获得url
-            String url = serverHttpRequest.getURI().getPath();
-            String pathRegex = pathAccessPermissionMap.get(BaseSysConstants.PATH_REGEX).toString();
-            // 通过pathAccessPermissionMap提供的路径正则进行匹配
-            if (Pattern.matches(pathRegex, url)) {
-                // 当前路径匹配成功，进一步对请求方法进行判断
+//        boolean permissionFlag = false;
+//        for (Map pathAccessPermissionMap : pathAccessPermissionMapList) {
+//            /// 获得url
+//            String url = serverHttpRequest.getURI().getPath();
+//            String pathRegex = pathAccessPermissionMap.get(BaseSysConstants.PATH_REGEX).toString();
+//            // 通过pathAccessPermissionMap提供的路径正则进行匹配
+//            if (Pattern.matches(pathRegex, url)) {
+//                // 当前路径匹配成功，进一步对请求方法进行判断
+//
+//
+//                Boolean result = true;     // 这个result用于记录下面每个规则是否允许，应该是全为 与 的运算
+//
+//                /*
+//                 * 一、判断请求方式是否合法
+//                 */
+//                result = result && pathAccessPermissionMap.get(BaseSysConstants.METHOD).toString().contains(method.toString());
+//
+//                /*
+//                 * 二、判断是否允许用户访问其他用户uid下的路径
+//                 */
+//                if (!(Boolean) pathAccessPermissionMap.get(BaseSysConstants.OTHER_USER_ACCESS_PERMISSION)) {
+//                    // 不允许用户访问其他用户uid下的路径
+//                    JSONObject securityUserDetailJsonObject = JSON.parseObject(JSON.toJSONString(oAuth2Authentication.getUserAuthentication().getPrincipal()));
+//                    String uid = (String) securityUserDetailJsonObject.get(BaseSysConstants.UID);       // 当前用户的uid
+//
+//                    // 获取访问路径的uid
+//                    String keyword = "user/";
+//                    int startIndex = url.indexOf(keyword);
+//                    if (startIndex != -1) {
+//                        // 如果找到了关键词
+//                        startIndex += keyword.length(); // 跳过关键词本身
+//                        int endIndex = url.indexOf("/", startIndex); // 找到下一个斜杠的位置
+//
+//                        if (endIndex != -1) {
+//                            String urlUid = url.substring(startIndex, endIndex);
+//
+//
+//                            result = result && uid.equals(urlUid);                                                      // 判断两个uid是否匹配
+//                        }
+//                    }
+//                }
+//
+//                /*
+//                 * 三、后续可能还会有
+//                 */
+//
+//                // 全部通过了，可以跳出循环了
+//                if (result) {
+//                    permissionFlag = true;
+//                    break;
+//                }
+//
+//            }
+//        }
 
-
-                Boolean result = true;     // 这个result用于记录下面每个规则是否允许，应该是全为 与 的运算
-
-                /*
-                 * 一、判断请求方式是否合法
-                 */
-                result = result && pathAccessPermissionMap.get(BaseSysConstants.METHOD).toString().contains(method.toString());
-
-                /*
-                 * 二、判断是否允许用户访问其他用户uid下的路径
-                 */
-                if (!(Boolean) pathAccessPermissionMap.get(BaseSysConstants.OTHER_USER_ACCESS_PERMISSION)) {
-                    // 不允许用户访问其他用户uid下的路径
-                    JSONObject securityUserDetailJsonObject = JSON.parseObject(JSON.toJSONString(oAuth2Authentication.getUserAuthentication().getPrincipal()));
-                    String uid = (String) securityUserDetailJsonObject.get(BaseSysConstants.UID);       // 当前用户的uid
-
-                    // 获取访问路径的uid
-                    String keyword = "user/";
-                    int startIndex = url.indexOf(keyword);
-                    if (startIndex != -1) {
-                        // 如果找到了关键词
-                        startIndex += keyword.length(); // 跳过关键词本身
-                        int endIndex = url.indexOf("/", startIndex); // 找到下一个斜杠的位置
-
-                        if (endIndex != -1) {
-                            String urlUid = url.substring(startIndex, endIndex);
-
-
-                            result = result && uid.equals(urlUid);                                                      // 判断两个uid是否匹配
-                        }
-                    }
-                }
-
-                /*
-                 * 三、后续可能还会有
-                 */
-
-                // 全部通过了，可以跳出循环了
-                if (result) {
-                    permissionFlag = true;
-                    break;
-                }
-
-            }
-        }
-
-        if (permissionFlag) {
-            return authenticationMono
-                    .map(auth -> new AuthorizationDecision(true))       // false就是拒绝
-                    .defaultIfEmpty(new AuthorizationDecision(false));
-        }
+//        if (permissionFlag) {
+//            return authenticationMono
+//                    .map(auth -> new AuthorizationDecision(true))       // false就是拒绝
+//                    .defaultIfEmpty(new AuthorizationDecision(false));
+//        }
         return authenticationMono
-                .map(auth -> new AuthorizationDecision(false))       // false就是拒绝
+                .map(auth -> new AuthorizationDecision(true))       // false就是拒绝
                 .defaultIfEmpty(new AuthorizationDecision(false));
     }
 }

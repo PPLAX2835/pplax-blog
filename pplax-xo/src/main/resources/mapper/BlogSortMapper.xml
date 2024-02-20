@@ -12,13 +12,12 @@
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
-        <result column="parent_uid" property="parentUid" />
         <result column="click_count" property="clickCount" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `sort_name`, `summary`, `content`, `icon`, `create_time`, `update_time`, `status`, `parent_uid`, `click_count`
+        `uid`, `sort_name`, `summary`, `content`, `icon`, `create_time`, `update_time`, `status`, `click_count`
     </sql>
     <sql id="Linked_Query_Column_List">
         `t_blog_sort`.`uid` as `uid`,
@@ -29,7 +28,6 @@
         `t_blog_sort`.`create_time` as `create_time`,
         `t_blog_sort`.`update_time` as `update_time`,
         `t_blog_sort`.`status` as `status`,
-        `t_blog_sort`.`parent_uid` as `parent_uid`,
         `t_blog_sort`.`click_count` as `click_count`,
     </sql>
 

@@ -38,7 +38,7 @@ public class Blog extends SuperEntity<Blog>{
 	/**
 	 * 标签uid
 	 */
-	private String tagUid;
+	private String tagUids;
 
 	/**
 	 * 博客点击数
@@ -53,7 +53,7 @@ public class Blog extends SuperEntity<Blog>{
 	/**
 	 * 标题图片uid
 	 */
-	private String pictureUid;
+	private String coverImageUid;
 
 	/**
 	 * 是否发布：0：否，1：是

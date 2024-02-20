@@ -21,9 +21,12 @@ public class BaseSysConstants {
 	public final static String AVATAR = "avatar";
 
 	public final static String TITLE = "title";
+
 	/**
 	 * 权限相关
 	 */
+	public final static String MENU = "menu";
+	public final static String BUTTON = "button";
 	public final static String PATH_ACCESS_PERMISSION = "pathAccessPermissionList";
 	public final static String PATH_REGEX = "pathRegex";
 	public final static String METHOD = "method";

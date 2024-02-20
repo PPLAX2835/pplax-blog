@@ -16,7 +16,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("t_menu")
-public class Menu extends SuperEntity<Menu> {
+public class Menu extends SuperEntity {
 
     private static final long serialVersionUID = 1L;
 

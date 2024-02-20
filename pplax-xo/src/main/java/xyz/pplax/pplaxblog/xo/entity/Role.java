@@ -16,7 +16,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("t_role")
-public class Role extends SuperEntity<Role> {
+public class Role extends SuperEntity {
 
     private static final long serialVersionUID = 1L;
 

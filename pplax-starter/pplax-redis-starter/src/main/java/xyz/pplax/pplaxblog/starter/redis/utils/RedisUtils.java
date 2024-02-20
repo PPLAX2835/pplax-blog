@@ -2,7 +2,7 @@ package xyz.pplax.pplaxblog.starter.redis.utils;
 
 import xyz.pplax.pplaxblog.starter.redis.constants.BaseRedisConstants;
 
-public class RedisKeyUtils {
+public class RedisUtils {
 
     /**
      * 将类名修改为reidis key
@@ -29,4 +29,13 @@ public class RedisKeyUtils {
         return result.toString();
     }
 
+
+
+    /**
+     * 获得expire时间在(0,2)倍范围内浮动的值
+     * @return
+     */
+    public static Long getRandomExpire(Long expire) {
+        return Math.round(Math.random() * 2 * expire);
+    }
 }

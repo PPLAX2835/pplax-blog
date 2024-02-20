@@ -14,7 +14,7 @@ import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("t_feedback")
-public class Feedback extends SuperEntity<Feedback> {
+public class Feedback extends SuperEntity {
 
     private static final long serialVersionUID = 1L;
 

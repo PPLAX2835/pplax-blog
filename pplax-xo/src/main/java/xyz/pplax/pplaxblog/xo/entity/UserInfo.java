@@ -15,7 +15,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("t_user_info")
-public class UserInfo extends SuperEntity<UserInfo> {
+public class UserInfo extends SuperEntity {
 
     private static final long serialVersionUID = 1L;
 

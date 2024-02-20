@@ -13,7 +13,7 @@ import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("t_link")
-public class Link extends SuperEntity<Link> {
+public class Link extends SuperEntity {
 
     private static final long serialVersionUID = 1L;
 

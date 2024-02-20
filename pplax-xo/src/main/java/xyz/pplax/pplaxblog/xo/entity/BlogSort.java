@@ -14,7 +14,7 @@ import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("t_blog_sort")
-public class BlogSort extends SuperEntity<BlogSort> {
+public class BlogSort extends SuperEntity {
 
     private static final long serialVersionUID = 1L;
 

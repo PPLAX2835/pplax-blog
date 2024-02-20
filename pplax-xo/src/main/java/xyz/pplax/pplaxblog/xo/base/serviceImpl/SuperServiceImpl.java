@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
-import xyz.pplax.pplaxblog.starter.redis.utils.RedisKeyUtils;
+import xyz.pplax.pplaxblog.starter.redis.utils.RedisUtils;
+import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 import xyz.pplax.pplaxblog.xo.base.mapper.SuperMapper;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @param <T>
  */
 
-public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M, T>  implements SuperService<T> {
+public class SuperServiceImpl<M extends SuperMapper<T>, T extends SuperEntity> extends ServiceImpl<M, T>  implements SuperService<T> {
 
     private static final Logger log = LogManager.getLogger(SuperServiceImpl.class);
 
@@ -31,7 +32,7 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
     private RedisService redisService;
 
     // 默认300秒过期
-    @Value(("${spring.redis.expire:10}"))
+    @Value(("${spring.redis.expire:300}"))
     private Long expire;
 
     @Override
@@ -39,7 +40,7 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
     public T getById(Serializable id) {
         ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
         Class<T> entityClass = (Class<T>) superClass.getActualTypeArguments()[1];
-        String redisKey = RedisKeyUtils.getRedisKey(entityClass.getSimpleName()) + id;
+        String redisKey = RedisUtils.getRedisKey(entityClass.getSimpleName()) + id;
 
         // 先从缓存中找
         T t = JSONObject.toJavaObject(redisService.getCacheObject(redisKey), entityClass);
@@ -54,7 +55,7 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
             }
 
             // 存到缓存中
-            redisService.setCacheObject(redisKey, t, getRandomExpire(), TimeUnit.SECONDS);
+            redisService.setCacheObject(redisKey, t, RedisUtils.getRandomExpire(expire), TimeUnit.SECONDS);
 
         }
         log.info("查询完毕");
@@ -68,44 +69,18 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T> extends ServiceImpl<M
         ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
         Class<T> entityClass = (Class<T>) superClass.getActualTypeArguments()[1];
 
-        Field field = null;
-        Class<?> currentClass = entity.getClass();
 
-        // 获取uid字段
-        while (currentClass != null) {
-            try {
-                field = currentClass.getDeclaredField(BaseSysConstants.UID);
-                break;
-            } catch  (NoSuchFieldException e) {
-                // 当前类没找到，从父类中找
-                currentClass = currentClass.getSuperclass();
-            }
-        }
-
-        if (field != null) {
-            field.setAccessible(true); // 设置可以访问私有变量
-            try {
-                redisKeyName = RedisKeyUtils.getRedisKey(entityClass.getSimpleName()) + field.get(entity);
-            } catch (IllegalAccessException e) {
-                log.error(e.getMessage());
-            }
-            log.info("获得实体uid：" + field.getName());
-        }
+        // 获取uid字段和key
+        redisKeyName = RedisUtils.getRedisKey(entityClass.getSimpleName()) + entity.getUid();
+        log.info("redis key:" + redisKeyName);
 
         boolean result = super.updateById(entity);
         if (result) {
             log.info("更新成功，更新缓存");
-            redisService.setCacheObject(redisKeyName, entity, getRandomExpire(), TimeUnit.SECONDS);
+            redisService.setCacheObject(redisKeyName, entity, RedisUtils.getRandomExpire(expire), TimeUnit.SECONDS);
         }
 
         return result;
     }
 
-    /**
-     * 获得一个随机expire时间
-     * @return
-     */
-    private Long getRandomExpire() {
-         return Math.round(Math.random() * 2 * expire);
-    }
 }

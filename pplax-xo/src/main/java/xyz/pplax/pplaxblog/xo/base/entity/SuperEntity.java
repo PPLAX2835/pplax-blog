@@ -14,7 +14,7 @@ import java.util.Date;
  * Entity基类
  */
 @SuppressWarnings("rawtypes")
-public class SuperEntity<T extends Model> extends Model {
+public class SuperEntity extends Model {
 
 	/**
 	 *

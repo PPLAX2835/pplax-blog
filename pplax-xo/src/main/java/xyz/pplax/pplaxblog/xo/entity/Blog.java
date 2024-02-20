@@ -16,7 +16,7 @@ import java.util.List;
 @TableName("t_blog")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Blog extends SuperEntity<Blog>{
+public class Blog extends SuperEntity{
 
 	private static final long serialVersionUID = 1L;
 

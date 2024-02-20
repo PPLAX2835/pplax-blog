@@ -13,7 +13,7 @@ import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("t_tag")
-public class Tag extends SuperEntity<Tag> {
+public class Tag extends SuperEntity {
 
 	private static final long serialVersionUID = 1L;
 

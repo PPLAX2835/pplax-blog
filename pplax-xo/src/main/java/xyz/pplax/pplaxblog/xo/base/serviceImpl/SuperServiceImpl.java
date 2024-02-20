@@ -1,12 +1,14 @@
 package xyz.pplax.pplaxblog.xo.base.serviceImpl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
+import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.starter.redis.utils.RedisUtils;
 import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
@@ -14,8 +16,8 @@ import xyz.pplax.pplaxblog.xo.base.mapper.SuperMapper;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 
@@ -49,8 +51,8 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T extends SuperEntity> e
             // 缓存中没有，从数据库里查
             t = super.getById(id);
 
-            // 检查t是否为空
-            if (t == null) {
+            // 检查t是否为空或者删除状态
+            if (t == null || t.getStatus() == EStatus.DISABLED.getStatus()) {
                 return null;
             }
 
@@ -81,6 +83,54 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T extends SuperEntity> e
         }
 
         return result;
+    }
+
+    /**
+     * 将删除方法重写为逻辑删除
+     * @param id
+     * @return
+     */
+    @Override
+    public boolean removeById(Serializable id) {
+        UpdateWrapper<T> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.set(BaseSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        updateWrapper.eq(BaseSQLConstants.UID, id);
+        boolean res = update(updateWrapper);
+
+        if (res) {
+            // 删除成功，移除缓存
+            ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
+            Class<T> entityClass = (Class<T>) superClass.getActualTypeArguments()[1];
+
+            redisService.deleteObject(RedisUtils.getRedisKey(entityClass.getSimpleName()) + id);
+        }
+        return res;
+    }
+
+    /**
+     * 批量删除重写为批量逻辑删除
+     * @param idList
+     * @return
+     */
+    @Override
+    public boolean removeByIds(Collection<? extends Serializable> idList) {
+        UpdateWrapper<T> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.set(BaseSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        updateWrapper.in(BaseSQLConstants.UID, idList);
+        boolean res = update(updateWrapper);
+
+        if (res) {
+            // 删除成功，移除缓存
+            ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
+            Class<T> entityClass = (Class<T>) superClass.getActualTypeArguments()[1];
+            String keyName = RedisUtils.getRedisKey(entityClass.getSimpleName());
+
+            for (Serializable id : idList) {
+                redisService.deleteObject(keyName + id);
+            }
+        }
+
+        return res;
     }
 
 }

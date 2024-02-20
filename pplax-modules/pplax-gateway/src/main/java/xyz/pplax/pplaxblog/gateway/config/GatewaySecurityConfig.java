@@ -66,7 +66,7 @@ public class GatewaySecurityConfig {
                 .anyExchange().access(pplaxReactiveAuthorizationManager)
                 // 鉴权的异常处理，权限不足，token失效
                 .and().exceptionHandling()
-//                // 未登录访问时处理
+                // 未登录访问时处理
                 .authenticationEntryPoint(pplaxAuthenticationEntryPoint)
                 // 访问被拒绝时处理，没有权限访问
                 .accessDeniedHandler(pplaxAccessDeniedHandler)

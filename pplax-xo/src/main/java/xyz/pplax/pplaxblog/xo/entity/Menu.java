@@ -1,9 +1,12 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
+
+import java.util.List;
 
 /**
  * @description 菜单表
@@ -66,6 +69,13 @@ public class Menu extends SuperEntity<Menu> {
      * 是否隐藏
      */
     private Boolean hidden;
+
+
+    /**
+     * 子菜单列表
+     */
+    @TableField(exist = false)
+    private List<Menu> childMenuList;
 
 
     public Menu() {}

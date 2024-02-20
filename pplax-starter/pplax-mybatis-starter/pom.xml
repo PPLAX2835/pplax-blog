@@ -17,10 +17,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-commons</artifactId>
-        </dependency>
 
         <!-- mybatis-plus -->
         <dependency>

@@ -22,19 +22,4 @@ public class RoleController extends SuperController {
     RoleService roleService;
 
 
-    /**
-     * 根据uid查询角色
-     * @param uid
-     * @return
-     */
-    @ApiOperation(value="根据uid查询角色", notes="根据uid查询角色", response = String.class)
-    @GetMapping("/{uid}")
-    public String getByUid(
-            @ApiParam(name = "uid", value = "唯一标识符",required = true) @PathVariable String uid
-    ) {
-
-        log.info("返回结果");
-        return success(roleService.getById(uid));
-    }
-
 }

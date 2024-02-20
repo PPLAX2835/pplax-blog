@@ -24,39 +24,70 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     private MenuService menuService;
 
     @Override
-    public Role getById(Serializable id) {
-
-        Role role = super.getById(id);
-
-        // 检查role是否正常
-        if (role == null || role.getStatus() != EStatus.ENABLE.getStatus()) {
-            return null;
-        }
-
+    public Role setMenu(Role role) {
         // 获得菜单
         List<Menu> menuList = new ArrayList<>();
-        Map<String, Menu> menuMap = new HashMap<>();
-        String[] menuUids = role.getMenuUids().split(CharacterConstants.SYMBOL_COMMA);
-        // 封装到map中
-        for (String menuUid : menuUids) {
-            Menu menu = menuService.getById(menuUids);
-            menuMap.put(menu.getUid(), menu);
-        }
-        // 将父子关系整理起来
-        for (String menuUid : menuMap.keySet()) {
-            Menu menu = menuMap.get(menuUid);
-            if (!StringUtils.isEmpty(menu.getParentUid()) && menuMap.get(menu.getParentUid()) != null) {
-                // 如果本次遍历的菜单有父级菜单的uid并且map里能查到，就将这个放到父级菜单里
-                menuMap.get(menu.getParentUid()).getChildMenuList().add(menu);
-                // 移除这个
-                menuMap.remove(menuUid);
-            }
-        }
-        for (String menuUid : menuMap.keySet()) {
-            menuList.add(menuMap.get(menuUid));
+
+        if (StringUtils.isEmpty(role.getMenuUids())) {
+            return role;
         }
 
-        role.setMenuList(menuList);
+        String[] menuUids = role.getMenuUids().split(CharacterConstants.SYMBOL_COMMA);
+
+        // 封装到list中
+        for (String menuUid : menuUids) {
+            Menu menu = menuService.getById(menuUid);
+            menuList.add(menu);
+        }
+
+        role.setMenuList(organizeMenus(menuList));
+
         return role;
+    }
+
+    @Override
+    public List<Role> list() {
+        List<Role> roleList = super.list();
+        List<Role> result = new ArrayList<>();
+
+        for (Role role : roleList) {
+            result.add(setMenu(role));
+        }
+
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+    /**
+     *  递归整理列表，使其呈现父子关系
+     * @param menuList
+     * @return
+     */
+    public static List<Menu> organizeMenus(List<Menu> menuList) {
+        List<Menu> organizedList = new ArrayList<>();
+        for (Menu menu : menuList) {
+            if (menu.getLevel() == 1) {
+                organizedList.add(menu);
+                organizeChildMenus(menu, menuList);
+            }
+        }
+        return organizedList;
+    }
+    private static void organizeChildMenus(Menu parentMenu, List<Menu> menuList) {
+        List<Menu> childMenus = new ArrayList<>();
+        for (Menu menu : menuList) {
+            if (!StringUtils.isEmpty(menu.getParentUid()) && menu.getParentUid().equals(parentMenu.getUid())) {
+                childMenus.add(menu);
+                organizeChildMenus(menu, menuList);
+            }
+        }
+        parentMenu.setChildMenuList(childMenus);
     }
 }

@@ -83,15 +83,20 @@ public enum HttpStatus {
     //    ——————————————————————————————
     //               自定义状态码
     //    ——————————————————————————————
+
+    // 成功
+    INSERT_SUCCESS(200, "插入成功"),
+    UPDATE_SUCCESS(200, "更新成功"),
+    OPERATION_SUCCESS(200, "操作成功"),
+    DELETE_SUCCESS(200, "删除成功"),
+    BATCH_DELETE_SUCCESS(200, "批量删除成功"),
+
+
+
+
     /**
      * curd相关
      */
-    // 成功   200000-200099
-    INSERT_SUCCESS(200001, "插入成功"),
-    UPDATE_SUCCESS(200002, "更新成功"),
-    OPERATION_SUCCESS(200003, "操作成功"),
-    DELETE_SUCCESS(200004, "删除成功"),
-    BATCH_DELETE_SUCCESS(200005, "批量删除成功"),
     // 失败   500000-500099
     OPERATION_FAIL(500001,  "操作失败"),
     INSERT_FAIL(500002, "插入失败"),
@@ -101,8 +106,6 @@ public enum HttpStatus {
     /**
      * 参数相关
      */
-    // 成功   200100-200199
-
     // 失败    400000-400099
     ENTITY_EXIST(400001, "该实体已存在"),
     REQUIRED_IS_NULL(400002, "必填项不能为空"),
@@ -115,7 +118,6 @@ public enum HttpStatus {
     /**
      * 拒绝相关
      */
-
     // 失败   403000-403999
     INTERFACE_FREQUENTLY(4030001, "接口过于频繁调用"),
     ACCESS_DENIED(403002, "访问被拒绝"),
@@ -135,8 +137,6 @@ public enum HttpStatus {
     /**
      * 账户相关
      */
-    // 成功   200200-200299
-
     // 失败   401000-401099
     EMAIL_UNACTIVATED(401001, "邮箱未激活"),
     MOBILE_UNACTIVATED(401002, "手机未激活"),
@@ -149,11 +149,8 @@ public enum HttpStatus {
     VALIDATION_FAIL(401009, "验证失败，请控制拼图对齐缺口"),
 
     /**
-     * 权限相关     41000-41999
+     * 权限相关     40100-40199
      */
-
-    // 成功   200300-200399
-
     // 失败   401100-401199
     LOGIN_REQUIRED(401101, "需要登陆"),
     NO_ROLE(401102, "没有分配角色权限"),

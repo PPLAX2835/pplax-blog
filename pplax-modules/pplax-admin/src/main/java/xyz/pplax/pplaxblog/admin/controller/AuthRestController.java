@@ -1,35 +1,29 @@
-package xyz.pplax.pplaxblog.admin.restapi;
+package xyz.pplax.pplaxblog.admin.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
-import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.service.auth.AuthService;
-import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
 
 /**
- * 登录认证相关 RestApi
+ * 登录认证相关 Controller
  */
 @RestController
 @RequestMapping("/auth")
-@Api(value="登录认证相关RestApi",tags={"AuthRestApi"})
-public class AuthRestApi extends SuperController {
+@Api(value="登录认证相关Controller",tags={"登录认证相关Controller"})
+public class AuthRestController extends SuperController {
 
-	private static final Logger log = LogManager.getLogger(AuthRestApi.class);
+	private static final Logger log = LogManager.getLogger(AuthRestController.class);
 
 	@Autowired
 	private AuthFeignClient authFeignClient;

@@ -1,10 +1,9 @@
-package xyz.pplax.pplaxblog.file.restapi;
+package xyz.pplax.pplaxblog.file.controller;
 
 
 import io.swagger.annotations.Api;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/storage")
 @Api(value = "文件存储服务相关接口", tags = {"文件存储服务相关接口"})
-public class StorageRestApi {
-    private static final Logger log = LogManager.getLogger(StorageRestApi.class);
+public class StorageController {
+    private static final Logger log = LogManager.getLogger(StorageController.class);
 
 
 

@@ -27,7 +27,6 @@ import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
-import xyz.pplax.pplaxblog.feign.role.RoleFeignClient;
 import xyz.pplax.pplaxblog.starter.security.model.SecurityUserDetails;
 
 import java.net.URI;
@@ -49,8 +48,8 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
     @Autowired
     private TokenStore redisTokenStore;
 
-    @Autowired
-    private RoleFeignClient roleFeignClient;
+//    @Autowired
+//    private RoleFeignClient roleFeignClient;
 
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> authenticationMono, AuthorizationContext authorizationContext) {

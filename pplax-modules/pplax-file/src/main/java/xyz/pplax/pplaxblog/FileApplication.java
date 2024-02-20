@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.xo.service.user",
         "xyz.pplax.pplaxblog.xo.service.userinfo",
         "xyz.pplax.pplaxblog.file.components",
-        "xyz.pplax.pplaxblog.file.restapi",
+        "xyz.pplax.pplaxblog.file.controller",
         "xyz.pplax.pplaxblog.file.service",
         "xyz.pplax.pplaxblog.file.config"
 })

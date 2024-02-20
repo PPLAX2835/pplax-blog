@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.admin.restapi;
+package xyz.pplax.pplaxblog.admin.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,10 +13,10 @@ import xyz.pplax.pplaxblog.xo.service.role.RoleService;
 
 @RestController
 @RequestMapping("/role")
-@Api(value="角色RestApi", tags={"RoleRestApi"})
-public class RoleRestApi extends SuperController {
+@Api(value="角色Controller", tags={"角色Controller"})
+public class RoleController extends SuperController {
 
-    private static final Logger log = LogManager.getLogger(RoleRestApi.class);
+    private static final Logger log = LogManager.getLogger(RoleController.class);
 
     @Autowired
     RoleService roleService;

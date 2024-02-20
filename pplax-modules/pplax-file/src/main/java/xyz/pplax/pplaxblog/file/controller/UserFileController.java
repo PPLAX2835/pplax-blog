@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.file.restapi;
+package xyz.pplax.pplaxblog.file.controller;
 
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import xyz.pplax.pplaxblog.file.service.AvatarService;
 @RequestMapping("/user/{userUid}")
 @Api(value = "用户文件上传服务相关接口", tags = {"用户文件上传相关接口"})
 @Slf4j
-public class UserFileRestApi extends SuperController {
+public class UserFileController extends SuperController {
 
     @Autowired
     private AvatarService avatarService;

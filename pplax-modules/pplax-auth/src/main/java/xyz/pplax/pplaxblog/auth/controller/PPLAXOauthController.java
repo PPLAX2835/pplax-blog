@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.auth.restapi;
+package xyz.pplax.pplaxblog.auth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -11,7 +11,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 
 @RestController
 @RequestMapping(value = "/oauth")
-public class PPLAXOauthRestApi extends SuperController {
+public class PPLAXOauthController extends SuperController {
 
     @Autowired
     private TokenStore redisTokenStore;

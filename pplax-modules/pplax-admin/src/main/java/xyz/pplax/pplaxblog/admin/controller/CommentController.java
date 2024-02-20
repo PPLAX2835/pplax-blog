@@ -1,17 +1,15 @@
-package xyz.pplax.pplaxblog.admin.restapi;
+package xyz.pplax.pplaxblog.admin.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>
- * 收藏表 RestApi
- * </p>
+ * 评论表 Controller
  */
 @RestController
-@RequestMapping("/collect")
-public class CollectRestApi {
+@RequestMapping("/comment")
+public class CommentController {
 
 }
 

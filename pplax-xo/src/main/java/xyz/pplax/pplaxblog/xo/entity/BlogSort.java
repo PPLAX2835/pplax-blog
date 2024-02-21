@@ -39,6 +39,11 @@ public class BlogSort extends SuperEntity {
     private String icon;
 
     /**
+     * 排序
+     */
+    private Integer order;
+
+    /**
      * 点击数
      */
     private Integer clickCount;

@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="重写删除方法，将其改为逻辑删除">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/TestRestApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/role/RoleFeignClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/BlogSortSQLConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/BlogSortSQLConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/BlogSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/BlogSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogSortMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogSortMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/TagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/TagMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,11 +109,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.admin.controller" />
       <recent name="xyz.pplax.pplaxblog.xo.service.menu" />
       <recent name="xyz.pplax.pplaxblog.xo.mapper" />
       <recent name="xyz.pplax.pplaxblog.xo.entity" />
       <recent name="xyz.pplax.pplaxblog.commons.utils" />
-      <recent name="xyz.pplax.pplaxblog.xo.constants" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -269,14 +274,8 @@
       <workItem from="1707439962895" duration="6221000" />
       <workItem from="1708159272502" duration="4054000" />
       <workItem from="1708406841222" duration="19625000" />
-      <workItem from="1708437655092" duration="1523000" />
-    </task>
-    <task id="LOCAL-00234" summary="先加上网关空服务，然后删掉web，这个还不知道怎么用">
-      <created>1706501133465</created>
-      <option name="number" value="00234" />
-      <option name="presentableId" value="LOCAL-00234" />
-      <option name="project" value="LOCAL" />
-      <updated>1706501133465</updated>
+      <workItem from="1708437655092" duration="1842000" />
+      <workItem from="1708491093747" duration="5955000" />
     </task>
     <task id="LOCAL-00235" summary="简单调整">
       <created>1706501383891</created>
@@ -614,7 +613,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708438363610</updated>
     </task>
-    <option name="localTasksCounter" value="283" />
+    <task id="LOCAL-00283" summary="重写删除方法，将其改为逻辑删除">
+      <created>1708439494789</created>
+      <option name="number" value="00283" />
+      <option name="presentableId" value="LOCAL-00283" />
+      <option name="project" value="LOCAL" />
+      <updated>1708439494789</updated>
+    </task>
+    <option name="localTasksCounter" value="284" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +655,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="service的内部的类用各种包分开，以后每个服务各取所需，不统一扫描了" />
     <MESSAGE value="添加role的接口" />
     <MESSAGE value="token鉴权初步实现，目前还不够优美" />
     <MESSAGE value="登录认证也弄了个服务层" />
@@ -674,7 +679,8 @@
     <MESSAGE value="重构鉴权部分，这次写得没有那么逆天了" />
     <MESSAGE value="重构网关鉴权部分，这次写得没有那么逆天了" />
     <MESSAGE value="给那些父级mapper、service等的泛型参数设置统一父类" />
-    <option name="LAST_COMMIT_MESSAGE" value="给那些父级mapper、service等的泛型参数设置统一父类" />
+    <MESSAGE value="重写删除方法，将其改为逻辑删除" />
+    <option name="LAST_COMMIT_MESSAGE" value="重写删除方法，将其改为逻辑删除" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -94,6 +94,7 @@ CREATE TABLE `t_blog_sort` (
   `summary` varchar(200) DEFAULT NULL COMMENT '分类简介',
   `content` varchar(255) DEFAULT NULL COMMENT '分类内容',
   `icon` varchar(128) DEFAULT NULL COMMENT '分类图标',
+  `order` int DEFAULT NULL COMMENT '排列位次',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
@@ -108,7 +109,7 @@ CREATE TABLE `t_blog_sort` (
 
 LOCK TABLES `t_blog_sort` WRITE;
 /*!40000 ALTER TABLE `t_blog_sort` DISABLE KEYS */;
-INSERT INTO `t_blog_sort` (`uid`, `sort_name`, `summary`, `content`, `icon`, `create_time`, `update_time`, `status`, `click_count`) VALUES ('093d8bdd01c84890a928e923d5c235fe','时光轴','时光轴的简介','时光轴的简介',NULL,'2018-09-24 09:14:59','2024-02-19 09:48:46',1,0),('2c93dfab0e754006866f8ed486923a41','慢生活','慢生活的简介','慢生活的简介',NULL,'2018-09-24 08:29:33','2024-02-19 09:48:46',1,0),('2fc443ca683bc93248873dcac0ccda9d','考研','现在考研好难哦','现在考研好难哦',NULL,'2024-01-16 14:48:17','2024-02-19 09:48:46',1,0),('3ae899e993b744c99fb78dccafac8e66','游戏','游戏的简介','游戏的简介',NULL,'2023-11-29 11:18:55','2024-02-19 09:48:46',1,0),('3cf89eab5cf2484f8023f088dd3f3cd5','编程','编程 简介','编程 简介',NULL,'2023-11-30 03:34:12','2024-02-19 09:48:46',1,0),('fbef6ff4be704781a0e0c4aeb7a2b64b','美食',NULL,NULL,NULL,'2023-11-30 07:21:42','2023-11-30 07:21:42',1,0);
+INSERT INTO `t_blog_sort` (`uid`, `sort_name`, `summary`, `content`, `icon`, `order`, `create_time`, `update_time`, `status`, `click_count`) VALUES ('093d8bdd01c84890a928e923d5c235fe','时光轴','时光轴的简介','时光轴的简介',NULL,NULL,'2018-09-24 09:14:59','2024-02-19 09:48:46',1,0),('2c93dfab0e754006866f8ed486923a41','慢生活','慢生活的简介','慢生活的简介',NULL,NULL,'2018-09-24 08:29:33','2024-02-19 09:48:46',1,0),('2fc443ca683bc93248873dcac0ccda9d','考研','现在考研好难哦','现在考研好难哦',NULL,NULL,'2024-01-16 14:48:17','2024-02-19 09:48:46',1,0),('3ae899e993b744c99fb78dccafac8e66','游戏','游戏的简介','游戏的简介',NULL,NULL,'2023-11-29 11:18:55','2024-02-19 09:48:46',1,0),('3cf89eab5cf2484f8023f088dd3f3cd5','编程','编程 简介','编程 简介',NULL,NULL,'2023-11-30 03:34:12','2024-02-19 09:48:46',1,0),('fbef6ff4be704781a0e0c4aeb7a2b64b','美食',NULL,NULL,NULL,NULL,'2023-11-30 07:21:42','2023-11-30 07:21:42',1,0);
 /*!40000 ALTER TABLE `t_blog_sort` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,9 +338,10 @@ DROP TABLE IF EXISTS `t_tag`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `t_tag` (
   `uid` varchar(32) NOT NULL COMMENT '唯一uid',
-  `content` varchar(1000) DEFAULT NULL COMMENT '标签内容',
+  `name` varchar(255) DEFAULT NULL COMMENT '标签名',
+  `click_count` int DEFAULT '0' COMMENT '点击量',
+  `level` int DEFAULT '0' COMMENT '推荐等级',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
-  `click_count` int DEFAULT '0' COMMENT '标签简介',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`uid`)
@@ -352,7 +354,7 @@ CREATE TABLE `t_tag` (
 
 LOCK TABLES `t_tag` WRITE;
 /*!40000 ALTER TABLE `t_tag` DISABLE KEYS */;
-INSERT INTO `t_tag` (`uid`, `content`, `status`, `click_count`, `create_time`, `update_time`) VALUES ('04612e33964d45d19fa7f4fd61acd807','github',1,2,'2018-09-21 12:12:52','2018-09-21 12:12:52'),('25228e8e5d4847d39a4b1466e7403e69','Spring Cloud',1,1,'2018-09-21 12:09:50','2018-09-21 12:09:50'),('53c5a0f3142e4f54820315936f78383b','Spring Boot',1,1,'2018-09-21 12:11:06','2018-09-21 12:11:06'),('7e0e93ea6cdb44ae92e58f48e6496ed7','Java',1,1,'2018-09-21 12:12:52','2018-09-21 12:12:52'),('7efee6f74d594d25928ba86bc7adee28','游戏',1,1,'2018-09-20 06:51:39','2018-09-20 06:51:39'),('9da13eb143f54c6bb70ecbd5212bde69','原神',0,1,'2018-09-21 12:13:51','2018-09-21 12:13:51'),('a9a747d944c24845815356f72723ef8e','前端开发',1,2,'2018-09-20 06:51:39','2018-09-20 06:51:39'),('ca928e8718654aa5a802e2f69277b137','生活琐事',1,2,'2018-09-21 12:13:41','2018-09-21 12:13:41'),('e2c7913050cf4ab9aa92902316aaf075','校园生活',1,1,'2018-09-21 12:13:51','2018-09-21 12:13:51'),('f18448a27f6e4320b40cfe51cb9b0a66','李康勇',0,1,'2018-09-21 12:13:41','2018-09-21 12:13:41'),('f90d3c2fd9434302951130e897a89164','Vue',1,1,'2018-09-21 12:12:52','2018-09-21 12:12:52');
+INSERT INTO `t_tag` (`uid`, `name`, `click_count`, `level`, `status`, `create_time`, `update_time`) VALUES ('04612e33964d45d19fa7f4fd61acd807','github',2,0,1,'2018-09-21 12:12:52','2018-09-21 12:12:52'),('25228e8e5d4847d39a4b1466e7403e69','Spring Cloud',1,0,1,'2018-09-21 12:09:50','2018-09-21 12:09:50'),('53c5a0f3142e4f54820315936f78383b','Spring Boot',1,0,1,'2018-09-21 12:11:06','2018-09-21 12:11:06'),('7e0e93ea6cdb44ae92e58f48e6496ed7','Java',1,0,1,'2018-09-21 12:12:52','2018-09-21 12:12:52'),('7efee6f74d594d25928ba86bc7adee28','游戏',1,0,1,'2018-09-20 06:51:39','2018-09-20 06:51:39'),('9da13eb143f54c6bb70ecbd5212bde69','原神',1,0,0,'2018-09-21 12:13:51','2018-09-21 12:13:51'),('a9a747d944c24845815356f72723ef8e','前端开发',2,0,1,'2018-09-20 06:51:39','2018-09-20 06:51:39'),('ca928e8718654aa5a802e2f69277b137','生活琐事',2,0,1,'2018-09-21 12:13:41','2018-09-21 12:13:41'),('e2c7913050cf4ab9aa92902316aaf075','校园生活',1,0,1,'2018-09-21 12:13:51','2018-09-21 12:13:51'),('f18448a27f6e4320b40cfe51cb9b0a66','李康勇',1,0,0,'2018-09-21 12:13:41','2018-09-21 12:13:41'),('f90d3c2fd9434302951130e897a89164','Vue',1,0,1,'2018-09-21 12:12:52','2018-09-21 12:12:52');
 /*!40000 ALTER TABLE `t_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -435,4 +437,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-20 14:05:27
+-- Dump completed on 2024-02-21 17:29:23

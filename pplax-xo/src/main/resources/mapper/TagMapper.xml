@@ -5,8 +5,9 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Tag">
         <id column="uid" property="uid" />
-        <result column="content" property="content" />
+        <result column="name" property="name" />
         <result column="click_count" property="clickCount" />
+        <result column="level" property="level" />
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -14,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `content`, `click_count`, `status`, `create_time`, `update_time`
+        `uid`, `name`, `level`, `click_count`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

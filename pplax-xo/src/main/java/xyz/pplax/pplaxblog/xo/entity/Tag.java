@@ -20,7 +20,12 @@ public class Tag extends SuperEntity {
 	/**
 	 * 标签内容
 	 */
-	private String content;
+	private String name;
+
+	/**
+	 * 推荐等级
+	 */
+	private Integer level;
 
 	/**
 	 * 标签简介

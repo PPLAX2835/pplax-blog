@@ -38,14 +38,6 @@ public class AuthRestController extends SuperController {
 		return toJson(authService.getToken(httpServletRequest, loginDto));
 	}
 
-	@ApiOperation(value = "用户信息", notes = "用户信息", response = String.class)
-	@GetMapping(value = "/info")
-	public String info(HttpServletRequest httpServletRequest) {
-
-		log.info("返回结果");
-		return toJson(authService.info(httpServletRequest));
-	}
-
 	@ApiOperation(value = "退出登录", notes = "退出登录", response = String.class)
 	@DeleteMapping(value = "/token")
 	public String logout(HttpServletRequest httpServletRequest) {

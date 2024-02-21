@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -48,6 +49,13 @@ public class UserInfo extends SuperEntity {
      * 自我简介最多150字
      */
     private String summary;
+
+    /**
+     * 头像
+     */
+    @TableField(exist = false)
+    private FileStorage avatar;
+
 
     public UserInfo() {}
 

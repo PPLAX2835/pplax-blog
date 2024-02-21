@@ -19,8 +19,6 @@ public interface AuthService extends SuperService<User> {
 
     ResponseResult getToken(HttpServletRequest httpServletRequest, LoginDto loginDto);
 
-    ResponseResult info(HttpServletRequest httpServletRequest);
-
     void saveImageCode(String key, String code);
 
     ResponseResult getCaptcha(CaptchaDto captcha);

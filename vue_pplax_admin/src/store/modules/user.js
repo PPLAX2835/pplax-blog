@@ -3,11 +3,12 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
   state: {
-    token: getToken(),
+    token: '',
     uid: '',
+    userInfoUid: '',
     name: '',
     avatar: '',
-    roles: []
+    menu: []
   },
 
   mutations: {
@@ -17,14 +18,17 @@ const user = {
     SET_UID: (state, uid) => {
       state.uid = uid
     },
+    SET_USER_INFO_UID: (state, uid) => {
+      state.userInfoUid = uid
+    },
     SET_NAME: (state, name) => {
       state.name = name
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
     },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles
+    SET_MENU: (state, menu) => {
+      state.menu = menu
     }
   },
 
@@ -40,27 +44,18 @@ const user = {
           const data = response.data
           // 存token
           setToken('Bearer ' + data.access_token)
-          commit('SET_TOKEN', data.access_token)
-          resolve(response)
-        }).catch(error => {
-          reject(error)
-        })
-      })
-    },
-
-    // 获取用户信息
-    GetInfo({ commit }) {
-      return new Promise((resolve, reject) => {
-        getInfo().then(response => {
-          const data = response.data
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.roles)
-          } else {
-            reject('getInfo: roles must be a non-null array !')
-          }
-          commit('SET_NAME', data.name)
+          commit('SET_TOKEN', 'Bearer ' + data.access_token)
+          // 存用户uid
           commit('SET_UID', data.uid)
-          commit('SET_AVATAR', data.avatar)
+          // 存用户信息uid
+          commit('SET_USER_INFO_UID', data.userInfoUid)
+          // 存昵称
+          commit('SET_NAME', data.userInfo.nickname)
+          // 存头像
+          commit('SET_AVATAR', data.userInfo.avatar.fileUrl)
+          // 存菜单
+          commit('SET_MENU', data.role.menuList)
+
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -73,7 +68,6 @@ const user = {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
           removeToken()
           resolve()
         }).catch(error => {

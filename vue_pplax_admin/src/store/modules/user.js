@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/login'
+import { login, logout, getInfo } from '@/api/auth'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
@@ -29,18 +29,17 @@ const user = {
   },
 
   actions: {
-    // 登录
-    Login({ commit }, userInfo) {
-      userInfo.username.trim()
-      userInfo.username.trim()
-      console.log(userInfo)
+    // 获取token
+    getToken({ commit }, loginForm) {
+      loginForm.username.trim()
+      loginForm.password.trim()
+      loginForm.nonceStr.trim()
       return new Promise((resolve, reject) => {
 
-        login(userInfo).then(response => {
+        login(loginForm).then(response => {
           const data = response.data
           // 存token
           setToken('Bearer ' + data.access_token)
-
           commit('SET_TOKEN', data.access_token)
           resolve(response)
         }).catch(error => {

@@ -9,9 +9,6 @@
                 <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
                     label-position="left">
                     <i class="top"></i><i class="bottom"></i>
-                    <div class="logo">
-                        <el-avatar src="https://img.shiyit.com/9cf1222617fd4fa197991476a53cc883.jpg"></el-avatar>
-                    </div>
 
                     <div class="title-container">
                         <h3 class="title">博客管理后台</h3>

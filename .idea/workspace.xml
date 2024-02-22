@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,13 +279,6 @@
       <workItem from="1708406841222" duration="19625000" />
       <workItem from="1708437655092" duration="1842000" />
       <workItem from="1708491093747" duration="13484000" />
-    </task>
-    <task id="LOCAL-00239" summary="解决跨域问题">
-      <created>1706620181779</created>
-      <option name="number" value="00239" />
-      <option name="presentableId" value="LOCAL-00239" />
-      <option name="project" value="LOCAL" />
-      <updated>1706620181779</updated>
     </task>
     <task id="LOCAL-00240" summary="把pplax-utils也归到pplax-commons里了">
       <created>1706684047345</created>
@@ -625,7 +616,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708578564457</updated>
     </task>
-    <option name="localTasksCounter" value="288" />
+    <task id="LOCAL-00288" summary="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题">
+      <created>1708580550802</created>
+      <option name="number" value="00288" />
+      <option name="presentableId" value="LOCAL-00288" />
+      <option name="project" value="LOCAL" />
+      <updated>1708580550802</updated>
+    </task>
+    <option name="localTasksCounter" value="289" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +658,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="实现文件服务的头像上传" />
     <MESSAGE value="头像增删改初步实现" />
     <MESSAGE value="路径访问权限增加字段，用于解决用户是否可以访问其他用户uid下的路径的问题" />
     <MESSAGE value="修改了已经被允许的访问方式 在后续循环中不允许的配置将其重新修改位false的问题" />
@@ -685,7 +682,8 @@
     <MESSAGE value="登录改为需要验证码登录" />
     <MESSAGE value="修改登录成功不跳转的bug" />
     <MESSAGE value="实现restful风格api鉴权" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现restful风格api鉴权" />
+    <MESSAGE value="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,23 +1,16 @@
-import { login, logout, getInfo } from '@/api/auth'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { login, logout } from '@/api/auth'
+import { setToken, removeToken, setUserUid, getUserUid, removeUserUid } from '@/utils/auth'
 import { getUserInfo } from '@/api/user';
 
 const user = {
   state: {
-    token: '',
-    uid: '',
     name: '',
     avatar: '',
-    menu: []
+    menu: [],
+    role: ''
   },
 
   mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token
-    },
-    SET_UID: (state, uid) => {
-      state.uid = uid
-    },
     SET_NAME: (state, name) => {
       state.name = name
     },
@@ -26,7 +19,10 @@ const user = {
     },
     SET_MENU: (state, menu) => {
       state.menu = menu
-    }
+    },
+    SET_ROLE: (state, role) => {
+      state.role = role
+    },
   },
 
   actions: {
@@ -41,9 +37,8 @@ const user = {
           const data = response.data
           // 存token
           setToken('Bearer ' + data.access_token)
-          commit('SET_TOKEN', 'Bearer ' + data.access_token)
           // 存用户uid
-          commit('SET_UID', data.uid)
+          setUserUid(data.uid)
 
           resolve(response)
         }).catch(error => {
@@ -52,9 +47,9 @@ const user = {
       })
     },
 
-    getCurrentUserInfo({ commit, state }) {
+    getCurrentUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        getUserInfo(state.uid).then(response => {
+        getUserInfo(getUserUid()).then(response => {
           const data = response.data
           // 存昵称
           commit('SET_NAME', data.nickname)
@@ -72,8 +67,8 @@ const user = {
     logout({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
           removeToken()
+          removeUserUid()
           resolve()
         }).catch(error => {
           reject(error)
@@ -81,14 +76,6 @@ const user = {
       })
     },
 
-    // 前端 登出
-    FedLogOut({ commit }) {
-      return new Promise(resolve => {
-        commit('SET_TOKEN', '')
-        removeToken()
-        resolve()
-      })
-    }
   }
 }
 

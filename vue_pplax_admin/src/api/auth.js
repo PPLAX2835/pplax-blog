@@ -14,17 +14,6 @@ export function login(data) {
 }
 
 /**
- * 获得当前用户信息
- * @returns {*}
- */
-export function getCurrentUserInfo() {
-  return request({
-    url: '/auth/info',
-    method: 'get'
-  })
-}
-
-/**
  * 登出
  * @returns {*}
  */

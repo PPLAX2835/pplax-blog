@@ -123,12 +123,6 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             // 移除加密盐
             map.remove(BaseSysConstants.SALT);
 
-            // 封装用户信息
-            map.put(BaseSysConstants.USER_INFO, userInfoService.getById(user.getUserInfoUid()));
-
-            // 封装角色信息
-            map.put(BaseSysConstants.ROLE, roleService.getById(user.getRoleUid()));
-
             // 返回结果
             return ResponseResult.success(map);
         } else {

@@ -31,6 +31,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 鉴权管理器，用于判断是否有资源的访问权限
@@ -146,8 +148,14 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
                 String menuMethod = urlArr[0];                              // 请求方式
                 String menuUrl = urlArr[1];                                 // 请求url
 
-                if (method.equals(menuMethod) && url.equals(menuUrl)) {
-                    return true;
+                if (method.equals(menuMethod)) {
+                    // 处理并判断url
+                    menuUrl = menuUrl.replaceAll("\\{uid}", "\\\\w+") + "$";
+                    Pattern pattern = Pattern.compile(menuUrl);
+                    Matcher matcher = pattern.matcher(url);
+                    if (matcher.matches()) {
+                        return true;
+                    }
                 }
             }
             // 向子菜单递归

@@ -22,6 +22,12 @@ public class UserInfoController extends SuperController {
 
     private static final Logger log = LogManager.getLogger(UserController.class);
 
+    @Autowired
+    private UserInfoService userInfoService;
 
+    @GetMapping(value = "")
+    public String getUserInfo (@PathVariable("userUid") String userUid) {
+        return success(userInfoService.getByUserUid(userUid));
+    }
 
 }

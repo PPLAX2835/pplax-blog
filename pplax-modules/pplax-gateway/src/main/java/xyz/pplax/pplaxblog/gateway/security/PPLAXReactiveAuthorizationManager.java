@@ -21,7 +21,9 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.gateway.exception.UnLoggedInException;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.constants.redis.RoleRedisConstants;
 import xyz.pplax.pplaxblog.xo.entity.Menu;
@@ -79,7 +81,7 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
         log.info("当前请求头Authorization中的值:" + authorizationToken);
         if (StringUtils.isEmpty(authorizationToken)) {
             log.warn("当前请求头Authorization中的值不存在");
-            return Mono.just(new AuthorizationDecision(false));
+            return Mono.error(new UnLoggedInException(HttpStatus.LOGIN_REQUIRED.getMessage()));
         }
         String token = authorizationToken.replace(OAuth2AccessToken.BEARER_TYPE + " ", "");
 

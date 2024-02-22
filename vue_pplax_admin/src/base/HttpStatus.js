@@ -76,16 +76,19 @@ const HttpStatus = {
     //    ——————————————————————————————
     //               自定义状态码
     //    ——————————————————————————————
-    
+
     /**
      * curd相关
      */
     // 成功   200000-200099
-    INSERT_SUCCESS: { code: 200001, message: '插入成功' },
-    UPDATE_SUCCESS: { code: 200002, message: '更新成功' },
-    OPERATION_SUCCESS: { code: 200003, message: '操作成功' },
-    DELETE_SUCCESS: { code: 200004, message: '删除成功' },
-    BATCH_DELETE_SUCCESS: { code: 200005, message: '批量删除成功' },
+    INSERT_SUCCESS: { code: 200, message: '插入成功' },
+    UPDATE_SUCCESS: { code: 200, message: '更新成功' },
+    OPERATION_SUCCESS: { code: 200, message: '操作成功' },
+    DELETE_SUCCESS: { code: 200, message: '删除成功' },
+    BATCH_DELETE_SUCCESS: { code: 200, message: '批量删除成功' },
+
+
+
     // 失败   500000-500099
     OPERATION_FAIL: { code: 500001, message: '操作失败' },
     INSERT_FAIL: { code: 500002, message: '插入失败' },
@@ -108,7 +111,7 @@ const HttpStatus = {
     PLEASE_SELECT_A_RECORD_TO_DELETE: { code: 400007, message: '请选择要删除的记录' },
 
 
-    
+
     /**
      * 拒绝相关
      */
@@ -143,9 +146,11 @@ const HttpStatus = {
     ERROR_PASSWORD: { code: 401005, message: '密码错误' },
     LOGIN_ERROR: { code: 401006, message: '用户名或密码错误，错误%d次后，账户将被锁定30分钟' },
     LOGIN_DISABLE: { code: 401007, message: '该账号已被封禁' },
+    VALIDATION_CODE_EXPIRED: {code: 401008, message: "验证码已失效"},
+    VALIDATION_FAIL: {code: 401009, message: "验证失败，请控制拼图对齐缺口"},
 
 
-    
+
     //    邮件相关异常
     EMAIL_SEND_PASSWORD_MISTAKE: { code: 13110, message: '发件者邮箱密码错误' },
     EMAIL_SEND_HOST_MISTAKE: { code: 13120, message: '发件者邮箱主机错误' },
@@ -163,9 +168,6 @@ const HttpStatus = {
     /**
      * 权限相关     41000-41999
      */
-
-    // 成功   200300-200399
-
     // 失败   401100-401199
     LOGIN_REQUIRED: { code: 401101, message: '需要登陆' },
     NO_ROLE: { code: 401102, message: '没有分配角色权限' },
@@ -193,6 +195,5 @@ const HttpStatus = {
     FILE_FAIL_PROPERTY: { code: 11500, message: '获取文件属性失败' },
     FILE_EXCEED_MAX_SIZE: { code: 11600, message: '上传文件超过最大上传大小' },
   };
-  
+
   export default HttpStatus;
-  

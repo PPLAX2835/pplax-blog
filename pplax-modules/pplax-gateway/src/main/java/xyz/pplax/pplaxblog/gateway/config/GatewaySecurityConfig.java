@@ -17,7 +17,10 @@ import org.springframework.security.oauth2.server.resource.web.server.ServerBear
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
 import org.springframework.security.web.server.authorization.AuthorizationContext;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsUtils;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
@@ -65,7 +68,8 @@ public class GatewaySecurityConfig {
                 // 其他的请求必须鉴权，使用鉴权管理器
                 .anyExchange().access(pplaxReactiveAuthorizationManager)
                 // 鉴权的异常处理，权限不足，token失效
-                .and().exceptionHandling()
+                .and()
+                .exceptionHandling()
                 // 未登录访问时处理
                 .authenticationEntryPoint(pplaxAuthenticationEntryPoint)
                 // 访问被拒绝时处理，没有权限访问
@@ -82,36 +86,16 @@ public class GatewaySecurityConfig {
      * 跨域请求过滤器
      */
     @Bean
-    public WebFilter corsFilter() {
-        return (ServerWebExchange ctx, WebFilterChain chain) -> {
-            ServerHttpRequest request = ctx.getRequest();
-            if (CorsUtils.isCorsRequest(request)) {
-                ServerHttpResponse response = ctx.getResponse();
-                HttpHeaders headers = response.getHeaders();
+    public CorsWebFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("*");
+        config.setAllowCredentials(true);
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
 
-                /**
-                 * 跨域发送复杂请求的时候会先发送一个option请求来判断是否可以进行跨域
-                 * 后端需要设置对应的响应头来告诉前端可以跨域
-                 * 这里只能在option请求的时候设置请求头
-                 * 当前端知道可以跨域的时候就会继续发送请求
-                 * 如果这里不用if限制一下就会重复添加请求头
-                 * 前端发现请求头重复了就有不允许跨域了
-                 */
-                if (request.getMethod() == HttpMethod.OPTIONS) {
-
-                    headers.add("Access-Control-Allow-Origin", "*");
-                    headers.add("Access-Control-Allow-Methods", "*");
-                    headers.add("Access-Control-Max-Age", "18000L");
-                    headers.add("Access-Control-Allow-Headers", "*");
-                    headers.add("Access-Control-Expose-Headers", "*");
-                    headers.add("Access-Control-Allow-Credentials", "true");
-
-                    response.setStatusCode(HttpStatus.OK);
-                    return Mono.empty();
-                }
-            }
-            return chain.filter(ctx);
-        };
+        return new CorsWebFilter(source);
     }
 
 }

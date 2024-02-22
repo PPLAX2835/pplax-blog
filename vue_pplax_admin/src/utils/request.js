@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
 import HttpStatus from '../base/HttpStatus'
-import { getToken } from '@/utils/auth'
+import { getToken, removeToken, removeUserUid } from '@/utils/auth'
 
 // 创建axios实例
 const service = axios.create({
@@ -33,10 +33,22 @@ service.interceptors.response.use(
   response => {
 
     let res = response.data
-    /**
-     * code为非200是抛错
-     */
-    if (res.code != HttpStatus.OK.code || (res.code >= 200000 && res.code <= 200999)) {
+
+    if (res.code === HttpStatus.UNAUTHORIZED.code || (res.code >= 401000 && res.code <= 401999)) {
+      // 认证有问题的情况
+      Message({
+        message: res.code + ': ' + res.message + (res.data !== '' ? ', ' + res.data : ''),
+        type: 'error',
+        duration: 5 * 1000
+      })
+
+      setTimeout(function () {
+        removeToken();
+        removeUserUid();
+        location.reload();
+      }, 2000)
+    } else if (res.code !== HttpStatus.OK.code) {
+      // code为非200是抛错
       Message({
         message: res.code + ': ' + res.message + (res.data !== '' ? ', ' + res.data : ''),
         type: 'error',
@@ -45,6 +57,7 @@ service.interceptors.response.use(
 
       return Promise.reject(res.message)
     } else {
+      // 200 返回
       return res
     }
   },

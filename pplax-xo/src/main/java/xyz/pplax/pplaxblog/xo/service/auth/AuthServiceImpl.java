@@ -52,16 +52,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     private UserService userService;
 
     @Autowired
-    private UserInfoService userInfoService;
-
-    @Autowired
     private AuthFeignClient authFeignClient;
-
-    @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private FileStorageService fileStorageService;
 
     @Autowired
     private RedisService redisService;

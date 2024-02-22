@@ -7,3 +7,15 @@ export function getUserList(params) {
     params
   })
 }
+
+/**
+ * 获得用户信息
+ * @param userUid
+ * @returns {*}
+ */
+export function getUserInfo(userUid) {
+  return service({
+    url: '/user/' + userUid + '/userInfo',
+    method: 'get',
+  })
+}

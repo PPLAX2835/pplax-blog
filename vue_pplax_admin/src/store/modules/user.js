@@ -1,11 +1,11 @@
 import { login, logout, getInfo } from '@/api/auth'
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getUserInfo } from '@/api/user';
 
 const user = {
   state: {
     token: '',
     uid: '',
-    userInfoUid: '',
     name: '',
     avatar: '',
     menu: []
@@ -17,9 +17,6 @@ const user = {
     },
     SET_UID: (state, uid) => {
       state.uid = uid
-    },
-    SET_USER_INFO_UID: (state, uid) => {
-      state.userInfoUid = uid
     },
     SET_NAME: (state, name) => {
       state.name = name
@@ -47,14 +44,22 @@ const user = {
           commit('SET_TOKEN', 'Bearer ' + data.access_token)
           // 存用户uid
           commit('SET_UID', data.uid)
-          // 存用户信息uid
-          commit('SET_USER_INFO_UID', data.userInfoUid)
+
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+
+    getCurrentUserInfo({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        getUserInfo(state.uid).then(response => {
+          const data = response.data
           // 存昵称
-          commit('SET_NAME', data.userInfo.nickname)
+          commit('SET_NAME', data.nickname)
           // 存头像
-          commit('SET_AVATAR', data.userInfo.avatar.fileUrl)
-          // 存菜单
-          commit('SET_MENU', data.role.menuList)
+          commit('SET_AVATAR', data.avatar.fileUrl)
 
           resolve(response)
         }).catch(error => {
@@ -64,7 +69,7 @@ const user = {
     },
 
     // 登出
-    LogOut({ commit, state }) {
+    logout({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')

@@ -31,6 +31,9 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  created() {
+    this.$store.dispatch('getCurrentUserInfo')
+  },
   computed: {
     ...mapGetters([
       'sidebar',
@@ -42,7 +45,7 @@ export default {
       this.$store.dispatch('ToggleSideBar')
     },
     logout() {
-      this.$store.dispatch('LogOut').then(() => {
+      this.$store.dispatch('logout').then(() => {
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })
     }

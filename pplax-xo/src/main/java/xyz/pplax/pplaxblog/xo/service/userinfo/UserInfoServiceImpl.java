@@ -44,6 +44,6 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
     @Override
     public UserInfo getByUserUid(String userUid) {
         User user = userService.getById(userUid);
-        return super.getById(user.getUserInfoUid());
+        return getById(user.getUserInfoUid());
     }
 }

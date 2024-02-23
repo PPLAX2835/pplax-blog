@@ -19,3 +19,15 @@ export function getUserInfo(userUid) {
     method: 'get',
   })
 }
+
+/**
+ * 获取用户的角色，包含菜单
+ * @param userUid
+ * @returns {*}
+ */
+export function getRoleWithMenu(userUid) {
+  return service({
+    url: '/user/' + userUid + '/role',
+    method: 'get',
+  })
+}

@@ -28,14 +28,15 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/admin/dashboard',
     name: '首页',
     hidden: true,
     children: [{
-      path: 'dashboard',
+      path: 'admin/dashboard',
       component: () => import('@/views/dashboard/index')
     }]
   },
+
 
   {
     path: '/admin',
@@ -52,6 +53,24 @@ export const constantRouterMap = [
       }
     ]
   },
+
+
+  {
+    path: '/admin',
+    component: Layout,
+    redirect: '/admin/blog',
+    name: '博客管理',
+    meta: { title: '博客管理', icon: 'example' },
+    children: [
+      {
+        path: 'blog/index',
+        name: '博客管理',
+        component: () => import('@/views/blog/index'),
+        meta: { title: '博客管理', icon: 'table' }
+      }
+    ]
+  },
+
 
   {
     path: '/admin',
@@ -125,7 +144,7 @@ export const constantRouterMap = [
     meta: { title: '用户管理', icon: 'example' },
     children: [
       {
-        path: 'user',
+        path: 'user/index',
         name: '用户管理',
         component: () => import('@/views/user/index'),
         meta: { title: '用户管理', icon: 'table' }

@@ -1,31 +1,31 @@
 <template>
-  <div v-if="!item.hidden&&item.children" class="menu-wrapper">
+  <div v-if="!item.hidden && item.childMenuList" class="menu-wrapper">
 
-    <template v-if="hasOneShowingChild(item.children) && !onlyOneChild.children&&!item.alwaysShow">
-      <a :href="onlyOneChild.path" target="_blank" @click="clickLink(onlyOneChild.path,$event)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon" :title="onlyOneChild.meta.title" />
+    <template v-if="!hasOneShowingChild(item.childMenuList) && isMenu(item) && item.route">
+      <a :href="item.route" target="_blank" @click="clickLink(item.route,$event)">
+        <el-menu-item :index="resolvePath(item.route)" :class="{'submenu-title-noDropdown':!isNest}">
+          <item :icon="item.icon" :title="item.title" />
         </el-menu-item>
       </a>
     </template>
 
-    <el-submenu v-else :index="item.name||item.path">
+    <el-submenu v-else :index="item.route">
       <template slot="title">
-        <item v-if="item.meta" :icon="item.meta.icon" :title="item.meta.title" />
+        <item :icon="item.icon" :title="item.title" />
       </template>
 
-      <template v-for="child in item.children" v-if="!child.hidden">
+      <template v-for="child in item.childMenuList" v-if="!child.hidden && isMenu(child) ">
         <sidebar-item
-          v-if="child.children&&child.children.length>0"
+          v-if="child.childMenuList && child.childMenuList.length > 0 && hasMenuChild(child.childMenuList)"
           :is-nest="true"
           :item="child"
-          :key="child.path"
-          :base-path="resolvePath(child.path)"
+          :key="child.route"
+          :base-path="resolvePath(child.route)"
           class="nest-menu"/>
 
-        <a v-else :href="child.path" :key="child.name" target="_blank" @click="clickLink(child.path,$event)">
-          <el-menu-item :index="resolvePath(child.path)">
-            <item v-if="child.meta" :icon="child.meta.icon" :title="child.meta.title" />
+        <a v-else :href="child.route" :key="child.title" target="_blank" @click="clickLink(child.route,$event)">
+          <el-menu-item :index="resolvePath(child.route)">
+            <item :icon="child.icon" :title="child.title" />
           </el-menu-item>
         </a>
       </template>
@@ -59,17 +59,40 @@ export default {
   },
   data() {
     return {
-      onlyOneChild: null
+
     }
   },
   methods: {
+    test(item) {
+      if (item.title === '首页') {
+        console.log(item)
+
+        console.log(!this.hasOneShowingChild(item.childMenuList))
+        console.log(item.childMenuList)
+        console.log(item.route && this.isMenu(item))
+
+      }
+
+      return false;
+
+    },
+    isMenu(item) {
+      return item.type === 'menu';
+    },
+    hasMenuChild(children) {
+      children.filter(item => {
+        if (item.type === 'menu') {
+          return true;
+        }
+      })
+      return false;
+    },
     hasOneShowingChild(children) {
       const showingChildren = children.filter(item => {
         if (item.hidden) {
           return false
         } else {
           // temp set(will be used if only has one showing child )
-          this.onlyOneChild = item
           return true
         }
       })

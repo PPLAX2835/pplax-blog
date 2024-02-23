@@ -1,5 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service.role;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
@@ -10,6 +12,7 @@ import xyz.pplax.pplaxblog.xo.entity.Menu;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
 import xyz.pplax.pplaxblog.xo.service.menu.MenuService;
+import xyz.pplax.pplaxblog.xo.service.user.UserServiceImpl;
 
 import java.io.Serializable;
 import java.util.*;
@@ -20,11 +23,18 @@ import java.util.*;
 @Service
 public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implements RoleService {
 
+    private static final Logger log = LogManager.getLogger(RoleServiceImpl.class);
+
     @Autowired
     private MenuService menuService;
 
     @Override
     public Role setMenu(Role role) {
+        if (role == null) {
+            log.warn("参数为空");
+            return null;
+        }
+
         // 获得菜单
         List<Menu> menuList = new ArrayList<>();
 

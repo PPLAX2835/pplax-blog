@@ -1,6 +1,6 @@
 import { login, logout } from '@/api/auth'
 import { setToken, removeToken, setUserUid, getUserUid, removeUserUid } from '@/utils/auth'
-import { getUserInfo } from '@/api/user';
+import { getUserInfo, getRoleWithMenu } from '@/api/user';
 
 const user = {
   state: {
@@ -47,6 +47,7 @@ const user = {
       })
     },
 
+    // 获得当前登录用户的信息
     getCurrentUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
         getUserInfo(getUserUid()).then(response => {
@@ -61,6 +62,26 @@ const user = {
           reject(error)
         })
       })
+    },
+
+    // 获得当前用户的角色，包含菜单
+    getCurrentUserRoleWithMenu({ commit }) {
+
+      return new Promise((resolve, reject) => {
+        getRoleWithMenu(getUserUid()).then(response => {
+          const data = response.data
+
+          // 存角色
+          commit('SET_ROLE', data.roleName)
+          // 存菜单
+          commit('SET_MENU', data.menuList)
+
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+
     },
 
     // 登出

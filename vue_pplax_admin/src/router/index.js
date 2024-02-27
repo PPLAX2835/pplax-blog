@@ -139,12 +139,12 @@ export const constantRouterMap = [
   {
     path: '/admin',
     component: Layout,
-    redirect: '/admin/user',
+    redirect: '/admin/system',
     name: '用户管理',
     meta: { title: '用户管理', icon: 'example' },
     children: [
       {
-        path: 'user/index',
+        path: 'system/user',
         name: '用户管理',
         component: () => import('@/views/user/index'),
         meta: { title: '用户管理', icon: 'table' }
@@ -180,22 +180,6 @@ export const constantRouterMap = [
         name: '收藏管理',
         component: () => import('@/views/collect/index'),
         meta: { title: '收藏管理', icon: 'table' }
-      }
-    ]
-  },
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/visitor',
-    name: '游客管理',
-    meta: { title: '游客管理', icon: 'example' },
-    children: [
-      {
-        path: 'visitor',
-        name: '游客管理',
-        component: () => import('@/views/visitor/index'),
-        meta: { title: '游客管理', icon: 'table' }
       }
     ]
   },

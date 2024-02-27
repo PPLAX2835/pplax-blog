@@ -9,7 +9,6 @@
       text-color="#bfcbd9"
       active-text-color="#409EFF"
     >
-<!--      <sidebar-item v-for="route in routes" :key="route.name" :item="route" :base-path="route.path"/>-->
       <sidebar-item v-for="menu in menuList" :key="menu.title" :item="menu" :base-path="menu.route"/>
     </el-menu>
   </el-scrollbar>

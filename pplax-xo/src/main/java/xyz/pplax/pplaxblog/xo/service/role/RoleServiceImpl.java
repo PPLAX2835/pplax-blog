@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.service.role;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.constants.sql.MenuSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.Menu;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
@@ -36,19 +38,17 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
         }
 
         // 获得菜单
-        List<Menu> menuList = new ArrayList<>();
-
         if (StringUtils.isEmpty(role.getMenuUids())) {
             return role;
         }
 
         String[] menuUids = role.getMenuUids().split(CharacterConstants.SYMBOL_COMMA);
 
-        // 封装到list中
-        for (String menuUid : menuUids) {
-            Menu menu = menuService.getById(menuUid);
-            menuList.add(menu);
-        }
+        // 查询
+        QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
+        menuQueryWrapper.in(MenuSQLConstants.UID, menuUids);
+        menuQueryWrapper.orderByAsc(MenuSQLConstants.SORT_NO);
+        List<Menu> menuList = menuService.list(menuQueryWrapper);
 
         role.setMenuList(organizeMenus(menuList));
 

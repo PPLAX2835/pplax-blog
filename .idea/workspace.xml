@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="将uid的存储方式改为cookie的">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="实现动态菜单">
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/MenuSQLConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/SidebarItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/SidebarItem.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,14 +108,14 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.xo.constants.sql" />
       <recent name="xyz.pplax.pplaxblog.admin.controller" />
       <recent name="xyz.pplax.pplaxblog.xo.service.menu" />
       <recent name="xyz.pplax.pplaxblog.xo.mapper" />
       <recent name="xyz.pplax.pplaxblog.xo.entity" />
-      <recent name="xyz.pplax.pplaxblog.commons.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="Spring Boot.GatewayApplication">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -288,14 +280,8 @@
       <workItem from="1708406841222" duration="19625000" />
       <workItem from="1708437655092" duration="1842000" />
       <workItem from="1708491093747" duration="13484000" />
-      <workItem from="1708650179964" duration="13535000" />
-    </task>
-    <task id="LOCAL-00240" summary="把pplax-utils也归到pplax-commons里了">
-      <created>1706684047345</created>
-      <option name="number" value="00240" />
-      <option name="presentableId" value="LOCAL-00240" />
-      <option name="project" value="LOCAL" />
-      <updated>1706684047345</updated>
+      <workItem from="1708650179964" duration="15667000" />
+      <workItem from="1709031526315" duration="2494000" />
     </task>
     <task id="LOCAL-00241" summary="添加starter模块，将配置放到这里">
       <created>1706689733476</created>
@@ -633,7 +619,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708580550802</updated>
     </task>
-    <option name="localTasksCounter" value="289" />
+    <task id="LOCAL-00289" summary="实现动态菜单">
+      <created>1708679798822</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
+      <option name="project" value="LOCAL" />
+      <updated>1708679798823</updated>
+    </task>
+    <option name="localTasksCounter" value="290" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="头像增删改初步实现" />
     <MESSAGE value="路径访问权限增加字段，用于解决用户是否可以访问其他用户uid下的路径的问题" />
     <MESSAGE value="修改了已经被允许的访问方式 在后续循环中不允许的配置将其重新修改位false的问题" />
     <MESSAGE value="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了" />
@@ -693,7 +685,8 @@
     <MESSAGE value="修改登录成功不跳转的bug" />
     <MESSAGE value="实现restful风格api鉴权" />
     <MESSAGE value="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题" />
+    <MESSAGE value="实现动态菜单" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现动态菜单" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

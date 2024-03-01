@@ -1,9 +1,9 @@
 <template>
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
-      <!-- or name="fade" -->
-      <!-- <router-view :key="key"></router-view> -->
-      <router-view/>
+      <keep-alive :include="cachedViews">
+        <router-view  />
+      </keep-alive>
     </transition>
   </section>
 </template>
@@ -12,9 +12,13 @@
 export default {
   name: 'AppMain',
   computed: {
-    // key() {
-    //   return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
-    // }
+    //需要缓存的页面 固钉
+    cachedViews() {
+      return this.$store.state.tagsView.cachedViews
+    },
+    key() {
+      return this.$route.path
+    }
   }
 }
 </script>
@@ -23,7 +27,26 @@ export default {
 .app-main {
   /*50 = navbar  */
   min-height: calc(100vh - 50px);
+  width: 100%;
   position: relative;
   overflow: hidden;
 }
+.fixed-header+.app-main {
+  padding-top: 50px;
+}
+</style>
+
+<style lang="scss">
+// fix css style bug in open el-dialog
+.hasTagsView {
+  .app-main {
+    /* 84 = navbar + tags-view = 50 + 34 */
+    min-height: calc(100vh - 84px);
+  }
+
+  .fixed-header+.app-main {
+    padding-top: 84px;
+  }
+}
+
 </style>

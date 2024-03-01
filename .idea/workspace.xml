@@ -4,10 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="让菜单按顺序排列">
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/assets/images/dark.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/assets/images/light.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/RightPanel/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/ThemePicker/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/tagsView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Settings/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/TagsView/ScrollPane.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/TagsView/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/permission.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/Layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/AppMain.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/AppMain.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +44,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -70,7 +85,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_admin/src/styles" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -88,11 +103,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\styles" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-gateway\src\main\java\xyz\pplax\pplaxblog\gateway" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\api" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\login" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\service" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
@@ -282,13 +297,6 @@
       <workItem from="1709083744715" duration="508000" />
       <workItem from="1709087100304" duration="648000" />
       <workItem from="1709278855685" duration="1429000" />
-    </task>
-    <task id="LOCAL-00242" summary="整理commons模块">
-      <created>1706690249042</created>
-      <option name="number" value="00242" />
-      <option name="presentableId" value="LOCAL-00242" />
-      <option name="project" value="LOCAL" />
-      <updated>1706690249042</updated>
     </task>
     <task id="LOCAL-00243" summary=" security-starter部分类移到auth服务中，再次修改SecurityUserDetails">
       <created>1706752765940</created>
@@ -626,7 +634,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709034220992</updated>
     </task>
-    <option name="localTasksCounter" value="291" />
+    <task id="LOCAL-00291" summary="修改子路径的组件不能正常显示的问题">
+      <created>1709285269950</created>
+      <option name="number" value="00291" />
+      <option name="presentableId" value="LOCAL-00291" />
+      <option name="project" value="LOCAL" />
+      <updated>1709285269950</updated>
+    </task>
+    <option name="localTasksCounter" value="292" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +676,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改了已经被允许的访问方式 在后续循环中不允许的配置将其重新修改位false的问题" />
     <MESSAGE value="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了" />
     <MESSAGE value="继续修改鉴权，好害怕这里成为将来的坑..." />
     <MESSAGE value="调整表" />
@@ -686,7 +700,8 @@
     <MESSAGE value="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题" />
     <MESSAGE value="实现动态菜单" />
     <MESSAGE value="让菜单按顺序排列" />
-    <option name="LAST_COMMIT_MESSAGE" value="让菜单按顺序排列" />
+    <MESSAGE value="修改子路径的组件不能正常显示的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改子路径的组件不能正常显示的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

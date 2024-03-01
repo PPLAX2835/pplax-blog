@@ -29,160 +29,94 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: '/admin/dashboard',
-    name: '首页',
+    name: 'Home',
     hidden: true,
-    children: [{
-      path: 'admin/dashboard',
-      component: () => import('@/views/dashboard/index')
-    }]
-  },
-
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/blog',
-    name: '博客管理',
-    meta: { title: '博客管理', icon: 'example' },
     children: [
       {
-        path: 'blog',
-        name: '博客管理',
-        component: () => import('@/views/blog/index'),
-        meta: { title: '博客管理', icon: 'table' }
+        path: 'admin',
+        name: 'Admin',
+        redirect: '/admin/dashboard',
+        component: () => import('@/views/dashboard/index'),
+        children: [
+
+          {
+            path: 'dashboard',
+            name: 'Dashboard',
+            component: () => import('@/views/dashboard/index'),
+          },
+
+          {
+            path: 'blog',
+            redirect: 'index',
+            meta: { title: '博客管理', icon: 'table' },
+            name: 'Blog',
+            children: [
+              {
+                path: 'index',
+                name: 'Blog',
+                component: () => import('@/views/blog/index'),
+                meta: { title: '博客管理', icon: 'table' },
+              },
+              {
+                path: 'blogSort',
+                name: 'BlogSort',
+                component: () => import('@/views/blogSort/index'),
+                meta: { title: '博客分类管理', icon: 'table' }
+              },
+              {
+                path: 'comment',
+                name: 'Comment',
+                component: () => import('@/views/comment/index'),
+                meta: { title: '评论管理', icon: 'table' }
+              },
+              {
+                path: 'tag',
+                name: 'Tag',
+                component: () => import('@/views/tag/index'),
+                meta: { title: '标签管理', icon: 'table' }
+              },
+              {
+                path: 'collect',
+                name: 'Collect',
+                component: () => import('@/views/collect/index'),
+                meta: { title: '收藏管理', icon: 'table' }
+              }
+            ]
+          },
+
+          {
+            path: 'system',
+            redirect: 'user',
+            name: 'System',
+            meta: { title: '系统管理', icon: 'table' },
+            children: [
+              {
+                path: 'user',
+                name: 'User',
+                component: () => import('@/views/user/index'),
+                meta: { title: '用户管理', icon: 'table' }
+              },
+              {
+                path: 'feedback',
+                name: 'Feedback',
+                component: () => import('@/views/feedback/index'),
+                meta: { title: '反馈管理', icon: 'table' }
+              },
+              {
+                path: 'link',
+                name: 'Link',
+                component: () => import('@/views/link/index'),
+                meta: { title: '友情链接管理', icon: 'table' }
+              }
+            ]
+          }
+
+
+        ]
       }
     ]
   },
 
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/blog',
-    name: '博客管理',
-    meta: { title: '博客管理', icon: 'example' },
-    children: [
-      {
-        path: 'blog/index',
-        name: '博客管理',
-        component: () => import('@/views/blog/index'),
-        meta: { title: '博客管理', icon: 'table' }
-      }
-    ]
-  },
-
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/blogSort',
-    name: '博客分类管理',
-    meta: { title: '博客分类管理', icon: 'example' },
-    children: [
-      {
-        path: 'blogSort',
-        name: '博客分类管理',
-        component: () => import('@/views/blogSort/index'),
-        meta: { title: '博客分类管理', icon: 'table' }
-      }
-    ]
-  },
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/comment',
-    name: '评论管理',
-    meta: { title: '评论管理', icon: 'example' },
-    children: [
-      {
-        path: 'comment',
-        name: '评论管理',
-        component: () => import('@/views/comment/index'),
-        meta: { title: '评论管理', icon: 'table' }
-      }
-    ]
-  },
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/tag',
-    name: '标签管理',
-    meta: { title: '标签管理', icon: 'example' },
-    children: [
-      {
-        path: 'tag',
-        name: '标签管理',
-        component: () => import('@/views/tag/index'),
-        meta: { title: '标签管理', icon: 'table' }
-      }
-    ]
-  },
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/feedback',
-    name: '反馈管理',
-    meta: { title: '反馈管理', icon: 'example' },
-    children: [
-      {
-        path: 'feedback',
-        name: '反馈管理',
-        component: () => import('@/views/feedback/index'),
-        meta: { title: '反馈管理', icon: 'table' }
-      }
-    ]
-  },
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/system',
-    name: '用户管理',
-    meta: { title: '用户管理', icon: 'example' },
-    children: [
-      {
-        path: 'system/user',
-        name: '用户管理',
-        component: () => import('@/views/user/index'),
-        meta: { title: '用户管理', icon: 'table' }
-      }
-    ]
-  },
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/link',
-    name: '友情链接管理',
-    meta: { title: '友情链接管理', icon: 'example' },
-    children: [
-      {
-        path: 'link',
-        name: '友情链接管理',
-        component: () => import('@/views/link/index'),
-        meta: { title: '友情链接管理', icon: 'table' }
-      }
-    ]
-  },
-
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/collect',
-    name: '收藏管理',
-    meta: { title: '收藏管理', icon: 'example' },
-    children: [
-      {
-        path: 'collect',
-        name: '收藏管理',
-        component: () => import('@/views/collect/index'),
-        meta: { title: '收藏管理', icon: 'table' }
-      }
-    ]
-  },
 
   { path: '*', redirect: '/404', hidden: true }
 ]

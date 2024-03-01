@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="实现动态菜单">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/MenuSQLConstants.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,14 +278,10 @@
       <workItem from="1708437655092" duration="1842000" />
       <workItem from="1708491093747" duration="13484000" />
       <workItem from="1708650179964" duration="15667000" />
-      <workItem from="1709031526315" duration="2494000" />
-    </task>
-    <task id="LOCAL-00241" summary="添加starter模块，将配置放到这里">
-      <created>1706689733476</created>
-      <option name="number" value="00241" />
-      <option name="presentableId" value="LOCAL-00241" />
-      <option name="project" value="LOCAL" />
-      <updated>1706689733476</updated>
+      <workItem from="1709031526315" duration="3901000" />
+      <workItem from="1709083744715" duration="508000" />
+      <workItem from="1709087100304" duration="648000" />
+      <workItem from="1709278855685" duration="1429000" />
     </task>
     <task id="LOCAL-00242" summary="整理commons模块">
       <created>1706690249042</created>
@@ -626,7 +619,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708679798823</updated>
     </task>
-    <option name="localTasksCounter" value="290" />
+    <task id="LOCAL-00290" summary="让菜单按顺序排列">
+      <created>1709034220992</created>
+      <option name="number" value="00290" />
+      <option name="presentableId" value="LOCAL-00290" />
+      <option name="project" value="LOCAL" />
+      <updated>1709034220992</updated>
+    </task>
+    <option name="localTasksCounter" value="291" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="路径访问权限增加字段，用于解决用户是否可以访问其他用户uid下的路径的问题" />
     <MESSAGE value="修改了已经被允许的访问方式 在后续循环中不允许的配置将其重新修改位false的问题" />
     <MESSAGE value="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了" />
     <MESSAGE value="继续修改鉴权，好害怕这里成为将来的坑..." />
@@ -686,7 +685,8 @@
     <MESSAGE value="实现restful风格api鉴权" />
     <MESSAGE value="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题" />
     <MESSAGE value="实现动态菜单" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现动态菜单" />
+    <MESSAGE value="让菜单按顺序排列" />
+    <option name="LAST_COMMIT_MESSAGE" value="让菜单按顺序排列" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

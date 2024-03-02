@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="让菜单按顺序排列">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/tagsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/tagsView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/Layout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/TagsView/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/TagsView/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/Item.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/SidebarItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/SidebarItem.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,13 +285,6 @@
       <workItem from="1709083744715" duration="508000" />
       <workItem from="1709087100304" duration="648000" />
       <workItem from="1709278855685" duration="1429000" />
-    </task>
-    <task id="LOCAL-00243" summary=" security-starter部分类移到auth服务中，再次修改SecurityUserDetails">
-      <created>1706752765940</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
-      <option name="project" value="LOCAL" />
-      <updated>1706752765940</updated>
     </task>
     <task id="LOCAL-00244" summary="合并弄错了点">
       <created>1706753084149</created>
@@ -630,7 +622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709285269950</updated>
     </task>
-    <option name="localTasksCounter" value="292" />
+    <task id="LOCAL-00292" summary="修改面包屑导航重复添加路径的bug">
+      <created>1709380879164</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
+      <option name="project" value="LOCAL" />
+      <updated>1709380879166</updated>
+    </task>
+    <option name="localTasksCounter" value="293" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -665,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了" />
     <MESSAGE value="继续修改鉴权，好害怕这里成为将来的坑..." />
     <MESSAGE value="调整表" />
     <MESSAGE value="重载全局查询方法，即先查缓存，后查数据库" />
@@ -690,7 +688,8 @@
     <MESSAGE value="实现动态菜单" />
     <MESSAGE value="让菜单按顺序排列" />
     <MESSAGE value="修改子路径的组件不能正常显示的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改子路径的组件不能正常显示的问题" />
+    <MESSAGE value="修改面包屑导航重复添加路径的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改面包屑导航重复添加路径的bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -50,7 +50,7 @@ export const constantRouterMap = [
 
           {
             path: 'blog',
-            redirect: 'index',
+            redirect: 'blog/index',
             component: {
               render(c) { return c('router-view'); }
             },
@@ -92,7 +92,7 @@ export const constantRouterMap = [
 
           {
             path: 'system',
-            redirect: 'user',
+            redirect: 'system/user',
             component: {
               render(c) { return c('router-view'); }
             },

@@ -5,23 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="让菜单按顺序排列">
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/assets/images/dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/assets/images/light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/RightPanel/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/ThemePicker/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/tagsView.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Settings/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/TagsView/ScrollPane.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/TagsView/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/permission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/components/Breadcrumb/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/tagsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/tagsView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/Layout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/AppMain.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/AppMain.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/TagsView/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/TagsView/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +116,7 @@
       <recent name="xyz.pplax.pplaxblog.xo.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -225,11 +214,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>

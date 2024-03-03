@@ -17,7 +17,7 @@ import xyz.pplax.pplaxblog.xo.service.user.UserService;
 @RestController
 @RequestMapping("/blog")
 @Api(value="博客Controller", tags={"博客Controller"})
-public class BlogRestController {
+public class BlogController {
 
 	@Autowired
     BlogService blogService;
@@ -31,7 +31,7 @@ public class BlogRestController {
 	@Autowired
 	BlogSortService blogSortService;
 
-	private static final Logger log = LogManager.getLogger(BlogRestController.class);
+	private static final Logger log = LogManager.getLogger(BlogController.class);
 
 
 

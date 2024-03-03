@@ -95,8 +95,5 @@ public class User extends SuperEntity {
         this.password = null;
         this.salt = null;
         this.mobile = null;
-        this.loginCount = null;
-        this.lastLoginIp = null;
-        this.email = null;
     }
 }

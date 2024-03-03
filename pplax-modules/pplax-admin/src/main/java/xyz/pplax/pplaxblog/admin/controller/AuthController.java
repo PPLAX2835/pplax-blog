@@ -21,9 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/auth")
 @Api(value="登录认证相关Controller",tags={"登录认证相关Controller"})
-public class AuthRestController extends SuperController {
+public class AuthController extends SuperController {
 
-	private static final Logger log = LogManager.getLogger(AuthRestController.class);
+	private static final Logger log = LogManager.getLogger(AuthController.class);
 
 	@Autowired
 	private AuthFeignClient authFeignClient;

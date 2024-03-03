@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="临时提交，现在右侧的主题设置不报错了，但是生效范围可以说没有">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/Layout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/BlogRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/dto/PageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/dto/PageDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,11 +218,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.GatewayApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -284,13 +290,7 @@
       <workItem from="1709083744715" duration="508000" />
       <workItem from="1709087100304" duration="648000" />
       <workItem from="1709278855685" duration="1429000" />
-    </task>
-    <task id="LOCAL-00245" summary="发现auth-server返回的token不是jwt的，现在改了">
-      <created>1706769846347</created>
-      <option name="number" value="00245" />
-      <option name="presentableId" value="LOCAL-00245" />
-      <option name="project" value="LOCAL" />
-      <updated>1706769846347</updated>
+      <workItem from="1709449779716" duration="4633000" />
     </task>
     <task id="LOCAL-00246" summary="网关配置token鉴权，但是token解析报错目前还未解决">
       <created>1706840330930</created>
@@ -628,7 +628,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709382172198</updated>
     </task>
-    <option name="localTasksCounter" value="294" />
+    <task id="LOCAL-00294" summary="临时提交，现在右侧的主题设置不报错了，但是生效范围可以说没有">
+      <created>1709450048672</created>
+      <option name="number" value="00294" />
+      <option name="presentableId" value="LOCAL-00294" />
+      <option name="project" value="LOCAL" />
+      <updated>1709450048673</updated>
+    </task>
+    <option name="localTasksCounter" value="295" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -663,7 +670,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整表" />
     <MESSAGE value="重载全局查询方法，即先查缓存，后查数据库" />
     <MESSAGE value="补充点日志打印" />
     <MESSAGE value="设置统一updateById" />
@@ -688,7 +694,8 @@
     <MESSAGE value="修改子路径的组件不能正常显示的问题" />
     <MESSAGE value="修改面包屑导航重复添加路径的bug" />
     <MESSAGE value="修改了菜单不能正常显示图标的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了菜单不能正常显示图标的问题" />
+    <MESSAGE value="临时提交，现在右侧的主题设置不报错了，但是生效范围可以说没有" />
+    <option name="LAST_COMMIT_MESSAGE" value="临时提交，现在右侧的主题设置不报错了，但是生效范围可以说没有" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

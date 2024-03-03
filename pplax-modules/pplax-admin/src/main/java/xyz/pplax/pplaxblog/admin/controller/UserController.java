@@ -5,11 +5,9 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.service.role.RoleService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
@@ -25,6 +23,12 @@ public class UserController extends SuperController {
     private UserService userService;
 
     private static final Logger log = LogManager.getLogger(UserController.class);
+
+    @ApiOperation(value="获取用户列表", notes="获取用户列表")
+    @GetMapping(value = "/list")
+    public String getList(@RequestBody PageDto pageDto) {
+        return success(userService.listByNickName(pageDto));
+    }
 
     @ApiOperation(value="获取该用户的角色", notes="获取该用户的角色")
     @GetMapping(value = "/{userUid}/role")

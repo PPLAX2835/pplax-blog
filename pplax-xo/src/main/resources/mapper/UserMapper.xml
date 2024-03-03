@@ -26,4 +26,35 @@
     <sql id="Base_Column_List">
         `uid`, `role_uid`, `user_info_uid`, `username`, `password`, `salt`, `email`, `is_email_activated`, `mobile`, `is_mobile_activated`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`
     </sql>
+
+    <sql id="Full_Colum_List">
+        `t_user`.`uid`,
+        `t_user`.`role_uid`,
+        `t_user`.`user_info_uid`,
+        `t_user`.`username`,
+        `t_user`.`password`,
+        `t_user`.`salt`,
+        `t_user`.`email`,
+        `t_user`.`is_email_activated`,
+        `t_user`.`mobile`,
+        `t_user`.`is_mobile_activated`,
+        `t_user`.`login_count`,
+        `t_user`.`last_login_time`,
+        `t_user`.`last_login_ip`,
+        `t_user`.`status`,
+        `t_user`.`create_time`,
+        `t_user`.`update_time`
+    </sql>
+
+    <select id="selectListByNickName" parameterType="xyz.pplax.pplaxblog.xo.base.dto.PageDto" resultMap="BaseResultMap">
+        select
+        <include refid="Full_Colum_List"></include>, `nickname`
+        from t_user
+        left join t_user_info on t_user.user_info_uid = t_user_info.uid
+        <if test="keyword != null">
+            where `nickname` like CONCAT('%',#{keyword},'%')
+        </if>
+        limit  #{limit,jdbcType=INTEGER}, #{offset,jdbcType=INTEGER}
+    </select>
+
 </mapper>

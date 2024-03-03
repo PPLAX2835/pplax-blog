@@ -27,4 +27,24 @@ public class PageDto<T> {
      */
     @LongNotNull(groups = {GetList.class}, message = Messages.SIZE_NOT_NULL)
     private Long pageSize;
+
+    /**
+     * 数据库查询参数limit
+     */
+    @LongNotNull(groups = {GetList.class}, message = Messages.PAGE_NOT_NULL)
+    private Long limit;
+
+    /**
+     * 数据库查询参数offset
+     */
+    @LongNotNull(groups = {GetList.class}, message = Messages.SIZE_NOT_NULL)
+    private Long offset;
+
+    /**
+     * 计算分页参数，便于数据库查询时使用
+     */
+    public void paginationCalculate() {
+        limit = (currentPage - 1) * pageSize;
+        offset = pageSize;
+    }
 }

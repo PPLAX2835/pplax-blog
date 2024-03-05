@@ -51,10 +51,23 @@
         <include refid="Full_Colum_List"></include>, `nickname`
         from t_user
         left join t_user_info on t_user.user_info_uid = t_user_info.uid
+        where `t_user`.`status` &lt;&gt; 0
         <if test="keyword != null">
-            where `nickname` like CONCAT('%',#{keyword},'%')
+            and `nickname` like CONCAT('%',#{keyword},'%')
         </if>
         limit  #{limit,jdbcType=INTEGER}, #{offset,jdbcType=INTEGER}
+    </select>
+
+
+    <select id="selectCountByNickName" resultType="java.lang.Long" parameterType="java.lang.String">
+        select
+        count(1)
+        from t_user
+        left join t_user_info on t_user.user_info_uid = t_user_info.uid
+        where `t_user`.`status` &lt;&gt; 0
+        <if test="keyword != null">
+            and `nickname` like CONCAT('%',#{keyword},'%')
+        </if>
     </select>
 
 </mapper>

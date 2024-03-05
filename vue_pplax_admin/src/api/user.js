@@ -1,8 +1,8 @@
 import service from '@/utils/request'
 
-export function getUserList(params) {
+export function getList(params) {
   return service({
-    url: '/user',
+    url: '/user/list',
     method: 'get',
     params
   })

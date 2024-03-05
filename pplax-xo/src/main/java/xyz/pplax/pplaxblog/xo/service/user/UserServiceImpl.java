@@ -7,6 +7,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
@@ -54,20 +55,26 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     }
 
 
-
     @Override
-    public List<User> listByNickName(PageDto pageDto) {
+    public List<User> listByNickname(PageDto pageDto) {
         pageDto.paginationCalculate();
         List<User> userList = userMapper.selectListByNickName(pageDto);
 
-        // 封装用户信息
         for (User user : userList) {
+            // 封装用户信息
             user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
+            // 封装用户角色
+            user.setRole(roleService.getById(user.getRoleUid()));
 
             // 脱敏
             user.sensitiveDataRemove();
         }
 
         return userList;
+    }
+
+    @Override
+    public Long getCountByNickname(String nickname) {
+        return userMapper.selectCountByNickName(nickname);
     }
 }

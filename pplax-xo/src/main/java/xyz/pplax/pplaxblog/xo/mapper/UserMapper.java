@@ -13,4 +13,5 @@ public interface UserMapper extends SuperMapper<User> {
 
     List<User> selectListByNickName(PageDto pageDto);
 
+    Long selectCountByNickName(String nickname);
 }

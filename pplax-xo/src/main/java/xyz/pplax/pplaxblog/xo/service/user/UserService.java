@@ -14,6 +14,7 @@ public interface UserService extends SuperService<User> {
 
     public Role getRoleWithMenu(String userUid);
 
-    public List<User> listByNickName(PageDto pageDto);
+    public List<User> listByNickname(PageDto pageDto);
 
+    public Long getCountByNickname(String nickname);
 }

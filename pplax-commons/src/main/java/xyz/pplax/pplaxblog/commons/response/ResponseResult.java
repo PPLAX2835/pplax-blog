@@ -16,6 +16,8 @@ public class ResponseResult {
 
     private Object data;
 
+    private Long total;
+
     /**
      * 成功返回无数据
      *
@@ -33,6 +35,10 @@ public class ResponseResult {
      */
     public static ResponseResult success(Object data) {
         return new ResponseResult(HttpStatus.OK.getCode(), data);
+    }
+
+    public static ResponseResult success(Object data, Long total) {
+        return new ResponseResult(HttpStatus.OK, data, total);
     }
 
     /**
@@ -82,14 +88,6 @@ public class ResponseResult {
         return new ResponseResult(HttpStatus.INTERNAL_SERVER_ERROR.getCode(), message);
     }
 
-    /**
-     * 失败返回
-     *
-     * @return
-     */
-    public static ResponseResult error(Integer responseCode, String errorMessage, Object data) {
-        return new ResponseResult(responseCode, errorMessage, data);
-    }
 
 
 
@@ -103,6 +101,13 @@ public class ResponseResult {
         this.code = httpStatus.getCode();
         this.message = httpStatus.getMessage();
         this.data = data;
+    }
+
+    public ResponseResult(HttpStatus httpStatus, Object data, Long total) {
+        this.code = httpStatus.getCode();
+        this.message = httpStatus.getMessage();
+        this.data = data;
+        this.total = total;
     }
 
     public ResponseResult(Integer responseCode) {

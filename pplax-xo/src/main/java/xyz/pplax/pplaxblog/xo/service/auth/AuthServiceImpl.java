@@ -106,6 +106,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             user.setLastLoginTime(new Date());
             user.setLastLoginIp(IpUtils.getIpAddress(httpServletRequest));
             user.setLoginCount(user.getLoginCount() + 1);
+            user.setLastLoginAddress(IpUtils.getCityInfo(user.getLastLoginIp()));
 
             // 更新
             userService.updateById(user);

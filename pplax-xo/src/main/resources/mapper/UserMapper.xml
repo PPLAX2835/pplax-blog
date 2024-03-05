@@ -17,6 +17,7 @@
         <result column="login_count" property="loginCount" />
         <result column="last_login_time" property="lastLoginTime" />
         <result column="last_login_ip" property="lastLoginIp" />
+        <result column="last_login_address" property="lastLoginAddress" />
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -24,7 +25,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `role_uid`, `user_info_uid`, `username`, `password`, `salt`, `email`, `is_email_activated`, `mobile`, `is_mobile_activated`, `login_count`, `last_login_time`, `last_login_ip`, `status`, `create_time`, `update_time`
+        `uid`, `role_uid`, `user_info_uid`, `username`, `password`, `salt`, `email`, `is_email_activated`, `mobile`, `is_mobile_activated`, `login_count`, `last_login_time`, `last_login_ip`, `last_login_address`, `status`, `create_time`, `update_time`
     </sql>
 
     <sql id="Full_Colum_List">
@@ -41,6 +42,7 @@
         `t_user`.`login_count`,
         `t_user`.`last_login_time`,
         `t_user`.`last_login_ip`,
+        `t_user`.`last_login_address`,
         `t_user`.`status`,
         `t_user`.`create_time`,
         `t_user`.`update_time`

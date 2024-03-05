@@ -80,6 +80,11 @@ public class User extends SuperEntity {
      */
     private String lastLoginIp;
 
+    /**
+     * 最后登录地址
+     */
+    private String lastLoginAddress;
+
     public User() {}
 
     @TableField(exist = false)

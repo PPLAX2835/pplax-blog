@@ -29,8 +29,13 @@
           </template>
         </el-table-column>
         <el-table-column align="center" prop="lastLoginIp" label="上次登录ip" />
+        <el-table-column align="center"  label="上次登录地址"  width="150" >
+          <template slot-scope="scope">
+            {{ getCity(scope.row.lastLoginAddress) }}
+          </template>
+        </el-table-column>
         <el-table-column align="center" prop="loginCount" label="登录次数" width="80" />
-        <el-table-column align="center"  label="上次登录登录时间"  width="180" >
+        <el-table-column align="center"  label="上次登录时间"  width="180" >
           <template slot-scope="scope">
             {{ timeFormat(scope.row.lastLoginTime) }}
           </template>
@@ -140,6 +145,26 @@ export default {
      */
     timeFormat(timestamp) {
       return parseTime(timestamp);
+    },
+    /**
+     * 从给出的ip信息中获取地址
+     */
+    getCity(ipInfo) {
+      if (ipInfo !== '未知') {
+        let res = ''
+
+        let arr = ipInfo.split("|")
+
+        for (let i = 0; i < arr.length - 1; i++) {
+          console.log(arr[i] )
+          if (arr[i] !== '0') {
+            res += (arr[i] + '-')
+          }
+        }
+
+        return res.substring(0, res.length - 1);
+      }
+      return '未知'
     }
 
   }

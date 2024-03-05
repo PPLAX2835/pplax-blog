@@ -26,8 +26,9 @@ public class UserSQLConstants extends BaseSQLConstants {
     public final static String MOBILE = "t_user.mobile";
     public final static String IS_MOBILE_ACTIVATED = "is_mobile_activated";
     public final static String SUMMARY = "t_user.summary";
-    public final static String LOGIN_COUNT = "login_count";
-    public final static String LAST_LOGIN_TIME = "last_login_time";
-    public final static String LAST_LOGIN_IP = "last_login_ip";
+    public final static String LOGIN_COUNT = "t_user.login_count";
+    public final static String LAST_LOGIN_TIME = "t_user.last_login_time";
+    public final static String LAST_LOGIN_IP = "t_user.last_login_ip";
+    public final static String LAST_LOGIN_ADDRESS = "t_user.last_login_address";
 
 }

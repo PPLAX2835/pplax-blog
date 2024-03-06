@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="用户表增加登录地址字段，实现根据ip查询地址，管理后台显示该字段">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/UserInfoEditDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/role.js" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="后端父级修改方法在修改完成后会直接删除缓存，原先的修改缓存可能会因为部分修改而导致缓存中的部分字段缺失&#10;实现修改用户信息功能，包括上传头像，修改角色，状态等&#10;前端调整基本请求路径（没啥影响）">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/UserFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/UserFileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/AvatarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/AvatarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/SidebarItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/SidebarItem.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,8 +217,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.AuthApplication" />
       </list>
@@ -308,14 +290,7 @@
       <workItem from="1709278855685" duration="1429000" />
       <workItem from="1709449779716" duration="9854000" />
       <workItem from="1709620765521" duration="17413000" />
-      <workItem from="1709690009322" duration="19573000" />
-    </task>
-    <task id="LOCAL-00249" summary="将nacos中的配置拆开；先删除前台">
-      <created>1706855177454</created>
-      <option name="number" value="00249" />
-      <option name="presentableId" value="LOCAL-00249" />
-      <option name="project" value="LOCAL" />
-      <updated>1706855177455</updated>
+      <workItem from="1709690009322" duration="21569000" />
     </task>
     <task id="LOCAL-00250" summary="白名单配置错了，改一下">
       <created>1706864482129</created>
@@ -653,7 +628,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709638991492</updated>
     </task>
-    <option name="localTasksCounter" value="298" />
+    <task id="LOCAL-00298" summary="后端父级修改方法在修改完成后会直接删除缓存，原先的修改缓存可能会因为部分修改而导致缓存中的部分字段缺失&#10;实现修改用户信息功能，包括上传头像，修改角色，状态等&#10;前端调整基本请求路径（没啥影响）">
+      <created>1709725532129</created>
+      <option name="number" value="00298" />
+      <option name="presentableId" value="LOCAL-00298" />
+      <option name="project" value="LOCAL" />
+      <updated>1709725532129</updated>
+    </task>
+    <option name="localTasksCounter" value="299" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +670,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理" />
     <MESSAGE value="注入的配置设置默认值；redis业务存储时设置随机过期时间" />
     <MESSAGE value="调整" />
     <MESSAGE value="修改数据库表" />
@@ -713,7 +694,8 @@
     <MESSAGE value="编写查询用户列表的接口" />
     <MESSAGE value="前端后台实现显示用户管理的列表" />
     <MESSAGE value="用户表增加登录地址字段，实现根据ip查询地址，管理后台显示该字段" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户表增加登录地址字段，实现根据ip查询地址，管理后台显示该字段" />
+    <MESSAGE value="后端父级修改方法在修改完成后会直接删除缓存，原先的修改缓存可能会因为部分修改而导致缓存中的部分字段缺失&#10;实现修改用户信息功能，包括上传头像，修改角色，状态等&#10;前端调整基本请求路径（没啥影响）" />
+    <option name="LAST_COMMIT_MESSAGE" value="后端父级修改方法在修改完成后会直接删除缓存，原先的修改缓存可能会因为部分修改而导致缓存中的部分字段缺失&#10;实现修改用户信息功能，包括上传头像，修改角色，状态等&#10;前端调整基本请求路径（没啥影响）" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

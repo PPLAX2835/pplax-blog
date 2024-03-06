@@ -63,19 +63,6 @@ export default {
     }
   },
   methods: {
-    test(item) {
-      if (item.title === '首页') {
-        console.log(item)
-
-        console.log(!this.hasOneShowingChild(item.childMenuList))
-        console.log(item.childMenuList)
-        console.log(item.route && this.isMenu(item))
-
-      }
-
-      return false;
-
-    },
     isMenu(item) {
       return item.type === 'menu';
     },
@@ -88,16 +75,13 @@ export default {
       return false;
     },
     hasOneShowingChild(children) {
-      const showingChildren = children.filter(item => {
-        if (item.hidden) {
-          return false
-        } else {
-          // temp set(will be used if only has one showing child )
+      if (children.length === 0) {
+        return false
+      }
+      for (let i = 0; i < children.length; i++) {
+        if (!children[i].hidden) {
           return true
         }
-      })
-      if (showingChildren.length === 1) {
-        return true
       }
       return false
     },

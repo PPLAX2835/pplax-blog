@@ -376,6 +376,7 @@ export default {
         avatarUpload(this.editingUserUid, formData).then(res => {
           this.form.avatarPictureUid = res.data.uid
           this.avatarUrl = res.data.fileUrl
+          this.fetchUserList()
           this.loading.close()
         })
       }).catch(() => {});

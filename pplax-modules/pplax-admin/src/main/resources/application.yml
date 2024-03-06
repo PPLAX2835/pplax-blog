@@ -14,10 +14,6 @@ spring:
       additional-paths:
         - src/main/java #设置重启的目录，添加哪个目录文件需要restart
 
-  # DATABASE CONFIG
-  datasource:
-    url: jdbc:mysql://localhost:3306/pplax_blog?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
-
   # 配置文件上传大小限制
   servlet:
     multipart:

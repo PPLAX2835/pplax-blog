@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="后端父级修改方法在修改完成后会直接删除缓存，原先的修改缓存可能会因为部分修改而导致缓存中的部分字段缺失&#10;实现修改用户信息功能，包括上传头像，修改角色，状态等&#10;前端调整基本请求路径（没啥影响）">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/SidebarItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/SidebarItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,10 +220,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -290,14 +293,7 @@
       <workItem from="1709278855685" duration="1429000" />
       <workItem from="1709449779716" duration="9854000" />
       <workItem from="1709620765521" duration="17413000" />
-      <workItem from="1709690009322" duration="21569000" />
-    </task>
-    <task id="LOCAL-00250" summary="白名单配置错了，改一下">
-      <created>1706864482129</created>
-      <option name="number" value="00250" />
-      <option name="presentableId" value="LOCAL-00250" />
-      <option name="project" value="LOCAL" />
-      <updated>1706864482129</updated>
+      <workItem from="1709690009322" duration="22134000" />
     </task>
     <task id="LOCAL-00251" summary="全局异常处理的包扫描等bug修改">
       <created>1706867024518</created>
@@ -635,7 +631,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709725532129</updated>
     </task>
-    <option name="localTasksCounter" value="299" />
+    <task id="LOCAL-00299" summary="修改侧边栏导航的显示问题">
+      <created>1709727261053</created>
+      <option name="number" value="00299" />
+      <option name="presentableId" value="LOCAL-00299" />
+      <option name="project" value="LOCAL" />
+      <updated>1709727261053</updated>
+    </task>
+    <option name="localTasksCounter" value="300" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,7 +673,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="注入的配置设置默认值；redis业务存储时设置随机过期时间" />
     <MESSAGE value="调整" />
     <MESSAGE value="修改数据库表" />
     <MESSAGE value="重构接口了要" />
@@ -695,7 +697,8 @@
     <MESSAGE value="前端后台实现显示用户管理的列表" />
     <MESSAGE value="用户表增加登录地址字段，实现根据ip查询地址，管理后台显示该字段" />
     <MESSAGE value="后端父级修改方法在修改完成后会直接删除缓存，原先的修改缓存可能会因为部分修改而导致缓存中的部分字段缺失&#10;实现修改用户信息功能，包括上传头像，修改角色，状态等&#10;前端调整基本请求路径（没啥影响）" />
-    <option name="LAST_COMMIT_MESSAGE" value="后端父级修改方法在修改完成后会直接删除缓存，原先的修改缓存可能会因为部分修改而导致缓存中的部分字段缺失&#10;实现修改用户信息功能，包括上传头像，修改角色，状态等&#10;前端调整基本请求路径（没啥影响）" />
+    <MESSAGE value="修改侧边栏导航的显示问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改侧边栏导航的显示问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

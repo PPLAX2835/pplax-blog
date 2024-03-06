@@ -1,8 +1,8 @@
 import service from '@/utils/request'
 
-export function getList(params) {
+export function getUserList(params) {
   return service({
-    url: '/user/list',
+    url: '/admin/user/list',
     method: 'get',
     params
   })
@@ -15,8 +15,16 @@ export function getList(params) {
  */
 export function getUserInfo(userUid) {
   return service({
-    url: '/user/' + userUid + '/userInfo',
+    url: '/admin/user/' + userUid + '/userInfo',
     method: 'get',
+  })
+}
+
+export function updateUserInfo(userUid, params) {
+  return service({
+    url: '/admin/user/' + userUid + '/userInfo',
+    method: 'put',
+    data: params
   })
 }
 
@@ -27,7 +35,7 @@ export function getUserInfo(userUid) {
  */
 export function getRoleWithMenu(userUid) {
   return service({
-    url: '/user/' + userUid + '/role',
+    url: '/admin/user/' + userUid + '/role',
     method: 'get',
   })
 }

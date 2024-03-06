@@ -16,8 +16,10 @@ service.interceptors.request.use(
     config.headers['Authorization'] = getToken()                                      // 让每个请求携带自定义token
 
     if (config.method === 'post' || config.method === 'put') {
-      config.headers['Content-Type'] = 'application/json'                         // 给那些通过请求体传递参数的方法设置请求头
-      config.data = JSON.stringify(config.data)
+      if (config.headers['Content-Type'] === undefined) {
+        config.headers['Content-Type'] = 'application/json'                         // 给那些通过请求体传递参数的方法设置请求头
+        config.data = JSON.stringify(config.data)
+      }
     }
     return config
   },

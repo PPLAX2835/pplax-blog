@@ -78,8 +78,8 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T extends SuperEntity> e
 
         boolean result = super.updateById(entity);
         if (result) {
-            log.info("更新成功，更新缓存");
-            redisService.setCacheObject(redisKeyName, entity, RedisUtils.getRandomExpire(expire), TimeUnit.SECONDS);
+            log.info("更新成功，移除缓存");
+            redisService.deleteObject(redisKeyName);
         }
 
         return result;

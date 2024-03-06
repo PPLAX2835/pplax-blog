@@ -4,11 +4,11 @@ import io.swagger.annotations.Api;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 
@@ -28,6 +28,16 @@ public class UserInfoController extends SuperController {
     @GetMapping(value = "")
     public String getUserInfo (@PathVariable("userUid") String userUid) {
         return success(userInfoService.getByUserUid(userUid));
+    }
+
+    @PutMapping(value = "")
+    public String updateUserInfo(@PathVariable("userUid") String userUid, @RequestBody UserInfoEditDto userInfoEditDto) {
+        Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
 }

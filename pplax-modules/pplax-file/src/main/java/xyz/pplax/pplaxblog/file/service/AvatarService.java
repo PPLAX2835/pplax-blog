@@ -123,12 +123,12 @@ public class AvatarService {
 
         // 头像上传成功，更新用户信息
         User user = userService.getById(userUid);
-        UpdateWrapper<UserInfo> userInfoUpdateWrapper = new UpdateWrapper<>();
-        userInfoUpdateWrapper.eq(UserInfoSQLConstants.UID, user.getUserInfoUid());
-        userInfoUpdateWrapper.set(UserInfoSQLConstants.AVATAR_PICTURE_UID, fileStorage.getUid());
-        userInfoService.update(userInfoUpdateWrapper);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUid(user.getUserInfoUid());
+        userInfo.setAvatarPictureUid(fileStorage.getUid());
+        userInfoService.updateById(userInfo);
 
-        return ResponseResult.success();
+        return ResponseResult.success(fileStorage);
     }
 
 

@@ -7,7 +7,7 @@ import request from '@/utils/request'
  */
 export function login(data) {
   return request({
-    url: '/auth/token',
+    url: '/admin/auth/token',
     method: 'post',
     data
   })
@@ -19,7 +19,7 @@ export function login(data) {
  */
 export function logout() {
   return request({
-    url: '/auth/token',
+    url: '/admin/auth/token',
     method: 'delete'
   })
 }
@@ -30,7 +30,7 @@ export function logout() {
  */
 export function getCaptcha() {
   return request({
-    url: '/auth/captcha',
+    url: '/admin/auth/captcha',
     method: 'get',
   })
 }

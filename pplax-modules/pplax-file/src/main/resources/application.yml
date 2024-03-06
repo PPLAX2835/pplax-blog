@@ -21,8 +21,14 @@ spring:
   # 配置文件上传大小限制
   servlet:
     multipart:
-      max-file-size: 200MB
-      max-request-size: 200MB
+      # 最大文件的大小
+      max-file-size: 5MB
+      # 最大请求大小
+      max-request-size: 10MB
+      # 是否启用分段上传支持
+      enabled: true
+      #上传文件的中间位置
+      location: G:/tmp/pplax-log/pplax-file/tomcat_upload_temp
 
   # 原生配置
   configuration:

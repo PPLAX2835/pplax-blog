@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service.userinfo;
 
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
+import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.UserInfo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,4 +14,5 @@ public interface UserInfoService extends SuperService<UserInfo> {
 
     UserInfo getByUserUid(String userUid);
 
+    Boolean updateByUserUid(String userUid, UserInfoEditDto userInfoEditDto);
 }

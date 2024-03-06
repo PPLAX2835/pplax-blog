@@ -6,8 +6,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.UserInfoSQLConstants;
+import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.entity.UserInfo;
@@ -45,5 +47,65 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
     public UserInfo getByUserUid(String userUid) {
         User user = userService.getById(userUid);
         return getById(user.getUserInfoUid());
+    }
+
+    @Override
+    public Boolean updateByUserUid(String userUid, UserInfoEditDto userInfoEditDto) {
+        User user = userService.getById(userUid);
+        UserInfo userInfo = getByUserUid(userUid);
+
+        Boolean res = true;
+
+        // 封装
+        int flag = 0;
+        // 用户
+        if (!StringUtils.isEmpty(userInfoEditDto.getUsername())) {
+            // 用户名
+            user.setUsername(userInfoEditDto.getUsername());
+            flag++;
+        }
+        if (!StringUtils.isEmpty(userInfoEditDto.getRoleUid())) {
+            // 角色uid
+            user.setRoleUid(userInfoEditDto.getRoleUid());
+            flag++;
+        }
+        if (userInfoEditDto.getStatus() != null) {
+            // 状态
+            user.setStatus(userInfoEditDto.getStatus());
+            flag++;
+        }
+
+        if (flag != 0) {
+            res = res && userService.updateById(user);
+            flag = 0;
+        }
+
+        // 用户信息
+        if (!StringUtils.isEmpty(userInfoEditDto.getAvatarPictureUid())) {
+            // 头像文件uid
+            userInfo.setAvatarPictureUid(userInfoEditDto.getAvatarPictureUid());
+            flag++;
+        }
+        if (!StringUtils.isEmpty(userInfoEditDto.getNickname())) {
+            // 昵称
+            userInfo.setNickname(userInfoEditDto.getNickname());
+            flag++;
+        }
+        if (userInfoEditDto.getBirthday() != null) {
+            // 生日
+            userInfo.setBirthday(userInfoEditDto.getBirthday());
+            flag++;
+        }
+        if (!StringUtils.isEmpty(userInfoEditDto.getSummary())) {
+            // 个性签名
+            userInfo.setSummary(userInfoEditDto.getSummary());
+            flag++;
+        }
+
+        if (flag != 0) {
+            res = res && updateById(userInfo);
+        }
+
+        return res;
     }
 }

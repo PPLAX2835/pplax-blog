@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.xo.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.xo.base.dto.BaseDto;
 
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 /**
  * 编辑用户信息时用到的dto
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class UserInfoEditDto extends BaseDto<BlogSortDto> {
 
@@ -23,6 +25,9 @@ public class UserInfoEditDto extends BaseDto<BlogSortDto> {
 
     @ApiModelProperty(example = "pplax", notes = "用户名", required = false)
     private String username;
+
+    @ApiModelProperty(example = "password123456", notes = "密码", required = false)
+    private String password;
 
     @ApiModelProperty(example = "2018-09-20", notes = "生日", required = false)
     private Date birthday;

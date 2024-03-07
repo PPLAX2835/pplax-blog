@@ -207,7 +207,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         //新建的图像根据轮廓图颜色赋值，源图生成遮罩
         CaptchaUtils.cutByTemplate(canvasImage, blockImage, blockWidth, blockHeight, blockRadius, blockX, blockY);
         // 移动横坐标
-        String nonceStr = UUID.randomUUID().toString().replaceAll("-", "");
+        String nonceStr = StringUtils.getUUID();
         // 缓存
         saveImageCode(nonceStr,String.valueOf(blockX));
         //设置返回参数

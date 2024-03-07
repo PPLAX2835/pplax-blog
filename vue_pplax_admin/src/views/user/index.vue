@@ -22,7 +22,10 @@
         <el-table-column type="selection" align="center" />
         <el-table-column align="center" prop="avatar" label="头像"  width="120">
           <template slot-scope="scope">
-            <div class="block"><el-avatar :size="50" :src="scope.row.userInfo.avatar.fileUrl"></el-avatar></div>
+            <div class="block">
+              <el-avatar v-if="scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined" :size="50" :src="scope.row.userInfo.avatar.fileUrl"></el-avatar>
+              <el-avatar v-else :size="50"></el-avatar>
+            </div>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="username" label="用户名" width="120" />
@@ -87,7 +90,10 @@
           <el-input v-model="form.username" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item v-if="!isEditForm" prop="password" label="密码" :label-width="formLabelWidth">
-          <el-input v-model="form.password" autocomplete="off"></el-input>
+          <el-input v-model="form.password" type="password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item v-if="!isEditForm" prop="confirmPassword" label="确认密码" :label-width="formLabelWidth">
+          <el-input v-model="form.confirmPassword" type="password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item prop="nickname" label="昵称" :label-width="formLabelWidth">
           <el-input v-model="form.nickname" autocomplete="off"></el-input>
@@ -149,8 +155,10 @@ export default {
       title: '',
       avatarUrl: '',
       roleList: '',
+      confirmPassword: '',
       form: {
         avatarPictureUid: '',
+        password: '',
         nickname: '',
         roleUid: '',
         status: '',
@@ -160,9 +168,9 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: '请输入账号', trigger: 'blur' },
+          { required: true, message: '请输入用户名', trigger: 'blur' },
           { validator: this.isExist, trigger: 'change'},
-          { min: 1, max: 50, message: '长度在1到50个字符' },
+          { min: 3, max: 30, message: '长度在1到30个字符' },
         ],
         nickname: [
           { required: true, message: '请输入昵称', trigger: 'blur' },
@@ -177,6 +185,12 @@ export default {
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 8, max: 16, message: '长度在8到16个字符' },
+        ],
+        confirmPassword: [
+          { required: true, message: '请确认密码', trigger: 'blur' },
+          { validator: this.passwordConfirm, trigger: 'blur'},
+          { min: 8, max: 16, message: '长度在8到16个字符' },
         ],
         status: [
           { required: true, message: '请选择状态', trigger: 'change' },
@@ -336,8 +350,10 @@ export default {
       this.form.roleUid = ''
       this.form.status = ''
       this.form.username = ''
+      this.form.password = ''
       this.form.birthday = ''
       this.form.summary = ''
+      this.confirmPassword = ''
       this.avatarUrl = ''
       this.editingUserUid = ''
       this.editingUserUsername = ''
@@ -352,14 +368,23 @@ export default {
      * @param scope
      */
     handleUpdate: function (scope) {
-      this.form.avatarPictureUid = scope.row.userInfo.avatar.uid
+      if (scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined) {
+        this.form.avatarPictureUid = scope.row.userInfo.avatar.uid
+      } else {
+        this.form.avatarPictureUid = ''
+      }
       this.form.nickname = scope.row.userInfo.nickname
       this.form.roleUid = scope.row.roleUid
       this.form.status = scope.row.status
       this.form.username = scope.row.username
       this.form.birthday = scope.row.userInfo.birthday
       this.form.summary = scope.row.userInfo.summary
-      this.avatarUrl = scope.row.userInfo.avatar.fileUrl
+      this.form.password = ''
+      if (scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined) {
+        this.avatarUrl = scope.row.userInfo.avatar.fileUrl
+      } else {
+        this.avatarUrl = ''
+      }
       this.editingUserUid = scope.row.uid
       this.editingUserUsername = scope.row.username
 
@@ -411,6 +436,12 @@ export default {
 
     },
 
+    /**
+     * 检查用户名是否存在
+     * @param rule
+     * @param value
+     * @param callback
+     */
     isExist(rule, value, callback) {
       if (this.editingUserUsername === '' || this.editingUserUsername !== value) {
         isUsernameExist(value).then(res => {
@@ -422,6 +453,22 @@ export default {
           }
 
         })
+      } else {
+        callback()
+      }
+    },
+
+    /**
+     * 检查两次密码输入是否相同
+     * @param rule
+     * @param value
+     * @param callback
+     */
+    passwordConfirm(rule, value, callback) {
+      if (this.form.password !== '' && value !== this.form.password) {
+        callback(new Error('两次密码输入不一致'))
+      } else {
+        callback()
       }
     },
 

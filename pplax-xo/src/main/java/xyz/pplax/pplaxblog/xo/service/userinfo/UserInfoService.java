@@ -15,4 +15,6 @@ public interface UserInfoService extends SuperService<UserInfo> {
     UserInfo getByUserUid(String userUid);
 
     Boolean updateByUserUid(String userUid, UserInfoEditDto userInfoEditDto);
+
+    Boolean save(UserInfoEditDto userInfoEditDto);
 }

@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
+import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.service.role.RoleService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
+import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 import java.util.List;
 
@@ -26,7 +28,17 @@ public class UserController extends SuperController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserInfoService userInfoService;
+
     private static final Logger log = LogManager.getLogger(UserController.class);
+
+    @ApiOperation(value="添加用户", notes="添加用户")
+    @PostMapping(value = "")
+    public String add(@RequestBody UserInfoEditDto userInfoEditDto) {
+        return success(userInfoService.save(userInfoEditDto));
+    }
+
 
     @ApiOperation(value="获取用户列表", notes="获取用户列表")
     @GetMapping(value = "/list")

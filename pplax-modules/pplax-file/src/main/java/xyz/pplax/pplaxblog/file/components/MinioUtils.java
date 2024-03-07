@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -435,7 +436,7 @@ public class MinioUtils {
             DataInputStream dataInputStream = new DataInputStream(url.openStream());
 
             // 临时文件转储
-            File tempFile = File.createTempFile(UUID.randomUUID().toString().replace("-", ""), substring);
+            File tempFile = File.createTempFile(StringUtils.getUUID(), substring);
             FileOutputStream fileOutputStream = new FileOutputStream(tempFile);
             ByteArrayOutputStream output = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];

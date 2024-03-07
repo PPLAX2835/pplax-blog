@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="将数据库地址配置移到nacos配置中，用户管理修改头像时重新获取一下列表">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="更新用户时检查用户名是否重名">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/TestRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/TestRestApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/components/MinioUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/components/MinioUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/UserInfoEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/UserInfoEditDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/login/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +95,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25740552" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
     <property name="ts.external.directory.path" value="E:\Program Files\JetBrains\IntelliJ IDEA 2021.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -222,9 +228,9 @@
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -295,14 +301,8 @@
       <workItem from="1709449779716" duration="9854000" />
       <workItem from="1709620765521" duration="17413000" />
       <workItem from="1709690009322" duration="24644000" />
-      <workItem from="1709773426605" duration="3960000" />
-    </task>
-    <task id="LOCAL-00252" summary="定义统一的状态码及消息">
-      <created>1706940447502</created>
-      <option name="number" value="00252" />
-      <option name="presentableId" value="LOCAL-00252" />
-      <option name="project" value="LOCAL" />
-      <updated>1706940447502</updated>
+      <workItem from="1709773426605" duration="5116000" />
+      <workItem from="1709794735552" duration="10097000" />
     </task>
     <task id="LOCAL-00253" summary="修改这次调整带来的bug">
       <created>1706942346081</created>
@@ -640,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709727894878</updated>
     </task>
-    <option name="localTasksCounter" value="301" />
+    <task id="LOCAL-00301" summary="更新用户时检查用户名是否重名">
+      <created>1709777472966</created>
+      <option name="number" value="00301" />
+      <option name="presentableId" value="LOCAL-00301" />
+      <option name="project" value="LOCAL" />
+      <updated>1709777472966</updated>
+    </task>
+    <option name="localTasksCounter" value="302" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -675,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改数据库表" />
     <MESSAGE value="重构接口了要" />
     <MESSAGE value="整理maven role的服务层封装菜单实体" />
     <MESSAGE value="实现角色及其拥有的菜单的数据的缓存预热（永久的）" />
@@ -700,7 +706,8 @@
     <MESSAGE value="后端父级修改方法在修改完成后会直接删除缓存，原先的修改缓存可能会因为部分修改而导致缓存中的部分字段缺失&#10;实现修改用户信息功能，包括上传头像，修改角色，状态等&#10;前端调整基本请求路径（没啥影响）" />
     <MESSAGE value="修改侧边栏导航的显示问题" />
     <MESSAGE value="将数据库地址配置移到nacos配置中，用户管理修改头像时重新获取一下列表" />
-    <option name="LAST_COMMIT_MESSAGE" value="将数据库地址配置移到nacos配置中，用户管理修改头像时重新获取一下列表" />
+    <MESSAGE value="更新用户时检查用户名是否重名" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新用户时检查用户名是否重名" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

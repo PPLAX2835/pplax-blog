@@ -41,7 +41,7 @@ export function updateUserInfo(userUid, params) {
  */
 export function addUser(params) {
   return service({
-    url: '/admin/user/',
+    url: '/admin/user',
     method: 'post',
     data: params
   })

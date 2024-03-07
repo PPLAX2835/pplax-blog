@@ -2,10 +2,7 @@ package xyz.pplax.pplaxblog.commons.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -166,6 +163,22 @@ public class StringUtils {
 			log.error("把String转换成float数据: {}", str);
 		}
 		return dnum;
+	}
+
+	/**
+	 * length用户要求产生字符串的长度
+	 * @param length
+	 * @return
+	 */
+	public static String getRandomString(int length){
+		String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		Random random=new Random();
+		StringBuffer sb=new StringBuffer();
+		for(int i=0;i<length;i++){
+			int number=random.nextInt(62);
+			sb.append(str.charAt(number));
+		}
+		return sb.toString();
 	}
 
 	/**

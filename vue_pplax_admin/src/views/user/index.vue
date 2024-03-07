@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <!--查询or添加-->
+    <!--查询or其他操作-->
     <el-form v-show="showSearch" :inline="true" ref="form" :model="params" label-width="68px">
       <el-form-item label="昵称">
         <el-input style="width: 150px" size="small" v-model="params.keyword" placeholder="请输入用户昵称"/>
@@ -8,7 +8,12 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
+        <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
+        <!--        <el-button v-if="canDel" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"-->
+        <!--                   @click="handleDelete">批量删除-->
+        <!--        </el-button>-->
       </el-form-item>
+
     </el-form>
 
     <!-- 表格区域 -->
@@ -71,7 +76,7 @@
     <!-- 编辑弹窗 -->
     <el-dialog center :title="title" :visible.sync="dialogFormVisible">
       <el-form :rules="rules" ref="dataForm" :model="form">
-        <el-form-item prop="avatar" label="头像" :label-width="formLabelWidth">
+        <el-form-item v-if="editingUserUid" prop="avatar" label="头像" :label-width="formLabelWidth">
           <el-upload action="" class="avatar-uploader" :show-file-list="false"
                      :before-upload="uploadBefore" :http-request="uploadSectionFile">
             <img v-if="avatarUrl" :src="avatarUrl" class="avatar">
@@ -118,7 +123,7 @@
 </template>
 
 <script>
-import { getUserList, updateUserInfo } from '@/api/user'
+import {getUserList, updateUserInfo, addUser, isUsernameExist} from '../../api/user'
 import { avatarUpload } from "../../api/fileStorage";
 import { getRoleList } from "../../api/role"
 import { hasAuth } from "../../utils/auth";
@@ -140,6 +145,7 @@ export default {
       isEditForm: false,
       dialogFormVisible: false,
       editingUserUid: '',
+      editingUserUsername: '',
       title: '',
       avatarUrl: '',
       roleList: '',
@@ -155,13 +161,14 @@ export default {
       rules: {
         username: [
           { required: true, message: '请输入账号', trigger: 'blur' },
+          { validator: this.isExist, trigger: 'change'},
           { min: 1, max: 50, message: '长度在1到50个字符' },
         ],
         nickname: [
           { required: true, message: '请输入昵称', trigger: 'blur' },
           { min: 1, max: 50, message: '长度在1到50个字符' },
         ],
-        bitthday: [
+        birthday: [
           { required: false, message: '请输选择生日', trigger: 'blur' },
         ],
         summary: [
@@ -305,6 +312,9 @@ export default {
     canKick: function () {
       return hasAuth(this.menu, 'GET:/api/admin/user/{uid}/kick')
     },
+    canAdd: function () {
+      return hasAuth(this.menu, 'POST:/api/admin/user/')
+    },
     /**
      * 检查是否有更新的权限
      * @returns {boolean|*}
@@ -320,6 +330,23 @@ export default {
       console.log(this.menu)
       console.log(hasAuth(this.menu, 'GET:/api/admin/user/{uid}/kick'))
     },
+    handleCreate: function () {
+      this.form.avatarPictureUid = ''
+      this.form.nickname = ''
+      this.form.roleUid = ''
+      this.form.status = ''
+      this.form.username = ''
+      this.form.birthday = ''
+      this.form.summary = ''
+      this.avatarUrl = ''
+      this.editingUserUid = ''
+      this.editingUserUsername = ''
+
+      this.beforeShow("添加用户", 0)
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
     /**
      * 编辑按钮点击事件
      * @param scope
@@ -334,6 +361,7 @@ export default {
       this.form.summary = scope.row.userInfo.summary
       this.avatarUrl = scope.row.userInfo.avatar.fileUrl
       this.editingUserUid = scope.row.uid
+      this.editingUserUsername = scope.row.username
 
       this.beforeShow("修改用户", 1)
       this.$nextTick(() => {
@@ -383,12 +411,28 @@ export default {
 
     },
 
+    isExist(rule, value, callback) {
+      if (this.editingUserUsername === '' || this.editingUserUsername !== value) {
+        isUsernameExist(value).then(res => {
+
+          if (res.data) {
+            callback(new Error('该用户名已存在'))
+          } else {
+            callback()
+          }
+
+        })
+      }
+    },
+
     submit: function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (this.isEditForm) {
             updateUserInfo(this.editingUserUid, this.form).then(res => {
               this.$message.success("修改成功")
+              this.editingUserUid = ''
+              this.editingUserUsername = ''
               this.fetchUserList()
               this.dialogFormVisible = false;
               this.close()
@@ -396,13 +440,14 @@ export default {
               console.error(err)
             })
           } else {
-            // create(this.form).then(res => {
-            //   this.$message.success("添加成功")
-            //   this.userData.unshift(res.data)
-            //   this.close()
-            // }).catch(err => {
-            //   console.error(err)
-            // })
+            addUser(this.form).then(res => {
+              this.$message.success("添加成功")
+              this.fetchUserList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
           }
 
         } else {

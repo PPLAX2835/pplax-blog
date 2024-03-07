@@ -54,7 +54,11 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         return roleService.setMenu(role);
     }
 
-
+    /**
+     * 通过昵称获得列表 分页
+     * @param pageDto
+     * @return
+     */
     @Override
     public List<User> listByNickname(PageDto pageDto) {
         pageDto.paginationCalculate();
@@ -73,8 +77,25 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         return userList;
     }
 
+    /**
+     * 通过昵称查询数量 （模糊查询）
+     * @param nickname
+     * @return
+     */
     @Override
     public Long getCountByNickname(String nickname) {
         return userMapper.selectCountByNickName(nickname);
+    }
+
+    /**
+     * 判断用户名是否存在
+     * @param username
+     * @return
+     */
+    @Override
+    public Boolean isUsernameExist(String username) {
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq(UserSQLConstants.USERNAME, username);
+        return count(userQueryWrapper) > 0;
     }
 }

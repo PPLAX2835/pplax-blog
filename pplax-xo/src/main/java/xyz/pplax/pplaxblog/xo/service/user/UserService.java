@@ -17,4 +17,6 @@ public interface UserService extends SuperService<User> {
     public List<User> listByNickname(PageDto pageDto);
 
     public Long getCountByNickname(String nickname);
+
+    public Boolean isUsernameExist(String username);
 }

@@ -53,4 +53,11 @@ public class UserController extends SuperController {
         return success(userService.getRoleWithMenu(userUid));
     }
 
+
+    @ApiOperation(value="判断用户名是否存在", notes="判断用户名是否存在")
+    @GetMapping(value = "/exist")
+    public String isUsernameExist(@RequestParam("username") String username) {
+        return success(userService.isUsernameExist(username));
+    }
+
 }

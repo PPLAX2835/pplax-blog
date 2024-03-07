@@ -20,11 +20,40 @@ export function getUserInfo(userUid) {
   })
 }
 
+/**
+ * 更新用户信息
+ * @param userUid
+ * @param params
+ * @returns {*}
+ */
 export function updateUserInfo(userUid, params) {
   return service({
     url: '/admin/user/' + userUid + '/userInfo',
     method: 'put',
     data: params
+  })
+}
+
+/**
+ * 添加用户
+ * @param params
+ * @returns {*}
+ */
+export function addUser(params) {
+  return service({
+    url: '/admin/user/',
+    method: 'post',
+    data: params
+  })
+}
+
+export function isUsernameExist(username) {
+  return service({
+    url: '/admin/user/exist',
+    method: 'get',
+    params: {
+      username: username
+    }
   })
 }
 

@@ -17,7 +17,9 @@ import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -63,6 +65,20 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T extends SuperEntity> e
         log.info("查询完毕");
 
         return t;
+    }
+
+    @Override
+    public List<T> listByIds(Collection<? extends Serializable> idList) {
+        List<T> res = new ArrayList<>();
+        // 循环使用getById才能走缓存，以后想想怎么优化
+        for (Serializable id : idList) {
+            T t = getById(id);
+            if (t != null) {
+                res.add(t);
+            }
+        }
+
+        return res;
     }
 
     @Override

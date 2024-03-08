@@ -178,6 +178,7 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
         boolean res1 = userService.save(user);
         boolean res2 = save(userInfo);
 
+        // 如果有一个更新失败就回滚业务
         if (!(res1 && res2)) {
             throw new RuntimeException();
         }

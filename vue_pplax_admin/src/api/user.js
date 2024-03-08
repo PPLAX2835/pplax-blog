@@ -47,6 +47,27 @@ export function addUser(params) {
   })
 }
 
+/**
+ * 删除用户
+ * @param userUid
+ * @returns {*}
+ */
+export function deleteUser(userUid) {
+  return service({
+    url: '/admin/user/' + userUid,
+    method: 'delete'
+  })
+}
+
+export function deleteUserBatch(userUids) {
+  console.log(userUids)
+  return service({
+    url: '/admin/user',
+    method: 'delete',
+    data: userUids
+  })
+}
+
 export function isUsernameExist(username) {
   return service({
     url: '/admin/user/exist',

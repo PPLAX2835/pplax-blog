@@ -133,6 +133,11 @@ public enum HttpStatus {
     CHILDREN_MENU_UNDER_THIS_MENU(403012, "该菜单下还有子菜单！"),
     SERVER_ERROR(403013, "服务器目前繁忙，请稍等片刻后重试"),
     YOU_HAVE_BEEN_PRISE(403014, "您已经点赞过了!"),
+    BLOG_UNDER_THIS_USER(403015, "该用户下还有博客"),
+    COLLECTION_UNDER_THIS_USER(403016, "该用户下还有收藏"),
+    COMMENT_UNDER_THIS_USER(403017, "该用户下还有评论"),
+    FEEDBACK_UNDER_THIS_USER(403018, "该用户下还有反馈"),
+    FILE_STORAGE_UNDER_THIS_USER(403019, "该用户下还有文件"),
 
     /**
      * 账户相关

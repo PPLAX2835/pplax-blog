@@ -8,10 +8,10 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
-        <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
-        <!--        <el-button v-if="canDel" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"-->
-        <!--                   @click="handleDelete">批量删除-->
-        <!--        </el-button>-->
+        <el-button v-if="canAdd()" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
+        <el-button v-if="canDeleteBatch()" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
+                   @click="handleDelete">批量删除
+        </el-button>
       </el-form-item>
 
     </el-form>
@@ -37,7 +37,7 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column align="center" prop="lastLoginIp" label="上次登录ip" />
+        <el-table-column align="center" prop="lastLoginIp" label="上次登录ip" width="150" />
         <el-table-column align="center"  label="上次登录地址"  width="150" >
           <template slot-scope="scope">
             {{ getCity(scope.row.lastLoginAddress) }}
@@ -59,9 +59,9 @@
             {{ timeFormat(scope.row.updateTime) }}
           </template>
         </el-table-column>
-        <el-table-column align="center" label="操作">
+        <el-table-column align="center" label="操作" width="180">
           <template slot-scope="scope">
-            <el-button v-if="canKick()" type="danger" size="mini" @click="kick(scope)">强制下线</el-button>
+            <el-button v-if="canDelete()" type="danger" size="mini" @click="handleDelete(scope)">删除</el-button>
             <el-button v-if="canUpdate()" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
           </template>
         </el-table-column>
@@ -129,7 +129,7 @@
 </template>
 
 <script>
-import {getUserList, updateUserInfo, addUser, isUsernameExist} from '../../api/user'
+import {getUserList, updateUserInfo, addUser, deleteUser, deleteUserBatch, isUsernameExist} from '../../api/user'
 import { avatarUpload } from "../../api/fileStorage";
 import { getRoleList } from "../../api/role"
 import { hasAuth } from "../../utils/auth";
@@ -140,6 +140,7 @@ export default {
 
   data() {
     return {
+      multipleSelection: [],
       showSearch: true,
       params: {
         keyword: '',
@@ -320,14 +321,25 @@ export default {
       this.dialogFormVisible = true
     },
     /**
-     * 检查是否有踢人下线的权限
+     * 检查是否有批量删除的权限
      * @returns {boolean|*}
      */
-    canKick: function () {
-      return hasAuth(this.menu, 'GET:/api/admin/user/{uid}/kick')
+    canDeleteBatch: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user')
     },
+    /**
+     * 检查是否有删除的权限
+     * @returns {boolean|*}
+     */
+    canDelete: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}')
+    },
+    /**
+     * 检查是否有添加的权限
+     * @returns {boolean|*}
+     */
     canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/user/')
+      return hasAuth(this.menu, 'POST:/api/admin/user')
     },
     /**
      * 检查是否有更新的权限
@@ -337,13 +349,8 @@ export default {
       return hasAuth(this.menu, 'PUT:/api/admin/user/{uid}/userInfo')
     },
     /**
-     * 强制下线按钮点击事件
-     * @param scope
+     * 添加按钮的点击事件
      */
-    kick(scope) {
-      console.log(this.menu)
-      console.log(hasAuth(this.menu, 'GET:/api/admin/user/{uid}/kick'))
-    },
     handleCreate: function () {
       this.form.avatarPictureUid = ''
       this.form.nickname = ''
@@ -392,6 +399,49 @@ export default {
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
+    },
+    /**
+     * 处理删除按钮的点击事件
+     * @param scope
+     */
+    handleDelete: function (scope) {
+      this.$confirm('是否确定删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'error'
+      }).then(() => {
+        this.openLoading();
+
+        if (scope.row === undefined) {
+          // 走的是批量删除
+          if (this.multipleSelection.length) {
+            let selections = this.multipleSelection;
+            let uids = [selections.length]
+            for (let i = 0; i < selections.length; i++) {
+              uids[i] = selections[i].uid
+            }
+            deleteUserBatch(uids).then(res => {
+              this.fetchUserList()
+              this.$message.success('删除成功');
+              this.loading.close()
+            }).catch(() => {
+              this.loading.close()
+            });
+          }
+        } else {
+          // 走单独删除
+          deleteUser(scope.row.uid).then(res => {
+            this.fetchUserList()
+            this.$message.success('删除成功');
+            this.loading.close()
+          }).catch(() => {
+            this.loading.close()
+          });
+        }
+      }).catch(() => {
+        this.loading.close()
+      });
+
     },
     /**
      * 图片上传之前的验证

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 
 import java.util.ArrayList;
@@ -52,6 +53,14 @@ public class GlobalExceptionHandler {
             }
             log.debug("Rest request error, {}", e.getMessage());
             return ResponseResult.error(e.getMessage());
+        }
+
+        /*
+         * 删除异常
+         */
+        if (e instanceof DeleteFailException) {
+            log.debug("Rest request error, {}", e.getMessage());
+            return new ResponseResult(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
 
         /*

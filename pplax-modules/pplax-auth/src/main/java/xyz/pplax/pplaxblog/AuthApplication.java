@@ -19,6 +19,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.xo.service.role",
         "xyz.pplax.pplaxblog.xo.service.menu",
         "xyz.pplax.pplaxblog.xo.service.filestorage",
+        "xyz.pplax.pplaxblog.xo.service.blog",
+        "xyz.pplax.pplaxblog.xo.service.collect",
+        "xyz.pplax.pplaxblog.xo.service.comment",
+        "xyz.pplax.pplaxblog.xo.service.feedback",
         "xyz.pplax.pplaxblog.auth.controller",
         "xyz.pplax.pplaxblog.auth.config",
         "xyz.pplax.pplaxblog.auth.service"

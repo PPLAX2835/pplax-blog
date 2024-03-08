@@ -1,25 +1,30 @@
 package xyz.pplax.pplaxblog.xo.service.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
-import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
-import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
-import xyz.pplax.pplaxblog.xo.entity.Role;
-import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.entity.UserInfo;
+import xyz.pplax.pplaxblog.xo.constants.sql.*;
+import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
+import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.collect.CollectService;
+import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
+import xyz.pplax.pplaxblog.xo.service.feedback.FeedbackService;
+import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.role.RoleService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 用户表 服务实现类
@@ -37,6 +42,21 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
     @Autowired
     private UserInfoService userInfoService;
+
+    @Autowired
+    private BlogService blogService;
+
+    @Autowired
+    private CollectService collectService;
+
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private FeedbackService feedbackService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     /**
      * 获取用户的角色，包含菜单
@@ -97,5 +117,94 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.eq(UserSQLConstants.USERNAME, username);
         return count(userQueryWrapper) > 0;
+    }
+
+    /**
+     * 删除用户 (逻辑)
+     * @param userUid
+     * @return
+     */
+    @Override
+    @Transactional
+    public ResponseResult removeById(String userUid) {
+        User user = getById(userUid);
+
+        // 检查该用户下是否还有别的数据
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.eq(BlogSQLConstants.USER_UID, user.getUid());
+        blogQueryWrapper.ne(BlogSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        int blogCount = blogService.count(blogQueryWrapper);
+        if (blogCount > 0) {
+            // 还有博客，无法删除
+            return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_USER);
+        }
+
+        QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
+        collectQueryWrapper.eq(CollectSQLConstants.USER_UID, user.getUid());
+        collectQueryWrapper.ne(CollectSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        int collectCount = collectService.count(collectQueryWrapper);
+        if (collectCount > 0) {
+            // 收藏还有东西，无法删除
+            return new ResponseResult(HttpStatus.COLLECTION_UNDER_THIS_USER);
+        }
+
+        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+        commentQueryWrapper.eq(CommentSQLConstants.USER_UID, user.getUid());
+        commentQueryWrapper.ne(CommentSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        int commentCount = commentService.count(commentQueryWrapper);
+        if (commentCount > 0) {
+            // 还有评论
+            return new ResponseResult(HttpStatus.COMMENT_UNDER_THIS_USER);
+        }
+
+        QueryWrapper<Feedback> feedbackQueryWrapper = new QueryWrapper<>();
+        feedbackQueryWrapper.eq(FeedBackSQLConstants.USER_UID, user.getUid());
+        feedbackQueryWrapper.ne(FeedBackSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        int feedbackCount = feedbackService.count(feedbackQueryWrapper);
+        if (feedbackCount > 0) {
+            // 还有反馈
+            return new ResponseResult(HttpStatus.FEEDBACK_UNDER_THIS_USER);
+        }
+
+        QueryWrapper<FileStorage> fileStorageQueryWrapper = new QueryWrapper<>();
+        fileStorageQueryWrapper.eq(FileStorageSQLConstants.USER_UID, user.getUid());
+        fileStorageQueryWrapper.ne(FileStorageSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        int fileStorageCount = fileStorageService.count(fileStorageQueryWrapper);
+        if (fileStorageCount > 0) {
+            // 还有文件
+            return new ResponseResult(HttpStatus.FILE_STORAGE_UNDER_THIS_USER);
+        }
+        
+        boolean res1 = super.removeById(userUid);
+        boolean res2 = userInfoService.removeById(user.getUserInfoUid());
+
+        // 如果有一个删除失败就回滚业务
+        if (!(res1 && res2)) {
+            throw new RuntimeException();
+        }
+
+        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+    }
+
+    /**
+     * 批量删除用户
+     * @param userUidList
+     * @return
+     */
+    @Override
+    @Transactional
+    public ResponseResult removeByIds(List<String> userUidList) {
+
+        List<User> userList = listByIds(userUidList);
+
+        for (User user : userList) {
+            // 批量删除出问题就回滚
+            ResponseResult responseResult = removeById(user.getUid());
+            if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
+                throw new DeleteFailException(responseResult.getMessage());
+            }
+        }
+
+        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
     }
 }

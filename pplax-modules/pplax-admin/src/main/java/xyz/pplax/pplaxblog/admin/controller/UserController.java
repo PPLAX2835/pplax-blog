@@ -39,6 +39,18 @@ public class UserController extends SuperController {
         return success(userInfoService.save(userInfoEditDto));
     }
 
+    @ApiOperation(value = "删除用户", notes = "删除用户")
+    @DeleteMapping(value = "/{userUid}")
+    public String delete(@PathVariable("userUid") String userUid) {
+        return toJson(userService.removeById(userUid));
+    }
+
+    @ApiOperation(value = "批量删除用户", notes = "批量删除用户")
+    @DeleteMapping(value = "")
+    public String delete(@RequestBody List<String> userUidList) {
+        return toJson(userService.removeByIds(userUidList));
+    }
+
 
     @ApiOperation(value="获取用户列表", notes="获取用户列表")
     @GetMapping(value = "/list")

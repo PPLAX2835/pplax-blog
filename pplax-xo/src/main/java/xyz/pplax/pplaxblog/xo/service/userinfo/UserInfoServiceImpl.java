@@ -31,8 +31,6 @@ import java.util.UUID;
 @Service
 public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserInfo> implements UserInfoService {
 
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();;
-
     @Autowired
     private FileStorageService fileStorageService;
 
@@ -117,72 +115,4 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
     }
 
 
-    /**
-     * 添加用户，因为需要同时生成两个表，这里用了事务
-     * @param userInfoEditDto
-     * @return
-     */
-    @Override
-    @Transactional
-    public Boolean save(UserInfoEditDto userInfoEditDto) {
-        User user = new User();
-        UserInfo userInfo = new UserInfo();
-
-        // 生成uuid
-        user.setUid(StringUtils.getUUID());
-        userInfo.setUid(StringUtils.getUUID());
-        user.setUserInfoUid(userInfo.getUid());
-
-        System.out.println(JSON.toJSONString(user));
-        System.out.println(JSON.toJSONString(userInfo));
-
-        // 封装
-        if (StringUtils.isEmpty(userInfoEditDto.getUsername())) {
-            // 用户名非空
-            return false;
-        }
-        if (userInfoEditDto.getUsername().length() < 3 || userInfoEditDto.getUsername().length() > 30) {
-            // 用户名在 [3, 30] 内
-            return false;
-        }
-        user.setUsername(userInfoEditDto.getUsername());
-
-        if (StringUtils.isEmpty(userInfoEditDto.getPassword())) {
-            // 密码非空
-            return false;
-        }
-        // 生成加密盐
-        user.setSalt(StringUtils.getRandomString(36));
-        user.setPassword(passwordEncoder.encode(userInfoEditDto.getPassword() + user.getSalt()));
-
-        if (userInfoEditDto.getStatus() == null) {
-            // 状态
-            return false;
-        }
-        user.setStatus(userInfoEditDto.getStatus());
-
-        if (StringUtils.isEmpty(userInfoEditDto.getRoleUid())) {
-            return false;
-        }
-        user.setRoleUid(userInfoEditDto.getRoleUid());
-
-        if (StringUtils.isEmpty(userInfoEditDto.getNickname())) {
-            // 昵称
-            return false;
-        }
-        userInfo.setNickname(userInfoEditDto.getNickname());
-        if (!StringUtils.isEmpty(userInfoEditDto.getSummary())) {
-            userInfo.setSummary(userInfoEditDto.getSummary());
-        }
-
-        boolean res1 = userService.save(user);
-        boolean res2 = save(userInfo);
-
-        // 如果有一个更新失败就回滚业务
-        if (!(res1 && res2)) {
-            throw new RuntimeException();
-        }
-
-        return true;
-    }
 }

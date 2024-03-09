@@ -8,14 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
-import xyz.pplax.pplaxblog.commons.validator.annotion.IdValid;
-import xyz.pplax.pplaxblog.commons.validator.group.Delete;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
-import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.service.role.RoleService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
@@ -40,7 +36,7 @@ public class UserController extends SuperController {
     @ApiOperation(value="添加用户", notes="添加用户")
     @PostMapping(value = "")
     public String add(@Validated(value = {Insert.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
-        return success(userInfoService.save(userInfoEditDto));
+        return success(userService.save(userInfoEditDto));
     }
 
     @ApiOperation(value = "删除用户", notes = "删除用户")

@@ -4,15 +4,15 @@ import { getUserInfo, getRoleWithMenu } from '@/api/user';
 
 const user = {
   state: {
-    name: '',
+    nickname: '',
     avatar: '',
     menu: [],
-    role: ''
+    roleName: ''
   },
 
   mutations: {
-    SET_NAME: (state, name) => {
-      state.name = name
+    SET_NICKNAME: (state, nickname) => {
+      state.nickname = nickname
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
@@ -20,8 +20,8 @@ const user = {
     SET_MENU: (state, menu) => {
       state.menu = menu
     },
-    SET_ROLE: (state, role) => {
-      state.role = role
+    SET_ROLE_NAME: (state, roleName) => {
+      state.roleName = roleName
     },
   },
 
@@ -53,7 +53,7 @@ const user = {
         getUserInfo(getUserUid()).then(response => {
           const data = response.data
           // 存昵称
-          commit('SET_NAME', data.nickname)
+          commit('SET_NICKNAME', data.nickname)
           // 存头像
           commit('SET_AVATAR', data.avatar.fileUrl)
 
@@ -72,7 +72,7 @@ const user = {
           const data = response.data
 
           // 存角色
-          commit('SET_ROLE', data.roleName)
+          commit('SET_ROLE_NAME', data.roleName)
           // 存菜单
           commit('SET_MENU', data.menuList)
 

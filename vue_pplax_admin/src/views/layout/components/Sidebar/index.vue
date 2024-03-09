@@ -22,6 +22,7 @@ export default {
   components: { SidebarItem },
   created() {
     this.$store.dispatch('getCurrentUserRoleWithMenu')
+    this.$store.dispatch('getRoleList')
   },
   computed: {
     ...mapGetters([

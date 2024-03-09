@@ -82,7 +82,6 @@
 
 <script>
 import { getBlogSortList } from "../../api/blogSort";
-import { getRoleList } from "../../api/role"
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import { EStatus } from "../../base/EStatus"
@@ -165,21 +164,12 @@ export default {
     this.statusList = EStatus;
     this.openLoading();
     this.fetchBlogSortList();
-    this.fetchRoleList();
   },
   methods: {
     fetchBlogSortList: function (){
       getBlogSortList(this.params).then(res =>{
         this.tableData = res.data
         this.total = res.total
-        this.loading.close()
-      }).catch(err =>{
-        console.log(err)
-      })
-    },
-    fetchRoleList: function () {
-      getRoleList(this.params).then(res =>{
-        this.roleList = res.data
         this.loading.close()
       }).catch(err =>{
         console.log(err)

@@ -159,7 +159,6 @@ export default {
       editingUserUsername: '',
       title: '',
       avatarUrl: '',
-      roleList: '',
       confirmPassword: '',
       form: {
         avatarPictureUid: '',
@@ -213,7 +212,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'menu'
+      'menu',
+      'roleList'
     ]),
     /**
      * 检查是否有批量删除的权限
@@ -247,21 +247,12 @@ export default {
   created() {
     this.openLoading();
     this.fetchUserList();
-    this.fetchRoleList();
   },
   methods: {
     fetchUserList: function (){
       getUserList(this.params).then(res =>{
         this.tableData = res.data
         this.total = res.total
-        this.loading.close()
-      }).catch(err =>{
-        console.log(err)
-      })
-    },
-    fetchRoleList: function () {
-      getRoleList(this.params).then(res =>{
-        this.roleList = res.data
         this.loading.close()
       }).catch(err =>{
         console.log(err)

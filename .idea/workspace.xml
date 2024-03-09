@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="简单调整">
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/role.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/role.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/dashboard/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +26,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -218,9 +226,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -296,14 +304,7 @@
       <workItem from="1709794735552" duration="15308000" />
       <workItem from="1709885378924" duration="594000" />
       <workItem from="1709893921825" duration="9783000" />
-      <workItem from="1709946448249" duration="14715000" />
-    </task>
-    <task id="LOCAL-00262" summary="登录认证也弄了个服务层">
-      <created>1707216957824</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
-      <option name="project" value="LOCAL" />
-      <updated>1707216957824</updated>
+      <workItem from="1709946448249" duration="16157000" />
     </task>
     <task id="LOCAL-00263" summary="调整文件表，准备弄文件服务">
       <created>1707273318948</created>
@@ -641,7 +642,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709973794431</updated>
     </task>
-    <option name="localTasksCounter" value="311" />
+    <task id="LOCAL-00311" summary="简单调整">
+      <created>1709974030477</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
+      <option name="project" value="LOCAL" />
+      <updated>1709974030477</updated>
+    </task>
+    <option name="localTasksCounter" value="312" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -676,7 +684,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改登录成功不跳转的bug" />
     <MESSAGE value="实现restful风格api鉴权" />
     <MESSAGE value="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题" />
     <MESSAGE value="实现动态菜单" />
@@ -701,7 +708,8 @@
     <MESSAGE value="调整菜单" />
     <MESSAGE value="准备重构blogSort相关业务代码" />
     <MESSAGE value="现在能显示和查询分类列表了" />
-    <option name="LAST_COMMIT_MESSAGE" value="现在能显示和查询分类列表了" />
+    <MESSAGE value="简单调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="简单调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -13,7 +13,7 @@
         </div>
       </div>
     </el-col>
-    
+
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class='card-panel'>
         <div class="card-panel-icon-wrapper icon-people">
@@ -25,7 +25,7 @@
         </div>
       </div>
     </el-col>
-    
+
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" >
         <div class="card-panel-icon-wrapper icon-message">
@@ -55,10 +55,12 @@
 <script>
 import { mapGetters } from "vuex";
 import CountTo from "vue-count-to";
-export default {  
+export default {
   name: "dashboard",
   computed: {
-    ...mapGetters(["name", "roles"])
+    ...mapGetters([
+
+    ])
   },
   components: {
     CountTo

@@ -19,6 +19,8 @@ import static java.lang.annotation.ElementType.*;
 @Constraint(validatedBy = {NumericValidator.class})
 public @interface Numeric {
 
+    boolean required() default true;
+
     String message() default Messages.CK_NUMERIC_DEFAULT;
 
     String value() default "";

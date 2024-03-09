@@ -171,7 +171,7 @@ export default {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { validator: this.isExist, trigger: 'change'},
-          { min: 3, max: 30, message: '长度在1到30个字符' },
+          { min: 3, max: 30, message: '长度在3到30个字符' },
         ],
         nickname: [
           { required: true, message: '请输入昵称', trigger: 'blur' },

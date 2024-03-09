@@ -10,15 +10,17 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class IntegerValidator implements ConstraintValidator<IntegerNotNull, Integer> {
 
+    private IntegerNotNull constraintAnnotation;
+
     @Override
     public void initialize(IntegerNotNull constraintAnnotation) {
-
+        this.constraintAnnotation = constraintAnnotation;
     }
 
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
         if (value == null) {
-            return false;
+            return !constraintAnnotation.required();
         }
         return true;
     }

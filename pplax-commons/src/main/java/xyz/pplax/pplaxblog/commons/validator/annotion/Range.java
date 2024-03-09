@@ -23,6 +23,8 @@ public @interface Range {
 
     long max() default Long.MAX_VALUE;
 
+    boolean required() default true;
+
     String message() default Messages.CK_RANGE_DEFAULT;
 
     String value() default "";

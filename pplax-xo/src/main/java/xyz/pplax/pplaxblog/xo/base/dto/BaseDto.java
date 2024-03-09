@@ -6,8 +6,7 @@ import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.commons.validator.annotion.IdValid;
 import xyz.pplax.pplaxblog.commons.validator.annotion.IdsValid;
 import xyz.pplax.pplaxblog.commons.validator.annotion.IntegerNotNull;
-import xyz.pplax.pplaxblog.commons.validator.group.Delete;
-import xyz.pplax.pplaxblog.commons.validator.group.Update;
+import xyz.pplax.pplaxblog.commons.validator.group.*;
 
 import java.util.List;
 
@@ -22,15 +21,15 @@ public class BaseDto<T> extends PageDto<T> {
     /**
      * 唯一UID
      */
-    @IdValid(groups = {Update.class, Delete.class})
+    @IdValid(required = false, groups = {Update.class, Delete.class, GetList.class, GetOne.class, Insert.class})
     private String uid;
 
     /**
      * 批量操作时用到的uid
      */
-    @IdsValid(groups = {Update.class, Delete.class})
+    @IdsValid(required = false, groups = {Update.class, Delete.class, GetList.class, GetOne.class, Insert.class})
     private List<String> uids;
 
-    @IntegerNotNull
+    @IntegerNotNull(required = false, groups = {Update.class, Delete.class, GetList.class, GetOne.class, Insert.class})
     private Integer status;
 }

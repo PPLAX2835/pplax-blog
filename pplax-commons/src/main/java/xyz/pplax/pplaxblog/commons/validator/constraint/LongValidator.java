@@ -10,16 +10,17 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class LongValidator implements ConstraintValidator<LongNotNull, Long> {
 
+    private LongNotNull constraintAnnotation;
 
     @Override
     public void initialize(LongNotNull constraintAnnotation) {
-
+        this.constraintAnnotation = constraintAnnotation;
     }
 
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
         if (value == null) {
-            return false;
+            return !constraintAnnotation.required();
         }
         return true;
     }

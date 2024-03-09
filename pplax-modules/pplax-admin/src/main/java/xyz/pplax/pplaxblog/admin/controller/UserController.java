@@ -5,8 +5,12 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.validator.annotion.IdValid;
+import xyz.pplax.pplaxblog.commons.validator.group.Delete;
+import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
@@ -35,7 +39,7 @@ public class UserController extends SuperController {
 
     @ApiOperation(value="添加用户", notes="添加用户")
     @PostMapping(value = "")
-    public String add(@RequestBody UserInfoEditDto userInfoEditDto) {
+    public String add(@Validated(value = {Insert.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
         return success(userInfoService.save(userInfoEditDto));
     }
 

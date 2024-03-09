@@ -10,15 +10,17 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class BooleanValidator implements ConstraintValidator<BooleanNotNULL, Boolean> {
 
+    private BooleanNotNULL constraintAnnotation;
+
     @Override
     public void initialize(BooleanNotNULL constraintAnnotation) {
-
+        this.constraintAnnotation = constraintAnnotation;
     }
 
     @Override
     public boolean isValid(Boolean value, ConstraintValidatorContext context) {
         if (value == null) {
-            return false;
+            return !constraintAnnotation.required();
         }
         return true;
     }

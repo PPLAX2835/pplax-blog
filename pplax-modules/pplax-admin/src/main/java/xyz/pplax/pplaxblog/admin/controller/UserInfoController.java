@@ -4,9 +4,12 @@ import io.swagger.annotations.Api;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.validator.group.Insert;
+import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
@@ -31,7 +34,7 @@ public class UserInfoController extends SuperController {
     }
 
     @PutMapping(value = "")
-    public String updateUserInfo(@PathVariable("userUid") String userUid, @RequestBody UserInfoEditDto userInfoEditDto) {
+    public String updateUserInfo(@PathVariable("userUid") String userUid,@Validated(value = {Update.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);
 
         if (res) {

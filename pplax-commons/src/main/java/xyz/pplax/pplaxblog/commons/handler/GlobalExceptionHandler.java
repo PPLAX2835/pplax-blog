@@ -9,6 +9,7 @@ import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
@@ -66,8 +67,15 @@ public class GlobalExceptionHandler {
         /*
          * 参数校验异常
          */
-        if (e instanceof BindException) {
-            BindingResult bindingResult = ((BindException) e).getBindingResult();
+        if (e instanceof BindException || e instanceof MethodArgumentNotValidException) {
+            BindingResult bindingResult = null;
+            if (e instanceof MethodArgumentNotValidException) {
+                MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
+                bindingResult = methodArgumentNotValidException.getBindingResult();
+            } else {
+                bindingResult = ((BindException) e).getBindingResult();
+            }
+
             if (null != bindingResult && bindingResult.hasErrors()) {
                 List<Object> jsonList = new ArrayList<Object>();
                 bindingResult.getFieldErrors().stream().forEach(fieldError -> {

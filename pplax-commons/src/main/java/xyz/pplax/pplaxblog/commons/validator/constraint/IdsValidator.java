@@ -10,20 +10,22 @@ import java.util.List;
 
 public class IdsValidator implements ConstraintValidator<IdsValid, List<String>> {
 
+    private IdsValid constraintAnnotation;
+
     @Override
     public void initialize(IdsValid constraintAnnotation) {
-
+        this.constraintAnnotation = constraintAnnotation;
     }
 
     @Override
     public boolean isValid(List<String> uids, ConstraintValidatorContext context) {
         if (uids == null || uids.isEmpty()) {
-            return false;
+            return !constraintAnnotation.required();
         }
 
         for (String uid : uids) {
             if (!isValidUid(uid)) {
-                return false;
+                return !constraintAnnotation.required();
             }
         }
 

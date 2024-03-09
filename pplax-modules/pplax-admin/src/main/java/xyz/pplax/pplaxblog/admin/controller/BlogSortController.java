@@ -1,10 +1,12 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
@@ -20,6 +22,7 @@ public class BlogSortController extends SuperController {
 
     private static final Logger log = LogManager.getLogger(BlogSortController.class);
 
+    @ApiOperation(value="获取分类列表", notes="获取分类列表")
     @GetMapping("/list")
     public String getList(
         @RequestParam(value = "sortName", required = false) String sortName,
@@ -37,5 +40,29 @@ public class BlogSortController extends SuperController {
                 blogSortService.count(blogSortGetListDto)
         ));
     }
+
+    @ApiOperation(value="置顶分类", notes="置顶分类")
+    @PutMapping("/{blogSortUid}/promote")
+    public String promote(@PathVariable("blogSortUid") String blogSortUid) {
+        Boolean res = blogSortService.promote(blogSortUid);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+
+    @ApiOperation(value="取消置顶", notes="取消置顶")
+    @DeleteMapping("/{blogSortUid}/promote")
+    public String promoteCancel(@PathVariable("blogSortUid") String blogSortUid) {
+        Boolean res = blogSortService.promoteCancel(blogSortUid);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
 
 }

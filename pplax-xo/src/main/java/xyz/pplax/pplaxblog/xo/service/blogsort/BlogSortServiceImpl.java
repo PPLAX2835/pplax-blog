@@ -4,8 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
@@ -109,6 +112,40 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         // 获得非删除状态的
         blogSortQueryWrapper.ne(BlogSortSQLConstants.STATUS, EStatus.DISABLED.getStatus());
         return (long) count(blogSortQueryWrapper);
+    }
+
+    @Override
+    public Boolean promote(String blogSortUid) {
+        BlogSort blogSort = new BlogSort();
+        blogSort.setUid(blogSortUid);
+        blogSort.setSortNo(CharacterConstants.NUM_ZERO);
+        return updateById(blogSort);
+    }
+
+    @Override
+    public Boolean promoteCancel(String blogSortUid) {
+        // 先获得排序了的分类列表
+        QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
+        blogSortQueryWrapper.orderByAsc(BlogSortSQLConstants.SORT_NO);
+        List<BlogSort> blogSortList = list(blogSortQueryWrapper);
+
+        int index = 0;
+        int gapSortNo = 1;
+        // 过滤掉已经置顶的
+        while (index < blogSortList.size() && blogSortList.get(index).getSortNo() == 0) {
+            index++;
+        }
+        // 找出未置顶的分类中的空隙
+        while (index < blogSortList.size() && gapSortNo == blogSortList.get(index).getSortNo()) {
+            index++;
+            gapSortNo++;
+        }
+
+        BlogSort blogSort = new BlogSort();
+        blogSort.setUid(blogSortUid);
+        blogSort.setSortNo(gapSortNo);
+
+        return updateById(blogSort);
     }
 
     /**

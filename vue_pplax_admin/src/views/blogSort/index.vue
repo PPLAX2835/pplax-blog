@@ -57,7 +57,11 @@
         </el-table-column>
         <el-table-column width="220" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
-            <el-button v-if="canPromote" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
+            <div v-if="canPromote" >
+              <el-button v-if="scope.row.sortNo !== 0" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
+              <el-button v-else type="warning" size="mini" @click="handlePromoteCancel(scope)">取消置顶</el-button>
+
+            </div>
 <!--            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleEdit(scope)">编辑</el-button>-->
 <!--            <el-button v-if="canDel" size="mini" type="danger" @click="remove(scope)">删除-->
 <!--            </el-button>-->
@@ -81,7 +85,7 @@
 </template>
 
 <script>
-import { getBlogSortList } from "../../api/blogSort";
+import { getBlogSortList, promote, promoteCancel } from "../../api/blogSort";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import { EStatus } from "../../base/EStatus"
@@ -132,11 +136,11 @@ export default {
       return hasAuth(this.menu, 'DELETE:/api/admin/user')
     },
     /**
-     * 判断是否可以使用指定按钮
+     * 判断是否可以使用置顶按钮
      * @returns {boolean|*}
      */
     canPromote: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/blog/{uid}/promote')
+      return hasAuth(this.menu, 'PUT:/api/admin/blogSort/{uid}/promote') && hasAuth(this.menu, 'DELETE:/api/admin/blogSort/{uid}/promote')
     },
     /**
      * 检查是否有删除的权限
@@ -251,17 +255,57 @@ export default {
         this.$refs['dataForm'].clearValidate()
       })
     },
+    /**
+     * 置顶按钮的点击事件
+     * @param scope
+     */
     handlePromote: function (scope) {
       this.$confirm('此操作将会把该分类放到首位, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
+        this.openLoading();
+
+        promote(scope.row.uid).then(res => {
+          this.fetchBlogSortList()
+          this.$message.success('置顶成功');
+          this.loading.close()
+        }).catch(() => {
+          this.loading.close()
+        });
 
       }).catch(() => {
         this.$message({
           type: 'info',
           message: '已取消置顶'
+        })
+      })
+    },
+    /**
+     * 取消置顶按钮的点击事件
+     * @param scope
+     */
+    handlePromoteCancel: function (scope) {
+      this.$confirm('此操作将取消置顶分类, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.openLoading();
+
+        promoteCancel(scope.row.uid).then(res => {
+          this.fetchBlogSortList()
+          this.$message.success('取消置顶成功');
+          this.loading.close()
+        }).catch(() => {
+          this.loading.close()
+        });
+
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
         })
       })
     },

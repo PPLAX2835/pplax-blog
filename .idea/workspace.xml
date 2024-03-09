@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="简单调整">
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/role.js" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/role.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/getters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/BlogSortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/BlogSortController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/dashboard/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Sidebar/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +123,7 @@
       <recent name="xyz.pplax.pplaxblog.xo.service.menu" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+  <component name="RunManager" selected="Spring Boot.AdminApplication">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -226,9 +222,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -304,14 +300,7 @@
       <workItem from="1709794735552" duration="15308000" />
       <workItem from="1709885378924" duration="594000" />
       <workItem from="1709893921825" duration="9783000" />
-      <workItem from="1709946448249" duration="16157000" />
-    </task>
-    <task id="LOCAL-00263" summary="调整文件表，准备弄文件服务">
-      <created>1707273318948</created>
-      <option name="number" value="00263" />
-      <option name="presentableId" value="LOCAL-00263" />
-      <option name="project" value="LOCAL" />
-      <updated>1707273318948</updated>
+      <workItem from="1709946448249" duration="18784000" />
     </task>
     <task id="LOCAL-00264" summary="实现文件服务的头像上传">
       <created>1707297438612</created>
@@ -649,7 +638,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709974030477</updated>
     </task>
-    <option name="localTasksCounter" value="312" />
+    <task id="LOCAL-00312" summary="设置role列表的store，省的每次且页面都要查询">
+      <created>1709982518495</created>
+      <option name="number" value="00312" />
+      <option name="presentableId" value="LOCAL-00312" />
+      <option name="project" value="LOCAL" />
+      <updated>1709982518495</updated>
+    </task>
+    <option name="localTasksCounter" value="313" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -684,7 +680,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="实现restful风格api鉴权" />
     <MESSAGE value="前端实现获取用户信息的逻辑；解决页面刷新store失效的问题" />
     <MESSAGE value="实现动态菜单" />
     <MESSAGE value="让菜单按顺序排列" />
@@ -709,7 +704,8 @@
     <MESSAGE value="准备重构blogSort相关业务代码" />
     <MESSAGE value="现在能显示和查询分类列表了" />
     <MESSAGE value="简单调整" />
-    <option name="LAST_COMMIT_MESSAGE" value="简单调整" />
+    <MESSAGE value="设置role列表的store，省的每次且页面都要查询" />
+    <option name="LAST_COMMIT_MESSAGE" value="设置role列表的store，省的每次且页面都要查询" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

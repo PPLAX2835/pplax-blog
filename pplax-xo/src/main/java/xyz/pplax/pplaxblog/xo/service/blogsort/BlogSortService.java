@@ -30,6 +30,20 @@ public interface BlogSortService extends SuperService<BlogSort> {
     public Long count(BlogSortGetListDto blogSortGetListDto);
 
     /**
+     * 对分类进行置顶
+     * @param blogSortUid
+     * @return
+     */
+    Boolean promote(String blogSortUid);
+
+    /**
+     * 取消置顶分类
+     * @param blogSortUid
+     * @return
+     */
+    Boolean promoteCancel(String blogSortUid);
+
+    /**
      * 检查当前分类是否存在
      * @param sortName
      * @return

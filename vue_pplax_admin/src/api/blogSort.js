@@ -1,10 +1,39 @@
 import service from '@/utils/request'
 
+/**
+ * 获得分类列表
+ * @param params
+ * @returns {*}
+ */
 export function getBlogSortList(params) {
   return service({
     url: '/admin/blogSort/list',
     method: 'get',
     params
+  })
+}
+
+/**
+ * 对指定分类进行置顶
+ * @param blogSortUid
+ * @returns {*}
+ */
+export function promote(blogSortUid) {
+  return service({
+    url: '/admin/blogSort/' + blogSortUid + '/promote',
+    method: 'put'
+  })
+}
+
+/**
+ * 取消置顶
+ * @param blogSortUid
+ * @returns {*}
+ */
+export function promoteCancel(blogSortUid) {
+  return service({
+    url: '/admin/blogSort/' + blogSortUid + '/promote',
+    method: 'delete'
   })
 }
 

@@ -102,6 +102,11 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         return blogSortList;
     }
 
+    /**
+     * 获取博客分类的数量
+     * @param blogSortGetListDto
+     * @return
+     */
     @Override
     public Long count(BlogSortGetListDto blogSortGetListDto) {
         QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
@@ -114,6 +119,11 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         return (long) count(blogSortQueryWrapper);
     }
 
+    /**
+     * 对分类进行置顶
+     * @param blogSortUid
+     * @return
+     */
     @Override
     public Boolean promote(String blogSortUid) {
         BlogSort blogSort = new BlogSort();
@@ -122,6 +132,11 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         return updateById(blogSort);
     }
 
+    /**
+     * 取消置顶分类
+     * @param blogSortUid
+     * @return
+     */
     @Override
     public Boolean promoteCancel(String blogSortUid) {
         // 先获得排序了的分类列表

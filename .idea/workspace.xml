@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -292,14 +297,7 @@
       <workItem from="1709794735552" duration="15308000" />
       <workItem from="1709885378924" duration="594000" />
       <workItem from="1709893921825" duration="9783000" />
-      <workItem from="1709946448249" duration="5667000" />
-    </task>
-    <task id="LOCAL-00259" summary="添加role的接口">
-      <created>1707201516884</created>
-      <option name="number" value="00259" />
-      <option name="presentableId" value="LOCAL-00259" />
-      <option name="project" value="LOCAL" />
-      <updated>1707201516884</updated>
+      <workItem from="1709946448249" duration="8998000" />
     </task>
     <task id="LOCAL-00260" summary="token鉴权初步实现，目前还不够优美">
       <created>1707209943921</created>
@@ -637,7 +635,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709952466911</updated>
     </task>
-    <option name="localTasksCounter" value="308" />
+    <task id="LOCAL-00308" summary="调整菜单">
+      <created>1709952836449</created>
+      <option name="number" value="00308" />
+      <option name="presentableId" value="LOCAL-00308" />
+      <option name="project" value="LOCAL" />
+      <updated>1709952836449</updated>
+    </task>
+    <option name="localTasksCounter" value="309" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,7 +677,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="重写删除方法，将其改为逻辑删除" />
     <MESSAGE value="调整数据库表" />
     <MESSAGE value="登录改为需要验证码登录" />
     <MESSAGE value="修改登录成功不跳转的bug" />
@@ -697,7 +701,8 @@
     <MESSAGE value="整理user和userInfo相关业务" />
     <MESSAGE value="整理sql字段常量类" />
     <MESSAGE value="用户管理修改查询条件" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户管理修改查询条件" />
+    <MESSAGE value="调整菜单" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整菜单" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

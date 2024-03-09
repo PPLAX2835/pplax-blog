@@ -1,561 +1,558 @@
 <template>
   <div class="app-container">
-    <!-- 查询和其他操作 -->
+    <!--查询or其他操作-->
+    <el-form v-show="showSearch" :inline="true" ref="form" :model="params" label-width="68px">
+      <el-form-item label="分类名">
+        <el-input style="width: 150px" size="small" v-model="params.keyword" placeholder="请输入分类名"/>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
+        <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
+        <el-button v-if="canAdd()" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
+        <el-button v-if="canDeleteBatch()" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
+                   @click="handleDelete">批量删除
+        </el-button>
+      </el-form-item>
 
-    <div class="filter-container" style="margin: 10px 0 10px 0">
-    <el-input
-        clearable
-        @keyup.enter.native="handleFind"
-        class="filter-item"
-        style="width: 200px;"
-        v-model="searchForm.keyword"
-        placeholder="请输入分类名"
-      ></el-input>
+    </el-form>
 
-      <el-button 
-        class="filter-item" 
-        type="primary" 
-        icon="el-icon-search" 
-        @click="handleFind" 
-        >查找</el-button>
-
-      <el-button
-        class="filter-item"
-        type="primary"
-        @click="handleAdd"
-        icon="el-icon-edit"
-      >添加博客分类</el-button
-      >
-      
-      <el-button
-        class="filter-item"
-        type="info"
-        @click="handleBlogSortByClickCount"
-        icon="el-icon-document"
-      >点击量排序</el-button>
-
-      <el-button
-        class="filter-item"
-        type="info"
-        @click="handleBlogSortByCites"
-        icon="el-icon-document"
-      >引用量排序</el-button>
-      
-      <el-button 
-        class="filter-item" 
-        type="danger" 
-        @click="handleDeleteBatch" 
-        icon="el-icon-delete" 
-      >删除选中</el-button>
-
+    <!-- 表格区域 -->
+    <div>
+      <el-table border :data="tableData" style="width: 100%" @selection-change="handleSelectionChange">
+        <el-table-column type="selection" align="center" />
+        <el-table-column align="center" prop="avatar" label="头像"  width="120">
+          <template slot-scope="scope">
+            <div class="block">
+              <el-avatar v-if="scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined" :size="50" :src="scope.row.userInfo.avatar.fileUrl"></el-avatar>
+              <el-avatar v-else :size="50"></el-avatar>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" prop="username" label="用户名" width="120" />
+        <el-table-column align="center" prop="userInfo.nickname" label="昵称" width="180" />
+        <el-table-column align="center" label="用户角色" width="120">
+          <template slot-scope="scope">
+            <el-tag>
+              {{ scope.row.role.roleName }}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" prop="lastLoginIp" label="上次登录ip" width="150" />
+        <el-table-column align="center"  label="上次登录地址"  width="150" >
+          <template slot-scope="scope">
+            {{ getCity(scope.row.lastLoginAddress) }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center" prop="loginCount" label="登录次数" width="80" />
+        <el-table-column align="center"  label="上次登录时间"  width="180" >
+          <template slot-scope="scope">
+            {{ timeFormat(scope.row.lastLoginTime) }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center"  label="创建时间"  width="180" >
+          <template slot-scope="scope">
+            {{ timeFormat(scope.row.createTime) }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center"  label="修改时间"  width="180" >
+          <template slot-scope="scope">
+            {{ timeFormat(scope.row.updateTime) }}
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="操作" width="180">
+          <template slot-scope="scope">
+            <el-button v-if="canDelete()" type="danger" size="mini" @click="handleDelete(scope)">删除</el-button>
+            <el-button v-if="canUpdate()" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
 
-    <el-table 
-      :data="tableData" 
-      style="width: 100%"
-      @selection-change="handleSelectionChange"
-      >
-      <el-table-column type="selection"></el-table-column>
-
-      <el-table-column label="序号" width="60">
-        <template slot-scope="scope">
-          <span>{{scope.$index + 1}}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="分类名" width="100">
-        <template slot-scope="scope">
-          {{ scope.row.sortName }}
-        </template>
-      </el-table-column>
-
-      <el-table-column label="简介" width="200">
-        <template slot-scope="scope">
-			<span
-        v-if="scope.row.summary != null"
-      >{{ submitStr(scope.row.summary, 30) }}</span
-      >
-        </template>
-      </el-table-column>
-
-      <el-table-column label="内容" width="200">
-        <template slot-scope="scope">
-			<span
-        v-if="scope.row.content != null"
-      >{{ submitStr(scope.row.content, 30) }}</span
-      >
-        </template>
-      </el-table-column>
-      
-      <el-table-column label="点击数" width="100">
-        <template slot-scope="scope">
-          {{ scope.row.clickCount }}
-        </template>
-      </el-table-column>
-
-      <el-table-column label="父级分类名" width="150">
-        <template slot-scope="scope">
-          <el-tag
-            type="warning"
-            v-if="scope.row.parentBlogSort != null"
-          >{{ scope.row.parentBlogSort.sortName }}</el-tag
-          >
-        </template>
-      </el-table-column>
-
-      <el-table-column label="创建时间" width="160">
-        <template slot-scope="scope">
-          <span>{{ scope.row.createTime }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="状态" width="100">
-        <template slot-scope="scope">
-          <template v-if="scope.row.status == status.ENABLE">
-            <el-tag type="success">激活</el-tag>
-          </template>
-          <template v-if="scope.row.status == status.FREEZE">
-            <el-tag type="primary">冻结</el-tag>
-          </template>
-          <template v-if="scope.row.status == status.STICK">
-            <el-tag type="warning" >顶置</el-tag>
-          </template>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="操作" fixed="right" min-width="170">
-        <template slot-scope="scope">
-          <el-button @click="handleEdit(scope.row)" type="warning" size="small"
-          >编辑</el-button
-          >
-          <el-button @click="handleDelete(scope.row)" type="danger" size="small"
-          >删除</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <!--分页-->
-    <div class="block">
-      <el-pagination
-        @current-change="handleCurrentChange"
-        :current-page.sync="searchForm.currentPage"
-        :page-size="searchForm.pageSize"
-        layout="total, prev, pager, next, jumper"
-        :total="total"
-      >
+    <!--分页区域-->
+    <div class="pagination-container" style="float: right;margin-bottom: 1.25rem;margin-top: 1.25rem;">
+      <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                     :current-page="params.currentPage" :page-size="params.pageSize" :page-sizes="[10, 20, 30]"
+                     layout="total, sizes,prev, pager, next,jumper" :total="total">
       </el-pagination>
     </div>
 
-    <!-- 添加或修改对话框 -->
-    <el-dialog
-      :title="title"
-      :visible.sync="dialogFormVisible"
-      label-width="100px"
-    >
-      <el-form ref="form" :model="form" :rules="editRules">
-        <el-form-item
-          v-if="isEditForm == true"
-          label="博客分类UID"
-          :label-width="formLabelWidth"
-        >
-          <el-input v-model="form.uid" auto-complete="off" disabled></el-input>
+    <!-- 编辑弹窗 -->
+    <el-dialog center :title="title" :visible.sync="dialogFormVisible">
+      <el-form :rules="rules" ref="dataForm" :model="form">
+        <el-form-item v-if="editingUserUid" prop="avatar" label="头像" :label-width="formLabelWidth">
+          <el-upload action="" class="avatar-uploader" :show-file-list="false"
+                     :before-upload="uploadBefore" :http-request="uploadSectionFile">
+            <img v-if="avatarUrl" :src="avatarUrl" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
         </el-form-item>
-
-        <el-form-item
-          label="分类名"
-          :label-width="formLabelWidth"
-          required
-          prop="sortName"
-        >
-          <el-input
-            v-model="form.sortName"
-            auto-complete="off"
-            placeholder="请输入分类名"
-          ></el-input>
+        <el-form-item prop="username" label="用户名" :label-width="formLabelWidth">
+          <el-input v-model="form.username" autocomplete="off"></el-input>
         </el-form-item>
-
-        <el-form-item label="简介" :label-width="formLabelWidth">
-          <el-input
-            v-model="form.summary"
-            auto-complete="off"
-            placeholder="请输入简介"
-          ></el-input>
+        <el-form-item v-if="!isEditForm" prop="password" label="密码" :label-width="formLabelWidth">
+          <el-input v-model="form.password" type="password" autocomplete="off"></el-input>
         </el-form-item>
-
-        <el-form-item label="内容" :label-width="formLabelWidth">
-          <el-input
-            v-model="form.content"
-            auto-complete="off"
-            placeholder="请输入内容"
-          ></el-input>
+        <el-form-item v-if="!isEditForm" prop="confirmPassword" label="确认密码" :label-width="formLabelWidth">
+          <el-input v-model="form.confirmPassword" type="password" autocomplete="off"></el-input>
         </el-form-item>
-
-        <el-form-item
-          label="状态"
-          :label-width="formLabelWidth"
-          required
-          prop="status"
-        >
-          <el-select
-            v-model="form.status"
-            size="small"
-            placeholder="请选择"
-            filterable
-          >
-            <el-option
-              v-for="item in statusOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
-          </el-select>
+        <el-form-item prop="nickname" label="昵称" :label-width="formLabelWidth">
+          <el-input v-model="form.nickname" autocomplete="off"></el-input>
         </el-form-item>
-
-        <el-form-item label="父级分类" :label-width="formLabelWidth">
-          <el-select
-            v-model="form.parentBlogSortUid"
-            size="small"
-            filterable
-            remote
-            reserve-keyword
-            placeholder="请输入父级分类"
-            :remote-method="getParentBlogSortList"
-            :loading="loading"
-          >
-            <el-option
-              filterable
-              remote
-              v-for="item in parentBlogSortOptions"
-              :key="item.uid"
-              :label="item.sortName"
-              :value="item.uid"
-            >
-            </el-option>
-          </el-select>
+        <el-form-item prop="birthday" label="生日" :label-width="formLabelWidth">
+          <el-date-picker
+            v-model="form.birthday"
+            type="date"
+            placeholder="选择日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item prop="summary" label="个性签名" :label-width="formLabelWidth">
+          <el-input v-model="form.summary" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item prop="status" label="状态" :label-width="formLabelWidth">
+          <div>
+            <el-radio v-model="form.status" :label="1" border>正常</el-radio>
+            <el-radio v-model="form.status" :label="2" border>冻结</el-radio>
+          </div>
+        </el-form-item>
+        <el-form-item prop="roleUid" label="角色" :label-width="formLabelWidth">
+          <div>
+            <el-radio v-for="item in roleList" v-model="form.roleUid" :label="item.uid" border>{{ item.roleName }}</el-radio>
+          </div>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button type="primary" @click="submit">确 定</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { getBlogSortList, checkSortNameExists, addBlogSort, editBlogSort, deleteBlogSort, deleteBatchBlogSort } from '../../api/blogSort';
-import EStatus from "../../base/EStatus";
+import {getUserList, updateUserInfo, addUser, deleteUser, deleteUserBatch, isUsernameExist} from '../../api/user'
+import { avatarUpload } from "../../api/fileStorage";
+import { getRoleList } from "../../api/role"
+import { hasAuth } from "../../utils/auth";
+import { parseTime } from "../../utils";
+import {mapGetters} from "vuex";
 
 export default {
 
   data() {
     return {
-      loading: false,
-      tableData: [], //博客分类数据
-      multipleSelection: [], //多选，用于批量删除
-      searchForm: {
-        keyword: "",
-        sortByClickCount: false,
-        sortByCites: false,
+      multipleSelection: [],
+      showSearch: true,
+      params: {
+        keyword: '',
         currentPage: 1,
         pageSize: 10
       },
-      status: EStatus,
-      total: 0, //总数量
-      title: "增加博客分类",
-      dialogFormVisible: false, //控制弹出框
+      // 编辑/添加表单用到的
       formLabelWidth: '120px',
-      isEditForm: false ,
-      parentBlogSortOptions: [],
-      statusOptions: [{
-        value: 1,
-        label: '激活'
-      }, {
-        value: 2,
-        label: '冻结'
-      }, {
-        value: 3,
-        label: '置顶'
-      }],
-      editRules: {
-        sortName: [
-          { required: true, trigger: 'blur', message: '请输入分类名' },
-          { trigger: 'blur', message: '分类名已存在', validator: this.checkExistSortName },
-          { max: 10, message: '长度不超过10', trigger: 'blur' }
+      isEditForm: false,
+      dialogFormVisible: false,
+      editingUserUid: '',
+      editingUserUsername: '',
+      title: '',
+      avatarUrl: '',
+      roleList: '',
+      confirmPassword: '',
+      form: {
+        avatarPictureUid: '',
+        password: '',
+        nickname: '',
+        roleUid: '',
+        status: '',
+        username: '',
+        birthday: '',
+        summary: ''
+      },
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { validator: this.isExist, trigger: 'change'},
+          { min: 3, max: 30, message: '长度在3到30个字符' },
+        ],
+        nickname: [
+          { required: true, message: '请输入昵称', trigger: 'blur' },
+          { min: 1, max: 50, message: '长度在1到50个字符' },
+        ],
+        birthday: [
+          { required: false, message: '请输选择生日', trigger: 'blur' },
+        ],
+        summary: [
+          { required: false, message: '请输入个性签名', trigger: 'blur' },
+          { max: 100, message: '最多输入100个字符' },
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 8, max: 16, message: '长度在8到16个字符' },
+        ],
+        confirmPassword: [
+          { required: true, message: '请确认密码', trigger: 'blur' },
+          { validator: this.passwordConfirm, trigger: 'blur'},
+          { min: 8, max: 16, message: '长度在8到16个字符' },
         ],
         status: [
-          { required: true, trigger: 'blur', message: '请选择状态' }
+          { required: true, message: '请选择状态', trigger: 'change' },
+        ],
+        roleUid: [
+          { required: true, message: '请选择角色', trigger: 'change' },
         ]
       },
-      form: {
-        uid: null,
-        sortName: null,
-        summary: null,
-        content: null,
-        status: null,
-        parentBlogSortUid: null
-      },
-      currentEditName: null
+      // 数据总数
+      total:0,
+      // 加载层信息
+      loading: [],
+      tableData: []
     }
   },
+  computed: {
+    ...mapGetters([
+      'menu'
+    ]),
+  },
   created() {
-    var that = this;
-
-    // 请求获得博客分类列表
-    this.blogSortList(this.searchForm);
-
+    this.openLoading();
+    this.fetchUserList();
+    this.fetchRoleList();
   },
   methods: {
-    /**
-     * 获取分类列表
-     * @param {*} params
-     */
-    blogSortList: function(params) {
-      getBlogSortList(params).then(response => {
-        this.tableData = response.data.records;
-        this.searchForm.currentPage = response.data.current;
-        this.searchForm.pageSize = response.data.size;
-        this.total = response.data.total;
-      });
+    fetchUserList: function (){
+      getUserList(this.params).then(res =>{
+        this.tableData = res.data
+        this.total = res.total
+        this.loading.close()
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+    fetchRoleList: function () {
+      getRoleList(this.params).then(res =>{
+        this.roleList = res.data
+        this.loading.close()
+      }).catch(err =>{
+        console.log(err)
+      })
     },
     /**
-     * 选择框的输入事件，获得父级分类列表
-     * @param {*} query
+     * 查找按钮点击事件
      */
-    getParentBlogSortList(query) {
-      this.loading = true;
+    handleFind: function () {
+      this.params.currentPage = 1;
+      this.fetchUserList()
+    },
+    /**
+     * 重置查询参数
+     */
+    resetQuery: function (){
+      this.params.keyword=''
+      this.fetchUserList()
+    },
+    /**
+     * 单页大小处理
+     * @param val
+     */
+    handleSizeChange: function (val) {
+      this.params.pageSize = val
+      this.fetchUserList()
+    },
+    /**
+     * 页数变化处理
+     * @param val
+     */
+    handleCurrentChange: function (val) {
+      this.params.currentPage = val
+      this.fetchUserList()
+    },
+    /**
+     * 时间戳格式化
+     */
+    timeFormat(timestamp) {
+      return parseTime(timestamp);
+    },
+    /**
+     * 从给出的ip信息中获取地址
+     */
+    getCity(ipInfo) {
+      if (ipInfo !== '未知') {
+        let res = ''
 
-      if(query != '') {
-        var params = {
-          keyword: query,
-          currentPage: 1,
-          pageSize: 10
+        let arr = ipInfo.split("|")
+
+        for (let i = 0; i < arr.length - 1; i++) {
+          console.log(arr[i] )
+          if (arr[i] !== '0') {
+            res += (arr[i] + '-')
+          }
         }
 
-        getBlogSortList(params).then(response => {
-          this.parentBlogSortOptions = response.data.records
-
-          this.loading = false;
-        });
-
+        return res.substring(0, res.length - 1);
       }
+      return '未知'
     },
     /**
-     * 限制字符串长度
-     * @param {*} str
-     * @param {*} index
+     * 处理复选框选择事件
+     * @param val
      */
-    submitStr: function(str, index) {
-      if(str.length > index) {
-        return str.slice(0, index) + "...";
-      }
-      return str;
-    },
-    /**
-     * 改变多选
-     */
-    handleSelectionChange(val) {
+    handleSelectionChange: function (val) {
       this.multipleSelection = val;
     },
     /**
-     * 查找按钮单击事件
+     * 打开加载层
      */
-    handleFind() {
-      this.blogSortList(this.searchForm);
-    },
-    /**
-     * 点击量排序按钮单击事件
-     */
-    handleBlogSortByClickCount() {
-      if (!this.searchForm.sortByClickCount) {
-        this.searchForm.sortByClickCount = true;
-        this.searchForm.sortByCites = false;
-        this.blogSortList(this.searchForm);
-      }
-    },
-    /**
-     * 引用量排序按钮单击事件
-     */
-    handleBlogSortByCites() {
-      if (!this.searchForm.sortByCites) {
-        this.searchForm.sortByCites = true;
-        this.searchForm.sortByClickCount = false;
-        this.blogSortList(this.searchForm);
-      }
-    },
-    /**
-     * 换页
-     * @param {*} val
-     */
-    handleCurrentChange: function(val) {
-      this.searchForm.currentPage = val;
-      this.blogSortList(this.searchForm);
-    },
-    /**
-     * 添加按钮单击事件，弹出窗口
-     */
-    handleAdd: function() {
-      this.dialogFormVisible = true;
-      this.form = {
-        uid: null,
-        sortName: null,
-        summary: null,
-        content: null,
-        status: EStatus.ENABLE,
-        parentBlogSortUid: null
-      };
-      this.isEditForm = false;
-      this.title = '添加博客分类'
-    },
-    /**
-     * 处理编辑按钮单击事件
-     * @param {*} row
-     */
-    handleEdit: function(row) {
-      this.form = row;
-      this.currentEditName = row.sortName
-      this.dialogFormVisible = true;
-      this.isEditForm = true;
-      this.title = '编辑博客分类'
-    },
-    /**
-     * 处理批量逻辑删除按钮单击事件
-     */
-    handleDeleteBatch() {
-      var that = this;
-      if(that.multipleSelection.length <= 0 ) {
-        this.$message({
-            type: "error",
-            message: "请先选中需要删除的内容!"
-          });
-        return;
-      }
-
-      this.$confirm('此操作将删除选中的内容, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        let uids = this.multipleSelection.map(item => item.uid);
-        let params = {
-          "uids": uids
-        }
-        
-        deleteBatchBlogSort(params).then(response=> {
-          this.$message({
-            type: "success",
-            message: response.data
-          });
-          that.blogSortList();
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
+    openLoading: function () {
+      this.loading = this.$loading({
+        lock: true,
+        text: "正在加载中~",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)"
       });
     },
     /**
-     * 处理删除按钮单击事件
-     * @param {*} row
+     * 设置编辑框 是编辑还是添加
+     * @param title
+     * @param isEditForm
      */
-    handleDelete: function(row) {
-      var that = this;
+    beforeShow: function (title, isEditForm) {
+      this.title = title
+      this.isEditForm = isEditForm
 
-      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        let params = {
-          uid: row.uid
-        }
-        deleteBlogSort(params).then(response=> {
-          this.$message({
-            type: "success",
-            message: response.data
-          });
-          that.blogSortList();
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
-      });
-
+      this.dialogFormVisible = true
     },
     /**
-     * 检查分类名是否已存在
-     * @param {*} rule 这个不能删，不然就之间校验失败了
-     * @param {*} value
-     * @param {*} callback
+     * 检查是否有批量删除的权限
+     * @returns {boolean|*}
      */
-    checkExistSortName(rule, value, callback) {
-      checkSortNameExists({sortName: value}).then(response => {
-        if (response.data && value != this.currentEditName) {
-          return callback(new Error('分类名已存在'))
+    canDeleteBatch: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user')
+    },
+    /**
+     * 检查是否有删除的权限
+     * @returns {boolean|*}
+     */
+    canDelete: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}')
+    },
+    /**
+     * 检查是否有添加的权限
+     * @returns {boolean|*}
+     */
+    canAdd: function () {
+      return hasAuth(this.menu, 'POST:/api/admin/user')
+    },
+    /**
+     * 检查是否有更新的权限
+     * @returns {boolean|*}
+     */
+    canUpdate: function () {
+      return hasAuth(this.menu, 'PUT:/api/admin/user/{uid}/userInfo')
+    },
+    /**
+     * 添加按钮的点击事件
+     */
+    handleCreate: function () {
+      this.form.avatarPictureUid = ''
+      this.form.nickname = ''
+      this.form.roleUid = ''
+      this.form.status = ''
+      this.form.username = ''
+      this.form.password = ''
+      this.form.birthday = ''
+      this.form.summary = ''
+      this.confirmPassword = ''
+      this.avatarUrl = ''
+      this.editingUserUid = ''
+      this.editingUserUsername = ''
+
+      this.beforeShow("添加用户", 0)
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    /**
+     * 编辑按钮点击事件
+     * @param scope
+     */
+    handleUpdate: function (scope) {
+      if (scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined) {
+        this.form.avatarPictureUid = scope.row.userInfo.avatar.uid
+      } else {
+        this.form.avatarPictureUid = ''
+      }
+      this.form.nickname = scope.row.userInfo.nickname
+      this.form.roleUid = scope.row.roleUid
+      this.form.status = scope.row.status
+      this.form.username = scope.row.username
+      this.form.birthday = scope.row.userInfo.birthday
+      this.form.summary = scope.row.userInfo.summary
+      this.form.password = ''
+      if (scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined) {
+        this.avatarUrl = scope.row.userInfo.avatar.fileUrl
+      } else {
+        this.avatarUrl = ''
+      }
+      this.editingUserUid = scope.row.uid
+      this.editingUserUsername = scope.row.username
+
+      this.beforeShow("修改用户", 1)
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    /**
+     * 处理删除按钮的点击事件
+     * @param scope
+     */
+    handleDelete: function (scope) {
+      this.$confirm('是否确定删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'error'
+      }).then(() => {
+        this.openLoading();
+
+        if (scope.row === undefined) {
+          // 走的是批量删除
+          if (this.multipleSelection.length) {
+            let selections = this.multipleSelection;
+            let uids = [selections.length]
+            for (let i = 0; i < selections.length; i++) {
+              uids[i] = selections[i].uid
+            }
+            deleteUserBatch(uids).then(res => {
+              this.fetchUserList()
+              this.$message.success('删除成功');
+              this.loading.close()
+            }).catch(() => {
+              this.loading.close()
+            });
+          }
         } else {
-          return callback()
+          // 走单独删除
+          deleteUser(scope.row.uid).then(res => {
+            this.fetchUserList()
+            this.$message.success('删除成功');
+            this.loading.close()
+          }).catch(() => {
+            this.loading.close()
+          });
         }
+      }).catch(() => {
+        this.loading.close()
       });
+
     },
     /**
-     * 提交表单
+     * 图片上传之前的验证
+     * @param file
+     * @returns {boolean}
      */
-    submitForm() {
-      this.$refs.form.validate((validate) => {
-        if (validate) {
+    uploadBefore: function (file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isLt2M = file.size / 1024 / 1024 < 2;
 
-          const params = this.form ;
-          if(this.isEditForm) {
-            // 编辑分类的提交
-            editBlogSort(params).then(response=> {
-              this.$message({
-                type: "success",
-                message: response.data
-              });
+      if (!isJPG) {
+        this.$message.error('上传头像图片只能是 JPG 格式!');
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!');
+      }
+      return isJPG && isLt2M;
+    },
+    /**
+     * 图片上传
+     * @param param
+     */
+    uploadSectionFile: function (param) {
+      this.$confirm('会直接修改头像，是否确定？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.openLoading();
+        let file = param.file
+        // FormData 对象
+        var formData = new FormData()
+        // 文件对象
+        formData.append('file', file)
+        avatarUpload(this.editingUserUid, formData).then(res => {
+          this.form.avatarPictureUid = res.data.uid
+          this.avatarUrl = res.data.fileUrl
+          this.fetchUserList()
+          this.loading.close()
+        })
+      }).catch(() => {});
 
-              this.dialogFormVisible = false;
-              this.blogSortList();
-            })
+    },
 
+    /**
+     * 检查用户名是否存在
+     * @param rule
+     * @param value
+     * @param callback
+     */
+    isExist(rule, value, callback) {
+      if (this.editingUserUsername === '' || this.editingUserUsername !== value) {
+        isUsernameExist(value).then(res => {
+
+          if (res.data) {
+            callback(new Error('该用户名已存在'))
           } else {
-            // 添加分类的提交
-            addBlogSort(params).then(response=> {
-              this.$message({
-                type: "success",
-                message: response.data
-              });
+            callback()
+          }
 
+        })
+      } else {
+        callback()
+      }
+    },
+
+    /**
+     * 检查两次密码输入是否相同
+     * @param rule
+     * @param value
+     * @param callback
+     */
+    passwordConfirm(rule, value, callback) {
+      if (this.form.password !== '' && value !== this.form.password) {
+        callback(new Error('两次密码输入不一致'))
+      } else {
+        callback()
+      }
+    },
+
+    submit: function () {
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          if (this.isEditForm) {
+            updateUserInfo(this.editingUserUid, this.form).then(res => {
+              this.$message.success("修改成功")
+              this.editingUserUid = ''
+              this.editingUserUsername = ''
+              this.fetchUserList()
               this.dialogFormVisible = false;
-              this.blogSortList();
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
+          } else {
+            addUser(this.form).then(res => {
+              this.$message.success("添加成功")
+              this.fetchUserList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
             })
           }
+
+        } else {
+          console.log('error submit!!');
+          return false;
         }
       })
-
-    },
-
-
+    }
   }
 }
 </script>
-
-<style rel="stylesheet/scss" lang="scss" scoped>
-
-.enabled {
-  color: #00bc12;
-}
-
-.freeze {
-  color: #1685a9;
-}
-
-.stick {
-  color: #d9b611;
-}
-
-</style>

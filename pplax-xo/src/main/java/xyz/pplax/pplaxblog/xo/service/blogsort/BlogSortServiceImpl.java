@@ -42,76 +42,60 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
      * @return
      */
     @Override
-    public IPage<BlogSort> getPageList(BlogSortDto blogSortDto) {
-//        QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
-//        if(!StringUtils.isEmpty(blogSortDto.getKeyword())) {
-//            queryWrapper.like(BlogSortSQLConstants.SORT_NAME, blogSortDto.getKeyword());
-//        }
-//
-//        //分页
-//        Page<BlogSort> page = new Page<>();
-//        page.setCurrent(blogSortDto.getCurrentPage());
-//        page.setSize(blogSortDto.getPageSize());
-//
-//        // 获得非删除状态的
-//        queryWrapper.ne(BlogSortSQLConstants.STATUS, EStatus.DISABLED);
-//
-//        IPage<BlogSort> pageList = null;
-//
-//        // 排序
-//        if (blogSortDto.getSortByClickCount()) {
-//            // 按点击量排序
-//            queryWrapper.orderByDesc(BlogSortSQLConstants.CLICK_COUNT);
-//            // 查询
-//            pageList = blogSortMapper.selectPage(page, queryWrapper);
-//        } else if (blogSortDto.getSortByCites()) {
-//            // 按引用量排序
-//            queryWrapper.and(
-//                    i -> i.ne(BlogSQLConstants.STATUS, EStatus.DISABLED)
-//                            .or().isNull(BlogSQLConstants.STATUS)
-//            );
-//            // 查询
-//            pageList = blogSortMapper.selectListOrderByCites(page, queryWrapper);
-//        } else {
-//            // 按创建时间排序
-//            queryWrapper.orderByDesc(BlogSortSQLConstants.CREATE_TIME);
-//            // 查询
-//            pageList = blogSortMapper.selectPage(page, queryWrapper);
-//        }
-//
-//        // 获得列表
-//        List<BlogSort> blogSortListList = pageList.getRecords();
-//
-//        for(BlogSort blogSort : blogSortListList) {
-//            // 添加父级分类
-//            if(blogSort != null && !StringUtils.isEmpty(blogSort.getParentUid())) {
-//                String parentUid = blogSort.getParentUid();
-//                BlogSort parentBlogSort = blogSortMapper.selectById(parentUid);
-//                if(parentBlogSort != null) {
-//                    blogSort.setParentBlogSort(parentBlogSort);
-//                }
-//            }
-//        }
-//
-//        pageList.setRecords(blogSortListList);
-//
-//        return pageList;
-        return null;
+    public List<BlogSort> list(BlogSortDto blogSortDto) {
+        QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
+        if(!StringUtils.isEmpty(blogSortDto.getKeyword())) {
+            // 如果关键词参数非空，就按该条件查询
+            queryWrapper.like(BlogSortSQLConstants.SORT_NAME, "%" + blogSortDto.getKeyword() + "%");
+        }
+
+        //分页
+        Page<BlogSort> page = new Page<>();
+        page.setCurrent(blogSortDto.getCurrentPage());
+        page.setSize(blogSortDto.getPageSize());
+
+        // 获得非删除状态的
+        queryWrapper.ne(BlogSortSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+
+        IPage<BlogSort> pageList = null;
+
+        // 排序
+        if (blogSortDto.getSortByClickCount()) {
+            // 按点击量排序
+            queryWrapper.orderByDesc(BlogSortSQLConstants.CLICK_COUNT);
+            // 查询
+            pageList = blogSortMapper.selectPage(page, queryWrapper);
+        } else if (blogSortDto.getSortByCites()) {
+            // 按引用量排序
+            queryWrapper.and(
+                    i -> i.ne(BlogSQLConstants.STATUS, EStatus.DISABLED.getStatus())
+                            .or().isNull(BlogSQLConstants.STATUS)
+            );
+            // 查询
+            pageList = blogSortMapper.selectListOrderByCites(page, queryWrapper);
+        } else {
+            // 按创建时间排序
+            queryWrapper.orderByDesc(BlogSortSQLConstants.CREATE_TIME);
+            // 查询
+            pageList = blogSortMapper.selectPage(page, queryWrapper);
+        }
+
+        // 获得列表
+        return pageList.getRecords();
     }
 
     /**
      * 检查当前分类是否存在
-     * @param blogSortDto
+     * @param sortName
      * @return
      */
     @Override
-    public Boolean checkSortNameExists(BlogSortDto blogSortDto) {
-//        QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
-//        queryWrapper.eq(BlogSortSQLConstants.SORT_NAME, blogSortDto.getSortName());
-//        BlogSort tempSort = blogSortMapper.selectOne(queryWrapper);
-//
-//        return tempSort != null;
-        return false;
+    public Boolean isSortNameExist(String sortName) {
+        QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(BlogSortSQLConstants.SORT_NAME, sortName);
+        List<BlogSort> list = list(queryWrapper);
+
+        return list.size() > 0;
     }
 
     /**

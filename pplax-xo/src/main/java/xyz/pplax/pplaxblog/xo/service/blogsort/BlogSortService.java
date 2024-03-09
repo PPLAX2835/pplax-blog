@@ -6,6 +6,8 @@ import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 
+import java.util.List;
+
 /**
  * 博客分类
  */
@@ -17,14 +19,14 @@ public interface BlogSortService extends SuperService<BlogSort> {
      * @param blogSortDto
      * @return
      */
-    public IPage<BlogSort> getPageList(BlogSortDto blogSortDto);
+    public List<BlogSort> list(BlogSortDto blogSortDto);
 
     /**
      * 检查当前分类是否存在
-     * @param blogSortDto
+     * @param sortName
      * @return
      */
-    public Boolean checkSortNameExists(BlogSortDto blogSortDto);
+    public Boolean isSortNameExist(String sortName);
 
     /**
      * 新增博客分类

@@ -2,8 +2,11 @@
   <div class="app-container">
     <!--查询or其他操作-->
     <el-form v-show="showSearch" :inline="true" ref="form" :model="params" label-width="68px">
+      <el-form-item label="用户名">
+        <el-input style="width: 150px" size="small" v-model="params.username" placeholder="请输入用户名"/>
+      </el-form-item>
       <el-form-item label="昵称">
-        <el-input style="width: 150px" size="small" v-model="params.keyword" placeholder="请输入用户昵称"/>
+        <el-input style="width: 150px" size="small" v-model="params.nickname" placeholder="请输入用户昵称"/>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
@@ -143,7 +146,8 @@ export default {
       multipleSelection: [],
       showSearch: true,
       params: {
-        keyword: '',
+        username: '',
+        nickname: '',
         currentPage: 1,
         pageSize: 10
       },
@@ -246,7 +250,8 @@ export default {
      * 重置查询参数
      */
     resetQuery: function (){
-      this.params.keyword=null
+      this.params.username=''
+      this.params.nickname=''
       this.fetchUserList()
     },
     /**

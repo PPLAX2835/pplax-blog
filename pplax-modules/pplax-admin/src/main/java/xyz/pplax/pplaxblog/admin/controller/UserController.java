@@ -12,6 +12,7 @@ import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
@@ -55,19 +56,21 @@ public class UserController extends SuperController {
     @ApiOperation(value="获取用户列表", notes="获取用户列表")
     @GetMapping(value = "/list")
     public String getList(
-            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "username", required = false) String username,
+            @RequestParam(value = "nickname", required = false) String nickname,
             @RequestParam(value = "currentPage", required = false) Long currentPage,
             @RequestParam(value = "pageSize", required = false) Long pageSize) {
 
         // 封装
-        PageDto pageDto = new PageDto<>();
-        pageDto.setKeyword(keyword);
-        pageDto.setCurrentPage(currentPage);
-        pageDto.setPageSize(pageSize);
+        UserGetListDto userGetListDto = new UserGetListDto();
+        userGetListDto.setCurrentPage(currentPage);
+        userGetListDto.setPageSize(pageSize);
+        userGetListDto.setUsername(username);
+        userGetListDto.setNickname(nickname);
 
         return toJson(ResponseResult.success(
-                userService.listByNickname(pageDto),
-                userService.getCountByNickname(pageDto.getKeyword())
+                userService.listByNicknameAndUsername(userGetListDto),
+                userService.getCountByNicknameAndUsername(userGetListDto)
         ));
     }
 

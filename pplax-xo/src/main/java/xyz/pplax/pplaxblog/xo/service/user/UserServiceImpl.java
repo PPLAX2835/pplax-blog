@@ -18,6 +18,7 @@ import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.*;
 import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
@@ -87,9 +88,9 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
      * @return
      */
     @Override
-    public List<User> listByNickname(PageDto pageDto) {
-        pageDto.paginationCalculate();
-        List<User> userList = userMapper.selectListByNickName(pageDto);
+    public List<User> listByNicknameAndUsername(UserGetListDto userGetListDto) {
+        userGetListDto.paginationCalculate();
+        List<User> userList = userMapper.selectListByNicknameAndUsername(userGetListDto);
 
         for (User user : userList) {
             // 封装用户信息
@@ -106,12 +107,12 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
     /**
      * 通过昵称查询数量 （模糊查询）
-     * @param nickname
+     * @param userGetListDto
      * @return
      */
     @Override
-    public Long getCountByNickname(String nickname) {
-        return userMapper.selectCountByNickName(nickname);
+    public Long getCountByNicknameAndUsername(UserGetListDto userGetListDto) {
+        return userMapper.selectCountByNicknameAndUsername(userGetListDto);
     }
 
     /**

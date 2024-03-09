@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.xo.mapper;
 
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.base.mapper.SuperMapper;
+import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public interface UserMapper extends SuperMapper<User> {
 
-    List<User> selectListByNickName(PageDto pageDto);
+    List<User> selectListByNicknameAndUsername(UserGetListDto userGetListDto);
 
-    Long selectCountByNickName(String nickname);
+    Long selectCountByNicknameAndUsername(UserGetListDto userGetListDto);
 }

@@ -5,6 +5,7 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.User;
 
@@ -18,9 +19,9 @@ public interface UserService extends SuperService<User> {
 
     Role getRoleWithMenu(String userUid);
 
-    List<User> listByNickname(PageDto pageDto);
+    List<User> listByNicknameAndUsername(UserGetListDto userGetListDto);
 
-    Long getCountByNickname(String nickname);
+    Long getCountByNicknameAndUsername(UserGetListDto userGetListDto);
 
     Boolean isUsernameExist(String username);
 

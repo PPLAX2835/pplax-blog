@@ -29,15 +29,4 @@ public class BlogSortDto extends BaseDto<BlogSortDto> {
     @ApiModelProperty(example = "", notes = "父级分类uid", required = false)
     private String parentBlogSortUid;
 
-
-    /**
-     * 查询相关参数
-     */
-
-    @ApiModelProperty(example = "false", notes = "根据点击量排序", required = false)
-    private Boolean sortByClickCount;
-
-    @ApiModelProperty(example = "false", notes = "根据引用量排序", required = false)
-    private Boolean sortByCites;
-
 }

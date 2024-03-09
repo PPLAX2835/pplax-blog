@@ -8,10 +8,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
-import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 

@@ -1,11 +1,8 @@
 package xyz.pplax.pplaxblog.xo.service.userinfo;
 
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
-import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.UserInfo;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
 
 /**
  * 用户 服务类

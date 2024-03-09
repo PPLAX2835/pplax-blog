@@ -14,10 +14,9 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
-import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.*;
-import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
@@ -111,7 +110,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
      * @return
      */
     @Override
-    public Long getCountByNicknameAndUsername(UserGetListDto userGetListDto) {
+    public Long countByNicknameAndUsername(UserGetListDto userGetListDto) {
         return userMapper.selectCountByNicknameAndUsername(userGetListDto);
     }
 

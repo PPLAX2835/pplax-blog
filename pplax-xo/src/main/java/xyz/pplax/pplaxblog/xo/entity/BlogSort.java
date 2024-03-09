@@ -41,12 +41,18 @@ public class BlogSort extends SuperEntity {
     /**
      * 排序
      */
-    private Integer order;
+    private Integer sortNo;
 
     /**
      * 点击数
      */
     private Integer clickCount;
+
+    /**
+     * 引用量
+     */
+    @TableField(exist = false)
+    private Integer cites;
 
     public BlogSort() {}
 }

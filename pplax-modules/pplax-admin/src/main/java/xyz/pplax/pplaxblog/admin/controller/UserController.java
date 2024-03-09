@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
-import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
@@ -58,8 +57,9 @@ public class UserController extends SuperController {
     public String getList(
             @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "nickname", required = false) String nickname,
-            @RequestParam(value = "currentPage", required = false) Long currentPage,
-            @RequestParam(value = "pageSize", required = false) Long pageSize) {
+            @RequestParam(value = "currentPage") Long currentPage,
+            @RequestParam(value = "pageSize") Long pageSize
+    ) {
 
         // 封装
         UserGetListDto userGetListDto = new UserGetListDto();
@@ -70,7 +70,7 @@ public class UserController extends SuperController {
 
         return toJson(ResponseResult.success(
                 userService.listByNicknameAndUsername(userGetListDto),
-                userService.getCountByNicknameAndUsername(userGetListDto)
+                userService.countByNicknameAndUsername(userGetListDto)
         ));
     }
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
+import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 
 import java.util.List;
@@ -16,10 +17,17 @@ public interface BlogSortService extends SuperService<BlogSort> {
     /**
      * 获取博客分类列表
      *
-     * @param blogSortDto
+     * @param blogSortGetListDto
      * @return
      */
-    public List<BlogSort> list(BlogSortDto blogSortDto);
+    public List<BlogSort> list(BlogSortGetListDto blogSortGetListDto);
+
+    /**
+     * 获取博客分类的数量
+     * @param blogSortGetListDto
+     * @return
+     */
+    public Long count(BlogSortGetListDto blogSortGetListDto);
 
     /**
      * 检查当前分类是否存在

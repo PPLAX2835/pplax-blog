@@ -1,19 +1,10 @@
 package xyz.pplax.pplaxblog.xo.service.userinfo;
 
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
-import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
-import xyz.pplax.pplaxblog.xo.constants.sql.UserInfoSQLConstants;
-import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.entity.UserInfo;
@@ -21,9 +12,7 @@ import xyz.pplax.pplaxblog.xo.mapper.UserInfoMapper;
 import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * 用户表 服务实现类

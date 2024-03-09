@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.xo.dto;
+package xyz.pplax.pplaxblog.xo.dto.edit;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -10,6 +10,7 @@ import xyz.pplax.pplaxblog.commons.validator.group.GetOne;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.dto.BaseDto;
+import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 
 import java.util.Date;
 

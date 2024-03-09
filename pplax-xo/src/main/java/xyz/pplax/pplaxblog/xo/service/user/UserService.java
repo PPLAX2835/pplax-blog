@@ -1,15 +1,12 @@
 package xyz.pplax.pplaxblog.xo.service.user;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
-import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
-import xyz.pplax.pplaxblog.xo.dto.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.User;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,7 +18,7 @@ public interface UserService extends SuperService<User> {
 
     List<User> listByNicknameAndUsername(UserGetListDto userGetListDto);
 
-    Long getCountByNicknameAndUsername(UserGetListDto userGetListDto);
+    Long countByNicknameAndUsername(UserGetListDto userGetListDto);
 
     Boolean isUsernameExist(String username);
 

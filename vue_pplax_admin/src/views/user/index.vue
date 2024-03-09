@@ -11,8 +11,8 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
-        <el-button v-if="canAdd()" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
-        <el-button v-if="canDeleteBatch()" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
+        <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
+        <el-button v-if="canDeleteBatch" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
                    @click="handleDelete">批量删除
         </el-button>
       </el-form-item>
@@ -64,8 +64,8 @@
         </el-table-column>
         <el-table-column align="center" label="操作" width="180">
           <template slot-scope="scope">
-            <el-button v-if="canDelete()" type="danger" size="mini" @click="handleDelete(scope)">删除</el-button>
-            <el-button v-if="canUpdate()" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
+            <el-button v-if="canDelete" type="danger" size="mini" @click="handleDelete(scope)">删除</el-button>
+            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -215,6 +215,34 @@ export default {
     ...mapGetters([
       'menu'
     ]),
+    /**
+     * 检查是否有批量删除的权限
+     * @returns {boolean|*}
+     */
+    canDeleteBatch: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user')
+    },
+    /**
+     * 检查是否有删除的权限
+     * @returns {boolean|*}
+     */
+    canDelete: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}')
+    },
+    /**
+     * 检查是否有添加的权限
+     * @returns {boolean|*}
+     */
+    canAdd: function () {
+      return hasAuth(this.menu, 'POST:/api/admin/user')
+    },
+    /**
+     * 检查是否有更新的权限
+     * @returns {boolean|*}
+     */
+    canUpdate: function () {
+      return hasAuth(this.menu, 'PUT:/api/admin/user/{uid}/userInfo')
+    },
   },
   created() {
     this.openLoading();
@@ -324,34 +352,6 @@ export default {
       this.isEditForm = isEditForm
 
       this.dialogFormVisible = true
-    },
-    /**
-     * 检查是否有批量删除的权限
-     * @returns {boolean|*}
-     */
-    canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/user')
-    },
-    /**
-     * 检查是否有删除的权限
-     * @returns {boolean|*}
-     */
-    canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}')
-    },
-    /**
-     * 检查是否有添加的权限
-     * @returns {boolean|*}
-     */
-    canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/user')
-    },
-    /**
-     * 检查是否有更新的权限
-     * @returns {boolean|*}
-     */
-    canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/user/{uid}/userInfo')
     },
     /**
      * 添加按钮的点击事件

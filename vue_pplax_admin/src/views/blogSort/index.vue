@@ -57,7 +57,7 @@
         </el-table-column>
         <el-table-column width="220" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
-            <el-button v-if="canPromote()" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
+            <el-button v-if="canPromote" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
 <!--            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleEdit(scope)">编辑</el-button>-->
 <!--            <el-button v-if="canDel" size="mini" type="danger" @click="remove(scope)">删除-->
 <!--            </el-button>-->
@@ -125,6 +125,41 @@ export default {
     ...mapGetters([
       'menu'
     ]),
+    /**
+     * 检查是否有批量删除的权限
+     * @returns {boolean|*}
+     */
+    canDeleteBatch: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user')
+    },
+    /**
+     * 判断是否可以使用指定按钮
+     * @returns {boolean|*}
+     */
+    canPromote: function () {
+      return hasAuth(this.menu, 'PUT:/api/admin/blog/{uid}/promote')
+    },
+    /**
+     * 检查是否有删除的权限
+     * @returns {boolean|*}
+     */
+    canDelete: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}')
+    },
+    /**
+     * 检查是否有添加的权限
+     * @returns {boolean|*}
+     */
+    canAdd: function () {
+      return hasAuth(this.menu, 'POST:/api/admin/user')
+    },
+    /**
+     * 检查是否有更新的权限
+     * @returns {boolean|*}
+     */
+    canUpdate: function () {
+      return hasAuth(this.menu, 'PUT:/api/admin/user/{uid}/userInfo')
+    },
   },
   created() {
     this.statusList = EStatus;
@@ -149,13 +184,6 @@ export default {
       }).catch(err =>{
         console.log(err)
       })
-    },
-    /**
-     * 判断是否可以使用指定按钮
-     * @returns {boolean|*}
-     */
-    canPromote: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/blog/{uid}/promote')
     },
     /**
      * 查找按钮点击事件
@@ -221,34 +249,6 @@ export default {
       this.isEditForm = isEditForm
 
       this.dialogFormVisible = true
-    },
-    /**
-     * 检查是否有批量删除的权限
-     * @returns {boolean|*}
-     */
-    canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/user')
-    },
-    /**
-     * 检查是否有删除的权限
-     * @returns {boolean|*}
-     */
-    canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}')
-    },
-    /**
-     * 检查是否有添加的权限
-     * @returns {boolean|*}
-     */
-    canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/user')
-    },
-    /**
-     * 检查是否有更新的权限
-     * @returns {boolean|*}
-     */
-    canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/user/{uid}/userInfo')
     },
     /**
      * 添加按钮的点击事件

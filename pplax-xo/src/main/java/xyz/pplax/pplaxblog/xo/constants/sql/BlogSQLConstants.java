@@ -8,10 +8,10 @@ import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
  */
 public final class BlogSQLConstants extends BaseSQLConstants {
 
-	public final static String UID = "t_blog.uid";
-	public final static String CREATE_TIME = "t_blog.create_time";
-	public final static String UPDATE_TIME = "t_blog.update_time";
-	public final static String STATUS = "t_blog.status";
+	public final static String C_UID = "t_blog.uid";
+	public final static String C_CREATE_TIME = "t_blog.create_time";
+	public final static String C_UPDATE_TIME = "t_blog.update_time";
+	public final static String C_STATUS = "t_blog.status";
 
 	public final static String TITLE = "title";
 	public final static String SUMMARY = "summary";

@@ -8,10 +8,10 @@ import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
  */
 public final class MenuSQLConstants extends BaseSQLConstants {
 
-	public final static String UID = "t_menu.uid";
-	public final static String CREATE_TIME = "t_menu.create_time";
-	public final static String UPDATE_TIME = "t_menu.update_time";
-	public final static String STATUS = "t_menu.status";
+	public final static String C_UID = "t_menu.uid";
+	public final static String C_CREATE_TIME = "t_menu.create_time";
+	public final static String C_UPDATE_TIME = "t_menu.update_time";
+	public final static String C_STATUS = "t_menu.status";
 
 	public final static String PARENT_UID = "t_menu.PARENT_UID";
 	public final static String TYPE = "t_menu.type";

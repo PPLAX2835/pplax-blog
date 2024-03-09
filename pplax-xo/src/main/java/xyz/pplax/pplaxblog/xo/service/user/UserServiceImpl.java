@@ -175,7 +175,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
         QueryWrapper<FileStorage> fileStorageQueryWrapper = new QueryWrapper<>();
         fileStorageQueryWrapper.eq(FileStorageSQLConstants.USER_UID, user.getUid());
-        fileStorageQueryWrapper.ne(FileStorageSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        fileStorageQueryWrapper.ne(FileStorageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         int fileStorageCount = fileStorageService.count(fileStorageQueryWrapper);
         if (fileStorageCount > 0) {
             // 还有文件

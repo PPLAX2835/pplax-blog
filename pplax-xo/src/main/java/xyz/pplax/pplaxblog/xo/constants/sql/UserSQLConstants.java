@@ -8,10 +8,10 @@ import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
 public class UserSQLConstants extends BaseSQLConstants {
 
 
-    public final static String UID = "t_user.uid";
-    public final static String CREATE_TIME = "t_user.create_time";
-    public final static String UPDATE_TIME = "t_user.update_time";
-    public final static String STATUS = "t_user.status";
+    public final static String C_UID = "t_user.uid";
+    public final static String C_CREATE_TIME = "t_user.create_time";
+    public final static String C_UPDATE_TIME = "t_user.update_time";
+    public final static String C_STATUS = "t_user.status";
 
     public final static String ROLE_UID = "t_user.role_uid";
     public final static String USERNAME = "t_user.username";

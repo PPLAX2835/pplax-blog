@@ -5,10 +5,10 @@ package xyz.pplax.pplaxblog.xo.constants.sql;
  */
 public class UserInfoSQLConstants {
 
-    public final static String UID = "t_user_info.uid";
-    public final static String CREATE_TIME = "t_user_info.create_time";
-    public final static String UPDATE_TIME = "t_user_info.update_time";
-    public final static String STATUS = "t_user_info.status";
+    public final static String C_UID = "t_user_info.uid";
+    public final static String C_CREATE_TIME = "t_user_info.create_time";
+    public final static String C_UPDATE_TIME = "t_user_info.update_time";
+    public final static String C_STATUS = "t_user_info.status";
 
     public final static String NICKNAME = "t_user_info.nickname";
     public final static String GENDER = "t_user_info.gender";

@@ -5,10 +5,10 @@ package xyz.pplax.pplaxblog.xo.constants.sql;
  */
 public class FileStorageSQLConstants {
 
-    public final static String UID = "t_file_storage.uid";
-    public final static String CREATE_TIME = "t_file_storage.create_time";
-    public final static String UPDATE_TIME = "t_file_storage.update_time";
-    public final static String STATUS = "t_file_storage.status";
+    public final static String C_UID = "t_file_storage.uid";
+    public final static String C_CREATE_TIME = "t_file_storage.create_time";
+    public final static String C_UPDATE_TIME = "t_file_storage.update_time";
+    public final static String C_STATUS = "t_file_storage.status";
 
     public final static String USER_UID = "t_file_storage.user_uid";
     public final static String ORIGINAL_NAME = "t_file_storage.original_name";

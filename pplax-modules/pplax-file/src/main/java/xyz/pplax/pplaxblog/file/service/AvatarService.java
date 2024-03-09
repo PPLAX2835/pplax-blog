@@ -155,8 +155,8 @@ public class AvatarService {
 
         // 逻辑删除
         UpdateWrapper<FileStorage> fileStorageUpdateWrapper = new UpdateWrapper<>();
-        fileStorageUpdateWrapper.set(FileStorageSQLConstants.STATUS, EStatus.DISABLED.getStatus());
-        fileStorageUpdateWrapper.eq(FileStorageSQLConstants.UID, fileUid);
+        fileStorageUpdateWrapper.set(FileStorageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        fileStorageUpdateWrapper.eq(FileStorageSQLConstants.C_UID, fileUid);
         fileStorageService.update(fileStorageUpdateWrapper);
 
         return ResponseResult.success();

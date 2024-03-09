@@ -7,10 +7,10 @@ import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
  */
 public class CommentSQLConstants extends BaseSQLConstants {
 
-    public final static String UID = "t_comment.uid";
-    public final static String CREATE_TIME = "t_comment.create_time";
-    public final static String UPDATE_TIME = "t_comment.update_time";
-    public final static String STATUS = "t_comment.status";
+    public final static String C_UID = "t_comment.uid";
+    public final static String C_CREATE_TIME = "t_comment.create_time";
+    public final static String C_UPDATE_TIME = "t_comment.update_time";
+    public final static String C_STATUS = "t_comment.status";
 
     public final static String USER_UID = "t_comment.user_uid";
     public final static String TO_UID = "t_comment.to_uid";

@@ -37,13 +37,6 @@ export function promoteCancel(blogSortUid) {
   })
 }
 
-export function checkSortNameExists(params) {
-  return service({
-    url: '/admin/blogSort/' + params.sortName + '/exists',
-    method: 'get'
-  })
-}
-
 export function addBlogSort(data) {
   return service({
     url: '/admin/blogSort',
@@ -52,9 +45,9 @@ export function addBlogSort(data) {
   })
 }
 
-export function editBlogSort(data) {
+export function updateBlogSort(blogSortUid, data) {
   return service({
-    url: '/admin/blogSort/' + data.uid,
+    url: '/admin/blogSort/' + blogSortUid,
     method: 'put',
     data: data
   })

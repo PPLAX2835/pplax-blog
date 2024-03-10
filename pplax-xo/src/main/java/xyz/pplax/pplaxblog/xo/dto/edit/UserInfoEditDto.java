@@ -6,11 +6,9 @@ import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.commons.validator.annotion.IdValid;
 import xyz.pplax.pplaxblog.commons.validator.annotion.NotBlank;
 import xyz.pplax.pplaxblog.commons.validator.annotion.Range;
-import xyz.pplax.pplaxblog.commons.validator.group.GetOne;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.dto.BaseDto;
-import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
 
 import java.util.Date;
 
@@ -19,7 +17,7 @@ import java.util.Date;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserInfoEditDto extends BaseDto<BlogSortDto> {
+public class UserInfoEditDto extends BaseDto<UserInfoEditDto> {
 
     @ApiModelProperty(example = "", notes = "头像文件uid", required = false)
     @IdValid(required = false, groups = {Update.class})

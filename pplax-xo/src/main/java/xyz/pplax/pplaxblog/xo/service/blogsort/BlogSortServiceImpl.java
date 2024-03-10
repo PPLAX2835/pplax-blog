@@ -14,18 +14,16 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
-import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
-import xyz.pplax.pplaxblog.xo.mapper.BlogMapper;
 import xyz.pplax.pplaxblog.xo.mapper.BlogSortMapper;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -164,26 +162,12 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
     }
 
     /**
-     * 检查当前分类是否存在
-     * @param sortName
-     * @return
-     */
-    @Override
-    public Boolean isSortNameExist(String sortName) {
-        QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(BlogSortSQLConstants.SORT_NAME, sortName);
-        List<BlogSort> list = list(queryWrapper);
-
-        return list.size() > 0;
-    }
-
-    /**
      * 新增博客分类
      *
-     * @param blogSortDto
+     * @param blogSortEditDto
      */
     @Override
-    public ResponseResult addBlogSort(BlogSortDto blogSortDto) {
+    public ResponseResult addBlogSort(BlogSortEditDto blogSortEditDto) {
 //        // 检查参数
 //        if(StringUtils.isEmpty(blogSortDto.getSortName()) || blogSortDto.getStatus() == null) {
 //            return ResponseResult.error(HttpStatus.REQUIRED_IS_NULL);
@@ -211,38 +195,21 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
     /**
      * 编辑博客分类
      *
-     * @param blogSortDto
+     * @param blogSortEditDto
      */
-    public ResponseResult editBlogSort(BlogSortDto blogSortDto){
-//        // 检查参数
-//        if(StringUtils.isEmpty(blogSortDto.getSortName()) || blogSortDto.getStatus() == null) {
-//            return ResponseResult.error(HttpStatus.REQUIRED_IS_NULL);
-//        }
-//
-//        // 检查是否存在
-//        BlogSort blogSort = blogSortMapper.selectById(blogSortDto.getUid());
-//
-//        if (!blogSort.getSortName().equals(blogSortDto.getSortName())) {
-//            // 名字被改了，检查有没有重的
-//            QueryWrapper<BlogSort> queryWrapper = new QueryWrapper<>();
-//            queryWrapper.eq(BlogSortSQLConstants.SORT_NAME, blogSortDto.getSortName());
-//            BlogSort tempSort = blogSortMapper.selectOne(queryWrapper);
-//            if (tempSort != null) {
-//                // 确实重了
-//                return ResponseResult.error(HttpStatus.ENTITY_EXIST);
-//            }
-//        }
-//
-//        // 封装
-//        blogSort.setUid(blogSortDto.getUid());
-//        blogSort.setSortName(blogSortDto.getSortName());
-//        blogSort.setSummary(blogSortDto.getSummary());
-//        blogSort.setContent(blogSortDto.getContent());
-//        blogSort.setStatus(blogSortDto.getStatus());
-//        blogSort.setParentUid(blogSortDto.getParentBlogSortUid());
-//
-//        blogSortMapper.updateById(blogSort);
-        return ResponseResult.success(HttpStatus.UPDATE_SUCCESS);
+    public Boolean updateById(BlogSortEditDto blogSortEditDto){
+
+        BlogSort blogSort = new BlogSort();
+
+        // 封装
+        blogSort.setUid(blogSortEditDto.getUid());
+        blogSort.setSortName(blogSortEditDto.getSortName());
+        blogSort.setContent(blogSortEditDto.getContent());
+        blogSort.setIcon(blogSortEditDto.getIcon());
+        blogSort.setSortNo(blogSortEditDto.getSortNo());
+        blogSort.setStatus(blogSortEditDto.getStatus());
+
+        return updateById(blogSort);
     }
 
     /**
@@ -253,7 +220,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
     public ResponseResult logicDelete(String uid){
         List<String> uids = new ArrayList<>();
         uids.add(uid);
-        BlogSortDto blogSortDto = new BlogSortDto();
+        BlogSortEditDto blogSortDto = new BlogSortEditDto();
 
         blogSortDto.setUids(uids);
 
@@ -262,11 +229,11 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
 
     /**
      * 批量逻辑删除
-     * @param blogSortDto
+     * @param blogSortEditDto
      * @return
      */
     @Override
-    public ResponseResult logicBatchDelete(BlogSortDto blogSortDto) {
+    public ResponseResult logicBatchDelete(BlogSortEditDto blogSortEditDto) {
 //        if (blogSortDto.getUids() == null || blogSortDto.getUids().isEmpty()) {
 //            return ResponseResult.error(HttpStatus.PLEASE_SELECT_A_RECORD_TO_DELETE);
 //        }

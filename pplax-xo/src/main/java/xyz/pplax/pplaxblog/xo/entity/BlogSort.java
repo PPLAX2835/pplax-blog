@@ -24,11 +24,6 @@ public class BlogSort extends SuperEntity {
     private String sortName;
 
     /**
-     * 分类简介
-     */
-    private String summary;
-
-    /**
      * 分类内容
      */
     private String content;

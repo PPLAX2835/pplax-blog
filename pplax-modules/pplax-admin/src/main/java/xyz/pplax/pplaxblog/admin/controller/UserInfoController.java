@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,13 @@ public class UserInfoController extends SuperController {
     @Autowired
     private UserInfoService userInfoService;
 
+    @ApiOperation(value="获取用户信息", notes="获取用户信息")
     @GetMapping(value = "")
     public String getUserInfo (@PathVariable("userUid") String userUid) {
         return success(userInfoService.getByUserUid(userUid));
     }
 
+    @ApiOperation(value="更新用户信息", notes="更新用户信息")
     @PutMapping(value = "")
     public String updateUserInfo(@PathVariable("userUid") String userUid,@Validated(value = {Update.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);

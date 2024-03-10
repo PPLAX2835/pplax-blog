@@ -36,7 +36,7 @@ service.interceptors.response.use(
 
     let res = response.data
 
-    if (res.code === HttpStatus.UNAUTHORIZED.code || (res.code >= 401000 && res.code <= 401999)) {
+    if (res.code >= 401000 && res.code <= 401999) {
       // 认证有问题的情况
       Message({
         message: res.code + ': ' + res.message + (res.data !== '' ? ', ' + res.data : ''),

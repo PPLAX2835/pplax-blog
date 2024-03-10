@@ -1,9 +1,8 @@
 package xyz.pplax.pplaxblog.xo.service.blogsort;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
-import xyz.pplax.pplaxblog.xo.dto.BlogSortDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 
@@ -22,14 +21,12 @@ public interface BlogSortService extends SuperService<BlogSort> {
 
     Boolean promoteCancel(String blogSortUid);
 
-    Boolean isSortNameExist(String sortName);
+    ResponseResult addBlogSort(BlogSortEditDto blogSortEditDto);
 
-    ResponseResult addBlogSort(BlogSortDto blogSortDto);
-
-    ResponseResult editBlogSort(BlogSortDto blogSortDto);
+    Boolean updateById(BlogSortEditDto blogSortEditDto);
 
     ResponseResult logicDelete(String uid);
 
-    ResponseResult logicBatchDelete(BlogSortDto blogSortDto);
+    ResponseResult logicBatchDelete(BlogSortEditDto blogSortEditDto);
 
 }

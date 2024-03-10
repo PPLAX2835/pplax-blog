@@ -32,7 +32,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="sortName" align="center" label="分类名" width="130" />
-        <el-table-column prop="summary" align="center" label="介绍" width="180" />
+        <el-table-column prop="content" align="center" label="介绍" width="180" />
         <el-table-column prop="cites" align="center" label="引用量" width="120" />
         <el-table-column align="center" prop="clickCount" label="点击量" width="120">
           <template slot-scope="scope">
@@ -42,7 +42,7 @@
         <el-table-column align="center" prop="status" label="状态" width="80">
           <template slot-scope="scope">
             <el-tag v-if="scope.row.status === statusList.ENABLE" type="success">正常</el-tag>
-            <el-tag v-else-if="scope.row.status === statusList.LOCKED" type="warning">锁定</el-tag>
+            <el-tag v-else-if="scope.row.status === statusList.LOCKED" type="info">锁定</el-tag>
           </template>
         </el-table-column>
         <el-table-column width="180" align="center" label="添加时间">
@@ -57,12 +57,11 @@
         </el-table-column>
         <el-table-column width="220" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
-            <div v-if="canPromote" >
+            <span v-if="canPromote" >
               <el-button v-if="scope.row.sortNo !== 0" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
               <el-button v-else type="warning" size="mini" @click="handlePromoteCancel(scope)">取消置顶</el-button>
-
-            </div>
-<!--            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleEdit(scope)">编辑</el-button>-->
+            </span>
+            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
 <!--            <el-button v-if="canDel" size="mini" type="danger" @click="remove(scope)">删除-->
 <!--            </el-button>-->
           </template>
@@ -79,19 +78,50 @@
     </div>
 
     <!-- 编辑弹窗 -->
+    <el-dialog center :title="title" :visible.sync="dialogFormVisible">
+      <el-form :rules="rules" ref="dataForm" :model="form">
+        <el-form-item prop="sortNo" label="排序" :label-width="formLabelWidth">
+          <el-input onkeyup="value=(value.trim()===''?0:parseInt(value.replace(/[^\d]/g,0)).toString())" v-model="form.sortNo" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item prop="sortName" label="分类名" :label-width="formLabelWidth">
+          <el-input v-model="form.sortName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item prop="content" label="介绍" :label-width="formLabelWidth">
+          <el-input v-model="form.content" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item prop="icon" label="图标" :label-width="formLabelWidth">
+          <IconPicker v-model="form.icon"></IconPicker>
+        </el-form-item>
+        <el-form-item prop="status" label="状态" :label-width="formLabelWidth">
+          <div>
+            <el-radio v-model="form.status" :label="1" border>正常</el-radio>
+            <el-radio v-model="form.status" :label="7" border>锁定</el-radio>
+          </div>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submit">确 定</el-button>
+      </div>
+    </el-dialog>
 
 
   </div>
 </template>
 
 <script>
-import { getBlogSortList, promote, promoteCancel } from "../../api/blogSort";
+import { getBlogSortList, promote, promoteCancel, updateBlogSort } from "../../api/blogSort";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
+import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
+import {updateUserInfo} from "../../api/user";
 
 export default {
+  components: {
+    IconPicker
+  },
 
   data() {
     return {
@@ -108,14 +138,33 @@ export default {
       isEditForm: false,
       dialogFormVisible: false,
       title: '',
+      editingBlogSortUid: '',
       form: {
+        sortNo: '',
+        icon: '',
+        sortName: '',
+        content: '',
+        status: ''
       },
       rules: {
-        username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { validator: this.isExist, trigger: 'change'},
-          { min: 3, max: 30, message: '长度在3到30个字符' },
-        ]
+        sortNo: [
+          { required: true, message: '请输入排序', trigger: 'blur' },
+          { validator: this.sortNoValidator, trigger: 'change' },
+        ],
+        icon: [
+          { required: false, message: '请选择图标', trigger: 'blur' }
+        ],
+        sortName: [
+          { required: true, message: '请输入分类名', trigger: 'blur' },
+          { min: 1, max: 10, message: '长度限制在1到10' }
+        ],
+        content: [
+          { required: false, message: '请输入介绍', trigger: 'blur' },
+          { min: 0, max: 100, message: '最大输入100个字符' }
+        ],
+        status: [
+          { required: true, message: '请选择状态', trigger: 'change' },
+        ],
       },
       // 数据总数
       total:0,
@@ -161,7 +210,7 @@ export default {
      * @returns {boolean|*}
      */
     canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/user/{uid}/userInfo')
+      return hasAuth(this.menu, 'PUT:/api/admin/blogSort/{uid}')
     },
   },
   created() {
@@ -215,6 +264,14 @@ export default {
     timeFormat(timestamp) {
       return parseTime(timestamp);
     },
+    sortNoValidator: function (rule, value, callback) {
+      let num = parseInt(value)
+      if (0 <= num && num <= 100) {
+        callback()
+      } else {
+        callback(new Error('排序限制在0到100之间'))
+      }
+    },
     /**
      * 处理复选框选择事件
      * @param val
@@ -248,7 +305,12 @@ export default {
      * 添加按钮的点击事件
      */
     handleCreate: function () {
-      this.form.avatarPictureUid = ''
+      this.editingBlogSortUid = ''
+      this.form.status = ''
+      this.form.icon = ''
+      this.form.sortName = ''
+      this.form.sortNo = ''
+      this.form.content = ''
 
       this.beforeShow("添加用户", 0)
       this.$nextTick(() => {
@@ -314,10 +376,15 @@ export default {
      * @param scope
      */
     handleUpdate: function (scope) {
+      this.form.sortNo = scope.row.sortNo
+      this.form.icon = scope.row.icon
+      this.form.sortName = scope.row.sortName
+      this.form.content = scope.row.content
+      this.form.status = scope.row.status
+      this.editingBlogSortUid = scope.row.uid
 
 
-
-      this.beforeShow("修改用户", 1)
+      this.beforeShow("修改分类", 1)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
@@ -360,8 +427,15 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (this.isEditForm) {
-
-
+            updateBlogSort(this.editingBlogSortUid, this.form).then(res => {
+              this.$message.success("修改成功")
+              this.editingBlogSortUid = ''
+              this.fetchBlogSortList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
           } else {
 
 

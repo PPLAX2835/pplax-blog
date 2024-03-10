@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
 
@@ -39,6 +40,18 @@ public class BlogSortController extends SuperController {
                 blogSortService.list(blogSortGetListDto),
                 blogSortService.count(blogSortGetListDto)
         ));
+    }
+
+    @ApiOperation(value="编辑分类", notes="编辑分类")
+    @PutMapping("/{blogSortUid}")
+    public String update(@PathVariable("blogSortUid") String blogSortUid, @RequestBody BlogSortEditDto blogSortEditDto) {
+        blogSortEditDto.setUid(blogSortUid);
+        Boolean res = blogSortService.updateById(blogSortEditDto);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value="置顶分类", notes="置顶分类")

@@ -31,7 +31,7 @@
         `t_blog_sort`.`click_count`,
     </sql>
 
-    <select id="selectListOrderByCites" resultType="xyz.pplax.pplaxblog.xo.entity.BlogSort" parameterType="map">
+    <select id="selectListSortByCites" resultType="xyz.pplax.pplaxblog.xo.entity.BlogSort" parameterType="map">
         SELECT
             <include refid="Linked_Query_Column_List"></include>
             COUNT(t_blog.blog_sort_uid) AS cites

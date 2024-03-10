@@ -17,5 +17,26 @@
     <sql id="Base_Column_List">
         `uid`, `name`, `level`, `click_count`, `status`, `create_time`, `update_time`
     </sql>
+    <sql id="Linked_Query_Column_List">
+        `t_tag`.`uid`,
+        `t_tag`.`name`,
+        `t_tag`.`level`,
+        `t_tag`.`click_count`,
+        `t_tag`.`status`,
+        `t_tag`.`create_time`,
+        `t_tag`.`update_time`,
+    </sql>
+
+    <select id="selectListSortByCites" resultType="xyz.pplax.pplaxblog.xo.entity.Tag" parameterType="map">
+        SELECT
+        <include refid="Linked_Query_Column_List"></include>
+        COUNT(t_blog.blog_sort_uid) AS cites
+        from t_tag
+        left join t_blog on FIND_IN_SET(t_tag.uid, t_blog.tag_uids) > 0
+        ${ew.customSqlSegment}
+        group by t_tag.uid
+        order by cites
+    </select>
+
 
 </mapper>

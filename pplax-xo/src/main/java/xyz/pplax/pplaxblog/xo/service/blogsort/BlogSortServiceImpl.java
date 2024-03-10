@@ -79,7 +79,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
                             .or().isNull(BlogSQLConstants.C_STATUS)
             );
             // 查询
-            pageList = blogSortMapper.selectListOrderByCites(page, blogSortQueryWrapper);
+            pageList = blogSortMapper.selectListSortByCites(page, blogSortQueryWrapper);
         } else {
             // 按创建时间排序
             blogSortQueryWrapper.orderByDesc(BlogSortSQLConstants.C_CREATE_TIME);

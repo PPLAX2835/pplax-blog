@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,6 +32,12 @@ public class Tag extends SuperEntity {
 	 * 标签简介
 	 */
 	private Integer clickCount;
+
+	/**
+	 * 引用量
+	 */
+	@TableField(exist = false)
+	private Integer cites;
 
 	public Tag() {}
 }

@@ -11,6 +11,6 @@ import xyz.pplax.pplaxblog.xo.entity.BlogSort;
  */
 public interface BlogSortMapper extends SuperMapper<BlogSort> {
 
-    IPage<BlogSort> selectListOrderByCites(IPage<BlogSort> page, @Param("ew") Wrapper<BlogSort> queryWrapper);
+    IPage<BlogSort> selectListSortByCites(IPage<BlogSort> page, @Param("ew") Wrapper<BlogSort> queryWrapper);
 
 }

@@ -7,6 +7,8 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
+        <el-button type="info" icon="el-icon-document" size="small" @click="handleSortByClickCount">点击量排序</el-button>
+        <el-button type="info" icon="el-icon-document" size="small" @click="handleSortByCites">引用量排序</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
         <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
         <el-button v-if="canDeleteBatch" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
@@ -16,26 +18,37 @@
 
     </el-form>
 
-<!--    &lt;!&ndash; 表格区域 &ndash;&gt;-->
-<!--    <div style="margin-top: 5px">-->
-<!--      <el-table border :data="tableData" style="width: 100%" :default-sort="{ prop: 'sort', order: 'descending' }"-->
-<!--                @selection-change="handleSelectionChange">-->
-<!--        <el-table-column align="center" type="selection" />-->
-<!--        <el-table-column align="center" prop="sort" sortable width="80" label="排序">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-tag>{{ scope.row.sortNo }}</el-tag>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column width="250" align="center" label="操作" class-name="small-padding fixed-width">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-button v-if="(scope.row.sortNo !== 0) && canPromote" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>-->
-<!--            <el-button v-else-if="canPromote" type="warning" size="mini" @click="handlePromoteCancel(scope)">取消置顶</el-button>-->
-<!--            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>-->
-<!--            <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--      </el-table>-->
-<!--    </div>-->
+    <!-- 表格区域 -->
+    <div style="margin-top: 5px">
+      <el-table border :data="tableData" style="width: 100%" :default-sort="{ prop: 'sort', order: 'descending' }"
+                @selection-change="handleSelectionChange">
+        <el-table-column align="center" type="selection" />
+        <el-table-column prop="name" align="center" label="标签名" width="130" />
+        <el-table-column prop="clickCount" align="center" label="点击量" width="130" />
+        <el-table-column prop="cites" align="center" label="引用量" width="130" />
+        <el-table-column align="center" prop="sort" sortable width="80" label="推荐等级">
+          <template slot-scope="scope">
+            <el-tag>{{ scope.row.level }}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column width="180" align="center" label="添加时间">
+          <template slot-scope="scope">
+            <span>{{ timeFormat(scope.row.createTime) }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column width="180" align="center" label="更新时间">
+          <template slot-scope="scope">
+            <span>{{ timeFormat(scope.row.updateTime) }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column width="200" align="center" label="操作" class-name="small-padding fixed-width">
+          <template slot-scope="scope">
+            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
+            <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 
     <!--分页区域-->
     <div class="pagination-container" style="float: right;margin-bottom: 1.25rem;margin-top: 1.25rem;">
@@ -82,6 +95,8 @@ export default {
       multipleSelection: [],
       showSearch: true,
       params: {
+        sortByClickCount: false,
+        sortByCites: false,
         keyword: '',
         currentPage: 1,
         pageSize: 10
@@ -139,13 +154,6 @@ export default {
       return hasAuth(this.menu, 'DELETE:/api/admin/blogSort')
     },
     /**
-     * 判断是否可以使用置顶按钮
-     * @returns {boolean|*}
-     */
-    canPromote: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/blogSort/{uid}/promote') && hasAuth(this.menu, 'DELETE:/api/admin/blogSort/{uid}/promote')
-    },
-    /**
      * 检查是否有删除的权限
      * @returns {boolean|*}
      */
@@ -187,6 +195,22 @@ export default {
      */
     handleFind: function () {
       this.params.currentPage = 1;
+      this.fetchTagList()
+    },
+    /**
+     * 根据点击量排序按钮点击事件
+     */
+    handleSortByClickCount: function () {
+      this.params.sortByClickCount = true
+      this.params.sortByCites = false
+      this.fetchTagList()
+    },
+    /**
+     * 根据引用量排序按钮点击事件
+     */
+    handleSortByCites: function () {
+      this.params.sortByClickCount = false
+      this.params.sortByCites = true
       this.fetchTagList()
     },
     /**
@@ -269,60 +293,6 @@ export default {
       this.beforeShow("添加用户", 0)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
-      })
-    },
-    /**
-     * 置顶按钮的点击事件
-     * @param scope
-     */
-    handlePromote: function (scope) {
-      this.$confirm('此操作将会把该分类放到首位, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.openLoading();
-
-        promote(scope.row.uid).then(res => {
-          this.fetchTagList()
-          this.$message.success('置顶成功');
-          this.loading.close()
-        }).catch(() => {
-          this.loading.close()
-        });
-
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消置顶'
-        })
-      })
-    },
-    /**
-     * 取消置顶按钮的点击事件
-     * @param scope
-     */
-    handlePromoteCancel: function (scope) {
-      this.$confirm('此操作将取消置顶分类, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.openLoading();
-
-        promoteCancel(scope.row.uid).then(res => {
-          this.fetchTagList()
-          this.$message.success('取消置顶成功');
-          this.loading.close()
-        }).catch(() => {
-          this.loading.close()
-        });
-
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消'
-        })
       })
     },
     /**

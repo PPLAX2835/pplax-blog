@@ -106,6 +106,12 @@ export const constantRouterMap = [
                 meta: { title: '用户管理', icon: 'table' }
               },
               {
+                path: 'role',
+                name: 'Role',
+                component: () => import('@/views/role/index'),
+                meta: { title: '角色管理', icon: 'table' }
+              },
+              {
                 path: 'feedback',
                 name: 'Feedback',
                 component: () => import('@/views/feedback/index'),

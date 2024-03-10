@@ -46,7 +46,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
 
         // 查询
         QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
-        menuQueryWrapper.in(MenuSQLConstants.UID, menuUids);
+        menuQueryWrapper.in(MenuSQLConstants.C_UID, menuUids);
         menuQueryWrapper.orderByAsc(MenuSQLConstants.SORT_NO);
         List<Menu> menuList = menuService.list(menuQueryWrapper);
 

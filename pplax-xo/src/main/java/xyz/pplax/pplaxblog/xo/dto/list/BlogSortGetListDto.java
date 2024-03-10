@@ -12,9 +12,6 @@ import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 @Data
 public class BlogSortGetListDto extends PageDto {
 
-    @ApiModelProperty(example = "false", notes = "分类名", required = false)
-    private String sortName;
-
     @ApiModelProperty(example = "false", notes = "根据点击量排序", required = false)
     private Boolean sortByClickCount;
 

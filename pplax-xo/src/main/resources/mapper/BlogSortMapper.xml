@@ -20,15 +20,15 @@
         `uid`, `sort_name`, `content`, `icon`, `sort_no`, `create_time`, `update_time`, `status`, `click_count`
     </sql>
     <sql id="Linked_Query_Column_List">
-        `t_blog_sort`.`uid` as `uid`,
-        `t_blog_sort`.`sort_name` as `sort_name`,
-        `t_blog_sort`.`content` as `content`,
-        `t_blog_sort`.`icon` as `icon`,
-        `t_blog_sort`.`order` as `sort_no`,
-        `t_blog_sort`.`create_time` as `create_time`,
-        `t_blog_sort`.`update_time` as `update_time`,
-        `t_blog_sort`.`status` as `status`,
-        `t_blog_sort`.`click_count` as `click_count`,
+        `t_blog_sort`.`uid`,
+        `t_blog_sort`.`sort_name`,
+        `t_blog_sort`.`content`,
+        `t_blog_sort`.`icon`,
+        `t_blog_sort`.`sort_no`,
+        `t_blog_sort`.`create_time`,
+        `t_blog_sort`.`update_time`,
+        `t_blog_sort`.`status`,
+        `t_blog_sort`.`click_count`,
     </sql>
 
     <select id="selectListOrderByCites" resultType="xyz.pplax.pplaxblog.xo.entity.BlogSort" parameterType="map">
@@ -43,7 +43,7 @@
         GROUP BY
             t_blog_sort.uid
         ORDER BY
-            cites DESC
+            cites ASC
     </select>
 
 </mapper>

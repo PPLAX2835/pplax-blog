@@ -139,7 +139,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         // 检查该用户下是否还有别的数据
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.eq(BlogSQLConstants.USER_UID, user.getUid());
-        blogQueryWrapper.ne(BlogSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         int blogCount = blogService.count(blogQueryWrapper);
         if (blogCount > 0) {
             // 还有博客，无法删除
@@ -148,7 +148,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
         QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
         collectQueryWrapper.eq(CollectSQLConstants.USER_UID, user.getUid());
-        collectQueryWrapper.ne(CollectSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        collectQueryWrapper.ne(CollectSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         int collectCount = collectService.count(collectQueryWrapper);
         if (collectCount > 0) {
             // 收藏还有东西，无法删除
@@ -157,7 +157,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
         QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
         commentQueryWrapper.eq(CommentSQLConstants.USER_UID, user.getUid());
-        commentQueryWrapper.ne(CommentSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         int commentCount = commentService.count(commentQueryWrapper);
         if (commentCount > 0) {
             // 还有评论
@@ -166,7 +166,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
         QueryWrapper<Feedback> feedbackQueryWrapper = new QueryWrapper<>();
         feedbackQueryWrapper.eq(FeedBackSQLConstants.USER_UID, user.getUid());
-        feedbackQueryWrapper.ne(FeedBackSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        feedbackQueryWrapper.ne(FeedBackSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         int feedbackCount = feedbackService.count(feedbackQueryWrapper);
         if (feedbackCount > 0) {
             // 还有反馈

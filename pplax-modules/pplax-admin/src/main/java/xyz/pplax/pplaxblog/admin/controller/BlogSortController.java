@@ -28,13 +28,17 @@ public class BlogSortController extends SuperController {
     @ApiOperation(value="获取分类列表", notes="获取分类列表")
     @GetMapping("/list")
     public String getList(
-        @RequestParam(value = "sortName", required = false) String sortName,
+        @RequestParam(value = "keyword", required = false) String keyword,
+        @RequestParam(value = "sortByClickCount", required = false) Boolean sortByClickCount,
+        @RequestParam(value = "sortByCites", required = false) Boolean sortByCites,
         @RequestParam(value = "currentPage", required = false) Long currentPage,
         @RequestParam(value = "pageSize", required = false) Long pageSize
     ) {
         // 封装
         BlogSortGetListDto blogSortGetListDto = new BlogSortGetListDto();
-        blogSortGetListDto.setSortName(sortName);
+        blogSortGetListDto.setKeyword(keyword);
+        blogSortGetListDto.setSortByClickCount(sortByClickCount);
+        blogSortGetListDto.setSortByCites(sortByCites);
         blogSortGetListDto.setCurrentPage(currentPage);
         blogSortGetListDto.setPageSize(pageSize);
 

@@ -29,8 +29,4 @@ public interface BlogSortService extends SuperService<BlogSort> {
 
     ResponseResult removeByIds(List<String> blogSortUidList);
 
-    ResponseResult logicDelete(String uid);
-
-    ResponseResult logicBatchDelete(BlogSortEditDto blogSortEditDto);
-
 }

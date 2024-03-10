@@ -7,6 +7,8 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
+        <el-button type="info" icon="el-icon-document" size="small" @click="handleSortByClickCount">点击量排序</el-button>
+        <el-button type="info" icon="el-icon-document" size="small" @click="handleSortByCites">引用量排序</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
         <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
         <el-button v-if="canDeleteBatch" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
@@ -33,12 +35,12 @@
         </el-table-column>
         <el-table-column prop="sortName" align="center" label="分类名" width="130" />
         <el-table-column prop="content" align="center" label="介绍" width="180" />
-        <el-table-column prop="cites" align="center" label="引用量" width="120" />
-        <el-table-column align="center" prop="clickCount" label="点击量" width="120">
+        <el-table-column align="center" prop="clickCount" sortable label="点击量" width="120">
           <template slot-scope="scope">
             <el-tag type="warning">{{ scope.row.clickCount }}</el-tag>
           </template>
         </el-table-column>
+        <el-table-column prop="cites" align="center" sortable label="引用量" width="120" />
         <el-table-column align="center" prop="status" label="状态" width="80">
           <template slot-scope="scope">
             <el-tag v-if="scope.row.status === statusList.ENABLE" type="success">正常</el-tag>
@@ -125,6 +127,8 @@ export default {
       multipleSelection: [],
       showSearch: true,
       params: {
+        sortByClickCount: false,
+        sortByCites: false,
         keyword: '',
         currentPage: 1,
         pageSize: 10
@@ -233,9 +237,27 @@ export default {
       this.fetchBlogSortList()
     },
     /**
+     * 根据点击量排序按钮点击事件
+     */
+    handleSortByClickCount: function () {
+      this.params.sortByClickCount = true
+      this.params.sortByCites = false
+      this.fetchBlogSortList()
+    },
+    /**
+     * 根据引用量排序按钮点击事件
+     */
+    handleSortByCites: function () {
+      this.params.sortByClickCount = false
+      this.params.sortByCites = true
+      this.fetchBlogSortList()
+    },
+    /**
      * 重置查询参数
      */
     resetQuery: function (){
+      this.params.sortByClickCount = false
+      this.params.sortByCites = false
       this.params.keyword=''
       this.fetchBlogSortList()
     },

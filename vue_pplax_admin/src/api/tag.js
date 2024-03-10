@@ -1,15 +1,15 @@
-import request from '@/utils/request'
+import service from '@/utils/request'
 
 export function getTagList(params) {
-  return request({
-    url: '/tag/getList',
+  return service({
+    url: '/admin/tag/list',
     method: 'get',
     params
   })
 }
 
 export function addTag(params) {
-  return request({
+  return service({
     url: '/tag/add',
     method: 'post',
     params
@@ -17,7 +17,7 @@ export function addTag(params) {
 }
 
 export function editTag(params) {
-  return request({
+  return service({
     url: '/tag/edit',
     method: 'post',
     params
@@ -25,7 +25,7 @@ export function editTag(params) {
 }
 
 export function deleteTag(params) {
-  return request({
+  return service({
     url: '/tag/delete',
     method: 'post',
     params

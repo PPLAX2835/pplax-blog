@@ -1,14 +1,11 @@
 package xyz.pplax.pplaxblog.xo.service.blogsort;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
@@ -22,7 +19,6 @@ import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
-import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.BlogSortMapper;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
 
@@ -205,25 +201,37 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         return updateById(blogSort);
     }
 
+    /**
+     * 通过id删除该分类
+     * @param blogSortUid
+     * @return
+     */
     @Override
     public ResponseResult removeById(String blogSortUid) {
+        // 先查询该分类下有没有文章
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
         blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED);
         int count = blogService.count(blogQueryWrapper);
 
         if (count > 0) {
+            // 存在非删除状态的文章，返回错误信息
             return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_SORT);
         }
 
         boolean res = super.removeById(blogSortUid);
         if (!res) {
-            throw new RuntimeException();
+            return new ResponseResult(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
     }
 
+    /**
+     * 通过id列表删除
+     * @param blogSortUidList
+     * @return
+     */
     @Override
     @Transactional
     public ResponseResult removeByIds(List<String> blogSortUidList) {

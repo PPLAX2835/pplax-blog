@@ -13,14 +13,10 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.TagSQLConstants;
-import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
-import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 import xyz.pplax.pplaxblog.xo.entity.Tag;
 import xyz.pplax.pplaxblog.xo.mapper.TagMapper;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
@@ -41,6 +37,11 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
     @Autowired
     private BlogService blogService;
 
+    /**
+     * 获得标签列表
+     * @param tagGetListDto
+     * @return
+     */
     @Override
     public List<Tag> list(TagGetListDto tagGetListDto) {
         QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
@@ -93,6 +94,11 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         return tagList;
     }
 
+    /**
+     * 查询标签数量
+     * @param tagGetListDto
+     * @return
+     */
     @Override
     public Long count(TagGetListDto tagGetListDto) {
         QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
@@ -105,6 +111,11 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         return (long) count(tagQueryWrapper);
     }
 
+    /**
+     * 添加标签
+     * @param tagEditDto
+     * @return
+     */
     @Override
     public Boolean save(TagEditDto tagEditDto) {
         Tag tag = new Tag();
@@ -117,6 +128,11 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         return save(tag);
     }
 
+    /**
+     * 通过id更新标签
+     * @param tagEditDto
+     * @return
+     */
     @Override
     public Boolean updateById(TagEditDto tagEditDto) {
         Tag tag = new Tag();
@@ -129,6 +145,11 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         return save(tag);
     }
 
+    /**
+     * 通过id删除
+     * @param tagUid
+     * @return
+     */
     @Override
     public ResponseResult removeById(String tagUid) {
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
@@ -148,6 +169,11 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
     }
 
+    /**
+     * 通过id列表批量删除
+     * @param tagUidList
+     * @return
+     */
     @Override
     @Transactional
     public ResponseResult removeByIds(List<String> tagUidList) {

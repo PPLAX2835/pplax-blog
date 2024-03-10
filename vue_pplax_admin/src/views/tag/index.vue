@@ -26,7 +26,7 @@
         <el-table-column prop="name" align="center" label="标签名" width="130" />
         <el-table-column prop="clickCount" align="center" label="点击量" width="130" />
         <el-table-column prop="cites" align="center" label="引用量" width="130" />
-        <el-table-column align="center" prop="sort" sortable width="80" label="推荐等级">
+        <el-table-column align="center" prop="sort" sortable width="150" label="推荐等级">
           <template slot-scope="scope">
             <el-tag>{{ scope.row.level }}</el-tag>
           </template>
@@ -61,8 +61,12 @@
     <!-- 编辑弹窗 -->
     <el-dialog center :title="title" :visible.sync="dialogFormVisible">
       <el-form :rules="rules" ref="dataForm" :model="form">
-        <el-form-item prop="sortNo" label="排序" :label-width="formLabelWidth">
-          <el-input onkeyup="value=(value.trim()===''?0:parseInt(value.replace(/[^\d]/g,0)).toString())" v-model="form.sortNo" autocomplete="off"></el-input>
+        <el-form-item prop="name" label="标签名" :label-width="formLabelWidth">
+          <el-input  v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+
+        <el-form-item prop="level" label="推荐等级" :label-width="formLabelWidth">
+          <el-input onkeyup="value=(value.trim()===''?0:parseInt(value.replace(/[^\d]/g,0)).toString())" v-model="form.level" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -76,14 +80,12 @@
 </template>
 
 <script>
-import {addBlogSort, getBlogSortList, promote, promoteCancel, updateBlogSort, deleteBlogSort, deleteBlogSortBatch } from "../../api/blogSort";
-import { getTagList } from "../../api/tag"
+import {addTag, getTagList, updateTag, deleteTag, deleteTagBatch } from "../../api/tag";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
-import {addUser, deleteUserBatch, updateUserInfo} from "../../api/user";
 
 export default {
   components: {
@@ -109,31 +111,17 @@ export default {
       title: '',
       editingTagUid: '',
       form: {
-        sortNo: '',
-        icon: '',
-        sortName: '',
-        content: '',
-        status: ''
+        level: '',
+        name: ''
       },
       rules: {
-        sortNo: [
-          { required: true, message: '请输入排序', trigger: 'blur' },
-          { validator: this.sortNoValidator, trigger: 'change' },
+        level: [
+          { required: true, message: '请输入推荐等级', trigger: 'blur' },
         ],
-        icon: [
-          { required: false, message: '请选择图标', trigger: 'blur' }
-        ],
-        sortName: [
-          { required: true, message: '请输入分类名', trigger: 'blur' },
-          { min: 1, max: 10, message: '长度限制在1到10' }
-        ],
-        content: [
-          { required: false, message: '请输入介绍', trigger: 'blur' },
-          { min: 0, max: 100, message: '最大输入100个字符' }
-        ],
-        status: [
-          { required: true, message: '请选择状态', trigger: 'change' },
-        ],
+        name: [
+          { required: true, message: '请输入标签名', trigger: 'blur' },
+          { min: 1, max: 20, message: '标签名长度限制在1到20之间', trigger: 'change' }
+        ]
       },
       // 数据总数
       total:0,
@@ -151,28 +139,28 @@ export default {
      * @returns {boolean|*}
      */
     canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/blogSort')
+      return hasAuth(this.menu, 'DELETE:/api/admin/tag')
     },
     /**
      * 检查是否有删除的权限
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/blogSort/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/tag/{uid}')
     },
     /**
      * 检查是否有添加的权限
      * @returns {boolean|*}
      */
     canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/blogSort')
+      return hasAuth(this.menu, 'POST:/api/admin/tag')
     },
     /**
      * 检查是否有更新的权限
      * @returns {boolean|*}
      */
     canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/blogSort/{uid}')
+      return hasAuth(this.menu, 'PUT:/api/admin/tag/{uid}')
     },
   },
   created() {
@@ -242,14 +230,6 @@ export default {
     timeFormat(timestamp) {
       return parseTime(timestamp);
     },
-    sortNoValidator: function (rule, value, callback) {
-      let num = parseInt(value)
-      if (0 <= num && num <= 100) {
-        callback()
-      } else {
-        callback(new Error('排序限制在0到100之间'))
-      }
-    },
     /**
      * 处理复选框选择事件
      * @param val
@@ -284,11 +264,8 @@ export default {
      */
     handleCreate: function () {
       this.editingTagUid = ''
-      this.form.status = ''
-      this.form.icon = ''
-      this.form.sortName = ''
-      this.form.sortNo = ''
-      this.form.content = ''
+      this.form.level = ''
+      this.form.name = ''
 
       this.beforeShow("添加用户", 0)
       this.$nextTick(() => {
@@ -300,11 +277,8 @@ export default {
      * @param scope
      */
     handleUpdate: function (scope) {
-      this.form.sortNo = scope.row.sortNo
-      this.form.icon = scope.row.icon
-      this.form.sortName = scope.row.sortName
-      this.form.content = scope.row.content
-      this.form.status = scope.row.status
+      this.form.level = scope.row.level
+      this.form.name = scope.row.name
       this.editingTagUid = scope.row.uid
 
 
@@ -334,7 +308,7 @@ export default {
             for (let i = 0; i < selections.length; i++) {
               uids[i] = selections[i].uid
             }
-            deleteBlogSortBatch(uids).then(res => {
+            deleteTagBatch(uids).then(res => {
               this.fetchTagList()
               this.$message.success('删除成功');
               this.loading.close()
@@ -344,7 +318,7 @@ export default {
           }
         } else {
           // 走单独删除
-          deleteBlogSort(scope.row.uid).then(res => {
+          deleteTag(scope.row.uid).then(res => {
             this.fetchTagList()
             this.$message.success('删除成功');
             this.loading.close()
@@ -362,26 +336,26 @@ export default {
     submit: function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          // if (this.isEditForm) {
-          //   updateBlogSort(this.editingTagUid, this.form).then(res => {
-          //     this.$message.success("修改成功")
-          //     this.editingTagUid = ''
-          //     this.fetchTagList()
-          //     this.dialogFormVisible = false;
-          //     this.close()
-          //   }).catch(err => {
-          //     console.error(err)
-          //   })
-          // } else {
-          //   addBlogSort(this.form).then(res => {
-          //     this.$message.success("添加成功")
-          //     this.fetchTagList()
-          //     this.dialogFormVisible = false;
-          //     this.close()
-          //   }).catch(err => {
-          //     console.error(err)
-          //   })
-          // }
+          if (this.isEditForm) {
+            updateTag(this.editingTagUid, this.form).then(res => {
+              this.$message.success("修改成功")
+              this.editingTagUid = ''
+              this.fetchTagList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
+          } else {
+            addTag(this.form).then(res => {
+              this.$message.success("添加成功")
+              this.fetchTagList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
+          }
 
         } else {
           console.log('error submit!!');

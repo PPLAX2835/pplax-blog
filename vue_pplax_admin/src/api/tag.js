@@ -10,24 +10,31 @@ export function getTagList(params) {
 
 export function addTag(params) {
   return service({
-    url: '/tag/add',
+    url: '/admin/tag',
     method: 'post',
-    params
+    data: params
   })
 }
 
-export function editTag(params) {
+export function updateTag(tagUid, params) {
   return service({
-    url: '/tag/edit',
-    method: 'post',
-    params
+    url: '/admin/tag/' + tagUid,
+    method: 'put',
+    data: params
   })
 }
 
-export function deleteTag(params) {
+export function deleteTag(tagUid) {
   return service({
-    url: '/tag/delete',
-    method: 'post',
-    params
+    url: '/admin/tag/' + tagUid,
+    method: 'delete'
+  })
+}
+
+export function deleteTagBatch(tagUids) {
+  return service({
+    url: '/admin/tag',
+    method: 'delete',
+    data: tagUids
   })
 }

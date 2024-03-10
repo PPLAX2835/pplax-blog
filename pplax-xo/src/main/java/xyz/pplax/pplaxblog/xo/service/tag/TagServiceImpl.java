@@ -5,12 +5,18 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.TagSQLConstants;
+import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
@@ -21,6 +27,7 @@ import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 标签表 服务实现类
@@ -96,5 +103,64 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         // 获得非删除状态的
         tagQueryWrapper.ne(TagSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         return (long) count(tagQueryWrapper);
+    }
+
+    @Override
+    public Boolean save(TagEditDto tagEditDto) {
+        Tag tag = new Tag();
+
+        // 封装
+        tag.setUid(StringUtils.getUUID());             // 生成uuid
+        tag.setName(tagEditDto.getName());
+        tag.setLevel(tag.getLevel());
+
+        return save(tag);
+    }
+
+    @Override
+    public Boolean updateById(TagEditDto tagEditDto) {
+        Tag tag = new Tag();
+
+        // 封装
+        tag.setUid(tagEditDto.getUid());             // 生成uuid
+        tag.setName(tagEditDto.getName());
+        tag.setLevel(tag.getLevel());
+
+        return save(tag);
+    }
+
+    @Override
+    public ResponseResult removeById(String tagUid) {
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tagUid + "%");
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED);
+        int count = blogService.count(blogQueryWrapper);
+
+        if (count > 0) {
+            return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_TAG);
+        }
+
+        boolean res = super.removeById(tagUid);
+        if (!res) {
+            throw new RuntimeException();
+        }
+
+        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult removeByIds(List<String> tagUidList) {
+        List<Tag> tagList = listByIds(tagUidList);
+
+        for (Tag tag : tagList) {
+            // 批量删除出问题就回滚
+            ResponseResult responseResult = removeById(tag.getUid());
+            if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
+                throw new DeleteFailException(responseResult.getMessage());
+            }
+        }
+
+        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
     }
 }

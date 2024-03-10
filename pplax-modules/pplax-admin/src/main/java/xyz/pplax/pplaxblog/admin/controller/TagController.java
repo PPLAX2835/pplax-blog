@@ -7,10 +7,15 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
 import xyz.pplax.pplaxblog.xo.service.tag.TagService;
+
+import java.util.List;
 
 /**
  * 标签表 Controller
@@ -46,5 +51,42 @@ public class TagController extends SuperController {
                 tagService.count(tagGetListDto)
         ));
     }
+
+    @ApiOperation(value="编辑标签", notes="编辑标签")
+    @PutMapping("/{tagUid}")
+    public String update(@PathVariable("tagUid") String tagUid, @RequestBody TagEditDto tagEditDto) {
+        tagEditDto.setUid(tagUid);
+        Boolean res = tagService.updateById(tagEditDto);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+    @ApiOperation(value="新增标签", notes="新增标签")
+    @PostMapping("")
+    public String add(@RequestBody TagEditDto tagEditDto) {
+        Boolean res = tagService.save(tagEditDto);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+
+    @ApiOperation(value="删除标签", notes="删除标签")
+    @DeleteMapping("/{tagUid}")
+    public String delete(@PathVariable("tagUid") String tagUid) {
+        return toJson(tagService.removeById(tagUid));
+    }
+
+    @ApiOperation(value = "批量删除标签", notes = "批量删除标签")
+    @DeleteMapping(value = "")
+    public String delete(@RequestBody List<String> tagUidList) {
+        return toJson(tagService.removeByIds(tagUidList));
+    }
+
 }
 

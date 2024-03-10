@@ -70,8 +70,8 @@
         </el-table-column>
         <el-table-column align="center" label="操作" width="180">
           <template slot-scope="scope">
-            <el-button v-if="canDelete" type="danger" size="mini" @click="handleDelete(scope)">删除</el-button>
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
+            <el-button v-if="canDelete" type="danger" size="mini" @click="handleDelete(scope)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>

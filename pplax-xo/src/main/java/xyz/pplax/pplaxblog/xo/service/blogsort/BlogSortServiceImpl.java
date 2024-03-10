@@ -203,6 +203,25 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         return updateById(blogSort);
     }
 
+    @Override
+    public ResponseResult removeById(String blogSortUid) {
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
+        blogQueryWrapper.ne(BlogSQLConstants.STATUS, EStatus.DISABLED);
+        int count = blogService.count(blogQueryWrapper);
+
+        if (count > 0) {
+            return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_SORT);
+        }
+
+        boolean res = super.removeById(blogSortUid);
+        if (!res) {
+            throw new RuntimeException();
+        }
+
+        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+    }
+
     /**
      * 逻辑删除
      * @param uid

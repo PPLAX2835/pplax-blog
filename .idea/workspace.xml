@@ -9,7 +9,9 @@
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/BlogSortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/BlogSortController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/blogSort.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,14 +304,7 @@
       <workItem from="1709885378924" duration="594000" />
       <workItem from="1709893921825" duration="9783000" />
       <workItem from="1709946448249" duration="22350000" />
-      <workItem from="1710032452217" duration="6192000" />
-    </task>
-    <task id="LOCAL-00268" summary="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了">
-      <created>1707377261505</created>
-      <option name="number" value="00268" />
-      <option name="presentableId" value="LOCAL-00268" />
-      <option name="project" value="LOCAL" />
-      <updated>1707377261505</updated>
+      <workItem from="1710032452217" duration="7779000" />
     </task>
     <task id="LOCAL-00269" summary="继续修改鉴权，好害怕这里成为将来的坑...">
       <created>1707379583051</created>
@@ -647,7 +642,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710038035952</updated>
     </task>
-    <option name="localTasksCounter" value="317" />
+    <task id="LOCAL-00317" summary="分类添加功能完成">
+      <created>1710038895141</created>
+      <option name="number" value="00317" />
+      <option name="presentableId" value="LOCAL-00317" />
+      <option name="project" value="LOCAL" />
+      <updated>1710038895142</updated>
+    </task>
+    <option name="localTasksCounter" value="318" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,8 +684,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改子路径的组件不能正常显示的问题" />
-    <MESSAGE value="修改面包屑导航重复添加路径的bug" />
     <MESSAGE value="修改了菜单不能正常显示图标的问题" />
     <MESSAGE value="临时提交，现在右侧的主题设置不报错了，但是生效范围可以说没有" />
     <MESSAGE value="编写查询用户列表的接口" />
@@ -707,7 +707,9 @@
     <MESSAGE value="简单调整" />
     <MESSAGE value="分类编辑功能实现" />
     <MESSAGE value="用户这里显示了一下状态的字段" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户这里显示了一下状态的字段" />
+    <MESSAGE value="添加功能完成" />
+    <MESSAGE value="分类添加功能完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="分类添加功能完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

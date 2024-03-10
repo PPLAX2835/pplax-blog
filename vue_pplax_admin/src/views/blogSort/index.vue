@@ -55,15 +55,12 @@
             <span>{{ timeFormat(scope.row.updateTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column width="220" align="center" label="操作" class-name="small-padding fixed-width">
+        <el-table-column width="250" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
-            <span v-if="canPromote" >
-              <el-button v-if="scope.row.sortNo !== 0" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
-              <el-button v-else type="warning" size="mini" @click="handlePromoteCancel(scope)">取消置顶</el-button>
-            </span>
+              <el-button v-if="(scope.row.sortNo !== 0) && canPromote" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
+              <el-button v-else-if="canPromote" type="warning" size="mini" @click="handlePromoteCancel(scope)">取消置顶</el-button>
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
-<!--            <el-button v-if="canDel" size="mini" type="danger" @click="remove(scope)">删除-->
-<!--            </el-button>-->
+            <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -110,13 +107,13 @@
 </template>
 
 <script>
-import {addBlogSort, getBlogSortList, promote, promoteCancel, updateBlogSort} from "../../api/blogSort";
+import {addBlogSort, getBlogSortList, promote, promoteCancel, updateBlogSort, deleteBlogSort} from "../../api/blogSort";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
-import {addUser, updateUserInfo} from "../../api/user";
+import {addUser, deleteUserBatch, updateUserInfo} from "../../api/user";
 
 export default {
   components: {
@@ -196,7 +193,7 @@ export default {
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/blogSort/{uid}')
     },
     /**
      * 检查是否有添加的权限
@@ -402,19 +399,31 @@ export default {
         this.openLoading();
 
         if (scope.row === undefined) {
-          // 走的是批量删除
-          if (this.multipleSelection.length) {
-            let selections = this.multipleSelection;
-            let uids = [selections.length]
-            for (let i = 0; i < selections.length; i++) {
-              uids[i] = selections[i].uid
-            }
 
-
-
-          }
+          // // 走的是批量删除
+          // if (this.multipleSelection.length) {
+          //   let selections = this.multipleSelection;
+          //   let uids = [selections.length]
+          //   for (let i = 0; i < selections.length; i++) {
+          //     uids[i] = selections[i].uid
+          //   }
+          //   deleteUserBatch(uids).then(res => {
+          //     this.fetchUserList()
+          //     this.$message.success('删除成功');
+          //     this.loading.close()
+          //   }).catch(() => {
+          //     this.loading.close()
+          //   });
+          // }
         } else {
           // 走单独删除
+          deleteBlogSort(scope.row.uid).then(res => {
+            this.fetchBlogSortList()
+            this.$message.success('删除成功');
+            this.loading.close()
+          }).catch(() => {
+            this.loading.close()
+          });
 
         }
       }).catch(() => {

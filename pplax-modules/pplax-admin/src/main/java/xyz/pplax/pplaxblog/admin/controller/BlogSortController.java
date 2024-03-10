@@ -65,6 +65,12 @@ public class BlogSortController extends SuperController {
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
+    @ApiOperation(value="删除分类", notes="删除分类")
+    @DeleteMapping("/{blogSortUid}")
+    public String delete(@PathVariable("blogSortUid") String blogSortUid) {
+        return toJson(blogSortService.removeById(blogSortUid));
+    }
+
     @ApiOperation(value="置顶分类", notes="置顶分类")
     @PutMapping("/{blogSortUid}/promote")
     public String promote(@PathVariable("blogSortUid") String blogSortUid) {

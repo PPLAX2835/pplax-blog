@@ -53,9 +53,9 @@ export function updateBlogSort(blogSortUid, data) {
   })
 }
 
-export function deleteBlogSort(data) {
+export function deleteBlogSort(blogSortUid) {
   return service({
-    url: '/admin/blogSort/' + data.uid,
+    url: '/admin/blogSort/' + blogSortUid,
     method: 'delete'
   })
 }

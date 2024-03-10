@@ -35,9 +35,15 @@
         <el-table-column align="center" prop="userInfo.nickname" label="昵称" width="180" />
         <el-table-column align="center" label="用户角色" width="120">
           <template slot-scope="scope">
-            <el-tag>
+            <el-tag type="info">
               {{ scope.row.role.roleName }}
             </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" prop="status" label="状态" width="80">
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.status === statusList.ENABLE" type="success">正常</el-tag>
+            <el-tag v-else-if="scope.row.status === statusList.FREEZE">冻结</el-tag>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="lastLoginIp" label="上次登录ip" width="150" />
@@ -134,7 +140,7 @@
 <script>
 import {getUserList, updateUserInfo, addUser, deleteUser, deleteUserBatch, isUsernameExist} from '../../api/user'
 import { avatarUpload } from "../../api/fileStorage";
-import { getRoleList } from "../../api/role"
+import { EStatus } from "../../base/EStatus"
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import {mapGetters} from "vuex";
@@ -205,6 +211,7 @@ export default {
       },
       // 数据总数
       total:0,
+      statusList: [],
       // 加载层信息
       loading: [],
       tableData: []
@@ -245,6 +252,7 @@ export default {
     },
   },
   created() {
+    this.statusList = EStatus;
     this.openLoading();
     this.fetchUserList();
   },

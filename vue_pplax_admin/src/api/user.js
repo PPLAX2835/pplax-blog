@@ -60,7 +60,6 @@ export function deleteUser(userUid) {
 }
 
 export function deleteUserBatch(userUids) {
-  console.log(userUids)
   return service({
     url: '/admin/user',
     method: 'delete',

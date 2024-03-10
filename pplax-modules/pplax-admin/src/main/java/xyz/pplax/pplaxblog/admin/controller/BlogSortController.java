@@ -13,6 +13,8 @@ import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/blogSort")
 @Api(value="博客分类Controller", tags={"博客分类Controller"})
@@ -69,6 +71,12 @@ public class BlogSortController extends SuperController {
     @DeleteMapping("/{blogSortUid}")
     public String delete(@PathVariable("blogSortUid") String blogSortUid) {
         return toJson(blogSortService.removeById(blogSortUid));
+    }
+
+    @ApiOperation(value = "批量删除分类", notes = "批量删除分类")
+    @DeleteMapping(value = "")
+    public String delete(@RequestBody List<String> blogSortUidList) {
+        return toJson(blogSortService.removeByIds(blogSortUidList));
     }
 
     @ApiOperation(value="置顶分类", notes="置顶分类")

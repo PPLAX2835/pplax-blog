@@ -60,11 +60,11 @@ export function deleteBlogSort(blogSortUid) {
   })
 }
 
-export function deleteBatchBlogSort(data) {
+export function deleteBlogSortBatch(blogSortUids) {
   return service({
-    url: '/admin/blogSort/batch',
+    url: '/admin/blogSort',
     method: 'delete',
-    data: data
+    data: blogSortUids
   })
 }
 

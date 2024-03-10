@@ -7,10 +7,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
@@ -20,11 +22,13 @@ import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
+import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.BlogSortMapper;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 博客分类表 服务实现类
@@ -217,6 +221,22 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         boolean res = super.removeById(blogSortUid);
         if (!res) {
             throw new RuntimeException();
+        }
+
+        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult removeByIds(List<String> blogSortUidList) {
+        List<BlogSort> blogSortList = listByIds(blogSortUidList);
+
+        for (BlogSort blogSort : blogSortList) {
+            // 批量删除出问题就回滚
+            ResponseResult responseResult = removeById(blogSort.getUid());
+            if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
+                throw new DeleteFailException(responseResult.getMessage());
+            }
         }
 
         return ResponseResult.success(HttpStatus.DELETE_SUCCESS);

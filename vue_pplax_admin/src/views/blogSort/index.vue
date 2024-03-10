@@ -9,9 +9,9 @@
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
         <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
-<!--        <el-button v-if="canDeleteBatch()" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"-->
-<!--                   @click="handleDelete">批量删除-->
-<!--        </el-button>-->
+        <el-button v-if="canDeleteBatch" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
+                   @click="handleDelete">批量删除
+        </el-button>
       </el-form-item>
 
     </el-form>
@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import {addBlogSort, getBlogSortList, promote, promoteCancel, updateBlogSort, deleteBlogSort} from "../../api/blogSort";
+import {addBlogSort, getBlogSortList, promote, promoteCancel, updateBlogSort, deleteBlogSort, deleteBlogSortBatch } from "../../api/blogSort";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
@@ -179,7 +179,7 @@ export default {
      * @returns {boolean|*}
      */
     canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/user')
+      return hasAuth(this.menu, 'DELETE:/api/admin/blogSort')
     },
     /**
      * 判断是否可以使用置顶按钮
@@ -400,21 +400,21 @@ export default {
 
         if (scope.row === undefined) {
 
-          // // 走的是批量删除
-          // if (this.multipleSelection.length) {
-          //   let selections = this.multipleSelection;
-          //   let uids = [selections.length]
-          //   for (let i = 0; i < selections.length; i++) {
-          //     uids[i] = selections[i].uid
-          //   }
-          //   deleteUserBatch(uids).then(res => {
-          //     this.fetchUserList()
-          //     this.$message.success('删除成功');
-          //     this.loading.close()
-          //   }).catch(() => {
-          //     this.loading.close()
-          //   });
-          // }
+          // 走的是批量删除
+          if (this.multipleSelection.length) {
+            let selections = this.multipleSelection;
+            let uids = [selections.length]
+            for (let i = 0; i < selections.length; i++) {
+              uids[i] = selections[i].uid
+            }
+            deleteBlogSortBatch(uids).then(res => {
+              this.fetchBlogSortList()
+              this.$message.success('删除成功');
+              this.loading.close()
+            }).catch(() => {
+              this.loading.close()
+            });
+          }
         } else {
           // 走单独删除
           deleteBlogSort(scope.row.uid).then(res => {

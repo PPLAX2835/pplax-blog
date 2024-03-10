@@ -21,7 +21,7 @@ public interface BlogSortService extends SuperService<BlogSort> {
 
     Boolean promoteCancel(String blogSortUid);
 
-    ResponseResult addBlogSort(BlogSortEditDto blogSortEditDto);
+    Boolean save(BlogSortEditDto blogSortEditDto);
 
     Boolean updateById(BlogSortEditDto blogSortEditDto);
 

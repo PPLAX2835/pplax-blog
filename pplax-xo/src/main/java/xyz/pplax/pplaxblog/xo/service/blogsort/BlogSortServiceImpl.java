@@ -167,28 +167,19 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
      * @param blogSortEditDto
      */
     @Override
-    public ResponseResult addBlogSort(BlogSortEditDto blogSortEditDto) {
-//        // 检查参数
-//        if(StringUtils.isEmpty(blogSortDto.getSortName()) || blogSortDto.getStatus() == null) {
-//            return ResponseResult.error(HttpStatus.REQUIRED_IS_NULL);
-//        }
-//
-//        // 检查是否存在
-//        Boolean isExist = checkSortNameExists(blogSortDto);
-//        if (isExist) {
-//            return ResponseResult.error(HttpStatus.ENTITY_EXIST);
-//        }
-//
-//        // 封装
-//        BlogSort blogSort = new BlogSort();
-//        blogSort.setSortName(blogSortDto.getSortName());
-//        blogSort.setSummary(blogSortDto.getSummary());
-//        blogSort.setContent(blogSortDto.getContent());
-//        blogSort.setStatus(blogSortDto.getStatus());
-//        blogSort.setParentUid(blogSortDto.getParentBlogSortUid());
-//
-//        blogSortMapper.insert(blogSort);
-        return ResponseResult.success(HttpStatus.INSERT_SUCCESS.getMessage());
+    public Boolean save(BlogSortEditDto blogSortEditDto) {
+
+        BlogSort blogSort = new BlogSort();
+
+        // 封装
+        blogSort.setUid(StringUtils.getUUID());             // 生成uuid
+        blogSort.setSortName(blogSortEditDto.getSortName());
+        blogSort.setContent(blogSortEditDto.getContent());
+        blogSort.setIcon(blogSortEditDto.getIcon());
+        blogSort.setSortNo(blogSortEditDto.getSortNo());
+        blogSort.setStatus(blogSortEditDto.getStatus());
+
+        return save(blogSort);
     }
 
 

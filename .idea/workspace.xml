@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/BlogSortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/BlogSortController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blogSort/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,14 +302,7 @@
       <workItem from="1709885378924" duration="594000" />
       <workItem from="1709893921825" duration="9783000" />
       <workItem from="1709946448249" duration="22350000" />
-      <workItem from="1710032452217" duration="5481000" />
-    </task>
-    <task id="LOCAL-00267" summary="修改了已经被允许的访问方式 在后续循环中不允许的配置将其重新修改位false的问题">
-      <created>1707376870593</created>
-      <option name="number" value="00267" />
-      <option name="presentableId" value="LOCAL-00267" />
-      <option name="project" value="LOCAL" />
-      <updated>1707376870593</updated>
+      <workItem from="1710032452217" duration="6192000" />
     </task>
     <task id="LOCAL-00268" summary="既然网关实现了是否可以访问其他用户uid路径的鉴权，文件服务这里就可以简化了">
       <created>1707377261505</created>
@@ -644,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710037695313</updated>
     </task>
-    <option name="localTasksCounter" value="316" />
+    <task id="LOCAL-00316" summary="用户这里显示了一下状态的字段">
+      <created>1710038035952</created>
+      <option name="number" value="00316" />
+      <option name="presentableId" value="LOCAL-00316" />
+      <option name="project" value="LOCAL" />
+      <updated>1710038035952</updated>
+    </task>
+    <option name="localTasksCounter" value="317" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -679,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="让菜单按顺序排列" />
     <MESSAGE value="修改子路径的组件不能正常显示的问题" />
     <MESSAGE value="修改面包屑导航重复添加路径的bug" />
     <MESSAGE value="修改了菜单不能正常显示图标的问题" />
@@ -704,7 +706,8 @@
     <MESSAGE value="实现分类置顶和取消置顶的逻辑" />
     <MESSAGE value="简单调整" />
     <MESSAGE value="分类编辑功能实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="分类编辑功能实现" />
+    <MESSAGE value="用户这里显示了一下状态的字段" />
+    <option name="LAST_COMMIT_MESSAGE" value="用户这里显示了一下状态的字段" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

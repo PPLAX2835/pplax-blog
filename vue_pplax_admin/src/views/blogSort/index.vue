@@ -8,7 +8,7 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
-<!--        <el-button v-if="canAdd()" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>-->
+        <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
 <!--        <el-button v-if="canDeleteBatch()" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"-->
 <!--                   @click="handleDelete">批量删除-->
 <!--        </el-button>-->
@@ -110,13 +110,13 @@
 </template>
 
 <script>
-import { getBlogSortList, promote, promoteCancel, updateBlogSort } from "../../api/blogSort";
+import {addBlogSort, getBlogSortList, promote, promoteCancel, updateBlogSort} from "../../api/blogSort";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
-import {updateUserInfo} from "../../api/user";
+import {addUser, updateUserInfo} from "../../api/user";
 
 export default {
   components: {
@@ -203,7 +203,7 @@ export default {
      * @returns {boolean|*}
      */
     canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/user')
+      return hasAuth(this.menu, 'POST:/api/admin/blogSort')
     },
     /**
      * 检查是否有更新的权限
@@ -437,8 +437,14 @@ export default {
               console.error(err)
             })
           } else {
-
-
+            addBlogSort(this.form).then(res => {
+              this.$message.success("添加成功")
+              this.fetchBlogSortList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
           }
 
         } else {

@@ -54,6 +54,17 @@ public class BlogSortController extends SuperController {
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
+    @ApiOperation(value="新增分类", notes="新增分类")
+    @PostMapping("")
+    public String add(@RequestBody BlogSortEditDto blogSortEditDto) {
+        Boolean res = blogSortService.save(blogSortEditDto);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
     @ApiOperation(value="置顶分类", notes="置顶分类")
     @PutMapping("/{blogSortUid}/promote")
     public String promote(@PathVariable("blogSortUid") String blogSortUid) {

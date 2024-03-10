@@ -95,7 +95,7 @@ public class AvatarService {
         // 判断使用什么方式存储
         if (mode.equals(StorageModeConstants.MINIO)) {      // minio的存储方式
 
-            String fileStoragePath = "/users/" + userUid + "/avatar/";
+            String fileStoragePath = "/avatar/" + userUid + "/";
             String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
 
             // 上传到minio

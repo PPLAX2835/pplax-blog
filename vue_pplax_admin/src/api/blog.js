@@ -1,14 +1,20 @@
-import request from '@/utils/request'
+import service from "../utils/request";
 
+/**
+ * 获得博客列表
+ * @param params
+ * @returns {*}
+ */
 export function getBlogList(params) {
-  return request({
-    url: '/blog/getList',
+  return service({
+    url: '/admin/blog/list',
     method: 'get',
     params
   })
 }
+
 export function addBlog(params) {
-  return request({
+  return service({
     url: '/blog/add',
     method: 'post',
     params
@@ -16,7 +22,7 @@ export function addBlog(params) {
 }
 
 export function editBlog(params) {
-  return request({
+  return service({
     url: '/blog/edit',
     method: 'post',
     params
@@ -24,7 +30,7 @@ export function editBlog(params) {
 }
 
 export function deleteBlog(params) {
-  return request({
+  return service({
     url: '/blog/delete',
     method: 'post',
     params

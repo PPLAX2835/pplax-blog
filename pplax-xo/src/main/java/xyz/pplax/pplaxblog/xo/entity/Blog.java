@@ -56,11 +56,6 @@ public class Blog extends SuperEntity{
 	private String coverImageUid;
 
 	/**
-	 * 是否发布：0：否，1：是
-	 */
-	private String isPublish;
-
-	/**
 	 * 用户uid
 	 */
 	private String userUid;
@@ -96,6 +91,9 @@ public class Blog extends SuperEntity{
 
 	@TableField(exist = false)
 	private BlogSort blogSort;
+
+	@TableField(exist = false)
+	private FileStorage coverImage;
 
 	@TableField(exist = false)
 	private BlogContent blogContent; // 内容，不主动查这个,默认应该空，提升效率

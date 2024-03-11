@@ -1,11 +1,17 @@
 package xyz.pplax.pplaxblog.xo.service.blog;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
+import xyz.pplax.pplaxblog.xo.dto.list.BlogGetListDto;
+import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
+import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 
 /**
  * 博客表 服务类
  */
 public interface BlogService extends SuperService<Blog> {
+
+    IPage<Blog> list(BlogGetListDto blogGetListDto);
 
 }

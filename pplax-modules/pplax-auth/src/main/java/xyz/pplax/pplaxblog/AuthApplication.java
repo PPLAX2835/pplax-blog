@@ -23,6 +23,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.xo.service.collect",
         "xyz.pplax.pplaxblog.xo.service.comment",
         "xyz.pplax.pplaxblog.xo.service.feedback",
+        "xyz.pplax.pplaxblog.xo.service.tag",
+        "xyz.pplax.pplaxblog.xo.service.blogsort",
         "xyz.pplax.pplaxblog.auth.controller",
         "xyz.pplax.pplaxblog.auth.config",
         "xyz.pplax.pplaxblog.auth.service"

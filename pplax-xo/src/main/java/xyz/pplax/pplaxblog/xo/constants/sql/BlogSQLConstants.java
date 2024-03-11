@@ -13,18 +13,18 @@ public final class BlogSQLConstants extends BaseSQLConstants {
 	public final static String C_UPDATE_TIME = "t_blog.update_time";
 	public final static String C_STATUS = "t_blog.status";
 
-	public final static String TITLE = "title";
-	public final static String SUMMARY = "summary";
-	public final static String BLOG_CONTENT_UID = "blog_content_uid";
-	public final static String TAG_UIDS = "tag_uids";
-	public final static String CLICK_COUNT = "click_count";
-	public final static String COLLECT_COUNT = "collect_count";
-	public final static String PICTURE_UID = "picture_uid";
-	public final static String IS_PUBLISH = "is_publish";
-	public final static String USER_UID = "user_uid";
-	public final static String IS_ORIGINAL = "user_uid";
-	public final static String ARTICLES_PART = "articles_part";
-	public final static String BLOG_SORT_UID = "blog_sort_uid";
-	public final static String LEVEL = "level";
+	public final static String TITLE = "t_blog.title";
+	public final static String SUMMARY = "t_blog.summary";
+	public final static String BLOG_CONTENT_UID = "t_blog.blog_content_uid";
+	public final static String TAG_UIDS = "t_blog.tag_uids";
+	public final static String CLICK_COUNT = "t_blog.click_count";
+	public final static String COLLECT_COUNT = "t_blog.collect_count";
+	public final static String COVER_IMAGE_UID = "t_blog.cover_image_uid";
+	public final static String IS_PUBLISH = "t_blog.is_publish";
+	public final static String USER_UID = "t_blog.user_uid";
+	public final static String IS_ORIGINAL = "t_blog.is_original";
+	public final static String ARTICLES_PART = "t_blog.articles_part";
+	public final static String BLOG_SORT_UID = "t_blog.blog_sort_uid";
+	public final static String LEVEL = "t_blog.level";
 
 }

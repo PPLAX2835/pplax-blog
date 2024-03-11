@@ -80,7 +80,7 @@
     <el-dialog center :title="title" :visible.sync="dialogFormVisible">
       <el-form :rules="rules" ref="dataForm" :model="form">
         <el-form-item prop="sortNo" label="排序" :label-width="formLabelWidth">
-          <el-input onkeyup="value=(value.trim()===''?0:parseInt(value.replace(/[^\d]/g,0)).toString())" v-model="form.sortNo" autocomplete="off"></el-input>
+          <el-input @input="convertToNum()" v-model="form.sortNo" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item prop="sortName" label="分类名" :label-width="formLabelWidth">
           <el-input v-model="form.sortName" autocomplete="off"></el-input>
@@ -260,6 +260,13 @@ export default {
       this.params.sortByCites = false
       this.params.keyword=''
       this.fetchBlogSortList()
+    },
+    /**
+     * 剔除非数字的值
+     */
+    convertToNum() {
+      this.form.sortNo = this.form.sortNo.replace(/[^\d]/g,'')
+      this.form.sortNo = this.form.sortNo.trim() === '' ? 0: parseInt(this.form.sortNo)
     },
     /**
      * 单页大小处理

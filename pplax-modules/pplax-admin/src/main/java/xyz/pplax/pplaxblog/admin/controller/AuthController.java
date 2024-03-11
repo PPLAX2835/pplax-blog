@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.validator.group.Delete;
 import xyz.pplax.pplaxblog.commons.validator.group.GetOne;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
@@ -36,7 +37,7 @@ public class AuthController extends SuperController {
 
 	@ApiOperation(value="获取token", notes="获取token")
 	@PostMapping("/token")
-	public String getToken(HttpServletRequest httpServletRequest, @Validated(value = {GetOne.class}) @RequestBody LoginDto loginDto) {
+	public String getToken(HttpServletRequest httpServletRequest,@RequestBody @Validated(value = {GetOne.class}) LoginDto loginDto) {
 
 		return toJson(authService.getToken(httpServletRequest, loginDto));
 	}

@@ -66,7 +66,7 @@
         </el-form-item>
 
         <el-form-item prop="level" label="推荐等级" :label-width="formLabelWidth">
-          <el-input onkeyup="value=(value.trim()===''?0:parseInt(value.replace(/[^\d]/g,0)).toString())" v-model="form.level" autocomplete="off"></el-input>
+          <el-input @input="convertToNum()" v-model="form.level" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -229,6 +229,13 @@ export default {
      */
     timeFormat(timestamp) {
       return parseTime(timestamp);
+    },
+    /**
+     * 剔除非数字的值
+     */
+    convertToNum() {
+      this.form.level = this.form.level.replace(/[^\d]/g,'')
+      this.form.level = this.form.level.trim() === '' ? 0: parseInt(this.form.level)
     },
     /**
      * 处理复选框选择事件

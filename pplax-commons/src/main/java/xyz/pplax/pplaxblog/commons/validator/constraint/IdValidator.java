@@ -22,6 +22,10 @@ public class IdValidator implements ConstraintValidator<IdValid, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return (!constraintAnnotation.required()) || value != null && !StringUtils.isBlank(value) && !StringUtils.isEmpty(value.trim()) && value.length() == CharacterConstants.NUM_32;
+        if (value == null || StringUtils.isBlank(value) || StringUtils.isEmpty(value.trim())) {
+            return !constraintAnnotation.required();
+        }
+
+        return value.length() == CharacterConstants.NUM_32;
     }
 }

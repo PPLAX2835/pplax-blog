@@ -6,9 +6,11 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.validator.group.*;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
@@ -51,7 +53,7 @@ public class BlogSortController extends SuperController {
 
     @ApiOperation(value="编辑分类", notes="编辑分类")
     @PutMapping("/{blogSortUid}")
-    public String update(@PathVariable("blogSortUid") String blogSortUid, @RequestBody BlogSortEditDto blogSortEditDto) {
+    public String update(@PathVariable("blogSortUid") String blogSortUid, @RequestBody @Validated(value = {Update.class}) BlogSortEditDto blogSortEditDto) {
         blogSortEditDto.setUid(blogSortUid);
         Boolean res = blogSortService.updateById(blogSortEditDto);
 
@@ -63,7 +65,7 @@ public class BlogSortController extends SuperController {
 
     @ApiOperation(value="新增分类", notes="新增分类")
     @PostMapping("")
-    public String add(@RequestBody BlogSortEditDto blogSortEditDto) {
+    public String add(@RequestBody @Validated(value = {Insert.class}) BlogSortEditDto blogSortEditDto) {
         Boolean res = blogSortService.save(blogSortEditDto);
 
         if (res) {

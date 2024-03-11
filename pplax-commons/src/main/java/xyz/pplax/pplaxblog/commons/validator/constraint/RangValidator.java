@@ -24,6 +24,6 @@ public class RangValidator implements ConstraintValidator<Range, String> {
         if (null == value || StringUtils.isBlank(value)) {
             return (!constraintAnnotation.required()) || constraintAnnotation.min() == 0;
         }
-        return (!constraintAnnotation.required()) || value.length() >= constraintAnnotation.min() && value.length() <= constraintAnnotation.max();
+        return value.length() >= constraintAnnotation.min() && value.length() <= constraintAnnotation.max();
     }
 }

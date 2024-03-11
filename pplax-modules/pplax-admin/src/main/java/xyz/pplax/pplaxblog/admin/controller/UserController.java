@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
-import xyz.pplax.pplaxblog.commons.validator.group.Insert;
+import xyz.pplax.pplaxblog.commons.validator.group.*;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
@@ -28,14 +28,11 @@ public class UserController extends SuperController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserInfoService userInfoService;
-
     private static final Logger log = LogManager.getLogger(UserController.class);
 
     @ApiOperation(value="添加用户", notes="添加用户")
     @PostMapping(value = "")
-    public String add(@Validated(value = {Insert.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
+    public String add(@RequestBody @Validated(value = {Insert.class}) UserInfoEditDto userInfoEditDto) {
         return success(userService.save(userInfoEditDto));
     }
 

@@ -39,7 +39,7 @@ service.interceptors.response.use(
     if (res.code >= 401000 && res.code <= 401999) {
       // 认证有问题的情况
       Message({
-        message: res.code + ': ' + res.message + (res.data !== '' ? ', ' + res.data : ''),
+        message: res.code + ': ' + res.message + (res.data !== undefined ? ', ' + JSON.stringify(res.data): ''),
         type: 'error',
         duration: 5 * 1000
       })
@@ -50,9 +50,10 @@ service.interceptors.response.use(
         location.reload();
       }, 2000)
     } else if (res.code !== HttpStatus.OK.code) {
+      console.log(res)
       // code为非200是抛错
       Message({
-        message: res.code + ': ' + res.message + (res.data !== '' ? ', ' + res.data : ''),
+        message: res.code + ': ' + res.message + (res.data !== undefined ? ', ' + JSON.stringify(res.data): ''),
         type: 'error',
         duration: 5 * 1000
       })

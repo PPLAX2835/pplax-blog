@@ -7,9 +7,11 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.validator.group.*;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
@@ -55,7 +57,7 @@ public class TagController extends SuperController {
 
     @ApiOperation(value="编辑标签", notes="编辑标签")
     @PutMapping("/{tagUid}")
-    public String update(@PathVariable("tagUid") String tagUid, @RequestBody TagEditDto tagEditDto) {
+    public String update(@PathVariable("tagUid") String tagUid, @RequestBody @Validated(value = {Update.class}) TagEditDto tagEditDto) {
         tagEditDto.setUid(tagUid);
         Boolean res = tagService.updateById(tagEditDto);
 
@@ -67,7 +69,7 @@ public class TagController extends SuperController {
 
     @ApiOperation(value="新增标签", notes="新增标签")
     @PostMapping("")
-    public String add(@RequestBody TagEditDto tagEditDto) {
+    public String add(@RequestBody @Validated(value = {Insert.class}) TagEditDto tagEditDto) {
         Boolean res = tagService.save(tagEditDto);
 
         if (res) {

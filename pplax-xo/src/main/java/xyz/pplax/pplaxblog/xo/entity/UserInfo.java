@@ -56,6 +56,11 @@ public class UserInfo extends SuperEntity {
     @TableField(exist = false)
     private FileStorage avatar;
 
+    /**
+     * 空间背景图片
+     */
+    @TableField(exist = false)
+    private FileStorage spaceBackgroundPicture;
 
     public UserInfo() {}
 

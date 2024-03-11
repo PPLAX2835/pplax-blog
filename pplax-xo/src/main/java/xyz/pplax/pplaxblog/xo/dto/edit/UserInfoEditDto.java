@@ -23,6 +23,10 @@ public class UserInfoEditDto extends BaseDto<UserInfoEditDto> {
     @IdValid(required = false, groups = {Update.class})
     private String avatarPictureUid;
 
+    @ApiModelProperty(example = "", notes = "空间背景图文件uid", required = false)
+    @IdValid(required = false, groups = {Update.class})
+    private String spaceBackgroundPictureUid;
+
     @ApiModelProperty(example = "pplax", notes = "用户名", required = true)
     @Range(min = 3, max = 30, groups = {Update.class, Insert.class}, message = "用户名长度限制在3到30之间")
     @NotBlank(groups = {Update.class, Insert.class})

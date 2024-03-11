@@ -10,3 +10,13 @@ export function avatarUpload(userUid, param) {
     data: param
   })
 }
+
+export function spaceBackgroundPictureUpload(userUid, param) {
+
+  return request({
+    url: '/file/user/' + userUid + '/spaceBackgroundPicture',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}

@@ -88,9 +88,16 @@
     <!-- 编辑弹窗 -->
     <el-dialog center :title="title" :visible.sync="dialogFormVisible">
       <el-form :rules="rules" ref="dataForm" :model="form">
+        <el-form-item v-if="editingUserUid" prop="spaceBackgroundPicture" label="空间背景图" :label-width="formLabelWidth">
+          <el-upload action="" class="avatar-uploader" :show-file-list="false"
+                     :before-upload="uploadBefore" :http-request="uploadSectionSpaceBackgroundPicture">
+            <img v-if="spaceBackgroundPictureUrl" :src="spaceBackgroundPictureUrl" align="left" width="70%">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
         <el-form-item v-if="editingUserUid" prop="avatar" label="头像" :label-width="formLabelWidth">
           <el-upload action="" class="avatar-uploader" :show-file-list="false"
-                     :before-upload="uploadBefore" :http-request="uploadSectionFile">
+                     :before-upload="uploadBefore" :http-request="uploadSectionAvatar">
             <img v-if="avatarUrl" :src="avatarUrl" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
@@ -139,7 +146,7 @@
 
 <script>
 import {getUserList, updateUserInfo, addUser, deleteUser, deleteUserBatch, isUsernameExist} from '../../api/user'
-import { avatarUpload } from "../../api/fileStorage";
+import { avatarUpload, spaceBackgroundPictureUpload } from "../../api/fileStorage";
 import { EStatus } from "../../base/EStatus"
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
@@ -165,9 +172,11 @@ export default {
       editingUserUsername: '',
       title: '',
       avatarUrl: '',
+      spaceBackgroundPictureUrl: '',
       confirmPassword: '',
       form: {
         avatarPictureUid: '',
+        spaceBackgroundPictureUid: '',
         password: '',
         nickname: '',
         roleUid: '',
@@ -366,6 +375,7 @@ export default {
       this.form.summary = ''
       this.confirmPassword = ''
       this.avatarUrl = ''
+      this.spaceBackgroundPictureUrl = ''
       this.editingUserUid = ''
       this.editingUserUsername = ''
 
@@ -395,6 +405,11 @@ export default {
         this.avatarUrl = scope.row.userInfo.avatar.fileUrl
       } else {
         this.avatarUrl = ''
+      }
+      if (scope.row.userInfo.spaceBackgroundPicture !== undefined && scope.row.userInfo.spaceBackgroundPicture.fileUrl !== undefined) {
+        this.spaceBackgroundPictureUrl = scope.row.userInfo.spaceBackgroundPicture.fileUrl
+      } else {
+        this.spaceBackgroundPictureUrl = ''
       }
       this.editingUserUid = scope.row.uid
       this.editingUserUsername = scope.row.username
@@ -460,34 +475,45 @@ export default {
         this.$message.error('上传头像图片只能是 JPG 格式!');
       }
       if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!');
+        this.$message.error('上传图片大小不能超过 2MB!');
       }
       return isJPG && isLt2M;
     },
     /**
-     * 图片上传
+     * 头像上传
      * @param param
      */
-    uploadSectionFile: function (param) {
-      this.$confirm('会直接修改头像，是否确定？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.openLoading();
-        let file = param.file
-        // FormData 对象
-        var formData = new FormData()
-        // 文件对象
-        formData.append('file', file)
-        avatarUpload(this.editingUserUid, formData).then(res => {
-          this.form.avatarPictureUid = res.data.uid
-          this.avatarUrl = res.data.fileUrl
-          this.fetchUserList()
-          this.loading.close()
-        })
-      }).catch(() => {});
-
+    uploadSectionAvatar: function (param) {
+      this.openLoading();
+      let file = param.file
+      // FormData 对象
+      var formData = new FormData()
+      // 文件对象
+      formData.append('file', file)
+      avatarUpload(this.editingUserUid, formData).then(res => {
+        this.form.avatarPictureUid = res.data.uid
+        this.avatarUrl = res.data.fileUrl
+        this.fetchUserList()
+        this.loading.close()
+      })
+    },
+    /**
+     * 上传空间背景图
+     * @param param
+     */
+    uploadSectionSpaceBackgroundPicture: function (param) {
+      this.openLoading();
+      let file = param.file
+      // FormData 对象
+      var formData = new FormData()
+      // 文件对象
+      formData.append('file', file)
+      spaceBackgroundPictureUpload(this.editingUserUid, formData).then(res => {
+        this.form.spaceBackgroundPictureUid = res.data.uid
+        this.spaceBackgroundPictureUrl = res.data.fileUrl
+        this.fetchUserList()
+        this.loading.close()
+      })
     },
 
     /**

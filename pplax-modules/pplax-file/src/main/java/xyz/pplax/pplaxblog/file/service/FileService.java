@@ -14,13 +14,8 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.file.components.MinioUtils;
 import xyz.pplax.pplaxblog.xo.constants.sql.FileStorageSQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.sql.UserInfoSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
-import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.entity.UserInfo;
 import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
-import xyz.pplax.pplaxblog.xo.service.user.UserService;
-import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -30,16 +25,10 @@ import java.io.InputStream;
 import java.util.Date;
 
 @Service
-public class AvatarService {
+public class FileService {
 
     @Autowired
     private FileStorageService fileStorageService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserInfoService userInfoService;
 
     @Autowired
     private MinioUtils minioUtils;
@@ -51,23 +40,17 @@ public class AvatarService {
     private String minioEndpoint;
 
     /**
-     * 上传头像
+     * 上传文件
      * @param mode
      * @param userUid
+     * @param path
      * @param file
      * @return
-     * @throws Exception
      */
-    public ResponseResult avatarUpload(String mode, String userUid, MultipartFile file) throws Exception {
+    public ResponseResult upload(String mode, String userUid, String path, MultipartFile file) throws Exception {
         // 存储模式参数不能为空
         if (StringUtils.isEmpty(mode)) {
             return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        // 判断是否是图片
-        String contentType = file.getContentType();
-        if (contentType == null || !contentType.startsWith("image/")) {
-            return ResponseResult.error(HttpStatus.BAD_REQUEST);
         }
 
         // 获得文件后缀
@@ -82,20 +65,14 @@ public class AvatarService {
         }
         suffix = originalFilename.substring(lastDotIndex + 1);
 
-        // 放缩图片
-        BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-        BufferedImage resizeImage = Scalr.resize(bufferedImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, 200);
-
-        // 将放缩后的图片转为输入流
-        ByteArrayOutputStream outStream  = new ByteArrayOutputStream();
-        ImageIO.write(resizeImage, suffix, outStream);
-        InputStream inputStream = new ByteArrayInputStream(outStream .toByteArray());
+        // 获得输入流
+        InputStream inputStream = file.getInputStream();
 
         FileStorage fileStorage = new FileStorage();
         // 判断使用什么方式存储
         if (mode.equals(StorageModeConstants.MINIO)) {      // minio的存储方式
 
-            String fileStoragePath = "/avatar/" + userUid + "/";
+            String fileStoragePath = path + userUid + "/";
             String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
 
             // 上传到minio
@@ -121,15 +98,9 @@ public class AvatarService {
 
         }
 
-        // 头像上传成功，更新用户信息
-        User user = userService.getById(userUid);
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUid(user.getUserInfoUid());
-        userInfo.setAvatarPictureUid(fileStorage.getUid());
-        userInfoService.updateById(userInfo);
-
         return ResponseResult.success(fileStorage);
     }
+
 
 
     /**
@@ -139,7 +110,7 @@ public class AvatarService {
      * @return
      * @throws Exception
      */
-    public ResponseResult avatarDelete(String mode , String fileUid) throws Exception {
+    public ResponseResult delete(String mode, String fileUid) throws Exception {
         // 校验参数
         if (StringUtils.isEmpty(mode) || StringUtils.isEmpty(fileUid)) {
             return ResponseResult.error(HttpStatus.BAD_REQUEST);
@@ -153,7 +124,7 @@ public class AvatarService {
             minioUtils.removeObject(minioBucketName, fileStorage.getFilePath() + fileStorage.getFileName());
         }
 
-        // 逻辑删除
+        // 逻辑删除表数据
         UpdateWrapper<FileStorage> fileStorageUpdateWrapper = new UpdateWrapper<>();
         fileStorageUpdateWrapper.set(FileStorageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         fileStorageUpdateWrapper.eq(FileStorageSQLConstants.C_UID, fileUid);

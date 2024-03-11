@@ -34,6 +34,10 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
         FileStorage avatar = fileStorageService.getById(userInfo.getAvatarPictureUid());
         userInfo.setAvatar(avatar);
 
+        // 封装背景图片
+        FileStorage spaceBackgroundPicture = fileStorageService.getById(userInfo.getSpaceBackgroundPictureUid());
+        userInfo.setSpaceBackgroundPicture(spaceBackgroundPicture);
+
         return userInfo;
     }
 
@@ -78,6 +82,11 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
         if (!StringUtils.isEmpty(userInfoEditDto.getAvatarPictureUid())) {
             // 头像文件uid
             userInfo.setAvatarPictureUid(userInfoEditDto.getAvatarPictureUid());
+            flag++;
+        }
+        if (!StringUtils.isEmpty(userInfoEditDto.getSpaceBackgroundPictureUid())) {
+            // 空间背景图文件uid
+            userInfo.setSpaceBackgroundPictureUid(userInfoEditDto.getSpaceBackgroundPictureUid());
             flag++;
         }
         if (!StringUtils.isEmpty(userInfoEditDto.getNickname())) {

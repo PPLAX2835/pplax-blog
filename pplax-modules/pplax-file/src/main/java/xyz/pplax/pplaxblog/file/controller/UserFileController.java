@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.file.service.UserFileService;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.file.service.AvatarService;
+import xyz.pplax.pplaxblog.file.service.FileService;
 
 /**
  * 用户文件上传服务相关接口
@@ -22,7 +23,7 @@ import xyz.pplax.pplaxblog.file.service.AvatarService;
 public class UserFileController extends SuperController {
 
     @Autowired
-    private AvatarService avatarService;
+    private UserFileService userFileService;
 
     @Value("${pplax.storage.mode:localStorage}")
     private String storageMode;
@@ -31,21 +32,21 @@ public class UserFileController extends SuperController {
     @PostMapping(value = "/avatar")
     public String avatarUpload(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(avatarService.avatarUpload(storageMode, userUid, file));
+        return toJson(userFileService.avatarUpload(storageMode, userUid, file));
     }
 
     @ApiOperation(value = "删除头像", notes = "删除头像")
     @DeleteMapping(value = "/avatar/{fileUid}")
     public String avatarDelete(@PathVariable String userUid, @PathVariable String fileUid) throws Exception {
 
-        return toJson(avatarService.avatarDelete(storageMode, fileUid));
+        return toJson(userFileService.delete(storageMode, fileUid));
     }
 
     @ApiOperation(value = "上传个人空间背景图片", notes = "上传个人空间背景图片")
     @PostMapping(value = "/spaceBackgroundPicture")
     public String spaceBackgroundPictureUpload(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(avatarService.avatarUpload(storageMode, userUid, file));
+        return toJson(userFileService.spaceBackgroundPictureUpload(storageMode, userUid, file));
     }
 
 

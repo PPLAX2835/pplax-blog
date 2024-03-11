@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.service.tag;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
@@ -16,9 +17,7 @@ import java.util.List;
  */
 public interface TagService extends SuperService<Tag> {
 
-    List<Tag> list(TagGetListDto tagGetListDto);
-
-    Long count(TagGetListDto tagGetListDto);
+    IPage<Tag> list(TagGetListDto tagGetListDto);
 
     Boolean save(TagEditDto tagEditDto);
 

@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -13,6 +14,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
+import xyz.pplax.pplaxblog.xo.entity.Tag;
 import xyz.pplax.pplaxblog.xo.service.tag.TagService;
 
 import java.util.List;
@@ -46,10 +48,9 @@ public class TagController extends SuperController {
         tagGetListDto.setCurrentPage(currentPage);
         tagGetListDto.setPageSize(pageSize);
 
-        return toJson(ResponseResult.success(
-                tagService.list(tagGetListDto),
-                tagService.count(tagGetListDto)
-        ));
+        IPage<Tag> tagIPage = tagService.list(tagGetListDto);
+
+        return toJson(ResponseResult.success(tagIPage.getRecords(), tagIPage.getTotal()));
     }
 
     @ApiOperation(value="编辑标签", notes="编辑标签")

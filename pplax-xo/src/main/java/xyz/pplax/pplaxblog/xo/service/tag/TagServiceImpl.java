@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.xo.service.tag;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.metadata.PageList;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
      * @return
      */
     @Override
-    public List<Tag> list(TagGetListDto tagGetListDto) {
+    public IPage<Tag> list(TagGetListDto tagGetListDto) {
         QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(tagGetListDto.getKeyword())) {
             // 如果关键词参数非空，就按该条件查询
@@ -90,25 +91,10 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
 
             tagList.add(tag);
         }
+        pageList.setRecords(tagList);
 
-        return tagList;
-    }
-
-    /**
-     * 查询标签数量
-     * @param tagGetListDto
-     * @return
-     */
-    @Override
-    public Long count(TagGetListDto tagGetListDto) {
-        QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
-        if(!StringUtils.isEmpty(tagGetListDto.getKeyword())) {
-            // 如果关键词参数非空，就按该条件查询
-            tagQueryWrapper.like(TagSQLConstants.NAME, "%" + tagGetListDto.getKeyword() + "%");
-        }
-        // 获得非删除状态的
-        tagQueryWrapper.ne(TagSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        return (long) count(tagQueryWrapper);
+        // 返回
+        return pageList;
     }
 
     /**

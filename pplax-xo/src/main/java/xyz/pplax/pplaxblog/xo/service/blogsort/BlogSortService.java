@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.service.blogsort;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
@@ -13,9 +14,7 @@ import java.util.List;
  */
 public interface BlogSortService extends SuperService<BlogSort> {
 
-    List<BlogSort> list(BlogSortGetListDto blogSortGetListDto);
-
-    Long count(BlogSortGetListDto blogSortGetListDto);
+    IPage<BlogSort> list(BlogSortGetListDto blogSortGetListDto);
 
     Boolean promote(String blogSortUid);
 

@@ -41,6 +41,12 @@ public class UserFileController extends SuperController {
         return toJson(avatarService.avatarDelete(storageMode, fileUid));
     }
 
+    @ApiOperation(value = "上传个人空间背景图片", notes = "上传个人空间背景图片")
+    @PostMapping(value = "/spaceBackgroundPicture")
+    public String spaceBackgroundPictureUpload(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
+
+        return toJson(avatarService.avatarUpload(storageMode, userUid, file));
+    }
 
 
 //    @ApiOperation(value = "截图上传", notes = "截图上传")

@@ -45,7 +45,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
      * @return
      */
     @Override
-    public List<BlogSort> list(BlogSortGetListDto blogSortGetListDto) {
+    public IPage<BlogSort> list(BlogSortGetListDto blogSortGetListDto) {
         QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(blogSortGetListDto.getKeyword())) {
             // 如果关键词参数非空，就按该条件查询
@@ -94,25 +94,10 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
             blogSortList.add(blogSort);
         }
 
-        // 获得列表
-        return blogSortList;
-    }
+        pageList.setRecords(blogSortList);
 
-    /**
-     * 获取博客分类的数量
-     * @param blogSortGetListDto
-     * @return
-     */
-    @Override
-    public Long count(BlogSortGetListDto blogSortGetListDto) {
-        QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
-        if(!StringUtils.isEmpty(blogSortGetListDto.getKeyword())) {
-            // 如果关键词参数非空，就按该条件查询
-            blogSortQueryWrapper.like(BlogSortSQLConstants.SORT_NAME, "%" + blogSortGetListDto.getKeyword() + "%");
-        }
-        // 获得非删除状态的
-        blogSortQueryWrapper.ne(BlogSortSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        return (long) count(blogSortQueryWrapper);
+        // 返回
+        return pageList;
     }
 
     /**

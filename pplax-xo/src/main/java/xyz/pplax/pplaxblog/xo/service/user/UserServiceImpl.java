@@ -83,7 +83,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
     /**
      * 通过昵称获得列表 分页
-     * @param pageDto
+     * @param userGetListDto
      * @return
      */
     @Override

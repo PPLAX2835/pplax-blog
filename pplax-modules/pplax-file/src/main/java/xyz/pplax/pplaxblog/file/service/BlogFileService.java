@@ -77,7 +77,7 @@ public class BlogFileService extends FileService {
         // 判断是否是图片
         String contentType = file.getContentType();
         if (contentType == null || !contentType.startsWith("image/")) {
-            return ResponseResult.error(HttpStatus.BAD_REQUEST);
+            return ResponseResult.error(HttpStatus.NOT_IMAGE);
         }
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -94,6 +94,11 @@ public class BlogFileService extends FileService {
      * @throws Exception
      */
     public ResponseResult videoAttachUpload(String mode, MultipartFile file) throws Exception {
+        // 判断是否是视频
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("video/")) {
+            return ResponseResult.error(HttpStatus.NOT_VIDEO);
+        }
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();

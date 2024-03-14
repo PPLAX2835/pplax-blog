@@ -94,7 +94,7 @@
             <span>{{ timeFormat(scope.row.updateTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column width="200" align="center" label="操作" class-name="small-padding fixed-width">
+        <el-table-column width="200" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
             <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
@@ -128,7 +128,7 @@
               <el-col :span="2">
                 <el-upload action="" class="avatar-uploader" :show-file-list="false"
                            :before-upload="uploadBefore" :http-request="uploadSelectionCoverImage">
-                  <img width="450%" v-if="editingBlogCoverImageUrl" :src="editingBlogCoverImageUrl">
+                  <el-image style="border-radius: 4px; width: 800%" v-if="editingBlogCoverImageUrl" :src="editingBlogCoverImageUrl"></el-image>
                   <i v-else class="el-icon-plus avatar-img-icon"></i>
                 </el-upload>
               </el-col>
@@ -221,7 +221,7 @@
           <el-col :spam="24">
             <el-form-item :label-width="formLabelWidth" label="内容" prop="contentMd">
               <mavon-editor placeholder="输入文章内容..." style="height: 500px" ref=md v-model="form.content"
-                            @change="" @imgAdd="imageAttachAdd">
+                            @change="" @imgAdd="imageAttachAdd" @save="save">
                 <!-- 左工具栏后加入自定义按钮  -->
                 <template slot="left-toolbar-after">
                   <el-dropdown>
@@ -237,6 +237,22 @@
                       </el-dropdown-item>
                       <el-dropdown-item>
                         <div @click="addVideoDialogVisible = true">添加视频地址</div>
+                      </el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                  <el-dropdown>
+                      <span class="el-dropdown-link">
+                        <i class="op-icon fa el-icon-folder" title="上传文件"></i>
+                      </span>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item>
+                        <el-upload style="display: inline-block;" :show-file-list="false" ref="upload" name="filedatas"
+                                   action="" :http-request="fileAttachAdd" multiple>
+                          <span>上传文件</span>
+                        </el-upload>
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <div @click="addAttachDialogVisible = true">添加文件地址</div>
                       </el-dropdown-item>
                     </el-dropdown-menu>
                   </el-dropdown>
@@ -260,6 +276,13 @@
       </span>
     </el-dialog>
 
+    <el-dialog center title="添加文件" :visible.sync="addAttachDialogVisible" width="30%">
+      <el-input v-model="attachInput" placeholder="文件地址"></el-input>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="addAttachDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addAttach">确 定</el-button>
+      </span>
+    </el-dialog>
 
   </div>
 </template>
@@ -273,7 +296,12 @@ import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
-import { blogCoverImageUpload, blogImageAttachUpload, blogVideoAttachUpload } from "../../api/fileStorage";
+import {
+  blogAttachUpload,
+  blogCoverImageUpload,
+  blogImageAttachUpload,
+  blogVideoAttachUpload
+} from "../../api/fileStorage";
 // 新增：导入组件
 import mavonEditor from 'mavon-editor'
 
@@ -305,8 +333,10 @@ export default {
       isEditForm: false,
       dialogFormVisible: false,
       addVideoDialogVisible: false,
+      addAttachDialogVisible: false,
       tagOptionList: [],
       videoInput: '',
+      attachInput: '',
       title: '',
       editingBlogUid: '',
       editingBlogCoverImageUrl: '',
@@ -745,6 +775,59 @@ export default {
       this.dialogVisible = false
       this.videoInput = ''
     },
+    fileAttachAdd: function (param) {
+      this.openLoading()
+      // FormData 对象
+      var formData = new FormData()
+      // 文件对象
+      formData.append('file', param.file)
+      blogAttachUpload(formData).then(res => {
+        const $vm = this.$refs.md
+        // 将文件名与文件路径插入当前光标位置，这是mavon-editor 内置的方法
+        $vm.insertText($vm.getTextareaDom(),
+          {
+            prefix: `[${res.data.originalName}](${res.data.fileUrl})`,
+            subfix: '',
+            str: ''
+          })
+        this.loading.close()
+      }).catch(err => {
+        this.loading.close()
+      })
+    },
+    addAttach() {
+      // 这里获取到的是mavon编辑器实例，上面挂载着很多方法
+      const $vm = this.$refs.md
+      // 将文件名与文件路径插入当前光标位置，这是mavon-editor 内置的方法
+      $vm.insertText($vm.getTextareaDom(),
+        {
+          prefix: `[${this.attachInput}](${this.attachInput})`,
+          subfix: '',
+          str: ''
+        })
+
+      this.addAttachDialogVisible = false
+      this.attachInput = ''
+    },
+
+    save: function () {
+      this.form.tagUids = this.form.tagUids.trim().replace(/^(\s|,)+|(\s|,)+$/g, '');
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          if (this.isEditForm) {
+            updateBlog(this.editingBlogUid, this.form).then(res => {
+              this.$message.success("已保存")
+              this.fetchBlogList()
+            }).catch(err => {
+              console.error(err)
+            })
+          }
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      })
+    },
 
     submit: function () {
       this.form.tagUids = this.form.tagUids.trim().replace(/^(\s|,)+|(\s|,)+$/g, '');
@@ -783,4 +866,12 @@ export default {
 .avatar-uploader .el-upload:hover {
   border-color: #409eff;
 }
+
+.article-cover {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+}
+
+
 </style>

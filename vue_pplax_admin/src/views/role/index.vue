@@ -34,7 +34,7 @@
             <span>{{ timeFormat(scope.row.updateTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column width="200" align="center" label="操作" class-name="small-padding fixed-width">
+        <el-table-column width="200" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
             <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>

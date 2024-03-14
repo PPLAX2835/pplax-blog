@@ -57,7 +57,7 @@
             <span>{{ timeFormat(scope.row.updateTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column width="250" align="center" label="操作" class-name="small-padding fixed-width">
+        <el-table-column width="250" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
               <el-button v-if="(scope.row.sortNo !== 0) && canPromote" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
               <el-button v-else-if="canPromote" type="warning" size="mini" @click="handlePromoteCancel(scope)">取消置顶</el-button>

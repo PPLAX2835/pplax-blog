@@ -114,6 +114,8 @@ public enum HttpStatus {
     KEYWORD_IS_NOT_EMPTY(400005, "关键字不能为空"),
     PARAM_INCORRECT(400006, "传入参数有误！"),
     PLEASE_SELECT_A_RECORD_TO_DELETE(400007, "请选择要删除的记录"),
+    NOT_IMAGE(400008, "上传的文件不是图片类型"),
+    NOT_VIDEO(400008, "上传的文件不是视频类型"),
 
     /**
      * 拒绝相关

@@ -37,7 +37,7 @@ public class AuthController extends SuperController {
 
 	@ApiOperation(value="获取token", notes="获取token")
 	@PostMapping("/token")
-	public String getToken(HttpServletRequest httpServletRequest,@RequestBody @Validated(value = {GetOne.class}) LoginDto loginDto) {
+	public String getToken(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {GetOne.class}) LoginDto loginDto) {
 
 		return toJson(authService.getToken(httpServletRequest, loginDto));
 	}

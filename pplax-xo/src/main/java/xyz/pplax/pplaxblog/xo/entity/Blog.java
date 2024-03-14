@@ -63,7 +63,7 @@ public class Blog extends SuperEntity{
 	/**
 	 * 是否原创（0:不是 1：是）
 	 */
-	private Integer isOriginal;
+	private Boolean isOriginal;
 
 	/**
 	 * 文章出处

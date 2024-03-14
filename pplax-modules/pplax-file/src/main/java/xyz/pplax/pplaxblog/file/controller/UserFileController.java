@@ -17,7 +17,7 @@ import xyz.pplax.pplaxblog.file.service.FileService;
  * @date 2024/1/18 14:37
  */
 @RestController
-@RequestMapping("/user/{userUid}")
+@RequestMapping("/user")
 @Api(value = "用户文件上传服务相关接口", tags = {"用户文件上传相关接口"})
 @Slf4j
 public class UserFileController extends SuperController {
@@ -30,23 +30,23 @@ public class UserFileController extends SuperController {
 
     @ApiOperation(value = "上传头像", notes = "上传头像")
     @PostMapping(value = "/avatar")
-    public String avatarUpload(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
+    public String avatarUpload( @RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(userFileService.avatarUpload(storageMode, userUid, file));
+        return toJson(userFileService.avatarUpload(storageMode, file));
     }
 
     @ApiOperation(value = "删除头像", notes = "删除头像")
     @DeleteMapping(value = "/avatar/{fileUid}")
-    public String avatarDelete(@PathVariable String userUid, @PathVariable String fileUid) throws Exception {
+    public String avatarDelete( @PathVariable String fileUid) throws Exception {
 
         return toJson(userFileService.delete(storageMode, fileUid));
     }
 
     @ApiOperation(value = "上传个人空间背景图片", notes = "上传个人空间背景图片")
     @PostMapping(value = "/spaceBackgroundPicture")
-    public String spaceBackgroundPictureUpload(@PathVariable String userUid, @RequestParam("file") MultipartFile file) throws Exception {
+    public String spaceBackgroundPictureUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(userFileService.spaceBackgroundPictureUpload(storageMode, userUid, file));
+        return toJson(userFileService.spaceBackgroundPictureUpload(storageMode, file));
     }
 
 

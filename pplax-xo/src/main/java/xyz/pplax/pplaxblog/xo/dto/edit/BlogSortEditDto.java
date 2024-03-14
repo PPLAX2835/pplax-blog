@@ -30,7 +30,7 @@ public class BlogSortEditDto extends BaseDto<BlogSortEditDto> {
     @Range(required = false, min = 0, max = 100, groups = {Update.class, Insert.class}, message = "介绍长度在0到100之间")
     private String content;
 
-    @ApiModelProperty(example = "", notes = "父级分类uid", required = false)
+    @ApiModelProperty(example = "", notes = "排序", required = false)
     @IntegerNotNull(groups = {Update.class, Insert.class}, message = "排序不能为空")
     private Integer sortNo;
 

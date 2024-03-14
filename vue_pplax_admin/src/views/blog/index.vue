@@ -5,22 +5,23 @@
       <el-form-item label="博客名">
         <el-input style="width: 150px" size="small" v-model="params.blogTitle" placeholder="请输入博客名"/>
       </el-form-item>
-      <el-form-item label="状态">
-        <el-select @change="fetchBlogList" style="width: 130px" size="small" v-model="params.status" placeholder="请选择状态">
-          <el-option label="全部" value=""/>
-          <el-option label="发布" :value="statusList.ENABLE" />
-          <el-option label="下架" :value="statusList.OFF_SHELF" />
-          <el-option label="待审批" :value="statusList.PENDING_APPROVAL" />
-          <el-option label="草稿" :value="statusList.DRAFT" />
-        </el-select>
-      </el-form-item>
       <el-form-item label="分类">
-        <el-select @change="fetchBlogList" clearable filterable remote :remote-method="fetchBlogSortList" style="width: 130px" size="small" v-model="params.blogSortUid" placeholder="请选择分类">
+        <el-select clearable filterable remote :remote-method="fetchBlogSortList" style="width: 130px" size="small" v-model="params.blogSortUid" placeholder="请选择分类">
           <el-option
-            v-for="item in options"
+            v-for="item in blogSortOptionList"
             :key="item.sortName"
             :label="item.sortName"
             :value="item.uid"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="状态">
+        <el-select style="width: 130px" size="small" v-model="params.status" placeholder="请选择状态">
+          <el-option label="全部" value=""/>
+          <el-option label="发布" :value="statusList.ENABLE" />
+          <el-option label="顶置" :value="statusList.STICK" />
+          <el-option label="下架" :value="statusList.OFF_SHELF" />
+          <el-option label="待审批" :value="statusList.PENDING_APPROVAL" />
+          <el-option label="草稿" :value="statusList.DRAFT" />
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -111,13 +112,152 @@
     </div>
 
     <!-- 编辑弹窗 -->
-    <el-dialog center :title="title" :visible.sync="dialogFormVisible">
+    <el-dialog center :title="title" :visible.sync="dialogFormVisible" fullscreen>
       <el-form :rules="rules" ref="dataForm" :model="form">
+        <el-row>
+          <el-col :span="14">
+            <el-form-item label="文章标题" :label-width="formLabelWidth" prop="title">
+              <el-input v-model="form.title" auto-complete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="文章简介" :label-width="formLabelWidth" prop="summary">
+              <el-input auto-complete="off" v-model="form.summary"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item v-if="editingBlogUid" label="标题图" prop="coverImageUid" :label-width="formLabelWidth">
+              <el-col :span="2">
+                <el-upload action="" class="avatar-uploader" :show-file-list="false"
+                           :before-upload="uploadBefore" :http-request="uploadSelectionCoverImage">
+                  <img width="450%" v-if="editingBlogCoverImageUrl" :src="editingBlogCoverImageUrl">
+                  <i v-else class="el-icon-plus avatar-img-icon"></i>
+                </el-upload>
+              </el-col>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="6.5">
+            <el-form-item label="标签" :label-width="formLabelWidth" prop="tagUids">
+
+              <el-tag v-for="(item, index) of editingBlogTagList" :key="index" style="margin:0 1rem 0 0" :closable="true"
+                      @close="removeTag(item)">
+                {{ item.name }}
+              </el-tag>
+
+              <!-- 标签选项 -->
+              <el-popover placement="bottom-start" width="460" trigger="click"
+                          v-if="editingBlogTagList && editingBlogTagList.length < 3">
+                <div class="popover-title">标签</div>
+                <!-- 搜索框 -->
+                <el-input style="width:100%" v-model="tagForm.name" placeholder="请输入标签名,enter添加自定义标签"
+                          @keyup.enter.native="handleAddTag" @input="handleSearchTag" />
+                <!-- 标签 -->
+                <div class="popover-container">
+                  <div>添加标签</div>
+                  <el-tag v-for="(item, index) of tagOptionList" :key="index" style="margin-left: 3px;margin-top: 2px"
+                          @click="addTag(item)">
+                    {{ item.name }}
+                  </el-tag>
+                </div>
+                <el-button type="primary" plain slot="reference" size="small">
+                  添加标签
+                </el-button>
+              </el-popover>
+
+            </el-form-item>
+          </el-col>
+          <el-col :span="6.5">
+            <el-form-item label="分类" :label-width="formLabelWidth" prop="blogSortUid">
+              <el-select style="width: 130px" size="small" v-model="form.blogSortUid" placeholder="请选择分类">
+                <el-option
+                  v-for="item in blogSortOptionList"
+                  :key="item.sortName"
+                  :label="item.sortName"
+                  :value="item.uid"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="6.5">
+            <el-form-item prop="isOriginal" label="创作类型" :label-width="formLabelWidth">
+              <div>
+                <el-radio v-model="form.isOriginal" :label="true" border>原创</el-radio>
+                <el-radio v-model="form.isOriginal" :label="false" border>转载</el-radio>
+              </div>
+            </el-form-item>
+          </el-col>
+          <el-col v-if="!form.isOriginal" :span="6.5">
+            <el-form-item label="转载地址" :label-width="formLabelWidth" prop="articlesPart">
+              <el-input auto-complete="off" v-model="form.articlesPart"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="6.5">
+            <el-form-item prop="status" label="状态" :label-width="formLabelWidth">
+              <div>
+                <el-radio v-model="form.status" :label="statusList.ENABLE" border>发布</el-radio>
+                <el-radio v-model="form.status" :label="statusList.STICK" border>顶置</el-radio>
+                <el-radio v-model="form.status" :label="statusList.OFF_SHELF" border>下架</el-radio>
+                <el-radio v-model="form.status" :label="statusList.PENDING_APPROVAL" border>待审批</el-radio>
+                <el-radio v-model="form.status" :label="statusList.DRAFT" border>草稿</el-radio>
+              </div>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6.5">
+            <el-form-item prop="level" label="推荐等级" :label-width="formLabelWidth">
+              <el-select style="width: 130px" size="small" v-model="form.level" placeholder="请选择">
+                <el-option label="正常" :value="0"></el-option>
+                <el-option label="一级推荐" :value="1"></el-option>
+                <el-option label="二级推荐" :value="2"></el-option>
+                <el-option label="三级推荐" :value="3"></el-option>
+                <el-option label="四级推荐" :value="4"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :spam="24">
+            <el-form-item :label-width="formLabelWidth" label="内容" prop="contentMd">
+              <mavon-editor placeholder="输入文章内容..." style="height: 500px" ref=md v-model="form.content"
+                            @change="" @imgAdd="imageAttachAdd">
+                <!-- 左工具栏后加入自定义按钮  -->
+                <template slot="left-toolbar-after">
+                  <el-dropdown>
+                      <span class="el-dropdown-link">
+                        <i class="op-icon fa el-icon-video-camera" title="上传视频"></i>
+                      </span>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item>
+                        <el-upload style="display: inline-block;" :show-file-list="false" ref="upload" name="filedatas"
+                                   action="" :http-request="videoAttachAdd" multiple>
+                          <span>上传视频</span>
+                        </el-upload>
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <div @click="addVideoDialogVisible = true">添加视频地址</div>
+                      </el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                </template>
+              </mavon-editor>
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="submit">确 定</el-button>
       </div>
+    </el-dialog>
+
+    <el-dialog center title="添加视频" :visible.sync="addVideoDialogVisible" width="30%">
+      <el-input v-model="videoInput" placeholder="视频地址"></el-input>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="addVideoDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addVideo">确 定</el-button>
+      </span>
     </el-dialog>
 
 
@@ -126,23 +266,31 @@
 
 <script>
 import { getBlogSortList } from "../../api/blogSort";
-import {addTag, getBlogList, updateTag, deleteTag, deleteTagBatch } from "../../api/blog";
-import { hasAuth } from "../../utils/auth";
+import { getBlogList, getBlogContent, addBlog, updateBlog } from "../../api/blog";
+import { addTag, getTagList} from "../../api/tag";
+import { hasAuth, getUserUid } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
+import { blogCoverImageUpload, blogAttachUpload, blogImageAttachUpload, blogVideoAttachUpload } from "../../api/fileStorage";
+// 新增：导入组件
+import mavonEditor from 'mavon-editor'
+
+// 新增：导入样式
+import 'mavon-editor/dist/css/index.css'
 
 export default {
   components: {
-    IconPicker
+    IconPicker,
+    'mavonEditor': mavonEditor.mavonEditor
   },
 
   data() {
     return {
       multipleSelection: [],
       showSearch: true,
-      options: [],
+      blogSortOptionList: [],
       params: {
         blogTitle: '',
         blogSortUid: '',
@@ -156,20 +304,60 @@ export default {
       formLabelWidth: '120px',
       isEditForm: false,
       dialogFormVisible: false,
+      addVideoDialogVisible: false,
+      tagOptionList: [],
+      videoInput: '',
       title: '',
-      editingRoleUid: '',
+      editingBlogUid: '',
+      editingBlogCoverImageUrl: '',
+      editingBlogTagList: [],
       form: {
-        level: '',
+        content: '',
+        blogSortUid: '',
+        isOriginal: '',
+        coverImageUid: '',
+        articlesPart: '',
+        summary: '',
+        title: '',
+        level: 0,
+        tagUids: '',
+        status: ''
+      },
+      tagForm: {
+        level: 0,
         name: ''
       },
       rules: {
-        level: [
-          { required: true, message: '请输入推荐等级', trigger: 'blur' },
+        title: [
+          { required: true, message: '请输入文章标题', trigger: 'blur' },
+          { min: 1, max: 20, message: '标题长度限制在1到20之间', trigger: 'change' }
         ],
-        name: [
-          { required: true, message: '请输入标签名', trigger: 'blur' },
-          { min: 1, max: 20, message: '标签名长度限制在1到20之间', trigger: 'change' }
-        ]
+        summary: [
+          { required: false, message: '请输入文章简介', trigger: 'blur' },
+          { min: 0, max: 50, message: '简介限制在0到50之间', trigger: 'change' }
+        ],
+        coverImageUid: [
+          { required: false, message: '请上传标题图', trigger: 'blur' }
+        ],
+        tagUids: [
+          { required: true, message: '请选择标签' },
+          { validator: this.tagUidsValidator, trigger: 'change' },
+        ],
+        blogSortUid: [
+          { required: true, message: '请选择分类', trigger: 'blur' }
+        ],
+        isOriginal: [
+          { required: true, message: '请选择创作类型', trigger: 'change' },
+        ],
+        articlesPart: [
+          { validator: this.articlesPartValidator, message: '请输入正确的转载地址', trigger: 'change' },
+        ],
+        status: [
+          { required: true, message: '请选择状态', trigger: 'change' },
+        ],
+        level: [
+          { required: true, message: '请选择推荐等级', trigger: 'change' },
+        ],
       },
       // 数据总数
       total:0,
@@ -215,10 +403,10 @@ export default {
     this.statusList = EStatus;
     this.openLoading();
     this.fetchBlogList();
+    this.fetchBlogSortList();
   },
   methods: {
     fetchBlogSortList: function (key){
-      this.loading = true
       getBlogSortList({
         sortByClickCount: false,
         sortByCites: false,
@@ -226,8 +414,7 @@ export default {
         currentPage: 1,
         pageSize: 5
       }).then(res =>{
-        this.loading = false
-        this.options = res.data
+        this.blogSortOptionList = res.data
       }).catch(err =>{
         console.log(err)
       })
@@ -325,28 +512,88 @@ export default {
 
       this.dialogFormVisible = true
     },
+    addTag: function (item) {
+      if (this.editingBlogTagList.length > 2) {
+        this.$message.error("最多添加三个标签,如需继续添加,请先删除一个!")
+        return false;
+      }
+      if (this.editingBlogTagList.indexOf(item) === -1) {
+        this.editingBlogTagList.push(item)
+        this.form.tagUids += ',' + item.uid
+        this.form.tagUids = this.form.tagUids.replace(",,", '')
+      }
+    },
     /**
-     * 添加按钮的点击事件
+     * 移除标签
+     * @param item
      */
-    handleCreate: function () {
-      this.editingRoleUid = ''
+    removeTag: function (item) {
+      this.form.tagUids = this.form.tagUids.replace(item.uid, '').replace(",,", "")
+      const index = this.editingBlogTagList.indexOf(item)
+      this.editingBlogTagList.splice(index, 1)
+    },
+    /**
+     * tagUids字段检查
+     * @param rule
+     * @param value
+     * @param callback
+     */
+    tagUidsValidator: function (rule, value, callback) {
+      // 去除收尾的逗号
+      value = value.trim().replace(/^(\s|,)+|(\s|,)+$/g, '');
+      let uids = value.split(',')
 
-      this.beforeShow("添加用户", 0)
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
+      if (uids.length <= 0) {
+        callback(new Error('请选择至少一个标签'))
+      } else if (uids.length > 3) {
+        callback(new Error('请选择最多选择三个标签'))
+      } else {
+        callback()
+      }
+    },
+    /**
+     * 转载地址字段验证
+     * @param rule
+     * @param value
+     * @param callback
+     */
+    articlesPartValidator: function (rule, value, callback) {
+      var urlPattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/gm; // validate fragment locator
+
+      let res = urlPattern.test(value)
+
+      if (!res && !this.form.isOriginal) {
+        callback(new Error('请输入正确的转载地址'))
+      } else {
+        callback()
+      }
+    },
+    /**
+     * 处理添加tag
+     */
+    handleAddTag: function () {
+      addTag(this.tagForm).then(res => {
+        this.$message.success("添加成功")
+        this.handleSearchTag()
+      }).catch(err => {
+        console.error(err)
       })
     },
     /**
-     * 编辑按钮点击事件
-     * @param scope
+     * 处理查找tag
      */
-    handleUpdate: function (scope) {
-      this.editingRoleUid = scope.row.uid
-
-
-      this.beforeShow("修改分类", 1)
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
+    handleSearchTag: function () {
+      getTagList({
+        sortByClickCount: false,
+        sortByCites: false,
+        keyword: this.tagForm.name,
+        currentPage: 1,
+        pageSize: 10
+      }).then(res =>{
+        this.tagOptionList = res.data
+        this.loading.close()
+      }).catch(err =>{
+        console.log(err)
       })
     },
     /**
@@ -394,29 +641,151 @@ export default {
       });
 
     },
+    /**
+     * 添加按钮的点击事件
+     */
+    handleCreate: function () {
+      this.editingBlogUid = ''
+      this.editingBlogCoverImageUrl = ''
+      this.editingBlogTagList = []
+      this.form.title = ''
+      this.form.articlesPart = ''
+      this.form.tagUids = ''
+      this.form.blogSortUid = ''
+      this.form.isOriginal = ''
+      this.form.coverImageUid = ''
+      this.form.summary = ''
+      this.form.level = 0
+      this.form.tagUids = ''
+      this.form.status = ''
+      this.form.content = ''
+
+      this.beforeShow("新增博客", 0)
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    /**
+     * 编辑按钮点击事件
+     * @param scope
+     */
+    handleUpdate: function (scope) {
+      this.editingBlogUid = scope.row.uid
+      if (scope.row.coverImage !== undefined) {
+        this.editingBlogCoverImageUrl = scope.row.coverImage.fileUrl
+      } else {
+        this.editingBlogCoverImageUrl = ''
+      }
+      this.editingBlogTagList= scope.row.tagList
+      this.form.title = scope.row.title
+      this.form.tagUids = scope.row.tagUids
+      this.form.blogSortUid = scope.row.blogSortUid
+      this.form.isOriginal = scope.row.isOriginal
+      this.form.coverImageUid = scope.row.coverImageUid
+      this.form.summary = scope.row.summary
+      this.form.level = scope.row.level
+      this.form.tagUids = scope.row.tagUids
+      this.form.status = scope.row.status
+      this.form.articlesPart = scope.row.articlesPart
+      getBlogContent(scope.row.uid).then(res => {
+        this.form.content = res.data.content
+      })
+
+      this.beforeShow("编辑博客", 1)
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    /**
+     * 图片上传之前的准备
+     */
+    uploadBefore: function () {
+      this.openLoading()
+    },
+    /**
+     * 上传博客封面
+     * @param param
+     */
+    uploadSelectionCoverImage: function (param) {
+      this.openLoading();
+      let file = param.file
+      // FormData 对象
+      var formData = new FormData()
+      // 文件对象
+      formData.append('file', file)
+      formData.append("userUid", getUserUid())
+      blogCoverImageUpload(formData).then(res => {
+        this.form.coverImageUid = res.data.uid
+        this.editingBlogCoverImageUrl = res.data.fileUrl
+        this.loading.close()
+      })
+    },
+    imageAttachAdd: function (pos, $file) {
+      var formdata = new FormData();
+      formdata.append('file', $file);
+      blogImageAttachUpload(formdata).then(res => {
+        this.$refs.md.$img2Url(pos, res.data.fileUrl);
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    videoAttachAdd: function (param) {
+      this.openLoading()
+      // FormData 对象
+      var formData = new FormData()
+      // 文件对象
+      formData.append('file', param.file)
+      blogVideoAttachUpload(formData).then(res => {
+        const $vm = this.$refs.md
+        // 将文件名与文件路径插入当前光标位置，这是mavon-editor 内置的方法
+        $vm.insertText($vm.getTextareaDom(),
+          {
+            prefix: `<video height=100% width=100% controls autoplay src="${res.data.fileUrl}"></video>`,
+            subfix: '',
+            str: ''
+          })
+        this.loading.close()
+      }).catch(err => {
+        this.loading.close()
+      })
+    },
+    addVideo() {
+      // 这里获取到的是mavon编辑器实例，上面挂载着很多方法
+      const $vm = this.$refs.md
+      // 将文件名与文件路径插入当前光标位置，这是mavon-editor 内置的方法
+      $vm.insertText($vm.getTextareaDom(),
+        {
+          prefix: `<video height=100% width=100% src="${this.videoInput}"></video>`,
+          subfix: '',
+          str: ''
+        })
+
+      this.dialogVisible = false
+      this.videoInput = ''
+    },
 
     submit: function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (this.isEditForm) {
-            // updateTag(this.editingTagUid, this.form).then(res => {
-            //   this.$message.success("修改成功")
-            //   this.editingTagUid = ''
-            //   this.fetchBlogList()
-            //   this.dialogFormVisible = false;
-            //   this.close()
-            // }).catch(err => {
-            //   console.error(err)
-            // })
+            updateBlog(this.editingBlogUid, this.form).then(res => {
+              this.$message.success("修改成功")
+              this.editingBlogUid = ''
+              this.fetchBlogList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
           } else {
-            // addTag(this.form).then(res => {
-            //   this.$message.success("添加成功")
-            //   this.fetchBlogList()
-            //   this.dialogFormVisible = false;
-            //   this.close()
-            // }).catch(err => {
-            //   console.error(err)
-            // })
+            addBlog(this.form).then(res => {
+              this.$message.success("添加成功")
+              this.fetchBlogList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
           }
 
         } else {
@@ -428,3 +797,9 @@ export default {
   }
 }
 </script>
+<style>
+
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+</style>

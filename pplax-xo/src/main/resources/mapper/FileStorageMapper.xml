@@ -5,7 +5,6 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.FileStorage">
         <id column="uid" property="uid" />
-        <result column="user_uid" property="userUid" />
         <result column="original_name" property="originalName" />
         <result column="file_name" property="fileName" />
         <result column="suffix" property="suffix" />
@@ -22,7 +21,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `user_uid`, `original_name`, `file_name`, `suffix`, `filePath`, `fileSize`, `isDirectory`, `is_image`, `storageMode`, `fileUrl`, `status`, `create_time`, `update_time`
+        `uid`, `original_name`, `file_name`, `suffix`, `filePath`, `fileSize`, `isDirectory`, `is_image`, `storageMode`, `fileUrl`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

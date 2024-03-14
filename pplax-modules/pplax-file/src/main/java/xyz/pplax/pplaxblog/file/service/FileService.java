@@ -47,7 +47,7 @@ public class FileService {
      * @param file
      * @return
      */
-    public ResponseResult upload(String mode, String userUid, String path, MultipartFile file) throws Exception {
+    public ResponseResult upload(String mode, String path, MultipartFile file) throws Exception {
         // 存储模式参数不能为空
         if (StringUtils.isEmpty(mode)) {
             return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -72,7 +72,7 @@ public class FileService {
         // 判断使用什么方式存储
         if (mode.equals(StorageModeConstants.MINIO)) {      // minio的存储方式
 
-            String fileStoragePath = path + userUid + "/";
+            String fileStoragePath = path;
             String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
 
             // 上传到minio
@@ -81,7 +81,6 @@ public class FileService {
             String fileUrl = minioEndpoint + "/" + minioBucketName + objectWriteResponse.object();
 
             // 封装
-            fileStorage.setUserUid(userUid);
             fileStorage.setOriginalName(file.getOriginalFilename());
             fileStorage.setFileName(fileStorageName);        // 用时间戳命名
             fileStorage.setSuffix(suffix);

@@ -490,7 +490,7 @@ export default {
       var formData = new FormData()
       // 文件对象
       formData.append('file', file)
-      avatarUpload(this.editingUserUid, formData).then(res => {
+      avatarUpload(formData).then(res => {
         this.form.avatarPictureUid = res.data.uid
         this.avatarUrl = res.data.fileUrl
         this.fetchUserList()
@@ -508,10 +508,9 @@ export default {
       var formData = new FormData()
       // 文件对象
       formData.append('file', file)
-      spaceBackgroundPictureUpload(this.editingUserUid, formData).then(res => {
+      spaceBackgroundPictureUpload(formData).then(res => {
         this.form.spaceBackgroundPictureUid = res.data.uid
         this.spaceBackgroundPictureUrl = res.data.fileUrl
-        this.fetchUserList()
         this.loading.close()
       })
     },
@@ -586,3 +585,9 @@ export default {
   }
 }
 </script>
+<style>
+
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+</style>

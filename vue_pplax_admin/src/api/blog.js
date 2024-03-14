@@ -13,25 +13,48 @@ export function getBlogList(params) {
   })
 }
 
-export function addBlog(params) {
+/**
+ * 获得博客内容
+ * @param blogUid
+ * @returns {*}
+ */
+export function getBlogContent(blogUid) {
   return service({
-    url: '/blog/add',
-    method: 'post',
-    params
+    url: '/admin/blog/' + blogUid + '/content',
+    method: 'get'
   })
 }
 
-export function editBlog(params) {
+/**
+ * 添加博客
+ * @param params
+ * @returns {*}
+ */
+export function addBlog(params) {
   return service({
-    url: '/blog/edit',
+    url: '/admin/blog',
     method: 'post',
-    params
+    data: params
+  })
+}
+
+/**
+ * 修改博客
+ * @param blogUid
+ * @param params
+ * @returns {*}
+ */
+export function updateBlog(blogUid, params) {
+  return service({
+    url: '/admin/blog/' + blogUid,
+    method: 'put',
+    data: params
   })
 }
 
 export function deleteBlog(params) {
   return service({
-    url: '/blog/delete',
+    url: '/admin/blog/delete',
     method: 'post',
     params
   })

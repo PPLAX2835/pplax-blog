@@ -20,13 +20,6 @@ public class FileStorage extends SuperEntity {
 
     /**
      * <pre>
-     * 用户uid
-     * </pre>
-     */
-    private String	userUid;
-
-    /**
-     * <pre>
      * 资源原始名称
      * </pre>
      */

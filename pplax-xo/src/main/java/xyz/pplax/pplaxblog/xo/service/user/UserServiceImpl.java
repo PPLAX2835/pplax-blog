@@ -232,9 +232,6 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         userInfo.setUid(StringUtils.getUUID());
         user.setUserInfoUid(userInfo.getUid());
 
-        System.out.println(JSON.toJSONString(user));
-        System.out.println(JSON.toJSONString(userInfo));
-
         // 封装
         if (StringUtils.isEmpty(userInfoEditDto.getUsername())) {
             // 用户名非空

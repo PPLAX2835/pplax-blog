@@ -5,17 +5,18 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
+import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogGetListDto;
-import xyz.pplax.pplaxblog.xo.entity.Blog;
-import xyz.pplax.pplaxblog.xo.entity.BlogSort;
-import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.entity.UserInfo;
+import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.BlogMapper;
+import xyz.pplax.pplaxblog.xo.service.blogcontent.BlogContentService;
 import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
 import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.tag.TagService;
@@ -40,6 +41,9 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
 
     @Autowired
     private BlogSortService blogSortService;
+
+    @Autowired
+    private BlogContentService blogContentService;
 
     @Autowired
     private UserService userService;
@@ -114,5 +118,80 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         pageList.setRecords(blogList);
 
         return pageList;
+    }
+
+    /**
+     * 通过博客uid获得博客内容
+     * @param blogUid
+     * @return
+     */
+    @Override
+    public BlogContent getBlogContentByBlogUid(String blogUid) {
+        Blog blog = getById(blogUid);
+        return blogContentService.getById(blog.getBlogContentUid());
+    }
+
+    @Override
+    @Transactional
+    public Boolean updateById(BlogEditDto blogEditDto) {
+        Blog blog = getById(blogEditDto.getUid());
+        BlogContent blogContent = blogContentService.getById(blog.getBlogContentUid());
+
+        // 封装
+        blogContent.setContent(blogEditDto.getContent());
+
+        blog.setTitle(blogEditDto.getTitle());
+        blog.setBlogSortUid(blogEditDto.getBlogSortUid());
+        blog.setIsOriginal(blogEditDto.getIsOriginal());
+        blog.setCoverImageUid(blogEditDto.getCoverImageUid());
+        blog.setArticlesPart(blogEditDto.getArticlesPart());
+        blog.setSummary(blogEditDto.getSummary());
+        blog.setLevel(blogEditDto.getLevel());
+        blog.setTagUids(blogEditDto.getTagUids());
+        blog.setStatus(blogEditDto.getStatus());
+
+        boolean res1 = updateById(blog);
+        boolean res2 = blogContentService.updateById(blogContent);
+
+        if (!(res1 && res2)) {
+            throw new RuntimeException();
+        }
+
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public Boolean save(BlogEditDto blogEditDto) {
+        Blog blog = new Blog();
+        BlogContent blogContent = new BlogContent();
+
+        // 生成uuid
+        blog.setUid(StringUtils.getUUID());
+        blogContent.setUid(StringUtils.getUUID());
+        blog.setBlogContentUid(blogContent.getUid());
+
+        // 封装
+        blogContent.setContent(blogEditDto.getContent());
+
+        blog.setUserUid(blogEditDto.getUserUid());
+        blog.setTitle(blogEditDto.getTitle());
+        blog.setBlogSortUid(blogEditDto.getBlogSortUid());
+        blog.setIsOriginal(blogEditDto.getIsOriginal());
+        blog.setCoverImageUid(blogEditDto.getCoverImageUid());
+        blog.setArticlesPart(blogEditDto.getArticlesPart());
+        blog.setSummary(blogEditDto.getSummary());
+        blog.setLevel(blogEditDto.getLevel());
+        blog.setTagUids(blogEditDto.getTagUids());
+        blog.setStatus(blogEditDto.getStatus());
+
+        boolean res1 = save(blog);
+        boolean res2 = blogContentService.save(blogContent);
+
+        if (!(res1 && res2)) {
+            throw new RuntimeException();
+        }
+
+        return true;
     }
 }

@@ -1,20 +1,81 @@
 import request from '@/utils/request'
 
-
-export function avatarUpload(userUid, param) {
+/**
+ * 头像上传
+ * @param param
+ * @returns {*}
+ */
+export function avatarUpload(param) {
 
   return request({
-    url: '/file/user/' + userUid + '/avatar',
+    url: '/file/user/avatar',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
     data: param
   })
 }
 
-export function spaceBackgroundPictureUpload(userUid, param) {
+/**
+ * 个人空间背景图上传
+ * @param param
+ * @returns {*}
+ */
+export function spaceBackgroundPictureUpload(param) {
 
   return request({
-    url: '/file/user/' + userUid + '/spaceBackgroundPicture',
+    url: '/file/user/spaceBackgroundPicture',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}
+
+/**
+ * 博客封面上传
+ * @param blogUid
+ * @param param
+ * @returns {*}
+ */
+export function blogCoverImageUpload(param) {
+
+  return request({
+    url: '/file/blog/coverImage',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}
+
+/**
+ * 上传博客附件文件
+ * @param param
+ * @returns {*}
+ */
+export function blogAttachUpload(param) {
+
+  return request({
+    url: '/file/blog/attach/file',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}
+
+
+export function blogImageAttachUpload(param) {
+
+  return request({
+    url: '/file/blog/attach/image',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}
+
+export function blogVideoAttachUpload(param) {
+
+  return request({
+    url: '/file/blog/attach/video',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
     data: param

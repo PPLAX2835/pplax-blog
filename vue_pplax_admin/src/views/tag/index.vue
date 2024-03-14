@@ -86,7 +86,6 @@ import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
-import {isUsernameExist} from "../../api/user";
 
 export default {
   components: {
@@ -278,7 +277,7 @@ export default {
       this.form.level = ''
       this.form.name = ''
 
-      this.beforeShow("添加用户", 0)
+      this.beforeShow("添加标签", 0)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
@@ -294,7 +293,7 @@ export default {
       this.editingTagUid = scope.row.uid
 
 
-      this.beforeShow("修改分类", 1)
+      this.beforeShow("修改标签", 1)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })

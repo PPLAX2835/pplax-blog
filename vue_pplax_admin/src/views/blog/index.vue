@@ -273,7 +273,7 @@ import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
-import { blogCoverImageUpload, blogAttachUpload, blogImageAttachUpload, blogVideoAttachUpload } from "../../api/fileStorage";
+import { blogCoverImageUpload, blogImageAttachUpload, blogVideoAttachUpload } from "../../api/fileStorage";
 // 新增：导入组件
 import mavonEditor from 'mavon-editor'
 
@@ -433,22 +433,6 @@ export default {
      */
     handleFind: function () {
       this.params.currentPage = 1;
-      this.fetchBlogList()
-    },
-    /**
-     * 根据点击量排序按钮点击事件
-     */
-    handleSortByClickCount: function () {
-      this.params.sortByClickCount = true
-      this.params.sortByCites = false
-      this.fetchBlogList()
-    },
-    /**
-     * 根据引用量排序按钮点击事件
-     */
-    handleSortByCites: function () {
-      this.params.sortByClickCount = false
-      this.params.sortByCites = true
       this.fetchBlogList()
     },
     /**

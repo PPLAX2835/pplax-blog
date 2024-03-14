@@ -115,7 +115,6 @@ import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
-import {addUser, deleteUserBatch, updateUserInfo} from "../../api/user";
 
 export default {
   components: {
@@ -338,7 +337,7 @@ export default {
       this.form.sortNo = ''
       this.form.content = ''
 
-      this.beforeShow("添加用户", 0)
+      this.beforeShow("添加分类", 0)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })

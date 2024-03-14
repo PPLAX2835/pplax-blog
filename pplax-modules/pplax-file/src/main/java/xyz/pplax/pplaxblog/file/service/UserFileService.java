@@ -23,7 +23,6 @@ public class UserFileService extends FileService {
     /**
      * 上传头像
      * @param mode
-     * @param userUid
      * @param file
      * @return
      * @throws Exception
@@ -50,7 +49,7 @@ public class UserFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/avatar/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
+        return upload(mode, "/user/avatar/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
     }
 
     /**
@@ -82,7 +81,7 @@ public class UserFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/spaceBackgroundPicture/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
+        return upload(mode, "/user/spaceBackgroundPicture/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
     }
 
 }

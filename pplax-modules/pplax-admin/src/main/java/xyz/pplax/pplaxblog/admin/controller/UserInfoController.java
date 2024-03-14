@@ -12,6 +12,9 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.entity.Tag;
+import xyz.pplax.pplaxblog.xo.entity.User;
+import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 
@@ -28,6 +31,9 @@ public class UserInfoController extends SuperController {
     @Autowired
     private UserInfoService userInfoService;
 
+    @Autowired
+    private UserService userService;
+
     @ApiOperation(value="获取用户信息", notes="获取用户信息")
     @GetMapping(value = "")
     public String getUserInfo (@PathVariable("userUid") String userUid) {
@@ -36,7 +42,14 @@ public class UserInfoController extends SuperController {
 
     @ApiOperation(value="更新用户信息", notes="更新用户信息")
     @PutMapping(value = "")
-    public String updateUserInfo(@PathVariable("userUid") String userUid,@Validated(value = {Update.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
+    public String updateUserInfo(@PathVariable("userUid") String userUid, @Validated(value = {Update.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
+        if (userService.isUsernameExist(userInfoEditDto.getUsername())) {
+            User user = userService.getById(userUid);
+            if (!user.getUsername().equals(userInfoEditDto.getUsername())) {
+                return toJson(ResponseResult.error(HttpStatus.USERNAME_EXIST));
+            }
+        }
+
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);
 
         if (res) {

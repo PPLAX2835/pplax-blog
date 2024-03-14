@@ -656,7 +656,6 @@ export default {
       this.form.coverImageUid = ''
       this.form.summary = ''
       this.form.level = 0
-      this.form.tagUids = ''
       this.form.status = ''
       this.form.content = ''
 
@@ -684,7 +683,6 @@ export default {
       this.form.coverImageUid = scope.row.coverImageUid
       this.form.summary = scope.row.summary
       this.form.level = scope.row.level
-      this.form.tagUids = scope.row.tagUids
       this.form.status = scope.row.status
       this.form.articlesPart = scope.row.articlesPart
       getBlogContent(scope.row.uid).then(res => {
@@ -765,6 +763,7 @@ export default {
     },
 
     submit: function () {
+      this.form.tagUids = this.form.tagUids.trim().replace(/^(\s|,)+|(\s|,)+$/g, '');
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (this.isEditForm) {
@@ -773,7 +772,6 @@ export default {
               this.editingBlogUid = ''
               this.fetchBlogList()
               this.dialogFormVisible = false;
-              this.close()
             }).catch(err => {
               console.error(err)
             })
@@ -782,7 +780,6 @@ export default {
               this.$message.success("添加成功")
               this.fetchBlogList()
               this.dialogFormVisible = false;
-              this.close()
             }).catch(err => {
               console.error(err)
             })

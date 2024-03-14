@@ -80,12 +80,13 @@
 </template>
 
 <script>
-import {addTag, getTagList, updateTag, deleteTag, deleteTagBatch } from "../../api/tag";
+import {addTag, getTagList, updateTag, deleteTag, deleteTagBatch, isTagNameExist } from "../../api/tag";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
+import {isUsernameExist} from "../../api/user";
 
 export default {
   components: {
@@ -110,6 +111,7 @@ export default {
       dialogFormVisible: false,
       title: '',
       editingTagUid: '',
+      originalTagName: '',
       form: {
         level: '',
         name: ''
@@ -120,7 +122,8 @@ export default {
         ],
         name: [
           { required: true, message: '请输入标签名', trigger: 'blur' },
-          { min: 1, max: 20, message: '标签名长度限制在1到20之间', trigger: 'change' }
+          { min: 1, max: 20, message: '标签名长度限制在1到20之间', trigger: 'change' },
+          { validator: this.isExist, trigger: 'change' },
         ]
       },
       // 数据总数
@@ -271,6 +274,7 @@ export default {
      */
     handleCreate: function () {
       this.editingTagUid = ''
+      this.originalTagName = ''
       this.form.level = ''
       this.form.name = ''
 
@@ -286,6 +290,7 @@ export default {
     handleUpdate: function (scope) {
       this.form.level = scope.row.level
       this.form.name = scope.row.name
+      this.originalTagName = scope.row.name
       this.editingTagUid = scope.row.uid
 
 
@@ -339,7 +344,22 @@ export default {
       });
 
     },
+    /**
+     * 检查用户名是否存在
+     * @param rule
+     * @param value
+     * @param callback
+     */
+    isExist(rule, value, callback) {
+      isTagNameExist(value).then(res => {
+        if (res.data && (this.originalTagName === '' || this.originalTagName !== this.form.name)) {
+          callback(new Error('该用户名已存在'))
+        } else {
+          callback()
+        }
 
+      })
+    },
     submit: function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {

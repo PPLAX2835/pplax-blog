@@ -8,6 +8,16 @@ export function getTagList(params) {
   })
 }
 
+export function isTagNameExist(tagName) {
+  return service({
+    url: '/admin/tag/exist',
+    method: 'get',
+    params: {
+      tagName: tagName
+    }
+  })
+}
+
 export function addTag(params) {
   return service({
     url: '/admin/tag',

@@ -128,7 +128,15 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         tag.setName(tagEditDto.getName());
         tag.setLevel(tag.getLevel());
 
-        return save(tag);
+        return updateById(tag);
+    }
+
+    @Override
+    public Integer count(String name) {
+        QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
+        tagQueryWrapper.eq(TagSQLConstants.NAME, name);
+
+        return count(tagQueryWrapper);
     }
 
     /**
@@ -174,5 +182,10 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         }
 
         return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+    }
+
+    @Override
+    public Boolean isTagNameExist(String name) {
+        return count(name) > 0;
     }
 }

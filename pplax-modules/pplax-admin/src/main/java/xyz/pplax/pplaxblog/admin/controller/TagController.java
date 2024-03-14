@@ -58,6 +58,13 @@ public class TagController extends SuperController {
     @ApiOperation(value="编辑标签", notes="编辑标签")
     @PutMapping("/{tagUid}")
     public String update(@PathVariable("tagUid") String tagUid, @RequestBody @Validated(value = {Update.class}) TagEditDto tagEditDto) {
+        if (tagService.isTagNameExist(tagEditDto.getName())) {
+            Tag tag = tagService.getById(tagUid);
+            if (!tag.getName().equals(tagEditDto.getName())) {
+                return toJson(ResponseResult.error(HttpStatus.TAG_NAME_EXIST));
+            }
+        }
+
         tagEditDto.setUid(tagUid);
         Boolean res = tagService.updateById(tagEditDto);
 
@@ -70,6 +77,10 @@ public class TagController extends SuperController {
     @ApiOperation(value="新增标签", notes="新增标签")
     @PostMapping("")
     public String add(@RequestBody @Validated(value = {Insert.class}) TagEditDto tagEditDto) {
+        if (tagService.isTagNameExist(tagEditDto.getName())) {
+            return toJson(ResponseResult.error(HttpStatus.TAG_NAME_EXIST));
+        }
+
         Boolean res = tagService.save(tagEditDto);
 
         if (res) {
@@ -91,5 +102,10 @@ public class TagController extends SuperController {
         return toJson(tagService.removeByIds(tagUidList));
     }
 
+    @ApiOperation(value="判断标签名是否存在", notes="判断标签名是否存在")
+    @GetMapping(value = "/exist")
+    public String isUsernameExist(@RequestParam("tagName") String tagName) {
+        return success(tagService.isTagNameExist(tagName));
+    }
 }
 

@@ -23,7 +23,11 @@ public interface TagService extends SuperService<Tag> {
 
     Boolean updateById(TagEditDto tagEditDto);
 
+    Integer count(String name);
+
     ResponseResult removeById(String tagUid);
 
     ResponseResult removeByIds(List<String> tagUidList);
+
+    Boolean isTagNameExist(String name);
 }

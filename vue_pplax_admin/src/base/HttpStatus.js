@@ -131,6 +131,12 @@ const HttpStatus = {
     CHILDREN_MENU_UNDER_THIS_MENU: { code: 403012, message: '该菜单下还有子菜单！' },
     SERVER_ERROR: { code: 403013, message: '服务器目前繁忙，请稍等片刻后重试' },
     YOU_HAVE_BEEN_PRISE: { code: 403014, message: '您已经点赞过了!' },
+    BLOG_UNDER_THIS_USER: { code: 403015, message: '该用户下还有博客' },
+    COLLECTION_UNDER_THIS_USER: { code: 403016, message: '该用户下还有收藏' },
+    COMMENT_UNDER_THIS_USER: { code: 403017, message: '该用户下还有评论' },
+    FEEDBACK_UNDER_THIS_USER: { code: 403018, message: '该用户下还有反馈' },
+    FILE_STORAGE_UNDER_THIS_USER: { code: 403019, message: '该用户下还有文件' },
+    TAG_NAME_EXIST: { code: 403020, message: '该标签名已存在' },
 
 
     /**

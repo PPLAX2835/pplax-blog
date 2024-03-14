@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.validator.group.*;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
@@ -33,6 +34,9 @@ public class UserController extends SuperController {
     @ApiOperation(value="添加用户", notes="添加用户")
     @PostMapping(value = "")
     public String add(@RequestBody @Validated(value = {Insert.class}) UserInfoEditDto userInfoEditDto) {
+        if (userService.isUsernameExist(userInfoEditDto.getUsername())) {
+            return toJson(ResponseResult.error(HttpStatus.USERNAME_EXIST));
+        }
         return success(userService.save(userInfoEditDto));
     }
 

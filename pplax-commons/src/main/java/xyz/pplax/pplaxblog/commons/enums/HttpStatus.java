@@ -138,6 +138,8 @@ public enum HttpStatus {
     COMMENT_UNDER_THIS_USER(403017, "该用户下还有评论"),
     FEEDBACK_UNDER_THIS_USER(403018, "该用户下还有反馈"),
     FILE_STORAGE_UNDER_THIS_USER(403019, "该用户下还有文件"),
+    TAG_NAME_EXIST(403020, "该标签名已存在"),
+    USERNAME_EXIST(403021, "该用户名已存在"),
 
     /**
      * 账户相关

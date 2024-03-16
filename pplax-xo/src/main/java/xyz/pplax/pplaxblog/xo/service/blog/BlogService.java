@@ -21,5 +21,5 @@ public interface BlogService extends SuperService<Blog> {
 
     Boolean updateById(BlogEditDto blogEditDto);
 
-    Boolean save(BlogEditDto blogEditDto);
+    Blog save(BlogEditDto blogEditDto);
 }

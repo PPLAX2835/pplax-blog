@@ -810,6 +810,9 @@ export default {
       this.attachInput = ''
     },
 
+    /**
+     * 保存操作
+     */
     save: function () {
       this.form.tagUids = this.form.tagUids.trim().replace(/^(\s|,)+|(\s|,)+$/g, '');
       this.$refs['dataForm'].validate((valid) => {
@@ -817,6 +820,18 @@ export default {
           if (this.isEditForm) {
             updateBlog(this.editingBlogUid, this.form).then(res => {
               this.$message.success("已保存")
+              this.fetchBlogList()
+            }).catch(err => {
+              console.error(err)
+            })
+          } else {
+            this.form.status = EStatus.DRAFT
+            addBlog(this.form).then(res => {
+              this.$message.success("已保存")
+
+              this.editingBlogUid = res.data.uid
+              this.isEditForm = true;
+
               this.fetchBlogList()
             }).catch(err => {
               console.error(err)

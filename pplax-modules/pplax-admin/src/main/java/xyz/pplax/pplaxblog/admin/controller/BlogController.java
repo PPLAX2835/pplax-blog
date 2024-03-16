@@ -90,10 +90,10 @@ public class BlogController extends SuperController {
 		String userUid = JSON.parseObject(payloadByBase64).get("uid").toString();
 		blogEditDto.setUserUid(userUid);
 
-		Boolean res = blogService.save(blogEditDto);
+		Blog blog = blogService.save(blogEditDto);
 
-		if (res) {
-			return success();
+		if (blog != null) {
+			return success(blog);
 		}
 		return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
 	}

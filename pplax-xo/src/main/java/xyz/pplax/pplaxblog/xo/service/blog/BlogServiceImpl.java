@@ -162,7 +162,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
 
     @Override
     @Transactional
-    public Boolean save(BlogEditDto blogEditDto) {
+    public Blog save(BlogEditDto blogEditDto) {
         Blog blog = new Blog();
         BlogContent blogContent = new BlogContent();
 
@@ -192,6 +192,8 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             throw new RuntimeException();
         }
 
-        return true;
+        return blog;
     }
+
+
 }

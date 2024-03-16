@@ -344,7 +344,7 @@ export default {
 
     },
     /**
-     * 检查用户名是否存在
+     * 检查标签名是否存在
      * @param rule
      * @param value
      * @param callback
@@ -352,7 +352,7 @@ export default {
     isExist(rule, value, callback) {
       isTagNameExist(value).then(res => {
         if (res.data && (this.originalTagName === '' || this.originalTagName !== this.form.name)) {
-          callback(new Error('该用户名已存在'))
+          callback(new Error('该标签名已存在'))
         } else {
           callback()
         }

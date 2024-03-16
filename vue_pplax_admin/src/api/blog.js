@@ -52,10 +52,27 @@ export function updateBlog(blogUid, params) {
   })
 }
 
-export function deleteBlog(params) {
+/**
+ * 删除博客
+ * @param blogUid
+ * @returns {*}
+ */
+export function deleteBlog(blogUid) {
   return service({
-    url: '/admin/blog/delete',
-    method: 'post',
-    params
+    url: '/admin/blog/' + blogUid,
+    method: 'delete'
+  })
+}
+
+/**
+ * 批量删除博客
+ * @param blogUids
+ * @returns {*}
+ */
+export function deleteBlogBatch(blogUids) {
+  return service({
+    url: '/admin/blog',
+    method: 'delete',
+    data: blogUids
   })
 }

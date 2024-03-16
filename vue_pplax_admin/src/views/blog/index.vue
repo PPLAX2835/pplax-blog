@@ -289,7 +289,7 @@
 
 <script>
 import { getBlogSortList } from "../../api/blogSort";
-import { getBlogList, getBlogContent, addBlog, updateBlog } from "../../api/blog";
+import { getBlogList, getBlogContent, addBlog, updateBlog, deleteBlog, deleteBlogBatch } from "../../api/blog";
 import { addTag, getTagList} from "../../api/tag";
 import { hasAuth, getUserUid } from "../../utils/auth";
 import { parseTime } from "../../utils";
@@ -631,23 +631,23 @@ export default {
             for (let i = 0; i < selections.length; i++) {
               uids[i] = selections[i].uid
             }
-            // deleteTagBatch(uids).then(res => {
-            //   this.fetchBlogList()
-            //   this.$message.success('删除成功');
-            //   this.loading.close()
-            // }).catch(() => {
-            //   this.loading.close()
-            // });
+            deleteBlogBatch(uids).then(res => {
+              this.fetchBlogList()
+              this.$message.success('删除成功');
+              this.loading.close()
+            }).catch(() => {
+              this.loading.close()
+            });
           }
         } else {
           // 走单独删除
-          // deleteTag(scope.row.uid).then(res => {
-          //   this.fetchBlogList()
-          //   this.$message.success('删除成功');
-          //   this.loading.close()
-          // }).catch(() => {
-          //   this.loading.close()
-          // });
+          deleteBlog(scope.row.uid).then(res => {
+            this.fetchBlogList()
+            this.$message.success('删除成功');
+            this.loading.close()
+          }).catch(() => {
+            this.loading.close()
+          });
 
         }
       }).catch(() => {

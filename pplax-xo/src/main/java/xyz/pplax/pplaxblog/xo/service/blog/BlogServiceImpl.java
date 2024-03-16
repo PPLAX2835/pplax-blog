@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
@@ -195,5 +196,41 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         return blog;
     }
 
+    /**
+     * 通过id删除博客
+     * @param blogUid
+     * @return
+     */
+    @Override
+    @Transactional
+    public Boolean removeById(String blogUid) {
+        Blog blog = getById(blogUid);
 
+        boolean res1 = super.removeById(blogUid);
+        boolean res2 = blogContentService.removeById(blog.getBlogContentUid());
+
+        // 没有同时删除就回滚
+        if (!(res1 && res2)) {
+            throw new RuntimeException();
+        }
+
+        return true;
+    }
+
+    /**
+     * 通过ids批量删除
+     * @param blogUidList
+     * @return
+     */
+    @Override
+    @Transactional
+    public Boolean removeByIds(List<String> blogUidList) {
+        for (String uid : blogUidList) {
+            Boolean res = removeById(uid);
+            if (!res) {
+                throw new RuntimeException();
+            }
+        }
+        return true;
+    }
 }

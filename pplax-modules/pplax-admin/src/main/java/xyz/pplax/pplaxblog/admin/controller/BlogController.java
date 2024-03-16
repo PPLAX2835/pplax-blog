@@ -22,6 +22,7 @@ import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 博客表 Controller
@@ -94,6 +95,27 @@ public class BlogController extends SuperController {
 
 		if (blog != null) {
 			return success(blog);
+		}
+		return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+	}
+
+
+	@ApiOperation(value="删除博客", notes="删除博客")
+	@DeleteMapping("/{blogUid}")
+	public String delete(@PathVariable("blogUid") String blogUid) {
+		Boolean res = blogService.removeById(blogUid);
+		if (res != null) {
+			return success();
+		}
+		return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+	}
+
+	@ApiOperation(value = "批量删除博客", notes = "批量删除博客")
+	@DeleteMapping(value = "")
+	public String delete(@RequestBody List<String> blogUidList) {
+		Boolean res = blogService.removeByIds(blogUidList);
+		if (res != null) {
+			return success();
 		}
 		return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
 	}

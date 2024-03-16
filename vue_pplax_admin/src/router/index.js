@@ -112,20 +112,38 @@ export const constantRouterMap = [
                 meta: { title: '角色管理', icon: 'table' }
               },
               {
-                path: 'feedback',
-                name: 'Feedback',
-                component: () => import('@/views/feedback/index'),
-                meta: { title: '反馈管理', icon: 'table' }
-              },
-              {
                 path: 'link',
                 name: 'Link',
                 component: () => import('@/views/link/index'),
                 meta: { title: '友情链接管理', icon: 'table' }
               }
             ]
-          }
+          },
 
+
+          {
+            path: 'message',
+            redirect: 'message/comment',
+            component: {
+              render(c) { return c('router-view'); }
+            },
+            name: 'Message',
+            meta: { title: '消息管理', icon: 'table' },
+            children: [
+              {
+                path: 'comment',
+                name: 'Comment',
+                component: () => import('@/views/comment/index'),
+                meta: { title: '消息管理', icon: 'table' }
+              },
+              {
+                path: 'feedback',
+                name: 'Feedback',
+                component: () => import('@/views/feedback/index'),
+                meta: { title: '反馈管理', icon: 'table' }
+              }
+            ]
+          }
 
         ]
       }

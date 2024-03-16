@@ -38,7 +38,7 @@ public class BlogController extends SuperController {
 
 	private static final Logger log = LogManager.getLogger(BlogController.class);
 
-	@ApiOperation(value="获取分类列表", notes="获取分类列表")
+	@ApiOperation(value="获取博客列表", notes="获取博客列表")
 	@GetMapping("/list")
 	public String getList(
 			@RequestParam(value = "blogTitle", required = false) String blogTitle,

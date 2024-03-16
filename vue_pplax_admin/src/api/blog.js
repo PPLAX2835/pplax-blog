@@ -53,6 +53,30 @@ export function updateBlog(blogUid, params) {
 }
 
 /**
+ * 对指定博客进行置顶
+ * @param blogUid
+ * @returns {*}
+ */
+export function promote(blogUid) {
+  return service({
+    url: '/admin/blog/' + blogUid + '/promote',
+    method: 'put'
+  })
+}
+
+/**
+ * 取消置顶
+ * @param blogUid
+ * @returns {*}
+ */
+export function promoteCancel(blogUid) {
+  return service({
+    url: '/admin/blog/' + blogUid + '/promote',
+    method: 'delete'
+  })
+}
+
+/**
  * 删除博客
  * @param blogUid
  * @returns {*}

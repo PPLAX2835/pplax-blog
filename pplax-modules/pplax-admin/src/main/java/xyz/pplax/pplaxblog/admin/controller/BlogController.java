@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
@@ -115,6 +116,30 @@ public class BlogController extends SuperController {
 	public String delete(@RequestBody List<String> blogUidList) {
 		Boolean res = blogService.removeByIds(blogUidList);
 		if (res != null) {
+			return success();
+		}
+		return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+	}
+
+
+	@ApiOperation(value="置顶博客", notes="置顶博客")
+	@PutMapping("/{blogUid}/promote")
+	public String promote(@PathVariable("blogUid") String blogUid) {
+		boolean res = blogService.promote(blogUid);
+
+		if (res) {
+			return success();
+		}
+		return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+	}
+
+
+	@ApiOperation(value="取消置顶", notes="取消置顶")
+	@DeleteMapping("/{blogUid}/promote")
+	public String promoteCancel(@PathVariable("blogUid") String blogUid) {
+		boolean res = blogService.promoteCancel(blogUid);
+
+		if (res) {
 			return success();
 		}
 		return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));

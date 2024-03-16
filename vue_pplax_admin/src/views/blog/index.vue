@@ -79,6 +79,7 @@
         <el-table-column width="80" align="center" label="状态">
           <template slot-scope="scope">
             <el-tag type="success" v-if="scope.row.status === statusList.ENABLE">发布</el-tag>
+            <el-tag v-else-if="scope.row.status === statusList.STICK">置顶</el-tag>
             <el-tag type="info" v-else-if="scope.row.status === statusList.PENDING_APPROVAL">待审批</el-tag>
             <el-tag type="danger" v-else-if="scope.row.status === statusList.OFF_SHELF">下架</el-tag>
             <el-tag type="warning" v-else-if="scope.row.status === statusList.DRAFT">草稿</el-tag>
@@ -94,8 +95,10 @@
             <span>{{ timeFormat(scope.row.updateTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column width="200" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
+        <el-table-column width="250" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
+            <el-button v-if="(scope.row.status === statusList.ENABLE) && canPromote" type="warning" size="mini" @click="handlePromote(scope)">置顶</el-button>
+            <el-button v-else-if="(scope.row.status === statusList.STICK) && canPromote" type="warning" size="mini" @click="handlePromoteCancel(scope)">取消置顶</el-button>
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
             <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
           </template>
@@ -288,8 +291,8 @@
 </template>
 
 <script>
-import { getBlogSortList } from "../../api/blogSort";
-import { getBlogList, getBlogContent, addBlog, updateBlog, deleteBlog, deleteBlogBatch } from "../../api/blog";
+import {getBlogSortList} from "../../api/blogSort";
+import { getBlogList, getBlogContent, addBlog, updateBlog, deleteBlog, deleteBlogBatch, promote, promoteCancel } from "../../api/blog";
 import { addTag, getTagList} from "../../api/tag";
 import { hasAuth, getUserUid } from "../../utils/auth";
 import { parseTime } from "../../utils";
@@ -420,6 +423,13 @@ export default {
      */
     canAdd: function () {
       return hasAuth(this.menu, 'POST:/api/admin/blog')
+    },
+    /**
+     * 判断是否可以使用置顶按钮
+     * @returns {boolean|*}
+     */
+    canPromote: function () {
+      return hasAuth(this.menu, 'PUT:/api/admin/blog/{uid}/promote') && hasAuth(this.menu, 'DELETE:/api/admin/blog/{uid}/promote')
     },
     /**
      * 检查是否有更新的权限
@@ -706,6 +716,61 @@ export default {
       this.beforeShow("编辑博客", 1)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
+      })
+    },
+
+    /**
+     * 置顶按钮的点击事件
+     * @param scope
+     */
+    handlePromote: function (scope) {
+      this.$confirm('此操作将会把该博客放到首位, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.openLoading();
+
+        promote(scope.row.uid).then(res => {
+          this.fetchBlogList()
+          this.$message.success('置顶成功');
+          this.loading.close()
+        }).catch(() => {
+          this.loading.close()
+        });
+
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消置顶'
+        })
+      })
+    },
+    /**
+     * 取消置顶按钮的点击事件
+     * @param scope
+     */
+    handlePromoteCancel: function (scope) {
+      this.$confirm('此操作将取消置顶博客, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.openLoading();
+
+        promoteCancel(scope.row.uid).then(res => {
+          this.fetchBlogList()
+          this.$message.success('取消置顶成功');
+          this.loading.close()
+        }).catch(() => {
+          this.loading.close()
+        });
+
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        })
       })
     },
     /**

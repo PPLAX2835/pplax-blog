@@ -230,10 +230,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
+        <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -317,14 +317,7 @@
       <workItem from="1710399915921" duration="4000" />
       <workItem from="1710399985599" duration="17235000" />
       <workItem from="1710552240738" duration="16000" />
-      <workItem from="1710552273529" duration="5595000" />
-    </task>
-    <task id="LOCAL-00286" summary="修改登录成功不跳转的bug">
-      <created>1708569005939</created>
-      <option name="number" value="00286" />
-      <option name="presentableId" value="LOCAL-00286" />
-      <option name="project" value="LOCAL" />
-      <updated>1708569005939</updated>
+      <workItem from="1710552273529" duration="7906000" />
     </task>
     <task id="LOCAL-00287" summary="实现restful风格api鉴权">
       <created>1708578564457</created>
@@ -662,7 +655,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710556922953</updated>
     </task>
-    <option name="localTasksCounter" value="335" />
+    <task id="LOCAL-00335" summary="博客管理的删除和批量删除做好了">
+      <created>1710558034331</created>
+      <option name="number" value="00335" />
+      <option name="presentableId" value="LOCAL-00335" />
+      <option name="project" value="LOCAL" />
+      <updated>1710558034331</updated>
+    </task>
+    <option name="localTasksCounter" value="336" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +697,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="准备重构blogSort相关业务代码" />
     <MESSAGE value="现在能显示和查询分类列表了" />
     <MESSAGE value="设置role列表的store，省的每次且页面都要查询" />
     <MESSAGE value="实现分类置顶和取消置顶的逻辑" />
@@ -722,7 +721,8 @@
     <MESSAGE value="修复tag可以反复添加相同名称的数据的问题&#10;更新用户信息后端添加用户名检查" />
     <MESSAGE value="简单调整" />
     <MESSAGE value="优化编辑博客内容时的临时保存功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化编辑博客内容时的临时保存功能" />
+    <MESSAGE value="博客管理的删除和批量删除做好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="博客管理的删除和批量删除做好了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

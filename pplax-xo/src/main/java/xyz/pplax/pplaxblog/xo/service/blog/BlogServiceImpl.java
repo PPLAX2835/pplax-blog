@@ -162,6 +162,24 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     }
 
     @Override
+    public Boolean promote(String blogUid) {
+        Blog blog = getById(blogUid);
+        if (blog.getStatus() != EStatus.ENABLE.getStatus()) {
+            return false;
+        }
+        blog.setStatus(EStatus.STICK.getStatus());
+        return updateById(blog);
+    }
+
+    @Override
+    public Boolean promoteCancel(String blogUid) {
+        Blog blog = new Blog();
+        blog.setUid(blogUid);
+        blog.setStatus(EStatus.ENABLE.getStatus());
+        return updateById(blog);
+    }
+
+    @Override
     @Transactional
     public Blog save(BlogEditDto blogEditDto) {
         Blog blog = new Blog();

@@ -42,7 +42,7 @@ export function hasAuth(menuList, path) {
       return true
     }
 
-    if (menu.childMenuList.length > 0 && hasAuth(menu.childMenuList, path)) {
+    if (menu.children.length > 0 && hasAuth(menu.children, path)) {
       return true
     }
   }

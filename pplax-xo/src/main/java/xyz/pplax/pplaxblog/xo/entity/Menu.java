@@ -75,7 +75,7 @@ public class Menu extends SuperEntity {
      * 子菜单列表
      */
     @TableField(exist = false)
-    private List<Menu> childMenuList;
+    private List<Menu> children;
 
 
     public Menu() {}

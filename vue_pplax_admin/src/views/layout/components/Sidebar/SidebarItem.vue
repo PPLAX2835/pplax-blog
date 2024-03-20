@@ -1,7 +1,7 @@
 <template>
-  <div v-if="!item.hidden && item.childMenuList" class="menu-wrapper">
+  <div v-if="!item.hidden && item.children" class="menu-wrapper">
 
-    <template v-if="!hasOneShowingChild(item.childMenuList) && isMenu(item) && item.route">
+    <template v-if="!hasOneShowingChild(item.children) && isMenu(item) && item.route">
       <a :href="item.route" target="_blank" @click="clickLink(item.route,$event)">
         <el-menu-item :index="resolvePath(item.route)" :class="{'submenu-title-noDropdown':!isNest}">
           <item :icon="item.icon" :title="item.title" />
@@ -14,9 +14,9 @@
         <item :icon="item.icon" :title="item.title" />
       </template>
 
-      <template v-for="child in item.childMenuList" v-if="!child.hidden && isMenu(child) ">
+      <template v-for="child in item.children" v-if="!child.hidden && isMenu(child) ">
         <sidebar-item
-          v-if="child.childMenuList && child.childMenuList.length > 0 && hasMenuChild(child.childMenuList)"
+          v-if="child.children && child.children.length > 0 && hasMenuChild(child.children)"
           :is-nest="true"
           :item="child"
           :key="child.route"

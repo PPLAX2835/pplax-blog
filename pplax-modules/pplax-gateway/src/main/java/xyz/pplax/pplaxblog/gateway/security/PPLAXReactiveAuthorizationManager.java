@@ -161,7 +161,7 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
                 }
             }
             // 向子菜单递归
-            if (menu.getChildMenuList() != null && requestAuthenticationByByMenuList(method, url, menu.getChildMenuList())) {
+            if (menu.getChildren() != null && requestAuthenticationByByMenuList(method, url, menu.getChildren())) {
                 return true;
             }
         }

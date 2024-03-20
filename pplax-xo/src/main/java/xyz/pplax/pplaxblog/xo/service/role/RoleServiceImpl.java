@@ -50,7 +50,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
         menuQueryWrapper.orderByAsc(MenuSQLConstants.SORT_NO);
         List<Menu> menuList = menuService.list(menuQueryWrapper);
 
-        role.setMenuList(organizeMenus(menuList));
+        role.setMenuList(menuService.organizeMenus(menuList));
 
         return role;
     }
@@ -65,39 +65,5 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
         }
 
         return result;
-    }
-
-
-
-
-
-
-
-
-
-    /**
-     *  递归整理列表，使其呈现父子关系
-     * @param menuList
-     * @return
-     */
-    public static List<Menu> organizeMenus(List<Menu> menuList) {
-        List<Menu> organizedList = new ArrayList<>();
-        for (Menu menu : menuList) {
-            if (menu.getLevel() == 1) {
-                organizedList.add(menu);
-                organizeChildMenus(menu, menuList);
-            }
-        }
-        return organizedList;
-    }
-    private static void organizeChildMenus(Menu parentMenu, List<Menu> menuList) {
-        List<Menu> childMenus = new ArrayList<>();
-        for (Menu menu : menuList) {
-            if (!StringUtils.isEmpty(menu.getParentUid()) && menu.getParentUid().equals(parentMenu.getUid())) {
-                childMenus.add(menu);
-                organizeChildMenus(menu, menuList);
-            }
-        }
-        parentMenu.setChildMenuList(childMenus);
     }
 }

@@ -6,7 +6,10 @@
     <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Feedback">
         <id column="uid" property="uid" />
         <result column="user_uid" property="userUid" />
+        <result column="title" property="title" />
         <result column="content" property="content" />
+        <result column="picture_uid" property="pictureUid" />
+        <result column="type" property="type" />
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -14,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `useruid`, `content`, `status`, `create_time`, `update_time`
+        `uid`, `user_uid`, `title`, `content`, `picture_uid`, `type`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

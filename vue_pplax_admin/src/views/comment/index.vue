@@ -49,7 +49,7 @@
         </el-table-column>
         <el-table-column width="180" align="center" label="所属文章">
           <template slot-scope="scope">
-            {{ scope.row.blog.title }}
+            {{ scope.row.blog === undefined ? '' : scope.row.blog.title }}
           </template>
         </el-table-column>
         <el-table-column width="250" align="center" prop="content" label="内容"></el-table-column>

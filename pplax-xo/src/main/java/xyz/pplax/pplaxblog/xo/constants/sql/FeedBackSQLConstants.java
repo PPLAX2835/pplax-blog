@@ -14,5 +14,7 @@ public class FeedBackSQLConstants extends BaseSQLConstants {
 
     public static final String USER_UID = "t_feedback.user_uid";
     public static final String CONTENT = "t_feedback.content";
+    public static final String TYPE = "t_feedback.type";
+    public static final String PICTURE_UID = "t_feedback.picture_uid";
 
 }

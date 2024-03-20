@@ -24,15 +24,36 @@ public class Feedback extends SuperEntity {
     private String userUid;
 
     /**
+     * 标题
+     */
+    private String title;
+
+    /**
      * 反馈的内容
      */
     private String content;
+
+    /**
+     * 附件图
+     */
+    private String pictureUid;
+
+    /**
+     * 类型
+     */
+    private Integer type;
 
     /**
      * 反馈用户
      */
     @TableField(exist = false)
     private User user;
+
+    /**
+     * 附件图
+     */
+    @TableField(exist = false)
+    private FileStorage picture;
 
     public Feedback() {}
 }

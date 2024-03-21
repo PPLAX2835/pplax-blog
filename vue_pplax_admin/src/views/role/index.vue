@@ -7,8 +7,6 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
-        <el-button type="info" icon="el-icon-document" size="small" @click="handleSortByClickCount">点击量排序</el-button>
-        <el-button type="info" icon="el-icon-document" size="small" @click="handleSortByCites">引用量排序</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
         <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
         <el-button v-if="canDeleteBatch" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
@@ -23,6 +21,8 @@
       <el-table border :data="tableData" style="width: 100%" :default-sort="{ prop: 'sort', order: 'descending' }"
                 @selection-change="handleSelectionChange">
         <el-table-column align="center" type="selection" />
+        <el-table-column width="180" align="center" prop="roleName" label="角色名称"></el-table-column>
+        <el-table-column width="180" align="center" prop="summary" label="介绍"></el-table-column>
 
         <el-table-column width="180" align="center" label="添加时间">
           <template slot-scope="scope">
@@ -34,9 +34,10 @@
             <span>{{ timeFormat(scope.row.updateTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column width="200" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
+        <el-table-column width="250" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
+            <el-button v-if="canUpdate" type="warning" size="mini" @click="handleUpdate(scope)">权限</el-button>
             <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
           </template>
         </el-table-column>
@@ -54,6 +55,12 @@
     <!-- 编辑弹窗 -->
     <el-dialog center :title="title" :visible.sync="dialogFormVisible">
       <el-form :rules="rules" ref="dataForm" :model="form">
+        <el-form-item prop="roleName" label="角色名" :label-width="formLabelWidth">
+          <el-input  v-model="form.roleName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item prop="summary" label="介绍" :label-width="formLabelWidth">
+          <el-input  v-model="form.summary" autocomplete="off"></el-input>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -66,7 +73,7 @@
 </template>
 
 <script>
-import {addTag, getTagList, updateTag, deleteTag, deleteTagBatch } from "../../api/tag";
+import { getRoleList, updateRole, addRole, deleteRoleBatch, deleteRole } from "../../api/role";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
@@ -95,16 +102,17 @@ export default {
       title: '',
       editingRoleUid: '',
       form: {
-        level: '',
-        name: ''
+        menuUids: '',
+        roleName: '',
+        summary: ''
       },
       rules: {
-        level: [
-          { required: true, message: '请输入推荐等级', trigger: 'blur' },
+        roleName: [
+          { required: true, message: '请输入角色名', trigger: 'blur' },
+          { min: 1, max: 20, message: '长度限制在1到20之间', trigger: 'change' }
         ],
-        name: [
-          { required: true, message: '请输入标签名', trigger: 'blur' },
-          { min: 1, max: 20, message: '标签名长度限制在1到20之间', trigger: 'change' }
+        summary: [
+          { min: 1, max: 50, message: '长度限制在1到50之间', trigger: 'change' }
         ]
       },
       // 数据总数
@@ -123,28 +131,28 @@ export default {
      * @returns {boolean|*}
      */
     canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/tag')
+      return hasAuth(this.menu, 'DELETE:/api/admin/role')
     },
     /**
      * 检查是否有删除的权限
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/tag/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/role/{uid}')
     },
     /**
      * 检查是否有添加的权限
      * @returns {boolean|*}
      */
     canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/tag')
+      return hasAuth(this.menu, 'POST:/api/admin/role')
     },
     /**
      * 检查是否有更新的权限
      * @returns {boolean|*}
      */
     canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/tag/{uid}')
+      return hasAuth(this.menu, 'PUT:/api/admin/role/{uid}')
     },
   },
   created() {
@@ -154,7 +162,7 @@ export default {
   },
   methods: {
     fetchRoleList: function (){
-      getTagList(this.params).then(res =>{
+      getRoleList(this.params).then(res =>{
         this.tableData = res.data
         this.total = res.total
         this.loading.close()
@@ -167,22 +175,6 @@ export default {
      */
     handleFind: function () {
       this.params.currentPage = 1;
-      this.fetchRoleList()
-    },
-    /**
-     * 根据点击量排序按钮点击事件
-     */
-    handleSortByClickCount: function () {
-      this.params.sortByClickCount = true
-      this.params.sortByCites = false
-      this.fetchRoleList()
-    },
-    /**
-     * 根据引用量排序按钮点击事件
-     */
-    handleSortByCites: function () {
-      this.params.sortByClickCount = false
-      this.params.sortByCites = true
       this.fetchRoleList()
     },
     /**
@@ -248,8 +240,11 @@ export default {
      */
     handleCreate: function () {
       this.editingRoleUid = ''
+      this.form.summary = ''
+      this.form.roleName = ''
+      this.form.menuUids = ''
 
-      this.beforeShow("添加用户", 0)
+      this.beforeShow("添加角色", 0)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
@@ -260,9 +255,11 @@ export default {
      */
     handleUpdate: function (scope) {
       this.editingRoleUid = scope.row.uid
+      this.form.summary = scope.row.summary
+      this.form.roleName = scope.row.roleName
+      this.form.menuUids = scope.row.menuUids
 
-
-      this.beforeShow("修改分类", 1)
+      this.beforeShow("修改角色", 1)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
@@ -288,23 +285,23 @@ export default {
             for (let i = 0; i < selections.length; i++) {
               uids[i] = selections[i].uid
             }
-            // deleteTagBatch(uids).then(res => {
-            //   this.fetchRoleList()
-            //   this.$message.success('删除成功');
-            //   this.loading.close()
-            // }).catch(() => {
-            //   this.loading.close()
-            // });
+            deleteRoleBatch(uids).then(res => {
+              this.fetchRoleList()
+              this.$message.success('删除成功');
+              this.loading.close()
+            }).catch(() => {
+              this.loading.close()
+            });
           }
         } else {
           // 走单独删除
-          // deleteTag(scope.row.uid).then(res => {
-          //   this.fetchRoleList()
-          //   this.$message.success('删除成功');
-          //   this.loading.close()
-          // }).catch(() => {
-          //   this.loading.close()
-          // });
+          deleteRole(scope.row.uid).then(res => {
+            this.fetchRoleList()
+            this.$message.success('删除成功');
+            this.loading.close()
+          }).catch(() => {
+            this.loading.close()
+          });
 
         }
       }).catch(() => {
@@ -317,24 +314,24 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (this.isEditForm) {
-            // updateTag(this.editingTagUid, this.form).then(res => {
-            //   this.$message.success("修改成功")
-            //   this.editingTagUid = ''
-            //   this.fetchRoleList()
-            //   this.dialogFormVisible = false;
-            //   this.close()
-            // }).catch(err => {
-            //   console.error(err)
-            // })
+            updateRole(this.editingRoleUid, this.form).then(res => {
+              this.$message.success("修改成功")
+              this.editingRoleUid = ''
+              this.fetchRoleList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
           } else {
-            // addTag(this.form).then(res => {
-            //   this.$message.success("添加成功")
-            //   this.fetchRoleList()
-            //   this.dialogFormVisible = false;
-            //   this.close()
-            // }).catch(err => {
-            //   console.error(err)
-            // })
+            addRole(this.form).then(res => {
+              this.$message.success("添加成功")
+              this.fetchRoleList()
+              this.dialogFormVisible = false;
+              this.close()
+            }).catch(err => {
+              console.error(err)
+            })
           }
 
         } else {

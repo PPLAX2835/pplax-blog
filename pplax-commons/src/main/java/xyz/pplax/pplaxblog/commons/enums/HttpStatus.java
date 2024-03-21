@@ -142,6 +142,7 @@ public enum HttpStatus {
     FILE_STORAGE_UNDER_THIS_USER(403019, "该用户下还有文件"),
     TAG_NAME_EXIST(403020, "该标签名已存在"),
     USERNAME_EXIST(403021, "该用户名已存在"),
+    CHILDREN_UNDER_THIS_MENU(403022, "该菜单还存在子菜单"),
 
     /**
      * 账户相关

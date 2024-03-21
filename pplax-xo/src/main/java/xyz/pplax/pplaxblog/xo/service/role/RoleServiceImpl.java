@@ -10,6 +10,7 @@ import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.MenuSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.RoleSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.Menu;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
@@ -57,7 +58,11 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
 
     @Override
     public List<Role> list() {
-        List<Role> roleList = super.list();
+
+        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
+        roleQueryWrapper.ne(RoleSQLConstants.STATUS, EStatus.DISABLED);
+
+        List<Role> roleList = super.list(roleQueryWrapper);
         List<Role> result = new ArrayList<>();
 
         for (Role role : roleList) {

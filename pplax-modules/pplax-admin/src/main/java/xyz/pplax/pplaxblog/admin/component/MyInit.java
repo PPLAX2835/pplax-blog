@@ -20,9 +20,6 @@ public class MyInit {
     private static final Logger log = LogManager.getLogger(MyInit.class);
 
     @Autowired
-    private RedisService redisService;
-
-    @Autowired
     private RoleService roleService;
 
     /**
@@ -30,13 +27,8 @@ public class MyInit {
      */
     @PostConstruct
     public void RoleEntityInit(){
-        log.info("角色信息数据预热");
-        List<Role> roleList = roleService.list();
 
-        for (Role role : roleList) {
-            redisService.setCacheObject(RoleRedisConstants.ROLE + RoleRedisConstants.SEGMENTATION + role.getUid(), role);
-        }
+        roleService.preheat();
 
-        log.info("角色信息数据预热完毕");
     }
 }

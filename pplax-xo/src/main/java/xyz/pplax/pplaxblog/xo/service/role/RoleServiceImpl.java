@@ -15,7 +15,9 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.constants.redis.RoleRedisConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.MenuSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.RoleSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.TagSQLConstants;
@@ -46,6 +48,9 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Autowired
+    private RedisService redisService;
 
     @Override
     public IPage<Role> list(RoleGetListDto roleGetListDto) {
@@ -129,6 +134,22 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
         }
 
         return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+    }
+
+    /**
+     * 数据预热
+     */
+    @Override
+    public void preheat() {
+        log.info("角色信息数据预热");
+
+        List<Role> roleList = list();
+
+        for (Role role : roleList) {
+            redisService.setCacheObject(RoleRedisConstants.ROLE + RoleRedisConstants.SEGMENTATION + role.getUid(), role);
+        }
+
+        log.info("角色信息数据预热完毕");
     }
 
     @Override

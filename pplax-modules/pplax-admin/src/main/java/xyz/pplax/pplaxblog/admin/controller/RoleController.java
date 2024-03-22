@@ -14,11 +14,8 @@ import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.RoleEditDto;
-import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.RoleGetListDto;
-import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Role;
-import xyz.pplax.pplaxblog.xo.entity.Tag;
 import xyz.pplax.pplaxblog.xo.service.role.RoleService;
 
 import java.util.List;
@@ -61,6 +58,8 @@ public class RoleController extends SuperController {
         roleEditDto.setUid(roleUid);
         Boolean res = roleService.updateById(roleEditDto);
 
+        roleService.preheat();
+
         if (res) {
             return success();
         }
@@ -71,6 +70,8 @@ public class RoleController extends SuperController {
     @PostMapping("")
     public String add(@RequestBody @Validated(value = {Insert.class}) RoleEditDto roleEditDto) {
         Boolean res = roleService.save(roleEditDto);
+
+        roleService.preheat();
 
         if (res) {
             return success();

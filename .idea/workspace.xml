@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="完成菜单管理">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/RoleEditDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/list/RoleGetListDto.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/HttpStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/HttpStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/MyInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/MyInit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RoleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/role/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/role.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/role/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/role/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -236,9 +232,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
+        <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -324,14 +320,8 @@
       <workItem from="1710552240738" duration="16000" />
       <workItem from="1710552273529" duration="23120000" />
       <workItem from="1710918761956" duration="17371000" />
-      <workItem from="1711005662452" duration="10737000" />
-    </task>
-    <task id="LOCAL-00292" summary="修改面包屑导航重复添加路径的bug">
-      <created>1709380879164</created>
-      <option name="number" value="00292" />
-      <option name="presentableId" value="LOCAL-00292" />
-      <option name="project" value="LOCAL" />
-      <updated>1709380879166</updated>
+      <workItem from="1711005662452" duration="16377000" />
+      <workItem from="1711100090916" duration="9722000" />
     </task>
     <task id="LOCAL-00293" summary="修改了菜单不能正常显示图标的问题">
       <created>1709382172198</created>
@@ -669,7 +659,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711011737242</updated>
     </task>
-    <option name="localTasksCounter" value="341" />
+    <task id="LOCAL-00341" summary="角色的增删改做完了，接下来弄权限管理">
+      <created>1711016752221</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
+      <option name="project" value="LOCAL" />
+      <updated>1711016752221</updated>
+    </task>
+    <option name="localTasksCounter" value="342" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -704,7 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加功能完成" />
     <MESSAGE value="分类添加功能完成" />
     <MESSAGE value="分类单个删除完成" />
     <MESSAGE value="分类批量删除完成" />
@@ -729,7 +725,8 @@
     <MESSAGE value="完成反馈管理" />
     <MESSAGE value="菜单管理现在能展示了" />
     <MESSAGE value="完成菜单管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成菜单管理" />
+    <MESSAGE value="角色的增删改做完了，接下来弄权限管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="角色的增删改做完了，接下来弄权限管理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

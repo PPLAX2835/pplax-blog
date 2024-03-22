@@ -27,6 +27,8 @@ public interface RoleService extends SuperService<Role> {
 
     ResponseResult removeByIds(List<String> roleUidList);
 
+    void preheat();
+
     Role setMenu(Role role);
 
 }

@@ -37,7 +37,7 @@
         <el-table-column width="250" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
-            <el-button v-if="canUpdate" type="warning" size="mini" @click="handleUpdate(scope)">权限</el-button>
+            <el-button v-if="canUpdate" type="warning" size="mini" @click="handlePermission(scope)">权限</el-button>
             <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
           </template>
         </el-table-column>
@@ -53,14 +53,49 @@
     </div>
 
     <!-- 编辑弹窗 -->
-    <el-dialog center :title="title" :visible.sync="dialogFormVisible">
+    <el-dialog center :title="title" :visible.sync="dialogFormVisible" :fullscreen="isFullScreen">
       <el-form :rules="rules" ref="dataForm" :model="form">
-        <el-form-item prop="roleName" label="角色名" :label-width="formLabelWidth">
-          <el-input  v-model="form.roleName" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item prop="summary" label="介绍" :label-width="formLabelWidth">
-          <el-input  v-model="form.summary" autocomplete="off"></el-input>
-        </el-form-item>
+        <div v-if="!isEditMenu">
+          <el-form-item prop="roleName" label="角色名" :label-width="formLabelWidth">
+            <el-input  v-model="form.roleName" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item prop="summary" label="介绍" :label-width="formLabelWidth">
+            <el-input  v-model="form.summary" autocomplete="off"></el-input>
+          </el-form-item>
+        </div>
+        <div v-else >
+          <el-table
+            :data="menuTree"
+            style="width: 100%"
+            row-key="uid"
+            ref="menuTable"
+            @selection-change="handleMenuSelectionChange"
+            @select="handleMenuSelection"
+            @select-all="handleMenuSelectAll"
+          >
+            <el-table-column
+              type="selection"
+              width="55"></el-table-column>
+
+            <el-table-column prop="title" label="菜单名" width="250"></el-table-column>
+
+            <el-table-column width="50" align="center" label="图标">
+              <template slot-scope="scope">
+                <i :class="scope.row.icon"></i>
+              </template>
+            </el-table-column>
+            <el-table-column width="180" align="center" label="类型">
+              <template slot-scope="scope">
+                <el-tag type="success" v-if="scope.row.type === 'menu'">菜单</el-tag>
+                <el-tag type="warning" v-else-if="scope.row.type === 'button'">按钮</el-tag>
+              </template>
+            </el-table-column>
+
+            <el-table-column prop="route" label="路由" width="250"></el-table-column>
+            <el-table-column prop="endpoint" label="请求" width="250"></el-table-column>
+          </el-table>
+        </div>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -74,6 +109,7 @@
 
 <script>
 import { getRoleList, updateRole, addRole, deleteRoleBatch, deleteRole } from "../../api/role";
+import { getMenuTree } from "../../api/menu";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
@@ -88,7 +124,9 @@ export default {
   data() {
     return {
       multipleSelection: [],
+      multipleMenuSelection: [],
       showSearch: true,
+      isFullScreen: false,
       params: {
         keyword: '',
         currentPage: 1,
@@ -98,6 +136,7 @@ export default {
       // 编辑/添加表单用到的
       formLabelWidth: '120px',
       isEditForm: false,
+      isEditMenu: false,
       dialogFormVisible: false,
       title: '',
       editingRoleUid: '',
@@ -119,7 +158,9 @@ export default {
       total:0,
       // 加载层信息
       loading: [],
-      tableData: []
+      tableData: [],
+      menuTree: [],
+      isMenuFullSelect: false
     }
   },
   computed: {
@@ -159,12 +200,21 @@ export default {
     this.statusList = EStatus;
     this.openLoading();
     this.fetchRoleList();
+    this.fetchMenuTree();
   },
   methods: {
     fetchRoleList: function (){
       getRoleList(this.params).then(res =>{
         this.tableData = res.data
         this.total = res.total
+        this.loading.close()
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+    fetchMenuTree: function (){
+      getMenuTree().then(res =>{
+        this.menuTree = res.data
         this.loading.close()
       }).catch(err =>{
         console.log(err)
@@ -213,6 +263,74 @@ export default {
     handleSelectionChange: function (val) {
       this.multipleSelection = val;
     },
+
+
+
+    /**
+     * 处理菜单复选框选择事件
+     * @param val
+     */
+    handleMenuSelectionChange: function (val) {
+      this.multipleMenuSelection = val;
+    },
+    /**
+     * 处理用户手动选中事件
+     * @param selection
+     * @param row
+     */
+    handleMenuSelection: function (selection, row) {
+      let selected = (selection.length > 0) && selection.indexOf(row) !== -1; //为true时选中，为false未选中
+      if (!selected && this.isMenuFullSelect) {
+        this.isMenuFullSelect = false
+      }
+      this.menuRecursionSelection(row, selected)
+    },
+    /**
+     * 处理菜单全选事件
+     * @param selection
+     */
+    handleMenuSelectAll: function (selection) {
+
+      if (!this.isMenuFullSelect) {
+        this.$refs['menuTable'].clearSelection()
+        for (let i = 0; i < this.menuTree.length; i++) {
+          this.menuRecursionSelection(this.menuTree[i], true)
+        }
+        this.isMenuFullSelect = true
+      } else {
+        this.$refs['menuTable'].clearSelection()
+        this.isMenuFullSelect = false
+      }
+
+    },
+    /**
+     * 递归向子菜单选择
+     * @param row
+     * @param flag
+     */
+    menuRecursionSelection: function (row, flag) {
+
+      // 如果是数组，循环递归
+      if (row instanceof Array) {
+        for (let i = 0; i < row.length; i++) {
+          this.menuRecursionSelection(row[i], flag)
+        }
+      }
+
+      // 选中或反选
+      this.$refs['menuTable'].toggleRowSelection(row, flag)
+
+      // 判断是否还有子树
+      if (!(row.children === undefined || row.children.length <= 0)) {
+        this.menuRecursionSelection(row.children, flag)
+      }
+
+    },
+
+
+
+
+
     /**
      * 打开加载层
      */
@@ -244,11 +362,56 @@ export default {
       this.form.roleName = ''
       this.form.menuUids = ''
 
+      this.isFullScreen = false;
+      this.isEditMenu = false;
       this.beforeShow("添加角色", 0)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
     },
+    /**
+     * 权限按钮点击事件
+     * @param scope
+     */
+    handlePermission: function (scope) {
+      this.editingRoleUid = scope.row.uid
+      this.form.summary = scope.row.summary
+      this.form.roleName = scope.row.roleName
+      this.form.menuUids = scope.row.menuUids
+
+      this.isFullScreen = true;
+      this.isEditMenu = true;
+      this.beforeShow("权限管理", 1)
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+
+      // 设置默认选中的选项，这里这样写
+      setTimeout(() => {
+        this.$refs['menuTable'].clearSelection()
+        if (scope.row.menuUids !== undefined) {
+
+          let menuUidArray = scope.row.menuUids.split(',')
+
+          let result = [];
+
+          function traverse(menu, uidArray) {
+            if (uidArray.includes(menu.uid)) {
+              result.push(menu);
+            }
+
+            if (menu.children && menu.children.length > 0) {
+              menu.children.forEach(child => traverse(child, uidArray));
+            }
+          }
+
+          this.menuTree.forEach(menu => traverse(menu, menuUidArray));
+
+          result.forEach(menu => this.$refs['menuTable'].toggleRowSelection(menu))
+        }
+      }, 0)
+    },
+
     /**
      * 编辑按钮点击事件
      * @param scope
@@ -259,7 +422,9 @@ export default {
       this.form.roleName = scope.row.roleName
       this.form.menuUids = scope.row.menuUids
 
-      this.beforeShow("修改角色", 1)
+      this.isFullScreen = false;
+      this.isEditMenu = false;
+      this.beforeShow("编辑角色", 1)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
@@ -313,6 +478,14 @@ export default {
     submit: function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
+          let menuUids = []
+          for (let i = 0; i < this.multipleMenuSelection.length; i++) {
+            if (this.multipleMenuSelection[i].uid !== undefined) {
+              menuUids.push(this.multipleMenuSelection[i].uid)
+            }
+          }
+          this.form.menuUids = menuUids.toString()
+
           if (this.isEditForm) {
             updateRole(this.editingRoleUid, this.form).then(res => {
               this.$message.success("修改成功")

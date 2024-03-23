@@ -7,10 +7,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
-        <el-button type="info" icon="el-icon-document" size="small" @click="handleSortByClickCount">点击量排序</el-button>
-        <el-button type="info" icon="el-icon-document" size="small" @click="handleSortByCites">引用量排序</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
-        <el-button v-if="canAdd" type="primary" icon="el-icon-plus" size="small" @click="handleCreate">新增</el-button>
         <el-button v-if="canDeleteBatch" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
                    @click="handleDelete">批量删除
         </el-button>
@@ -23,6 +20,33 @@
       <el-table border :data="tableData" style="width: 100%" :default-sort="{ prop: 'sort', order: 'descending' }"
                 @selection-change="handleSelectionChange">
         <el-table-column align="center" type="selection" />
+        <el-table-column width="250" align="center" label="访问地址">
+          <template slot-scope="scope">
+            <el-link target="_blank" :href="scope.row.fileUrl">
+              <el-image v-if="/(jpg|jpeg|png|GIF|JPG|PNG)$/.test(scope.row.suffix)" :src="scope.row.fileUrl"></el-image>
+              <span v-else>
+                {{ scope.row.fileUrl }}
+              </span>
+            </el-link>
+          </template>
+        </el-table-column>
+        <el-table-column prop="fileName" align="center" label="文件名" width="130" />
+        <el-table-column prop="originalName" align="center" label="原文件名" width="130" />
+        <el-table-column prop="suffix" align="center" label="文件后缀" width="80" />
+        <el-table-column prop="filePath" align="center" label="存储路径" width="180" />
+        <el-table-column prop="fileSize" align="center" label="文件大小" width="100" />
+        <el-table-column width="80" align="center" label="是否是目录">
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.isDirectory === 1">是</el-tag>
+            <el-tag v-else>否</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column width="80" align="center" label="是否是图片">
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.isImage === 1">是</el-tag>
+            <el-tag v-else>否</el-tag>
+          </template>
+        </el-table-column>
 
         <el-table-column width="180" align="center" label="添加时间">
           <template slot-scope="scope">
@@ -36,7 +60,6 @@
         </el-table-column>
         <el-table-column width="200" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
-            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
             <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
           </template>
         </el-table-column>
@@ -51,22 +74,11 @@
       </el-pagination>
     </div>
 
-    <!-- 编辑弹窗 -->
-    <el-dialog center :title="title" :visible.sync="dialogFormVisible">
-      <el-form :rules="rules" ref="dataForm" :model="form">
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submit">确 定</el-button>
-      </div>
-    </el-dialog>
-
-
   </div>
 </template>
 
 <script>
-import {addTag, getTagList, updateTag, deleteTag, deleteTagBatch } from "../../api/tag";
+import { getFileStorageList, deleteFileStorageBatch, deleteFileStorage } from "../../api/fileStorage";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
@@ -99,13 +111,7 @@ export default {
         name: ''
       },
       rules: {
-        level: [
-          { required: true, message: '请输入推荐等级', trigger: 'blur' },
-        ],
-        name: [
-          { required: true, message: '请输入标签名', trigger: 'blur' },
-          { min: 1, max: 20, message: '标签名长度限制在1到20之间', trigger: 'change' }
-        ]
+
       },
       // 数据总数
       total:0,
@@ -123,38 +129,24 @@ export default {
      * @returns {boolean|*}
      */
     canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/tag')
+      return hasAuth(this.menu, 'DELETE:/api/file')
     },
     /**
      * 检查是否有删除的权限
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/tag/{uid}')
-    },
-    /**
-     * 检查是否有添加的权限
-     * @returns {boolean|*}
-     */
-    canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/tag')
-    },
-    /**
-     * 检查是否有更新的权限
-     * @returns {boolean|*}
-     */
-    canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/tag/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/file/{uid}')
     },
   },
   created() {
     this.statusList = EStatus;
     this.openLoading();
-    this.fetchRoleList();
+    this.fetchFileStorageList();
   },
   methods: {
-    fetchRoleList: function (){
-      getTagList(this.params).then(res =>{
+    fetchFileStorageList: function (){
+      getFileStorageList(this.params).then(res =>{
         this.tableData = res.data
         this.total = res.total
         this.loading.close()
@@ -167,30 +159,14 @@ export default {
      */
     handleFind: function () {
       this.params.currentPage = 1;
-      this.fetchRoleList()
-    },
-    /**
-     * 根据点击量排序按钮点击事件
-     */
-    handleSortByClickCount: function () {
-      this.params.sortByClickCount = true
-      this.params.sortByCites = false
-      this.fetchRoleList()
-    },
-    /**
-     * 根据引用量排序按钮点击事件
-     */
-    handleSortByCites: function () {
-      this.params.sortByClickCount = false
-      this.params.sortByCites = true
-      this.fetchRoleList()
+      this.fetchFileStorageList()
     },
     /**
      * 重置查询参数
      */
     resetQuery: function (){
       this.params.keyword=''
-      this.fetchRoleList()
+      this.fetchFileStorageList()
     },
     /**
      * 单页大小处理
@@ -198,7 +174,7 @@ export default {
      */
     handleSizeChange: function (val) {
       this.params.pageSize = val
-      this.fetchRoleList()
+      this.fetchFileStorageList()
     },
     /**
      * 页数变化处理
@@ -206,7 +182,7 @@ export default {
      */
     handleCurrentChange: function (val) {
       this.params.currentPage = val
-      this.fetchRoleList()
+      this.fetchFileStorageList()
     },
     /**
      * 时间戳格式化
@@ -255,19 +231,6 @@ export default {
       })
     },
     /**
-     * 编辑按钮点击事件
-     * @param scope
-     */
-    handleUpdate: function (scope) {
-      this.editingRoleUid = scope.row.uid
-
-
-      this.beforeShow("修改分类", 1)
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
-      })
-    },
-    /**
      * 处理删除按钮的点击事件
      * @param scope
      */
@@ -288,23 +251,23 @@ export default {
             for (let i = 0; i < selections.length; i++) {
               uids[i] = selections[i].uid
             }
-            // deleteTagBatch(uids).then(res => {
-            //   this.fetchRoleList()
-            //   this.$message.success('删除成功');
-            //   this.loading.close()
-            // }).catch(() => {
-            //   this.loading.close()
-            // });
+            deleteFileStorageBatch(uids).then(res => {
+              this.fetchFileStorageList()
+              this.$message.success('删除成功');
+              this.loading.close()
+            }).catch(() => {
+              this.loading.close()
+            });
           }
         } else {
           // 走单独删除
-          // deleteTag(scope.row.uid).then(res => {
-          //   this.fetchRoleList()
-          //   this.$message.success('删除成功');
-          //   this.loading.close()
-          // }).catch(() => {
-          //   this.loading.close()
-          // });
+          deleteFileStorage(scope.row.uid).then(res => {
+            this.fetchFileStorageList()
+            this.$message.success('删除成功');
+            this.loading.close()
+          }).catch(() => {
+            this.loading.close()
+          });
 
         }
       }).catch(() => {
@@ -313,36 +276,6 @@ export default {
 
     },
 
-    submit: function () {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          if (this.isEditForm) {
-            // updateTag(this.editingTagUid, this.form).then(res => {
-            //   this.$message.success("修改成功")
-            //   this.editingTagUid = ''
-            //   this.fetchRoleList()
-            //   this.dialogFormVisible = false;
-            //   this.close()
-            // }).catch(err => {
-            //   console.error(err)
-            // })
-          } else {
-            // addTag(this.form).then(res => {
-            //   this.$message.success("添加成功")
-            //   this.fetchRoleList()
-            //   this.dialogFormVisible = false;
-            //   this.close()
-            // }).catch(err => {
-            //   console.error(err)
-            // })
-          }
-
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      })
-    }
   }
 }
 </script>

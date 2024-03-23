@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import service from '@/utils/request'
 
 /**
  * 头像上传
@@ -7,7 +7,7 @@ import request from '@/utils/request'
  */
 export function avatarUpload(param) {
 
-  return request({
+  return service({
     url: '/file/user/avatar',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
@@ -22,7 +22,7 @@ export function avatarUpload(param) {
  */
 export function spaceBackgroundPictureUpload(param) {
 
-  return request({
+  return service({
     url: '/file/user/spaceBackgroundPicture',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
@@ -38,7 +38,7 @@ export function spaceBackgroundPictureUpload(param) {
  */
 export function blogCoverImageUpload(param) {
 
-  return request({
+  return service({
     url: '/file/blog/coverImage',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
@@ -53,7 +53,7 @@ export function blogCoverImageUpload(param) {
  */
 export function blogAttachUpload(param) {
 
-  return request({
+  return service({
     url: '/file/blog/attach/file',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
@@ -68,7 +68,7 @@ export function blogAttachUpload(param) {
  */
 export function blogImageAttachUpload(param) {
 
-  return request({
+  return service({
     url: '/file/blog/attach/image',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
@@ -83,7 +83,7 @@ export function blogImageAttachUpload(param) {
  */
 export function blogVideoAttachUpload(param) {
 
-  return request({
+  return service({
     url: '/file/blog/attach/video',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
@@ -98,10 +98,38 @@ export function blogVideoAttachUpload(param) {
  */
 export function linkIconImageUpload(param) {
 
-  return request({
+  return service({
     url: '/file/link/iconImage',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
     data: param
+  })
+}
+
+/**
+ * 获得文件列表
+ * @param params
+ * @returns {AxiosPromise}
+ */
+export function getFileStorageList(params) {
+  return service({
+    url: '/file/list',
+    method: 'get',
+    params
+  })
+}
+
+export function deleteFileStorage(fileStorageUid) {
+  return service({
+    url: '/file/' + fileStorageUid,
+    method: 'delete'
+  })
+}
+
+export function deleteFileStorageBatch(fileStorageUids) {
+  return service({
+    url: '/file',
+    method: 'delete',
+    data: fileStorageUids
   })
 }

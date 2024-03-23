@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/list/FileStorageGetListDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/TestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/validate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/StorageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/filestorage/FileStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/filestorage/FileStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/filestorage/FileStorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/filestorage/FileStorageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/fileStorage/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/fileStorage/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,10 +121,10 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.xo.dto.list" />
       <recent name="xyz.pplax.pplaxblog.file.service" />
       <recent name="xyz.pplax.pplaxblog.file.controller" />
       <recent name="xyz.pplax.pplaxblog.xo.dto.edit" />
-      <recent name="xyz.pplax.pplaxblog.xo.dto.list" />
       <recent name="xyz.pplax.pplaxblog.xo.constants.sql" />
     </key>
   </component>
@@ -234,8 +235,8 @@
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -324,14 +325,8 @@
       <workItem from="1711005662452" duration="16377000" />
       <workItem from="1711100090916" duration="10438000" />
       <workItem from="1711158223557" duration="10515000" />
-      <workItem from="1711178101100" duration="1103000" />
-    </task>
-    <task id="LOCAL-00295" summary="编写查询用户列表的接口">
-      <created>1709454701724</created>
-      <option name="number" value="00295" />
-      <option name="presentableId" value="LOCAL-00295" />
-      <option name="project" value="LOCAL" />
-      <updated>1709454701724</updated>
+      <workItem from="1711178101100" duration="1539000" />
+      <workItem from="1711197336174" duration="2328000" />
     </task>
     <task id="LOCAL-00296" summary="前端后台实现显示用户管理的列表">
       <created>1709626842147</created>
@@ -669,7 +664,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711169948153</updated>
     </task>
-    <option name="localTasksCounter" value="344" />
+    <task id="LOCAL-00344" summary="调整">
+      <created>1711179237332</created>
+      <option name="number" value="00344" />
+      <option name="presentableId" value="LOCAL-00344" />
+      <option name="project" value="LOCAL" />
+      <updated>1711179237332</updated>
+    </task>
+    <option name="localTasksCounter" value="345" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -704,7 +706,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="分类批量删除完成" />
     <MESSAGE value="标签管理开了个头" />
     <MESSAGE value="分类添加两种排序方式" />
     <MESSAGE value="标签管理能显示列表了" />
@@ -729,7 +730,8 @@
     <MESSAGE value="角色的增删改做完了，接下来弄权限管理" />
     <MESSAGE value="实现角色管理" />
     <MESSAGE value="实现友情链接管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现友情链接管理" />
+    <MESSAGE value="调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

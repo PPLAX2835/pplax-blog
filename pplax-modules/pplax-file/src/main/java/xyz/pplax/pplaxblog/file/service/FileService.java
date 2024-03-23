@@ -6,6 +6,7 @@ import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
@@ -23,6 +24,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FileService {
@@ -42,7 +45,6 @@ public class FileService {
     /**
      * 上传文件
      * @param mode
-     * @param userUid
      * @param path
      * @param file
      * @return
@@ -128,6 +130,20 @@ public class FileService {
         fileStorageUpdateWrapper.set(FileStorageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         fileStorageUpdateWrapper.eq(FileStorageSQLConstants.C_UID, fileUid);
         fileStorageService.update(fileStorageUpdateWrapper);
+
+        return ResponseResult.success();
+    }
+
+    @Transactional
+    public ResponseResult deleteBatch(String mode, List<String> fileStorageUidList) throws Exception {
+        for (String fileStorageUid : fileStorageUidList) {
+            ResponseResult responseResult = delete(mode, fileStorageUid);
+
+            if (!Objects.equals(responseResult.getCode(), ResponseResult.success().getCode())) {
+                throw new RuntimeException();
+            }
+        }
+
 
         return ResponseResult.success();
     }

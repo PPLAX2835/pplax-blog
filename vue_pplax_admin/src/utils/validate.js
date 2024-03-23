@@ -1,9 +1,16 @@
-/**
- * Created by jiachenpan on 16/11/18.
- */
 
 export function isvalidUsername(str) {
   return str.length >= 0
+}
+
+/**
+ * 检查文件是否是图片
+ * @param file
+ * @returns {boolean}
+ */
+export function checkImgType(file){
+  //用文件名name后缀判断文件类型，可用size属性判断文件大小不能超过500k ， 前端直接判断的好处，免去服务器的压力。
+  return /\.(jpg|jpeg|png|GIF|JPG|PNG)$/.test(file.name);
 }
 
 /* 合法uri*/

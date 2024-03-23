@@ -149,6 +149,7 @@ import {getUserList, updateUserInfo, addUser, deleteUser, deleteUserBatch, isUse
 import { avatarUpload, spaceBackgroundPictureUpload } from "../../api/fileStorage";
 import { EStatus } from "../../base/EStatus"
 import { hasAuth } from "../../utils/auth";
+import { checkImgType } from "../../utils/validate"
 import { parseTime } from "../../utils";
 import {mapGetters} from "vuex";
 
@@ -468,16 +469,16 @@ export default {
      * @returns {boolean}
      */
     uploadBefore: function (file) {
-      const isJPG = file.type === 'image/jpeg';
+      const isImage = checkImgType(file);
       const isLt2M = file.size / 1024 / 1024 < 2;
 
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!');
+      if (!isImage) {
+        this.$message.error('文件格式错误');
       }
       if (!isLt2M) {
         this.$message.error('上传图片大小不能超过 2MB!');
       }
-      return isJPG && isLt2M;
+      return isImage && isLt2M;
     },
     /**
      * 头像上传

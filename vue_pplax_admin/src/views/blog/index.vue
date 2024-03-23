@@ -295,6 +295,7 @@ import {getBlogSortList} from "../../api/blogSort";
 import { getBlogList, getBlogContent, addBlog, updateBlog, deleteBlog, deleteBlogBatch, promote, promoteCancel } from "../../api/blog";
 import { addTag, getTagList} from "../../api/tag";
 import { hasAuth, getUserUid } from "../../utils/auth";
+import { checkImgType } from "../../utils/validate"
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
@@ -776,8 +777,12 @@ export default {
     /**
      * 图片上传之前的准备
      */
-    uploadBefore: function () {
-      this.openLoading()
+    uploadBefore: function (file) {
+      const isImage = checkImgType(file);
+      if (!isImage) {
+        this.$message.error('文件格式错误');
+      }
+      return isImage
     },
     /**
      * 上传博客封面

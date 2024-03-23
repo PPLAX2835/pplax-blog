@@ -61,7 +61,11 @@ export function blogAttachUpload(param) {
   })
 }
 
-
+/**
+ * 博客内容上传图片
+ * @param param
+ * @returns {*}
+ */
 export function blogImageAttachUpload(param) {
 
   return request({
@@ -72,10 +76,30 @@ export function blogImageAttachUpload(param) {
   })
 }
 
+/**
+ * 博客内容上传视频
+ * @param param
+ * @returns {*}
+ */
 export function blogVideoAttachUpload(param) {
 
   return request({
     url: '/file/blog/attach/video',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}
+
+/**
+ * 友链logo上传
+ * @param param
+ * @returns {*}
+ */
+export function linkIconImageUpload(param) {
+
+  return request({
+    url: '/file/link/iconImage',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
     data: param

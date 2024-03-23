@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-      收藏管理
+
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
     }
   },
   created() {
-    
+
   },
   methods: {
 

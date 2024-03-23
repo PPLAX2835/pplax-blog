@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,9 +34,20 @@ public class Link extends SuperEntity {
     private String url;
 
     /**
+     * 图标图片uid
+     */
+    private String iconImageUid;
+
+    /**
      * 点击数
      */
     private Integer clickCount;
+
+    /**
+     * 图标文件
+     */
+    @TableField(exist = false)
+    private FileStorage iconImage;
 
     public Link() {}
 }

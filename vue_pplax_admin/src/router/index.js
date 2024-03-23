@@ -80,12 +80,6 @@ export const constantRouterMap = [
                 name: 'Tag',
                 component: () => import('@/views/tag/index'),
                 meta: { title: '标签管理', icon: 'table' }
-              },
-              {
-                path: 'collect',
-                name: 'Collect',
-                component: () => import('@/views/collect/index'),
-                meta: { title: '收藏管理', icon: 'table' }
               }
             ]
           },
@@ -116,12 +110,6 @@ export const constantRouterMap = [
                 name: 'Menu',
                 component: () => import('@/views/menu/index'),
                 meta: { title: '菜单管理', icon: 'table' }
-              },
-              {
-                path: 'link',
-                name: 'Link',
-                component: () => import('@/views/link/index'),
-                meta: { title: '友情链接管理', icon: 'table' }
               }
             ]
           },
@@ -147,6 +135,31 @@ export const constantRouterMap = [
                 name: 'Feedback',
                 component: () => import('@/views/feedback/index'),
                 meta: { title: '反馈管理', icon: 'table' }
+              }
+            ]
+          },
+
+
+          {
+            path: 'website',
+            redirect: 'website/link',
+            component: {
+              render(c) { return c('router-view'); }
+            },
+            name: 'Message',
+            meta: { title: '消息管理', icon: 'table' },
+            children: [
+              {
+                path: 'link',
+                name: 'Link',
+                component: () => import('@/views/link/index'),
+                meta: { title: '友链管理', icon: 'table' }
+              },
+              {
+                path: 'fileStorage',
+                name: 'FileStorage',
+                component: () => import('@/views/fileStorage/index'),
+                meta: { title: '文件管理', icon: 'table' }
               }
             ]
           }

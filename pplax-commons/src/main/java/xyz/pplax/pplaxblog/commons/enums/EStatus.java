@@ -14,7 +14,8 @@ public enum EStatus {
     UNRESOLVED(8),                  // 未解决
     RESOLVED(9),                    // 已解决
     IN_PROGRESS(10),                // 进行中
-    REFUSED(11);                    // 已拒绝
+    REFUSED(11),                    // 已拒绝
+    APPLYING(12);                   // 申请中
 
     private final Integer status;
 

@@ -144,6 +144,8 @@ public enum HttpStatus {
     USERNAME_EXIST(403021, "该用户名已存在"),
     CHILDREN_UNDER_THIS_MENU(403022, "该菜单还存在子菜单"),
     MENU_UNDER_THIS_ROLE(403023, "该角色还拥有权限"),
+    INCONSISTENT_PASSWORD_INPUT(403024, "两次密码输入不一致"),
+    LAST_PASSWORD_NOT_ALLOWED(403025, "请不要修改上次使用的密码"),
 
     /**
      * 账户相关

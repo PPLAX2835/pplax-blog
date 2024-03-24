@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
@@ -24,6 +26,7 @@ import xyz.pplax.pplaxblog.feign.auth.AuthFeignClient;
 import xyz.pplax.pplaxblog.xo.constants.redis.AuthRedisConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
+import xyz.pplax.pplaxblog.xo.dto.EditPasswordDto;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.entity.Role;
@@ -121,6 +124,45 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             log.warn("token未获取到");
             return ResponseResult.error(HttpStatus.TOKEN_GET_FAILED);
         }
+    }
+
+    /**
+     * 修改密码
+     * @param httpServletRequest
+     * @param editPasswordDto
+     * @return
+     */
+    @Override
+    public ResponseResult editPassword(HttpServletRequest httpServletRequest, EditPasswordDto editPasswordDto) {
+        if (!editPasswordDto.getNewPassword().equals(editPasswordDto.getConfirmPassword())) {
+            return new ResponseResult(HttpStatus.INCONSISTENT_PASSWORD_INPUT);
+        }
+        String accessToken = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
+        String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+        JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+        String userUid = (String) jsonObject.get("uid");
+        User user = userService.getById(userUid);
+
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        if (passwordEncoder.matches(editPasswordDto.getNewPassword() + user.getSalt(), user.getPassword())) {
+
+            return ResponseResult.error(HttpStatus.LAST_PASSWORD_NOT_ALLOWED);
+
+        }
+
+        if (passwordEncoder.matches(editPasswordDto.getOldPassword() + user.getSalt(), user.getPassword())) {
+
+            user.setPassword(passwordEncoder.encode(editPasswordDto.getNewPassword() + user.getSalt()));
+            boolean res = userService.updateById(user);
+
+            if (res) {
+                return ResponseResult.success();
+            }
+            return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return ResponseResult.error(HttpStatus.ERROR_PASSWORD);
     }
 
 

@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import service from "../utils/request";
 
 /**
  * 获取token
@@ -6,7 +6,7 @@ import request from '@/utils/request'
  * @returns {*}
  */
 export function login(data) {
-  return request({
+  return service({
     url: '/admin/auth/token',
     method: 'post',
     data
@@ -18,7 +18,7 @@ export function login(data) {
  * @returns {*}
  */
 export function logout() {
-  return request({
+  return service({
     url: '/admin/auth/token',
     method: 'delete'
   })
@@ -29,8 +29,16 @@ export function logout() {
  * @returns {*}
  */
 export function getCaptcha() {
-  return request({
+  return service({
     url: '/admin/auth/captcha',
     method: 'get',
+  })
+}
+
+export function editPassword(data) {
+  return service({
+    url: '/admin/auth/password',
+    method: 'put',
+    data
   })
 }

@@ -38,17 +38,17 @@ service.interceptors.response.use(
 
     if (res.code >= 401000 && res.code <= 401999) {
       // 认证有问题的情况
-      Message({
-        message: res.code + ': ' + res.message + (res.data !== undefined ? ', ' + JSON.stringify(res.data): ''),
-        type: 'error',
-        duration: 5 * 1000
-      })
-
-      setTimeout(function () {
+      MessageBox(res.code + ': ' + res.message + (res.data !== undefined ? ', ' + JSON.stringify(res.data): ''), '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
         removeToken();
         removeUserUid();
         location.reload();
-      }, 2000)
+      })
+      return Promise.reject(res.message)
+
     } else if (res.code !== HttpStatus.OK.code) {
       console.log(res)
       // code为非200是抛错

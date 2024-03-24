@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.DateUtil;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.sql.CommentSQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
-import xyz.pplax.pplaxblog.xo.entity.Blog;
-import xyz.pplax.pplaxblog.xo.entity.Comment;
-import xyz.pplax.pplaxblog.xo.entity.User;
+import xyz.pplax.pplaxblog.xo.constants.sql.*;
+import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
 import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
+import xyz.pplax.pplaxblog.xo.service.tag.TagService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
 import java.util.*;
@@ -34,6 +32,12 @@ public class HomeController extends SuperController {
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private BlogSortService blogSortService;
+
+    @Autowired
+    private TagService tagService;
 
     @Autowired
     private UserService userService;
@@ -91,6 +95,43 @@ public class HomeController extends SuperController {
         IPage<Blog> blogIPage = blogService.page(page, blogQueryWrapper);
         dataMap.put("blogList", blogIPage.getRecords());
 
+        /*
+         * 封装文章分类相关数据
+         */
+        QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
+        blogSortQueryWrapper.ne(BlogSortSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        List<BlogSort> blogSortList = blogSortService.list(blogSortQueryWrapper);
+        List<String> blogSortNameList = new ArrayList<>();
+        List<Map> blogSortResultList = new ArrayList<>();
+        for (BlogSort blogSort : blogSortList) {
+            blogSortNameList.add(blogSort.getSortName());
+
+            blogQueryWrapper = new QueryWrapper<>();
+            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSort.getUid());
+            Integer count = blogService.count(blogQueryWrapper);
+
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("name", blogSort.getSortName());
+            resultMap.put("value", count);
+            blogSortResultList.add(resultMap);
+        }
+        Map<String, Object> blogSortMap = new HashMap<>();
+        blogSortMap.put("blogSortNameList", blogSortNameList);
+        blogSortMap.put("blogSortResultList", blogSortResultList);
+        dataMap.put("blogSortList", blogSortMap);
+
+        /*
+         * 封装标签相关数据
+         */
+        QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
+        tagQueryWrapper.ne(TagSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        tagQueryWrapper.orderByDesc(TagSQLConstants.CLICK_COUNT);
+        Page<Tag> tagPage = new Page<>();
+        tagPage.setCurrent(1);
+        tagPage.setSize(20);
+        IPage<Tag> tagIPage = tagService.page(tagPage, tagQueryWrapper);
+        dataMap.put("tagList", tagIPage.getRecords());
 
 
         return success(dataMap);

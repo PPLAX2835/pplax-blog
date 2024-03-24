@@ -9,7 +9,7 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">今日访问量：</div>
-            <count-to class="card-panel-num" :startVal="0" :endVal="visitAddTotal" :duration="3200"></count-to>
+            <count-to class="card-panel-num" :startVal="0" :endVal="statistics.visitAddTotal" :duration="3200"></count-to>
           </div>
         </div>
       </el-col>
@@ -21,7 +21,7 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">用户数:</div>
-            <count-to class="card-panel-num" :startVal="0" :endVal="userTotal" :duration="2600"></count-to>
+            <count-to class="card-panel-num" :startVal="0" :endVal="statistics.userTotal" :duration="2600"></count-to>
           </div>
         </div>
       </el-col>
@@ -33,7 +33,7 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">评论数：</div>
-            <count-to class="card-panel-num" :startVal="0" :endVal="commentTotal" :duration="3000"></count-to>
+            <count-to class="card-panel-num" :startVal="0" :endVal="statistics.commentTotal" :duration="3000"></count-to>
           </div>
         </div>
       </el-col>
@@ -44,7 +44,7 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">文章数:</div>
-            <count-to class="card-panel-num" :startVal="0" :endVal="blogTotal" :duration="3600"></count-to>
+            <count-to class="card-panel-num" :startVal="0" :endVal="statistics.blogTotal" :duration="3600"></count-to>
           </div>
         </div>
       </el-col>
@@ -67,6 +67,17 @@
         </el-card>
       </el-col>
 
+      <el-col :xs="24" :sm="24" :lg="8">
+        <el-card>
+          <div ref="pieChart" style="height:310px;width:100%"></div>
+        </el-card>
+      </el-col>
+
+      <el-col :xs="24" :sm="24" :lg="8">
+        <el-card>
+          <tagcloud :data="tagList"></tagcloud>
+        </el-card>
+      </el-col>
     </el-row>
 
 
@@ -77,6 +88,8 @@
 import { init } from "../../api/home";
 import { mapGetters } from "vuex";
 import CountTo from "vue-count-to";
+import tagcloud from "../layout/components/Navbar/tagcloud";
+import * as echarts from "echarts";
 export default {
   name: "dashboard",
   computed: {
@@ -85,32 +98,79 @@ export default {
     ])
   },
   components: {
-    CountTo
+    CountTo,
+    echarts,
+    tagcloud
   },
   created() {
     init().then(resp => {
       let data = resp.data
 
-      this.visitAddTotal = data.statistics.visitAddTotal
-      this.userTotal = data.statistics.userTotal
-      this.commentTotal = data.statistics.commentTotal
-      this.blogTotal = data.statistics.blogTotal
-
+      this.statistics = data.statistics
       this.blogList = data.blogList
+      this.blogSortList = data.blogSortList
+      this.tagList = data.tagList
+
+      console.log(this.tagList)
+
+      this.renderPieChart();
     })
   },
   data() {
     return {
-      visitAddTotal: 6,
-      userTotal: 50,
-      commentTotal: 15,
-      blogTotal: 20,
-
+      statistics: {
+        visitAddTotal: 6,
+        userTotal: 50,
+        commentTotal: 15,
+        blogTotal: 20,
+      },
       blogList: [],
+      blogSortList: {
+        blogSortNameList: [],
+        blogSortResultList: []
+      },
+      tagList: []
     }
   },
   methods: {
 
+    renderPieChart() {
+      const pieChart = echarts.init(this.$refs.pieChart);
+
+      const option = {
+        title: {
+          text: '博客分类统计',
+          x: 'center'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: this.blogSortList.blogSortNameList
+        },
+        series: [
+          {
+            name: '博客分类',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: this.blogSortList.blogSortResultList,
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+
+      pieChart.setOption(option);
+    }
   }
 };
 </script>

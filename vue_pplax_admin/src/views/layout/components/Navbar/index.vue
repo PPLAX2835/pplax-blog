@@ -8,6 +8,9 @@
         <el-tooltip effect="dark" content="修改密码" placement="bottom">
           <password class=" right-menu-item"></password>
         </el-tooltip>
+        <el-tooltip effect="dark" content="全屏" placement="bottom">
+          <screenfull class=" right-menu-item"></screenfull>
+        </el-tooltip>
 
         <el-dropdown class="avatar-container">
           <div class="avatar-wrapper">
@@ -45,6 +48,7 @@ import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import Password from './password'
+import screenfull from "./screenfull";
 
 export default {
   data() {
@@ -71,7 +75,8 @@ export default {
   components: {
     Breadcrumb,
     Hamburger,
-    Password
+    Password,
+    screenfull
   },
   created() {
     this.$store.dispatch('getCurrentUserInfo')

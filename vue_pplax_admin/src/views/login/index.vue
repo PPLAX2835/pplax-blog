@@ -50,7 +50,7 @@
 
         <!--  底部  -->
         <div class="el-login-footer">
-            <span>Copyright © 2022 <a href="http://www.shiyit.com" target="_blank">shiyit.com</a> All Rights
+            <span>Copyright © 2023 <a href="http://www.pplax.xyz" target="_blank">www.pplax.xyz</a> All Rights
                 Reserved.</span>
         </div>
     </div>

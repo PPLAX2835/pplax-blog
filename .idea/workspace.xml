@@ -5,103 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/.env.dev" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/.env.prod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/avatar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/header/wave1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/header/wave2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/paper-plane.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/qr.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/img/reward.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/lib/css/prism.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/lib/js/Meting.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/lib/js/prism.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/about.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/archives.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/category.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/comment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/friend.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/moment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/tag.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/badge.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/typo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/base/EStatus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/base/HttpStatus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/common/reg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/blog/BlogItem.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/blog/BlogList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/blog/Pagination.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Comment.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/CommentForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/CommentList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Pagination.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/index/BlogPasswordDialog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/index/Footer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/index/Header.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/index/Nav.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/sidebar/Introduction.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/sidebar/RandomBlog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/sidebar/Tags.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/sidebar/Tocbot.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/plugins/aruMapper.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/plugins/axios.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/plugins/paopaoMapper.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/plugins/tvMapper.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/settings.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/store/actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/store/getters.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/store/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/store/mutations-types.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/store/mutations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/store/state.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/util/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/util/dateTimeFormatUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/util/directive.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/util/get-page-title.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/util/request.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/Index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/Login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/about/About.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/archives/Archives.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/blog/Blog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/category/Category.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/friends/Friends.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/home/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/moments/Moments.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/views/tag/Tag.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SiteSettingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/SiteSettingSQLConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SiteSettingEditDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/SiteSetting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/SiteSettingMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/SiteSettingMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/siteSetting.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +92,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_admin/src/api" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -194,11 +111,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\login" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\utils" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\api" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\layout\components\Navbar" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\fileStorage" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\siteSetting" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\service\sitesetting" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
@@ -211,11 +128,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="xyz.pplax.pplaxblog.xo.dto.list" />
-      <recent name="xyz.pplax.pplaxblog.file.service" />
-      <recent name="xyz.pplax.pplaxblog.file.controller" />
-      <recent name="xyz.pplax.pplaxblog.xo.dto.edit" />
       <recent name="xyz.pplax.pplaxblog.xo.constants.sql" />
+      <recent name="xyz.pplax.pplaxblog.xo.dto.edit" />
+      <recent name="xyz.pplax.pplaxblog.admin.controller" />
+      <recent name="xyz.pplax.pplaxblog.xo.mapper" />
+      <recent name="xyz.pplax.pplaxblog.xo.entity" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -225,7 +142,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="npm.dev (1)">
+  <component name="RunManager" selected="npm.admin npm run dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -248,19 +165,6 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="amqp-api" />
       <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="pplax-admin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AdminApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -304,7 +208,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="dev (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="admin npm run dev" type="js.build_tools.npm" temporary="true">
+      <package-json value="$PROJECT_DIR$/vue_pplax_admin/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="web npm run dev" type="js.build_tools.npm" temporary="true">
       <package-json value="$PROJECT_DIR$/vue_pplax_web/package.json" />
       <command value="run" />
       <scripts>
@@ -315,19 +229,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.AdminApplication" />
+      <item itemvalue="npm.web npm run dev" />
+      <item itemvalue="npm.admin npm run dev" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
-      <item itemvalue="npm.dev (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev (1)" />
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.FileApplication" />
+        <item itemvalue="npm.admin npm run dev" />
+        <item itemvalue="npm.web npm run dev" />
       </list>
     </recent_temporary>
   </component>
@@ -423,14 +337,7 @@
       <workItem from="1711509983020" duration="4608000" />
       <workItem from="1711615358448" duration="49000" />
       <workItem from="1711761152887" duration="1188000" />
-      <workItem from="1711782192613" duration="6365000" />
-    </task>
-    <task id="LOCAL-00301" summary="更新用户时检查用户名是否重名">
-      <created>1709777472966</created>
-      <option name="number" value="00301" />
-      <option name="presentableId" value="LOCAL-00301" />
-      <option name="project" value="LOCAL" />
-      <updated>1709777472966</updated>
+      <workItem from="1711782192613" duration="15548000" />
     </task>
     <task id="LOCAL-00302" summary="实现添加用户功能">
       <created>1709810522330</created>
@@ -768,7 +675,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711523774760</updated>
     </task>
-    <option name="localTasksCounter" value="350" />
+    <task id="LOCAL-00350" summary="打算使用https://github.com/Naccl/NBlog进行二次开发">
+      <created>1711789309427</created>
+      <option name="number" value="00350" />
+      <option name="presentableId" value="LOCAL-00350" />
+      <option name="project" value="LOCAL" />
+      <updated>1711789309427</updated>
+    </task>
+    <option name="localTasksCounter" value="351" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -803,7 +717,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="新增一个角色管理的页面，这个相当于一个初始模板" />
     <MESSAGE value="修改文件存储路径" />
     <MESSAGE value="优化查询" />
     <MESSAGE value="修改文件服务存储，整理方法，用户管理可以修改个人空间背景图" />
@@ -828,7 +741,8 @@
     <MESSAGE value="登录状态失效改为确认弹窗" />
     <MESSAGE value="后台管理首页面板显示统计数据" />
     <MESSAGE value="准备弄前台" />
-    <option name="LAST_COMMIT_MESSAGE" value="准备弄前台" />
+    <MESSAGE value="打算使用https://github.com/Naccl/NBlog进行二次开发" />
+    <option name="LAST_COMMIT_MESSAGE" value="打算使用https://github.com/Naccl/NBlog进行二次开发" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

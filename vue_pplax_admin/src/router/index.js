@@ -142,13 +142,19 @@ export const constantRouterMap = [
 
           {
             path: 'website',
-            redirect: 'website/link',
+            redirect: 'website/siteSetting',
             component: {
               render(c) { return c('router-view'); }
             },
             name: 'Message',
-            meta: { title: '消息管理', icon: 'table' },
+            meta: { title: '网站管理', icon: 'table' },
             children: [
+              {
+                path: 'siteSetting',
+                name: 'SiteSetting',
+                component: () => import('@/views/siteSetting/index'),
+                meta: { title: '站点设置', icon: 'table' }
+              },
               {
                 path: 'link',
                 name: 'Link',

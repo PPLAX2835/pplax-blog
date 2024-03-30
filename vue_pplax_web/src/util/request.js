@@ -1,13 +1,15 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import HttpStatus from '../base/HttpStatus'
-import { getToken, removeToken, removeUserUid } from '@/utils/auth'
+import { getToken, removeToken, removeUserUid } from './auth'
 
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
   timeout: 5000 // 请求超时时间
 })
+
+axios.defaults.baseURL = process.env.VUE_APP_SERVER;
 
 // request拦截器
 service.interceptors.request.use(

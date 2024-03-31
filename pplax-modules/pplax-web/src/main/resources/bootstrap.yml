@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 712185cc-1239-4192-9cb1-c71d5b242f91
+        group: PPLAX_BLOG
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 712185cc-1239-4192-9cb1-c71d5b242f91
+        username: nacos
+        password: nacos
+        shared-configs:
+          - data-id: pplax-config.yaml                    # 自定义配置
+            group: PPLAX_BLOG
+        extension-configs:
+          - data-id: database-config.yaml                 # 数据库的相关配置
+            group: PPLAX_BLOG
+          - data-id: mybatis-plus-config.yaml             # mybatis-plus的相关配置
+            group: PPLAX_BLOG
+          - data-id: redis-config.yaml            # redis的相关配置
+            group: PPLAX_BLOG
+          - data-id: oauth-config.yaml            # oauth的相关配置
+            group: PPLAX_BLOG

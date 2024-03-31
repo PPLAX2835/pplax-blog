@@ -10,16 +10,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="pplax-durid-starter" />
         <module name="pplax-feign" />
-        <module name="pplax-xo" />
         <module name="pplax-swagger-starter" />
+        <module name="pplax-web" />
+        <module name="pplax-gateway" />
+        <module name="pplax-auth" />
+        <module name="pplax-security-starter" />
+        <module name="pplax-xo" />
         <module name="pplax-redis-starter" />
         <module name="pplax-commons" />
-        <module name="pplax-gateway" />
         <module name="pplax-mybatis-starter" />
-        <module name="pplax-auth" />
         <module name="pplax-admin" />
         <module name="pplax-file" />
-        <module name="pplax-security-starter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">

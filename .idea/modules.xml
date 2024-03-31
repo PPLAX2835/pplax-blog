@@ -16,6 +16,7 @@
       <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/pplax-swagger-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/pplax-swagger-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-xo/pplax-xo.iml" filepath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" />
     </modules>
   </component>

@@ -78,5 +78,6 @@
         <module>pplax-file</module>
         <module>pplax-auth</module>
         <module>pplax-gateway</module>
+        <module>pplax-web</module>
     </modules>
 </project>

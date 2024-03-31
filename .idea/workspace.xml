@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SiteFileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/SiteFileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SiteSettingEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SiteSettingEditDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/SiteSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/SiteSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -338,14 +331,7 @@
       <workItem from="1711761152887" duration="1188000" />
       <workItem from="1711782192613" duration="16273000" />
       <workItem from="1711847768291" duration="242000" />
-      <workItem from="1711848030119" duration="10001000" />
-    </task>
-    <task id="LOCAL-00305" summary="整理user和userInfo相关业务">
-      <created>1709950833419</created>
-      <option name="number" value="00305" />
-      <option name="presentableId" value="LOCAL-00305" />
-      <option name="project" value="LOCAL" />
-      <updated>1709950833419</updated>
+      <workItem from="1711848030119" duration="10243000" />
     </task>
     <task id="LOCAL-00306" summary="整理sql字段常量类">
       <created>1709951441690</created>
@@ -683,7 +669,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711852074123</updated>
     </task>
-    <option name="localTasksCounter" value="354" />
+    <task id="LOCAL-00354" summary="修改序列化问题">
+      <created>1711876452742</created>
+      <option name="number" value="00354" />
+      <option name="presentableId" value="LOCAL-00354" />
+      <option name="project" value="LOCAL" />
+      <updated>1711876452743</updated>
+    </task>
+    <option name="localTasksCounter" value="355" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -718,7 +711,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="处理参数校验相关的bug" />
     <MESSAGE value="博客管理现在能够查询列表了" />
     <MESSAGE value="实现博客的增改，去除file_storage表的userUid字段，调整文件存储的目录结构" />
     <MESSAGE value="修复tag可以反复添加相同名称的数据的问题&#10;更新用户信息后端添加用户名检查" />
@@ -743,7 +735,8 @@
     <MESSAGE value="后台增加站点设置，目前还不太优雅" />
     <MESSAGE value="修改站点设置序列化问题" />
     <MESSAGE value="增加前台服务" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加前台服务" />
+    <MESSAGE value="修改序列化问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改序列化问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

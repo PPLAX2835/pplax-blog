@@ -50,19 +50,19 @@
         </div>
         <el-form :inline="true" v-for="badge in typeMap.footer" :key="badge.uid">
           <el-form-item label="title">
-            <el-input v-model="badge.value.title" size="mini" @blur="submit(badge)"></el-input>
+            <el-input v-model="JSON.parse(badge.value).title" size="mini" @blur="submit(badge)"></el-input>
           </el-form-item>
           <el-form-item label="url">
-            <el-input v-model="badge.value.url" size="mini" @blur="submit(badge)"></el-input>
+            <el-input v-model="JSON.parse(badge.value).url" size="mini" @blur="submit(badge)"></el-input>
           </el-form-item>
           <el-form-item label="subject">
-            <el-input v-model="badge.value.subject" size="mini" @blur="submit(badge)"></el-input>
+            <el-input v-model="JSON.parse(badge.value).subject" size="mini" @blur="submit(badge)"></el-input>
           </el-form-item>
           <el-form-item label="value">
-            <el-input v-model="badge.value.value" size="mini" @blur="submit(badge)"></el-input>
+            <el-input v-model="JSON.parse(badge.value).value" size="mini" @blur="submit(badge)"></el-input>
           </el-form-item>
           <el-form-item label="color">
-            <el-input v-model="badge.value.color" size="mini" @blur="submit(badge)"></el-input>
+            <el-input v-model="JSON.parse(badge.value).color" size="mini" @blur="submit(badge)"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="danger" size="mini" icon="el-icon-delete" @click="deleteBadge(badge)">删除</el-button>

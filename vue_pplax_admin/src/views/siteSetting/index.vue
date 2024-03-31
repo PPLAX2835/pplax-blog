@@ -159,15 +159,12 @@ export default {
       })
     },
     submit(item) {
-      console.log(item)
-      item.value = JSON.stringify(item.value)
       if (item.uid === undefined) {
         addSiteSetting(item).then(res => {
           this.getData()
         })
       } else {
         updateSiteSetting(item.uid, item).then(res => {
-          this.getData()
         })
       }
     }

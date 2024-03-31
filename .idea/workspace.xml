@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SiteSettingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/SiteSettingSQLConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SiteSettingEditDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/SiteSetting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/SiteSettingMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/SiteSettingMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/siteSetting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="后台增加站点设置，目前还不太优雅">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,11 +126,13 @@
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
+        <option value="Application" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
+    <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.admin npm run dev">
+  <component name="RunManager" selected="Spring Boot.GatewayApplication">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -165,6 +155,19 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="amqp-api" />
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="pplax-admin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AdminApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,19 +221,9 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="web npm run dev" type="js.build_tools.npm" temporary="true">
-      <package-json value="$PROJECT_DIR$/vue_pplax_web/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="npm.web npm run dev" />
       <item itemvalue="npm.admin npm run dev" />
+      <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
@@ -238,10 +231,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
+        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="npm.admin npm run dev" />
-        <item itemvalue="npm.web npm run dev" />
       </list>
     </recent_temporary>
   </component>
@@ -337,14 +330,9 @@
       <workItem from="1711509983020" duration="4608000" />
       <workItem from="1711615358448" duration="49000" />
       <workItem from="1711761152887" duration="1188000" />
-      <workItem from="1711782192613" duration="15548000" />
-    </task>
-    <task id="LOCAL-00302" summary="实现添加用户功能">
-      <created>1709810522330</created>
-      <option name="number" value="00302" />
-      <option name="presentableId" value="LOCAL-00302" />
-      <option name="project" value="LOCAL" />
-      <updated>1709810522330</updated>
+      <workItem from="1711782192613" duration="16273000" />
+      <workItem from="1711847768291" duration="242000" />
+      <workItem from="1711848030119" duration="2650000" />
     </task>
     <task id="LOCAL-00303" summary="实现用户的删除和批量删除功能">
       <created>1709900587838</created>
@@ -682,7 +670,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711789309427</updated>
     </task>
-    <option name="localTasksCounter" value="351" />
+    <task id="LOCAL-00351" summary="后台增加站点设置，目前还不太优雅">
+      <created>1711801208482</created>
+      <option name="number" value="00351" />
+      <option name="presentableId" value="LOCAL-00351" />
+      <option name="project" value="LOCAL" />
+      <updated>1711801208482</updated>
+    </task>
+    <option name="localTasksCounter" value="352" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -717,7 +712,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改文件存储路径" />
     <MESSAGE value="优化查询" />
     <MESSAGE value="修改文件服务存储，整理方法，用户管理可以修改个人空间背景图" />
     <MESSAGE value="处理参数校验相关的bug" />
@@ -742,7 +736,8 @@
     <MESSAGE value="后台管理首页面板显示统计数据" />
     <MESSAGE value="准备弄前台" />
     <MESSAGE value="打算使用https://github.com/Naccl/NBlog进行二次开发" />
-    <option name="LAST_COMMIT_MESSAGE" value="打算使用https://github.com/Naccl/NBlog进行二次开发" />
+    <MESSAGE value="后台增加站点设置，目前还不太优雅" />
+    <option name="LAST_COMMIT_MESSAGE" value="后台增加站点设置，目前还不太优雅" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

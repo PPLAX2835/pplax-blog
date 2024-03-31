@@ -3,6 +3,7 @@ package xyz.pplax.pplaxblog.xo.service.sitesetting;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
+import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
@@ -22,12 +23,12 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
     public List<SiteSetting> list() {
         QueryWrapper<SiteSetting> siteSettingQueryWrapper = new QueryWrapper<>();
         siteSettingQueryWrapper.ne(SiteSettingSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        siteSettingQueryWrapper.orderByAsc(SiteSettingSQLConstants.C_CREATE_TIME);
 
         List<SiteSetting> siteSettingList = list(siteSettingQueryWrapper);
-        for (SiteSetting siteSetting : siteSettingList) {           // 如果是页脚徽标
-            if (siteSetting.getType() == 3) {
-                siteSetting.setValue(JSON.parseObject((String) siteSetting.getValue()));
+        for (SiteSetting siteSetting : siteSettingList) {
+            // 如果是json形式就转化为json
+            if ((siteSetting.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
+                siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSetting.getValue())));
             }
         }
 
@@ -42,7 +43,9 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         siteSetting.setNameEn(siteSettingEditDto.getNameEn());
         siteSetting.setNameZh(siteSettingEditDto.getNameZh());
         siteSetting.setType(siteSettingEditDto.getType());
-        siteSetting.setValue(siteSettingEditDto.getValue());
+        if ((siteSettingEditDto.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
+            siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSettingEditDto.getValue())));
+        }
 
         return save(siteSetting);
     }
@@ -55,7 +58,9 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         siteSetting.setNameEn(siteSettingEditDto.getNameEn());
         siteSetting.setNameZh(siteSettingEditDto.getNameZh());
         siteSetting.setType(siteSettingEditDto.getType());
-        siteSetting.setValue(siteSettingEditDto.getValue());
+        if ((siteSettingEditDto.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
+            siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSettingEditDto.getValue())));
+        }
 
         return updateById(siteSetting);
     }

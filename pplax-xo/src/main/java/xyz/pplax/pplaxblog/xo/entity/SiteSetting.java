@@ -30,7 +30,7 @@ public class SiteSetting extends SuperEntity {
 	/**
 	 * 值
 	 */
-	private Object value;
+	private String value;
 
 	/**
 	 * 类型 1基础设置，2页脚徽标，3资料卡，4友链信息

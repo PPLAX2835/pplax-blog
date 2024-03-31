@@ -133,3 +133,18 @@ export function deleteFileStorageBatch(fileStorageUids) {
     data: fileStorageUids
   })
 }
+
+/**
+ * 站点logo上传
+ * @param param
+ * @returns {*}
+ */
+export function siteLogoImageUpload(param) {
+
+  return service({
+    url: '/file/site/logo',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}

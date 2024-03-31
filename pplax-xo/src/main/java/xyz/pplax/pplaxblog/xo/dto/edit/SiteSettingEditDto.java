@@ -21,7 +21,7 @@ public class SiteSettingEditDto extends BaseDto<SiteSettingEditDto> {
     private String nameZh;
 
     @ApiModelProperty(example = "", notes = "值", required = false)
-    private Object value;
+    private String value;
 
     @ApiModelProperty(example = "0", notes = "类型", required = false)
     private Integer type;

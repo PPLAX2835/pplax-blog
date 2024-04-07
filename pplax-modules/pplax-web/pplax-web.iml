@@ -45,6 +45,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.jsonwebtoken:jjwt-jackson:0.10.7" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.9" level="project" />
     <orderEntry type="library" name="Maven: org.lionsoul:ip2region:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: eu.bitwalker:UserAgentUtils:1.21" level="project" />
     <orderEntry type="module" module-name="pplax-durid-starter" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.8" level="project" />
     <orderEntry type="module" module-name="pplax-swagger-starter" />

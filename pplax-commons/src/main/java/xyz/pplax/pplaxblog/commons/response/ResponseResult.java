@@ -1,21 +1,32 @@
 package xyz.pplax.pplaxblog.commons.response;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseResult {
 
+    @ApiModelProperty(value = "响应码", required = false)
     private Integer code;
 
+    @ApiModelProperty(value = "消息", required = false)
     private String message;
 
+    @ApiModelProperty(value = "响应数据", required = false)
     private Object data;
 
+    @ApiModelProperty(value = "响应数据", required = false)
+    private Map<String,Object> extra = new HashMap<>();
+
+    @ApiModelProperty(value = "响应数据总数", required = false)
     private Long total;
 
     /**
@@ -39,6 +50,14 @@ public class ResponseResult {
 
     public static ResponseResult success(Object data, Long total) {
         return new ResponseResult(HttpStatus.OK, data, total);
+    }
+
+    public static ResponseResult success(Map<String,Object> extra) {
+        return new ResponseResult(HttpStatus.OK, extra);
+    }
+
+    public static ResponseResult success(Object data, Map<String,Object> extra) {
+        return new ResponseResult(HttpStatus.OK, data, extra);
     }
 
     /**
@@ -101,6 +120,19 @@ public class ResponseResult {
         this.code = httpStatus.getCode();
         this.message = httpStatus.getMessage();
         this.data = data;
+    }
+
+    public ResponseResult(HttpStatus httpStatus, Map<String, Object> extra) {
+        this.code = httpStatus.getCode();
+        this.message = httpStatus.getMessage();
+        this.extra = extra;
+    }
+
+    public ResponseResult(HttpStatus httpStatus, Object data, Map<String, Object> extra) {
+        this.code = httpStatus.getCode();
+        this.message = httpStatus.getMessage();
+        this.data = data;
+        this.extra = extra;
     }
 
     public ResponseResult(HttpStatus httpStatus, Object data, Long total) {

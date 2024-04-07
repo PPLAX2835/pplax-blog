@@ -111,6 +111,12 @@
             <artifactId>ip2region</artifactId>
         </dependency>
 
+        <!--IP管理jar-->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+        </dependency>
+
         <!-- sfl4j -->
         <dependency>
             <groupId>org.slf4j</groupId>

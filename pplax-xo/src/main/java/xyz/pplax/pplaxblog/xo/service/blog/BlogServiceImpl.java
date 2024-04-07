@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
@@ -118,6 +119,92 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
 
         pageList.setRecords(blogList);
 
+        return pageList;
+    }
+
+    /**
+     * 通过推荐排序
+     * @return
+     */
+    @Override
+    public List<Blog> listByBanner() {
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        blogQueryWrapper.ne(BlogSQLConstants.LEVEL, CharacterConstants.NUM_ZERO);             // 排除非推荐文章
+        blogQueryWrapper.orderByDesc(BlogSQLConstants.LEVEL);
+        blogQueryWrapper.orderByDesc(BlogSQLConstants.CREATE_TIME);
+
+        List<Blog> blogList = list(blogQueryWrapper);
+
+        for (Blog blog : blogList) {
+            // 查询封面图
+            blog.setCoverImage(fileStorageService.getById(blog.getCoverImageUid()));
+
+            // 获得标签
+            String[] tagUids = blog.getTagUids().split(",");
+            List<String> tagUidList = Arrays.asList(tagUids);
+            blog.setTagList(tagService.listByIds(tagUidList));
+
+            // 获得分类
+            blog.setBlogSort(blogSortService.getById(blog.getBlogSortUid()));
+
+            // 添加作者
+            User user = userService.getById(blog.getUserUid());
+            if (user != null) {
+                user.sensitiveDataRemove();
+                user.setUserInfo(userInfoService.getByUserUid(user.getUid()));
+                blog.setUser(user);
+            }
+        }
+
+        return blogList;
+
+    }
+
+    /**
+     * 获取指定数量的最新非推荐文章
+     * @param size
+     * @return
+     */
+    @Override
+    public IPage<Blog> listNotByBannerNew(Integer size) {
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.eq(BlogSQLConstants.LEVEL, CharacterConstants.NUM_ZERO);
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        blogQueryWrapper.orderByDesc(BlogSQLConstants.CREATE_TIME);
+
+        //分页
+        Page<Blog> page = new Page<>();
+        page.setCurrent(1);
+        page.setSize(size);
+
+        IPage<Blog> pageList = page(page, blogQueryWrapper);
+
+        List<Blog> blogList = new ArrayList<>();
+        for (Blog blog : page.getRecords()) {
+            // 查询封面图
+            blog.setCoverImage(fileStorageService.getById(blog.getCoverImageUid()));
+
+            // 获得标签
+            String[] tagUids = blog.getTagUids().split(",");
+            List<String> tagUidList = Arrays.asList(tagUids);
+            blog.setTagList(tagService.listByIds(tagUidList));
+
+            // 获得分类
+            blog.setBlogSort(blogSortService.getById(blog.getBlogSortUid()));
+
+            // 添加作者
+            User user = userService.getById(blog.getUserUid());
+            if (user != null) {
+                user.sensitiveDataRemove();
+                user.setUserInfo(userInfoService.getByUserUid(user.getUid()));
+                blog.setUser(user);
+            }
+
+            blogList.add(blog);
+        }
+
+        pageList.setRecords(blogList);
         return pageList;
     }
 

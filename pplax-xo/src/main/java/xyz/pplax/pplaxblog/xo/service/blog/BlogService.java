@@ -20,6 +20,10 @@ public interface BlogService extends SuperService<Blog> {
 
     IPage<Blog> list(BlogGetListDto blogGetListDto);
 
+    List<Blog> listByBanner();
+
+    IPage<Blog> listNotByBannerNew(Integer size);
+
     BlogContent getBlogContentByBlogUid(String blogUid);
 
     Boolean updateById(BlogEditDto blogEditDto);

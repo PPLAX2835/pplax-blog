@@ -223,4 +223,34 @@ public class RedisService {
     public Collection<String> keys(final String pattern) {
         return redisTemplate.keys(pattern);
     }
+
+    /**
+     * 判断key中是否包含value
+     * @param key
+     * @param value
+     * @return
+     */
+    public Boolean isMember(String key, Object value) {
+        return redisTemplate.opsForSet().isMember(key, value);
+    }
+
+    /**
+     * key中的值增加delta
+     * @param key
+     * @param delta
+     * @return
+     */
+    public Long increment(String key, long delta) {
+        return redisTemplate.opsForValue().increment(key, delta);
+    }
+
+    /**
+     * key中增加多个
+     * @param key
+     * @param values
+     * @return
+     */
+    public Long add(String key, Object... values) {
+        return redisTemplate.opsForSet().add(key, values);
+    }
 }

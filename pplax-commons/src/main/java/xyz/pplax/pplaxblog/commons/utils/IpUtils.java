@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.commons.utils;
 
+import eu.bitwalker.useragentutils.UserAgent;
 import org.lionsoul.ip2region.xdb.Searcher;
 
 import javax.servlet.http.HttpServletRequest;
@@ -84,5 +85,15 @@ public class IpUtils {
             System.out.printf("failed to search(%s): %s\n", ip, e);
         }
         return "未知";
+    }
+
+    /**
+     * 获取访问设备
+     *
+     * @param request 请求
+     * @return {@link UserAgent} 访问设备
+     */
+    public static UserAgent getUserAgent(HttpServletRequest request){
+        return UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
     }
 }

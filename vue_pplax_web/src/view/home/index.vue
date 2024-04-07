@@ -26,7 +26,7 @@
                     <el-carousel class="banner" :interval="5000" arrow="always">
                         <el-carousel-item v-for="(item, index) in bannerList" :key="index">
                             <router-link class="hand-style" :to="'/article/' + item.id">
-                                <img class="bannerImg" v-lazy="item.avatar" :key="item.avatar" />
+                                <img class="bannerImg" v-lazy="item.coverImage.fileUrl" :key="item.avatar" />
                                 <h3 class="title">{{ item.title }}</h3>
                             </router-link>
                         </el-carousel-item>
@@ -195,10 +195,10 @@
                             <li v-for="(item, index) in  newArticleList   ">
                                 <div :class="index == 0 ? 'article-item-top1' : 'article-item'">
                                     <div class="recomCover">
-                                        <router-link :to="'/article/' + item.id">
+                                        <router-link :to="'/article/' + item.uid">
                                             <div class="imgBox">
                                                 <span>{{ index + 1 }}</span>
-                                                <img class="hand-style" v-lazy="item.avatar" :key="item.avatar" />
+                                                <img class="hand-style" v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.avatar" />
                                             </div>
                                         </router-link>
                                     </div>
@@ -514,8 +514,8 @@ export default {
         },
         getHomeData() {
             featchHomeData().then(res => {
-                this.bannerList = res.extra.articles
-                this.tagList = res.extra.tagCloud
+                this.bannerList = res.extra.bannerList
+                this.tagList = res.extra.tagList
                 for (var i = 0; i < this.tagList.length; i++) {
                     this.tagList[i].font = Math.floor(Math.random() * 10) + 10 + "px"
                 }

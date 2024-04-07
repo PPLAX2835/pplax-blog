@@ -106,7 +106,7 @@ export function fetchTagList() {
 
 export function featchHomeData() {
     return request({
-        url: '/v1/',
+        url: '/web/site/homeData',
         method: 'get',
     })
 }
@@ -121,7 +121,7 @@ export function getHot(type) {
 }
 export function report() {
     return request({
-        url: '/v1/report',
+        url: '/web/site/report',
         method: 'get',
     })
 }

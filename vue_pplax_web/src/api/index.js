@@ -127,7 +127,7 @@ export function report() {
 }
 export function getWebSiteInfo() {
     return request({
-        url: '/v1/webSiteInfo',
+        url: '/web/site/info',
         method: 'get',
     })
 }

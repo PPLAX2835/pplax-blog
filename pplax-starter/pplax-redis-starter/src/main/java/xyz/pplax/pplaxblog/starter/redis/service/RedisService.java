@@ -253,4 +253,13 @@ public class RedisService {
     public Long add(String key, Object... values) {
         return redisTemplate.opsForSet().add(key, values);
     }
+
+    /**
+     * 获取指定key中值的数量
+     * @param key
+     * @return
+     */
+    public Long size(String key) {
+        return redisTemplate.opsForSet().size(key);
+    }
 }

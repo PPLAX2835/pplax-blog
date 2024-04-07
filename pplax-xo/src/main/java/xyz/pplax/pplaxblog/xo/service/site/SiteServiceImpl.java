@@ -17,12 +17,14 @@ import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.Tag;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.sitesetting.SiteSettingService;
 import xyz.pplax.pplaxblog.xo.service.tag.TagService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class SiteServiceImpl implements SiteService {
@@ -35,6 +37,9 @@ public class SiteServiceImpl implements SiteService {
 
     @Autowired
     private RedisService redisService;
+
+    @Autowired
+    private SiteSettingService siteSettingService;
 
     @Override
     public ResponseResult getHomeData() {
@@ -83,6 +88,15 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     public ResponseResult getWebSiteInfo() {
-        return null;
+        Map<String, Object> data = siteSettingService.map();
+
+        Map<String, Object> extra = new HashMap<>();
+
+        //获取访问量
+        extra.put("siteAccess", Optional.ofNullable(redisService.getCacheObject(SiteRedisConstants.BLOG_VIEWS_COUNT)).orElse(0));
+        //获取访客量
+        extra.put("visitorAccess", redisService.size(SiteRedisConstants.UNIQUE_VISITOR));
+
+        return ResponseResult.success(data, extra);
     }
 }

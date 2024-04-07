@@ -280,7 +280,7 @@ export default {
         },
 
         isShow(type) {
-            return this.$store.state.webSiteInfo.loginTypeList.indexOf(type) != -1
+            // return this.$store.state.webSiteInfo.loginTypeList.indexOf(type) != -1
         },
         //Enter事件
         handkeyEnter(event) {

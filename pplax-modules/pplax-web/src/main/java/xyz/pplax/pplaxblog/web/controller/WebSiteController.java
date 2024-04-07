@@ -39,9 +39,9 @@ public class WebSiteController extends SuperController {
     }
 
     @ApiOperation(value = "网站相关信息", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
-    @GetMapping("/webSiteInfo")
-    public ResponseResult getWebSiteInfo(){
-        return siteService.getWebSiteInfo();
+    @GetMapping("/info")
+    public String getWebSiteInfo(){
+        return toJson(siteService.getWebSiteInfo());
     }
 
     @ApiOperation(value="向网站报告，记录访问数据", notes="向网站报告，记录访问数据")

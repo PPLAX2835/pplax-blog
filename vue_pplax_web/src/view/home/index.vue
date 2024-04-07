@@ -108,8 +108,8 @@
                             </div>
                             <div class="bottumItem">
                                 <div class="articleUser">
-                                    <el-avatar class="userAvatar" :src="$store.state.webSiteInfo.authorAvatar"></el-avatar>
-                                    <span>{{ $store.state.webSiteInfo.author }}</span>
+<!--                                    <el-avatar class="userAvatar" :src="$store.state.webSiteInfo.authorAvatar"></el-avatar>-->
+<!--                                    <span>{{ $store.state.webSiteInfo.author }}</span>-->
                                 </div>
 
                                 <div class="tag">
@@ -223,73 +223,73 @@
                             <li v-show="isShow(2)">
                                 <div class="guanzhu-item qq">
                                     <svg-icon icon-class="qq" />
-                                    <a class="hand-style"
-                                        :href="'//wpa.qq.com/msgrd?v=3&amp;uin=' + $store.state.webSiteInfo.qqNumber + '&amp;site=qq&amp;menu=yes'"
-                                        target="_blank">
-                                        {{ $store.state.webSiteInfo.qqNumber }}
-                                    </a>
-                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.qqNumber)"
-                                        class="copyBtn name hand-style">
-                                        QQ号
-                                    </span>
+<!--                                    <a class="hand-style"-->
+<!--                                        :href="'//wpa.qq.com/msgrd?v=3&amp;uin=' + $store.state.webSiteInfo.qqNumber + '&amp;site=qq&amp;menu=yes'"-->
+<!--                                        target="_blank">-->
+<!--                                        {{ $store.state.webSiteInfo.qqNumber }}-->
+<!--                                    </a>-->
+<!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.qqNumber)"-->
+<!--                                        class="copyBtn name hand-style">-->
+<!--                                        QQ号-->
+<!--                                    </span>-->
                                 </div>
                             </li>
                             <li v-show="isShow(6)">
                                 <div class="guanzhu-item qqgroup">
                                     <svg-icon icon-class="qqgroup" />
-                                    <a class="hand-style" href="javascript:;">
-                                        {{ $store.state.webSiteInfo.qqGroup }}
-                                    </a>
-                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.qqGroup)"
-                                        class="copyBtn name hand-style">
-                                        QQ群
-                                    </span>
+<!--                                    <a class="hand-style" href="javascript:;">-->
+<!--                                        {{ $store.state.webSiteInfo.qqGroup }}-->
+<!--                                    </a>-->
+<!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.qqGroup)"-->
+<!--                                        class="copyBtn name hand-style">-->
+<!--                                        QQ群-->
+<!--                                    </span>-->
                                 </div>
                             </li>
                             <li v-show="isShow(3)">
                                 <div class="guanzhu-item github">
                                     <svg-icon icon-class="github" />
-                                    <a class="hand-style" :href="$store.state.webSiteInfo.github" target="_blank">
-                                        {{ $store.state.webSiteInfo.github }}
-                                    </a>
-                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.github)"
-                                        class="copyBtn name hand-style">
-                                        github
-                                    </span>
+<!--                                    <a class="hand-style" :href="$store.state.webSiteInfo.github" target="_blank">-->
+<!--                                        {{ $store.state.webSiteInfo.github }}-->
+<!--                                    </a>-->
+<!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.github)"-->
+<!--                                        class="copyBtn name hand-style">-->
+<!--                                        github-->
+<!--                                    </span>-->
                                 </div>
                             </li>
                             <li v-show="isShow(4)">
                                 <div class="guanzhu-item gitee">
                                     <svg-icon icon-class="gitee" />
-                                    <a class="hand-style" :href="$store.state.webSiteInfo.gitee" target="_blank">
-                                        {{ $store.state.webSiteInfo.gitee }}
-                                    </a>
-                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.gitee)"
-                                        class="copyBtn name hand-style">
-                                        gitee
-                                    </span>
+<!--                                    <a class="hand-style" :href="$store.state.webSiteInfo.gitee" target="_blank">-->
+<!--                                        {{ $store.state.webSiteInfo.gitee }}-->
+<!--                                    </a>-->
+<!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.gitee)"-->
+<!--                                        class="copyBtn name hand-style">-->
+<!--                                        gitee-->
+<!--                                    </span>-->
                                 </div>
                             </li>
                             <li v-show="isShow(1)">
                                 <div class="guanzhu-item email">
                                     <svg-icon icon-class="email" />
-                                    <a class="hand-style" :href="'mailto:' + $store.state.webSiteInfo.email" target="_blank"
-                                        title="邮箱">
-                                        {{ $store.state.webSiteInfo.email }}
-                                    </a>
-                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.email)"
-                                        class="copyBtn name hand-style">
-                                        邮箱
-                                    </span>
+<!--                                    <a class="hand-style" :href="'mailto:' + $store.state.webSiteInfo.email" target="_blank"-->
+<!--                                        title="邮箱">-->
+<!--                                        {{ $store.state.webSiteInfo.email }}-->
+<!--                                    </a>-->
+<!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.email)"-->
+<!--                                        class="copyBtn name hand-style">-->
+<!--                                        邮箱-->
+<!--                                    </span>-->
                                 </div>
                             </li>
                             <li v-show="isShow(5)">
                                 <div class="guanzhu-item wechat">
-                                    <svg-icon icon-class="wechat" /> {{ $store.state.webSiteInfo.wechat }}
-                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.wechat)"
-                                        class="copyBtn name hand-style">
-                                        微信
-                                    </span>
+<!--                                    <svg-icon icon-class="wechat" /> {{ $store.state.webSiteInfo.wechat }}-->
+<!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.wechat)"-->
+<!--                                        class="copyBtn name hand-style">-->
+<!--                                        微信-->
+<!--                                    </span>-->
                                 </div>
                             </li>
                         </ul>
@@ -459,7 +459,7 @@ export default {
             return color;
         },
         isShow(type) {
-            return this.$store.state.webSiteInfo.showList.indexOf(type) != -1
+            // return this.$store.state.webSiteInfo.showList.indexOf(type) != -1
         },
         copy(value) {
             const clipboard = new this.Clipboard('.copyBtn', {

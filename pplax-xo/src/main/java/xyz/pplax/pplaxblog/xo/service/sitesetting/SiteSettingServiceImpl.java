@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.xo.service.sitesetting;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
@@ -9,16 +10,22 @@ import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.SiteSettingSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.SiteSettingEditDto;
+import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.mapper.SiteSettingMapper;
+import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * 站点设置 服务实现类
  */
 @Service
 public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, SiteSetting> implements SiteSettingService {
+
+    @Autowired
+    private BlogSortService blogSortService;
+
     @Override
     public List<SiteSetting> list() {
         QueryWrapper<SiteSetting> siteSettingQueryWrapper = new QueryWrapper<>();
@@ -63,6 +70,37 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         }
 
         return updateById(siteSetting);
+    }
+
+    @Override
+    public Map<String, Object> map() {
+        List<SiteSetting> siteSettingList = list();
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("introduction", new ArrayList<>());
+        res.put("badges", new ArrayList<>());
+        res.put("siteInfo", new HashMap<String, SiteSetting>());
+        res.put("categoryList", new ArrayList<>());
+
+        for (SiteSetting siteSetting : siteSettingList) {
+            switch (siteSetting.getType()) {
+                case 1:
+                    ((Map) res.get("siteInfo")).put(siteSetting.getNameEn(), siteSetting);
+                    break;
+                case 2:
+                    ((List) res.get("introduction")).add(siteSetting);
+                    break;
+                case 3:
+                    ((List) res.get("badges")).add(JSON.parseObject(siteSetting.getValue()));
+                    break;
+            }
+        }
+
+        for (BlogSort blogSort : blogSortService.list()) {
+            ((List) res.get("categoryList")).add(blogSort);
+        }
+
+        return res;
     }
 
 }

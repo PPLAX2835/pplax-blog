@@ -9,7 +9,7 @@ export function getHitokoto() {
 
 export function getSite() {
 	return service({
-		url: 'site',
+		url: '/web/site',
 		method: 'GET'
 	})
 }

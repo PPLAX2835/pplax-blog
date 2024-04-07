@@ -1,73 +1,103 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import './assets/font/iconfont.css'
+import './assets/font/iconfont.js'
 import store from './store'
-//自定义css
-import './assets/css/base.css'
-//阿里icon
-import './assets/css/icon/iconfont.css'
-//typo.css
-import "./assets/css/typo.css";
-//semantic-ui
-import 'semantic-ui-css/semantic.min.css'
-//element-ui
-import Element from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-//moment
-import './util/dateTimeFormatUtils.js'
-//v-viewer
+
+
+import "../src/icons";
+import { vueBaberrage } from 'vue-baberrage'
+Vue.use(vueBaberrage)
+
+import jsCookie from 'js-cookie'
+Vue.prototype.$cookie = jsCookie;  // 在页面里可直接用 this.$cookie 调用
+
+import VueViewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
-import Viewer from 'v-viewer'
-//directive
-import './util/directive'
-
-console.log(
-	'%c NBlog %c By Naccl %c https://github.com/Naccl/NBlog',
-	'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
-	'background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #000',
-	'background:transparent'
-)
-
-Vue.use(Element)
-Vue.use(Viewer)
-
-Vue.prototype.msgSuccess = function (msg) {
-	this.$message.success(msg)
-}
-
-Vue.prototype.msgError = function (msg) {
-	this.$message.error(msg)
-}
-
-Vue.prototype.msgInfo = function (msg) {
-	this.$message.info(msg);
-}
-
-const cubic = value => Math.pow(value, 3);
-const easeInOutCubic = value => value < 0.5 ? cubic(value * 2) / 2 : 1 - cubic((1 - value) * 2) / 2;
-//滚动至页面顶部，使用 Element-ui 回到顶部 组件中的算法
-Vue.prototype.scrollToTop = function () {
-	const el = document.documentElement
-	const beginTime = Date.now()
-	const beginValue = el.scrollTop
-	const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16))
-	const frameFunc = () => {
-		const progress = (Date.now() - beginTime) / 500;
-		if (progress < 1) {
-			el.scrollTop = beginValue * (1 - easeInOutCubic(progress))
-			rAF(frameFunc)
-		} else {
-			el.scrollTop = 0
-		}
-	}
-	rAF(frameFunc)
-}
+Vue.use(VueViewer);
 
 
-Vue.config.productionTip = false
+import element from '@/element/index'
+Vue.use(element)
 
-new Vue({
-	router,
-	store,
-	render: h => h(App)
+
+import Toast from '@/components/toast/index.vue';
+const ToastPlugin = {
+  install(Vue) {
+    Vue.prototype.$toast = new Vue(Toast).$mount();
+    document.body.appendChild(Vue.prototype.$toast.$el);
+  },
+};
+Vue.use(ToastPlugin);
+
+
+import hljs from 'highlight.js';
+
+import 'highlight.js/styles/atom-one-dark-reasonable.css' //样式
+//创建v-highlight全局指令
+Vue.directive('highlight', function (el) {
+  let blocks = el.querySelectorAll('pre code');
+  blocks.forEach((block) => {
+    hljs.highlightBlock(block)
+  })
+})
+
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
+
+import Clipboard from 'clipboard'
+Vue.prototype.Clipboard = Clipboard
+
+
+import Loading from '@/components/loading/loading';
+// 注册全局组件
+Vue.component('loading', Loading);
+
+// 创建一个 Vue 实例作为事件总线
+Vue.prototype.$bus = new Vue();
+
+import MetaInfo from 'vue-meta-info';
+Vue.use(MetaInfo)
+
+import Empty from '@/components/empty/index.vue'
+Vue.component("sy-empty", Empty);
+import pagination from '@/components/pagination/index.vue'
+Vue.component("sy-pagination", pagination);
+
+import VueLazyLoad from 'vue-lazyload'
+// 2.注册插件
+Vue.use(VueLazyLoad, {
+  preLoad: 1,
+  // 懒加载默认加载图片
+  loading: 'https://img.shiyit.com/20240123_1705973123698.gif',
+  // 加载失败后加载的图片
+  error: 'https://img.shiyit.com/20240123_1705973581037.png',
+  attempt: 1
+  // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
+  // listenEvents: [ 'scroll' ]
+})
+
+
+import router from './router'
+
+window.vm = new Vue({
+  store,
+  router,
+  render: h => h(App),
 }).$mount('#app')
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+})
+router.afterEach(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "instant"
+  });
+});
+
+

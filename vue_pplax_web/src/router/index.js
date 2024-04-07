@@ -1,82 +1,162 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import getPageTitle from '@/util/get-page-title'
-
-Vue.use(VueRouter)
-
+import Vue from "vue";
+import VueRouter from "vue-router";
+import home from '@/view/home/home'
+import store from '@/store'
+Vue.use(VueRouter);
 const routes = [
-	{
-		path: '/login',
-		component: () => import('@/views/Login'),
-		meta: {title: '登录'}
-	},
-	{
-		path: '/',
-		component: () => import('@/views/Index'),
-		redirect: '/home',
-		children: [
-			{
-				path: '/home',
-				name: 'home',
-				component: () => import('@/views/home/Home'),
-				meta: {title: '首页'}
-			},
-			{
-				path: '/archives',
-				name: 'archives',
-				component: () => import('@/views/archives/Archives'),
-				meta: {title: '归档'}
-			},
-			{
-				path: '/blog/:id',
-				name: 'blog',
-				component: () => import('@/views/blog/Blog'),
-				meta: {title: '博客'}
-			},
-			{
-				path: '/tag/:name',
-				name: 'tag',
-				component: () => import('@/views/tag/Tag'),
-				meta: {title: '标签'}
-			},
-			{
-				path: '/category/:name',
-				name: 'category',
-				component: () => import('@/views/category/Category'),
-				meta: {title: '分类'}
-			},
-			{
-				path: '/moments',
-				name: 'moments',
-				component: () => import('@/views/moments/Moments'),
-				meta: {title: '动态'}
-			},
-			{
-				path: '/friends',
-				name: 'friends',
-				component: () => import('@/views/friends/Friends'),
-				meta: {title: '友人帐'}
-			},
-			{
-				path: '/about',
-				name: 'about',
-				component: () => import('@/views/about/About'),
-				meta: {title: '关于我'}
-			}
-		]
-	}
-]
+    {
+        path: "/",
+        component: home,
+        meta: {
+            title: "拾壹博客-一个专注于技术分享的博客平台"
+        },
+        children: [
+            {
+                path: "/",
+                component: resolve => require(["@/view/home/index.vue"], resolve),
+                meta: {
+                    title: "拾壹博客-一个专注于技术分享的博客平台"
+                }
+            },
+            {
+
+                path: "/links",
+                component: resolve => require(["@/view/link/index.vue"], resolve),
+                meta: {
+                    title: "友情链接"
+                }
+            },
+            {
+                path: "/article/:articleId",
+                component: resolve => require(["@/view/article/index.vue"], resolve),
+            },
+            {
+                path: "/message",
+                component: resolve => require(["@/view/message/index.vue"], resolve),
+                meta: {
+                    title: "留言板"
+                }
+            },
+            {
+                path: "/about",
+                component: resolve => require(["@/view/about/index.vue"], resolve),
+                meta: {
+                    title: "关于本站"
+                }
+            },
+            {
+                path: "/newposts",
+                component: resolve => require(["@/view/article/Add"], resolve),
+            },
+            {
+                path: "/archive",
+                component: resolve => require(["@/view/archive/index"], resolve),
+                meta: {
+                    title: "文章归档"
+                }
+            },
+            {
+                path: "/category",
+                component: resolve => require(["@/view/category/index.vue"], resolve),
+                meta: {
+                    title: "文章分类"
+                }
+            },
+
+            {
+                path: "/tags",
+                component: resolve => require(["@/view/tag/index"], resolve),
+                meta: {
+                    title: "文章标签"
+                }
+            },
+            {
+                path: "/say",
+                component: resolve => require(["@/view/say/index"], resolve),
+                meta: {
+                    title: "说说"
+                }
+            },
+            {
+                path: "/newSays",
+                component: resolve => require(["@/view/say/Add"], resolve),
+                meta: {
+                    title: "添加说说"
+                }
+            },
+
+            {
+                path: "/im",
+                component: resolve => require(["@/view/im/index"], resolve),
+                meta: {
+                    title: "拾壹博客-一个专注于技术分享的博客平台"
+                }
+            },
+            {
+                path: "/hot",
+                component: resolve => require(["@/view/search/Hot.vue"], resolve),
+                meta: {
+                    title: "网站热搜"
+                }
+            },
+            {
+                name: "notice",
+                path: "/notice",
+                component: resolve => require(["@/view/notice/index.vue"], resolve),
+                meta: {
+                    title: "拾壹博客-一个专注于技术分享的博客平台"
+                }
+            },
+            {
+                path: "/navigation",
+                component: resolve => require(["@/view/navigation/index.vue"], resolve),
+                meta: {
+                    title: "网站导航"
+                }
+            },
+            {
+                path: "/user",
+                component: resolve => require(["@/view/user/index.vue"], resolve),
+                meta: {
+                    title: "拾壹博客-一个专注于技术分享的博客平台"
+                }
+            },
+
+        ],
+    },
+    {
+        path: "*",
+        name: "NotFound",
+        component: () => import("@/view/404/404.vue"),
+    }
+];
 
 const router = new VueRouter({
-	mode: 'history',
-	base: process.env.BASE_URL,
-	routes
-})
+    mode: "history",
+    scrollBehavior: () => ({ y: 0 }),
+    routes
+});
+// 获取原型对象push函数
+const originalPush = VueRouter.prototype.push
 
-//挂载路由守卫
+// 获取原型对象replace函数
+const originalReplace = VueRouter.prototype.replace
+
+// 修改原型对象中的push函数
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
+
+// 修改原型对象中的replace函数
+VueRouter.prototype.replace = function replace(location) {
+    return originalReplace.call(this, location).catch(err => err)
+}
+
 router.beforeEach((to, from, next) => {
-	document.title = getPageTitle(to.meta.title)
-	next()
+    store.state.searchDialogVisible = false;
+    if (to.meta.title) {
+        document.title = to.meta.title
+    }
+    next()
 })
-
-export default router
+export default router;

@@ -4,15 +4,104 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="丢了">
-      <change afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/sitesetting/SiteSettingFeignClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SiteController.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="做分支吧，这个当个人的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/WebApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/WebApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/sitesetting/SiteSettingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/util/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/util/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SiteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.env.dev" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.env.prod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/avatar.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/comment-avatar/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/error.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/header/wave1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/header/wave2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/paper-plane.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/qr.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/img/reward.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/lib/css/prism.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/lib/js/Meting.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/lib/js/prism.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/about.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/archives.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/category.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/comment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/friend.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/moment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/tag.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/badge.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/icon/iconfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/assets/css/typo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/base/EStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/base/HttpStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/common/reg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/blog/BlogItem.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/blog/BlogList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/blog/Pagination.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Comment.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/CommentForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/CommentList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Pagination.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/index/BlogPasswordDialog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/index/Footer.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/index/Header.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/index/Nav.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/sidebar/Introduction.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/sidebar/RandomBlog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/sidebar/Tags.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/sidebar/Tocbot.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/plugins/aruMapper.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/plugins/axios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/plugins/paopaoMapper.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/plugins/tvMapper.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/router/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/settings.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/store/actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/store/getters.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/store/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/store/mutations-types.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/store/mutations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/store/state.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/util/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/util/dateTimeFormatUtils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/util/directive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/util/get-page-title.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/util/request.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/Index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/Login.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/about/About.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/archives/Archives.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/blog/Blog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/category/Category.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/friends/Friends.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/home/Home.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/moments/Moments.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/views/tag/Tag.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +122,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="PPLAX" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -339,13 +428,7 @@
       <workItem from="1711782192613" duration="16273000" />
       <workItem from="1711847768291" duration="242000" />
       <workItem from="1711848030119" duration="17005000" />
-    </task>
-    <task id="LOCAL-00307" summary="用户管理修改查询条件">
-      <created>1709952466911</created>
-      <option name="number" value="00307" />
-      <option name="presentableId" value="LOCAL-00307" />
-      <option name="project" value="LOCAL" />
-      <updated>1709952466911</updated>
+      <workItem from="1712453221984" duration="1576000" />
     </task>
     <task id="LOCAL-00308" summary="调整菜单">
       <created>1709952836449</created>
@@ -683,7 +766,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711876597091</updated>
     </task>
-    <option name="localTasksCounter" value="356" />
+    <task id="LOCAL-00356" summary="做分支吧，这个当个人的">
+      <created>1712453284944</created>
+      <option name="number" value="00356" />
+      <option name="presentableId" value="LOCAL-00356" />
+      <option name="project" value="LOCAL" />
+      <updated>1712453284944</updated>
+    </task>
+    <option name="localTasksCounter" value="357" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +795,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="PPLAX" />
+                        <option value="community" />
                       </list>
                     </value>
                   </entry>
@@ -718,7 +808,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="实现博客的增改，去除file_storage表的userUid字段，调整文件存储的目录结构" />
     <MESSAGE value="修复tag可以反复添加相同名称的数据的问题&#10;更新用户信息后端添加用户名检查" />
     <MESSAGE value="简单调整" />
     <MESSAGE value="优化编辑博客内容时的临时保存功能" />
@@ -743,7 +832,8 @@
     <MESSAGE value="增加前台服务" />
     <MESSAGE value="修改序列化问题" />
     <MESSAGE value="丢了" />
-    <option name="LAST_COMMIT_MESSAGE" value="丢了" />
+    <MESSAGE value="做分支吧，这个当个人的" />
+    <option name="LAST_COMMIT_MESSAGE" value="做分支吧，这个当个人的" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

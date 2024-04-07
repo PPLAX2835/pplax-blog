@@ -1,27 +1,30 @@
-import service from '../util/request'
+import request from '@/utils/request'
 
-export function getCommentListByQuery(token, query) {
-	return service({
-		url: 'comments',
-		method: 'GET',
-		headers: {
-			Authorization: token,
-		},
-		params: {
-			...query
-		}
-	})
+export function featchComments(params) {
+    return request({
+        url: '/v1/comment/',
+        method: 'get',
+        params: params
+    })
+}
+export function getMyComment(params) {
+    return request({
+        url: '/v1/comment/getMyComment',
+        method: 'get',
+        params: params
+    })
+}
+export function newArticle() {
+    return request({
+        url: '/v1/upToDateArticle',
+        method: 'get',
+    })
 }
 
-export function submitComment(token, form) {
-	return service({
-		url: 'comment',
-		method: 'POST',
-		headers: {
-			Authorization: token,
-		},
-		data: {
-			...form
-		}
-	})
+export function postComment(data) {
+    return request({
+        url: '/v1/comment/',
+        method: 'post',
+        data
+    })
 }

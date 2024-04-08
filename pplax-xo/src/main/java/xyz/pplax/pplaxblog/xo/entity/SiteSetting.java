@@ -32,10 +32,5 @@ public class SiteSetting extends SuperEntity {
 	 */
 	private String value;
 
-	/**
-	 * 类型 1基础设置，2页脚徽标，3资料卡，4友链信息
-	 */
-	private Integer type;
-
 	public SiteSetting() {}
 }

@@ -1,75 +1,23 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :span="12">
         <el-card>
-          <div slot="header">
-            <span>基础设置</span>
-          </div>
           <el-form label-position="right" label-width="100px">
-            <el-form-item :label="item.nameZh" v-for="item in typeMap.baseSetting" :key="item.uid">
-              <el-upload v-if="item.nameEn === 'siteLogo'" action="" class="avatar-uploader" :show-file-list="false"
-                         :before-upload="uploadBefore" :http-request="uploadSectionAvatar" :data="item">
-                <img v-if="JSON.parse(item.value) !== undefined && JSON.parse(item.value).fileUrl !== undefined" :src="JSON.parse(item.value).fileUrl" class="avatar" alt="">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
-              <el-input v-else v-model="item.value" size="mini" @blur="submit(item)"></el-input>
+            <el-form-item :label="item.nameZh" v-for="item in settingList" :key="item.uid">
+              <el-col :span="8">
+                <el-upload v-if="item.nameEn === 'siteLogo'" action="" class="avatar-uploader" :show-file-list="false"
+                           :before-upload="uploadBefore" :http-request="uploadSectionAvatar" :data="item">
+                  <img v-if="JSON.parse(item.value) !== undefined && JSON.parse(item.value).fileUrl !== undefined" :src="JSON.parse(item.value).fileUrl" class="avatar" alt="">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+                <el-input v-else v-model="item.value" size="mini" @blur="submit(item)"></el-input>
+              </el-col>
+              <el-col :span="3">
+                <el-button type="danger">删除</el-button>
+              </el-col>
             </el-form-item>
           </el-form>
         </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card>
-          <div slot="header">
-            <span>资料卡</span>
-          </div>
-          <el-form label-position="right" label-width="100px">
-            <el-form-item :label="item.nameZh" v-for="item in typeMap.card" :key="item.uid">
-              <div v-if="item.nameEn==='favorite'">
-                <el-col :span="20">
-                  <el-input v-model="item.value" size="mini" @blur="submit(item)"></el-input>
-                </el-col>
-                <el-col :span="4">
-                  <el-button type="danger" size="mini" icon="el-icon-delete" @click="deleteFavorite(item)">删除</el-button>
-                </el-col>
-              </div>
-              <div v-else>
-                <el-input v-model="item.value" size="mini" @blur="submit(item)"></el-input>
-              </div>
-            </el-form-item>
-            <el-button type="primary" size="mini" icon="el-icon-plus" @click="addFavorite">添加自定义</el-button>
-          </el-form>
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <el-row style="margin-top: 20px">
-      <el-card>
-        <div slot="header">
-          <span>页脚徽标</span>
-        </div>
-        <el-form :inline="true" v-for="badge in typeMap.footer" :key="badge.uid">
-          <el-form-item label="title">
-            <el-input v-model="JSON.parse(badge.value).title" size="mini" @blur="submit(badge)"></el-input>
-          </el-form-item>
-          <el-form-item label="url">
-            <el-input v-model="JSON.parse(badge.value).url" size="mini" @blur="submit(badge)"></el-input>
-          </el-form-item>
-          <el-form-item label="subject">
-            <el-input v-model="JSON.parse(badge.value).subject" size="mini" @blur="submit(badge)"></el-input>
-          </el-form-item>
-          <el-form-item label="value">
-            <el-input v-model="JSON.parse(badge.value).value" size="mini" @blur="submit(badge)"></el-input>
-          </el-form-item>
-          <el-form-item label="color">
-            <el-input v-model="JSON.parse(badge.value).color" size="mini" @blur="submit(badge)"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="danger" size="mini" icon="el-icon-delete" @click="deleteBadge(badge)">删除</el-button>
-          </el-form-item>
-        </el-form>
-        <el-button type="primary" size="mini" icon="el-icon-plus" @click="addBadge">添加 badge</el-button>
-      </el-card>
     </el-row>
   </div>
 </template>
@@ -84,12 +32,7 @@ export default {
   data() {
     return {
       deleteIds: [],
-      typeMap: {
-        baseSetting: [],
-        footer: [],
-        card: [],
-        link: []
-      },
+      settingList: [],
     }
   },
   created() {
@@ -97,25 +40,8 @@ export default {
   },
   methods: {
     getData() {
-      this.typeMap = {
-        baseSetting: [],
-        footer: [],
-        card: [],
-        link: []
-      }
       getSiteSettingList().then(res => {
-        for (let i = 0; i < res.data.length; i++) {
-          if (res.data[i].type === 1) {
-            this.typeMap.baseSetting.push(res.data[i])
-          } else if (res.data[i].type === 2) {
-            this.typeMap.card.push(res.data[i])
-          } else if (res.data[i].type === 3) {
-            this.typeMap.footer.push(res.data[i])
-          } else if (res.data[i].type === 4) {
-            this.typeMap.link.push(res.data[i])
-          }
-        }
-        console.log(this.typeMap)
+        this.settingList = res.data
       })
     },
     /**

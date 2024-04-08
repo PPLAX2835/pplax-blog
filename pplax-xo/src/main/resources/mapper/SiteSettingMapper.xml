@@ -8,7 +8,6 @@
         <result column="name_en" property="nameEn" />
         <result column="name_zh" property="nameZh" />
         <result column="value" property="value" />
-        <result column="type" property="type" />
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -16,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `name_en`, `name_zh`, `value`, `type`, `status`, `create_time`, `update_time`
+        `uid`, `name_en`, `name_zh`, `value`, `status`, `create_time`, `update_time`
     </sql>
 
 

@@ -49,7 +49,6 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         siteSetting.setUid(StringUtils.getUUID());
         siteSetting.setNameEn(siteSettingEditDto.getNameEn());
         siteSetting.setNameZh(siteSettingEditDto.getNameZh());
-        siteSetting.setType(siteSettingEditDto.getType());
         if ((siteSettingEditDto.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
             siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSettingEditDto.getValue())));
         }
@@ -64,7 +63,6 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         siteSetting.setUid(siteSettingEditDto.getUid());
         siteSetting.setNameEn(siteSettingEditDto.getNameEn());
         siteSetting.setNameZh(siteSettingEditDto.getNameZh());
-        siteSetting.setType(siteSettingEditDto.getType());
         if ((siteSettingEditDto.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
             siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSettingEditDto.getValue())));
         }
@@ -77,27 +75,8 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         List<SiteSetting> siteSettingList = list();
 
         Map<String, Object> res = new HashMap<>();
-        res.put("introduction", new ArrayList<>());
-        res.put("badges", new ArrayList<>());
-        res.put("siteInfo", new HashMap<String, SiteSetting>());
-        res.put("categoryList", new ArrayList<>());
-
         for (SiteSetting siteSetting : siteSettingList) {
-            switch (siteSetting.getType()) {
-                case 1:
-                    ((Map) res.get("siteInfo")).put(siteSetting.getNameEn(), siteSetting);
-                    break;
-                case 2:
-                    ((List) res.get("introduction")).add(siteSetting);
-                    break;
-                case 3:
-                    ((List) res.get("badges")).add(JSON.parseObject(siteSetting.getValue()));
-                    break;
-            }
-        }
-
-        for (BlogSort blogSort : blogSortService.list()) {
-            ((List) res.get("categoryList")).add(blogSort);
+            res.put(siteSetting.getNameEn(), siteSetting);
         }
 
         return res;

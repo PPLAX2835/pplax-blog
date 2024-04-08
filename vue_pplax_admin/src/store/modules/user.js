@@ -34,7 +34,7 @@ const user = {
       return new Promise((resolve, reject) => {
 
         login(loginForm).then(response => {
-          const data = response.data
+          const data = response.extra
           // 存token
           setToken('Bearer ' + data.access_token)
           // 存用户uid

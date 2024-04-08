@@ -16,6 +16,5 @@ public final class SiteSettingSQLConstants extends BaseSQLConstants {
 	public final static String NAME_EN = "t_site_setting.name_en";
 	public final static String NAME_ZH = "t_site_setting.name_zh";
 	public final static String VALUE = "t_site_setting.value";
-	public final static String TYPE = "t_site_setting.type";
 
 }

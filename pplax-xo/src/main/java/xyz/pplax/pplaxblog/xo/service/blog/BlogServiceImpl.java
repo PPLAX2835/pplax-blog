@@ -60,13 +60,23 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     private UserInfoService userInfoService;
 
     @Override
-    public IPage<Blog> listByBlogSort(String blogSortUid, Long currentPage, Long pageSize) {
+    public IPage<Blog> listByBlogSort(String blogSortUid, String orderByDesc, Long currentPage, Long pageSize) {
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         if (!StringUtils.isEmpty(blogSortUid)) {
             blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
         }
-        blogQueryWrapper.orderByDesc(BlogSQLConstants.CREATE_TIME);
+        blogQueryWrapper.orderByAsc("case when status = " + EStatus.STICK.getStatus() + " then 1 else 2 end");
+        if (!StringUtils.isEmpty(orderByDesc)) {
+            switch (orderByDesc) {
+                case "createTime":
+                    blogQueryWrapper.orderByDesc(BlogSQLConstants.CREATE_TIME);
+                    break;
+                case "quantity":
+                    blogQueryWrapper.orderByDesc(BlogSQLConstants.QUANTITY);
+                    break;
+            }
+        }
 
         //分页
         Page<Blog> page = new Page<>();

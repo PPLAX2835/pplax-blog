@@ -4,12 +4,12 @@
             <div class="left">
                 <div class="tag-box">
                     <div class="tag-title">
-                        <svg-icon icon-class="category"></svg-icon> 分类({{ categoryList.length }})
+                        <svg-icon icon-class="category"></svg-icon> 分类({{ blogSortList.length }})
                     </div>
                     <div class="tag-list">
                         <a ref="tag" :style="{ fontSize: tag.font }"
                             :class="handleChoose(tag, index) ? 'tag-option hand-style active' : 'tag-option hand-style'"
-                            @click="handleClick(tag.id, index)" v-for="(tag, index) in categoryList" :key="index">
+                            @click="handleClick(tag.uid, index)" v-for="(tag, index) in blogSortList" :key="index">
                             {{ tag.name }} <span class="num">{{ tag.articleNum }}</span>
                         </a>
                     </div>
@@ -55,7 +55,7 @@
    
 <script>
 import SiteInfo from '@/components/site/index.vue'
-import { fetchArticleList, featchCategory } from '@/api'
+import {fetchBlogList, featchBlogSortList} from '@/api'
 export default {
     name: 'tag',
     components: {
@@ -63,7 +63,7 @@ export default {
     },
     data() {
         return {
-            categoryList: [],
+          blogSortList: [],
             articleList: [],
             tagStyle: ['', 'success', 'info', 'warning', 'danger'],
             pages: 0,
@@ -76,9 +76,9 @@ export default {
         }
     },
     created() {
-        this.getCategoryList()
+        this.getBlogSortList()
         if (this.pageData.categoryId != null) {
-            this.fetchArticleList()
+            this.fetchBlogList()
         }
     },
     methods: {
@@ -101,24 +101,24 @@ export default {
             this.pageData.currentPage = 1
             this.pageData.categoryId = id
             this.articleList = []
-            this.fetchArticleList()
+            this.fetchBlogList()
         },
         // 分页
         handlePage(val) {
             this.pageData.currentPage = val;
-            this.fetchArticleList()
+            this.fetchBlogList()
         },
-        getCategoryList() {
-            featchCategory().then(res => {
-                this.categoryList = res.data
-                for (var i = 0; i < this.categoryList.length; i++) {
-                    this.categoryList[i].font = Math.floor(Math.random() * 10) + 10 + "px"
+        getBlogSortList() {
+            featchBlogSortList().then(res => {
+                this.blogSortList = res.data
+                for (var i = 0; i < this.blogSortList.length; i++) {
+                    this.blogSortList[i].font = Math.floor(Math.random() * 10) + 10 + "px"
                 }
             })
         },
-        fetchArticleList() {
-            this.$bus.$emit('show');
-            fetchArticleList(this.pageData).then(res => {
+        fetchBlogList() {
+                this.$bus.$emit('show');
+                fetchBlogList(this.pageData).then(res => {
                 this.articleList.push(...res.data.records)
                 this.pages = res.data.pages
                 this.$bus.$emit('close');

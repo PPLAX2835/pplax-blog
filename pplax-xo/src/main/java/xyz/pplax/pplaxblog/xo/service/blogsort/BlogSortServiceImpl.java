@@ -100,6 +100,14 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         return pageList;
     }
 
+    @Override
+    public List<BlogSort> list() {
+        QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
+        blogSortQueryWrapper.ne(BlogSortSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+
+        return list(blogSortQueryWrapper);
+    }
+
     /**
      * 对分类进行置顶
      * @param blogSortUid

@@ -16,6 +16,8 @@ public interface BlogSortService extends SuperService<BlogSort> {
 
     IPage<BlogSort> list(BlogSortGetListDto blogSortGetListDto);
 
+    List<BlogSort> list();
+
     Boolean promote(String blogSortUid);
 
     Boolean promoteCancel(String blogSortUid);

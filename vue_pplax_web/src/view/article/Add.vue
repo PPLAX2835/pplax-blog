@@ -70,7 +70,7 @@
                         </el-form-item>
                         <el-form-item label="文章分类" prop="categoryId">
                             <el-select v-model="article.categoryId" placeholder="请选择分类">
-                                <el-option v-for="item in categoryList" :key="item.id" :label="item.name" :value="item.id">
+                                <el-option v-for="item in blogSortList" :key="item.uid" :label="item.sortName" :value="item.uid">
                                 </el-option>
                             </el-select>
                         </el-form-item>
@@ -111,7 +111,7 @@
     </div>
 </template>
 <script>
-import { upload, featchCategory, insertArticle, updateArticle, getMyArticleInfo, fetchTagList, readMarkdownFile } from '@/api'
+import { upload, featchBlogSortList, insertArticle, updateArticle, getMyArticleInfo, fetchTagList, readMarkdownFile } from '@/api'
 export default {
     data() {
         return {
@@ -120,7 +120,7 @@ export default {
                 avatar: "",
                 title: ""
             },
-            categoryList: [],
+          blogSortList: [],
             dialogVisible: false,
             loading: [],
             img: process.env.VUE_APP_IMG_API,
@@ -171,8 +171,8 @@ export default {
                 this.article = res.data
             })
         }
-        featchCategory().then(res => {
-            this.categoryList = res.data
+        featchBlogSortList().then(res => {
+            this.blogSortList = res.data
         })
         fetchTagList().then(res => {
             this.tagList = res.data

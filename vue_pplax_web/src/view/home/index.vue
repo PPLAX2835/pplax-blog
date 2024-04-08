@@ -58,7 +58,7 @@
                     <el-tab-pane class="categoryItem" v-for="(item, index) in blogSortList" :name="index + ''" :key="index">
                         <span slot="label">
                             <i :class="item.icon"></i>
-                            {{ item.name }}
+                            {{ item.sortName }}
                         </span>
                     </el-tab-pane>
                 </el-tabs>
@@ -116,7 +116,7 @@
                                 <div class="tag">
                                     <el-tooltip class="item" effect="dark" content="文章分类" placement="top">
                                         <el-tag size="mini" class="hand-style"
-                                            @click="handleClike(item.categoryId, '/category')">
+                                            @click="handleClike(item.uid, '/category')">
                                             <i class=" el-icon-folder-opened"></i> {{ item.blogSort.sortName }}
                                         </el-tag>
                                     </el-tooltip>
@@ -328,7 +328,7 @@
 </template>
 
 <script>
-import { fetchBlogList, featchHomeData, featchCategory } from '@/api'
+import { fetchBlogList, featchHomeData, featchBlogSortList } from '@/api'
 import { getSayList } from '@/api/say'
 import {EStatus} from "@/base/EStatus";
 import SiteInfo from '@/components/site/index.vue'
@@ -363,13 +363,13 @@ export default {
             blogSortList: [
                 {
                     id: null,
-                    name: "最新",
+                    sortName: "最新",
                     icon: "el-icon-news",
-                    desc: "create_time"
+                    desc: "createTime"
                 },
                 {
                     id: null,
-                    name: "最热",
+                    sortName: "最热",
                     icon: "el-icon-tableware",
                     desc: "quantity"
                 }
@@ -485,8 +485,8 @@ export default {
 
             let item = this.blogSortList[tab.index]
             this.pageData.currentPage = 1
-            this.pageData.categoryId = item.uid
-            this.pageData.orderByDescColumn = item.desc
+            this.pageData.blogSortUid = item.uid
+            this.pageData.orderByDesc = item.desc
             fetchBlogList(this.pageData).then(res => {
                 this.blogList = res.data;
                 this.pages = res.data.pages
@@ -512,7 +512,7 @@ export default {
             })
         },
         fetchBlogSortList() {
-            featchCategory().then(res => {
+            featchBlogSortList().then(res => {
                 this.blogSortList.push(...res.data)
             })
         },

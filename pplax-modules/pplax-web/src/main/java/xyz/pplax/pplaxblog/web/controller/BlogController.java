@@ -38,10 +38,11 @@ public class BlogController extends SuperController {
     @GetMapping("/list")
     public String getBlogList(
             @RequestParam(value = "blogSortUid", required = false) String blogSortUid,
+            @RequestParam(value = "orderByDesc", required = false) String orderByDesc,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        return success(blogService.listByBlogSort(blogSortUid, currentPage, pageSize).getRecords());
+        return success(blogService.listByBlogSort(blogSortUid, orderByDesc, currentPage, pageSize).getRecords());
     }
 
 

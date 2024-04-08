@@ -27,7 +27,6 @@ export default {
     name: '',
     data() {
         return {
-            categoryList: [],
             navigationList: [],
             siteId: null,
         }

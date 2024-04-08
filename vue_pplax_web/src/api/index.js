@@ -232,9 +232,9 @@ export function upload(data) {
         data
     })
 }
-export function featchCategory() {
+export function featchBlogSortList() {
     return request({
-        url: '/v1/category/',
+        url: '/web/blogSort/list',
         method: 'get'
     })
 }

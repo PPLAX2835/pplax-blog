@@ -94,6 +94,9 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             // 获得分类
             item.setBlogSort(blogSortService.getById(item.getBlogSortUid()));
 
+            // 获得封面图
+            item.setCoverImage(fileStorageService.getById(item.getCoverImageUid()));
+
             // 获得点赞量和评论量
             QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
             commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());

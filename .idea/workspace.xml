@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="根据分类显示文章列表">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogSortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/article/Add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/article/Add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/category/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/category/index.vue" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/navigation/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/navigation/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -346,14 +335,7 @@
       <workItem from="1712453221984" duration="13710000" />
       <workItem from="1712536925489" duration="2258000" />
       <workItem from="1712539648498" duration="26000" />
-      <workItem from="1712539697140" duration="9319000" />
-    </task>
-    <task id="LOCAL-00315" summary="分类编辑功能实现">
-      <created>1710037695312</created>
-      <option name="number" value="00315" />
-      <option name="presentableId" value="LOCAL-00315" />
-      <option name="project" value="LOCAL" />
-      <updated>1710037695313</updated>
+      <workItem from="1712539697140" duration="9513000" />
     </task>
     <task id="LOCAL-00316" summary="用户这里显示了一下状态的字段">
       <created>1710038035952</created>
@@ -691,7 +673,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712562516283</updated>
     </task>
-    <option name="localTasksCounter" value="364" />
+    <task id="LOCAL-00364" summary="根据分类显示文章列表">
+      <created>1712565550596</created>
+      <option name="number" value="00364" />
+      <option name="presentableId" value="LOCAL-00364" />
+      <option name="project" value="LOCAL" />
+      <updated>1712565550596</updated>
+    </task>
+    <option name="localTasksCounter" value="365" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -726,7 +715,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成菜单管理" />
     <MESSAGE value="角色的增删改做完了，接下来弄权限管理" />
     <MESSAGE value="实现角色管理" />
     <MESSAGE value="实现友情链接管理" />
@@ -751,7 +739,8 @@
     <MESSAGE value="调整站点配置，修复因为ResponseResult增加字段导致的后台登录失败的bug" />
     <MESSAGE value="修改站点设置管理的布局" />
     <MESSAGE value="优化站点管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化站点管理" />
+    <MESSAGE value="根据分类显示文章列表" />
+    <option name="LAST_COMMIT_MESSAGE" value="根据分类显示文章列表" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,24 +1,30 @@
 <template>
   <div>
-    <el-row :gutter="20">
-        <el-card>
-          <el-form label-position="right" label-width="100px">
-            <el-form-item :label="item.nameZh" v-for="item in settingList" :key="item.uid">
-              <el-col :span="8">
-                <el-upload v-if="item.nameEn === 'siteLogo'" action="" class="avatar-uploader" :show-file-list="false"
-                           :before-upload="uploadBefore" :http-request="uploadSectionAvatar" :data="item">
-                  <img v-if="JSON.parse(item.value) !== undefined && JSON.parse(item.value).fileUrl !== undefined" :src="JSON.parse(item.value).fileUrl" class="avatar" alt="">
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-                <el-input v-else v-model="item.value" size="mini" @blur="submit(item)"></el-input>
+      <el-card v-for="item in settingList" :key="item.uid">
+        <el-form label-position="right" label-width="100px" >
+            <el-row>
+              <el-col :span="10">
+                <el-form-item label="中文名">
+                  <el-input v-model="item.nameZh" size="mini" @blur="submit(item)"></el-input>
+                </el-form-item>
+                <el-form-item label="英文名">
+                  <el-input v-model="item.nameEn" size="mini" @blur="submit(item)"></el-input>
+                </el-form-item>
+                <el-form-item label="值">
+                  <el-upload v-if="item.nameEn === 'siteLogo'" action="" class="avatar-uploader" :show-file-list="false"
+                             :before-upload="uploadBefore" :http-request="uploadSectionLogo" :data="item">
+                    <img v-if="JSON.parse(item.value) !== undefined && JSON.parse(item.value).fileUrl !== undefined" :src="JSON.parse(item.value).fileUrl" class="avatar" alt="">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  </el-upload>
+                  <el-input v-else v-model="item.value" size="mini" @blur="submit(item)"></el-input>
+                </el-form-item>
               </el-col>
-              <el-col :span="3">
-                <el-button type="danger">删除</el-button>
-              </el-col>
-            </el-form-item>
-          </el-form>
-        </el-card>
-    </el-row>
+            </el-row>
+            <el-row>
+              <el-button @click="deleteSetting(item)" type="danger">删除</el-button>
+            </el-row>
+        </el-form>
+      </el-card>
   </div>
 </template>
 
@@ -62,10 +68,10 @@ export default {
       return isImage && isLt2M;
     },
     /**
-     * 头像上传
+     * Logo上传
      * @param param
      */
-    uploadSectionAvatar: function (param) {
+    uploadSectionLogo: function (param) {
       let file = param.file
       // FormData 对象
       var formData = new FormData()
@@ -99,13 +105,13 @@ export default {
         }
       })
     },
-    deleteFavorite(favorite) {
+    deleteSetting(item) {
       this.$confirm('是否确定删除？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'error'
       }).then(() => {
-        deleteSiteSetting(favorite.uid).then(resp => {
+        deleteSiteSetting(item.uid).then(resp => {
           this.$message.success('删除成功');
           this.getData()
         })

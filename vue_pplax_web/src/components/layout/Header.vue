@@ -9,7 +9,7 @@
                             style="width: 50px;border-radius: 50%; height: 50px;border: 1px solid var(--border-line);"
                             :src="$store.state.webSiteInfo.logo">
                         </el-image>
-                        <span class="name">拾壹博客</span>
+                        <span class="name">pplax blog</span>
                     </router-link>
 
                 </div>

@@ -5,10 +5,10 @@
             <el-row>
               <el-col :span="10">
                 <el-form-item label="中文名">
-                  <el-input v-model="item.nameZh" size="mini" @blur="submit(item)"></el-input>
+                  <el-input v-model="item.nameZh" size="mini"></el-input>
                 </el-form-item>
                 <el-form-item label="英文名">
-                  <el-input v-model="item.nameEn" size="mini" @blur="submit(item)"></el-input>
+                  <el-input v-model="item.nameEn" size="mini"></el-input>
                 </el-form-item>
                 <el-form-item label="值">
                   <el-upload v-if="item.nameEn === 'siteLogo'" action="" class="avatar-uploader" :show-file-list="false"
@@ -16,15 +16,17 @@
                     <img v-if="JSON.parse(item.value) !== undefined && JSON.parse(item.value).fileUrl !== undefined" :src="JSON.parse(item.value).fileUrl" class="avatar" alt="">
                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                   </el-upload>
-                  <el-input v-else v-model="item.value" size="mini" @blur="submit(item)"></el-input>
+                  <el-input v-else v-model="item.value" size="mini"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
             <el-row>
+              <el-button @click="submit(item)" >保存</el-button>
               <el-button @click="deleteSetting(item)" type="danger">删除</el-button>
             </el-row>
         </el-form>
       </el-card>
+      <el-button @click="addSetting(item)" type="warning">新增配置</el-button>
   </div>
 </template>
 
@@ -83,26 +85,11 @@ export default {
         this.submit(param.data)
       })
     },
-    addFavorite() {
-      this.typeMap.card.push({
-        nameEn: "favorite",
-        nameZh: "自定义",
-        type: 2,
-        value: "{\"title\":\"\",\"content\":\"\"}"
-      })
-    },
-    addBadge() {
-      this.typeMap.footer.push({
-        nameEn: "badge",
-        nameZh: "徽标",
-        type: 3,
-        value: {
-          color: "",
-          subject: "",
-          title: "",
-          url: "",
-          value: ""
-        }
+    addSetting() {
+      this.settingList.push({
+        nameEn: "",
+        nameZh: "",
+        value: ""
       })
     },
     deleteSetting(item) {
@@ -117,26 +104,15 @@ export default {
         })
       })
     },
-    deleteBadge(badge) {
-
-      this.$confirm('是否确定删除？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'error'
-      }).then(() => {
-        deleteSiteSetting(badge.uid).then(resp => {
-          this.$message.success('删除成功');
-          this.getData()
-        })
-      })
-    },
     submit(item) {
       if (item.uid === undefined) {
         addSiteSetting(item).then(res => {
+          this.$message.success('保存成功');
           this.getData()
         })
       } else {
         updateSiteSetting(item.uid, item).then(res => {
+          this.$message.success('保存成功');
         })
       }
     }

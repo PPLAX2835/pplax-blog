@@ -51,6 +51,8 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         siteSetting.setNameZh(siteSettingEditDto.getNameZh());
         if ((siteSettingEditDto.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
             siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSettingEditDto.getValue())));
+        } else {
+            siteSetting.setValue(siteSettingEditDto.getValue());
         }
 
         return save(siteSetting);
@@ -65,6 +67,8 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         siteSetting.setNameZh(siteSettingEditDto.getNameZh());
         if ((siteSettingEditDto.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
             siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSettingEditDto.getValue())));
+        } else {
+            siteSetting.setValue(siteSettingEditDto.getValue());
         }
 
         return updateById(siteSetting);

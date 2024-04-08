@@ -40,7 +40,7 @@
                     </div>
                     <!-- 分页按钮 -->
                     <div>
-                        <sy-pagination :pageNo="pageData.pageNo" :pages="pages" @changePage="handlePage" />
+                        <sy-pagination :pageNo="pageData.currentPage" :pages="pages" @changePage="handlePage" />
                     </div>
                 </div>
                 <sy-empty v-else message="此分类下暂无发布文章" />
@@ -69,7 +69,7 @@ export default {
             pages: 0,
             lastIndex: null,
             pageData: {
-                pageNo: 1,
+                currentPage: 1,
                 pageSize: 8,
                 categoryId: this.$route.query.id,
             }
@@ -98,14 +98,14 @@ export default {
                 this.$refs.tag[this.lastIndex].className = 'tag-option hand-style '
             }
             this.lastIndex = index
-            this.pageData.pageNo = 1
+            this.pageData.currentPage = 1
             this.pageData.categoryId = id
             this.articleList = []
             this.fetchArticleList()
         },
         // 分页
         handlePage(val) {
-            this.pageData.pageNo = val;
+            this.pageData.currentPage = val;
             this.fetchArticleList()
         },
         getCategoryList() {

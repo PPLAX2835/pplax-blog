@@ -57,7 +57,7 @@ public class SiteServiceImpl implements SiteService {
         Map<String,Object> extra = new HashMap<>();
         extra.put("bannerList", bannerBlogList);
         extra.put("tagList", tagIPage.getRecords());
-        extra.put("newArticleList", notByBannerNewIpage.getRecords());
+        extra.put("newBlogList", notByBannerNewIpage.getRecords());
 
         return ResponseResult.success(extra);
     }

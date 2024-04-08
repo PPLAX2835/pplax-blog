@@ -50,6 +50,5 @@ public class WebSiteController extends SuperController {
         return toJson(siteService.report(httpServletRequest));
     }
 
-
 }
 

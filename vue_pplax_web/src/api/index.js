@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function fetchArticleList(params) {
+export function fetchBlogList(params) {
     return request({
-        url: '/v1/article/',
+        url: '/web/blog/list',
         method: 'get',
         params: params
     })

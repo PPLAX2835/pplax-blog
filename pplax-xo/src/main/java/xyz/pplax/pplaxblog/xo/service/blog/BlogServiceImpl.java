@@ -10,16 +10,19 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.RelativeDateFormat;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.CommentSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.BlogMapper;
 import xyz.pplax.pplaxblog.xo.service.blogcontent.BlogContentService;
 import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
+import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
 import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.tag.TagService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
@@ -51,7 +54,58 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     private UserService userService;
 
     @Autowired
+    private CommentService commentService;
+
+    @Autowired
     private UserInfoService userInfoService;
+
+    @Override
+    public IPage<Blog> listByBlogSort(String blogSortUid, Long currentPage, Long pageSize) {
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        if (!StringUtils.isEmpty(blogSortUid)) {
+            blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
+        }
+        blogQueryWrapper.orderByDesc(BlogSQLConstants.CREATE_TIME);
+
+        //分页
+        Page<Blog> page = new Page<>();
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
+
+        IPage<Blog> pageList = page(page, blogQueryWrapper);
+
+        pageList.getRecords().forEach(item ->{
+            // 获得标签
+            String[] tagUids = item.getTagUids().split(",");
+            List<String> tagUidList = Arrays.asList(tagUids);
+            item.setTagList(tagService.listByIds(tagUidList));
+
+            // 获得分类
+            item.setBlogSort(blogSortService.getById(item.getBlogSortUid()));
+
+            // 获得点赞量和评论量
+            QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+            commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
+
+            long likeCount = commentService.count(commentQueryWrapper);
+
+            commentQueryWrapper = new QueryWrapper<>();
+            commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+
+            long commentCount = commentService.count(commentQueryWrapper);
+
+            item.setLikeCount(likeCount);
+            item.setCommentCount(commentCount);
+
+            //格式化时间为几秒前 几分钟前等
+            item.setFormatCreateTime(RelativeDateFormat.format(item.getCreateTime()));
+        });
+
+        return pageList;
+    }
 
     @Override
     public IPage<Blog> list(BlogGetListDto blogGetListDto) {

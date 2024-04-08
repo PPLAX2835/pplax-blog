@@ -25,8 +25,8 @@
                     <!-- 轮播图 -->
                     <el-carousel class="banner" :interval="5000" arrow="always">
                         <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-                            <router-link class="hand-style" :to="'/article/' + item.id">
-                                <img class="bannerImg" v-lazy="item.coverImage.fileUrl" :key="item.avatar" />
+                            <router-link class="hand-style" :to="'/article/' + item.uid">
+                                <img class="bannerImg" v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.uid" />
                                 <h3 class="title">{{ item.title }}</h3>
                             </router-link>
                         </el-carousel-item>
@@ -36,17 +36,18 @@
                 <div class="top-right">
                     <SiteInfo />
                     <el-card class="soft ">
-                        <a href="https://www.zhisu1.com/aff/DIHZPJNL" target="_blank" class="hand-style">
-                            <img v-lazy="'https://img.shiyit.com/20231010_1696930367538.jpg'"
-                                :key="'https://img.shiyit.com/20231010_1696930367538.jpg'" alt="">
-                            <div class="soft-title">
-                                高效便宜可靠的服务器厂商知速云
-                            </div>
-                            <div class="soft-info">
-                                资源推荐
-                            </div>
-                            <div class="overlay"></div>
-                        </a>
+                      广告位
+<!--                        <a href="https://www.zhisu1.com/aff/DIHZPJNL" target="_blank" class="hand-style">-->
+<!--                            <img v-lazy="'https://img.shiyit.com/20231010_1696930367538.jpg'"-->
+<!--                                :key="'https://img.shiyit.com/20231010_1696930367538.jpg'" alt="">-->
+<!--                            <div class="soft-title">-->
+<!--                                高效便宜可靠的服务器厂商知速云-->
+<!--                            </div>-->
+<!--                            <div class="soft-info">-->
+<!--                                资源推荐-->
+<!--                            </div>-->
+<!--                            <div class="overlay"></div>-->
+<!--                        </a>-->
                     </el-card>
                 </div>
             </div>
@@ -54,7 +55,7 @@
             <!-- 热门分类 -->
             <div class="hot_category">
                 <el-tabs v-model="activeName" @tab-click="handleTabClick">
-                    <el-tab-pane class="categoryItem" v-for="(item, index) in categoryList" :name="index + ''" :key="index">
+                    <el-tab-pane class="categoryItem" v-for="(item, index) in blogSortList" :name="index + ''" :key="index">
                         <span slot="label">
                             <i :class="item.icon"></i>
                             {{ item.name }}
@@ -77,8 +78,8 @@
             <div class="content">
                 <!-- 左侧内容 -->
                 <div style="width: 100%;">
-                    <div class="articleBox" v-if="articleList.length > 0">
-                        <el-card class="articleItem box-shadow-top" v-for="(item, index) in articleList" :key="item.id">
+                    <div class="articleBox" v-if="blogList.length > 0">
+                        <el-card class="articleItem box-shadow-top" v-for="(item, index) in blogList" :key="item.uid">
                             <div class="articleInfo">
                                 <div class="articleInfo-item">
                                     <div>
@@ -88,8 +89,8 @@
                                             </span>
                                         </el-tooltip>
 
-                                        <span v-if="item.isStick" class="top">置顶</span>
-                                        <router-link :to="'/article/' + item.id">
+                                        <span v-if="item.status === statusList.STICK" class="top">置顶</span>
+                                        <router-link :to="'/article/' + item.uid">
                                             <h3 class="xiahuaxian hand-style">{{ item.title }}</h3>
                                         </router-link>
                                         <p>
@@ -97,9 +98,9 @@
                                         </p>
                                     </div>
 
-                                    <router-link :to="'/article/' + item.id">
+                                    <router-link :to="'/article/' + item.uid">
                                         <div class="articleImgBox" style="">
-                                            <img class="articleImg hand-style" v-lazy="item.avatar" :key="item.avatar">
+                                            <img class="articleImg hand-style" v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.uid">
                                         </div>
                                     </router-link>
                                 </div>
@@ -116,7 +117,7 @@
                                     <el-tooltip class="item" effect="dark" content="文章分类" placement="top">
                                         <el-tag size="mini" class="hand-style"
                                             @click="handleClike(item.categoryId, '/category')">
-                                            <i class=" el-icon-folder-opened"></i> {{ item.categoryName }}
+                                            <i class=" el-icon-folder-opened"></i> {{ item.blogSort.sortName }}
                                         </el-tag>
                                     </el-tooltip>
                                     <el-tooltip class="item" effect="dark" content="文章标签" placement="top"
@@ -160,7 +161,7 @@
                         </el-card>
                         <!-- 分页按钮 -->
                         <div>
-                            <sy-pagination :pageNo="pageData.pageNo" :pages="pages" @changePage="handlePage" />
+                            <sy-pagination :pageNo="pageData.currentPage" :pages="pages" @changePage="handlePage" />
                         </div>
 
                     </div>
@@ -187,23 +188,23 @@
                         </div>
                     </el-card>
                     <!-- 推荐文章 -->
-                    <el-card class="box-card recomArticle" v-if="newArticleList.length">
+                    <el-card class="box-card recomArticle" v-if="newBlogList.length">
                         <div class="clearfix">
                             <span class="card-title">推荐文章</span>
                         </div>
                         <ul class="recomArticleUl">
-                            <li v-for="(item, index) in  newArticleList   ">
+                            <li v-for="(item, index) in  newBlogList   ">
                                 <div :class="index == 0 ? 'article-item-top1' : 'article-item'">
                                     <div class="recomCover">
                                         <router-link :to="'/article/' + item.uid">
                                             <div class="imgBox">
                                                 <span>{{ index + 1 }}</span>
-                                                <img class="hand-style" v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.avatar" />
+                                                <img class="hand-style" v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.uid" />
                                             </div>
                                         </router-link>
                                     </div>
                                     <p class="info">
-                                        <router-link class="tuijian-title hand-style" :to="'/article/' + item.id">
+                                        <router-link class="tuijian-title hand-style" :to="'/article/' + item.uid">
                                             {{ item.title }}
                                         </router-link>
 
@@ -304,7 +305,7 @@
                             </router-link>
                         </div>
                         <div class="tagBox">
-                            <span @click="handleClike(item.id, '/tags')"
+                            <span @click="handleClike(item.uid, '/tags')"
                                 :style="{ backgroundColor: `${randomColor()}`, fontSize: item.font }"
                                 class="tag-item hand-style" v-for="(item, index) in tagList" :key="index">
                                 {{ item.name }}
@@ -327,8 +328,9 @@
 </template>
 
 <script>
-import { fetchArticleList, featchHomeData, featchCategory } from '@/api'
+import { fetchBlogList, featchHomeData, featchCategory } from '@/api'
 import { getSayList } from '@/api/say'
+import {EStatus} from "@/base/EStatus";
 import SiteInfo from '@/components/site/index.vue'
 export default {
     components: {
@@ -347,17 +349,18 @@ export default {
 
     data() {
         return {
+            statusList: [],
             centerDialogVisible: false,
             drawer: false,
             videoSrc: "http://api.yujn.cn/api/zzxjj.php",
             emojis: [],
             pageData: {
-                pageNo: 1,
+                currentPage: 1,
                 pageSize: 10,
             },
             activeName: "0",
             bannerList: [],
-            categoryList: [
+            blogSortList: [
                 {
                     id: null,
                     name: "最新",
@@ -371,10 +374,10 @@ export default {
                     desc: "quantity"
                 }
             ],
-            articleList: [],
+            blogList: [],
             pages: 0,
             tagList: [],
-            newArticleList: [],
+          newBlogList: [],
             tagStyle: ['', 'success', 'info', 'warning', 'danger'],
             sayList: [],
             currentIndex: 0,
@@ -383,9 +386,10 @@ export default {
         };
     },
     created() {
-        this.fetchArticleList()
+        this.statusList = EStatus
+        this.fetchBlogList()
         this.getHomeData()
-        this.fetchCategoryList()
+        this.fetchBlogSortList()
         this.insertWeather()
         this.handleGetSayList()
     },
@@ -410,11 +414,11 @@ export default {
         },
         handleGetSayList() {
             let pageData = {
-                pageNo: 1,
+              currentPage: 1,
                 pageSize: 5
             };
             getSayList(pageData).then(res => {
-                this.sayList = res.data.records
+                this.sayList = res.data
                 for (var i = 0; i < this.sayList.length; i++) {
                     //这里为过滤掉存在视频的说说
                     if (this.sayList[i].content.indexOf('<video') > -1) {
@@ -479,12 +483,12 @@ export default {
         },
         handleTabClick(tab) {
 
-            let item = this.categoryList[tab.index]
-            this.pageData.pageNo = 1
-            this.pageData.categoryId = item.id
+            let item = this.blogSortList[tab.index]
+            this.pageData.currentPage = 1
+            this.pageData.categoryId = item.uid
             this.pageData.orderByDescColumn = item.desc
-            fetchArticleList(this.pageData).then(res => {
-                this.articleList = res.data.records;
+            fetchBlogList(this.pageData).then(res => {
+                this.blogList = res.data;
                 this.pages = res.data.pages
 
             })
@@ -494,22 +498,22 @@ export default {
         },
         // 分页
         handlePage(val) {
-            this.pageData.pageNo = val;
-            this.fetchArticleList()
+            this.pageData.currentPage = val;
+            this.fetchBlogList()
         },
-        fetchArticleList() {
+        fetchBlogList() {
             this.$bus.$emit('show');
-            fetchArticleList(this.pageData).then(res => {
-                this.articleList.push(...res.data.records);
+            fetchBlogList(this.pageData).then(res => {
+                this.blogList.push(...res.data);
                 this.pages = res.data.pages
                 this.$bus.$emit('close')
             }).catch(err => {
                 this.$bus.$emit('close')
             })
         },
-        fetchCategoryList() {
+        fetchBlogSortList() {
             featchCategory().then(res => {
-                this.categoryList.push(...res.data)
+                this.blogSortList.push(...res.data)
             })
         },
         getHomeData() {
@@ -519,12 +523,18 @@ export default {
                 for (var i = 0; i < this.tagList.length; i++) {
                     this.tagList[i].font = Math.floor(Math.random() * 10) + 10 + "px"
                 }
-                this.newArticleList = res.extra.newArticleList
+                this.newBlogList = res.extra.newBlogList
             })
         },
 
+        /**
+         * 时间戳格式化
+         */
+        timeFormat(timestamp) {
+          return parseTime(timestamp);
+        },
         handleCategoryClike(item) {
-            this.$router.push({ name: "/category", query: { id: item.id, name: item.name } })
+            this.$router.push({ name: "/category", query: { id: item.uid, name: item.name } })
         },
 
     },

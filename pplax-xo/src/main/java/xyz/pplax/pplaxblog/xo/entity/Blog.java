@@ -51,6 +51,11 @@ public class Blog extends SuperEntity{
 	private Integer collectCount;
 
 	/**
+	 * 阅读量
+	 */
+	private Long quantity;
+
+	/**
 	 * 标题图片uid
 	 */
 	private String coverImageUid;
@@ -83,6 +88,15 @@ public class Blog extends SuperEntity{
 	/**
 	 * 以下字段不存入数据库，封装为了方便使用
 	 */
+	@TableField(exist = false)
+	private Long commentCount;		// 评论量
+
+	@TableField(exist = false)
+	private Long likeCount;			// 点赞量
+
+	@TableField(exist = false)
+	private String formatCreateTime;	// 格式化后的创建时间
+
 	@TableField(exist = false)
 	private List<Tag> tagList; //标签,一篇博客对应多个标签
 

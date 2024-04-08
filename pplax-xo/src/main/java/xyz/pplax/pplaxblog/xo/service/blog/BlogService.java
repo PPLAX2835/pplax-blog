@@ -20,6 +20,8 @@ public interface BlogService extends SuperService<Blog> {
 
     IPage<Blog> list(BlogGetListDto blogGetListDto);
 
+    IPage<Blog> listByBlogSort(String blogSortUid, Long currentPage, Long pageSize);
+
     List<Blog> listByBanner();
 
     IPage<Blog> listNotByBannerNew(Integer size);

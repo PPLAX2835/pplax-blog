@@ -18,6 +18,7 @@ public final class BlogSQLConstants extends BaseSQLConstants {
 	public final static String BLOG_CONTENT_UID = "t_blog.blog_content_uid";
 	public final static String TAG_UIDS = "t_blog.tag_uids";
 	public final static String CLICK_COUNT = "t_blog.click_count";
+	public final static String QUANTITY = "t_blog.quantity";
 	public final static String COLLECT_COUNT = "t_blog.collect_count";
 	public final static String COVER_IMAGE_UID = "t_blog.cover_image_uid";
 	public final static String IS_PUBLISH = "t_blog.is_publish";

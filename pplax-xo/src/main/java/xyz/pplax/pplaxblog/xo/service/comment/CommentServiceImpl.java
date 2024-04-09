@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
@@ -13,12 +14,10 @@ import xyz.pplax.pplaxblog.xo.constants.sql.CommentSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogGetListDto;
 import xyz.pplax.pplaxblog.xo.dto.list.CommentGetListDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
-import xyz.pplax.pplaxblog.xo.entity.Blog;
-import xyz.pplax.pplaxblog.xo.entity.Comment;
-import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.entity.UserInfo;
+import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.CommentMapper;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.say.SayService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
@@ -39,6 +38,9 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private SayService sayService;
 
     @Override
     public IPage<Comment> list(CommentGetListDto commentGetListDto) {
@@ -65,6 +67,9 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
         if (commentGetListDto.getType() != null) {
             commentQueryWrapper.eq(CommentSQLConstants.TYPE, commentGetListDto.getType());
         }
+        if (!StringUtils.isBlank(commentGetListDto.getOriginalUid())) {
+            commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, commentGetListDto.getOriginalUid());
+        }
 
         //分页
         Page<Comment> page = new Page<>();
@@ -83,9 +88,16 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
 
         List<Comment> commentList = new ArrayList<>();
         for (Comment comment : pageList.getRecords()) {
-            // 封装所属博客
-            Blog blog = blogService.getById(comment.getBlogUid());
-            comment.setBlog(blog);
+            // 封装所属原文
+            if (comment.getType() == 0 || comment.getType() == 1) {
+                // 属于博客
+                Blog blog = blogService.getById(comment.getOriginalUid());
+                comment.setBlog(blog);
+            } else if (comment.getType() == 3 || comment.getType() == 4) {
+                // 属于说说
+                Say say = sayService.getById(comment.getOriginalUid());
+                comment.setSay(say);
+            }
 
             // 封装评论人
             User commentator = userService.getById(comment.getUserUid());

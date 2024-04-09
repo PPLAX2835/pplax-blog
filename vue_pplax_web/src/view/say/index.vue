@@ -17,7 +17,7 @@
                                 <svg-icon icon-class="bozhu"></svg-icon>
                             </el-tooltip>
                         </div>
-                        <p class="content" v-highlight> {{ item.content }} </p>
+                        <p class="content" v-highlight v-html="item.content">  </p>
                         <div v-if="item.imageList">
                           <div v-for="imageItem in item.imageList" :class="ckeckImgClass(imageItem.fileUrl)">
                             <div class="imgBox" @click="handlePreviewImg(imageItem.fileUrl)" v-if="checkImg(imageItem.fileUrl)">
@@ -53,49 +53,49 @@
                             </a>
                         </div>
                         <div class="interaction">
-<!--                            <div v-if="item.userLikeList.length"-->
-<!--                                :class="item.userLikeList.length && item.sayCommentVOList.length ? 'like-container is_border' : 'like-container'">-->
-<!--                                <span v-for="(user, user_index) in item.userLikeList" :key="user_index">-->
-<!--                                    <i class="iconfont icon-dianzan"></i> {{ user.nickname }}-->
-<!--                                    <span v-if="user_index < item.userLikeList.length - 1">，</span>-->
-<!--                                </span>-->
-<!--                            </div>-->
-<!--                            <div class="commentBox">-->
-<!--                                <div class="commentItem " v-for="(comment, comment_index) in item.sayCommentVOList"-->
-<!--                                    :key="comment_index" v-if="item.sayCommentVOList.length">-->
-<!--                                    <div>-->
-<!--                                        <span class="username" v-if="!comment.replyUserId">-->
-<!--                                            {{ comment.nickname }}：-->
-<!--                                        </span>-->
+                            <div v-if="item.likeList && item.likeList.length"
+                                :class="item.likeList.length && item.commentList.length ? 'like-container is_border' : 'like-container'">
+                                <span v-for="like in item.likeList" :key="like.uid">
+                                    <i class="iconfont icon-dianzan"></i> {{ like.commentator.userInfo.nickname }}
+                                    <span v-if="item.likeList.length - 1">，</span>
+                                </span>
+                            </div>
+                            <div class="commentBox">
+                                <div class="commentItem " v-for="(comment) in item.commentList"
+                                    :key="comment.uid" v-if="item.commentList.length">
+                                    <div>
+                                        <span class="username" v-if="!comment.targetUser">
+                                            {{ comment.commentator.userInfo.nickname }}：
+                                        </span>
 
-<!--                                        <span v-else>-->
-<!--                                            <span class="username">{{ comment.nickname }}</span>-->
-<!--                                            回复-->
-<!--                                            <span class="username">{{ comment.replyUserNickname }}：</span>-->
-<!--                                        </span>-->
-<!--                                        <span class="content point" v-html="comment.content"-->
-<!--                                            @click="handleShowCommentBox(comment, item.id, index)">-->
-<!--                                        </span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                        <span v-else>
+                                            <span class="username">{{ comment.commentator.userInfo.nickname }}</span>
+                                            回复
+                                            <span class="username">{{ comment.targetUser.userInfo.nickname }}：</span>
+                                        </span>
+                                        <span class="content point" v-html="comment.content"
+                                            @click="handleShowCommentBox(comment, item.uid, index)">
+                                        </span>
+                                    </div>
+                                </div>
 
-<!--                                <div class="conetntInputBox" ref="conetntInputBox">-->
-<!--                                    <div class="">-->
-<!--                                        <div id="textarea" ref="textareaRef" contenteditable="true" @input="onInput"-->
-<!--                                            @paste="optimizePasteEvent" :data-placeholder="placeholder"-->
-<!--                                            class="comment-textarea"></div>-->
+                                <div class="conetntInputBox" ref="conetntInputBox">
+                                    <div class="">
+                                        <div id="textarea" ref="textareaRef" contenteditable="true" @input="onInput"
+                                            @paste="optimizePasteEvent" :data-placeholder="placeholder"
+                                            class="comment-textarea"></div>
 
-<!--                                        <span class="point" @click="showEmoji = !showEmoji">-->
-<!--                                            <i class="iconfont icon-biaoqing"></i>-->
-<!--                                        </span>-->
-<!--                                        <a class="sendBtn point" @click="sayComment">发送</a>-->
+                                        <span class="point" @click="showEmoji = !showEmoji">
+                                            <i class="iconfont icon-biaoqing"></i>
+                                        </span>
+                                        <a class="sendBtn point" @click="sayComment">发送</a>
 
-<!--                                    </div>-->
-<!--                                    <div class="emoji-wrapper" v-if="showEmoji">-->
-<!--                                        <Emoji @chooseEmoji="handleChooseEmoji" />-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                                    </div>
+                                    <div class="emoji-wrapper" v-if="showEmoji">
+                                        <Emoji @chooseEmoji="handleChooseEmoji" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

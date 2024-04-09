@@ -11,8 +11,10 @@
       <el-form-item label="类型">
         <el-select style="width: 130px" size="small" v-model="params.type" @change="fetchCommentList" placeholder="请选择类型">
           <el-option label="全部" value=""/>
-          <el-option label="评论" :value="0" />
-          <el-option label="点赞" :value="1" />
+          <el-option label="博客评论" :value="0" />
+          <el-option label="博客点赞" :value="1" />
+          <el-option label="说说评论" :value="3" />
+          <el-option label="说说点赞" :value="4" />
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -38,18 +40,24 @@
         </el-table-column>
         <el-table-column width="120" align="center" label="被评论人">
           <template slot-scope="scope">
-            {{ scope.row.targetUser.userInfo.nickname }}
+            {{ scope.row.targetUser === undefined ? '' : scope.row.targetUser.userInfo.nickname }}
           </template>
         </el-table-column>
         <el-table-column width="120" align="center" label="类型">
           <template slot-scope="scope">
-            <el-tag type="success" v-if="scope.row.type === 0">评论</el-tag>
-            <el-tag type="danger" v-else-if="scope.row.type === 1">点赞</el-tag>
+            <el-tag type="success" v-if="scope.row.type === 0">博客评论</el-tag>
+            <el-tag type="danger" v-else-if="scope.row.type === 1">博客点赞</el-tag>
+            <el-tag type="info" v-if="scope.row.type === 2">说说评论</el-tag>
+            <el-tag type="warning" v-else-if="scope.row.type === 3">说说点赞</el-tag>
           </template>
         </el-table-column>
-        <el-table-column width="180" align="center" label="所属文章">
+        <el-table-column width="180" align="center" label="所属原文">
           <template slot-scope="scope">
-            {{ scope.row.blog === undefined ? '' : scope.row.blog.title }}
+            {{
+              scope.row.type === 0 || scope.row.type === 1 ?
+                ( scope.row.blog === undefined ? '' : scope.row.blog.title)
+                :
+                ( scope.row.say === undefined ? '' : scope.row.say.content) }}
           </template>
         </el-table-column>
         <el-table-column width="250" align="center" prop="content" label="内容"></el-table-column>

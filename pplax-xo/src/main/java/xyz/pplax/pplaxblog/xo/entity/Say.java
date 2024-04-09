@@ -51,5 +51,11 @@ public class Say extends SuperEntity {
 	@TableField(exist = false)
 	private User user;
 
+	@TableField(exist = false)
+	private List<Comment> commentList;
+
+	@TableField(exist = false)
+	private List<Comment> likeList;
+
 	public Say() {}
 }

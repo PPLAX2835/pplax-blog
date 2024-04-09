@@ -6,18 +6,18 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.constants.sql.CommentSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.SaySQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.sql.TagSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.SayEditDto;
+import xyz.pplax.pplaxblog.xo.dto.list.CommentGetListDto;
 import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
-import xyz.pplax.pplaxblog.xo.entity.FileStorage;
-import xyz.pplax.pplaxblog.xo.entity.Say;
-import xyz.pplax.pplaxblog.xo.entity.Tag;
-import xyz.pplax.pplaxblog.xo.entity.User;
+import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.SayMapper;
+import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
 import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
@@ -40,6 +40,9 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
 
     @Autowired
     private UserInfoService userInfoService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Override
     public IPage<Say> list(SayGetListDto sayGetListDto) {
@@ -73,6 +76,20 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
                 user.setUserInfo(userInfoService.getByUserUid(user.getUid()));
                 say.setUser(user);
             }
+
+            // 封装评论列表
+            CommentGetListDto commentGetListDto = new CommentGetListDto();
+            commentGetListDto.setOriginalUid(say.getUid());
+            commentGetListDto.setCurrentPage(1L);
+            commentGetListDto.setPageSize(Long.MAX_VALUE);
+            commentGetListDto.setType(CharacterConstants.NUM_TWO);
+            IPage<Comment> commentIPage = commentService.list(commentGetListDto);
+            say.setCommentList(commentIPage.getRecords());
+
+            // 封装点赞列表
+            commentGetListDto.setType(CharacterConstants.NUM_THREE);
+            IPage<Comment> likeIPage = commentService.list(commentGetListDto);
+            say.setLikeList(likeIPage.getRecords());
 
             sayList.add(say);
         }

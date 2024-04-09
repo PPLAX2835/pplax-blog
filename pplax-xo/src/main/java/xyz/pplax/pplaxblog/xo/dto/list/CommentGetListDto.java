@@ -15,8 +15,9 @@ public class CommentGetListDto extends PageDto {
     @ApiModelProperty(example = "false", notes = "评论者的昵称", required = false)
     private String nickname;
 
-
     @ApiModelProperty(example = "false", notes = "评论类型", required = false)
     private Integer type;
+
+    private String originalUid;
 
 }

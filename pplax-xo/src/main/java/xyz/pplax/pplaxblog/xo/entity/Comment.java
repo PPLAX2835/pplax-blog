@@ -34,7 +34,7 @@ public class Comment extends SuperEntity {
     private String toUserUid;
 
     /**
-     * 类型 0评论 1点赞
+     * 类型 0博客评论 1博客点赞 2说说评论 3说说点赞
      */
     private Integer type;
 
@@ -54,9 +54,9 @@ public class Comment extends SuperEntity {
     private String address;
 
     /**
-     * 博客uid
+     * 原文uid  博客/说说 uid
      */
-    private String blogUid;
+    private String originalUid;
 
     @TableField(exist = false)
     private User commentator;           // 评论人
@@ -66,6 +66,9 @@ public class Comment extends SuperEntity {
 
     @TableField(exist = false)
     private Blog blog;                  // 被评论博客
+
+    @TableField(exist = false)
+    private Say say;                  // 被评论说说
 
 
     public Comment() {}

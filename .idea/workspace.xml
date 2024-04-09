@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="增加说说表，后台新增说说管理">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogSortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogSortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/say.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/say.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/CommentSQLConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/CommentSQLConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/list/CommentGetListDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/list/CommentGetListDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Say.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Say.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/comment/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/comment/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/say/sayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/say/sayServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/CommentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/comment/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/comment/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -238,11 +242,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
-        <item itemvalue="Spring Boot.AdminApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -345,14 +349,7 @@
       <workItem from="1712536925489" duration="2258000" />
       <workItem from="1712539648498" duration="26000" />
       <workItem from="1712539697140" duration="16974000" />
-      <workItem from="1712625180003" duration="10547000" />
-    </task>
-    <task id="LOCAL-00318" summary="分类单个删除完成">
-      <created>1710040426285</created>
-      <option name="number" value="00318" />
-      <option name="presentableId" value="LOCAL-00318" />
-      <option name="project" value="LOCAL" />
-      <updated>1710040426285</updated>
+      <workItem from="1712625180003" duration="15422000" />
     </task>
     <task id="LOCAL-00319" summary="分类批量删除完成">
       <created>1710041048386</created>
@@ -690,7 +687,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712633503174</updated>
     </task>
-    <option name="localTasksCounter" value="367" />
+    <task id="LOCAL-00367" summary="前台调整说说列表接口">
+      <created>1712649240192</created>
+      <option name="number" value="00367" />
+      <option name="presentableId" value="LOCAL-00367" />
+      <option name="project" value="LOCAL" />
+      <updated>1712649240192</updated>
+    </task>
+    <option name="localTasksCounter" value="368" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -725,7 +729,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整" />
     <MESSAGE value="完成文件管理，后台基本做好了" />
     <MESSAGE value="导航栏全屏" />
     <MESSAGE value="登录状态失效改为确认弹窗" />
@@ -750,7 +753,8 @@
     <MESSAGE value="添加文章列表封面图片" />
     <MESSAGE value="后台新增说说管理" />
     <MESSAGE value="增加说说表，后台新增说说管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加说说表，后台新增说说管理" />
+    <MESSAGE value="前台调整说说列表接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="前台调整说说列表接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

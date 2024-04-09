@@ -10,7 +10,7 @@
         <result column="to_user_uid" property="toUserUid" />
         <result column="type" property="type" />
         <result column="content" property="content" />
-        <result column="blog_uid" property="content" />
+        <result column="original_uid" property="originalUid" />
         <result column="ip" property="ip" />
         <result column="address" property="address" />
         <result column="status" property="status" />
@@ -20,7 +20,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `user_uid`, `to_uid`, `to_user_uid`, `type`, `content`, `blog_uid`, `ip`, `address`, `status`,
+        `uid`, `user_uid`, `to_uid`, `to_user_uid`, `type`, `content`, `original_uid`, `ip`, `address`, `status`,
         `create_time`, `update_time`
     </sql>
 

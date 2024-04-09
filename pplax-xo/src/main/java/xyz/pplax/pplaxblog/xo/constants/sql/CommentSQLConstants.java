@@ -16,7 +16,7 @@ public class CommentSQLConstants extends BaseSQLConstants {
     public final static String TO_UID = "t_comment.to_uid";
     public final static String TO_USER_UID = "t_comment.to_user_uid";
     public final static String CONTENT = "t_comment.content";
-    public final static String BLOG_UID = "t_comment.blog_uid";
+    public final static String ORIGINAL_UID = "t_comment.original_uid";
     public final static String TYPE = "t_comment.type";
     public final static String ip = "t_comment.ip";
     public final static String ADDRESS = "t_comment.address";

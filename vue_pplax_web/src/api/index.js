@@ -61,13 +61,10 @@ export function searchArticle(params) {
     })
 }
 
-export function articleInfo(id) {
+export function getBlog(uid) {
     return request({
-        url: '/v1/article/info',
-        method: 'get',
-        params: {
-            id: id
-        }
+        url: '/web/blog/' + uid,
+        method: 'get'
     })
 }
 

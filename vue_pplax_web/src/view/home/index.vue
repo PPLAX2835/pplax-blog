@@ -25,7 +25,7 @@
                     <!-- 轮播图 -->
                     <el-carousel class="banner" :interval="5000" arrow="always">
                         <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-                            <router-link class="hand-style" :to="'/article/' + item.uid">
+                            <router-link class="hand-style" :to="'/blog/' + item.uid">
                                 <img class="bannerImg" v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.uid" />
                                 <h3 class="title">{{ item.title }}</h3>
                             </router-link>
@@ -90,7 +90,7 @@
                                         </el-tooltip>
 
                                         <span v-if="item.status === statusList.STICK" class="top">置顶</span>
-                                        <router-link :to="'/article/' + item.uid">
+                                        <router-link :to="'/blog/' + item.uid">
                                             <h3 class="xiahuaxian hand-style">{{ item.title }}</h3>
                                         </router-link>
                                         <p>
@@ -98,7 +98,7 @@
                                         </p>
                                     </div>
 
-                                    <router-link :to="'/article/' + item.uid">
+                                    <router-link :to="'/blog/' + item.uid">
                                         <div class="articleImgBox" style="">
                                             <img class="articleImg hand-style" v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.uid">
                                         </div>
@@ -196,7 +196,7 @@
                             <li v-for="(item, index) in  newBlogList   ">
                                 <div :class="index == 0 ? 'article-item-top1' : 'article-item'">
                                     <div class="recomCover">
-                                        <router-link :to="'/article/' + item.uid">
+                                        <router-link :to="'/blog/' + item.uid">
                                             <div class="imgBox">
                                                 <span>{{ index + 1 }}</span>
                                                 <img class="hand-style" v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.uid" />
@@ -204,7 +204,7 @@
                                         </router-link>
                                     </div>
                                     <p class="info">
-                                        <router-link class="tuijian-title hand-style" :to="'/article/' + item.uid">
+                                        <router-link class="tuijian-title hand-style" :to="'/blog/' + item.uid">
                                             {{ item.title }}
                                         </router-link>
 

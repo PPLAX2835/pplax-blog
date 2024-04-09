@@ -27,8 +27,8 @@ const routes = [
                 }
             },
             {
-                path: "/article/:articleId",
-                component: resolve => require(["@/view/article/index.vue"], resolve),
+                path: "/blog/:blogUid",
+                component: resolve => require(["@/view/blog/index.vue"], resolve),
             },
             {
                 path: "/message",
@@ -46,7 +46,7 @@ const routes = [
             },
             {
                 path: "/newposts",
-                component: resolve => require(["@/view/article/Add"], resolve),
+                component: resolve => require(["@/view/blog/Add"], resolve),
             },
             {
                 path: "/archive",
@@ -56,8 +56,8 @@ const routes = [
                 }
             },
             {
-                path: "/category",
-                component: resolve => require(["@/view/category/index.vue"], resolve),
+                path: "/blogSort",
+                component: resolve => require(["@/view/blogSort/index.vue"], resolve),
                 meta: {
                     title: "文章分类"
                 }

@@ -45,10 +45,6 @@ public class Blog extends SuperEntity{
 	 */
 	private Integer clickCount;
 
-	/**
-	 * 博客收藏数
-	 */
-	private Integer collectCount;
 
 	/**
 	 * 阅读量
@@ -93,6 +89,15 @@ public class Blog extends SuperEntity{
 
 	@TableField(exist = false)
 	private Long likeCount;			// 点赞量
+
+	@TableField(exist = false)
+	private Integer collectCount; 		// 博客收藏数
+
+	@TableField(exist = false)
+	private Boolean isCollect;			// 自己是否收藏
+
+	@TableField(exist = false)
+	private Boolean isLike;			// 自己是否点赞
 
 	@TableField(exist = false)
 	private String formatCreateTime;	// 格式化后的创建时间

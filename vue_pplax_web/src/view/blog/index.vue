@@ -4,10 +4,10 @@
         <!-- 左侧点赞和打赏 -->
         <div class="left-sidbarnav" :style="{ left: left }">
             <el-tooltip class="item" effect="dark" content="点赞" placement="left">
-                <div class="left-item hand-style" title="点赞" @click="like(article.id)">
-                    <el-badge :value="article.likeCount" class="item">
+                <div class="left-item hand-style" title="点赞" @click="like(blog.uid)">
+                    <el-badge :value="blog.likeCount" class="item">
                         <span>
-                            <i v-if="article.isLike" class="iconfont icon-dianzan4"></i>
+                            <i v-if="blog.isLike" class="iconfont icon-dianzan4"></i>
                             <i v-else class="iconfont icon-dianzan1"></i>
                         </span>
                     </el-badge>
@@ -16,9 +16,9 @@
 
             <el-tooltip class="item" effect="dark" content="收藏" placement="left">
                 <div class="left-item hand-style" title="收藏" @click="handleCollect">
-                    <el-badge :value="article.collectCount" class="item">
+                    <el-badge :value="blog.collectCount" class="item">
                         <span style="font-size: 20px;">
-                            <i v-if="article.isCollect" class="el-icon-star-on"></i>
+                            <i v-if="blog.isCollect" class="el-icon-star-on"></i>
                             <i v-else class="el-icon-star-off"></i>
                         </span>
                     </el-badge>
@@ -27,7 +27,7 @@
 
             <el-tooltip class="item" effect="dark" content="评论" placement="left">
                 <div class="left-item hand-style" title="评论" @click="handleNodeClick('comment')">
-                    <el-badge :value="article.commentCount" class="item">
+                    <el-badge :value="blog.commentCount" class="item">
                         <span>
                             <i class="iconfont icon-pinglun"></i>
                         </span>
@@ -64,72 +64,72 @@
 
         <!-- 中间文章信息 -->
         <el-card class="article" id="articleBox">
-            <el-tag @click="handleClike(article.category.id, '/category')" effect="dark" class="category hand-style">
-                {{ article.category.name }}
+            <el-tag @click="handleClike(blog.blogSort.uid, '/blogSort')" :class="blog.blogSort.icon" effect="dark" class="category hand-style">
+                {{ blog.blogSort.sortName }}
             </el-tag>
             <h1 class="article-title">
-                {{ article.title }}
+                {{ blog.title }}
             </h1>
             <div class="article-desc">
                 <div class="article-item">
-                    <img v-lazy="$store.state.webSiteInfo.authorAvatar" :key="$store.state.webSiteInfo.authorAvatar" alt="">
+                    <img v-lazy="blog.user.userInfo.avatar.fileUrl" :key="blog.user.userInfo.avatar.uid" alt="">
                     <div class="meta">
                         <div class="author">
-                            <span class="link" href="#">{{ $store.state.webSiteInfo.author }}</span>
+                            <span class="link" href="#">{{ blog.user.userInfo.nickname }}</span>
                         </div>
                         <div class="item">
                             <span class="text textItem"> <i class="el-icon-time" style="color: rgb(236, 125, 98);"></i> {{
-                                formatDate(article.createTime)
+                                formatDate(blog.createTime)
                             }}</span>
                             <span class="text textItem"><i class="el-icon-chat-dot-round"
-                                    style="color: rgb(211, 236, 98);"></i> {{ article.commentCount }}
+                                    style="color: rgb(211, 236, 98);"></i> {{ blog.commentCount }}
                                 评论</span>
                             <span class="text textItem">
                                 <i style="font-size: 0.7rem;color: rgb(38, 211, 153);" class="iconfont icon-dianzan1"></i>
-                                {{ article.likeCount == null ? 0 : article.likeCount }} 点赞
+                                {{ blog.likeCount == null ? 0 : blog.likeCount }} 点赞
                             </span>
                             <span class="text"><i class="el-icon-view" style="color: rgb(190, 221, 16);"></i> {{
-                                article.quantity }} 阅读</span>
+                                blog.quantity }} 阅读</span>
 
                         </div>
                     </div>
                 </div>
                 <time class="time">
-                    {{ formatDate(article.createTime, "MM/dd") }}
+                    {{ formatDate(blog.createTime, "MM/dd") }}
                 </time>
             </div>
             <div class="tips">
                 <i class="el-icon-message-solid"></i>
                 <span style="color: orange;">温馨提示：</span>
                 <div style="margin-left: 30px;margin-top: 5px;">
-                    <span v-if="article.isOriginal == 0">该文章为转载文章。</span>
+                    <span v-if="blog.isOriginal == 0">该文章为转载文章。</span>
                     本着开源共享、共同学习的精神，若内容或图片失效，请留言反馈。若有内容不小心影响到您的利益，请联系博主删除
                 </div>
             </div>
             <!-- 文章内容 -->
             <div style="height: 100%;" class="box-article">
-                <article class="content" :style="style" ref="article" v-highlight v-html="this.article.content">
+                <article class="content" :style="style" ref="blog" v-highlight v-html="this.blog.blogContent.content">
                 </article>
-                <div v-if="article.readType != 0 && !serceShow" class="warpper">
-                    <div class="item-title">
-                        <i class="el-icon-lock"></i> 该文章部分内容已隐藏
-                    </div>
-                    <div class="item-box">
-                        <span>
-                            {{ readTypeList[article.readType] }}
-                        </span>
-                        <div class="neirong">
-                            以下内容已隐藏，请{{ readDescList[article.readType] }}后查看
-                        </div>
-                        <el-button v-if="article.readType == 1" @click="checkLikeAndCoomment('请到文章内容下方完成评论')" class="btn"
-                            type="primary" size="small">立即评论</el-button>
-                        <el-button v-if="article.readType == 2" @click="checkLikeAndCoomment('请到文章内容左侧完成点赞')" class="btn"
-                            type="primary" size="small">立即点赞</el-button>
-                        <el-button v-if="article.readType == 3" @click="dialogVisible = true" class="btn" type="primary"
-                            size="small">立即验证</el-button>
+<!--                <div v-if="blog.readType != 0 && !serceShow" class="warpper">-->
+<!--                    <div class="item-title">-->
+<!--                        <i class="el-icon-lock"></i> 该文章部分内容已隐藏-->
+<!--                    </div>-->
+<!--                    <div class="item-box">-->
+<!--                        <span>-->
+<!--                            {{ readTypeList[blog.readType] }}-->
+<!--                        </span>-->
+<!--                        <div class="neirong">-->
+<!--                            以下内容已隐藏，请{{ readDescList[blog.readType] }}后查看-->
+<!--                        </div>-->
+<!--                        <el-button v-if="blog.readType == 1" @click="checkLikeAndCoomment('请到文章内容下方完成评论')" class="btn"-->
+<!--                            type="primary" size="small">立即评论</el-button>-->
+<!--                        <el-button v-if="blog.readType == 2" @click="checkLikeAndCoomment('请到文章内容左侧完成点赞')" class="btn"-->
+<!--                            type="primary" size="small">立即点赞</el-button>-->
+<!--                        <el-button v-if="blog.readType == 3" @click="dialogVisible = true" class="btn" type="primary"-->
+<!--                            size="small">立即验证</el-button>-->
 
-                    </div>
-                </div>
+<!--                    </div>-->
+<!--                </div>-->
             </div>
 
             <div class="read-duration">
@@ -142,21 +142,21 @@
             <div class="dianzanBox">
                 <div class="dianzan-item">
                     <div>
-                        <span @click="like(article.id)">
-                            <i v-if="article.isLike" class="iconfont icon-dianzan4"></i>
+                        <span @click="like(blog.uid)">
+                            <i v-if="blog.isLike" class="iconfont icon-dianzan4"></i>
                             <i v-else class="iconfont icon-dianzan1"></i>
                         </span>
                     </div>
 
-                    <div v-if="article.likeCount" class="likeCountItem">{{ article.likeCount }}人已点赞</div>
+                    <div v-if="blog.likeCount" class="likeCountItem">{{ blog.likeCount }}人已点赞</div>
                 </div>
             </div>
 
             <!-- 文章标签和分享 -->
             <div class="tag-share">
                 <div>
-                    <a class="tagBtn hand-style" v-for=" item  in  article.tagList " :key="item.id"
-                        @click="handleClike(item.id, '/tags')">
+                    <a class="tagBtn hand-style" v-for=" item  in  blog.tagList " :key="item.uid"
+                        @click="handleClike(item.uid, '/tags')">
                         <span type="success">
                             <i class="el-icon-collection-tag"></i> {{ item.name }}
                         </span>
@@ -194,17 +194,17 @@
                 <div class="copyrightItem">
                     <svg-icon icon-class="yuanchuang"></svg-icon>
                     <span class="text name">创作类型:</span>
-                    <span class="text"> {{ article.isOriginal ? '原创' : '转载' }}</span>
+                    <span class="text"> {{ blog.isOriginal ? '原创' : '转载' }}</span>
                 </div>
-                <div class="copyrightItem" v-if="article.isOriginal">
+                <div class="copyrightItem" v-if="blog.isOriginal">
                     <svg-icon icon-class="copyright"></svg-icon>
                     <span class="text name">版权归属:</span>
-                    <span class="text"> {{ $store.state.webSiteInfo.author }}</span>
+                    <span class="text"> {{ blog.user.userInfo.nickname }}</span>
                 </div>
                 <div class="copyrightItem" v-else>
                     <svg-icon icon-class="zzlink"></svg-icon>
                     <span class="text name">转载链接:</span>
-                    <a :href="article.originalUrl" class="text"> {{ article.originalUrl }}</a>
+                    <a :href="article.originalUrl" class="text"> {{ blog.originalUrl }}</a>
                 </div>
                 <div class="copyrightItem">
                     <svg-icon icon-class="link"></svg-icon>
@@ -232,7 +232,8 @@
                     <svg-icon icon-class="message"></svg-icon>
                     评论 <span style="color: var(--text-color);font-size: 0.8rem;">发表评论,来抢沙发</span>
                 </div>
-                <Comment :articleUserId="article.userId" />
+              <!-- 这个是评论组件，记得放开 -->
+<!--                <Comment :articleUserId="blog.userId" />-->
             </div>
         </el-card>
         <!-- 右边侧边栏 -->
@@ -282,8 +283,9 @@
     </div>
 </template>
 <script>
-import { articleInfo, articleLike, checkCode, followedUser, deleteFollowedUser } from '@/api'
+import { getBlog, articleLike, checkCode, followedUser, deleteFollowedUser } from '@/api'
 import { collect, cancelCollect } from '@/api/collect'
+import MarkdownIt from 'markdown-it'
 import SiteInfo from '@/components/site/index.vue'
 import Comment from '@/components/comment/index.vue'
 import imagePreview from '@/components/imagePreview'
@@ -304,7 +306,7 @@ export default {
     },
     data() {
         return {
-            article: {
+          blog: {
                 category: {},
                 comments: [],
                 tagList: [],
@@ -321,11 +323,11 @@ export default {
             fontNumber: 0,
             locationUrl: window.location.href,
             commentList: [],
-            articleId: this.$route.params.articleId,
+            blogUid: this.$route.params.blogUid,
             commentQuery: {
                 pageNo: 1,
                 pageSize: 5,
-                articleId: this.$route.params.articleId,
+                blogUid: this.$route.params.blogUid,
             },
             commentPages: 0,
             user: {},
@@ -386,17 +388,19 @@ export default {
             }
         }, true)
         this.$bus.$emit('show');
-        articleInfo(this.articleId).then(res => {
-            this.article = res.data
-            this.serceShow = this.article.activeReadType
-            if (this.article.readType != 0 && !this.serceShow) {
+        getBlog(this.blogUid).then(res => {
+            this.blog = res.data
+            const md = new MarkdownIt()
+            this.blog.blogContent.content = md.render(this.blog.blogContent.content)
+            this.serceShow = this.blog.activeReadType
+            if (this.blog.readType != 0 && !this.serceShow) {
                 this.style = "max-height: 1200px;overflow: hidden;"
             }
 
             //处理目录和图片预览
             this.$nextTick(() => {
                 //添加图片预览功能
-                const imgList = this.$refs.article.getElementsByTagName("img");
+                const imgList = this.$refs.blog.getElementsByTagName("img");
                 let that = this
                 for (var i = 0; i < imgList.length; i++) {
                     imgList[i].addEventListener("click", function (e) {
@@ -407,7 +411,7 @@ export default {
                     });
                 }
                 // 添加文章生成目录功能
-                let nodes = this.$refs.article.querySelectorAll("h1,h2,h3,h4,h5,h6");
+                let nodes = this.$refs.blog.querySelectorAll("h1,h2,h3,h4,h5,h6");
                 for (let i = 0; i < nodes.length; i++) {
                     let node = nodes[i];
                     let reg = /^H[1-6]{1}$/;
@@ -426,9 +430,9 @@ export default {
             })
 
             //修改标题和关键词
-            document.title = this.article.title
-            if (this.article.keywords != null) {
-                document.querySelector('meta[name="keywords"]').setAttribute('content', this.article.keywords)
+            document.title = this.blog.title
+            if (this.blog.keywords != null) {
+                document.querySelector('meta[name="keywords"]').setAttribute('content', this.blog.keywords)
             }
 
             this.$bus.$emit('close')
@@ -505,15 +509,15 @@ export default {
             });
         },
         qqShare() {
-            const url = `https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${window.location.href}&sharesource=qzone&title=${this.article.title}&summary=${this.article.title}`
+            const url = `https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${window.location.href}&sharesource=qzone&title=${this.blog.title}&summary=${this.blog.title}`
             window.open(url, 'renren-share', 'width=490,height=700');
         },
         qqHyShare() {
-            const url = `http://connect.qq.com/widget/shareqq/index.html?url=${window.location.href}&sharesource=qzone&title=${this.article.title}&summary=${this.article.title}`
+            const url = `http://connect.qq.com/widget/shareqq/index.html?url=${window.location.href}&sharesource=qzone&title=${this.blog.title}&summary=${this.blog.title}`
             window.open(url, 'renren-share', 'width=490,height=700');
         },
         weiboShare() {
-            const url = `http://service.weibo.com/share/share.php?url=${window.location.href}&title=${this.article.title}`;
+            const url = `http://service.weibo.com/share/share.php?url=${window.location.href}&title=${this.blog.title}`;
             window.open(url, 'renren-share', 'width=490,height=700');
         },
         weixinShare() {
@@ -532,8 +536,8 @@ export default {
             this.$router.push({ path: "/im", query: { userId: this.userInfo.id } })
         },
         handleFollowedUser() {
-            followedUser(this.article.userId).then(res => {
-                this.article.isFollowed = 1
+            followedUser(this.blog.userId).then(res => {
+                this.blog.isFollowed = 1
                 this.$toast.success('关注成功')
                 this.userInfo.fansCount++
 
@@ -542,8 +546,8 @@ export default {
             });
         },
         handleDeleteFollowedUser() {
-            deleteFollowedUser(this.article.userId).then(res => {
-                this.article.isFollowed = 0
+            deleteFollowedUser(this.blog.userId).then(res => {
+                this.blog.isFollowed = 0
 
                 this.$toast.success('取消关注成功')
                 this.userInfo.fansCount--
@@ -596,26 +600,26 @@ export default {
 
         },
         handleCollect() {
-            let id = this.article.id;
-            if (this.article.isCollect) {
+            let id = this.blog.id;
+            if (this.blog.isCollect) {
                 cancelCollect(id).then(res => {
-                    this.article.collectCount--
-                    this.article.isCollect = 0
+                    this.blog.collectCount--
+                    this.blog.isCollect = 0
 
                     this.$toast.success('取消收藏成功')
 
                 })
             } else {
                 collect(id).then(res => {
-                    this.article.collectCount++
-                    this.article.isCollect = 1
+                    this.blog.collectCount++
+                    this.blog.isCollect = 1
 
                     this.$toast.success('收藏成功')
                 })
             }
         },
-        handleClike(id, path) {
-            this.$router.push({ path: path, query: { id: id } })
+        handleClike(uid, path) {
+            this.$router.push({ path: path, query: { uid: uid } })
         },
 
         formatDate: function (value, args) {
@@ -628,17 +632,17 @@ export default {
             }
             return `${year}-${month}-${date}`;
         },
-        like(articleId) {
-            articleLike(articleId).then(res => {
-                if (this.article.isLike) {
-                    this.article.likeCount--;
-                    this.article.isLike = false
+        like(blogUid) {
+            articleLike(blogUid).then(res => {
+                if (this.blog.isLike) {
+                    this.blog.likeCount--;
+                    this.blog.isLike = false
 
                     this.$toast.success('取消点赞')
                 } else {
-                    this.article.likeCount++;
-                    this.article.isLike = true
-                    if (this.article.readType == 2) {
+                    this.blog.likeCount++;
+                    this.blog.isLike = true
+                    if (this.blog.readType == 2) {
                         this.checkAfter()
                     }
 

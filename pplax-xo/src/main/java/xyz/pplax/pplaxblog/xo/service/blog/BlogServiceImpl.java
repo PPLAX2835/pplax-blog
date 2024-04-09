@@ -13,15 +13,14 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.RelativeDateFormat;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
-import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.sql.BlogSortSQLConstants;
-import xyz.pplax.pplaxblog.xo.constants.sql.CommentSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.*;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.BlogMapper;
 import xyz.pplax.pplaxblog.xo.service.blogcontent.BlogContentService;
 import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
+import xyz.pplax.pplaxblog.xo.service.collect.CollectService;
 import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
 import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.tag.TagService;
@@ -58,6 +57,9 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
 
     @Autowired
     private UserInfoService userInfoService;
+
+    @Autowired
+    private CollectService collectService;
 
     @Override
     public IPage<Blog> listByBlogSort(String blogSortUid, String orderByDesc, Long currentPage, Long pageSize) {
@@ -284,6 +286,81 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     public BlogContent getBlogContentByBlogUid(String blogUid) {
         Blog blog = getById(blogUid);
         return blogContentService.getById(blog.getBlogContentUid());
+    }
+
+    @Override
+    public Blog getByIdWithAll(String blogUid, String userUid) {
+        Blog blog = getById(blogUid);
+        if (blog == null) {
+            return null;
+        }
+        blog.setBlogContent(getBlogContentByBlogUid(blogUid));
+
+        // 封装作者
+        User user = userService.getById(blog.getUserUid());
+        if (user != null) {
+            user.sensitiveDataRemove();
+            user.setUserInfo(userInfoService.getByUserUid(user.getUid()));
+            blog.setUser(user);
+        }
+
+        // 获得分类
+        blog.setBlogSort(blogSortService.getById(blog.getBlogSortUid()));
+
+        // 添加标签列表
+        String[] tagUids = blog.getTagUids().split(",");
+        blog.setTagList(tagService.listByIds(Arrays.asList(tagUids)));
+
+        // 获得点赞量和评论量
+        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
+
+        long likeCount = commentService.count(commentQueryWrapper);
+
+        commentQueryWrapper = new QueryWrapper<>();
+        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+
+        long commentCount = commentService.count(commentQueryWrapper);
+
+        blog.setLikeCount(likeCount);
+        blog.setCommentCount(commentCount);
+
+        // 判断自己是否已经点赞
+        boolean isLike = false;
+        if (!StringUtils.isBlank(userUid)) {
+            commentQueryWrapper = new QueryWrapper<>();
+            commentQueryWrapper.ne(CommentSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+            commentQueryWrapper.eq(CommentSQLConstants.USER_UID, userUid);
+            int count = commentService.count(commentQueryWrapper);
+            if (count > 0) {
+                isLike = true;
+            }
+        }
+        blog.setIsLike(isLike);
+
+        // 获得收藏数
+        QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
+        collectQueryWrapper.ne(CollectSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        collectQueryWrapper.eq(CollectSQLConstants.BLOG_UID, blog.getUid());
+        int collectCount = collectService.count(collectQueryWrapper);
+        blog.setCollectCount(collectCount);
+
+        // 判断自己是否收藏
+        boolean isCollect = false;
+        if (!StringUtils.isBlank(userUid)) {
+            collectQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
+            int count = collectService.count(collectQueryWrapper);
+            if (count > 0) {
+                isCollect = true;
+            }
+        }
+        blog.setIsCollect(isCollect);
+
+
+
+        return blog;
     }
 
     @Override

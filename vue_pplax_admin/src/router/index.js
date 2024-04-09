@@ -80,6 +80,12 @@ export const constantRouterMap = [
                 name: 'Tag',
                 component: () => import('@/views/tag/index'),
                 meta: { title: '标签管理', icon: 'table' }
+              },
+              {
+                path: 'say',
+                name: 'Say',
+                component: () => import('@/views/say/index'),
+                meta: { title: '说说管理', icon: 'table' }
               }
             ]
           },

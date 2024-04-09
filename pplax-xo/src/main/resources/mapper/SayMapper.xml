@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.pplax.pplaxblog.xo.mapper.SayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.Say">
+        <id column="uid" property="uid" />
+        <result column="user_uid" property="userUid" />
+        <result column="image_uid" property="imageUids" />
+        <result column="content" property="content" />
+        <result column="address" property="address" />
+        <result column="is_public" property="isPublic" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `uid`, `user_uid`, `image_uids`, `content`, `address`, `is_public`, `status`, `create_time`, `update_time`
+    </sql>
+
+</mapper>

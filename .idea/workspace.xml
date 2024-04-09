@@ -4,8 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="添加文章列表封面图片">
+      <change afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/web/WebSiteFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/SayFileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/SaySQLConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SayEditDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/list/SayGetListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Say.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/SayMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/say/SayService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/say/sayServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/SayMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/say.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/HttpStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/HttpStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/FileApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/menu/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/menu/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +66,15 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/say.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SayEditDto.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -79,7 +108,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_web/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_admin/src/api" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -98,11 +127,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-web\src\main\resources" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\api" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\siteSetting" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\say" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\service\say" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
@@ -115,11 +144,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="xyz.pplax.pplaxblog.web.controller" />
-      <recent name="xyz.pplax.pplaxblog.commons.utils" />
-      <recent name="xyz.pplax.pplaxblog.feign.sitesetting" />
+      <recent name="xyz.pplax.pplaxblog.feign.web" />
+      <recent name="xyz.pplax.pplaxblog.file.controller" />
       <recent name="xyz.pplax.pplaxblog.file.service" />
-      <recent name="xyz.pplax.pplaxblog" />
+      <recent name="xyz.pplax.pplaxblog.xo.dto.edit" />
+      <recent name="xyz.pplax.pplaxblog.xo.constants.sql" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -171,19 +200,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="pplax-auth" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AuthApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="pplax-gateway" />
       <extension name="coverage">
@@ -210,6 +226,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/vue_pplax_admin/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/vue_pplax_web/package.json" />
       <command value="run" />
@@ -224,16 +250,16 @@
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
-      <item itemvalue="Spring Boot.AuthApplication" />
+      <item itemvalue="npm.dev" />
       <item itemvalue="npm.serve" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -335,14 +361,8 @@
       <workItem from="1712453221984" duration="13710000" />
       <workItem from="1712536925489" duration="2258000" />
       <workItem from="1712539648498" duration="26000" />
-      <workItem from="1712539697140" duration="9513000" />
-    </task>
-    <task id="LOCAL-00316" summary="用户这里显示了一下状态的字段">
-      <created>1710038035952</created>
-      <option name="number" value="00316" />
-      <option name="presentableId" value="LOCAL-00316" />
-      <option name="project" value="LOCAL" />
-      <updated>1710038035952</updated>
+      <workItem from="1712539697140" duration="16974000" />
+      <workItem from="1712625180003" duration="8074000" />
     </task>
     <task id="LOCAL-00317" summary="分类添加功能完成">
       <created>1710038895141</created>
@@ -680,7 +700,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712565550596</updated>
     </task>
-    <option name="localTasksCounter" value="365" />
+    <task id="LOCAL-00365" summary="添加文章列表封面图片">
+      <created>1712565922270</created>
+      <option name="number" value="00365" />
+      <option name="presentableId" value="LOCAL-00365" />
+      <option name="project" value="LOCAL" />
+      <updated>1712565922270</updated>
+    </task>
+    <option name="localTasksCounter" value="366" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -715,7 +742,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="角色的增删改做完了，接下来弄权限管理" />
     <MESSAGE value="实现角色管理" />
     <MESSAGE value="实现友情链接管理" />
     <MESSAGE value="调整" />
@@ -740,7 +766,8 @@
     <MESSAGE value="修改站点设置管理的布局" />
     <MESSAGE value="优化站点管理" />
     <MESSAGE value="根据分类显示文章列表" />
-    <option name="LAST_COMMIT_MESSAGE" value="根据分类显示文章列表" />
+    <MESSAGE value="添加文章列表封面图片" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加文章列表封面图片" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

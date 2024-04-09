@@ -27,6 +27,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.xo.service.tag",
         "xyz.pplax.pplaxblog.xo.service.blogsort",
         "xyz.pplax.pplaxblog.xo.service.blogcontent",
+        "xyz.pplax.pplaxblog.xo.service.say",
         "xyz.pplax.pplaxblog.file.components",
         "xyz.pplax.pplaxblog.file.controller",
         "xyz.pplax.pplaxblog.file.service",

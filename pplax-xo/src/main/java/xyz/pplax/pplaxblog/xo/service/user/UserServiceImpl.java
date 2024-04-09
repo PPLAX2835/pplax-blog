@@ -26,6 +26,7 @@ import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
 import xyz.pplax.pplaxblog.xo.service.feedback.FeedbackService;
 import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.role.RoleService;
+import xyz.pplax.pplaxblog.xo.service.say.SayService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 import java.util.List;
@@ -52,6 +53,9 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private SayService sayService;
 
     @Autowired
     private CollectService collectService;
@@ -144,6 +148,15 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         if (blogCount > 0) {
             // 还有博客，无法删除
             return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_USER);
+        }
+
+        QueryWrapper<Say> sayQueryWrapper = new QueryWrapper<>();
+        sayQueryWrapper.eq(SaySQLConstants.USER_UID, user.getUid());
+        sayQueryWrapper.ne(SaySQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        int sayCount = sayService.count(sayQueryWrapper);
+        if (sayCount > 0) {
+            // 还有说说，无法删除
+            return new ResponseResult(HttpStatus.SAY_UNDER_THIS_USER);
         }
 
         QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();

@@ -25,12 +25,15 @@
             <i :class="scope.row.icon"></i>
           </template>
         </el-table-column>
-        <el-table-column width="180" align="center" label="类型">
+        <el-table-column width="100" align="center" label="类型">
           <template slot-scope="scope">
             <el-tag type="success" v-if="scope.row.type === 'menu'">菜单</el-tag>
             <el-tag type="warning" v-else-if="scope.row.type === 'button'">按钮</el-tag>
           </template>
         </el-table-column>
+
+        <el-table-column prop="route" label="路由" width="250"></el-table-column>
+        <el-table-column prop="endpoint" label="请求" width="250"></el-table-column>
 
         <el-table-column width="180" align="center" label="菜单级别">
           <template slot-scope="scope">
@@ -47,9 +50,6 @@
             <el-tag type="danger" v-else>否</el-tag>
           </template>
         </el-table-column>
-
-        <el-table-column prop="route" label="路由" width="250"></el-table-column>
-        <el-table-column prop="endpoint" label="请求" width="250"></el-table-column>
         <el-table-column width="180" align="center" label="添加时间">
           <template slot-scope="scope">
             <span>{{ timeFormat(scope.row.createTime) }}</span>

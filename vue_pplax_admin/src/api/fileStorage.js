@@ -148,3 +148,18 @@ export function siteLogoImageUpload(param) {
     data: param
   })
 }
+
+/**
+ * 说说图片上传
+ * @param param
+ * @returns {*}
+ */
+export function sayImageUpload(param) {
+
+  return service({
+    url: '/file/say/image',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}

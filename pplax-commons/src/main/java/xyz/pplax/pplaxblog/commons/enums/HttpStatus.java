@@ -140,12 +140,13 @@ public enum HttpStatus {
     COMMENT_UNDER_THIS_USER(403017, "该用户下还有评论"),
     FEEDBACK_UNDER_THIS_USER(403018, "该用户下还有反馈"),
     FILE_STORAGE_UNDER_THIS_USER(403019, "该用户下还有文件"),
-    TAG_NAME_EXIST(403020, "该标签名已存在"),
-    USERNAME_EXIST(403021, "该用户名已存在"),
-    CHILDREN_UNDER_THIS_MENU(403022, "该菜单还存在子菜单"),
-    MENU_UNDER_THIS_ROLE(403023, "该角色还拥有权限"),
-    INCONSISTENT_PASSWORD_INPUT(403024, "两次密码输入不一致"),
-    LAST_PASSWORD_NOT_ALLOWED(403025, "请不要修改上次使用的密码"),
+    SAY_UNDER_THIS_USER(403020, "该用户下还有说说"),
+    TAG_NAME_EXIST(403021, "该标签名已存在"),
+    USERNAME_EXIST(403022, "该用户名已存在"),
+    CHILDREN_UNDER_THIS_MENU(403023, "该菜单还存在子菜单"),
+    MENU_UNDER_THIS_ROLE(403024, "该角色还拥有权限"),
+    INCONSISTENT_PASSWORD_INPUT(403025, "两次密码输入不一致"),
+    LAST_PASSWORD_NOT_ALLOWED(403026, "请不要修改上次使用的密码"),
 
     /**
      * 账户相关

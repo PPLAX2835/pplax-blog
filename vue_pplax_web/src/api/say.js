@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 说说接口
 export function getSayList(params) {
     return request({
-        url: '/v1/say/getSayList',
+        url: '/web/say/list',
         method: 'get',
         params: params
     })

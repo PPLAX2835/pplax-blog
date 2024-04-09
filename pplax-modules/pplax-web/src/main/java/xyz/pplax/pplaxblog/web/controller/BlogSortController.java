@@ -32,7 +32,7 @@ public class BlogSortController extends SuperController {
     @Autowired
     private BlogSortService blogSortService;
 
-    @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
+    @ApiOperation(value = "获取博客分类列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取博客分类列表")
     @GetMapping("/list")
     public String getBlogSortList(){
         return success(blogSortService.list());

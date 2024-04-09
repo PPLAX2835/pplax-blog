@@ -8,21 +8,23 @@
             <div class="contentBox">
                 <div class="sayItem" v-for="(item, index) in sayList" :key="index">
                     <div class="avatar">
-                        <el-avatar :src="item.avatar" alt=""></el-avatar>
+                        <el-avatar :src="item.user.userInfo.avatar.fileUrl" alt=""></el-avatar>
                     </div>
                     <div class="rigthBox">
                         <div class="nickname">
-                            {{ item.nickname }}
+                            {{ item.user.userInfo.nickname }}
                             <el-tooltip class="item" effect="dark" content="博主" placement="right">
                                 <svg-icon icon-class="bozhu"></svg-icon>
                             </el-tooltip>
                         </div>
-                        <p class="content" v-highlight v-html="item.content"></p>
-                        <div v-if="item.imgUrl" :class="ckeckImgClass(item.imgUrl)">
-                            <div class="imgBox" @click="handlePreviewImg(item.imgUrl)" v-if="checkImg(item.imgUrl)"
-                                v-for="(imgItem, imgIndex) in splitImg(item.imgUrl)">
-                                <img :key="imgItem" v-lazy="imgItem" alt="">
+                        <p class="content" v-highlight> {{ item.content }} </p>
+                        <div v-if="item.imageList">
+                          <div v-for="imageItem in item.imageList" :class="ckeckImgClass(imageItem.fileUrl)">
+                            <div class="imgBox" @click="handlePreviewImg(imageItem.fileUrl)" v-if="checkImg(imageItem.fileUrl)">
+                              <img :key="imageItem.uid" v-lazy="imageItem.fileUrl" alt="">
                             </div>
+                          </div>
+
                         </div>
 
                         <div class="bottomBox">
@@ -32,7 +34,7 @@
                                 </a>
                             </div>
                             <span class="time">
-                                <i class="el-icon-time"></i> {{ item.createTimeStr }}
+                                <i class="el-icon-time"></i> {{ timeFormat(item.createTime) }}
                             </span>
                             <div class="operate" ref="operate">
                                 <span class="like hand-style" v-if="!item.isLike" @click="sayLike(item)">
@@ -51,54 +53,54 @@
                             </a>
                         </div>
                         <div class="interaction">
-                            <div v-if="item.userLikeList.length"
-                                :class="item.userLikeList.length && item.sayCommentVOList.length ? 'like-container is_border' : 'like-container'">
-                                <span v-for="(user, user_index) in item.userLikeList" :key="user_index">
-                                    <i class="iconfont icon-dianzan"></i> {{ user.nickname }}
-                                    <span v-if="user_index < item.userLikeList.length - 1">，</span>
-                                </span>
-                            </div>
-                            <div class="commentBox">
-                                <div class="commentItem " v-for="(comment, comment_index) in item.sayCommentVOList"
-                                    :key="comment_index" v-if="item.sayCommentVOList.length">
-                                    <div>
-                                        <span class="username" v-if="!comment.replyUserId">
-                                            {{ comment.nickname }}：
-                                        </span>
+<!--                            <div v-if="item.userLikeList.length"-->
+<!--                                :class="item.userLikeList.length && item.sayCommentVOList.length ? 'like-container is_border' : 'like-container'">-->
+<!--                                <span v-for="(user, user_index) in item.userLikeList" :key="user_index">-->
+<!--                                    <i class="iconfont icon-dianzan"></i> {{ user.nickname }}-->
+<!--                                    <span v-if="user_index < item.userLikeList.length - 1">，</span>-->
+<!--                                </span>-->
+<!--                            </div>-->
+<!--                            <div class="commentBox">-->
+<!--                                <div class="commentItem " v-for="(comment, comment_index) in item.sayCommentVOList"-->
+<!--                                    :key="comment_index" v-if="item.sayCommentVOList.length">-->
+<!--                                    <div>-->
+<!--                                        <span class="username" v-if="!comment.replyUserId">-->
+<!--                                            {{ comment.nickname }}：-->
+<!--                                        </span>-->
 
-                                        <span v-else>
-                                            <span class="username">{{ comment.nickname }}</span>
-                                            回复
-                                            <span class="username">{{ comment.replyUserNickname }}：</span>
-                                        </span>
-                                        <span class="content point" v-html="comment.content"
-                                            @click="handleShowCommentBox(comment, item.id, index)">
-                                        </span>
-                                    </div>
-                                </div>
+<!--                                        <span v-else>-->
+<!--                                            <span class="username">{{ comment.nickname }}</span>-->
+<!--                                            回复-->
+<!--                                            <span class="username">{{ comment.replyUserNickname }}：</span>-->
+<!--                                        </span>-->
+<!--                                        <span class="content point" v-html="comment.content"-->
+<!--                                            @click="handleShowCommentBox(comment, item.id, index)">-->
+<!--                                        </span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div class="conetntInputBox" ref="conetntInputBox">
-                                    <div class="">
-                                        <div id="textarea" ref="textareaRef" contenteditable="true" @input="onInput"
-                                            @paste="optimizePasteEvent" :data-placeholder="placeholder"
-                                            class="comment-textarea"></div>
+<!--                                <div class="conetntInputBox" ref="conetntInputBox">-->
+<!--                                    <div class="">-->
+<!--                                        <div id="textarea" ref="textareaRef" contenteditable="true" @input="onInput"-->
+<!--                                            @paste="optimizePasteEvent" :data-placeholder="placeholder"-->
+<!--                                            class="comment-textarea"></div>-->
 
-                                        <span class="point" @click="showEmoji = !showEmoji">
-                                            <i class="iconfont icon-biaoqing"></i>
-                                        </span>
-                                        <a class="sendBtn point" @click="sayComment">发送</a>
+<!--                                        <span class="point" @click="showEmoji = !showEmoji">-->
+<!--                                            <i class="iconfont icon-biaoqing"></i>-->
+<!--                                        </span>-->
+<!--                                        <a class="sendBtn point" @click="sayComment">发送</a>-->
 
-                                    </div>
-                                    <div class="emoji-wrapper" v-if="showEmoji">
-                                        <Emoji @chooseEmoji="handleChooseEmoji" />
-                                    </div>
-                                </div>
-                            </div>
+<!--                                    </div>-->
+<!--                                    <div class="emoji-wrapper" v-if="showEmoji">-->
+<!--                                        <Emoji @chooseEmoji="handleChooseEmoji" />-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>
                 <!-- 分页按钮 -->
-                <sy-pagination :pageNo="pageData.pageNo" :pages="pages" @changePage="handlePage" />
+                <sy-pagination :pageNo="pageData.currentPage" :pages="pages" @changePage="handlePage" />
             </div>
         </div>
         <image-preview :img="images"></image-preview>
@@ -108,6 +110,8 @@
 import { getSayList, sayLike, sayComment } from '@/api/say'
 import Emoji from '@/components/emoji'
 import imagePreview from '@/components/imagePreview'
+import { parseTime } from "@/utils";
+
 export default {
     components: {
         Emoji,
@@ -127,7 +131,7 @@ export default {
             sayList: [],
             images: {},
             pageData: {
-                pageNo: 1,
+              currentPage: 1,
                 pageSize: 10,
             },
             pages: 0,
@@ -226,6 +230,12 @@ export default {
             this.comment.sayId = sayId
             this.showCommentBox = !this.showCommentBox
 
+        },
+        /**
+         * 时间戳格式化
+         */
+        timeFormat(timestamp) {
+          return parseTime(timestamp);
         },
         //添加表情
         handleChooseEmoji(value) {
@@ -330,7 +340,7 @@ export default {
         getSayList() {
             this.$bus.$emit('show');
             getSayList(this.pageData).then(res => {
-                this.sayList.push(...res.data.records)
+                this.sayList.push(...res.data)
                 this.pages = res.data.pages
                 this.$bus.$emit('close')
             }).catch(err => {
@@ -338,7 +348,7 @@ export default {
             })
         },
         handlePage(val) {
-            this.pageData.pageNo = val;
+            this.pageData.currentPage = val;
             this.getSayList()
         },
         checkImg(img) {

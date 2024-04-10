@@ -17,6 +17,7 @@ import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.CommentMapper;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.say.SayService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
@@ -41,6 +42,9 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
 
     @Autowired
     private SayService sayService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     @Override
     public IPage<Comment> list(CommentGetListDto commentGetListDto) {
@@ -103,6 +107,8 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
             User commentator = userService.getById(comment.getUserUid());
             if (commentator != null) {
                 UserInfo commentatorUserInfo = userInfoService.getById(commentator.getUserInfoUid());
+                FileStorage commentatorAvatar = fileStorageService.getById(commentatorUserInfo.getAvatarPictureUid());
+                commentatorUserInfo.setAvatar(commentatorAvatar);
                 commentator.setUserInfo(commentatorUserInfo);
                 // 脱敏
                 commentator.sensitiveDataRemove();
@@ -113,6 +119,8 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
             User targetUser = userService.getById(comment.getToUserUid());
             if (targetUser != null) {
                 UserInfo targetUserUserInfo = userInfoService.getById(targetUser.getUserInfoUid());
+                FileStorage commentatorAvatar = fileStorageService.getById(targetUserUserInfo.getAvatarPictureUid());
+                targetUserUserInfo.setAvatar(commentatorAvatar);
                 targetUser.setUserInfo(targetUserUserInfo);
                 // 脱敏
                 targetUser.sensitiveDataRemove();
@@ -125,5 +133,75 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
         pageList.setRecords(commentList);
 
         return pageList;
+    }
+
+    @Override
+    public List<Comment> listByOriginalUid(String originalUid, Integer type) {
+        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+        commentQueryWrapper.eq(CommentSQLConstants.TYPE, type);
+        commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
+        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+
+        List<Comment> commentList = list(commentQueryWrapper);
+        for (Comment comment : commentList) {
+            // 封装评论人
+            User commentator = userService.getById(comment.getUserUid());
+            if (commentator != null) {
+                UserInfo commentatorUserInfo = userInfoService.getById(commentator.getUserInfoUid());
+                FileStorage commentatorAvatar = fileStorageService.getById(commentatorUserInfo.getAvatarPictureUid());
+                commentatorUserInfo.setAvatar(commentatorAvatar);
+                commentator.setUserInfo(commentatorUserInfo);
+                // 脱敏
+                commentator.sensitiveDataRemove();
+            }
+            comment.setCommentator(commentator);
+
+            // 封装被评论人
+            User targetUser = userService.getById(comment.getToUserUid());
+            if (targetUser != null) {
+                UserInfo targetUserUserInfo = userInfoService.getById(targetUser.getUserInfoUid());
+                FileStorage commentatorAvatar = fileStorageService.getById(targetUserUserInfo.getAvatarPictureUid());
+                targetUserUserInfo.setAvatar(commentatorAvatar);
+                targetUser.setUserInfo(targetUserUserInfo);
+                // 脱敏
+                targetUser.sensitiveDataRemove();
+            }
+            comment.setTargetUser(targetUser);
+        }
+
+        return commentList;
+    }
+
+    @Override
+    public IPage<Comment> pageByBlogUid(String blogUid, Integer type, Long currentPage, Long pageSize) {
+        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        commentQueryWrapper.eq(CommentSQLConstants.TYPE, type);
+        commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, blogUid);
+
+        //分页
+        Page<Comment> page = new Page<>();
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
+
+        IPage<Comment> commentIPage = page(page, commentQueryWrapper);
+        for (Comment comment : commentIPage.getRecords()) {
+            // 封装子评论
+            comment.setChildren(listByOriginalUid(comment.getUid(), CharacterConstants.NUM_FOUR));
+
+            // 封装评论人
+            User commentator = userService.getById(comment.getUserUid());
+            if (commentator != null) {
+                UserInfo commentatorUserInfo = userInfoService.getById(commentator.getUserInfoUid());
+                FileStorage commentatorAvatar = fileStorageService.getById(commentatorUserInfo.getAvatarPictureUid());
+                commentatorUserInfo.setAvatar(commentatorAvatar);
+                commentator.setUserInfo(commentatorUserInfo);
+                // 脱敏
+                commentator.sensitiveDataRemove();
+            }
+            comment.setCommentator(commentator);
+        }
+
+        return commentIPage;
     }
 }

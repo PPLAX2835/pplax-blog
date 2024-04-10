@@ -34,8 +34,8 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         List<SiteSetting> siteSettingList = list(siteSettingQueryWrapper);
         for (SiteSetting siteSetting : siteSettingList) {
             // 如果是json形式就转化为json
-            if (!StringUtils.isBlank(siteSetting.getValue()) && (siteSetting.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
-                siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSetting.getValue())));
+            if (!StringUtils.isBlank((String) siteSetting.getValue()) && (((String) siteSetting.getValue()).matches(BaseRegexConstants.JSON_REGEX))) {
+                siteSetting.setValue(JSON.toJSONString(JSON.parseObject((String) siteSetting.getValue())));
             }
         }
 
@@ -80,6 +80,13 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
 
         Map<String, Object> res = new HashMap<>();
         for (SiteSetting siteSetting : siteSettingList) {
+
+            if (!StringUtils.isBlank((String) siteSetting.getValue()) && (((String) siteSetting.getValue()).matches(BaseRegexConstants.JSON_REGEX))) {
+                siteSetting.setValue(JSON.parseObject((String) siteSetting.getValue()));
+            } else {
+                siteSetting.setValue(siteSetting.getValue());
+            }
+
             res.put(siteSetting.getNameEn(), siteSetting);
         }
 

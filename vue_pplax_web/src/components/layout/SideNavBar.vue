@@ -4,7 +4,7 @@
         <div class="warpper">
             <!-- 博主介绍 -->
             <div class="blogger-info">
-                <el-avatar :src="$store.state.webSiteInfo.authorAvatar"></el-avatar>
+                <el-avatar :src="$store.state.webSiteInfo.authorAvatar.value.fileUrl"></el-avatar>
             </div>
 
             <hr />

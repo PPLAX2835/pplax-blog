@@ -13,7 +13,10 @@ export default new Vuex.Store({
     systemNotcie: {},
     userInfo: sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null,
     isCommentFlag: false,
-    webSiteInfo: { "loginTypeList": [], "showList": [] },
+    webSiteInfo: {
+      "loginTypeList": [],
+      "showList": []
+    },
   },
   mutations: {
     closeModel(state) {

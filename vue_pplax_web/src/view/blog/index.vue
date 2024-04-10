@@ -204,7 +204,7 @@
                 <div class="copyrightItem" v-else>
                     <svg-icon icon-class="zzlink"></svg-icon>
                     <span class="text name">转载链接:</span>
-                    <a :href="article.originalUrl" class="text"> {{ blog.originalUrl }}</a>
+                    <a :href="blog.originalUrl" class="text"> {{ blog.originalUrl }}</a>
                 </div>
                 <div class="copyrightItem">
                     <svg-icon icon-class="link"></svg-icon>
@@ -228,12 +228,11 @@
             <!-- 评论 -->
             <div class="comment-mian" id="comment">
                 <div class="title">
-                    <!-- <i class="iconfont icon-pinglun"></i> -->
+                     <i class="iconfont icon-pinglun"></i>
                     <svg-icon icon-class="message"></svg-icon>
                     评论 <span style="color: var(--text-color);font-size: 0.8rem;">发表评论,来抢沙发</span>
                 </div>
-              <!-- 这个是评论组件，记得放开 -->
-<!--                <Comment :articleUserId="blog.userId" />-->
+                <Comment :blogUid="blog.uid" />
             </div>
         </el-card>
         <!-- 右边侧边栏 -->
@@ -306,10 +305,22 @@ export default {
     },
     data() {
         return {
-          blog: {
-                category: {},
-                comments: [],
-                tagList: [],
+            blog: {
+              uid: this.$route.params.blogUid,
+              blogContent: {
+                content: '载入中'
+              },
+              blogSort: {
+                sortName: '...',
+                icon: ''
+              },
+              user: {
+                userInfo: {
+                  avatar: {
+                    fileUrl: ''
+                  }
+                }
+              }
             },
             rightShow: true,
             code: null,
@@ -342,8 +353,11 @@ export default {
     },
 
     mounted() {
-        const element = document.getElementById("articleBox")
-        this.left = (element.offsetLeft - 80) + "px"
+        // 防抖
+        setTimeout(function () {
+          const element = document.getElementById("articleBox")
+          this.left = (element.offsetLeft - 80) + "px"
+        }, 1000)
 
         // 监听滚动事件
         window.addEventListener('scroll', this.onScroll, false)
@@ -391,7 +405,7 @@ export default {
         getBlog(this.blogUid).then(res => {
             this.blog = res.data
             const md = new MarkdownIt()
-            this.blog.blogContent.content = md.render(this.blog.blogContent.content)
+            this.blog.blogContent.content = md.render(this.blog.blogContent.content)    // markdown转html
             this.serceShow = this.blog.activeReadType
             if (this.blog.readType != 0 && !this.serceShow) {
                 this.style = "max-height: 1200px;overflow: hidden;"

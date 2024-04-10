@@ -15,6 +15,8 @@
           <el-option label="博客点赞" :value="1" />
           <el-option label="说说评论" :value="3" />
           <el-option label="说说点赞" :value="4" />
+          <el-option label="评论回复" :value="5" />
+          <el-option label="评论点赞" :value="6" />
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -47,8 +49,10 @@
           <template slot-scope="scope">
             <el-tag type="success" v-if="scope.row.type === 0">博客评论</el-tag>
             <el-tag type="danger" v-else-if="scope.row.type === 1">博客点赞</el-tag>
-            <el-tag type="info" v-if="scope.row.type === 2">说说评论</el-tag>
+            <el-tag type="info" v-else-if="scope.row.type === 2">说说评论</el-tag>
             <el-tag type="warning" v-else-if="scope.row.type === 3">说说点赞</el-tag>
+            <el-tag v-else-if="scope.row.type === 4">评论回复</el-tag>
+            <el-tag v-else-if="scope.row.type === 5">评论点赞</el-tag>
           </template>
         </el-table-column>
         <el-table-column width="180" align="center" label="所属原文">

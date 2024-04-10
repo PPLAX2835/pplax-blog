@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 
+import java.util.List;
+
 /**
  * @description 评论表
  * @author PPLAX
@@ -57,6 +59,9 @@ public class Comment extends SuperEntity {
      * 原文uid  博客/说说 uid
      */
     private String originalUid;
+
+    @TableField(exist = false)
+    private List<Comment> children;           // 子评论列表
 
     @TableField(exist = false)
     private User commentator;           // 评论人

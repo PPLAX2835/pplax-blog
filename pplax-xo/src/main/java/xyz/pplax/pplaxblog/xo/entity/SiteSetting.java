@@ -30,7 +30,7 @@ public class SiteSetting extends SuperEntity {
 	/**
 	 * 值
 	 */
-	private String value;
+	private Object value;
 
 	public SiteSetting() {}
 }

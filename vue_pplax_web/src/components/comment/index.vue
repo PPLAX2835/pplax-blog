@@ -30,37 +30,37 @@
             <div class="comment-wrp">
                 <li class="ul-item" ref="commentBoxref" v-for="(item, index) in  commentList " :key="index">
                     <!-- 评论内容 -->
-                    <div class="comment" @mouseenter="replyEnter(item.id, false)" @mouseleave="replyLeave(item.id)">
+                    <div class="comment" @mouseenter="replyEnter(item.uid, false)" @mouseleave="replyLeave(item.uid)">
                         <div class="main">
                             <div class="profile">
-                                <el-avatar :src="item.avatar" size="medium"></el-avatar>
+                                <el-avatar :src="item.commentator.userInfo.avatar !== undefined ? item.commentator.userInfo.avatar.fileUrl : ''" size="medium"></el-avatar>
                             </div>
                             <div class="commentinfo">
                                 <section class="commeta">
                                     <div class="left">
                                         <h4 class="author">
                                             <a :href="item.webSite" target="_blank" class="disabled">
-                                                {{ item.nickname }}
-                                                <span v-if="item.userId == 1" class="bozhu">博主</span>
+                                                {{ item.commentator.userInfo.nickname }}
+<!--                                                <span v-if="item.commentator.uid === 1" class="bozhu">博主</span>-->
                                             </a>
                                         </h4>
                                     </div>
-                                    <a :ref="'replyBtn' + item.id" @click="replyComment(item, item.id, false)"
+                                    <a :ref="'replyBtn' + item.uid" @click="replyComment(item, item.uid, false)"
                                         class="comment-reply-link hand-style">回复</a>
                                     <div class="right">
                                         <div class="info">
                                             <time itemprop="datePublished" datetime="1680523318635" class="comment-time">发布于
-                                                {{ item.createTimeStr }}
+                                                {{ timeFormat(item.createTime) }}
                                             </time>
-                                            <span class="useragent-info">（
-                                                <svg-icon :icon-class="item.browser" />
-                                                {{ item.browserVersion }} &nbsp;
-                                                <svg-icon :icon-class="item.system" />
-                                                {{ item.systemVersion }}
-                                                ）
-                                            </span>
+<!--                                            <span class="useragent-info">（-->
+<!--                                                <svg-icon :icon-class="item.browser" />-->
+<!--                                                {{ item.browserVersion }} &nbsp;-->
+<!--                                                <svg-icon :icon-class="item.system" />-->
+<!--                                                {{ item.systemVersion }}-->
+<!--                                                ）-->
+<!--                                            </span>-->
                                             <span class="ipAddress">
-                                                IP属地:{{ splitIpAddress(item.ipAddress) }}
+                                                IP属地:{{ splitIpAddress(item.address) }}
                                             </span>
                                         </div>
                                     </div>
@@ -68,12 +68,11 @@
                                 <div class="body markdown-body">
                                     <div class="markdown-content">
                                         <p v-html="item.content">
-
                                         </p>
                                     </div>
                                 </div>
                                 <!-- 回复框 -->
-                                <Reply :ref="'reply' + item.id" @reloadReply="reloadReply">
+                                <Reply :ref="'reply' + item.uid" @reloadReply="reloadReply">
                                 </Reply>
                             </div>
                         </div>
@@ -83,30 +82,30 @@
                             <li class="ul-item" v-for="( childrenItem, childerenIndex ) in  item.children "
                                 :key="childerenIndex">
                                 <!-- 评论内容 -->
-                                <div class="comment" @mouseenter="replyEnter(childrenItem.id, true)"
-                                    @mouseleave="replyLeave(childrenItem.id, true, index)">
+                                <div class="comment" @mouseenter="replyEnter(childrenItem.uid, true)"
+                                    @mouseleave="replyLeave(childrenItem.uid, true, index)">
                                     <div class="main">
                                         <div class="profile">
-                                            <el-avatar :src="childrenItem.avatar" size="medium"></el-avatar>
+                                            <el-avatar :src="childrenItem.commentator.userInfo.avatar !== undefined ? childrenItem.commentator.userInfo.avatar.fileUrl : ''"  size="medium"></el-avatar>
                                         </div>
                                         <div class="commentinfo">
                                             <section class="commeta">
                                                 <div class="left">
                                                     <h4 class="author">
                                                         <a :href="childrenItem.webSite" target="_blank" class="disabled">
-                                                            {{ childrenItem.nickname }}
-                                                            <span v-if="childrenItem.userId == 1" class="bozhu">博主</span>
+                                                            {{ childrenItem.commentator.userInfo.nickname }}
+<!--                                                            <span v-if="childrenItem.userId == 1" class="bozhu">博主</span>-->
                                                         </a>
                                                     </h4>
                                                 </div>
-                                                <a href="javascript:;" :ref="'childrenBtn' + childrenItem.id"
-                                                    @click="replyComment(childrenItem, item.id, true)"
+                                                <a href="javascript:;" :ref="'childrenBtn' + childrenItem.uid"
+                                                    @click="replyComment(childrenItem, item.uid, true)"
                                                     class="comment-reply-link hand-style">回复</a>
                                                 <div class="right">
                                                     <div class="info">
                                                         <time itemprop="datePublished" datetime="1680523318635"
                                                             class="comment-time">发布于
-                                                            {{ childrenItem.createTimeStr }}
+                                                            {{ timeFormat(childrenItem.createTime) }}
                                                         </time>
                                                         <span class="useragent-info">（
                                                             <svg-icon :icon-class="childrenItem.browser" />
@@ -116,7 +115,7 @@
                                                             ）
                                                         </span>
                                                         <span class="ipAddress">
-                                                            IP属地:{{ splitIpAddress(childrenItem.ipAddress) }}
+                                                            IP属地:{{ splitIpAddress(childrenItem.address) }}
                                                         </span>
                                                     </div>
 
@@ -133,7 +132,7 @@
                                                 </div>
                                             </div>
                                             <!-- 回复框 -->
-                                            <Reply :ref="'replys' + childrenItem.id" @reloadReply="reloadReply">
+                                            <Reply :ref="'replys' + childrenItem.uid" @reloadReply="reloadReply">
                                             </Reply>
                                         </div>
                                     </div>
@@ -145,7 +144,7 @@
 
                 <!-- 分页按钮 -->
                 <div>
-                    <sy-pagination :pageNo="pageData.pageNo" :pages="pages" @changePage="moreComment" />
+                    <sy-pagination :pageNo="pageData.currentPage" :pages="pages" @changePage="moreComment" />
                 </div>
             </div>
         </ul>
@@ -154,6 +153,7 @@
 <script>
 import { postComment, featchComments } from '@/api/comment'
 import { browserMatch } from '@/utils/index'
+import {parseTime} from "@/utils/index";
 import Reply from './Reply.vue'
 import Emoji from '@/components/emoji'
 export default {
@@ -162,7 +162,7 @@ export default {
         Emoji
     },
     props: {
-        articleUserId: {
+        blogUid: {
             type: String,
             default: "",
         }
@@ -177,9 +177,10 @@ export default {
             articleId: this.$route.params.articleId,
             // 加载层信息
             pageData: {
-                pageNo: 1,
+                blogUid: this.blogUid,
+                type: 0,
+                currentPage: 1,
                 pageSize: 5,
-                articleId: this.$route.params.articleId
             },
             commentList: [],
             pages: 0,
@@ -188,7 +189,7 @@ export default {
         }
     },
     mounted() {
-        this.getCommens()
+        this.getComments()
         document.addEventListener("click", e => {
             if (e.target.className != "el-radio-button__orig-radio" && e.target.className != "el-radio-button__inner"
                 && e.target.className != "el-upload__input" && e.target.className != "el-icon-plus avatar-uploader-icon") {
@@ -207,10 +208,10 @@ export default {
     },
     methods: {
 
-        getCommens() {
+      getComments() {
             featchComments(this.pageData).then(res => {
-                this.commentList = res.data.records
-                this.pages = res.data.pages;
+                this.commentList = res.data
+                this.pageData.currentPage++
             })
         },
         handleChooseEmoji(value) {
@@ -280,33 +281,40 @@ export default {
             }
 
             if (isChilderen) {
-                this.$refs['replys' + item.id][0].showBox = true
+                this.$refs['replys' + item.uid][0].showBox = true
                 //传值给回复框
-                this.$refs['replys' + item.id][0].commentContent = "";
-                this.$refs['replys' + item.id][0].nickname = item.nickname;
-                this.$refs['replys' + item.id][0].replyUserId = item.userId;
-                this.$refs['replys' + item.id][0].parentId = parentId;
-                this.$refs['replys' + item.id][0].index = item.id;
+                this.$refs['replys' + item.uid][0].commentContent = "";
+                this.$refs['replys' + item.uid][0].nickname = item.nickname;
+                this.$refs['replys' + item.uid][0].replyUserId = item.userId;
+                this.$refs['replys' + item.uid][0].parentId = parentId;
+                this.$refs['replys' + item.uid][0].index = item.uid;
             } else {
-                this.$refs['reply' + item.id][0].showBox = true
+                this.$refs['reply' + item.uid][0].showBox = true
                 //传值给回复框
-                this.$refs['reply' + item.id][0].commentContent = "";
-                this.$refs['reply' + item.id][0].nickname = item.nickname;
-                this.$refs['reply' + item.id][0].replyUserId = item.userId;
-                this.$refs['reply' + item.id][0].parentId = parentId;
-                this.$refs['reply' + item.id][0].index = item.id;
+                this.$refs['reply' + item.uid][0].commentContent = "";
+                this.$refs['reply' + item.uid][0].nickname = item.nickname;
+                this.$refs['reply' + item.uid][0].replyUserId = item.userId;
+                this.$refs['reply' + item.uid][0].parentId = parentId;
+                this.$refs['reply' + item.uid][0].index = item.uid;
             }
-            this.lastCommentId = item.id
+            this.lastCommentId = item.uid
+        },
+
+        /**
+         * 时间戳格式化
+         */
+        timeFormat(timestamp) {
+          return parseTime(timestamp);
         },
         reloadReply(index) {
             let query = {
-                pageNo: this.pageData.pageNo,
+                currentPage: this.pageData.currentPage,
                 pageSize: 5,
                 articleId: this.articleId
             }
 
             featchComments(query).then(res => {
-                this.commentList = res.data.records
+                this.commentList = res.data
             })
         },
         optimizePasteEvent(e) {
@@ -346,8 +354,8 @@ export default {
                 browserVersion: browser.browser + " " + browser.version,
             }
             postComment(comment).then(res => {
-                this.pageData.pageNo = 1
-                this.getCommens()
+                this.pageData.currentPage = 1
+                this.getComments()
                 this.$toast.success('评论成功')
                 this.$store.commit("isCommentFlag", true)
                 this.$refs.textareaRef.innerHTML = ""
@@ -355,16 +363,17 @@ export default {
         },
         moreComment(val) {
             this.$bus.$emit('show');
-            this.pageData.pageNo = val;
+            this.pageData.currentPage = val;
             featchComments(this.pageData).then(res => {
-                this.commentList.push(...res.data.records)
-                this.pages = res.data.pages;
+                this.commentList.push(...res.data)
+                this.pageData.currentPage++
                 this.$bus.$emit('close');
             })
         },
 
         splitIpAddress(address) {
-            return address.split("|")[1]
+            let arr = address.split("|")
+            return arr[arr.length - 1]
         },
     },
 }

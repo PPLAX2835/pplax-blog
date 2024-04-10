@@ -315,14 +315,16 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
         commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
+        commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, blogUid);
 
-        long likeCount = commentService.count(commentQueryWrapper);
+        long commentCount = commentService.count(commentQueryWrapper);
 
         commentQueryWrapper = new QueryWrapper<>();
         commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+        commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, blogUid);
 
-        long commentCount = commentService.count(commentQueryWrapper);
+        long likeCount = commentService.count(commentQueryWrapper);
 
         blog.setLikeCount(likeCount);
         blog.setCommentCount(commentCount);

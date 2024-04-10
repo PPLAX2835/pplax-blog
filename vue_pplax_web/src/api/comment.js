@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function featchComments(params) {
     return request({
-        url: '/v1/comment/',
+        url: '/web/comment/list',
         method: 'get',
         params: params
     })

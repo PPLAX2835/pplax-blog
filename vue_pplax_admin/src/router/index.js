@@ -147,6 +147,12 @@ export const constantRouterMap = [
                 name: 'LeaveMessage',
                 component: () => import('@/views/leaveMessage/index'),
                 meta: { title: '留言管理', icon: 'table' }
+              },
+              {
+                path: 'chatRoom',
+                name: 'ChatRoom',
+                component: () => import('@/views/chatRoom/index'),
+                meta: { title: '聊天室管理', icon: 'table' }
               }
             ]
           },

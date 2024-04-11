@@ -50,7 +50,7 @@
                                     <i class="el-icon-date"></i>文章归档
                                 </el-dropdown-item>
                             </router-link>
-                            <router-link style="text-decoration: none;color: #71777c;" :to="'/category'">
+                            <router-link style="text-decoration: none;color: #71777c;" :to="'/blogSort'">
                                 <el-dropdown-item>
                                     <i class="el-icon-menu"></i>文章分类
                                 </el-dropdown-item>

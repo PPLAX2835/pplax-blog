@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="博客详情页现在能显示评论了，修复部分undefined（原因是请求还没获得返回，但是页面已经渲染了）的问题">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/ArchiveController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/auth.js" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/BlogMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/BlogMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/BlogMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/archive/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/archive/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/blog/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/blogSort/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -358,14 +352,7 @@
       <workItem from="1712539697140" duration="16974000" />
       <workItem from="1712625180003" duration="30209000" />
       <workItem from="1712710952377" duration="14653000" />
-      <workItem from="1712799815758" duration="2107000" />
-    </task>
-    <task id="LOCAL-00322" summary="标签管理能显示列表了">
-      <created>1710062335855</created>
-      <option name="number" value="00322" />
-      <option name="presentableId" value="LOCAL-00322" />
-      <option name="project" value="LOCAL" />
-      <updated>1710062335855</updated>
+      <workItem from="1712799815758" duration="3521000" />
     </task>
     <task id="LOCAL-00323" summary="标签的增删改完成了">
       <created>1710067943464</created>
@@ -703,7 +690,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712750521636</updated>
     </task>
-    <option name="localTasksCounter" value="371" />
+    <task id="LOCAL-00371" summary="文章归档接口做好了">
+      <created>1712802121725</created>
+      <option name="number" value="00371" />
+      <option name="presentableId" value="LOCAL-00371" />
+      <option name="project" value="LOCAL" />
+      <updated>1712802121725</updated>
+    </task>
+    <option name="localTasksCounter" value="372" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -738,7 +732,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="准备弄前台" />
     <MESSAGE value="打算使用https://github.com/Naccl/NBlog进行二次开发" />
     <MESSAGE value="后台增加站点设置，目前还不太优雅" />
     <MESSAGE value="修改站点设置序列化问题" />
@@ -763,7 +756,8 @@
     <MESSAGE value="博客详情页基本能显示了，报错却能渲染应该是抖动的问题" />
     <MESSAGE value="博客详情页现在能显示评论了，修复部分页面抖动（好像叫这个）问题" />
     <MESSAGE value="博客详情页现在能显示评论了，修复部分undefined（原因是请求还没获得返回，但是页面已经渲染了）的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="博客详情页现在能显示评论了，修复部分undefined（原因是请求还没获得返回，但是页面已经渲染了）的问题" />
+    <MESSAGE value="文章归档接口做好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="文章归档接口做好了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

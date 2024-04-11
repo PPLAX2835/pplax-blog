@@ -10,23 +10,23 @@
                         <a ref="tag" :style="{ fontSize: tag.font }"
                             :class="handleChoose(tag, index) ? 'tag-option hand-style active' : 'tag-option hand-style'"
                             @click="handleClick(tag.uid, index)" v-for="(tag, index) in blogSortList" :key="index">
-                            {{ tag.name }} <span class="num">{{ tag.articleNum }}</span>
+                            {{ tag.sortName }} <span class="num">{{ tag.cites }}</span>
                         </a>
                     </div>
                 </div>
 
-                <div class="article-list" v-if="articleList.length">
-                    <div class="article-item  box-shadow-top" v-for="(article, index) in articleList" :key="index">
+                <div class="article-list" v-if="blogList.length">
+                    <div class="article-item  box-shadow-top" v-for="(article, index) in blogList" :key="index">
                         <div class="article-cover">
-                            <img v-lazy="article.avatar" :key="article.avatar" alt="">
+                            <img :src="article.coverImage === undefined ? '' : article.coverImage.fileUrl" :key="article.uid" alt="">
 
                         </div>
                         <div class="article-right">
-                            <router-link :to="'/article/' + article.id">
+                            <router-link :to="'/blog/' + article.uid">
                                 <h4>{{ article.title }}</h4>
                             </router-link>
                             <div class="article-meta">
-                                <el-avatar class="userAvatar" :src="$store.state.webSiteInfo.authorAvatar"></el-avatar>
+                                <el-avatar class="userAvatar" :src="article.user.userInfo.avatar.fileUrl"></el-avatar>
                                 <el-tooltip class="item" effect="dark" content="文章标签" placement="top"
                                     v-for="tag in article.tagList">
                                     <el-tag :type="tagStyle[Math.round(Math.random() * 4)]" size="mini"
@@ -63,21 +63,21 @@ export default {
     },
     data() {
         return {
-          blogSortList: [],
-            articleList: [],
+            blogSortList: [],
+            blogList: [],
             tagStyle: ['', 'success', 'info', 'warning', 'danger'],
             pages: 0,
             lastIndex: null,
             pageData: {
                 currentPage: 1,
                 pageSize: 8,
-                categoryId: this.$route.query.id,
+                blogSortUid: this.$route.query.id,
             }
         }
     },
     created() {
         this.getBlogSortList()
-        if (this.pageData.categoryId != null) {
+        if (this.pageData.blogSortUid != null) {
             this.fetchBlogList()
         }
     },
@@ -86,7 +86,7 @@ export default {
             this.$router.push({ path: path, query: { id: id } })
         },
         handleChoose(item) {
-            return item.id == this.pageData.categoryId;
+            return item.id == this.pageData.blogSortUid;
         },
         handleClick(id, index) {
             if (index == this.lastIndex) {
@@ -99,8 +99,8 @@ export default {
             }
             this.lastIndex = index
             this.pageData.currentPage = 1
-            this.pageData.categoryId = id
-            this.articleList = []
+            this.pageData.blogSortUid = id
+            this.blogList = []
             this.fetchBlogList()
         },
         // 分页
@@ -119,8 +119,8 @@ export default {
         fetchBlogList() {
                 this.$bus.$emit('show');
                 fetchBlogList(this.pageData).then(res => {
-                this.articleList.push(...res.data.records)
-                this.pages = res.data.pages
+                this.blogList.push(...res.data)
+                this.pages = this.pageData.currentPage
                 this.$bus.$emit('close');
             }).catch(err => {
                 this.$bus.$emit('close');

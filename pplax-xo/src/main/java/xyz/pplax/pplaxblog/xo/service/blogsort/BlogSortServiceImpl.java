@@ -105,7 +105,17 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
         QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
         blogSortQueryWrapper.ne(BlogSortSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
 
-        return list(blogSortQueryWrapper);
+        List<BlogSort> blogSortList = list(blogSortQueryWrapper);
+        for (BlogSort blogSort : blogSortList) {
+            // 封装文章数
+            QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSort.getUid());
+
+            blogSort.setCites(blogService.count(blogQueryWrapper));
+        }
+
+        return blogSortList;
     }
 
     /**

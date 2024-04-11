@@ -125,6 +125,14 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             // 获得封面图
             item.setCoverImage(fileStorageService.getById(item.getCoverImageUid()));
 
+            // 添加作者
+            User user = userService.getById(item.getUserUid());
+            if (user != null) {
+                user.sensitiveDataRemove();
+                user.setUserInfo(userInfoService.getByUserUid(user.getUid()));
+                item.setUser(user);
+            }
+
             // 获得点赞量和评论量
             QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
             commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());

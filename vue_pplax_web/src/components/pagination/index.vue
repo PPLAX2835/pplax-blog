@@ -1,7 +1,7 @@
 <template>
     <div class=''>
         <!-- 分页按钮 -->
-        <div class="page hand-style no-select" v-if="pageNo < pages" @click="handlePage">
+        <div class="page hand-style no-select" v-if="currentPage < Math.ceil((total / pageSize))" @click="handlePage">
             加载更多
         </div>
         <div class="tips" v-else>
@@ -18,13 +18,17 @@ export default {
     name: 'page',
 
     props: {
-        pageNo: {
+        currentPage: {
             type: Number,
             default: 0
         },
-        pages: {
-            type: Number,
-            default: 0
+        pageSize: {
+          type: Number,
+          default: 0
+        },
+        total: {
+          type: Number,
+          default: 0
         },
         changePage: {
             type: Function,
@@ -33,7 +37,7 @@ export default {
     },
     methods: {
         handlePage() {
-            this.$emit('changePage', this.pageNo + 1);
+            this.$emit('changePage', this.currentPage + 1);
         },
     },
 }

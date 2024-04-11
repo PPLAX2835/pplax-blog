@@ -9,7 +9,7 @@
                     <div class="tag-list">
                         <a ref="tag" :style="{ fontSize: tag.font }"
                             :class="handleChoose(tag, index) ? 'tag-option hand-style active' : 'tag-option hand-style'"
-                            @click="handleClick(tag.uid, index)" v-for="(tag, index) in blogSortList" :key="index">
+                            @click="handleClick(tag.uid, index)" v-for="(tag, index) in blogSortList" :key="tag.uid">
                             {{ tag.sortName }} <span class="num">{{ tag.cites }}</span>
                         </a>
                     </div>
@@ -30,7 +30,7 @@
                                 <el-tooltip class="item" effect="dark" content="文章标签" placement="top"
                                     v-for="tag in article.tagList">
                                     <el-tag :type="tagStyle[Math.round(Math.random() * 4)]" size="mini"
-                                        class="hand-style tag" :key="tag.id" @click="handleNatigation(tag.id, '/tags')">
+                                        class="hand-style tag" :key="tag.uid" @click="handleNatigation(tag.uid, '/tags')">
                                         <i class=" el-icon-folder-opened"></i> {{ tag.name }}
                                     </el-tag>
                                 </el-tooltip>
@@ -40,7 +40,7 @@
                     </div>
                     <!-- 分页按钮 -->
                     <div>
-                        <sy-pagination :pageNo="pageData.currentPage" :pages="pages" @changePage="handlePage" />
+                        <sy-pagination :currentPage="pageData.currentPage" :page-size="pageData.pageSize" :total="total" @changePage="handlePage" />
                     </div>
                 </div>
                 <sy-empty v-else message="此分类下暂无发布文章" />
@@ -66,12 +66,12 @@ export default {
             blogSortList: [],
             blogList: [],
             tagStyle: ['', 'success', 'info', 'warning', 'danger'],
-            pages: 0,
+            total: 0,
             lastIndex: null,
             pageData: {
                 currentPage: 1,
-                pageSize: 8,
-                blogSortUid: this.$route.query.id,
+                pageSize: 3,
+                blogSortUid: this.$route.query.uid,
             }
         }
     },
@@ -86,7 +86,7 @@ export default {
             this.$router.push({ path: path, query: { id: id } })
         },
         handleChoose(item) {
-            return item.id == this.pageData.blogSortUid;
+            return item.uid == this.pageData.blogSortUid;
         },
         handleClick(id, index) {
             if (index == this.lastIndex) {
@@ -120,7 +120,7 @@ export default {
                 this.$bus.$emit('show');
                 fetchBlogList(this.pageData).then(res => {
                 this.blogList.push(...res.data)
-                this.pages = this.pageData.currentPage
+                this.total = res.total
                 this.$bus.$emit('close');
             }).catch(err => {
                 this.$bus.$emit('close');

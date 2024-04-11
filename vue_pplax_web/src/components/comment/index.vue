@@ -144,7 +144,7 @@
 
                 <!-- 分页按钮 -->
                 <div>
-                    <sy-pagination :pageNo="pageData.currentPage" :pages="pages" @changePage="moreComment" />
+                    <sy-pagination :currentPage="pageData.currentPage" :total="total" :page-size="pageData.pageSize" @changePage="moreComment" />
                 </div>
             </div>
         </ul>
@@ -183,7 +183,7 @@ export default {
                 pageSize: 5,
             },
             commentList: [],
-            pages: 0,
+            total: 0,
             lastEditRange: null,
             lastCommentId: null,
         }
@@ -211,7 +211,7 @@ export default {
       getComments() {
             featchComments(this.pageData).then(res => {
                 this.commentList = res.data
-                this.pageData.currentPage++
+                this.total = res.total
             })
         },
         handleChooseEmoji(value) {
@@ -310,11 +310,12 @@ export default {
             let query = {
                 currentPage: this.pageData.currentPage,
                 pageSize: 5,
-                articleId: this.articleId
+                blogUid: this.blogUid
             }
 
             featchComments(query).then(res => {
                 this.commentList = res.data
+                this.total = res.total
             })
         },
         optimizePasteEvent(e) {
@@ -366,7 +367,7 @@ export default {
             this.pageData.currentPage = val;
             featchComments(this.pageData).then(res => {
                 this.commentList.push(...res.data)
-                this.pageData.currentPage++
+                this.total = res.total
                 this.$bus.$emit('close');
             })
         },

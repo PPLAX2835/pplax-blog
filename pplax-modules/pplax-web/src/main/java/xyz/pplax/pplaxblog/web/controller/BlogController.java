@@ -49,7 +49,8 @@ public class BlogController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        return success(blogService.listByBlogSort(blogSortUid, orderByDesc, currentPage, pageSize).getRecords());
+        IPage<Blog> blogIPage = blogService.listByBlogSort(blogSortUid, orderByDesc, currentPage, pageSize);
+        return toJson(ResponseResult.success(blogIPage.getRecords(), blogIPage.getTotal()));
     }
 
     @ApiOperation(value = "获取博客", httpMethod = "GET", response = ResponseResult.class, notes = "获取博客")

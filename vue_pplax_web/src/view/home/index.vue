@@ -116,7 +116,7 @@
                                 <div class="tag">
                                     <el-tooltip class="item" effect="dark" content="文章分类" placement="top">
                                         <el-tag size="mini" class="hand-style"
-                                            @click="handleClike(item.uid, '/category')">
+                                            @click="handleClike(item.blogSort.uid, '/blogSort')">
                                             <i class=" el-icon-folder-opened"></i> {{ item.blogSort.sortName }}
                                         </el-tag>
                                     </el-tooltip>
@@ -161,7 +161,7 @@
                         </el-card>
                         <!-- 分页按钮 -->
                         <div>
-                            <sy-pagination :pageNo="pageData.currentPage" :pages="pages" @changePage="handlePage" />
+                            <sy-pagination :current-page="pageData.currentPage" :page-size="pageData.pageSize" :total="total" @changePage="handlePage" />
                         </div>
 
                     </div>
@@ -375,7 +375,7 @@ export default {
                 }
             ],
             blogList: [],
-            pages: 0,
+            total: 0,
             tagList: [],
           newBlogList: [],
             tagStyle: ['', 'success', 'info', 'warning', 'danger'],
@@ -449,8 +449,8 @@ export default {
             this.$store.state.userInfoDrawer.flag = true;
             this.$store.state.userInfoDrawer.name = value;
         },
-        handleClike(id, path) {
-            this.$router.push({ path: path, query: { id: id } })
+        handleClike(uid, path) {
+            this.$router.push({ path: path, query: { uid: uid } })
         },
         randomColor() {
             var letters = '0123456789ABCDEF';
@@ -489,8 +489,7 @@ export default {
             this.pageData.orderByDesc = item.desc
             fetchBlogList(this.pageData).then(res => {
                 this.blogList = res.data;
-                this.pages = res.data.pages
-
+                this.total = res.total
             })
         },
         handleLogin() {
@@ -505,7 +504,7 @@ export default {
             this.$bus.$emit('show');
             fetchBlogList(this.pageData).then(res => {
                 this.blogList.push(...res.data);
-                this.pages = res.data.pages
+                this.total = res.total
                 this.$bus.$emit('close')
             }).catch(err => {
                 this.$bus.$emit('close')

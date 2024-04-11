@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <!-- 分页按钮 -->
-                <sy-pagination :pageNo="pageData.currentPage" :pages="pages" @changePage="handlePage" />
+                <sy-pagination :current-page="pageData.currentPage" :total="total" :page-size="pageData.pageSize" @changePage="handlePage" />
             </div>
         </div>
         <image-preview :img="images"></image-preview>
@@ -131,10 +131,10 @@ export default {
             sayList: [],
             images: {},
             pageData: {
-              currentPage: 1,
+                currentPage: 1,
                 pageSize: 10,
             },
-            pages: 0,
+            total: 0,
             showOperate: false,
             lastIndex: null,
             content: "",
@@ -341,7 +341,7 @@ export default {
             this.$bus.$emit('show');
             getSayList(this.pageData).then(res => {
                 this.sayList.push(...res.data)
-                this.pages = res.data.pages
+                this.total = res.total
                 this.$bus.$emit('close')
             }).catch(err => {
                 this.$bus.$emit('close')

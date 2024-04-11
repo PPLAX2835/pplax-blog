@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blogsort/BlogSortServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/pagination/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/pagination/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/blogSort/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,14 +354,7 @@
       <workItem from="1712539697140" duration="16974000" />
       <workItem from="1712625180003" duration="30209000" />
       <workItem from="1712710952377" duration="14653000" />
-      <workItem from="1712799815758" duration="3521000" />
-    </task>
-    <task id="LOCAL-00323" summary="标签的增删改完成了">
-      <created>1710067943464</created>
-      <option name="number" value="00323" />
-      <option name="presentableId" value="LOCAL-00323" />
-      <option name="project" value="LOCAL" />
-      <updated>1710067943464</updated>
+      <workItem from="1712799815758" duration="5898000" />
     </task>
     <task id="LOCAL-00324" summary="补充一些注释">
       <created>1710068386484</created>
@@ -697,7 +692,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712802121725</updated>
     </task>
-    <option name="localTasksCounter" value="372" />
+    <task id="LOCAL-00372" summary="文章分类页面调整好了">
+      <created>1712803680107</created>
+      <option name="number" value="00372" />
+      <option name="presentableId" value="LOCAL-00372" />
+      <option name="project" value="LOCAL" />
+      <updated>1712803680107</updated>
+    </task>
+    <option name="localTasksCounter" value="373" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,7 +734,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="打算使用https://github.com/Naccl/NBlog进行二次开发" />
     <MESSAGE value="后台增加站点设置，目前还不太优雅" />
     <MESSAGE value="修改站点设置序列化问题" />
     <MESSAGE value="增加前台服务" />
@@ -757,7 +758,8 @@
     <MESSAGE value="博客详情页现在能显示评论了，修复部分页面抖动（好像叫这个）问题" />
     <MESSAGE value="博客详情页现在能显示评论了，修复部分undefined（原因是请求还没获得返回，但是页面已经渲染了）的问题" />
     <MESSAGE value="文章归档接口做好了" />
-    <option name="LAST_COMMIT_MESSAGE" value="文章归档接口做好了" />
+    <MESSAGE value="文章分类页面调整好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="文章分类页面调整好了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

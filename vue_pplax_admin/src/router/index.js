@@ -153,6 +153,12 @@ export const constantRouterMap = [
                 name: 'ChatRoom',
                 component: () => import('@/views/chatRoom/index'),
                 meta: { title: '聊天室管理', icon: 'table' }
+              },
+              {
+                path: 'chatMessage',
+                name: 'ChatMessage',
+                component: () => import('@/views/chatMessage/index'),
+                meta: { title: '聊天记录管理', icon: 'table' }
               }
             ]
           },

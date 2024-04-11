@@ -73,21 +73,21 @@
                     </span>
                 </li>
 
-                <li :class="path == '/navigation' ? 'active' : ''">
-                    <span>
-                        <router-link :to="'/navigation'" class="hand-style">
-                            <svg-icon icon-class="navication"></svg-icon> 网址导航
-                        </router-link>
-                    </span>
-                </li>
+<!--                <li :class="path == '/navigation' ? 'active' : ''">-->
+<!--                    <span>-->
+<!--                        <router-link :to="'/navigation'" class="hand-style">-->
+<!--                            <svg-icon icon-class="navication"></svg-icon> 网址导航-->
+<!--                        </router-link>-->
+<!--                    </span>-->
+<!--                </li>-->
 
-                <li :class="path == '/hot' ? 'active' : ''">
-                    <span>
-                        <router-link :to="'/hot'" class="hand-style">
-                            <svg-icon icon-class="hot2"></svg-icon> 热搜
-                        </router-link>
-                    </span>
-                </li>
+<!--                <li :class="path == '/hot' ? 'active' : ''">-->
+<!--                    <span>-->
+<!--                        <router-link :to="'/hot'" class="hand-style">-->
+<!--                            <svg-icon icon-class="hot2"></svg-icon> 热搜-->
+<!--                        </router-link>-->
+<!--                    </span>-->
+<!--                </li>-->
                 <li :class="path == '/message' ? 'active' : ''">
                     <span>
                         <router-link :to="'/message'" class="hand-style">

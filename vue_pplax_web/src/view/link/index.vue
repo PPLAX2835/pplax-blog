@@ -4,76 +4,34 @@
             <h1>友情链接</h1>
             <h3 class="directory1">
                 友链列表
-                <span class="num"> {{ linkList.length }} 条</span>
+                <span class="num"> {{ totalLink }} 条</span>
                 <span class="num">以下友链仅是时间排序，不分先后</span>
             </h3>
+            <div class="infoBox">
+              <div style="display: flex;position: relative;">
+                <div class="btn-box hand-style" @click="handleAdd">
+                  <svg-icon icon-class="add"></svg-icon>
+                  加入友链
+                </div>
+              </div>
+
+            </div>
             <div class="links">
                 <div class="linksItem" v-for="item in linkList">
                     <a class="item" target="_blank" :href="item.url">
                         <div class="avatarItem">
-                            <img v-lazy="item.avatar" :key="item.avatar" />
+                            <img v-lazy="item.iconImage.fileUrl" :key="item.iconImage.uid" />
                         </div>
                         <div class="item-content">
-                            <span class="name">{{ item.name }}</span>
-                            <div class="info">{{ item.info }}</div>
+                            <span class="name">{{ item.title }}</span>
+                            <div class="info">{{ item.summary }}</div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="condition">
-                <div class="title">
-                    <h3 class="directory2">申请条件</h3>
-                </div>
-                <div class="condition-info">
-                    <div>
-                        🍅不接受贵站承接任何广告
-                    </div>
-                    <div>
-                        🎄先友后链，申请前请先提前做好本站友情链接
-                    </div>
-                    <div>
-                        💖稳定更新，每月至少发布1篇 原创 文章
-                    </div>
-                    <div>
-                        🍧凡内容污秽、暴力的、广告挂马的、违背社会主义核心价值观的勿扰
-                    </div>
-                </div>
-            </div>
-            <div class="infoBox">
-                <div style="display: flex;position: relative;">
-                    <h3 class="directory2">申请格式</h3>
-                    <div class="btn-box hand-style" @click="handleAdd">
-                        <svg-icon icon-class="add"></svg-icon>
-                        加入友链
-                    </div>
-                </div>
+            <!-- 分页 -->
+            <sy-pagination :current-page="getLinkListForm.currentPage" :total="totalLink" :page-size="getLinkListForm.pageSize" @changePage="handlePage" />
 
-                <div class="site">
-                    <span>博客名称：{{ $store.state.webSiteInfo.name }}</span>
-                    <span>博客简介：{{ $store.state.webSiteInfo.summary }}</span>
-                    <span>
-                        博客头像:
-                        <a :href="$store.state.webSiteInfo.logo" target="_blank">
-                            {{ $store.state.webSiteInfo.logo }}
-                        </a>
-                    </span>
-                    <span>
-                        博客地址:
-                        <a :href="$store.state.webSiteInfo.webUrl" target="_blank">
-                            {{ $store.state.webSiteInfo.webUrl }}
-                        </a>
-                    </span>
-
-                </div>
-            </div>
-            <div class="delTips">
-                <div class="title">
-                    <h3 class="directory2">无法访问或单方面取消❌</h3>
-                </div>
-                <div class="delTips-info">
-                    不定时排查，长期不更新文章、无法访问或单方面取消，将会移除链接，恕不告知🧐
-                </div>
-            </div>
         </el-card>
 
         <el-dialog class="dialog" :title="!showTips ? '申请友链' : '友情提示'" center :visible.sync="dialogFormVisible"
@@ -83,20 +41,21 @@
             </div>
 
             <el-form v-else :model="form" :rules="rules" ref="ruleForm">
-                <el-form-item label="网站名称" :label-width="formLabelWidth" prop="name">
-                    <el-input v-model="form.name" autocomplete="off"></el-input>
+                <el-form-item prop="iconImageUid" label="网站头像" :label-width="formLabelWidth">
+                  <el-upload action="" class="avatar-uploader" :show-file-list="false"
+                             :before-upload="uploadBefore" :http-request="uploadSectionIconImage">
+                    <img v-if="logoImageUrl" :src="logoImageUrl" class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  </el-upload>
                 </el-form-item>
-                <el-form-item label="网站简介" :label-width="formLabelWidth" prop="info">
-                    <el-input v-model="form.info" autocomplete="off"></el-input>
+                <el-form-item label="网站名称" :label-width="formLabelWidth" prop="title">
+                    <el-input v-model="form.title" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="网站简介" :label-width="formLabelWidth" prop="summary">
+                    <el-input v-model="form.summary" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="网站地址" :label-width="formLabelWidth" prop="url">
                     <el-input v-model="form.url" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="网站头像" :label-width="formLabelWidth" prop="avatar">
-                    <el-input v-model="form.avatar" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="邮箱地址" :label-width="formLabelWidth" prop="email">
-                    <el-input v-model="form.email" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -111,6 +70,8 @@
 </template>
 <script>
 import { featchLinks, addLink } from '@/api/link'
+import {checkImgType} from "@/utils/validate";
+import {linkIconImageUpload} from "@/api/link";
 export default {
     metaInfo: {
         meta: [{
@@ -123,40 +84,97 @@ export default {
     },
     data() {
         return {
+            totalLink: 0,
+            getLinkListForm: {
+              currentPage: 1,
+              pageSize: 8
+            },
             linkList: [],
             dialogFormVisible: false,
             showTips: false,
-            form: {},
+            logoImageUrl: '',
+            form: {
+              iconImageUid: '',
+              summary: '',
+              title: '',
+              url: ''
+            },
             formLabelWidth: '80px',
             rules: {
-                name: [
+                title: [
                     { required: true, message: '请输入网站名称', trigger: 'blur' },
                 ],
-                info: [
+                summary: [
                     { required: true, message: '请输入网站简介', trigger: 'blur' },
                 ],
                 url: [
                     { required: true, message: '请输入网站地址', trigger: 'blur' },
                 ],
-                avatar: [
-                    { required: true, message: '请输入网站头像', trigger: 'blur' },
-                ],
-                email: [
-                    { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-                ],
-
+                iconImageUid: [
+                    { required: true, message: '请上传网站头像', trigger: 'blur' },
+                ]
             }
         }
     },
 
     created() {
-        featchLinks().then(res => {
-            this.linkList = res.data
-        })
+      this.fetchLinkList()
     },
     methods: {
+        fetchLinkList() {
+          featchLinks(this.getLinkListForm).then(res => {
+            this.linkList.push(...res.data)
+            this.totalLink = res.total
+          })
+        },
+        handlePage(val) {
+          this.getLinkListForm.currentPage = val;
+          this.fetchLinkList()
+        },
+
+        /**
+         * 图片上传之前的验证
+         * @param file
+         * @returns {boolean}
+         */
+        uploadBefore: function (file) {
+          const isImage = checkImgType(file);
+          const isLt2M = file.size / 1024 / 1024 < 2;
+
+          if (!isImage) {
+            this.$message.error('文件格式错误');
+          }
+          if (!isLt2M) {
+            this.$message.error('上传图片大小不能超过 2MB!');
+          }
+          return isImage && isLt2M;
+        },
+
+
+        /**
+         * logo上传
+         * @param param
+         */
+        uploadSectionIconImage: function (param) {
+          let file = param.file
+          // FormData 对象
+          var formData = new FormData()
+          // 文件对象
+          formData.append('file', file)
+          linkIconImageUpload(formData).then(res => {
+            this.form.iconImageUid = res.data.uid
+            this.logoImageUrl = res.data.fileUrl
+          })
+        },
+
         handleAdd() {
-            this.form = {}
+            this.logoImageUrl = ''
+            this.form = {
+                iconImageUid: '',
+                summary: '',
+                title: '',
+                url: ''
+            }
             this.showTips = true
             this.dialogFormVisible = true
         },
@@ -165,7 +183,6 @@ export default {
                 if (valid) {
                     addLink(this.form).then(res => {
                         this.dialogFormVisible = false
-
                         this.$toast.success('提交成功，请等待审核');
                     }).catch(err => {
                     })

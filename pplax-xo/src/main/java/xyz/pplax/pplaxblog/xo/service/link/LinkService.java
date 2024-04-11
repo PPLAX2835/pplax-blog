@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service.link;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.LinkEditDto;
@@ -20,6 +21,8 @@ public interface LinkService extends SuperService<Link> {
     IPage<Link> list(LinkGetListDto linkGetListDto);
 
     Boolean save(LinkEditDto linkEditDto);
+
+    Boolean apply(LinkEditDto linkEditDto);
 
     Boolean updateById(LinkEditDto linkEditDto);
 

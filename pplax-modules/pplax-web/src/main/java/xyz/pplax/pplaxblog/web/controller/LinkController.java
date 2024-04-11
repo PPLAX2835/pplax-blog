@@ -1,0 +1,68 @@
+package xyz.pplax.pplaxblog.web.controller;
+
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.commons.validator.group.Insert;
+import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.edit.LinkEditDto;
+import xyz.pplax.pplaxblog.xo.dto.list.LinkGetListDto;
+import xyz.pplax.pplaxblog.xo.entity.Link;
+import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.link.LinkService;
+
+import javax.servlet.http.HttpServletRequest;
+
+
+/**
+ * 友链 Controller
+ */
+@RestController
+@RequestMapping("/link")
+@Api(value="友链Controller", tags={"友链Controller"})
+public class LinkController extends SuperController {
+
+    @Autowired
+    private LinkService linkService;
+
+    private static Logger log = LogManager.getLogger(LinkController.class);
+
+    @ApiOperation(value="获得友链列表", notes="获得友链列表")
+    @GetMapping("/list")
+    public String getLinkList(@RequestParam("currentPage") Long currentPage, @RequestParam("pageSize") Long pageSize) {
+        LinkGetListDto linkGetListDto = new LinkGetListDto();
+        linkGetListDto.setStatus(EStatus.ENABLE.getStatus());
+        linkGetListDto.setPageSize(pageSize);
+        linkGetListDto.setCurrentPage(currentPage);
+
+        IPage<Link> linkIPage = linkService.list(linkGetListDto);
+        // 目前还不是根据用户查询
+        return toJson(ResponseResult.success(linkIPage.getRecords(), linkIPage.getTotal()) );
+    }
+
+    @ApiOperation(value="申请友链", notes="申请友链")
+    @PostMapping("")
+    public String add(@RequestBody @Validated(value = {Insert.class}) LinkEditDto linkEditDto) {
+
+        Boolean res = linkService.apply(linkEditDto);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+}
+

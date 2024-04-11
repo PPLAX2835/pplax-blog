@@ -83,6 +83,23 @@ public class LinkServiceImpl extends SuperServiceImpl<LinkMapper, Link> implemen
         return save(link);
     }
 
+    /**
+     * 申请友链
+     * @param linkEditDto
+     * @return
+     */
+    @Override
+    public Boolean apply(LinkEditDto linkEditDto) {
+        Link link = new Link();
+        link.setTitle(linkEditDto.getTitle());
+        link.setSummary(linkEditDto.getSummary());
+        link.setUrl(linkEditDto.getUrl());
+        link.setIconImageUid(linkEditDto.getIconImageUid());
+        link.setStatus(EStatus.APPLYING.getStatus());
+
+        return save(link);
+    }
+
     @Override
     public Boolean updateById(LinkEditDto linkEditDto) {
 

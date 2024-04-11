@@ -23,7 +23,7 @@
 
                 <div class="menus-item">
 
-                    <a @click="handleClike('/category')">
+                    <a @click="handleClike('/blogSort')">
                         <i class="el-icon-menu" /> 分类
                     </a>
                 </div>
@@ -32,11 +32,11 @@
                         <i class="el-icon-discount" /> 标签
                     </a>
                 </div>
-                <div class="menus-item">
-                    <a @click="handleClike('/navigation')">
-                        <i class="el-icon-s-promotion" /> 网址导航
-                    </a>
-                </div>
+<!--                <div class="menus-item">-->
+<!--                    <a @click="handleClike('/navigation')">-->
+<!--                        <i class="el-icon-s-promotion" /> 网址导航-->
+<!--                    </a>-->
+<!--                </div>-->
                 <div class="menus-item">
                     <a @click="handleClike('/message')">
                         <i class="el-icon-chat-dot-square" /> 留言

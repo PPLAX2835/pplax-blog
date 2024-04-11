@@ -93,11 +93,11 @@ export function archive() {
     })
 }
 
-export function fetchTagList() {
+export function fetchTagList(param) {
     return request({
-        url: '/v1/tag/',
+        url: '/web/tag/list',
         method: 'get',
-
+        params: param
     })
 }
 

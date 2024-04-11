@@ -45,11 +45,12 @@ public class BlogController extends SuperController {
     @GetMapping("/list")
     public String getBlogList(
             @RequestParam(value = "blogSortUid", required = false) String blogSortUid,
+            @RequestParam(value = "tagUid", required = false) String tagUid,
             @RequestParam(value = "orderByDesc", required = false) String orderByDesc,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        IPage<Blog> blogIPage = blogService.listByBlogSort(blogSortUid, orderByDesc, currentPage, pageSize);
+        IPage<Blog> blogIPage = blogService.listByBlogSort(blogSortUid, tagUid, orderByDesc, currentPage, pageSize);
         return toJson(ResponseResult.success(blogIPage.getRecords(), blogIPage.getTotal()));
     }
 

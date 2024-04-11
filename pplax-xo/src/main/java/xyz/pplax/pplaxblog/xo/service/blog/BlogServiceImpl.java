@@ -88,11 +88,14 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     }
 
     @Override
-    public IPage<Blog> listByBlogSort(String blogSortUid, String orderByDesc, Long currentPage, Long pageSize) {
+    public IPage<Blog> listByBlogSort(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize) {
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         if (!StringUtils.isEmpty(blogSortUid)) {
             blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
+        }
+        if (!StringUtils.isEmpty(tagUid)) {
+            blogQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tagUid + "%");
         }
         blogQueryWrapper.orderByAsc("case when status = " + EStatus.STICK.getStatus() + " then 1 else 2 end");
         if (!StringUtils.isEmpty(orderByDesc)) {

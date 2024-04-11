@@ -123,7 +123,7 @@
                                     <el-tooltip class="item" effect="dark" content="文章标签" placement="top"
                                         v-for="tag in item.tagList" :key="tag.id">
                                         <el-tag :type="tagStyle[Math.round(Math.random() * 4)]" size="mini"
-                                            class="hand-style" @click="handleClike(tag.id, '/tags')">
+                                            class="hand-style" @click="handleClike(tag.uid, '/tags')">
                                             <i class="el-icon-collection-tag"></i>
                                             {{ tag.name }}
                                         </el-tag>

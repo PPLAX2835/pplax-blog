@@ -9,28 +9,33 @@
                     <div class="tag-list">
                         <a ref="tag" :style="{ fontSize: tag.font }"
                             :class="handleChoose(tag, index) ? 'tag-option hand-style active' : 'tag-option hand-style'"
-                            @click="handleClick(tag.id, index)" v-for="(tag, index) in tagList" :key="index">
-                            {{ tag.name }} <span class="num">{{ tag.articleNum }}</span>
+                            @click="handleClick(tag.uid, index)" v-for="(tag, index) in tagList" :key="index">
+                            {{ tag.name }} <span class="num">{{ tag.cites }}</span>
                         </a>
+
+                        <!-- 分页按钮 -->
+                        <div>
+                          <sy-pagination :current-page="tagPageData.currentPage" :page-size="tagPageData.pageSize" :total="tagTotal" @changePage="handleTagPage" />
+                        </div>
                     </div>
                 </div>
 
-                <div class="article-list" v-if="articleList.length">
-                    <div class="article-item  box-shadow-top" v-for="(article, index) in articleList" :key="index">
+                <div class="article-list" v-if="blogList.length">
+                    <div class="article-item  box-shadow-top" v-for="(article, index) in blogList" :key="index">
                         <div class="article-cover">
-                            <img v-lazy="article.avatar" :key="article.avatar" alt="">
+                          <img v-lazy="article.coverImage === undefined ? '' : article.coverImage.fileUrl" :key="article.uid" alt="">
 
                         </div>
                         <div class="article-right">
-                            <router-link :to="'/article/' + article.id">
-                                <h4>{{ article.title }}</h4>
+                            <router-link :to="'/blog/' + article.uid">
+                              <h4>{{ article.title }}</h4>
                             </router-link>
                             <div class="article-meta">
-                                <el-avatar class="userAvatar" :src="$store.state.webSiteInfo.authorAvatar"></el-avatar>
+                                <el-avatar class="userAvatar" :src="article.user.userInfo.avatar.fileUrl"></el-avatar>
                                 <el-tooltip class="item" effect="dark" content="文章分类" placement="top">
                                     <el-tag size="mini" class="hand-style"
-                                        @click="handleNatigation(article.categoryId, '/category')">
-                                        <i class=" el-icon-folder-opened"></i> {{ article.categoryName }}
+                                        @click="handleNatigation(article.blogSortUid, '/blogSort')">
+                                        <i class=" el-icon-folder-opened"></i> {{ article.blogSort.sortName }}
                                     </el-tag>
                                 </el-tooltip>
                                 <i class="el-icon-time"></i> 2024-01-18
@@ -39,7 +44,7 @@
                     </div>
                     <!-- 分页按钮 -->
                     <div>
-                        <sy-pagination :pageNo="pageData.pageNo" :pages="pages" @changePage="handlePage" />
+                        <sy-pagination :current-page="pageData.currentPage" :total="total" :page-size="pageData.pageSize" @changePage="handlePage" />
                     </div>
                 </div>
                 <sy-empty v-else message="此标签下暂无发布文章" />
@@ -54,7 +59,7 @@
    
 <script>
 import SiteInfo from '@/components/site/index.vue'
-import { fetchArticleList, fetchTagList } from '@/api'
+import { fetchBlogList, fetchTagList } from '@/api'
 export default {
     name: 'tag',
     components: {
@@ -63,20 +68,25 @@ export default {
     data() {
         return {
             tagList: [],
-            articleList: [],
-            pages: 0,
+            blogList: [],
             lastIndex: null,
+            tagTotal: 0,
+            tagPageData: {
+              currentPage: 1,
+              pageSize: 20
+            },
+            total: 0,
             pageData: {
-                pageNo: 1,
+                currentPage: 1,
                 pageSize: 8,
-                tagId: this.$route.query.id,
+                tagUid: this.$route.query.uid,
             }
         }
     },
     created() {
         this.getTagList()
-        if (this.pageData.tagId != null) {
-            this.fetchArticleList()
+        if (this.pageData.tagUid != null) {
+            this.fetchBlogList()
         }
     },
     methods: {
@@ -84,10 +94,10 @@ export default {
             this.$router.push({ path: path, query: { id: id } })
         },
         handleChoose(item) {
-            return item.id == this.pageData.tagId;
+            return item.uid === this.pageData.tagUid;
         },
         handleClick(id, index) {
-            if (index == this.lastIndex) {
+            if (index === this.lastIndex) {
                 return
             }
 
@@ -96,29 +106,34 @@ export default {
                 this.$refs.tag[this.lastIndex].className = 'tag-option hand-style '
             }
             this.lastIndex = index
-            this.pageData.pageNo = 1
-            this.pageData.tagId = id
-            this.articleList = []
-            this.fetchArticleList()
+            this.pageData.currentPage = 1
+            this.pageData.tagUid = id
+            this.blogList = []
+            this.fetchBlogList()
+        },
+        handleTagPage(val) {
+          this.tagPageData.currentPage = val;
+          this.getTagList()
         },
         // 分页
         handlePage(val) {
-            this.pageData.pageNo = val;
-            this.fetchArticleList()
+            this.pageData.currentPage = val;
+            this.fetchBlogList()
         },
         getTagList() {
-            fetchTagList().then(res => {
-                this.tagList = res.data
+            fetchTagList(this.tagPageData).then(res => {
+                this.tagList.push(...res.data)
+                this.tagTotal = res.total
                 for (var i = 0; i < this.tagList.length; i++) {
                     this.tagList[i].font = Math.floor(Math.random() * 10) + 10 + "px"
                 }
             })
         },
-        fetchArticleList() {
+        fetchBlogList() {
             this.$bus.$emit('show');
-            fetchArticleList(this.pageData).then(res => {
-                this.articleList.push(...res.data.records)
-                this.pages = res.data.pages
+            fetchBlogList(this.pageData).then(res => {
+                this.blogList.push(...res.data)
+                this.total = res.total
                 this.$bus.$emit('close');
             }).catch(err => {
                 this.$bus.$emit('close');

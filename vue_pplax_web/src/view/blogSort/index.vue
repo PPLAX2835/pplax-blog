@@ -18,7 +18,7 @@
                 <div class="article-list" v-if="blogList.length">
                     <div class="article-item  box-shadow-top" v-for="(article, index) in blogList" :key="index">
                         <div class="article-cover">
-                            <img :src="article.coverImage === undefined ? '' : article.coverImage.fileUrl" :key="article.uid" alt="">
+                            <img v-lazy="article.coverImage === undefined ? '' : article.coverImage.fileUrl" :key="article.uid" alt="">
 
                         </div>
                         <div class="article-right">

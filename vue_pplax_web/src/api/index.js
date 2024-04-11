@@ -88,7 +88,7 @@ export function articleLike(id) {
 }
 export function archive() {
     return request({
-        url: '/v1/article/archive',
+        url: '/web/archive',
         method: 'get',
     })
 }

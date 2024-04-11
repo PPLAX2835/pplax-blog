@@ -24,7 +24,27 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `title`, `summary`, `blog_content_uid`, `tag_uids`, `click_count`, `quantity`, `cover_image_uid`, `status`, `user_uid`, `is_original`, `author`, `articles_part`, `blog_sort_uid`, `level`, `create_time`, `update_time`
+        `uid`, `title`, `summary`, `blog_content_uid`, `tag_uids`, `uid`, `title`, `summary`, `blog_content_uid`, `tag_uids`, `click_count`, `quantity`, `cover_image_uid`, `user_uid`, `is_original`, `articles_part`, `blog_sort_uid`, `level`, `status`, `create_time`, `update_time`
     </sql>
+
+    <select id="selectCreateDateListDesc" resultType="date">
+        SELECT DISTINCT DATE(t.create_time)
+        FROM (
+            select create_time, `status`
+            from t_blog
+            where `status` &lt;&gt; 0
+            ORDER BY DATE(create_time) DESC
+        ) as t
+    </select>
+
+    <select id="selectSimplifiedListByCreateDate" parameterType="date" resultMap="BaseResultMap">
+        select
+        `uid`, `title`, `create_time`
+        from t_blog
+        where DATE(create_time) = #{date} and `status` &lt;&gt; 0
+        <if test="userUid != null">
+            and user_uid = #{userUid}
+        </if>
+    </select>
 
 </mapper>

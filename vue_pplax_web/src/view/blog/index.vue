@@ -353,11 +353,10 @@ export default {
     },
 
     mounted() {
-        // 防抖
         setTimeout(function () {
           const element = document.getElementById("articleBox")
           this.left = (element.offsetLeft - 80) + "px"
-        }, 1000)
+        }, 10)
 
         // 监听滚动事件
         window.addEventListener('scroll', this.onScroll, false)

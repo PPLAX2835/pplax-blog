@@ -126,7 +126,7 @@
                                                     <p>
                                                         <a href="javascript:;"
                                                             style="color: #99CE00;text-decoration: none;">@{{
-                                                                childrenItem.replyNickname }} </a>
+                                                                childrenItem.commentator.userInfo.nickname }} </a>
                                                         <span v-html="childrenItem.content"></span>
                                                     </p>
                                                 </div>

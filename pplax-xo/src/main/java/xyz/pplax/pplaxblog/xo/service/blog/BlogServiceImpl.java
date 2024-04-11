@@ -10,6 +10,7 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.DateUtils;
 import xyz.pplax.pplaxblog.commons.utils.RelativeDateFormat;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
@@ -27,15 +28,17 @@ import xyz.pplax.pplaxblog.xo.service.tag.TagService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 博客表 服务实现类
  */
 @Service
 public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implements BlogService {
+
+    @Autowired
+    private BlogMapper blogMapper;
 
     @Autowired
     private FileStorageService fileStorageService;
@@ -60,6 +63,29 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
 
     @Autowired
     private CollectService collectService;
+
+    @Override
+    public ResponseResult archive(String userUid) {
+
+        List<Date> dateList = blogMapper.selectCreateDateListDesc();
+
+        List<Map> res = new ArrayList<>();
+
+        Long total = 0L;
+        for (Date date : dateList) {
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("time", date);
+
+            List<Blog> blogList = blogMapper.selectSimplifiedListByCreateDate(date, userUid);
+            total += blogList.size();
+            map.put("list", blogList);
+
+            res.add(map);
+        }
+
+        return ResponseResult.success(res, total);
+    }
 
     @Override
     public IPage<Blog> listByBlogSort(String blogSortUid, String orderByDesc, Long currentPage, Long pageSize) {

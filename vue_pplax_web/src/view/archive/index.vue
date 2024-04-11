@@ -2,7 +2,8 @@
     <div class="archive container">
         <!-- 归档列表 -->
         <el-card class="archive-container">
-            <div class="num">目前共计{{ count }}篇文章，继续加油
+            <div class="num">
+              <span v-if="!user">站内</span>目前共计{{ count }}篇文章<span v-if="user">，继续加油</span>
             </div>
 
             <div style="border-bottom: 1px solid var(--border-line);margin-bottom: 20px;"></div>
@@ -25,9 +26,9 @@
                             </span>
                         </div>
                         <div ref="liCol" style="overflow: hidden;transition: height 0.3s;">
-                            <router-link :to="'/article/' + chriden.id" v-for="chriden in item.list" :key="chriden.id"
+                            <router-link :to="'/blog/' + children.uid" v-for="children in item.list" :key="children.uid"
                                 class="timeline-title hand-style">
-                                <span style="margin-right: 10px;">{{ chriden.formatTime }} : </span> {{ chriden.title }}
+                                <span style="margin-right: 10px;">{{ formateFullTime(children.createTime) }} : </span> {{ children.title }}
                             </router-link>
                             <el-divider></el-divider>
                         </div>
@@ -40,6 +41,8 @@
 
 <script>
 import { archive } from '@/api'
+import { parseTime } from "@/utils";
+
 export default {
     mounted() {
         document.title = "文章归档";
@@ -53,6 +56,7 @@ export default {
             icon: "el-icon-arrow-down",
             showIcon: true,
             liColHeight: 0, // 折叠面板内容初始高度
+            user: this.$store.state.userInfo,
         };
     },
     methods: {
@@ -79,14 +83,26 @@ export default {
 
             archive().then(res => {
                 this.archiveList = res.data
-                this.count = res.extra.total
+                this.count = res.total
             })
         },
 
         formatTime(time) {
-            const arr = time.split("-")
+            let str = parseTime(time)
+            const arr = str.split("-")
             return arr[0] + "  年  " + arr[1] + "  月"
         },
+
+        formateFullTime(time) {
+          return parseTime(time)
+        },
+
+        getLoginStatus() {
+          if (this.user == null) {
+            this.$store.commit("setLoginFlag", true)
+            return
+          }
+        }
     },
 };
 </script>

@@ -141,6 +141,12 @@ export const constantRouterMap = [
                 name: 'Feedback',
                 component: () => import('@/views/feedback/index'),
                 meta: { title: '反馈管理', icon: 'table' }
+              },
+              {
+                path: 'leaveMessage',
+                name: 'LeaveMessage',
+                component: () => import('@/views/leaveMessage/index'),
+                meta: { title: '留言管理', icon: 'table' }
               }
             ]
           },

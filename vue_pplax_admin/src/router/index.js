@@ -123,7 +123,7 @@ export const constantRouterMap = [
 
           {
             path: 'message',
-            redirect: 'message/comment',
+            redirect: 'message/message',
             component: {
               render(c) { return c('router-view'); }
             },

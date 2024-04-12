@@ -7,6 +7,7 @@
       </el-form-item>
       <el-form-item label="类型">
         <el-select style="width: 130px" size="small" v-model="params.type" @change="fetchMessageList" placeholder="请选择类型">
+          <el-option label="全部" :value="''" />
           <el-option label="留言" :value="0" />
           <el-option label="聊天" :value="1" />
         </el-select>
@@ -46,7 +47,9 @@
 
         <el-table-column width="80" align="center" label="状态">
           <template slot-scope="scope">
-            <el-tag v-if="scope.row.status === statusList.ENABLE" type="success">正常</el-tag>
+            <el-tag v-if="scope.row.status === statusList.READ">已读</el-tag>
+            <el-tag v-else-if="scope.row.status === statusList.ENABLE" type="success">正常</el-tag>
+            <el-tag v-else-if="scope.row.status === statusList.UNREAD" type="warning">未读</el-tag>
             <el-tag v-else-if="scope.row.status === statusList.WITHDRAW" type="info">撤回</el-tag>
           </template>
         </el-table-column>
@@ -180,6 +183,7 @@ export default {
      */
     resetQuery: function (){
       this.params.keyword = ''
+      this.params.type = ''
       this.fetchMessageList()
     },
     /**

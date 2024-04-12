@@ -35,7 +35,7 @@ service.interceptors.response.use(
 
     let res = response.data
 
-    if (res.code >= 401000 && res.code <= 401999) {
+    if (res.code === 401103 || res.code === 401104 || res.code === 401109) {
       // 认证有问题的情况
       MessageBox(res.code + ': ' + res.message + (res.data !== undefined ? ', ' + JSON.stringify(res.data): ''), '提示', {
         confirmButtonText: '确定',

@@ -44,7 +44,7 @@ public class LeaveMessageController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        return adminFeignClient.getList("", currentPage, pageSize);
+        return adminFeignClient.getLeaveMessageList("", currentPage, pageSize);
     }
 
     @ApiOperation(value = "添加留言", httpMethod = "GET", response = ResponseResult.class, notes = "添加留言")

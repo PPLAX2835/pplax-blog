@@ -5,8 +5,8 @@
             <!-- 账号登录 -->
             <div v-if="index == 1">
                 <el-form :model="form" :rules="rules" ref="ruleForm">
-                    <el-form-item label="账号" :label-width="formLabelWidth" prop="email">
-                        <el-input placeholder="请输入账号/邮箱" @keyup.enter.native="login" v-model="form.email"
+                    <el-form-item label="账号" :label-width="formLabelWidth" prop="username">
+                        <el-input placeholder="请输入账号/邮箱" @keyup.enter.native="login" v-model="form.username"
                             autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" :label-width="formLabelWidth" prop="password">
@@ -14,7 +14,13 @@
                             show-password></el-input>
                     </el-form-item>
                 </el-form>
-                <el-button type="success" class="loginBtn" @click="login" round>登录</el-button>
+                <el-button type="success" class="loginBtn" @click="handleLogin" round>登录</el-button>
+
+                <!-- 滑块验证 -->
+                <el-dialog title="请拖动滑块完成拼图" width="360px" :visible.sync="isShowSliderVerify"
+                           :close-on-click-modal="false" @closed="refresh" append-to-body>
+                  <slider-verify ref="sliderVerify" @success="onSuccess" @fail="onFail" @again="onAgain" />
+                </el-dialog>
 
                 <div class="regitstBtn">
                     <a class="regist hand-style" @click="handleChangeLoginMethod(2)">账号注册</a>
@@ -124,14 +130,21 @@
 
 <script>
 import { emailLogin, wxIsLogin, openAuthUrl, getWechatLoginCode, sendEmailCode, emailRegister, forgetPassword } from "@/api";
-import { setUrl, setToken } from '@/utils/cookieUtil'
+import {login} from "@/api/auth";
+import { setUrl, setToken, setUserUid } from '@/utils/cookieUtil'
+import sliderVerify from "@/components/sliderVerify/sliderVerify";
 
 export default {
     data: function () {
         return {
+            // 是否显示滑块验证
+            isShowSliderVerify: false,
             form: {
-                email: null,
-                password: null,
+              username: '',
+              password: '',
+              nonceStr: '',
+              value: '',
+              rememberMe: false
             },
             code: null,
             timer: null,
@@ -143,6 +156,9 @@ export default {
             wechatLoginCode: null,
             countdown: 60, // 倒计时初始值为 60 秒
             rules: {
+                username: [
+                  { required: true, message: '请输入账号', trigger: 'blur' },
+                ],
                 email: [
                     { required: true, message: '请输入账号', trigger: 'blur' },
                 ],
@@ -159,6 +175,7 @@ export default {
         };
     },
 
+    components: { sliderVerify },
     computed: {
         dialogFormVisible: {
             set(value) {
@@ -288,15 +305,51 @@ export default {
                 this.login()
             }
         },
+
+        /* 提交*/
+        handleLogin() {
+          let self = this;
+          self.$refs['ruleForm'].validate((flag) => {
+            self.isShowSliderVerify = flag;
+          });
+        },
+        /* 刷新验证码*/
+        refresh() {
+          this.$refs.sliderVerify.refresh();
+        },
+        /* 滑动验证成功*/
+        onSuccess(captcha) {
+          Object.assign(this.form, captcha);
+          this.form.nonceStr = captcha.nonceStr
+          this.form.value = captcha.value
+          this.login();
+        },
+        /* 滑动验证失败*/
+        onFail(msg) {
+          console.log(msg)
+          //this.message('error', msg || '验证失败，请控制拼图对齐缺口');
+        },
+        /* 滑动验证异常*/
+        onAgain() {
+          this.$toast.error('滑动操作异常，请重试');
+        },
         login() {
+            let that = this
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    //发送登录请求
-                    emailLogin(this.form).then(res => {
-                        setToken(res.data.token)
-                        this.$store.commit("setUserInfo", res.data)
-                        this.close()
-                        location.reload()
+                    login(this.form).then(res => {
+                      console.log(res)
+                        if (res.code !== 200) {
+                          that.$toast.error(res.message);
+                        } else {
+                          setToken('Bearer ' + res.extra.access_token)
+                          setUserUid(res.extra.uid)
+                          that.$toast.success("登录成功");
+                          setTimeout(function (){
+                            location.reload()
+                          }, 1000)
+                        }
+                      that.isShowSliderVerify = false
                     })
                 } else {
                     console.log('error submit!!');

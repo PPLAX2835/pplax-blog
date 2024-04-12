@@ -4,19 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="新增聊天室表，完成聊天室管理">
-      <change afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/LeaveMessageController.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="留言功能实现">
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/sliderVerify/sliderVerify.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/auth/AuthFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AuthFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/file/FileFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/FileFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/sitesetting/SiteSettingFeignClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/web/WebSiteFeignClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/auth/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/LeaveMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/LeaveMessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/SideNavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/SideNavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/cookieUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/cookieUtil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +102,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_admin/src/views/chatMessage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_web/src/api" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -116,11 +121,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src\api" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src\store" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src\components\sliderVerify" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\chatMessage" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\api" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\java\xyz\pplax\pplaxblog\xo\service\chatmessage" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\chatRoom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
@@ -133,8 +138,8 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="xyz.pplax.pplaxblog.feign.web" />
       <recent name="xyz.pplax.pplaxblog.web.controller" />
+      <recent name="xyz.pplax.pplaxblog.feign.web" />
       <recent name="xyz.pplax.pplaxblog.xo.dto.list" />
       <recent name="xyz.pplax.pplaxblog.admin.controller" />
       <recent name="xyz.pplax.pplaxblog.xo.mapper" />
@@ -246,8 +251,8 @@
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.serve" />
         <item itemvalue="Spring Boot.FileApplication" />
       </list>
     </recent_temporary>
@@ -355,14 +360,7 @@
       <workItem from="1712710952377" duration="14653000" />
       <workItem from="1712799815758" duration="15518000" />
       <workItem from="1712826484931" duration="8495000" />
-      <workItem from="1712884337712" duration="4558000" />
-    </task>
-    <task id="LOCAL-00329" summary="处理参数校验相关的bug">
-      <created>1710148110258</created>
-      <option name="number" value="00329" />
-      <option name="presentableId" value="LOCAL-00329" />
-      <option name="project" value="LOCAL" />
-      <updated>1710148110259</updated>
+      <workItem from="1712884337712" duration="13182000" />
     </task>
     <task id="LOCAL-00330" summary="博客管理现在能够查询列表了">
       <created>1710160073702</created>
@@ -700,7 +698,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712835265193</updated>
     </task>
-    <option name="localTasksCounter" value="378" />
+    <task id="LOCAL-00378" summary="留言功能实现">
+      <created>1712889148610</created>
+      <option name="number" value="00378" />
+      <option name="presentableId" value="LOCAL-00378" />
+      <option name="project" value="LOCAL" />
+      <updated>1712889148610</updated>
+    </task>
+    <option name="localTasksCounter" value="379" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,7 +740,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="做分支吧，这个当个人的" />
     <MESSAGE value="用shiyi的" />
     <MESSAGE value="对接homeData和report接口" />
     <MESSAGE value="网站配置这里注掉了（两个项目表设计不一样），后续要改好&#10;获取网站信息接口对上了" />
@@ -760,7 +764,8 @@
     <MESSAGE value="完成友链页面" />
     <MESSAGE value="新增留言表，完成留言管理" />
     <MESSAGE value="新增聊天室表，完成聊天室管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增聊天室表，完成聊天室管理" />
+    <MESSAGE value="留言功能实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="留言功能实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

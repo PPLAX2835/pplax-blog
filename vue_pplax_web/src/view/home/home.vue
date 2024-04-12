@@ -17,13 +17,13 @@ export default {
     },
 
     created() {
-        if (this.$store.state.userInfo) {
-            if (getToken()) {
-                getNewSystemNotice().then(res => {
-                    this.$store.commit("setSystemNotice", res.data)
-                });
-            }
-        }
+        // if (this.$store.state.userInfo) {
+        //     if (getToken()) {
+        //         getNewSystemNotice().then(res => {
+        //             this.$store.commit("setSystemNotice", res.data)
+        //         });
+        //     }
+        // }
         // //跳回到原地址
         // if (flag) {
         //     // 跳转回原页面

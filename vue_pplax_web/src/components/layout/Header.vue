@@ -7,7 +7,7 @@
                     <router-link :to="'/'" class="hand-style">
                         <el-image class="img"
                             style="width: 50px;border-radius: 50%; height: 50px;border: 1px solid var(--border-line);"
-                            :src="$store.state.webSiteInfo.logo">
+                            :src="$store.state.webSiteInfo.siteLogo.value.fileUrl">
                         </el-image>
                         <span class="name">pplax blog</span>
                     </router-link>
@@ -168,7 +168,7 @@
                 <el-dropdown trigger="hover">
                     <div class="el-dropdown-link hand-style">
                         <img v-if="!userInfo" src="http://img.shiyit.com/touristAvatar.png" alt="">
-                        <img v-else :src="userInfo.avatar" alt="" />
+                        <img v-else :src="userInfo.avatar.fileUrl" alt="" />
                     </div>
                     <el-dropdown-menu slot="dropdown" v-if="userInfo">
                         <router-link style="text-decoration: none;color: #71777c;" :to="'/user'">
@@ -204,8 +204,8 @@
     </header>
 </template>
 <script>
-import { logout } from '@/api'
-import { removeToken, getToken } from '@/utils/cookieUtil'
+import { logout } from "@/api/auth";
+import { removeToken, getToken, removeUserUid } from '@/utils/cookieUtil'
 export default {
     name: 'Header',
 
@@ -316,8 +316,13 @@ export default {
             }
             logout().then(res => {
                 removeToken()
+                removeUserUid()
                 this.$store.commit("setUserInfo", null)
-                location.reload()
+
+                this.$toast.success('注销成功')
+                setTimeout(function (){
+                  location.reload()
+                }, 1000)
             }).catch(err => {
                 console.log(err)
             });

@@ -9,6 +9,15 @@ export function getToken() {
 export function removeToken() {
     return Cookies.remove("token");
 }
+export function setUserUid(userUid) {
+    return Cookies.set('userUid', userUid)
+}
+export function getUserUid() {
+    return Cookies.get('userUid')
+}
+export function removeUserUid() {
+    return Cookies.remove('userUid')
+}
 export function setUrl(value) {
     return window.sessionStorage.setItem("baseUrl", value)
 }

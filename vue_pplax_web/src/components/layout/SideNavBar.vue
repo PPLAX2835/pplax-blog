@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import { logout } from '@/api'
-import { removeToken, getToken } from '@/utils/cookieUtil'
+import { logout } from "@/api/auth";
+import {removeToken, getToken, removeUserUid} from '@/utils/cookieUtil'
 export default {
     data: function () {
         return {
@@ -115,9 +115,13 @@ export default {
             }
             logout().then(res => {
                 removeToken()
-                location.reload()
+                removeUserUid()
+                this.$store.commit("setUserInfo", null)
 
                 this.$toast.success('注销成功')
+                setTimeout(function (){
+                  location.reload()
+                }, 1000)
             }).catch(err => {
                 console.log(err)
             });

@@ -31,7 +31,8 @@ import Login from '@/components/model/Login.vue'
 import SearchModle from '@/components/model/Search.vue'
 import Notice from '@/view/notice/topNotice.vue'
 import { report, getWebSiteInfo, selectUserInfoByToken } from '@/api'
-import { getToken, setToken } from '@/utils/cookieUtil'
+import {getToken, getUserUid, setToken} from '@/utils/cookieUtil'
+import {getUserInfo} from "@/api/user";
 
 export default {
   name: 'App',
@@ -98,9 +99,9 @@ export default {
       }
 
       // 从cookie中获取token
-      let token = getToken()
-      if (token != null) {
-        selectUserInfoByToken(token).then(res => {
+      let userUid = getUserUid()
+      if (userUid != null) {
+        getUserInfo(userUid).then(res => {
           this.userInfo = res.data
           this.$store.commit("setUserInfo", res.data)
         })

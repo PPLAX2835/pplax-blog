@@ -35,11 +35,11 @@ public class ChatController extends SuperController {
 
     private static Logger log = LogManager.getLogger(ChatController.class);
 
-//    @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
-//    @GetMapping("/room/list")
-//    public String getRoomList(@RequestParam("userUid") String userUid) {
-//        return toJson(ResponseResult.success(chatRoomService.getByUserUid(userUid)));
-//    }
+    @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
+    @GetMapping("/room/list")
+    public String getRoomList(@RequestParam("userUid") String userUid) {
+        return toJson(ResponseResult.success(chatRoomService.getByUserUid(userUid)));
+    }
 
 }
 

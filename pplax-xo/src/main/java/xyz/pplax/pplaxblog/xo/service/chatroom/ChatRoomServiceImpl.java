@@ -64,49 +64,22 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         return pageList;
     }
 
-//    @Override
-//    public List<ChatRoom> getByUserUid(String userUid) {
-//        QueryWrapper<ChatRoom> chatRoomQueryWrapper = new QueryWrapper<>();
-//        chatRoomQueryWrapper.ne(ChatRoomSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-//
-//        chatRoomQueryWrapper.eq(ChatRoomSQLConstants.TYPE, CharacterConstants.NUM_ONE);
-//        chatRoomQueryWrapper.
-//                eq(ChatRoomSQLConstants.MEMBER1_UID, userUid)
-//                .or()
-//                .eq(ChatRoomSQLConstants.MEMBER2_UID, userUid);
-//
-//        List<ChatRoom> chatRoomList = list(chatRoomQueryWrapper);
-//
-//        chatRoomQueryWrapper = new QueryWrapper<>();
-//        chatRoomQueryWrapper.ne(ChatRoomSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-//        chatRoomQueryWrapper.eq(ChatRoomSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
-//        chatRoomList.addAll(list(chatRoomQueryWrapper));
-//
-//        // 封装用户
-//        User user1 = userService.getById(userUid);
-//        if (user1 != null) {
-//            user1.setUserInfo(userInfoService.getById(user1.getUserInfoUid()));
-//        }
-//
-//        for (ChatRoom chatRoom : chatRoomList) {
-//            User user2 = null;
-//            if (chatRoom.getType() == CharacterConstants.NUM_ONE) {
-//                if (!userUid.equals(chatRoom.getMember1Uid())) {
-//                    user2 = userService.getById(chatRoom.getMember1Uid());
-//                } else {
-//                    user2 = userService.getById(chatRoom.getMember2Uid());
-//                }
-//                if (user2 != null) {
-//                    user2.setUserInfo(userInfoService.getById(user2.getUserInfoUid()));
-//                }
-//            }
-//
-//            chatRoom.setMember1(user1);
-//            chatRoom.setMember2(user2);
-//        }
-//
-//
-//
-//        return chatRoomList;
-//    }
+    @Override
+    public List<ChatRoom> getByUserUid(String userUid) {
+        QueryWrapper<ChatRoom> chatRoomQueryWrapper = new QueryWrapper<>();
+        chatRoomQueryWrapper.ne(ChatRoomSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+
+        chatRoomQueryWrapper.eq(ChatRoomSQLConstants.OWNER_UID, userUid)
+                .or()
+                .like(ChatRoomSQLConstants.MEMBER_UIDS, "%" + userUid + "%");
+
+        List<ChatRoom> chatRoomList = list(chatRoomQueryWrapper);
+
+        for (ChatRoom chatRoom : chatRoomList) {
+            // 封装头像
+            chatRoom.setAvatar(fileStorageService.getById(chatRoom.getAvatarUid()));
+        }
+
+        return chatRoomList;
+    }
 }

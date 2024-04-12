@@ -159,16 +159,13 @@
                         v-for="(item, index) in roomList" :key="index">
                         <div class="room-list-item" @click="selectUserIm(item, index)">
                             <div class="room-list-item">
-                                <img class="img" :src="item.avatar" alt="">
+                                <img class="img" :src="item.avatar !== undefined ? item.avatar.fileUrl : ''" alt="">
                                 <div class="roomName">
-                                    {{ item.nickname }}
+                                    {{ item.name }}
                                 </div>
                             </div>
-                            <div class="readNum" v-if="item.readNum">
-                                <span>{{ item.readNum }}</span>
-                            </div>
                         </div>
-                        <div class="close" @click="closeRoom(item.id, index)">
+                        <div class="close" @click="closeRoom(item.uid, index)">
                             <span><i class="el-icon-close"></i></span>
                         </div>
 
@@ -232,10 +229,6 @@ export default {
             onlineUserList: [],
 
             roomList: [
-                {
-                    avatar: this.$store.state.webSiteInfo.logo,
-                    nickname: "拾壹博客交流群"
-                }
             ],
             selectUserOnline: null,
             atMember: "",
@@ -407,14 +400,7 @@ export default {
             this.pageData.pageNo = 1
 
             //为空则是群聊
-            if (!item.receiveId) {
-                this.title = "拾壹博客交流群"
-                this.messageList = []
-                this.selectUserOnline = null;
-                this.getHistoryList()
-                return;
-            }
-            this.title = item.nickname
+            this.title = item.name
             this.pageData.fromUserId = this.user.id
             this.pageData.toUserId = item.receiveId
             this.messageList = []

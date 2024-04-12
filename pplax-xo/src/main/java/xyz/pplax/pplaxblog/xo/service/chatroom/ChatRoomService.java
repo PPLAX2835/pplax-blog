@@ -14,5 +14,5 @@ public interface ChatRoomService extends SuperService<ChatRoom> {
 
     IPage<ChatRoom> list(ChatRoomGetListDto chatRoomGetListDto);
 
-//    List<ChatRoom> getByUserUid(String userUid);
+    List<ChatRoom> getByUserUid(String userUid);
 }

@@ -5,9 +5,9 @@ import service from '@/utils/request'
  * @param params
  * @returns {*}
  */
-export function getChatMessageList(params) {
+export function getMessageList(params) {
   return service({
-    url: '/admin/chatMessage/list',
+    url: '/admin/message/list',
     method: 'get',
     params
   })
@@ -18,9 +18,9 @@ export function getChatMessageList(params) {
  * @param chatMessageUid
  * @returns {*}
  */
-export function deleteChatMessage(chatMessageUid) {
+export function deleteMessage(chatMessageUid) {
   return service({
-    url: '/admin/chatMessage/' + chatMessageUid,
+    url: '/admin/message/' + chatMessageUid,
     method: 'delete'
   })
 }
@@ -30,9 +30,9 @@ export function deleteChatMessage(chatMessageUid) {
  * @param chatMessageUids
  * @returns {*}
  */
-export function deleteChatMessageBatch(chatMessageUids) {
+export function deleteMessageBatch(chatMessageUids) {
   return service({
-    url: '/admin/chatMessage',
+    url: '/admin/message',
     method: 'delete',
     data: chatMessageUids
   })

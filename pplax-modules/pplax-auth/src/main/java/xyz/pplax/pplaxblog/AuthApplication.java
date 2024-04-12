@@ -27,9 +27,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.xo.service.blogsort",
         "xyz.pplax.pplaxblog.xo.service.blogcontent",
         "xyz.pplax.pplaxblog.xo.service.say",
-        "xyz.pplax.pplaxblog.xo.service.leavemessage",
+        "xyz.pplax.pplaxblog.xo.service.message",
         "xyz.pplax.pplaxblog.xo.service.chatroom",
-        "xyz.pplax.pplaxblog.xo.service.chatmessage",
         "xyz.pplax.pplaxblog.auth.controller",
         "xyz.pplax.pplaxblog.auth.config",
         "xyz.pplax.pplaxblog.auth.service"

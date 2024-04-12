@@ -16,40 +16,41 @@ import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.xo.entity.LeaveMessage;
-import xyz.pplax.pplaxblog.xo.service.leavemessage.LeaveMessageService;
+import xyz.pplax.pplaxblog.xo.entity.Message;
+import xyz.pplax.pplaxblog.xo.service.message.MessageService;
 
 import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * 留言 Controller
+ * 消息 Controller
  */
 @RestController
-@RequestMapping("/leaveMessage")
-@Api(value="留言Controller", tags={"留言Controller"})
-public class LeaveMessageController extends SuperController {
+@RequestMapping("/message")
+@Api(value="消息Controller", tags={"消息Controller"})
+public class MessageController extends SuperController {
 
-    private static Logger log = LogManager.getLogger(LeaveMessageController.class);
+    private static Logger log = LogManager.getLogger(MessageController.class);
 
     @Autowired
-    private LeaveMessageService leaveMessageService;
+    private MessageService messageService;
 
     @Autowired
     private AdminFeignClient adminFeignClient;
 
-    @ApiOperation(value = "获取留言列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取留言列表")
+    @ApiOperation(value = "获取消息列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取消息列表")
     @GetMapping("/list")
     public String getLeaveMessageList(
+            @RequestParam(value = "type", required = false) Integer type,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        return adminFeignClient.getLeaveMessageList("", currentPage, pageSize);
+        return adminFeignClient.getLeaveMessageList(type, "", currentPage, pageSize);
     }
 
     @ApiOperation(value = "添加留言", httpMethod = "GET", response = ResponseResult.class, notes = "添加留言")
     @PostMapping("")
-    public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody LeaveMessage leaveMessage){
+    public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody Message message){
         String authorization = httpServletRequest.getHeader("Authorization");
         String accessToken = null;
         String userUid = null;
@@ -60,12 +61,12 @@ public class LeaveMessageController extends SuperController {
             userUid = (String) jsonObject.get("uid");
         }
 
-        leaveMessage.setUid(StringUtils.getUUID());
-        leaveMessage.setUserUid(userUid);
-        leaveMessage.setIp(IpUtils.getIpAddress(httpServletRequest));
-        leaveMessage.setAddress(IpUtils.getCityInfo(leaveMessage.getIp()));
+        message.setUid(StringUtils.getUUID());
+        message.setUserUid(userUid);
+        message.setIp(IpUtils.getIpAddress(httpServletRequest));
+        message.setAddress(IpUtils.getCityInfo(message.getIp()));
 
-        boolean res = leaveMessageService.save(leaveMessage);
+        boolean res = messageService.save(message);
 
         if (res) {
             return success();

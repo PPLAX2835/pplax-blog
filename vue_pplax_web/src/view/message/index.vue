@@ -70,6 +70,7 @@ export default {
             requestTimer: null,
             total: 0,
             paramData: {
+              type: 0,
               currentPage: 1,
               pageSize: 20
             },
@@ -102,7 +103,7 @@ export default {
                 time: Math.floor(Math.random() * (21 - 10) + 10)
             };
 
-            addMessage(this.content).then(res => {
+            addMessage(this.content, 0).then(res => {
                 this.barrageList.push(message);
 
                 this.content = "";

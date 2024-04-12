@@ -143,22 +143,16 @@ export const constantRouterMap = [
                 meta: { title: '反馈管理', icon: 'table' }
               },
               {
-                path: 'leaveMessage',
-                name: 'LeaveMessage',
-                component: () => import('@/views/leaveMessage/index'),
-                meta: { title: '留言管理', icon: 'table' }
-              },
-              {
                 path: 'chatRoom',
                 name: 'ChatRoom',
                 component: () => import('@/views/chatRoom/index'),
                 meta: { title: '聊天室管理', icon: 'table' }
               },
               {
-                path: 'chatMessage',
-                name: 'ChatMessage',
-                component: () => import('@/views/chatMessage/index'),
-                meta: { title: '聊天记录管理', icon: 'table' }
+                path: 'message',
+                name: 'Message',
+                component: () => import('@/views/message/index'),
+                meta: { title: '消息管理', icon: 'table' }
               }
             ]
           },

@@ -2,8 +2,14 @@
   <div class="app-container">
     <!--查询or其他操作-->
     <el-form v-show="showSearch" :inline="true" ref="form" :model="params" label-width="68px">
-      <el-form-item label="评论内容">
-        <el-input style="width: 150px" size="small" v-model="params.keyword" placeholder="请输入评论内容"/>
+      <el-form-item label="消息内容">
+        <el-input style="width: 150px" size="small" v-model="params.keyword" placeholder="请输入消息内容"/>
+      </el-form-item>
+      <el-form-item label="类型">
+        <el-select style="width: 130px" size="small" v-model="params.type" @change="fetchMessageList" placeholder="请选择类型">
+          <el-option label="留言" :value="0" />
+          <el-option label="聊天" :value="1" />
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
@@ -27,9 +33,23 @@
           </template>
         </el-table-column>
 
-        <el-table-column width="250" align="center" prop="content" label="内容"></el-table-column>
+        <el-table-column width="280" align="center" prop="content" label="内容"></el-table-column>
         <el-table-column width="120" align="center" prop="ip" label="ip"></el-table-column>
-        <el-table-column width="120" align="center" prop="address" label="地址"></el-table-column>
+        <el-table-column width="150" align="center" prop="address" label="地址"></el-table-column>
+
+        <el-table-column width="80" align="center" label="类型">
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.type === 0" type="success">留言</el-tag>
+            <el-tag v-else-if="scope.row.type === 1" >聊天</el-tag>
+          </template>
+        </el-table-column>
+
+        <el-table-column width="80" align="center" label="状态">
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.status === statusList.ENABLE" type="success">正常</el-tag>
+            <el-tag v-else-if="scope.row.status === statusList.WITHDRAW" type="info">撤回</el-tag>
+          </template>
+        </el-table-column>
 
         <el-table-column width="180" align="center" label="添加时间">
           <template slot-scope="scope">
@@ -67,7 +87,7 @@
 </template>
 
 <script>
-import { getLeaveMessageList, deleteLeaveMessageBatch, deleteLeaveMessage } from "../../api/leaveMessage";
+import { getMessageList, deleteMessage, deleteMessageBatch } from "../../api/message";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import { EStatus } from "../../base/EStatus"
@@ -82,6 +102,7 @@ export default {
       multipleSelection: [],
       showSearch: true,
       params: {
+        type: '',
         keyword: '',
         currentPage: 1,
         pageSize: 10
@@ -122,24 +143,24 @@ export default {
      * @returns {boolean|*}
      */
     canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/leaveMessage')
+      return hasAuth(this.menu, 'DELETE:/api/admin/message')
     },
     /**
      * 检查是否有删除的权限
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/leaveMessage/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/message/{uid}')
     },
   },
   created() {
     this.statusList = EStatus;
     this.openLoading();
-    this.fetchLeaveMessageList();
+    this.fetchMessageList();
   },
   methods: {
-    fetchLeaveMessageList: function (){
-      getLeaveMessageList(this.params).then(res =>{
+    fetchMessageList: function (){
+      getMessageList(this.params).then(res =>{
         this.tableData = res.data
         this.total = res.total
         this.loading.close()
@@ -152,14 +173,14 @@ export default {
      */
     handleFind: function () {
       this.params.currentPage = 1;
-      this.fetchLeaveMessageList()
+      this.fetchMessageList()
     },
     /**
      * 重置查询参数
      */
     resetQuery: function (){
       this.params.keyword = ''
-      this.fetchLeaveMessageList()
+      this.fetchMessageList()
     },
     /**
      * 单页大小处理
@@ -167,7 +188,7 @@ export default {
      */
     handleSizeChange: function (val) {
       this.params.pageSize = val
-      this.fetchLeaveMessageList()
+      this.fetchMessageList()
     },
     /**
      * 页数变化处理
@@ -175,7 +196,7 @@ export default {
      */
     handleCurrentChange: function (val) {
       this.params.currentPage = val
-      this.fetchLeaveMessageList()
+      this.fetchMessageList()
     },
     /**
      * 时间戳格式化
@@ -233,8 +254,8 @@ export default {
             for (let i = 0; i < selections.length; i++) {
               uids[i] = selections[i].uid
             }
-            deleteLeaveMessageBatch(uids).then(res => {
-              this.fetchLeaveMessageList()
+            deleteMessageBatch(uids).then(res => {
+              this.fetchMessageList()
               this.$message.success('删除成功');
               this.loading.close()
             }).catch(() => {
@@ -243,8 +264,8 @@ export default {
           }
         } else {
           // 走单独删除
-            deleteLeaveMessage(scope.row.uid).then(res => {
-            this.fetchLeaveMessageList()
+            deleteMessage(scope.row.uid).then(res => {
+            this.fetchMessageList()
             this.$message.success('删除成功');
             this.loading.close()
           }).catch(() => {
@@ -264,7 +285,7 @@ export default {
             // updateTag(this.editingTagUid, this.form).then(res => {
             //   this.$message.success("修改成功")
             //   this.editingTagUid = ''
-            //   this.fetchLeaveMessageList()
+            //   this.fetchMessageList()
             //   this.dialogFormVisible = false;
             //   this.close()
             // }).catch(err => {
@@ -273,7 +294,7 @@ export default {
           } else {
             // addTag(this.form).then(res => {
             //   this.$message.success("添加成功")
-            //   this.fetchLeaveMessageList()
+            //   this.fetchMessageList()
             //   this.dialogFormVisible = false;
             //   this.close()
             // }).catch(err => {

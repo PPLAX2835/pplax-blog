@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name="admin-server")
 public interface AdminFeignClient {
 
-    @GetMapping(value = "/leaveMessage/list")
+    @GetMapping(value = "/message/list")
     String getLeaveMessageList(
+            @RequestParam(value = "type", required = false) Integer type,
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize

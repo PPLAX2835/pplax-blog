@@ -8,14 +8,14 @@ import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 
 
 /**
- * @description 留言表
+ * @description 消息表
  * @author PPLAX
  * @date 2024-4-11
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("t_leave_message")
-public class LeaveMessage extends SuperEntity {
+@TableName("t_message")
+public class Message extends SuperEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,6 +23,11 @@ public class LeaveMessage extends SuperEntity {
      * 发言用户uid
      */
     private String userUid;
+
+    /**
+     * 聊天室uid
+     */
+    private String chatRoomUid;
 
     /**
      * 留言内容
@@ -35,6 +40,11 @@ public class LeaveMessage extends SuperEntity {
     private String ip;
 
     /**
+     * 类型 类型 0留言消息 1聊天消息
+     */
+    private Integer type;
+
+    /**
      * 留言地址
      */
     private String address;
@@ -45,5 +55,11 @@ public class LeaveMessage extends SuperEntity {
     @TableField(exist = false)
     private UserInfo userInfo;
 
-    public LeaveMessage() {}
+    /**
+     * 聊天室
+     */
+    @TableField(exist = false)
+    private ChatRoom chatRoom;
+
+    public Message() {}
 }

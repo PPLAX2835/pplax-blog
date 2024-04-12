@@ -21,18 +21,11 @@ import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
-import xyz.pplax.pplaxblog.feign.web.WebSiteFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.xo.constants.redis.SiteRedisConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.SayEditDto;
-import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
-import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Say;
-import xyz.pplax.pplaxblog.xo.entity.Tag;
-import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.service.say.SayService;
-import xyz.pplax.pplaxblog.xo.service.tag.TagService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -47,9 +40,6 @@ public class SayController extends SuperController {
 
     @Autowired
     private SayService sayService;
-
-    @Autowired
-    private WebSiteFeignClient webSiteFeignClient;
 
     private static Logger log = LogManager.getLogger(SayController.class);
 

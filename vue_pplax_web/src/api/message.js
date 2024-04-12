@@ -1,15 +1,18 @@
 
 import request from '@/utils/request'
-export function listMessage() {
+export function listMessage(param) {
     return request({
-        url: '/v1/message/',
+        url: '/web/leaveMessage/list',
         method: 'get',
+        params: param
     })
 }
-export function addMessage(data) {
+export function addMessage(content) {
     return request({
-        url: '/v1/message/',
+        url: '/web/leaveMessage/',
         method: 'post',
-        data
+        data: {
+            content: content
+        }
     })
 }

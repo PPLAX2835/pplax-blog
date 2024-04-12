@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.feign.auth;
+package xyz.pplax.pplaxblog.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;

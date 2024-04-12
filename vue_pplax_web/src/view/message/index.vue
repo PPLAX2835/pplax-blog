@@ -41,10 +41,38 @@ export default {
     },
     mounted() {
         document.title = "留言板";
-        this.listMessage();
+
+        let that = this
+        this.requestTimer = setInterval(function () {
+          listMessage(that.paramData).then(res => {
+            for (let i = 0; i < res.data.length; i++) {
+              let item = res.data[i]
+              that.barrageList.push({
+                    nickname: item.userInfo !== undefined ? item.userInfo.nickname : "游客",
+                    avatar: item.userInfo !== undefined ? ( item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : that.$store.state.webSiteInfo.touristAvatar.value) : that.$store.state.webSiteInfo.touristAvatar.value,      		//头像
+                    content: item.content,             	//弹幕消息
+                    time: Math.floor(Math.random() * (21 - 10) + 10),
+                    status: 1,
+                  });
+            }
+            that.total = res.total
+
+            if (that.paramData.currentPage >= Math.ceil((that.total / that.paramData.pageSize))) {
+              clearInterval(that.requestTimer)
+            }
+
+            that.paramData.currentPage++
+          });
+        }, 2000)
     },
     data() {
         return {
+            requestTimer: null,
+            total: 0,
+            paramData: {
+              currentPage: 1,
+              pageSize: 20
+            },
             show: false,
             img: process.env.VUE_APP_IMG_API,
             content: "",
@@ -67,19 +95,20 @@ export default {
                 return false;
             }
             var message = {
-                avatar: this.user ? this.user.avatar : this.$store.state.webSiteInfo.touristAvatar,
+                avatar: this.user ? this.user.avatar.fileUrl : this.$store.state.webSiteInfo.touristAvatar.value,
                 status: 1,
                 nickname: this.user ? this.user.nickname : "游客",
                 content: this.content,
                 time: Math.floor(Math.random() * (21 - 10) + 10)
             };
 
-            this.content = "";
-            addMessage(message).then(res => {
+            addMessage(this.content).then(res => {
                 this.barrageList.push(message);
 
+                this.content = "";
                 this.$toast.success("留言成功");
             }).catch(err => {
+                this.content = "";
             });
             const TIME_COUNT = 30;
             if (!this.timer) {
@@ -93,11 +122,6 @@ export default {
                     }
                 }, 1000);
             }
-        },
-        listMessage() {
-            listMessage().then(res => {
-                this.barrageList = res.data;
-            });
         }
     },
     computed: {

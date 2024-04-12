@@ -13,4 +13,5 @@ export const EStatus = {
   REFUSED: 11,                    // 已拒绝
   APPLYING: 12,                   // 申请中
   WITHDRAW: 13,                   // 撤回
+  CLOSED: 14,                     // 关闭
 };

@@ -12,4 +12,6 @@ export const EStatus = {
   IN_PROGRESS: 10,                // 进行中
   REFUSED: 11,                    // 已拒绝
   APPLYING: 12,                   // 申请中
+  WITHDRAW: 13,                   // 撤回
+  CLOSED: 14,                     // 关闭
 };

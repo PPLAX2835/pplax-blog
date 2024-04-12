@@ -15,8 +15,11 @@ import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
 import xyz.pplax.pplaxblog.xo.entity.LeaveMessage;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.ChatRoomMapper;
+import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
+
+import java.util.List;
 
 /**
  * 菜单 服务实现类
@@ -28,6 +31,9 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
 
     @Override
@@ -42,24 +48,65 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
 
         IPage<ChatRoom> pageList = page(page, chatRoomQueryWrapper);
         for (ChatRoom chatRoom : pageList.getRecords()) {
-            if (chatRoom.getType() == CharacterConstants.NUM_ONE) {
-                // 封装用户信息
-                User user = userService.getById(chatRoom.getMember1Uid());
-                if (user != null) {
-                    user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
-                    user.sensitiveDataRemove();
-                    chatRoom.setMember1(user);
-                }
+            // 封装头像
+            chatRoom.setAvatar(fileStorageService.getById(chatRoom.getAvatarUid()));
 
-                user = userService.getById(chatRoom.getMember2Uid());
+            // 封装群主
+            if (chatRoom.getType() == CharacterConstants.NUM_ZERO || chatRoom.getType() == CharacterConstants.NUM_ONE) {
+                User user = userService.getById(chatRoom.getOwnerUid());
                 if (user != null) {
                     user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
-                    user.sensitiveDataRemove();
-                    chatRoom.setMember2(user);
                 }
+                chatRoom.setOwner(user);
             }
         }
 
         return pageList;
     }
+
+//    @Override
+//    public List<ChatRoom> getByUserUid(String userUid) {
+//        QueryWrapper<ChatRoom> chatRoomQueryWrapper = new QueryWrapper<>();
+//        chatRoomQueryWrapper.ne(ChatRoomSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+//
+//        chatRoomQueryWrapper.eq(ChatRoomSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+//        chatRoomQueryWrapper.
+//                eq(ChatRoomSQLConstants.MEMBER1_UID, userUid)
+//                .or()
+//                .eq(ChatRoomSQLConstants.MEMBER2_UID, userUid);
+//
+//        List<ChatRoom> chatRoomList = list(chatRoomQueryWrapper);
+//
+//        chatRoomQueryWrapper = new QueryWrapper<>();
+//        chatRoomQueryWrapper.ne(ChatRoomSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+//        chatRoomQueryWrapper.eq(ChatRoomSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
+//        chatRoomList.addAll(list(chatRoomQueryWrapper));
+//
+//        // 封装用户
+//        User user1 = userService.getById(userUid);
+//        if (user1 != null) {
+//            user1.setUserInfo(userInfoService.getById(user1.getUserInfoUid()));
+//        }
+//
+//        for (ChatRoom chatRoom : chatRoomList) {
+//            User user2 = null;
+//            if (chatRoom.getType() == CharacterConstants.NUM_ONE) {
+//                if (!userUid.equals(chatRoom.getMember1Uid())) {
+//                    user2 = userService.getById(chatRoom.getMember1Uid());
+//                } else {
+//                    user2 = userService.getById(chatRoom.getMember2Uid());
+//                }
+//                if (user2 != null) {
+//                    user2.setUserInfo(userInfoService.getById(user2.getUserInfoUid()));
+//                }
+//            }
+//
+//            chatRoom.setMember1(user1);
+//            chatRoom.setMember2(user2);
+//        }
+//
+//
+//
+//        return chatRoomList;
+//    }
 }

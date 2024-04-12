@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import user from "@/view/user";
 
 // 聊天室接口
 export function getImHistory(params) {
@@ -8,10 +9,13 @@ export function getImHistory(params) {
         params: params
     })
 }
-export function getRoomList() {
+export function getRoomList(userUid) {
     return request({
-        url: '/v1/im/getRoomList',
-        method: 'get'
+        url: '/web/chat/room/list',
+        method: 'get',
+        params: {
+            userUid: userUid
+        }
     })
 }
 export function addRoom(userId) {

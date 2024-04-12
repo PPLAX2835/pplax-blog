@@ -16,22 +16,28 @@
                 @selection-change="handleSelectionChange">
         <el-table-column align="center" type="selection" />
 
-        <el-table-column width="180" align="center" label="类型">
+        <el-table-column width="180" align="center" label="群聊头像">
           <template slot-scope="scope">
-            <el-tag v-if="scope.row.type === 0" type="info">群聊</el-tag>
-            <el-tag v-else>私聊</el-tag>
+            <div class="block">
+              <el-avatar v-if="scope.row.avatar !== undefined && scope.row.avatar.fileUrl !== undefined" :size="50" :src="scope.row.avatar.fileUrl"></el-avatar>
+              <el-avatar v-else :size="50"></el-avatar>
+            </div>
           </template>
         </el-table-column>
 
-        <el-table-column width="180" align="center" label="成员1">
+        <el-table-column width="180" align="center" label="群聊名" prop="name"></el-table-column>
+
+        <el-table-column width="150" align="center" label="类型">
           <template slot-scope="scope">
-            <span v-if="scope.row.type === 1">{{ scope.row.member1.userInfo.nickname }}</span>
+            <el-tag v-if="scope.row.type === 0" type="info">公共群聊</el-tag>
+            <el-tag v-else-if="scope.row.type === 1" type="success">群聊</el-tag>
+            <el-tag v-else-if="scope.row.type === 2" type="warning">私聊</el-tag>
           </template>
         </el-table-column>
 
-        <el-table-column width="180" align="center" label="成员2">
+        <el-table-column width="180" align="center" label="群主">
           <template slot-scope="scope">
-            <span v-if="scope.row.type === 1">{{ scope.row.member2.userInfo.nickname }}</span>
+            <span >{{ scope.row.owner !== undefined ? (scope.row.owner.userInfo !== undefined ? scope.row.owner.userInfo.nickname : '') : '' }}</span>
           </template>
         </el-table-column>
 

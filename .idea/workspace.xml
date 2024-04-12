@@ -4,24 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="留言功能实现">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserInfoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/sliderVerify/sliderVerify.vue" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="前台页面完成登录">
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/LeaveMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/LeaveMessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/SideNavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/SideNavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/cookieUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/cookieUtil.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/EStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/EStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/ChatRoomSQLConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/ChatRoomSQLConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/ChatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/ChatRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/chatroom/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/chatroom/ChatRoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/chatroom/ChatRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/chatroom/ChatRoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/ChatRoomMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/ChatRoomMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/base/EStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/base/EStatus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/chatRoom/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/chatRoom/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/im.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/im.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/base/EStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/base/EStatus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,14 +356,7 @@
       <workItem from="1712710952377" duration="14653000" />
       <workItem from="1712799815758" duration="15518000" />
       <workItem from="1712826484931" duration="8495000" />
-      <workItem from="1712884337712" duration="13182000" />
-    </task>
-    <task id="LOCAL-00330" summary="博客管理现在能够查询列表了">
-      <created>1710160073702</created>
-      <option name="number" value="00330" />
-      <option name="presentableId" value="LOCAL-00330" />
-      <option name="project" value="LOCAL" />
-      <updated>1710160073702</updated>
+      <workItem from="1712884337712" duration="17379000" />
     </task>
     <task id="LOCAL-00331" summary="实现博客的增改，去除file_storage表的userUid字段，调整文件存储的目录结构">
       <created>1710410282800</created>
@@ -705,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712889148610</updated>
     </task>
-    <option name="localTasksCounter" value="379" />
+    <task id="LOCAL-00379" summary="前台页面完成登录">
+      <created>1712909331663</created>
+      <option name="number" value="00379" />
+      <option name="presentableId" value="LOCAL-00379" />
+      <option name="project" value="LOCAL" />
+      <updated>1712909331664</updated>
+    </task>
+    <option name="localTasksCounter" value="380" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,7 +736,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="用shiyi的" />
     <MESSAGE value="对接homeData和report接口" />
     <MESSAGE value="网站配置这里注掉了（两个项目表设计不一样），后续要改好&#10;获取网站信息接口对上了" />
     <MESSAGE value="首页博客列表接口对上了，博客表增加阅读量字段" />
@@ -765,7 +760,8 @@
     <MESSAGE value="新增留言表，完成留言管理" />
     <MESSAGE value="新增聊天室表，完成聊天室管理" />
     <MESSAGE value="留言功能实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="留言功能实现" />
+    <MESSAGE value="前台页面完成登录" />
+    <option name="LAST_COMMIT_MESSAGE" value="前台页面完成登录" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

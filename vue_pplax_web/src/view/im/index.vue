@@ -192,6 +192,8 @@
 </template>
 
 <script>
+import {getUserUid} from "@/utils/cookieUtil";
+
 let socket;
 import { upload } from '@/api'
 import { getImHistory, getUserImHistoryList, send, withdraw, getRoomList, addRoom, read, deleteRoom } from '@/api/im'
@@ -728,7 +730,7 @@ export default {
         open() {
             console.log("websocket已打开");
             //获取房间列表
-            getRoomList().then(res => {
+            getRoomList(getUserUid()).then(res => {
                 this.roomList.push(...res.data)
             })
             if (this.userId != null) {

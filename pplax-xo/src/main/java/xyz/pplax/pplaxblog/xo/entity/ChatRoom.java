@@ -20,28 +20,38 @@ public class ChatRoom extends SuperEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 成员1uid，用于私聊
+     * 群主uid
      */
-    private String member1Uid;
+    private String ownerUid;
 
     /**
-     * 成员1uid，用于私聊
+     * 群聊名
      */
-    private String member2Uid;
+    private String name;
 
     /**
-     * 类型 0公共 1私聊
+     * 成员uids，逗号分割
+     */
+    private String memberUids;
+
+    /**
+     * 头像uid
+     */
+    private String avatarUid;
+
+    /**
+     * 类型 0公共群聊 1群聊 2私聊
      */
     private Integer  type;
 
     /**
-     * 用户
+     * 头像
      */
     @TableField(exist = false)
-    private User member1;
+    private FileStorage avatar;
 
     @TableField(exist = false)
-    private User member2;
+    private User owner;
 
     public ChatRoom() {}
 }

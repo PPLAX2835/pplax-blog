@@ -28,7 +28,7 @@ public class MessageFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/message" + simpleDateFormat.format(date) + "/", file);
+        return upload(mode, "/message/" + simpleDateFormat.format(date) + "/", file);
     }
 
 }

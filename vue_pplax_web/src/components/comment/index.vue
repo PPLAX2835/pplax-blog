@@ -127,6 +127,14 @@
                                                         <a href="javascript:;"
                                                             style="color: #99CE00;text-decoration: none;">@{{
                                                                 childrenItem.commentator.userInfo.nickname }} </a>
+
+                                                        <span v-if="childrenItem.toUid">
+                                                          回复
+                                                        <a href="javascript:;"
+                                                           style="color: #99CE00;text-decoration: none;">
+                                                          @{{ childrenItem.targetUser.userInfo.nickname }} </a>
+                                                        </span>
+
                                                         <span v-html="childrenItem.content"></span>
                                                     </p>
                                                 </div>
@@ -156,6 +164,7 @@ import { browserMatch } from '@/utils/index'
 import {parseTime} from "@/utils/index";
 import Reply from './Reply.vue'
 import Emoji from '@/components/emoji'
+import {getUserUid} from "@/utils/cookieUtil";
 export default {
     components: {
         Reply,
@@ -283,19 +292,18 @@ export default {
             if (isChilderen) {
                 this.$refs['replys' + item.uid][0].showBox = true
                 //传值给回复框
-                this.$refs['replys' + item.uid][0].commentContent = "";
-                this.$refs['replys' + item.uid][0].nickname = item.nickname;
-                this.$refs['replys' + item.uid][0].replyUserId = item.userId;
-                this.$refs['replys' + item.uid][0].parentId = parentId;
-                this.$refs['replys' + item.uid][0].index = item.uid;
+                this.$refs['replys' + item.uid][0].userUid = getUserUid();
+                this.$refs['replys' + item.uid][0].toUid = item.uid;
+                this.$refs['replys' + item.uid][0].toUserUid = item.userUid;
+                this.$refs['replys' + item.uid][0].originalUid = item.originalUid;
+                this.$refs['replys' + item.uid][0].type = 4;
             } else {
                 this.$refs['reply' + item.uid][0].showBox = true
                 //传值给回复框
-                this.$refs['reply' + item.uid][0].commentContent = "";
-                this.$refs['reply' + item.uid][0].nickname = item.nickname;
-                this.$refs['reply' + item.uid][0].replyUserId = item.userId;
-                this.$refs['reply' + item.uid][0].parentId = parentId;
-                this.$refs['reply' + item.uid][0].index = item.uid;
+                this.$refs['reply' + item.uid][0].userUid = getUserUid();
+                this.$refs['reply' + item.uid][0].toUserUid = item.userUid;
+                this.$refs['reply' + item.uid][0].originalUid = item.uid;
+                this.$refs['reply' + item.uid][0].type = 4;
             }
             this.lastCommentId = item.uid
         },
@@ -310,7 +318,8 @@ export default {
             let query = {
                 currentPage: this.pageData.currentPage,
                 pageSize: 5,
-                blogUid: this.blogUid
+                blogUid: this.blogUid,
+                type: 0
             }
 
             featchComments(query).then(res => {
@@ -347,12 +356,10 @@ export default {
                 this.$toast.error('评论不能为空')
                 return;
             }
-            let browser = browserMatch()
             let comment = {
-                articleId: this.articleId,
+                originalUid: this.blogUid,
                 content: this.$refs.textareaRef.innerHTML,
-                browser: browser.browser.toLowerCase(),
-                browserVersion: browser.browser + " " + browser.version,
+                type: 0
             }
             postComment(comment).then(res => {
                 this.pageData.currentPage = 1

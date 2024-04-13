@@ -204,4 +204,26 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
 
         return commentIPage;
     }
+
+    @Override
+    public Boolean like(String originalUid, String userUid) {
+        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+        commentQueryWrapper.eq(CommentSQLConstants.USER_UID, userUid);
+        commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
+        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+
+        Comment record = getOne(commentQueryWrapper);           // 这里可能会在高并发点赞时出问题吧，以后要优化
+        if (record == null) {
+            Comment comment = new Comment();
+            comment.setUid(StringUtils.getUUID());
+            comment.setOriginalUid(originalUid);
+            comment.setUserUid(userUid);
+            comment.setType(CharacterConstants.NUM_ONE);
+
+            return save(comment);
+        }
+
+        return removeById(record.getUid());
+    }
 }

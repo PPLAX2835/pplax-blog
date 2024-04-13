@@ -50,6 +50,11 @@ export default {
             commentContent: "",
             replyUserId: null,
             showBox: false,
+            userUid: null,
+            toUid: null,
+            toUserUid: null,
+            originalUid: null,
+            type: null,
             user: this.$store.state.userInfo,
             lastEditRange: null
         }
@@ -138,14 +143,13 @@ export default {
                 this.$toast.error('评论不能为空')
                 return;
             }
-            let browser = browserMatch()
             let comment = {
-                articleId: this.$route.params.articleId,
+                userUid: this.userUid,
                 content: this.$refs.textareaRef.innerHTML,
-                replyUserId: this.replyUserId,
-                parentId: this.parentId,
-                browser: browser.browser.toLowerCase(),
-                browserVersion: browser.browser + " " + browser.version,
+                toUid: this.toUid,
+                toUserUid: this.toUserUid,
+                originalUid: this.originalUid,
+                type: this.type
             }
             postComment(comment).then(res => {
                 this.$emit("reloadReply", this.index);

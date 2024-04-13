@@ -10,13 +10,17 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
+import xyz.pplax.pplaxblog.xo.entity.Comment;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
 import xyz.pplax.pplaxblog.xo.service.site.SiteService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
@@ -36,6 +40,9 @@ public class BlogController extends SuperController {
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Autowired
     private UserService userService;
@@ -72,6 +79,29 @@ public class BlogController extends SuperController {
         return success(blogService.getByIdWithAll(blogUid, userUid));
     }
 
+    @ApiOperation(value = "博客点赞", httpMethod = "POST", response = ResponseResult.class, notes = "博客点赞")
+    @PostMapping("/{blogUid}/like")
+    public String like(
+            HttpServletRequest httpServletRequest,
+            @PathVariable(value = "blogUid") String blogUid
+    ){
+        String userUid = null;
+        String authorization = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.isEmpty(authorization)) {
+            String accessToken = authorization.replace("Bearer ", "");
+            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+            userUid = (String) jsonObject.get("uid");
+        }
+
+        boolean res = commentService.like(blogUid, userUid);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
 
 }
 

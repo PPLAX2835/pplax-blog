@@ -79,11 +79,8 @@ export function checkCode(code) {
 }
 export function articleLike(id) {
     return request({
-        url: '/v1/article/like',
-        method: 'get',
-        params: {
-            articleId: id
-        }
+        url: '/web/blog/' + id + '/like',
+        method: 'post'
     })
 }
 export function archive() {

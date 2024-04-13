@@ -23,7 +23,7 @@ export function newArticle() {
 
 export function postComment(data) {
     return request({
-        url: '/v1/comment/',
+        url: '/web/comment/',
         method: 'post',
         data
     })

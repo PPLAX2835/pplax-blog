@@ -7,6 +7,7 @@
         <id column="uid" property="uid" />
         <result column="user_uid" property="userUid" />
         <result column="chat_room_uid" property="chatRoomUid" />
+        <result column="read_user_uids" property="readUserUids" />
         <result column="content" property="content" />
         <result column="type" property="type" />
         <result column="ip" property="ip" />
@@ -18,7 +19,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `user_uid`, `chat_room_uid`, `content`, `type`, `ip`, `address`, `status`, `create_time`, `update_time`
+        `uid`, `user_uid`, `chat_room_uid`, `content`, `read_user_uids`, `type`, `ip`, `address`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

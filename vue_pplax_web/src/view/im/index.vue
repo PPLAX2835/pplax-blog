@@ -8,7 +8,7 @@
                 <div class="title">{{ title }}</div>
                 <div class="messageBox" id="messageBox" ref="messageContainer">
                     <!-- 加载更多 -->
-                    <div class="more noSelect hand-style" v-show="pageData.pageNo < totalPage">
+                    <div class="more noSelect hand-style" v-show="pageData.currentPage < totalPage">
                         <div v-if="isLoding" class="loading">
                             <div class="spinner"></div>
                         </div>
@@ -17,59 +17,59 @@
                     <!-- 消息内容框 -->
                     <div class="messageItem" v-for="(item, index) in  messageList " :key="index">
                         <!-- 左边消息框 别人发送的消息 -->
-                        <div :class="item.isWithdraw ? 'withdraw' : 'left'" v-if="user && item.fromUserId != user.id">
-                            <img class="noSelect" v-lazy="item.fromUserAvatar" :key="item.fromUserAvatar"
+                        <div :class="item.status === statusList.WITHDRAW ? 'withdraw' : 'left'" v-if="userUid && item.userUid !== userUid">
+                            <img class="noSelect" v-lazy="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : '') : ''" :key="item.userUid"
                                 @click="handleToUserMain(item.fromUserId)">
                             <div class="info">
                                 <div class="nickname noSelect userInfo">
-                                    {{ item.fromUserNickname }}
-                                    <span v-if="item.fromUserId == 1">
-                                        <el-tooltip effect="dark" content="作者" placement="top">
-                                            <svg-icon class="tag" icon-class="bozhu"></svg-icon>
-                                        </el-tooltip>
+                                    {{ item.userInfo !== undefined ? item.userInfo.nickname : '' }}
+<!--                                    <span v-if="item.fromUserId == 1">-->
+<!--                                        <el-tooltip effect="dark" content="作者" placement="top">-->
+<!--                                            <svg-icon class="tag" icon-class="bozhu"></svg-icon>-->
+<!--                                        </el-tooltip>-->
+<!--                                    </span>-->
+                                    <span v-if="item.ip" class="item "> <i class="el-icon-location-information"></i>
+                                        IP属地:{{ splitIpAddress(item.address) }}
                                     </span>
-                                    <span v-if="item.ipSource" class="item "> <i class="el-icon-location-information"></i>
-                                        IP属地:{{ splitIpAddress(item.ipSource) }}
-                                    </span>
-                                    <span class="item "> <i class="el-icon-time"></i> {{ item.createTimeStr
+                                    <span class="item "> <i class="el-icon-time"></i> {{ timeFormat(item.createTime)
                                     }}</span>
                                 </div>
 
-                                <span v-if="!item.isWithdraw" v-html="item.content" class="messageContent"
+                                <span v-if="item.status !== statusList.WITHDRAW" v-html="item.content" class="messageContent"
                                     @contextmenu.prevent="openMenu($event, item, index)">
                                 </span>
                                 <span class="noSelect" v-else style="color: var(--text-color);">
-                                    " {{ item.fromUserNickname }} " 撤回了一条消息
+                                    " {{ item.userInfo !== undefined ? item.userInfo.nickname : '' }} " 撤回了一条消息
                                 </span>
                             </div>
                         </div>
                         <!-- 右边消息框 自己发送的消息 -->
-                        <div :class="item.isWithdraw ? 'withdraw' : 'right'" v-else>
+                        <div :class="item.status === statusList.WITHDRAW ? 'withdraw' : 'right'" v-else>
                             <div class="info">
                                 <div>
-                                    <img class="noSelect" v-lazy="item.fromUserAvatar" :key="item.fromUserAvatar">
+                                    <img class="noSelect" v-lazy="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : '') : ''" :key="item.userUid">
                                 </div>
                                 <div class="nickname">
                                     <div class="userInfo">
-                                        <span class="item noSelect"><i class="el-icon-time"></i> {{ item.createTimeStr
+                                        <span class="item noSelect"><i class="el-icon-time"></i> {{ timeFormat(item.createTime)
                                         }}</span>
-                                        <span v-if="item.ipSource" class="item noSelect"><i
+                                        <span v-if="item.ip" class="item noSelect"><i
                                                 class="el-icon-location-information"></i>
-                                            IP属地:{{ splitIpAddress(item.ipSource) }}
+                                            IP属地:{{ splitIpAddress(item.address) }}
                                         </span>
-                                        <span v-if="item.fromUserId == 1">
-                                            <el-tooltip effect="dark" content="作者" placement="top">
-                                                <svg-icon class="tag" icon-class="bozhu"></svg-icon>
-                                            </el-tooltip>
-                                        </span>
-                                        <span class="noSelect">{{ item.fromUserNickname }}</span>
+<!--                                        <span v-if="item.fromUserId == 1">-->
+<!--                                            <el-tooltip effect="dark" content="作者" placement="top">-->
+<!--                                                <svg-icon class="tag" icon-class="bozhu"></svg-icon>-->
+<!--                                            </el-tooltip>-->
+<!--                                        </span>-->
+                                        <span class="noSelect">{{ item.userInfo !== undefined ? item.userInfo.nickname : '' }}</span>
                                     </div>
 
-                                    <div v-if="!item.isWithdraw" v-html="item.content" class="nowMessageContent"
+                                    <div v-if="item.status !== statusList.WITHDRAW" v-html="item.content" class="nowMessageContent"
                                         @contextmenu.prevent="openMenu($event, item, index)">
                                     </div>
                                     <div style="color: var(--text-color);" v-else class="noSelect">
-                                        " {{ item.fromUserNickname }} " 撤回了一条消息
+                                      " {{ item.userInfo !== undefined ? item.userInfo.nickname : '' }} " 撤回了一条消息
                                     </div>
                                 </div>
 
@@ -193,7 +193,10 @@ import {getUserUid} from "@/utils/cookieUtil";
 
 let socket;
 import { upload } from '@/api'
-import { getImHistory, getUserImHistoryList, send, withdraw, getRoomList, addRoom, read, deleteRoom } from '@/api/im'
+import { getImHistory, getUserImHistoryList, imageUpload, send, withdraw, getRoomList, addRoom, read, deleteRoom } from '@/api/im'
+import { parseTime } from "@/utils";
+import { listMessage, addMessage } from '@/api/message'
+import { EStatus } from "@/base/EStatus";
 import Emoji from '@/components/emoji'
 import imagePreview from '@/components/imagePreview'
 export default {
@@ -203,6 +206,7 @@ export default {
     },
     data() {
         return {
+            statusList: [],
             uploadPictureHost: process.env.VUE_APP_BASE_API + "/file/upload",
             websoketUrl: process.env.VUE_APP_WEBSOCKET_API,
             visible: false,
@@ -213,6 +217,7 @@ export default {
             text: "",
             messageList: [],
             emojiShow: false,
+            userUid: getUserUid(),
             user: this.$store.state.userInfo,
             totalPage: 0,
             isBackTop: false,
@@ -223,7 +228,8 @@ export default {
             lastIndex: null,
             userId: this.$route.query.userId,
             pageData: {
-                pageNo: 1,
+                chatRoomUid: null,
+                currentPage: 1,
                 pageSize: 10
             },
             onlineUserList: [],
@@ -283,6 +289,7 @@ export default {
         }
     },
     created() {
+        this.statusList = EStatus
         this.init()
     },
     methods: {
@@ -325,11 +332,6 @@ export default {
                 lockScroll: false,
                 type: 'warning'
             }).then(() => {
-                if (!id) {
-
-                    this.$toast.warning("群聊不允许删除");
-                    return;
-                }
                 deleteRoom(id).then(res => {
                     this.$delete(this.roomList, index);
 
@@ -369,13 +371,13 @@ export default {
                 }
             } else {
                 this.files = param.file
-                formData.append('multipartFile', this.files)
+                formData.append('file', this.files)
             }
 
-            upload(formData).then(res => {
+          imageUpload(formData).then(res => {
                 //上传之后发送消息
-                let content = `<img src="${res.data}" alt="" class="messageImg" style="width: 150px;height: 150px;">`
-                this.send(content, 2)
+                let content = `<img src="${res.data.fileUrl}" alt="" class="messageImg" style="width: 150px;height: 150px;">`
+                this.send(content)
                 this.imgDialogVisible = false
 
             }).catch(err => {
@@ -384,7 +386,8 @@ export default {
         },
         //截取地址
         splitIpAddress(address) {
-            return address.split("|")[1]
+            let splitedAddress = address.split("|")
+            return splitedAddress[splitedAddress.length - 1]
         },
         //选择用户单聊
         selectUserIm(item, index) {
@@ -397,23 +400,22 @@ export default {
             this.lastIndex = index
 
 
-            this.pageData.pageNo = 1
+            this.pageData.currentPage = 1
+            this.pageData.chatRoomUid = item.uid
 
             //为空则是群聊
             this.title = item.name
-            this.pageData.fromUserId = this.user.id
-            this.pageData.toUserId = item.receiveId
             this.messageList = []
             this.selectUserOnline = item
-            getUserImHistoryList(this.pageData).then(res => {
-                let arr = res.data.records
+            listMessage(this.pageData).then(res => {
+                let arr = res.data
                 for (let i = arr.length - 1; i >= 0; i--) {
                     this.messageList.push(arr[i])
                 }
-                this.totalPage = res.data.pages
+                this.totalPage = Math.ceil(res.total / this.pageData.pageSize)
             })
             //修改为已读
-            read(item.receiveId)
+            read(item.uid)
             item.readNum = 0
         },
         //右击
@@ -472,9 +474,17 @@ export default {
         closeMenu() {
             this.visible = false; //关闭菜单
         },
+        /**
+         * 格式化时间戳
+         * @param time
+         * @returns {string|null}
+         */
+        timeFormat(time) {
+          return parseTime(time);
+        },
         //加载更多消息
         handleMore() {
-            this.pageData.pageNo++;
+            this.pageData.currentPage++;
             this.isBackTop = true
             this.isLoding = true
             if (this.selectUserOnline) {
@@ -487,7 +497,7 @@ export default {
                 })
                 return;
             }
-            getImHistory(this.pageData).then(res => {
+          listMessage(this.pageData).then(res => {
                 let arr = res.data.records
                 for (let i = 0; i < arr.length; i++) {
                     this.messageList.unshift(arr[i])
@@ -497,13 +507,15 @@ export default {
         },
         //获取群聊历史记录
         getHistoryList() {
-            getImHistory(this.pageData).then(res => {
-                let arr = res.data.records
-                for (let i = arr.length - 1; i >= 0; i--) {
-                    this.messageList.push(arr[i])
-                }
-                this.totalPage = res.data.pages
+          if (this.pageData.chatRoomUid) {
+            listMessage(this.pageData).then(res => {
+              let arr = res.data.records
+              for (let i = arr.length - 1; i >= 0; i--) {
+                this.messageList.push(arr[i])
+              }
+              this.totalPage = res.data.pages
             })
+          }
         },
         //Enter事件
         handkeyEnter(event) {
@@ -607,31 +619,16 @@ export default {
             }
 
             let message = {
-                code: 2,
-                fromUserId: this.user.id, content: content, fromUserAvatar: this.user.avatar,
-                fromUserNickname: this.user.nickname, type: type, isRead: 0
-
+              'chatRoomUid': this.pageData.chatRoomUid,
+              'content': content,
+              'readUserUids': this.userUid,
+              'type': 1
             }
 
-            if (this.selectUserOnline != null) {
-                message = {
-                    code: 1,
-                    fromUserId: this.user.id,
-                    fromUserAvatar: this.user.avatar,
-                    fromUserNickname: this.user.nickname,
-                    toUserId: this.selectUserOnline.receiveId,
-                    toUserAvatar: this.selectUserOnline.avatar,
-                    toUserNickname: this.selectUserOnline.nickname,
-                    content: content,
-                    type: type,
-                    isRead: 0,
-                }
-            }
-            if (this.atMember) {
-                message.atUserId = this.atMember
-            }
             //发送消息
-            send(message)
+            addMessage(message).then(res => {
+              this.messageList.push(res.data)
+            })
             // 构建消息内容，本人消息
             this.$refs.inputRef.innerText = null;
             this.atMember = ""

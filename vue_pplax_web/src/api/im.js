@@ -9,6 +9,14 @@ export function getImHistory(params) {
         params: params
     })
 }
+export function imageUpload(data) {
+    return request({
+        url: '/file/message/image',
+        method: 'POST',
+        headers: { 'Content-Type': 'multipart/articles-data' },
+        data
+    })
+}
 export function getRoomList(userUid) {
     return request({
         url: '/web/chat/room/list',
@@ -48,22 +56,19 @@ export function getUserImHistoryList(params) {
         params: params
     })
 }
-export function read(userId) {
+export function read(chatRoomUid) {
     return request({
-        url: '/v1/im/read',
+        url: '/web/message/read',
         method: 'get',
         params: {
-            userId: userId
+            chatRoomUid: chatRoomUid
         }
     })
 }
 export function deleteRoom(roomId) {
     return request({
-        url: '/v1/im/deleteRoom',
-        method: 'delete',
-        params: {
-            roomId: roomId
-        }
+        url: '/web/chat/room/' + roomId,
+        method: 'delete'
     })
 }
 export function getMessageNotice(params) {

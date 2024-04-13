@@ -103,7 +103,10 @@ export default {
                 time: Math.floor(Math.random() * (21 - 10) + 10)
             };
 
-            addMessage(this.content, 0).then(res => {
+            addMessage({
+              content: this.content,
+              type: 0}
+            ).then(res => {
                 this.barrageList.push(message);
 
                 this.content = "";

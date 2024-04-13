@@ -7,13 +7,10 @@ export function listMessage(param) {
         params: param
     })
 }
-export function addMessage(content, type) {
+export function addMessage(param) {
     return request({
         url: '/web/message/',
         method: 'post',
-        data: {
-            type: type,
-            content: content
-        }
+        data: param
     })
 }

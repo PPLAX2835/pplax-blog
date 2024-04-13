@@ -13,6 +13,7 @@ import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
+import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.LinkEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.LinkGetListDto;
@@ -33,6 +34,9 @@ public class ChatController extends SuperController {
     @Autowired
     private ChatRoomService chatRoomService;
 
+    @Autowired
+    private AdminFeignClient adminFeignClient;
+
     private static Logger log = LogManager.getLogger(ChatController.class);
 
     @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
@@ -41,5 +45,10 @@ public class ChatController extends SuperController {
         return toJson(ResponseResult.success(chatRoomService.getByUserUid(userUid)));
     }
 
+    @ApiOperation(value="删除聊天室", notes="删除聊天室")
+    @DeleteMapping("/room/{chatRoomUid}")
+    public String deleteChatRoom(@PathVariable("chatRoomUid") String chatRoomUid) {
+        return adminFeignClient.deleteChatRoom(chatRoomUid);
+    }
 }
 

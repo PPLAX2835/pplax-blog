@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 
+import java.util.List;
+
 
 /**
  * @description 消息表
@@ -35,6 +37,11 @@ public class Message extends SuperEntity {
     private String content;
 
     /**
+     * 已读用户uids
+     */
+    private String readUserUids;
+
+    /**
      * 留言ip
      */
     private String ip;
@@ -60,6 +67,12 @@ public class Message extends SuperEntity {
      */
     @TableField(exist = false)
     private ChatRoom chatRoom;
+
+    /**
+     * 已读用户
+     */
+    @TableField(exist = false)
+    private List<User> readUserList;
 
     public Message() {}
 }

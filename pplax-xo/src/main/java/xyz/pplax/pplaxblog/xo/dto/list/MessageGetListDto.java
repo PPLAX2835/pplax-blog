@@ -15,4 +15,6 @@ public class MessageGetListDto extends PageDto {
     @ApiModelProperty(example = "0", notes = "类型", required = false)
     private Integer type;
 
+    @ApiModelProperty(example = "", notes = "聊天室uid", required = false)
+    private String chatRoomUid;
 }

@@ -67,9 +67,13 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         QueryWrapper<ChatRoom> chatRoomQueryWrapper = new QueryWrapper<>();
         chatRoomQueryWrapper.ne(ChatRoomSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
 
-        chatRoomQueryWrapper.eq(ChatRoomSQLConstants.OWNER_UID, userUid)
-                .or()
-                .like(ChatRoomSQLConstants.MEMBER_UIDS, "%" + userUid + "%");
+        chatRoomQueryWrapper
+                .and(
+                        QueryWrapper -> QueryWrapper
+                        .eq(ChatRoomSQLConstants.OWNER_UID, userUid)
+                        .or()
+                        .like(ChatRoomSQLConstants.MEMBER_UIDS, "%" + userUid + "%")
+                );
 
         List<ChatRoom> chatRoomList = list(chatRoomQueryWrapper);
 

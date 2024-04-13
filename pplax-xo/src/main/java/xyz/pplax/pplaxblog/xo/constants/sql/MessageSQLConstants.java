@@ -13,6 +13,7 @@ public class MessageSQLConstants extends BaseSQLConstants {
     public final static String C_STATUS = "t_message.status";
 
     public final static String USER_UID = "t_message.user_uid";
+    public final static String READ_USER_UIDS = "t_message.read_user_uids";
     public final static String IP = "t_message.ip";
     public final static String ADDRESS = "t_message.address";
     public final static String STATUS = "t_message.status";

@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.dto.list;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
@@ -10,5 +11,8 @@ import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class SayGetListDto extends PageDto {
+
+    @ApiModelProperty(example = "", notes = "用户uid", required = false)
+    private String userUid;
 
 }

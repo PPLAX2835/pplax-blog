@@ -11,11 +11,8 @@ export function getSayList(params) {
 
 export function sayLike(sayId) {
     return request({
-        url: '/v1/say/like',
-        method: 'get',
-        params: {
-            sayId: sayId
-        }
+        url: '/web/say/' + sayId + '/like',
+        method: 'post'
     })
 }
 

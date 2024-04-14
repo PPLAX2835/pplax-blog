@@ -10,6 +10,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
@@ -94,7 +95,7 @@ public class BlogController extends SuperController {
             userUid = (String) jsonObject.get("uid");
         }
 
-        boolean res = commentService.like(blogUid, userUid);
+        boolean res = commentService.like(blogUid, userUid, CharacterConstants.NUM_ONE);
 
         if (res) {
             return success();

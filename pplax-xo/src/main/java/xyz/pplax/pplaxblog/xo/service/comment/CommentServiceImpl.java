@@ -206,12 +206,12 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
     }
 
     @Override
-    public Boolean like(String originalUid, String userUid) {
+    public Boolean like(String originalUid, String userUid, Integer type) {
         QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
         commentQueryWrapper.eq(CommentSQLConstants.USER_UID, userUid);
         commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
         commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+        commentQueryWrapper.eq(CommentSQLConstants.TYPE, type);
 
         Comment record = getOne(commentQueryWrapper);           // 这里可能会在高并发点赞时出问题吧，以后要优化
         if (record == null) {
@@ -219,7 +219,7 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
             comment.setUid(StringUtils.getUUID());
             comment.setOriginalUid(originalUid);
             comment.setUserUid(userUid);
-            comment.setType(CharacterConstants.NUM_ONE);
+            comment.setType(type);
 
             return save(comment);
         }

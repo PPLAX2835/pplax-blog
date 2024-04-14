@@ -57,5 +57,8 @@ public class Say extends SuperEntity {
 	@TableField(exist = false)
 	private List<Comment> likeList;
 
+	@TableField(exist = false)
+	private Boolean isLike;
+
 	public Say() {}
 }

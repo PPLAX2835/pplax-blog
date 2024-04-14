@@ -1,22 +1,28 @@
 package xyz.pplax.pplaxblog.web.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Say;
 import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
+import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
 import xyz.pplax.pplaxblog.xo.service.say.SayService;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -32,19 +38,58 @@ public class SayController extends SuperController {
     @Autowired
     private SayService sayService;
 
+    @Autowired
+    private CommentService commentService;
+
     @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
     @GetMapping("/list")
     public String getSayList(
+            HttpServletRequest httpServletRequest,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
+        String userUid = null;
+        String authorization = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.isEmpty(authorization)) {
+            String accessToken = authorization.replace("Bearer ", "");
+            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+            userUid = (String) jsonObject.get("uid");
+        }
+
         SayGetListDto sayGetListDto = new SayGetListDto();
+        sayGetListDto.setUserUid(userUid);
         sayGetListDto.setCurrentPage(currentPage);
         sayGetListDto.setPageSize(pageSize);
 
         IPage<Say> sayIPage = sayService.list(sayGetListDto);
 
         return toJson(ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal()));
+    }
+
+
+    @ApiOperation(value = "说说点赞", httpMethod = "POST", response = ResponseResult.class, notes = "说说点赞")
+    @PostMapping("/{sayUid}/like")
+    public String like(
+            HttpServletRequest httpServletRequest,
+            @PathVariable(value = "sayUid") String sayUid
+    ){
+        String userUid = null;
+        String authorization = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.isEmpty(authorization)) {
+            String accessToken = authorization.replace("Bearer ", "");
+            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+            userUid = (String) jsonObject.get("uid");
+        }
+
+        boolean res = commentService.like(sayUid, userUid, CharacterConstants.NUM_THREE);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 }
 

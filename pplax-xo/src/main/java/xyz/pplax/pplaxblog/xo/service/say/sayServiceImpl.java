@@ -91,6 +91,21 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
             IPage<Comment> likeIPage = commentService.list(commentGetListDto);
             say.setLikeList(likeIPage.getRecords());
 
+            // 判断自己是否已经点赞
+            boolean isLike = false;
+            if (!StringUtils.isBlank(sayGetListDto.getUserUid())) {
+                QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+                commentQueryWrapper.ne(CommentSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+                commentQueryWrapper.eq(CommentSQLConstants.USER_UID, sayGetListDto.getUserUid());
+                commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_THREE);
+                commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, say.getUid());
+                int count = commentService.count(commentQueryWrapper);
+                if (count > 0) {
+                    isLike = true;
+                }
+            }
+            say.setIsLike(isLike);
+
             sayList.add(say);
         }
 

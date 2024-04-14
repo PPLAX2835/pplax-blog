@@ -44,7 +44,7 @@
                                     <i class="iconfont icon-quxiaodianzan"></i> 取消
                                 </span>
                                 <span class="fgx"></span>
-                                <span class="commentBtn hand-style" @click="handleShowCommentBox(null, item.id, index)">
+                                <span class="commentBtn hand-style" @click="handleShowCommentBox(null, item.uid, index)">
                                     <i class="el-icon-chat-dot-square"></i> 评论
                                 </span>
                             </div>
@@ -108,9 +108,11 @@
 </template>
 <script>
 import { getSayList, sayLike, sayComment } from '@/api/say'
+import {postComment} from "@/api/comment";
 import Emoji from '@/components/emoji'
 import imagePreview from '@/components/imagePreview'
 import { parseTime } from "@/utils";
+import {getUserUid} from "@/utils/cookieUtil";
 
 export default {
     components: {
@@ -186,19 +188,20 @@ export default {
                 return
             }
             this.comment.content = el.innerHTML
-            sayComment(this.comment).then(res => {
+            postComment(this.comment).then(res => {
                 this.$refs.conetntInputBox[this.commentLastIndex].style.display = "none"
                 this.showCommentBox = false
 
-                this.$toast.success('评论成功');
                 let comment = {
-                    userId: this.$store.state.userInfo.id,
-                    nickname: this.$store.state.userInfo.nickname,
-                    replyUserId: this.comment.replyUserId,
-                    replyUserNickname: this.comment.replyUserNickname,
-                    content: this.comment.content,
+                  commentator: {
+                    uid: getUserUid(),
+                    userInfo: {
+                      nickname: this.$store.state.userInfo.nickname
+                    }
+                  },
+                  content: this.comment.content
                 }
-                this.sayList[this.commentIndex].sayCommentVOList.push(comment)
+                this.sayList[this.commentIndex].commentList.push(comment)
                 this.comment = {}
             })
         },
@@ -218,8 +221,11 @@ export default {
             this.commentLastIndex = index
 
             if (comment) {
-                this.placeholder = "回复" + comment.nickname + ":"
-                this.comment.replyUserId = comment.userId
+                this.placeholder = "回复" + comment.commentator.userInfo.nickname + ":"
+                this.comment.userUid = getUserUid()
+                this.comment.toUid = comment.uid
+                this.comment.originalUid = sayId
+                this.comment.toUserUid = comment.userUid
                 this.comment.replyUserNickname = comment.nickname
             } else {
                 this.comment.replyUserId = null
@@ -227,7 +233,8 @@ export default {
                 this.placeholder = "请输入内容"
             }
             this.commentIndex = index
-            this.comment.sayId = sayId
+            this.comment.originalUid = sayId
+            this.comment.type = 2
             this.showCommentBox = !this.showCommentBox
 
         },
@@ -303,32 +310,33 @@ export default {
 
         },
         canLike(say) {
-            sayLike(say.id).then(res => {
+            sayLike(say.uid).then(res => {
                 let index = null;
-                for (let i = 0; i < say.userLikeList.length; i++) {
-                    let id = say.userLikeList[i].id
-                    if (this.$store.state.userInfo.id == id) {
+                for (let i = 0; i < say.likeList.length; i++) {
+                    let uid = say.likeList[i].commentator.uid
+                    if (getUserUid() == uid) {
                         index = i
                         break;
                     }
                 }
                 if (index != null) {
-                    this.$delete(say.userLikeList, index)
+                    this.$delete(say.likeList, index)
                 }
                 say.isLike = false
-
-                this.$toast.success(res.data);
             })
         },
         sayLike(say) {
-            sayLike(say.id).then(res => {
-                say.userLikeList.push({
-                    id: this.$store.state.userInfo.id,
-                    nickname: this.$store.state.userInfo.nickname
-                })
+          say.isLike = true
+            sayLike(say.uid).then(res => {
+                say.likeList.push({
+                      commentator: {
+                        uid: getUserUid(),
+                        userInfo: {
+                          nickname: this.$store.state.userInfo.nickname
+                        }
+                      }
+                    })
                 say.isLike = true
-
-                this.$toast.success(res.data);
             })
         },
         handlePreviewImg(imgs) {

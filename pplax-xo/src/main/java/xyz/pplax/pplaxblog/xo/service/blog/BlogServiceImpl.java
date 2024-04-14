@@ -372,6 +372,8 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             commentQueryWrapper = new QueryWrapper<>();
             commentQueryWrapper.ne(CommentSQLConstants.STATUS, EStatus.DISABLED.getStatus());
             commentQueryWrapper.eq(CommentSQLConstants.USER_UID, userUid);
+            commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+            commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, blog.getUid());
             int count = commentService.count(commentQueryWrapper);
             if (count > 0) {
                 isLike = true;

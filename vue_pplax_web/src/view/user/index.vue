@@ -373,7 +373,7 @@ export default {
           lastLoginTime: this.user.lastLoginTime
         }
         this.selectAricleList()
-        this.validateTodayIsSign()
+        // this.validateTodayIsSign()
         this.getCount()
     },
     methods: {

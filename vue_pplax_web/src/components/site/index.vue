@@ -1,18 +1,18 @@
 <template>
     <el-card class="box ">
 
-        <img src="http://img.shiyit.com/beijing.jpg" alt="">
+<!--        <img src="http://img.shiyit.com/beijing.jpg" alt="">-->
         <div class="user">
 
             <div class="avatar_wrapper">
 <!--                <img :src="$store.state.webSiteInfo.authorAvatar" alt="" class="userAvatar">-->
-                <img class="guajian" src="https://img.shiyit.com/gaoda.png" alt="">
+<!--                <img class="guajian" src="https://img.shiyit.com/gaoda.png" alt="">-->
             </div>
             <a class="username">
 <!--                {{ $store.state.webSiteInfo.author }}-->
-                <el-tooltip class="item" effect="dark" content="博主" placement="right">
-                    <svg-icon icon-class="bozhu"></svg-icon>
-                </el-tooltip>
+<!--                <el-tooltip class="item" effect="dark" content="博主" placement="right">-->
+<!--                    <svg-icon icon-class="bozhu"></svg-icon>-->
+<!--                </el-tooltip>-->
             </a>
 <!--            <span class="desc" :title="$store.state.webSiteInfo.authorInfo">-->
 <!--                {{ $store.state.webSiteInfo.authorInfo }}-->
@@ -35,18 +35,18 @@
 <!--                    target="_blank" title="邮箱" rel="noopener noreferrer nofollow">-->
 <!--                    <svg-icon icon-class="email" />-->
 <!--                </a>-->
-                <a class="weibo hand-style" href="https://weibo.com/u/5747542477" target="_blank" title="微博"
-                    rel="noopener noreferrer nofollow">
-                    <svg-icon icon-class="weibo" />
-                </a>
-                <a class="zhihu hand-style" href="https://www.zhihu.com/people/he-he-85-83-34" target="_blank" title="知乎"
-                    rel="noopener noreferrer nofollow">
-                    <svg-icon icon-class="zhihu" />
-                </a>
+<!--                <a class="weibo hand-style" href="https://weibo.com/u/5747542477" target="_blank" title="微博"-->
+<!--                    rel="noopener noreferrer nofollow">-->
+<!--                    <svg-icon icon-class="weibo" />-->
+<!--                </a>-->
+<!--                <a class="zhihu hand-style" href="https://www.zhihu.com/people/he-he-85-83-34" target="_blank" title="知乎"-->
+<!--                    rel="noopener noreferrer nofollow">-->
+<!--                    <svg-icon icon-class="zhihu" />-->
+<!--                </a>-->
             </div>
             <!-- 收藏本站 -->
             <div class="collect ">
-                <el-button class="btn " @click="handleCollect">加入书签</el-button>
+<!--                <el-button class="btn " @click="handleCollect">加入书签</el-button>-->
             </div>
         </div>
     </el-card>

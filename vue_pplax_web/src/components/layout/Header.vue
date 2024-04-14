@@ -133,36 +133,36 @@
 
             </ul>
 
-            <!-- 搜索框 -->
-            <div class="searchBox" v-show="!showSearch">
-                <div class="search_ico">
-                    <div class="hand-style" @click="handleOpenSearchDialog">
-                        <i class="iconfont icon-search"></i>
-                        搜索文章...
-                        <span>
-                            Ctrl+K
-                        </span>
-                    </div>
-                </div>
-            </div>
+<!--            &lt;!&ndash; 搜索框 &ndash;&gt;-->
+<!--            <div class="searchBox" v-show="!showSearch">-->
+<!--                <div class="search_ico">-->
+<!--                    <div class="hand-style" @click="handleOpenSearchDialog">-->
+<!--                        <i class="iconfont icon-search"></i>-->
+<!--                        搜索文章...-->
+<!--                        <span>-->
+<!--                            Ctrl+K-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
 
-            <div class="noticeBtn" v-if="showUser">
-                <el-dropdown trigger="hover">
-                    <div class="el-dropdown-link hand-style">
-                        <svg-icon icon-class="notice"></svg-icon>
-                        <span v-if="topBageShow()" class="notice-bage topBage"></span>
-                    </div>
-                    <el-dropdown-menu slot="dropdown">
-                        <span v-for="(item, index) in noticeList" :key="index" @click="handleClickNotice(index)">
-                            <el-dropdown-item>
-                                {{ item }}
-                                <span v-if="validata(index)" class="notice-bage"></span>
-                            </el-dropdown-item>
-                        </span>
-                    </el-dropdown-menu>
-                </el-dropdown>
-            </div>
+<!--            <div class="noticeBtn" v-if="showUser">-->
+<!--                <el-dropdown trigger="hover">-->
+<!--                    <div class="el-dropdown-link hand-style">-->
+<!--                        <svg-icon icon-class="notice"></svg-icon>-->
+<!--                        <span v-if="topBageShow()" class="notice-bage topBage"></span>-->
+<!--                    </div>-->
+<!--                    <el-dropdown-menu slot="dropdown">-->
+<!--                        <span v-for="(item, index) in noticeList" :key="index" @click="handleClickNotice(index)">-->
+<!--                            <el-dropdown-item>-->
+<!--                                {{ item }}-->
+<!--                                <span v-if="validata(index)" class="notice-bage"></span>-->
+<!--                            </el-dropdown-item>-->
+<!--                        </span>-->
+<!--                    </el-dropdown-menu>-->
+<!--                </el-dropdown>-->
+<!--            </div>-->
 
             <div class="userInfo" v-if="showUser">
                 <el-dropdown trigger="hover">

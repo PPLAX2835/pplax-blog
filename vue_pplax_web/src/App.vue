@@ -2,7 +2,7 @@
   <div id="app">
     <Denglong />
     <!-- 头部 -->
-    <Header :userInfo=userInfo></Header>
+    <Header :userInfo="userInfo"></Header>
     <!-- 侧边导航栏 -->
     <SideNavBar></SideNavBar>
     <Loading></Loading>

@@ -1,18 +1,24 @@
 package xyz.pplax.pplaxblog.xo.service.userinfo;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.CollectSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
-import xyz.pplax.pplaxblog.xo.entity.FileStorage;
-import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.entity.UserInfo;
+import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.UserInfoMapper;
+import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.collect.CollectService;
 import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户表 服务实现类
@@ -25,6 +31,12 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BlogService blogService;
+
+    @Autowired
+    private CollectService collectService;
 
     @Override
     public UserInfo getById(Serializable id) {
@@ -115,5 +127,25 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
         return res;
     }
 
+    @Override
+    public Map<String, Integer> getUserCount(String userUid) {
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        blogQueryWrapper.eq(BlogSQLConstants.USER_UID, userUid);
 
+        int blogCount = blogService.count(blogQueryWrapper);
+
+        QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
+        collectQueryWrapper.ne(CollectSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        collectQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
+
+        int collectCount = collectService.count(collectQueryWrapper);
+
+
+        Map<String, Integer> res = new HashMap<>();
+        res.put("blogCount", blogCount);
+        res .put("collectCount", collectCount);
+
+        return res;
+    }
 }

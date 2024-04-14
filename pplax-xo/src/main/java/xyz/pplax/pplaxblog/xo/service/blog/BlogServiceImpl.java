@@ -88,6 +88,81 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     }
 
     @Override
+    public IPage<Blog> listByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize) {
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        blogQueryWrapper.eq(BlogSQLConstants.USER_UID, userUid);
+
+        Page<Blog> blogPage = new Page<>();
+        blogPage.setCurrent(currentPage);
+        blogPage.setPages(pageSize);
+
+        if (isCollect) {
+            QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
+            collectQueryWrapper.ne(CollectSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            collectQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
+
+            //分页
+            Page<Collect> collectPage = new Page<>();
+            collectPage.setCurrent(currentPage);
+            collectPage.setSize(pageSize);
+
+            Page<Collect> page = collectService.page(collectPage, collectQueryWrapper);
+
+            List<String> blogUidList = new ArrayList<>();
+            blogUidList.add("");
+            for (Collect collect : page.getRecords()) {
+                blogUidList.add(collect.getBlogUid());
+            }
+
+            blogQueryWrapper.in(BlogSQLConstants.UID, blogUidList);
+        }
+
+        Page<Blog> pageList = page(blogPage, blogQueryWrapper);
+        pageList.getRecords().forEach(item ->{
+            // 获得标签
+            String[] tagUids = item.getTagUids().split(",");
+            List<String> tagUidList = Arrays.asList(tagUids);
+            item.setTagList(tagService.listByIds(tagUidList));
+
+            // 获得分类
+            item.setBlogSort(blogSortService.getById(item.getBlogSortUid()));
+
+            // 获得封面图
+            item.setCoverImage(fileStorageService.getById(item.getCoverImageUid()));
+
+            // 添加作者
+            User user = userService.getById(item.getUserUid());
+            if (user != null) {
+                user.sensitiveDataRemove();
+                user.setUserInfo(userInfoService.getByUserUid(user.getUid()));
+                item.setUser(user);
+            }
+
+            // 获得点赞量和评论量
+            QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+            commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
+
+            long likeCount = commentService.count(commentQueryWrapper);
+
+            commentQueryWrapper = new QueryWrapper<>();
+            commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+
+            long commentCount = commentService.count(commentQueryWrapper);
+
+            item.setLikeCount(likeCount);
+            item.setCommentCount(commentCount);
+
+            //格式化时间为几秒前 几分钟前等
+            item.setFormatCreateTime(RelativeDateFormat.format(item.getCreateTime()));
+        });
+
+        return pageList;
+    }
+
+    @Override
     public IPage<Blog> listByBlogSort(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize) {
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());

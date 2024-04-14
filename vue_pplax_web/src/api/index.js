@@ -9,7 +9,7 @@ export function fetchBlogList(params) {
 }
 export function getArticleByUserId(params) {
     return request({
-        url: '/v1/article/selectArticleByUserId',
+        url: '/web/user/space/blog/list',
         method: 'get',
         params: params
     })
@@ -184,9 +184,9 @@ export function emailRegister(data) {
         data
     })
 }
-export function updateUserInfo(data) {
+export function updateUserInfo(userUid, data) {
     return request({
-        url: '/v1/user/',
+        url: '/web/user/' + userUid + '/userInfo',
         method: 'put',
         data
     })
@@ -211,11 +211,8 @@ export function selectUserInfoByToken(token) {
 }
 export function getUserCount(id) {
     return request({
-        url: '/v1/user/getUserCount',
-        method: 'get',
-        params: {
-            id: id
-        }
+        url: '/web/user/space/count',
+        method: 'get'
     })
 }
 export function upload(data) {

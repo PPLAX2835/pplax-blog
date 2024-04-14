@@ -3,7 +3,7 @@
         <div class="user-warpper">
             <div class="userBox">
                 <div class="backgroupImg">
-                    <img v-lazy="user.bjCover" :key="user.bjCover">
+                    <img v-lazy="user.userInfo.spaceBackgroundPicture !== undefined ? user.userInfo.spaceBackgroundPicture.fileUrl : ''" :key="user.userInfo.spaceBackgroundPicture.uid">
 
                     <el-row type="flex" class="row-bg top-btn">
                         <el-col :span="18">
@@ -22,22 +22,22 @@
                                 </a>
                             </div>
                         </el-col>
-                        <el-col :span="18">
-                            <div class="grid-content bg-purple">
-                                <a class="topBtnItem hand-style">
-                                    <div>{{ count.followed }}</div>
-                                    关注
-                                </a>
-                            </div>
-                        </el-col>
-                        <el-col :span="18">
-                            <div class="grid-content bg-purple">
-                                <a class="topBtnItem hand-style">
-                                    <div>0</div>
-                                    勋章
-                                </a>
-                            </div>
-                        </el-col>
+<!--                        <el-col :span="18">-->
+<!--                            <div class="grid-content bg-purple">-->
+<!--                                <a class="topBtnItem hand-style">-->
+<!--                                    <div>{{ count.followed }}</div>-->
+<!--                                    关注-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </el-col>-->
+<!--                        <el-col :span="18">-->
+<!--                            <div class="grid-content bg-purple">-->
+<!--                                <a class="topBtnItem hand-style">-->
+<!--                                    <div>0</div>-->
+<!--                                    勋章-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </el-col>-->
                     </el-row>
 
                     <div class="more hand-style">
@@ -67,11 +67,11 @@
                 </div>
                 <div class="user-item">
                     <div class="toolbar">
-                        <img class="cover" :src="user.avatar" alt="">
+                        <img class="cover" :src="user.userInfo.avatar !== undefined ? user.userInfo.avatar.fileUrl : ''" alt="">
                     </div>
                     <div class="userInfo">
                         <div class="nickname">
-                            昵称：<span>{{ user.nickname }}</span>
+                            昵称：<span>{{ user.userInfo.nickname }}</span>
                             <el-tooltip class="item" effect="dark" content="LV1" placement="top">
                                 <span>
                                     <svg-icon icon-class="level1"></svg-icon>
@@ -80,16 +80,16 @@
 
                         </div>
                         <div class="desc">
-                            个人简介：{{ user.intro ? user.intro : "这家伙很懒，什么都没有写..." }}
+                            个人简介：{{ user.userInfo.summary ? user.userInfo.summary : "这家伙很懒，什么都没有写..." }}
                         </div>
                     </div>
-                    <div class="sign">
-                        <button :class="!isTodaySign ? 'signBtn hand-style' : 'disabledSignBtn hand-style'"
-                            :disabled="isTodaySign" @click="handleSign">
-                            <svg-icon icon-class="sign1"></svg-icon>
-                            <span>{{ isTodaySign ? "今天已签到" : "立即签到" }}</span>
-                        </button>
-                    </div>
+<!--                    <div class="sign">-->
+<!--                        <button :class="!isTodaySign ? 'signBtn hand-style' : 'disabledSignBtn hand-style'"-->
+<!--                            :disabled="isTodaySign" @click="handleSign">-->
+<!--                            <svg-icon icon-class="sign1"></svg-icon>-->
+<!--                            <span>{{ isTodaySign ? "今天已签到" : "立即签到" }}</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
                 </div>
 
             </div>
@@ -113,15 +113,15 @@
                 <div class="articleBox" v-if="dataList.length">
                     <div class="articleItem">
                         <div v-if="pageData.index != 2" class="article" v-for="(item, index) in dataList" :key="index">
-                            <router-link :to="'/article/' + item.id">
+                            <router-link :to="'/blog/' + item.uid">
                                 <div class="article-cover hand-style">
-                                    <img v-lazy="item.avatar" :key="item.avatar">
+                                    <img v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.uid + 'coverImage'">
                                 </div>
                             </router-link>
 
                             <div class="article-info">
                                 <div style="display: flex;">
-                                    <router-link :to="'/article/' + item.id">
+                                    <router-link :to="'/blog/' + item.uid">
                                         <div class="article-title xiahuaxian">
                                             {{ item.title }}
                                         </div>
@@ -157,15 +157,15 @@
                                 <div class="article-tag">
                                     <el-tooltip class="item1" effect="dark" content="文章分类" placement="top">
                                         <el-tag class="hand-style" size="mini"
-                                            @click="handleClike(item.categoryId, '/category')">
-                                            <i class=" el-icon-folder-opened"></i> {{ item.categoryName }}
+                                            @click="handleClike(item.blogSort.uid, '/blogSort')">
+                                            <i class=" el-icon-folder-opened"></i> {{ item.blogSort.sortName }}
                                         </el-tag>
                                     </el-tooltip>
                                     <el-tooltip class="item1" effect="dark" content="文章标签" placement="top"
-                                        v-for="tag in item.tagList" :key="tag.id">
+                                        v-for="tag in item.tagList" :key="tag.uid">
 
                                         <el-tag class="hand-style" :type="tagStyle[Math.round(Math.random() * 4)]"
-                                            size="mini" @click="handleClike(tag.id, '/tags')">
+                                            size="mini" @click="handleClike(tag.uid, '/tags')">
                                             <i class="el-icon-collection-tag"></i> {{ tag.name
                                             }}</el-tag>
                                     </el-tooltip>
@@ -173,11 +173,11 @@
                                 <div class="article-user">
                                     <span class=" item">
                                         <i class=" el-icon-user"></i>
-                                        <span class="nickname">{{ item.username }}</span>
+                                        <span class="nickname">{{ item.user.userInfo.username }}</span>
                                     </span>
 
                                     <span class="time item">
-                                        <i class="el-icon-time"></i>{{ item.createTime }}
+                                        <i class="el-icon-time"></i>{{ timeFormat(item.createTime) }}
                                     </span>
                                 </div>
 
@@ -186,7 +186,7 @@
 
                     </div>
                     <!-- 分页按钮 -->
-                    <sy-pagination :pageNo="pageData.pageNo" :pages="pages" @changePage="onPage" />
+                    <sy-pagination :currentPage="pageData.currentPage" :page-size="pageData.pageSize" :total="total" @changePage="onPage" />
                 </div>
                 <div v-else>
                     <sy-empty />
@@ -201,31 +201,36 @@
                         昵称：{{ form.nickname }}
                     </span>
                     <span>
-                        简介：{{ form.intro }}
+                        简介：{{ form.summary }}
                     </span>
                 </div>
+              <div class="item">
+                    <span>
+                        性别：
+                      <span v-if="form.gender === 1">男</span>
+                      <span v-else-if="form.gender === 0">女</span>
+                      <span v-else>保密</span>
+                    </span>
+              </div>
 
-                <div class="dialogItem item">
+                <div class=" item">
                     <span>
                         邮箱： {{ form.email }}
-                    </span>
-                    <span>
-                        性别： 保密
+                      <span v-if="form.isEmailActivated" >（未验证）</span>
                     </span>
                 </div>
+<!--                <div class="dialogItem item">-->
+<!--                    <span>-->
+<!--                        地址： {{ form.address }}-->
+<!--                    </span>-->
+<!--                </div>-->
                 <div class="dialogItem item">
                     <span>
-                        地址： {{ form.address }}
+                      注册时间：{{ timeFormat(form.createTime) }}
                     </span>
-                    <span>
-                        个人网站： {{ form.webSite }}
+                  <span>
+                    最后登录：{{ timeFormat(form.lastLoginTime) }}
                     </span>
-                </div>
-                <div class="item">
-                    注册时间：{{ form.registerTime }}
-                </div>
-                <div class="item">
-                    最后登录：{{ form.lastLoginTime }}
                 </div>
             </div>
         </el-dialog>
@@ -238,7 +243,7 @@
                     <el-upload class="avatar-uploader" :show-file-list="false" ref="upload" name="filedatas"
                         :action="uploadPictureHost" :http-request="uploadSectionFile" :before-upload="handleUploadBefore"
                         multiple>
-                        <img v-if="form.avatar" style="width: 50%;height: 50%;" :src="form.avatar" class="imgAvatar">
+                        <img v-if="user.userInfo.avatar" style="width: 50%;height: 50%;" :src="user.userInfo.avatar.fileUrl" class="imgAvatar">
                         <i v-else class="el-icon-plus avatar-img-icon"></i>
                     </el-upload>
                 </el-form-item>
@@ -246,11 +251,11 @@
                     <el-input v-model="form.nickname"></el-input>
                 </el-form-item>
                 <el-form-item label="简介：">
-                    <el-input v-model="form.intro"></el-input>
+                    <el-input v-model="form.summary"></el-input>
                 </el-form-item>
-                <el-form-item label="站点：">
-                    <el-input v-model="form.webSite"></el-input>
-                </el-form-item>
+<!--                <el-form-item label="站点：">-->
+<!--                    <el-input v-model="form.webSite"></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item label="邮箱">
                     <el-input v-model="form.email"></el-input>
                 </el-form-item>
@@ -287,8 +292,11 @@ import {
     updateUserInfo, getUserInfo, upload, getArticleByUserId,
     deleteMyArticle, addFeedback, getUserCount
 } from '@/api'
+import {parseTime} from "@/utils";
 import { cancelCollect, getCollect } from '@/api/collect'
 import { sign, validateTodayIsSign } from '@/api/sign'
+import {avatarUpload, spaceBackgroundPictureUpload} from "@/api/fileStorage";
+import {getUserUid} from "@/utils/cookieUtil";
 export default {
     name: '',
     data() {
@@ -296,14 +304,17 @@ export default {
             user: this.$store.state.userInfo,
             uploadPictureHost: process.env.VUE_APP_BASE_API + "/file/upload",
             dataList: [],
+            total: 0,
             pageData: {
-                pageNo: 1,
+                currentPage: 1,
                 pageSize: 10,
+                isCollect: false,
                 index: 0
             },
             statusList: ["下架", "上架", "待审核", "草稿"],
             statusStyle: ["#F56C6C", "#67C23A", "#909399", "#E6A23C"],
-            form: {},
+            form: {
+            },
             files: {},
             dialogTableVisible: false,
             editDialogTableVisible: false,
@@ -343,6 +354,19 @@ export default {
         }
     },
     created() {
+        this.form = {
+          avatarPictureUid: this.user.userInfo.avatarPictureUid,
+          birthday: this.user.userInfo.birthday,
+          createTime: this.user.createTime,
+          gender: this.user.userInfo.gender,
+          nickname: this.user.userInfo.nickname,
+          spaceBackgroundPictureUid: this.user.userInfo.spaceBackgroundPictureUid,
+          summary: this.user.userInfo.summary,
+          updateTime: this.user.updateTime,
+          email: this.user.email,
+          isEmailActivated: this.user.isEmailActivated,
+          lastLoginTime: this.user.lastLoginTime
+        }
         this.selectAricleList()
         this.validateTodayIsSign()
         this.getCount()
@@ -351,9 +375,9 @@ export default {
         getCount() {
             getUserCount().then(res => {
                 let count = {
-                    article: res.extra.articleCount,
-                    collect: res.extra.collectCount,
-                    followed: res.extra.followedCount,
+                    article: res.data.blogCount,
+                    collect: res.data.collectCount,
+                    // followed: res.extra.followedCount,
                 }
                 this.count = count
             })
@@ -391,7 +415,7 @@ export default {
             this.$store.commit('setUserInfo', this.user)
         },
         updateUserInfo() {
-            updateUserInfo(this.form).then(res => {
+            updateUserInfo(getUserUid(), this.form).then(res => {
                 this.user = this.form
 
                 this.$toast.success('修改成功')
@@ -400,14 +424,14 @@ export default {
             })
         },
         handleClike(id, path) {
-            this.$router.push({ path: path, query: { id: id } })
+            this.$router.push({ path: path, query: { uid: id } })
         },
         handleUpdateInfo() {
-            this.handleBefore()
+            // this.handleBefore()
             this.editDialogTableVisible = true
         },
         handleClikeMoreData() {
-            this.handleBefore()
+            // this.handleBefore()
             this.dialogTableVisible = true
         },
         handleBefore() {
@@ -455,8 +479,11 @@ export default {
                     this.$toast.info('取消关闭')
                 });
         },
+        timeFormat(time) {
+          return parseTime(time).split(" ")[0]
+        },
         onPage() {
-            this.pageData.pageNo++;
+            this.pageData.currentPage++;
             this.before()
         },
         btnClike(index) {
@@ -468,22 +495,23 @@ export default {
             }
             this.$refs.btn[index].className = "active"
             this.dataList = []
-            this.pageData.pageNo = 1
+            this.pageData.currentPage = 1
             this.pageData.index = index
             this.before()
         },
         before() {
             switch (this.pageData.index) {
                 case 0:
-                    this.selectAricleList()
+                    this.pageData.isCollect = false
                     break;
                 case 1:
-                    this.selectCollectionList()
+                    this.pageData.isCollect = true
                     break;
                 default:
-                    this.selectAricleList()
+                    this.pageData.isCollect = false
                     break;
             }
+          this.selectAricleList()
         },
         selectAricleList(type) {
             this.$bus.$emit('show');
@@ -491,7 +519,8 @@ export default {
                 this.pageData.type = type
             }
             getArticleByUserId(this.pageData).then(res => {
-                this.dataList.push(...res.data.records);
+                this.dataList.push(...res.data);
+                this.total = res.total
                 this.pages = res.data.pages
                 this.$bus.$emit('close');
             }).catch(err => {
@@ -508,41 +537,35 @@ export default {
             this.$bus.$emit('show');
         },
         uploadBjCoverFile: function (param) {
-            this.files = param.file
-            // FormData 对象
-            var formData = new FormData()
-            // 文件对象
-            formData.append('multipartFile', this.files)
-            upload(formData).then(res => {
-                let user = {
-                    id: this.user.id,
-                    bjCover: res.data
-                }
-                updateUserInfo(user).then(ress => {
-                    this.user.bjCover = res.data
-                    this.after()
 
-                    this.$toast.success('修改成功')
-                    this.$bus.$emit('close')
-                }).catch(err => {
-                    this.$bus.$emit('close')
-                })
-            }).catch(err => {
-                this.$bus.$emit('close')
-            })
+          let file = param.file
+          // FormData 对象
+          var formData = new FormData()
+          // 文件对象
+          formData.append('file', file)
+          spaceBackgroundPictureUpload(formData).then(res => {
+            this.form.spaceBackgroundPictureUid = res.data.uid
+            this.user.userInfo.spaceBackgroundPicture.fileUrl = res.data.fileUrl
+            this.$bus.$emit('close')
+            this.$toast.success('修改成功')
+            this.updateUserInfo()
+          }).catch(err => {
+            this.$bus.$emit('close')
+          })
 
         },
         uploadSectionFile: function (param) {
-            this.files = param.file
+            let file = param.file
             // FormData 对象
             var formData = new FormData()
             // 文件对象
-            formData.append('multipartFile', this.files)
-            upload(formData).then(res => {
-                this.form.avatar = res.data
-                this.$bus.$emit('close')
+            formData.append('file', file)
+            avatarUpload(formData).then(res => {
+              this.form.avatarPictureUid = res.data.uid
+              this.user.userInfo.avatar.fileUrl = res.data.fileUrl
+              this.$bus.$emit('close')
             }).catch(err => {
-                this.$bus.$emit('close')
+              this.$bus.$emit('close')
             })
 
         },

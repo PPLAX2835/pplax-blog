@@ -168,7 +168,7 @@
                 <el-dropdown trigger="hover">
                     <div class="el-dropdown-link hand-style">
                         <img v-if="!userInfo" src="http://img.shiyit.com/touristAvatar.png" alt="">
-                        <img v-else :src="userInfo.avatar.fileUrl" alt="" />
+                        <img v-else :src="userInfo.userInfo.avatar.fileUrl" alt="" />
                     </div>
                     <el-dropdown-menu slot="dropdown" v-if="userInfo">
                         <router-link style="text-decoration: none;color: #71777c;" :to="'/user'">

@@ -16,11 +16,8 @@ export function getArticleByUserId(params) {
 }
 export function deleteMyArticle(id) {
     return request({
-        url: '/v1/article/',
-        method: 'delete',
-        params: {
-            id: id
-        }
+        url: '/web/blog/' + id,
+        method: 'delete'
     })
 }
 export function getMyArticleInfo(id) {

@@ -24,4 +24,7 @@ public interface AdminFeignClient {
     @DeleteMapping(value = "/chatRoom/{chatRoomUid}")
     String deleteChatRoom(@PathVariable("chatRoomUid") String chatRoomUid);
 
+    @DeleteMapping(value = "/blog/{blogUid}")
+    String deleteBlog(@PathVariable("blogUid") String blogUid);
+
 }

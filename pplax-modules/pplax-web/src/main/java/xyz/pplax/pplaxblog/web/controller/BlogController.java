@@ -16,7 +16,9 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.Collect;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
@@ -40,6 +42,9 @@ import java.util.List;
 public class BlogController extends SuperController {
 
     private static Logger log = LogManager.getLogger(BlogController.class);
+
+    @Autowired
+    private AdminFeignClient adminFeignClient;
 
     @Autowired
     private BlogService blogService;
@@ -137,5 +142,13 @@ public class BlogController extends SuperController {
 
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
+
+
+    @ApiOperation(value = "删除", httpMethod = "DELETE", response = ResponseResult.class, notes = "删除")
+    @DeleteMapping("/{blogUid}")
+    public String delete(@PathVariable(value = "blogUid") String blogUid){
+        return adminFeignClient.deleteBlog(blogUid);
+    }
+
 }
 

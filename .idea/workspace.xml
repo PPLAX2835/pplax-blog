@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/FeedbackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
     </list>
@@ -354,14 +355,7 @@
       <workItem from="1712799815758" duration="15518000" />
       <workItem from="1712826484931" duration="8495000" />
       <workItem from="1712884337712" duration="22217000" />
-      <workItem from="1713055450287" duration="15887000" />
-    </task>
-    <task id="LOCAL-00338" summary="完成反馈管理">
-      <created>1710925113796</created>
-      <option name="number" value="00338" />
-      <option name="presentableId" value="LOCAL-00338" />
-      <option name="project" value="LOCAL" />
-      <updated>1710925113797</updated>
+      <workItem from="1713055450287" duration="16504000" />
     </task>
     <task id="LOCAL-00339" summary="菜单管理现在能展示了">
       <created>1710932519517</created>
@@ -699,7 +693,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713081187760</updated>
     </task>
-    <option name="localTasksCounter" value="387" />
+    <task id="LOCAL-00387" summary="完成反馈功能">
+      <created>1713081971948</created>
+      <option name="number" value="00387" />
+      <option name="presentableId" value="LOCAL-00387" />
+      <option name="project" value="LOCAL" />
+      <updated>1713081971948</updated>
+    </task>
+    <option name="localTasksCounter" value="388" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,7 +735,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="根据分类显示文章列表" />
     <MESSAGE value="添加文章列表封面图片" />
     <MESSAGE value="后台新增说说管理" />
     <MESSAGE value="增加说说表，后台新增说说管理" />
@@ -759,7 +759,8 @@
     <MESSAGE value="完善说说评论点赞评论" />
     <MESSAGE value="博客收藏功能完成" />
     <MESSAGE value="用户个人信息管理姑且算是做好了" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户个人信息管理姑且算是做好了" />
+    <MESSAGE value="完成反馈功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成反馈功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

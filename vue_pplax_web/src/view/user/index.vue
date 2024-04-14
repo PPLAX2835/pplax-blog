@@ -131,20 +131,20 @@
                                     </div>
                                     <div class="articleBtn">
                                         <div v-if="pageData.index == 0">
-                                            <el-tooltip class="item" effect="dark" content="修改文章" placement="top">
-                                                <el-button type="primary" size="mini" @click="handleUpdateArticle(item.id)"
-                                                    icon="el-icon-edit" circle></el-button>
-                                            </el-tooltip>
+<!--                                            <el-tooltip class="item" effect="dark" content="修改文章" placement="top">-->
+<!--                                                <el-button type="primary" size="mini" @click="handleUpdateArticle(item.uid)"-->
+<!--                                                    icon="el-icon-edit" circle></el-button>-->
+<!--                                            </el-tooltip>-->
                                             <el-tooltip class="item" effect="dark" content="删除文章" placement="top">
                                                 <el-button type="danger" size="mini"
-                                                    @click="handleDeleteArticle(index, item.id)" icon="el-icon-delete"
+                                                    @click="handleDeleteArticle(index, item.uid)" icon="el-icon-delete"
                                                     circle></el-button>
                                             </el-tooltip>
                                         </div>
 
                                         <el-tooltip v-if="pageData.index == 1" class="item" effect="dark" content="取消收藏"
                                             placement="top">
-                                            <el-button type="danger" size="mini" @click="handleCanCollect(index, item.id)"
+                                            <el-button type="danger" size="mini" @click="handleCanCollect(index, item.uid)"
                                                 icon="el-icon-delete" circle></el-button>
                                         </el-tooltip>
                                     </div>

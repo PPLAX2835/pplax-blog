@@ -232,7 +232,7 @@ export function featchBlogSortList() {
 
 export function addFeedback(data) {
     return request({
-        url: '/v1/feedback/',
+        url: '/web/feedback',
         method: 'post',
         data
     })

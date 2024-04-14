@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/fileStorage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/FeedbackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SpaceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SpaceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/UserInfoEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/UserInfoEditDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/userinfo/UserInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -364,14 +354,7 @@
       <workItem from="1712799815758" duration="15518000" />
       <workItem from="1712826484931" duration="8495000" />
       <workItem from="1712884337712" duration="22217000" />
-      <workItem from="1713055450287" duration="15213000" />
-    </task>
-    <task id="LOCAL-00337" summary="实现评论管理">
-      <created>1710578989509</created>
-      <option name="number" value="00337" />
-      <option name="presentableId" value="LOCAL-00337" />
-      <option name="project" value="LOCAL" />
-      <updated>1710578989510</updated>
+      <workItem from="1713055450287" duration="15887000" />
     </task>
     <task id="LOCAL-00338" summary="完成反馈管理">
       <created>1710925113796</created>
@@ -709,7 +692,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713061509724</updated>
     </task>
-    <option name="localTasksCounter" value="386" />
+    <task id="LOCAL-00386" summary="用户个人信息管理姑且算是做好了">
+      <created>1713081187760</created>
+      <option name="number" value="00386" />
+      <option name="presentableId" value="LOCAL-00386" />
+      <option name="project" value="LOCAL" />
+      <updated>1713081187760</updated>
+    </task>
+    <option name="localTasksCounter" value="387" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -744,7 +734,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="优化站点管理" />
     <MESSAGE value="根据分类显示文章列表" />
     <MESSAGE value="添加文章列表封面图片" />
     <MESSAGE value="后台新增说说管理" />
@@ -769,7 +758,8 @@
     <MESSAGE value="博客页面可以评论了" />
     <MESSAGE value="完善说说评论点赞评论" />
     <MESSAGE value="博客收藏功能完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="博客收藏功能完成" />
+    <MESSAGE value="用户个人信息管理姑且算是做好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="用户个人信息管理姑且算是做好了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

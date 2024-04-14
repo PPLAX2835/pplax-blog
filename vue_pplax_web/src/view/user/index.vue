@@ -268,16 +268,16 @@
         <!-- 添加反馈弹出框 -->
         <el-dialog title="添加反馈" center :visible.sync="feedbackDialogTableVisible" :lock-scroll="false"
             :close-on-click-modal="false">
-            <el-form label-position="left" label-width="100px" :model="form" :rules="rules" ref="ruleForm">
+            <el-form label-position="left" label-width="100px" :model="feedbackForm" :rules="rules" ref="feedbackRuleForm">
                 <el-form-item label="反馈类型:" prop="type">
-                    <el-radio v-model="form.type" label="1">需求</el-radio>
-                    <el-radio v-model="form.type" label="2">缺陷</el-radio>
+                    <el-radio v-model="feedbackForm.type" label="0">需求</el-radio>
+                    <el-radio v-model="feedbackForm.type" label="1">缺陷</el-radio>
                 </el-form-item>
                 <el-form-item label="反馈标题:" prop="title">
-                    <el-input v-model="form.title"></el-input>
+                    <el-input v-model="feedbackForm.title"></el-input>
                 </el-form-item>
                 <el-form-item label="详细内容：" prop="content">
-                    <el-input v-model="form.content"></el-input>
+                    <el-input v-model="feedbackForm.content"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -315,6 +315,12 @@ export default {
             statusStyle: ["#F56C6C", "#67C23A", "#909399", "#E6A23C"],
             form: {
             },
+            feedbackForm: {
+              userUid: getUserUid(),
+              title: '',
+              content: '',
+              type: ''
+            },
             files: {},
             dialogTableVisible: false,
             editDialogTableVisible: false,
@@ -343,7 +349,6 @@ export default {
                 content: [
                     { required: true, message: '请输入反馈详细内容', trigger: 'blur' },
                 ],
-
             },
             count: {
                 article: 0,
@@ -383,13 +388,13 @@ export default {
             })
         },
         insertFeedback() {
-            this.$refs['ruleForm'].validate((valid) => {
+            this.$refs['feedbackRuleForm'].validate((valid) => {
                 if (valid) {
-                    addFeedback(this.form).then(res => {
+                    addFeedback(this.feedbackForm).then(res => {
 
                         this.$toast.success('反馈成功')
                         this.feedbackDialogTableVisible = false
-                        this.form = {}
+                        this.feedbackForm = {}
                     })
                 } else {
                     console.log('error submit!!');

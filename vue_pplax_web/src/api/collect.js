@@ -9,19 +9,13 @@ export function getCollect(params) {
 }
 export function collect(articleId) {
     return request({
-        url: '/v1/collect/collect',
-        method: 'get',
-        params: {
-            articleId: articleId
-        }
+        url: '/web/blog/' + articleId + '/collect',
+        method: 'post'
     })
 }
 export function cancelCollect(articleId) {
     return request({
-        url: '/v1/collect/',
-        method: 'delete',
-        params: {
-            articleId: articleId
-        }
+        url: '/web/blog/' + articleId + '/collect',
+        method: 'post'
     })
 }

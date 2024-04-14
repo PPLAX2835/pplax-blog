@@ -381,23 +381,26 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         }
         blog.setIsLike(isLike);
 
-        // 获得收藏数
-        QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
-        collectQueryWrapper.ne(CollectSQLConstants.STATUS, EStatus.DISABLED.getStatus());
-        collectQueryWrapper.eq(CollectSQLConstants.BLOG_UID, blog.getUid());
-        int collectCount = collectService.count(collectQueryWrapper);
-        blog.setCollectCount(collectCount);
-
-        // 判断自己是否收藏
+        // 判断自己是否已经收藏
         boolean isCollect = false;
         if (!StringUtils.isBlank(userUid)) {
+            QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
+            collectQueryWrapper.ne(CollectSQLConstants.STATUS, EStatus.DISABLED.getStatus());
             collectQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
+            collectQueryWrapper.eq(CollectSQLConstants.BLOG_UID, blog.getUid());
             int count = collectService.count(collectQueryWrapper);
             if (count > 0) {
                 isCollect = true;
             }
         }
         blog.setIsCollect(isCollect);
+
+        // 获得收藏数
+        QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
+        collectQueryWrapper.ne(CollectSQLConstants.STATUS, EStatus.DISABLED.getStatus());
+        collectQueryWrapper.eq(CollectSQLConstants.BLOG_UID, blog.getUid());
+        int collectCount = collectService.count(collectQueryWrapper);
+        blog.setCollectCount(collectCount);
 
 
 

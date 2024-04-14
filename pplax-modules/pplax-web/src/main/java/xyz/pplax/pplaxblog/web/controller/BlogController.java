@@ -18,9 +18,11 @@ import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
+import xyz.pplax.pplaxblog.xo.entity.Collect;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.collect.CollectService;
 import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
 import xyz.pplax.pplaxblog.xo.service.site.SiteService;
 import xyz.pplax.pplaxblog.xo.service.user.UserService;
@@ -44,6 +46,9 @@ public class BlogController extends SuperController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private CollectService collectService;
 
     @Autowired
     private UserService userService;
@@ -104,5 +109,33 @@ public class BlogController extends SuperController {
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
+    @ApiOperation(value = "收藏", httpMethod = "POST", response = ResponseResult.class, notes = "收藏")
+    @PostMapping("/{blogUid}/collect")
+    public String collect(
+            HttpServletRequest httpServletRequest,
+            @PathVariable(value = "blogUid") String blogUid
+    ){
+        String userUid = null;
+        String authorization = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.isEmpty(authorization)) {
+            String accessToken = authorization.replace("Bearer ", "");
+            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+            userUid = (String) jsonObject.get("uid");
+        }
+
+        Collect collect = new Collect();
+        collect.setUid(StringUtils.getUUID());
+        collect.setBlogUid(blogUid);
+        collect.setUserUid(userUid);
+
+        boolean res = collectService.save(blogUid, userUid);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
 }
 

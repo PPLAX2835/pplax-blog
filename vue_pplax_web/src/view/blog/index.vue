@@ -613,7 +613,7 @@ export default {
 
         },
         handleCollect() {
-            let id = this.blog.id;
+            let id = this.blog.uid;
             if (this.blog.isCollect) {
                 cancelCollect(id).then(res => {
                     this.blog.collectCount--

@@ -1,57 +1,52 @@
 <template>
     <el-card class="box ">
 
-<!--        <img src="http://img.shiyit.com/beijing.jpg" alt="">-->
+        <img :src="getWebSiteInfoValue('authorBackground')" alt="">
         <div class="user">
 
             <div class="avatar_wrapper">
-<!--                <img :src="$store.state.webSiteInfo.authorAvatar" alt="" class="userAvatar">-->
-<!--                <img class="guajian" src="https://img.shiyit.com/gaoda.png" alt="">-->
+                <img :src="getWebSiteInfoValue('authorAvatar')" alt="" class="userAvatar">
+                <img class="guajian" :src="getWebSiteInfoValue('authorAvatarPendant')" alt="">
             </div>
             <a class="username">
-<!--                {{ $store.state.webSiteInfo.author }}-->
-<!--                <el-tooltip class="item" effect="dark" content="博主" placement="right">-->
-<!--                    <svg-icon icon-class="bozhu"></svg-icon>-->
-<!--                </el-tooltip>-->
+                {{ getWebSiteInfoValue('author') }}
+                <el-tooltip class="item" effect="dark" content="博主" placement="right">
+                    <svg-icon icon-class="bozhu"></svg-icon>
+                </el-tooltip>
             </a>
-<!--            <span class="desc" :title="$store.state.webSiteInfo.authorInfo">-->
-<!--                {{ $store.state.webSiteInfo.authorInfo }}-->
-<!--            </span>-->
+            <span class="desc" :title="getWebSiteInfoValue('authorInfo')">
+                {{ getWebSiteInfoValue('authorInfo') }}
+            </span>
 
             <div class="lianxi">
-<!--                <a class="hand-style" v-show="isShow(3)" :href="$store.state.webSiteInfo.github">-->
-<!--                    <svg-icon icon-class="github" />-->
-<!--                </a>-->
-<!--                <a v-show="isShow(4)" class="gitee hand-style" :href="$store.state.webSiteInfo.gitee" target="_blank"-->
-<!--                    title="Gitee" rel="noopener noreferrer nofollow">-->
-<!--                    <svg-icon icon-class="gitee" />-->
-<!--                </a>-->
-<!--                <a v-show="isShow(2)" class="qq hand-style"-->
-<!--                    :href="'//wpa.qq.com/msgrd?v=3&amp;uin=' + $store.state.webSiteInfo.qqNumber + '&amp;site=qq&amp;menu=yes'"-->
-<!--                    target="_blank" title="QQ" rel="noopener noreferrer nofollow">-->
-<!--                    <svg-icon icon-class="qq" />-->
-<!--                </a>-->
-<!--                <a v-show="isShow(1)" class="email hand-style" :href="'mailto:' + $store.state.webSiteInfo.email"-->
-<!--                    target="_blank" title="邮箱" rel="noopener noreferrer nofollow">-->
-<!--                    <svg-icon icon-class="email" />-->
-<!--                </a>-->
-<!--                <a class="weibo hand-style" href="https://weibo.com/u/5747542477" target="_blank" title="微博"-->
-<!--                    rel="noopener noreferrer nofollow">-->
-<!--                    <svg-icon icon-class="weibo" />-->
-<!--                </a>-->
-<!--                <a class="zhihu hand-style" href="https://www.zhihu.com/people/he-he-85-83-34" target="_blank" title="知乎"-->
-<!--                    rel="noopener noreferrer nofollow">-->
-<!--                    <svg-icon icon-class="zhihu" />-->
-<!--                </a>-->
+                <a class="hand-style" :href="getWebSiteInfoValue('github')">
+                    <svg-icon icon-class="github" />
+                </a>
+                <a class="gitee hand-style" :href="getWebSiteInfoValue('gitee')" target="_blank"
+                    title="Gitee" rel="noopener noreferrer nofollow">
+                    <svg-icon icon-class="gitee" />
+                </a>
+                <a class="qq hand-style"
+                    :href="'//wpa.qq.com/msgrd?v=3&amp;uin=' + getWebSiteInfoValue('qq') + '&amp;site=qq&amp;menu=yes'"
+                    target="_blank" title="QQ" rel="noopener noreferrer nofollow">
+                    <svg-icon icon-class="qq" />
+                </a>
+                <a class="email hand-style" :href="'mailto:' + getWebSiteInfoValue('email')"
+                    target="_blank" title="邮箱" rel="noopener noreferrer nofollow">
+                    <svg-icon icon-class="email" />
+                </a>
             </div>
             <!-- 收藏本站 -->
             <div class="collect ">
-<!--                <el-button class="btn " @click="handleCollect">加入书签</el-button>-->
+                <el-button class="btn " @click="handleCollect">加入书签</el-button>
             </div>
         </div>
     </el-card>
 </template>
 <script>
+
+import {getWebSiteInfoValue} from "@/utils";
+
 export default {
     data() {
         return {
@@ -59,14 +54,11 @@ export default {
     },
 
     methods: {
-        isShow(type) {
-            // return this.$store.state.webSiteInfo.showList.indexOf(type) != -1
-        },
-        handleClike(val) {
-            window.location.href = val
-        },
         handleCollect() {
             this.$toast.show({ message: '按CTRL+ D 键将本页加入书签!' });
+        },
+        getWebSiteInfoValue(key) {
+          return getWebSiteInfoValue(this.$store.state.webSiteInfo, key)
         }
     }
 }

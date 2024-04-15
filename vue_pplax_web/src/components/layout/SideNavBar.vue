@@ -4,7 +4,7 @@
         <div class="warpper">
             <!-- 博主介绍 -->
             <div class="blogger-info">
-                <el-avatar :src="$store.state.webSiteInfo.authorAvatar.value.fileUrl"></el-avatar>
+                <el-avatar :src="webSiteInfo ? webSiteInfo.authorAvatar.value : ''"></el-avatar>
             </div>
 
             <hr />
@@ -78,6 +78,12 @@
 import { logout } from "@/api/auth";
 import {removeToken, getToken, removeUserUid} from '@/utils/cookieUtil'
 export default {
+    props: {
+      webSiteInfo: {
+        type: Object,
+        default: null,
+      },
+    },
     data: function () {
         return {
             img: process.env.VUE_APP_IMG_API,

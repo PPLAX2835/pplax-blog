@@ -108,3 +108,8 @@ export function parseTime(time) {
 
     return time_str
 }
+
+
+export const getWebSiteInfoValue = function (webSiteInfo, key) {
+    return webSiteInfo ? (webSiteInfo[key].value ? webSiteInfo[key].value : '') : ''
+}

@@ -36,9 +36,6 @@
                     </em>
                 </span>
             </div>
-            <a href="https://www.tsycdn.com/" target="_blank">
-                <img style="height: 30px;width: 320px;" src="https://img.shiyit.com/lanyiyun.png" alt="">
-            </a>
         </div>
     </div>
 </template>

@@ -1,12 +1,5 @@
 import request from '@/utils/request'
 
-export function fetchBlogList(params) {
-    return request({
-        url: '/web/blog/list',
-        method: 'get',
-        params: params
-    })
-}
 export function getArticleByUserId(params) {
     return request({
         url: '/web/user/space/blog/list',
@@ -95,12 +88,6 @@ export function fetchTagList(param) {
     })
 }
 
-export function featchHomeData() {
-    return request({
-        url: '/web/site/homeData',
-        method: 'get',
-    })
-}
 export function getHot(type) {
     return request({
         url: '/v1/hot',
@@ -218,12 +205,6 @@ export function upload(data) {
         method: 'POST',
         headers: { 'Content-Type': 'multipart/articles-data' },
         data
-    })
-}
-export function featchBlogSortList() {
-    return request({
-        url: '/web/blogSort/list',
-        method: 'get'
     })
 }
 

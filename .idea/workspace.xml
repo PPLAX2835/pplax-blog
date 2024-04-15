@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整理首页和头部导航栏">
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/blogSort.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Footer.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/SideNavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/SideNavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/site/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/site/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,8 +244,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
+      <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
@@ -245,8 +255,8 @@
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
+        <item itemvalue="Spring Boot.AuthApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -354,14 +364,8 @@
       <workItem from="1712799815758" duration="15518000" />
       <workItem from="1712826484931" duration="8495000" />
       <workItem from="1712884337712" duration="22217000" />
-      <workItem from="1713055450287" duration="16773000" />
-    </task>
-    <task id="LOCAL-00340" summary="完成菜单管理">
-      <created>1711011737240</created>
-      <option name="number" value="00340" />
-      <option name="presentableId" value="LOCAL-00340" />
-      <option name="project" value="LOCAL" />
-      <updated>1711011737242</updated>
+      <workItem from="1713055450287" duration="17175000" />
+      <workItem from="1713164330937" duration="6636000" />
     </task>
     <task id="LOCAL-00341" summary="角色的增删改做完了，接下来弄权限管理">
       <created>1711016752221</created>
@@ -699,7 +703,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713082521550</updated>
     </task>
-    <option name="localTasksCounter" value="389" />
+    <task id="LOCAL-00389" summary="开始想办法优化">
+      <created>1713082772241</created>
+      <option name="number" value="00389" />
+      <option name="presentableId" value="LOCAL-00389" />
+      <option name="project" value="LOCAL" />
+      <updated>1713082772241</updated>
+    </task>
+    <option name="localTasksCounter" value="390" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,7 +745,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="后台新增说说管理" />
     <MESSAGE value="增加说说表，后台新增说说管理" />
     <MESSAGE value="前台调整说说列表接口" />
     <MESSAGE value="说说页面相关接口对接 点赞评论接口还没弄" />
@@ -759,7 +769,8 @@
     <MESSAGE value="用户个人信息管理姑且算是做好了" />
     <MESSAGE value="完成反馈功能" />
     <MESSAGE value="姑且实现用户管理自己的文章" />
-    <option name="LAST_COMMIT_MESSAGE" value="姑且实现用户管理自己的文章" />
+    <MESSAGE value="开始想办法优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="开始想办法优化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

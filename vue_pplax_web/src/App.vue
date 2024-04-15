@@ -2,12 +2,12 @@
   <div id="app">
     <Denglong />
     <!-- 头部 -->
-    <Header :userInfo="userInfo"></Header>
+    <Header :userInfo="userInfo" :web-site-info="webSiteInfo"></Header>
     <!-- 侧边导航栏 -->
-    <SideNavBar></SideNavBar>
+    <SideNavBar :web-site-info="webSiteInfo"></SideNavBar>
     <Loading></Loading>
     <!-- <Notice></Notice> -->
-    <router-view :key="$route.fullPath" style="min-height: 80vh;" />
+    <router-view :key="$route.fullPath" style="min-height: 80vh" />
 
     <!-- 登录模态框 -->
     <Login></Login>
@@ -49,7 +49,8 @@ export default {
   },
   data() {
     return {
-      userInfo: this.$store.state.userInfo,
+      userInfo: null,
+      webSiteInfo: null,
     }
   },
   created() {
@@ -73,7 +74,7 @@ export default {
     document.addEventListener('keydown', (event) => {
       if (event.ctrlKey && event.key === 'k') {
         this.$store.state.searchDialogVisible = true
-        event.preventDefault(); // 阻止默认行为  
+        event.preventDefault(); // 阻止默认行为
       }
     });
 
@@ -82,6 +83,7 @@ export default {
   methods: {
     initWebSiteInfo() {
       getWebSiteInfo().then(res => {
+        this.webSiteInfo = res.data
         this.$store.commit("setWebSiteInfo", res.data)
         this.$store.state.siteAccess = res.extra.siteAccess
         this.$store.state.visitorAccess = res.extra.visitorAccess
@@ -122,7 +124,6 @@ export default {
 
 <style lang="scss" scoped>
 #app {
-
   background: var(--body-color);
   // background-color: #efefef;
   // background-image: linear-gradient(90deg, rgba(60, 10, 30, .04) 3%, transparent 0), linear-gradient(1turn, rgba(60, 10, 30, .04) 3%, transparent 0);
@@ -141,7 +142,5 @@ export default {
   //   right: 0;
   //   bottom: 0;
   // }
-
-
 }
 </style>

@@ -7,7 +7,7 @@
                     <router-link :to="'/'" class="hand-style">
                         <el-image class="img"
                             style="width: 50px;border-radius: 50%; height: 50px;border: 1px solid var(--border-line);"
-                            :src="$store.state.webSiteInfo.siteLogo.value.fileUrl">
+                            :src="webSiteInfo ? webSiteInfo.siteLogo.value : ''">
                         </el-image>
                         <span class="name">pplax blog</span>
                     </router-link>
@@ -30,7 +30,7 @@
             </div>
 
             <ul class="starlist">
-                <li :class="path == '/' ? 'active' : ''">
+                <li :class="path === '/' ? 'active' : ''">
                     <span>
                         <router-link :to="'/'" class="hand-style">
                             <svg-icon icon-class="home"></svg-icon> 首页
@@ -38,7 +38,7 @@
                     </span>
                 </li>
 
-                <li :class="path == '/archive' || path == '/categorys' || path == '/tag'
+                <li :class="path === '/archive' || path === '/categorys' || path === '/tag'
                     ? 'active' : ''">
                     <el-dropdown trigger="hover">
                         <span class="el-dropdown-link hand-style">
@@ -65,7 +65,7 @@
                     </el-dropdown>
                 </li>
 
-                <li :class="path == '/say' ? 'active' : ''">
+                <li :class="path === '/say' ? 'active' : ''">
                     <span>
                         <router-link :to="'/say'" class="hand-style">
                             <svg-icon icon-class="say"></svg-icon> 说说
@@ -88,21 +88,21 @@
 <!--                        </router-link>-->
 <!--                    </span>-->
 <!--                </li>-->
-                <li :class="path == '/message' ? 'active' : ''">
+                <li :class="path === '/message' ? 'active' : ''">
                     <span>
                         <router-link :to="'/message'" class="hand-style">
                             <svg-icon icon-class="message"></svg-icon> 留言板
                         </router-link>
                     </span>
                 </li>
-                <li :class="path == '/links' ? 'active' : ''">
+                <li :class="path === '/links' ? 'active' : ''">
                     <span>
                         <router-link :to="'/links'" class="hand-style">
                             <svg-icon icon-class="friendLink"></svg-icon> 友情链接
                         </router-link>
                     </span>
                 </li>
-                <li :class="path == '/about' ? 'active' : ''">
+                <li :class="path === '/about' ? 'active' : ''">
                     <el-dropdown trigger="hover">
                         <span class="el-dropdown-link hand-style">
                             <svg-icon icon-class="about"></svg-icon> 关于本站<i class="el-icon-arrow-down el-icon--right"></i>
@@ -167,7 +167,7 @@
             <div class="userInfo" v-if="showUser">
                 <el-dropdown trigger="hover">
                     <div class="el-dropdown-link hand-style">
-                        <img v-if="!userInfo" src="http://img.shiyit.com/touristAvatar.png" alt="">
+                        <img v-if="!userInfo" :src="webSiteInfo ? webSiteInfo.touristAvatar.value : ''" alt="">
                         <img v-else :src="userInfo.userInfo.avatar.fileUrl" alt="" />
                     </div>
                     <el-dropdown-menu slot="dropdown" v-if="userInfo">
@@ -213,6 +213,10 @@ export default {
         userInfo: {
             type: Object,
             default: null,
+        },
+        webSiteInfo: {
+          type: Object,
+          default: null,
         },
     },
     data() {

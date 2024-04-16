@@ -115,7 +115,7 @@
                                 </el-dropdown-item>
                             </router-link>
 
-                            <a style="text-decoration: none;color: #71777c;" href="https://gitee.com/quequnlong/shiyi-blog"
+                            <a style="text-decoration: none;color: #71777c;" :href="getWebSiteInfoValue('gitee')"
                                 target="_blank">
                                 <el-dropdown-item>
                                     <i class="iconfont icon-zitidaima"></i>网站源码
@@ -206,6 +206,7 @@
 <script>
 import { logout } from "@/api/auth";
 import { removeToken, getToken, removeUserUid } from '@/utils/cookieUtil'
+import {getWebSiteInfoValue} from "@/utils";
 export default {
     name: 'Header',
 
@@ -272,6 +273,9 @@ export default {
             }
             this.$router.push({ path: "/notice", query: { type: index } })
         },
+      getWebSiteInfoValue(key) {
+        return getWebSiteInfoValue(this.$store.state.webSiteInfo, key)
+      },
         topBageShow() {
             return this.$store.state.systemNotcie.system > 0 || this.$store.state.systemNotcie.comment > 0
                 || this.$store.state.systemNotcie.private > 0;

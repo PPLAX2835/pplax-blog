@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/about/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/about/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/link/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/link/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,14 +351,7 @@
       <workItem from="1712884337712" duration="22217000" />
       <workItem from="1713055450287" duration="17175000" />
       <workItem from="1713164330937" duration="7493000" />
-      <workItem from="1713232936553" duration="10906000" />
-    </task>
-    <task id="LOCAL-00345" summary="完成文件管理，后台基本做好了">
-      <created>1711199868944</created>
-      <option name="number" value="00345" />
-      <option name="presentableId" value="LOCAL-00345" />
-      <option name="project" value="LOCAL" />
-      <updated>1711199868945</updated>
+      <workItem from="1713232936553" duration="11861000" />
     </task>
     <task id="LOCAL-00346" summary="导航栏全屏">
       <created>1711259652643</created>
@@ -694,7 +689,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713254138111</updated>
     </task>
-    <option name="localTasksCounter" value="394" />
+    <task id="LOCAL-00394" summary="整理留言、说说页面">
+      <created>1713257007501</created>
+      <option name="number" value="00394" />
+      <option name="presentableId" value="LOCAL-00394" />
+      <option name="project" value="LOCAL" />
+      <updated>1713257007501</updated>
+    </task>
+    <option name="localTasksCounter" value="395" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +731,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="博客详情页现在能显示评论了，修复部分页面抖动（好像叫这个）问题" />
     <MESSAGE value="博客详情页现在能显示评论了，修复部分undefined（原因是请求还没获得返回，但是页面已经渲染了）的问题" />
     <MESSAGE value="文章归档接口做好了" />
     <MESSAGE value="文章分类页面调整好了" />
@@ -754,7 +755,8 @@
     <MESSAGE value="整理博客详情页" />
     <MESSAGE value="整理评论组件" />
     <MESSAGE value="整理分类、标签页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理分类、标签页面" />
+    <MESSAGE value="整理留言、说说页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理留言、说说页面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

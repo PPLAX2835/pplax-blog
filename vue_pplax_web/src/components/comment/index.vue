@@ -160,7 +160,6 @@
 </template>
 <script>
 import { postComment, featchComments } from '@/api/comment'
-import { browserMatch } from '@/utils/index'
 import {parseTime} from "@/utils/index";
 import Reply from './Reply.vue'
 import Emoji from '@/components/emoji'
@@ -182,7 +181,7 @@ export default {
             commentContent: "",
             opacity: 0,
             show: null,
-            user: this.$store.state.userInfo,
+            user: this.$store.state.user,
             articleId: this.$route.params.articleId,
             // 加载层信息
             pageData: {

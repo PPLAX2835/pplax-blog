@@ -30,9 +30,9 @@ import Loading from '@/components/loading/loading.vue'
 import Login from '@/components/model/Login.vue'
 import SearchModle from '@/components/model/Search.vue'
 import Notice from '@/view/notice/topNotice.vue'
-import { report, getWebSiteInfo, selectUserInfoByToken } from '@/api'
+import { report, getWebSiteInfo } from '@/api'
 import {getToken, getUserUid, setToken} from '@/utils/cookieUtil'
-import {getUserInfo} from "@/api/user";
+import {getMyUserInfo, getUserInfo} from "@/api/user";
 
 export default {
   name: 'App',
@@ -81,6 +81,9 @@ export default {
   },
 
   methods: {
+    /**
+     * 获得网站配置参数和数据
+     */
     initWebSiteInfo() {
       getWebSiteInfo().then(res => {
         this.webSiteInfo = res.data
@@ -89,23 +92,28 @@ export default {
         this.$store.state.visitorAccess = res.extra.visitorAccess
       })
     },
+    /**
+     * 向服务器报告，记录访问量
+     */
     report() {
       report().then(res => {
       });
     },
+    /**
+     * 检擦登录状态，获得用户信息
+     */
     getUserInfo() {
-      let flag = window.location.href.indexOf("token") != -1
+      let flag = window.location.href.indexOf("token") !== -1
       if (flag) {
         let token = window.location.href.split("token=")[1]
         setToken(token)
       }
 
       // 从cookie中获取token
-      let userUid = getUserUid()
-      if (userUid != null) {
-        getUserInfo(userUid).then(res => {
+      if (getToken()) {
+        getMyUserInfo().then(res => {
           this.userInfo = res.data
-          this.$store.commit("setUserInfo", res.data)
+          this.$store.commit("setUser", res.data)
         })
       }
     },

@@ -44,7 +44,7 @@ export default {
     methods: {
 
         handleGoIm() {
-            if (!this.$store.state.userInfo) {
+            if (!this.$store.state.user) {
                 this.$store.commit("setLoginFlag", true)
                 return;
             }

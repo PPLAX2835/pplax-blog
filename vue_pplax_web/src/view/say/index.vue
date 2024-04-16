@@ -196,7 +196,7 @@ export default {
                   commentator: {
                     uid: getUserUid(),
                     userInfo: {
-                      nickname: this.$store.state.userInfo.nickname
+                      nickname: this.$store.state.user.nickname
                     }
                   },
                   content: this.comment.content
@@ -332,7 +332,7 @@ export default {
                       commentator: {
                         uid: getUserUid(),
                         userInfo: {
-                          nickname: this.$store.state.userInfo.nickname
+                          nickname: this.$store.state.user.nickname
                         }
                       }
                     })

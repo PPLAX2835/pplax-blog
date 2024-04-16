@@ -43,28 +43,11 @@
                 </div>
             </el-tooltip>
 
-            <el-tooltip class="item" effect="dark" content="打赏" placement="left">
-                <div class="left-item rewardMain hand-style" title="打赏">
-                    <span class="reward-btn">
-                        <i class="iconfont icon-dashang1"></i>
-                    </span>
-                    <!-- 二维码 -->
-                    <div class="rewardItem">
-                        <span>
-                            <img class="reward-img" :src="$store.state.webSiteInfo.aliPay" />
-                        </span>
-                        <span>
-                            <img class="reward-img" :src="$store.state.webSiteInfo.weixinPay" />
-                        </span>
-                    </div>
-                </div>
-            </el-tooltip>
-
         </div>
 
         <!-- 中间文章信息 -->
         <el-card class="article" id="articleBox">
-            <el-tag @click="handleClike(blog.blogSort.uid, '/blogSort')" :class="blog.blogSort.icon" effect="dark" class="category hand-style">
+            <el-tag @click="handleClick(blog.blogSort.uid, '/blogSort')" :class="blog.blogSort.icon" effect="dark" class="category hand-style">
                 {{ blog.blogSort.sortName }}
             </el-tag>
             <h1 class="article-title">
@@ -86,7 +69,7 @@
                                 评论</span>
                             <span class="text textItem">
                                 <i style="font-size: 0.7rem;color: rgb(38, 211, 153);" class="iconfont icon-dianzan1"></i>
-                                {{ blog.likeCount == null ? 0 : blog.likeCount }} 点赞
+                                {{ !blog.likeCount ? 0 : blog.likeCount }} 点赞
                             </span>
                             <span class="text"><i class="el-icon-view" style="color: rgb(190, 221, 16);"></i> {{
                                 blog.quantity }} 阅读</span>
@@ -102,7 +85,7 @@
                 <i class="el-icon-message-solid"></i>
                 <span style="color: orange;">温馨提示：</span>
                 <div style="margin-left: 30px;margin-top: 5px;">
-                    <span v-if="blog.isOriginal == 0">该文章为转载文章。</span>
+                    <span v-if="!blog.isOriginal">该文章为转载文章。</span>
                     本着开源共享、共同学习的精神，若内容或图片失效，请留言反馈。若有内容不小心影响到您的利益，请联系博主删除
                 </div>
             </div>
@@ -110,26 +93,6 @@
             <div style="height: 100%;" class="box-article">
                 <article class="content" :style="style" ref="blog" v-highlight v-html="this.blog.blogContent.content">
                 </article>
-<!--                <div v-if="blog.readType != 0 && !serceShow" class="warpper">-->
-<!--                    <div class="item-title">-->
-<!--                        <i class="el-icon-lock"></i> 该文章部分内容已隐藏-->
-<!--                    </div>-->
-<!--                    <div class="item-box">-->
-<!--                        <span>-->
-<!--                            {{ readTypeList[blog.readType] }}-->
-<!--                        </span>-->
-<!--                        <div class="neirong">-->
-<!--                            以下内容已隐藏，请{{ readDescList[blog.readType] }}后查看-->
-<!--                        </div>-->
-<!--                        <el-button v-if="blog.readType == 1" @click="checkLikeAndCoomment('请到文章内容下方完成评论')" class="btn"-->
-<!--                            type="primary" size="small">立即评论</el-button>-->
-<!--                        <el-button v-if="blog.readType == 2" @click="checkLikeAndCoomment('请到文章内容左侧完成点赞')" class="btn"-->
-<!--                            type="primary" size="small">立即点赞</el-button>-->
-<!--                        <el-button v-if="blog.readType == 3" @click="dialogVisible = true" class="btn" type="primary"-->
-<!--                            size="small">立即验证</el-button>-->
-
-<!--                    </div>-->
-<!--                </div>-->
             </div>
 
             <div class="read-duration">
@@ -156,7 +119,7 @@
             <div class="tag-share">
                 <div>
                     <a class="tagBtn hand-style" v-for=" item  in  blog.tagList " :key="item.uid"
-                        @click="handleClike(item.uid, '/tags')">
+                        @click="handleClick(item.uid, '/tags')">
                         <span type="success">
                             <i class="el-icon-collection-tag"></i> {{ item.name }}
                         </span>
@@ -185,9 +148,6 @@
 
 
                 </div>
-            </div>
-            <div class="wechatImg">
-                <img src="http://img.shiyit.com/souyisou1.png" alt="">
             </div>
             <!-- 版权 -->
             <div class="copyright">
@@ -232,7 +192,7 @@
                     <svg-icon icon-class="message"></svg-icon>
                     评论 <span style="color: var(--text-color);font-size: 0.8rem;">发表评论,来抢沙发</span>
                 </div>
-                <Comment :blogUid="blog.uid" />
+                <Comment :blogUid="blogUid" />
             </div>
         </el-card>
         <!-- 右边侧边栏 -->
@@ -249,7 +209,7 @@
                         </div>
                         <ul class="structureBox" style="">
                             <li ref="directoryItem"
-                                :style="{ paddingLeft: item.level * 10 + 'px', filter: active != index ? 'blur(1px)' : 'none' }"
+                                :style="{ paddingLeft: item.level * 10 + 'px', filter: active !== index ? 'blur(1px)' : 'none' }"
                                 :class="active == index ? 'structure active hand-style' : 'structure hand-style'"
                                 v-for="( item, index ) in  titles " :key="index" @click="handleNodeClick(item.id)">
                                 {{ item.title }}
@@ -260,30 +220,13 @@
             </div>
         </div>
 
-        <!-- 公众号扫码验证框 -->
-        <el-dialog :lock-scroll="false" title="关注公众号验证" center :visible.sync="dialogVisible">
-            <div style="text-align: center;">
-                <div>扫码关注公众号<span style="color: red;">【 拾壹学编程 】</span></div>
-                <div>回复<span style="color: red;">【 验证码 】</span>获取验证码</div>
-            </div>
-            <el-image class="wxImg" src="http://img.shiyit.com/wechatQr.jpg">
-                <div slot="error" class="image-slot">
-                    加载中<span class="dot">...</span>
-                </div>
-            </el-image>
-
-            <el-input wi v-model="code" placeholder="请输入验证码"></el-input>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="checkCode">确 定</el-button>
-            </span>
-        </el-dialog>
         <image-preview :img="images"></image-preview>
     </div>
 </template>
 <script>
-import { getBlog, articleLike, checkCode, followedUser, deleteFollowedUser } from '@/api'
+import { getBlog, blogLike } from "@/api/blog";
 import { collect, cancelCollect } from '@/api/collect'
+import { getToken } from "@/utils/cookieUtil";
 import MarkdownIt from 'markdown-it'
 import SiteInfo from '@/components/site/index.vue'
 import Comment from '@/components/comment/index.vue'
@@ -295,13 +238,6 @@ export default {
         imagePreview
     },
     metaInfo: {
-        meta: [{
-            name: 'keyWords',
-            content: "拾壹博客,开源博客,www.shiyit.com"  //变量或字符串
-        }, {
-            name: 'description',
-            content: "一个专注于技术分享的博客平台,大家以共同学习,乐于分享,拥抱开源的价值观进行学习交流"
-        }]
     },
     data() {
         return {
@@ -323,26 +259,13 @@ export default {
               }
             },
             rightShow: true,
-            code: null,
             style: '',
             titles: [],
             images: {},
-            readTypeList: ['', '评论阅读', '点赞阅读', '扫码阅读'],
-            readDescList: ['', '评论', '点赞', '扫码回复验证码'],
-            dialogVisible: false,
             active: 0,
-            fontNumber: 0,
             locationUrl: window.location.href,
-            commentList: [],
             blogUid: this.$route.params.blogUid,
-            commentQuery: {
-                pageNo: 1,
-                pageSize: 5,
-                blogUid: this.$route.params.blogUid,
-            },
-            commentPages: 0,
-            user: {},
-            serceShow: 0,
+            user: this.$store.state.user,
             left: "0px",
             codes: [],
             timer: null,
@@ -362,13 +285,13 @@ export default {
         window.addEventListener('scroll', this.onScroll, false)
         this.timer = setInterval(() => {
             console.log(123)
-            if (this.second == 60) {
+            if (this.second === 60) {
                 this.second = 0
                 this.minute++
             } else {
                 this.second++
             }
-            if (this.minute == 60) {
+            if (this.minute === 60) {
                 this.minute = 0
                 this.hour++
             }
@@ -376,17 +299,8 @@ export default {
     },
 
     computed: {
-        isCommentFlag() {
-            return this.$store.state.isCommentFlag
-        }
     },
     watch: {
-        isCommentFlag: function (newVal, oldVal) {
-            //插入需要在仓库数据变化时做的逻辑处理
-            if (newVal) {
-                this.checkAfter()
-            }
-        },
     },
     beforeDestroy() {
         clearInterval(this.timer);
@@ -401,14 +315,18 @@ export default {
             }
         }, true)
         this.$bus.$emit('show');
-        getBlog(this.blogUid).then(res => {
+      /**
+       * 获取博客内容
+       */
+      getBlog(this.blogUid).then(res => {
             this.blog = res.data
+            // 将博客内容从markdown转译为html
             const md = new MarkdownIt()
             this.blog.blogContent.content = md.render(this.blog.blogContent.content)    // markdown转html
-            this.serceShow = this.blog.activeReadType
-            if (this.blog.readType != 0 && !this.serceShow) {
-                this.style = "max-height: 1200px;overflow: hidden;"
-            }
+            // 把被转义掉的video标签转义回来
+            this.blog.blogContent.content = this.blog.blogContent.content.replace('&lt;video', '<video')
+            this.blog.blogContent.content = this.blog.blogContent.content.replace('src=&quot;', 'src="')
+            this.blog.blogContent.content = this.blog.blogContent.content.replace('&quot;&gt;&lt;/video&gt;', '"></video>')
 
             //处理目录和图片预览
             this.$nextTick(() => {
@@ -455,7 +373,10 @@ export default {
     },
 
     methods: {
-        handleDireMousEnter() {
+      /**
+       * 目录相关事件
+       */
+      handleDireMousEnter() {
             for (let i = 0; i < this.$refs.directoryItem.length; i++) {
                 this.$refs.directoryItem[i].style.filter = 'none'
             }
@@ -467,7 +388,6 @@ export default {
                 }
             }
         },
-
         handleNodeClick(data, event) {
             //  实现跳转锚点
             document.getElementById(data).scrollIntoView({ behavior: 'smooth' })
@@ -545,52 +465,8 @@ export default {
             document.getElementById('share-item').style.display = 'none'
             document.getElementById('social-share').style.backgroundColor = 'unset'
         },
-        handleGoIm() {
-            this.$router.push({ path: "/im", query: { userId: this.userInfo.id } })
-        },
-        handleFollowedUser() {
-            followedUser(this.blog.userId).then(res => {
-                this.blog.isFollowed = 1
-                this.$toast.success('关注成功')
-                this.userInfo.fansCount++
-
-            }).catch(err => {
-
-            });
-        },
-        handleDeleteFollowedUser() {
-            deleteFollowedUser(this.blog.userId).then(res => {
-                this.blog.isFollowed = 0
-
-                this.$toast.success('取消关注成功')
-                this.userInfo.fansCount--
-
-            }).catch(err => {
-
-            });
-        },
-        checkLikeAndCoomment(desc) {
-
-            this.$toast.info(desc)
-        },
-        checkCode() {
-            if (!this.code) {
-
-                this.$toast.error('验证码不能为空！')
-                return;
-            }
-            checkCode(this.code).then(res => {
-
-                this.$toast.success('验证成功')
-                this.checkAfter()
-            }).catch(err => {
-            })
-
-        },
         checkAfter() {
-            this.dialogVisible = false
             this.style = ''
-            this.serceShow = true
         },
         onScroll() {
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
@@ -613,25 +489,30 @@ export default {
 
         },
         handleCollect() {
+          if (getToken()) {
             let id = this.blog.uid;
             if (this.blog.isCollect) {
-                cancelCollect(id).then(res => {
-                    this.blog.collectCount--
-                    this.blog.isCollect = 0
+              cancelCollect(id).then(res => {
+                this.blog.collectCount--
+                this.blog.isCollect = 0
 
-                    this.$toast.success('取消收藏成功')
+                this.$toast.success('取消收藏成功')
 
-                })
+              })
             } else {
-                collect(id).then(res => {
-                    this.blog.collectCount++
-                    this.blog.isCollect = 1
+              collect(id).then(res => {
+                this.blog.collectCount++
+                this.blog.isCollect = 1
 
-                    this.$toast.success('收藏成功')
-                })
+                this.$toast.success('收藏成功')
+              })
             }
+          } else {
+            this.$store.commit("setLoginFlag", true);// 存储到vuex
+          }
+
         },
-        handleClike(uid, path) {
+        handleClick(uid, path) {
             this.$router.push({ path: path, query: { uid: uid } })
         },
 
@@ -646,25 +527,29 @@ export default {
             return `${year}-${month}-${date}`;
         },
         like(blogUid) {
-            articleLike(blogUid).then(res => {
-                if (this.blog.isLike) {
-                    this.blog.likeCount--;
-                    this.blog.isLike = false
+          if (getToken()) {
+            blogLike(blogUid).then(res => {
+              if (this.blog.isLike) {
+                this.blog.likeCount--;
+                this.blog.isLike = false
 
-                    this.$toast.success('取消点赞')
-                } else {
-                    this.blog.likeCount++;
-                    this.blog.isLike = true
-                    if (this.blog.readType == 2) {
-                        this.checkAfter()
-                    }
-
-                    this.$toast.success('点赞成功')
+                this.$toast.success('取消点赞')
+              } else {
+                this.blog.likeCount++;
+                this.blog.isLike = true
+                if (this.blog.readType == 2) {
+                  this.checkAfter()
                 }
+
+                this.$toast.success('点赞成功')
+              }
 
             }).catch(err => {
 
             })
+          } else {
+              this.$store.commit("setLoginFlag", true);// 存储到vuex
+          }
         },
 
     },

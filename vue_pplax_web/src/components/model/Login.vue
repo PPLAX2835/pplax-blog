@@ -27,27 +27,27 @@
                     <a class="forget hand-style" @click="handleChangeLoginMethod(3)">忘记密码</a>
                 </div>
 
-                <div>
-                    <div class="social-login-title">社交账号登录</div>
-                    <div class="social-login-wrapper">
-                        <a class="hand-style" v-show="isShow(2)" @click="openAuthLogin('qq')">
-                            <svg-icon icon-class="qq" />
-                        </a>
+<!--                <div>-->
+<!--                    <div class="social-login-title">社交账号登录</div>-->
+<!--                    <div class="social-login-wrapper">-->
+<!--                        <a class="hand-style" v-show="isShow(2)" @click="openAuthLogin('qq')">-->
+<!--                            <svg-icon icon-class="qq" />-->
+<!--                        </a>-->
 
-                        <a class="hand-style" v-show="isShow(4)" @click="openAuthLogin('gitee')">
-                            <svg-icon icon-class="gitee" />
-                        </a>
-                        <a class="hand-style" v-show="isShow(3)" @click="openAuthLogin('weibo')">
-                            <svg-icon icon-class="weibo" />
-                        </a>
-                        <a class="hand-style" v-show="isShow(5)" @click="handleChangeLoginMethod(4)">
-                            <svg-icon icon-class="wechat" />
-                        </a>
-                        <a class="hand-style" v-show="isShow(6)" @click="openAuthLogin('github')">
-                            <svg-icon icon-class="github" />
-                        </a>
-                    </div>
-                </div>
+<!--                        <a class="hand-style" v-show="isShow(4)" @click="openAuthLogin('gitee')">-->
+<!--                            <svg-icon icon-class="gitee" />-->
+<!--                        </a>-->
+<!--                        <a class="hand-style" v-show="isShow(3)" @click="openAuthLogin('weibo')">-->
+<!--                            <svg-icon icon-class="weibo" />-->
+<!--                        </a>-->
+<!--                        <a class="hand-style" v-show="isShow(5)" @click="handleChangeLoginMethod(4)">-->
+<!--                            <svg-icon icon-class="wechat" />-->
+<!--                        </a>-->
+<!--                        <a class="hand-style" v-show="isShow(6)" @click="openAuthLogin('github')">-->
+<!--                            <svg-icon icon-class="github" />-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <!-- 注册 -->
             <div v-if="index == 2">
@@ -191,12 +191,12 @@ export default {
     methods: {
         handleChangeLoginMethod(condition) {
             this.form = {}
-            if (condition == 1) {
+            if (condition === 1) {
                 clearInterval(this.timer);
                 this.title = "账号密码登录"
-            } else if (condition == 2) {
+            } else if (condition === 2) {
                 this.title = "邮箱注册"
-            } else if (condition == 3) {
+            } else if (condition === 3) {
                 this.title = "忘记密码"
             } else {
                 this.getWecahtLoginCode()
@@ -236,7 +236,7 @@ export default {
             });
         },
         handleSendEmailCode() {
-            if (this.form.email == null || this.form.email == '') {
+            if (this.form.email == null || this.form.email === '') {
 
                 this.$toast.error('请输入邮箱');
                 return

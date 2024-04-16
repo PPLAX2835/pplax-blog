@@ -51,13 +51,6 @@ export function searchArticle(params) {
     })
 }
 
-export function getBlog(uid) {
-    return request({
-        url: '/web/blog/' + uid,
-        method: 'get'
-    })
-}
-
 export function checkCode(code) {
     return request({
         url: '/v1/article/checkCode',
@@ -65,12 +58,6 @@ export function checkCode(code) {
         params: {
             code: code
         }
-    })
-}
-export function articleLike(id) {
-    return request({
-        url: '/web/blog/' + id + '/like',
-        method: 'post'
     })
 }
 export function archive() {

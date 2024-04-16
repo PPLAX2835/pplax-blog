@@ -1,5 +1,12 @@
 import service from '@/utils/request'
 
+export function getMyUserInfo() {
+  return service({
+    url: '/web/user/userInfo',
+    method: 'get',
+  })
+}
+
 /**
  * 获得用户信息
  * @param userUid

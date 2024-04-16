@@ -56,7 +56,7 @@ export default {
             icon: "el-icon-arrow-down",
             showIcon: true,
             liColHeight: 0, // 折叠面板内容初始高度
-            user: this.$store.state.userInfo,
+            user: this.$store.state.user,
         };
     },
     methods: {

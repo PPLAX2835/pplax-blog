@@ -55,7 +55,7 @@ export default {
             toUserUid: null,
             originalUid: null,
             type: null,
-            user: this.$store.state.userInfo,
+            user: this.$store.state.user,
             lastEditRange: null
         }
     },

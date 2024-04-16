@@ -17,7 +17,7 @@ export default {
     },
 
     created() {
-        // if (this.$store.state.userInfo) {
+        // if (this.$store.state.user) {
         //     if (getToken()) {
         //         getNewSystemNotice().then(res => {
         //             this.$store.commit("setSystemNotice", res.data)

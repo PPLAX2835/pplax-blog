@@ -301,7 +301,7 @@ export default {
     name: '',
     data() {
         return {
-            user: this.$store.state.userInfo,
+            user: this.$store.state.user,
             uploadPictureHost: process.env.VUE_APP_BASE_API + "/file/upload",
             dataList: [],
             total: 0,

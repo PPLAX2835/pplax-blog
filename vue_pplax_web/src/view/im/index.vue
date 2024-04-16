@@ -218,7 +218,7 @@ export default {
             messageList: [],
             emojiShow: false,
             userUid: getUserUid(),
-            user: this.$store.state.userInfo,
+            user: this.$store.state.user,
             totalPage: 0,
             isBackTop: false,
             message: null,

@@ -223,7 +223,7 @@ export default {
         return {
             widthPre: '',
             keywords: null,
-            user: this.$store.state.userInfo,
+            user: this.$store.state.user,
             style: null,
             path: null,
             isMobile: false,

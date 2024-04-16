@@ -80,7 +80,7 @@ export default {
             count: null,
             timer: null,
             barrageList: [],
-            user: this.$store.state.userInfo,
+            user: this.$store.state.user,
         };
     },
     methods: {

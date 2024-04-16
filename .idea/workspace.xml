@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/tag.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/blogSort/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/blogSort/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/tag/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/tag/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -351,14 +349,7 @@
       <workItem from="1712884337712" duration="22217000" />
       <workItem from="1713055450287" duration="17175000" />
       <workItem from="1713164330937" duration="7493000" />
-      <workItem from="1713232936553" duration="8069000" />
-    </task>
-    <task id="LOCAL-00344" summary="调整">
-      <created>1711179237332</created>
-      <option name="number" value="00344" />
-      <option name="presentableId" value="LOCAL-00344" />
-      <option name="project" value="LOCAL" />
-      <updated>1711179237332</updated>
+      <workItem from="1713232936553" duration="10906000" />
     </task>
     <task id="LOCAL-00345" summary="完成文件管理，后台基本做好了">
       <created>1711199868944</created>
@@ -696,7 +687,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713253108477</updated>
     </task>
-    <option name="localTasksCounter" value="393" />
+    <task id="LOCAL-00393" summary="整理分类、标签页面">
+      <created>1713254138111</created>
+      <option name="number" value="00393" />
+      <option name="presentableId" value="LOCAL-00393" />
+      <option name="project" value="LOCAL" />
+      <updated>1713254138111</updated>
+    </task>
+    <option name="localTasksCounter" value="394" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -731,7 +729,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="博客详情页基本能显示了，报错却能渲染应该是抖动的问题" />
     <MESSAGE value="博客详情页现在能显示评论了，修复部分页面抖动（好像叫这个）问题" />
     <MESSAGE value="博客详情页现在能显示评论了，修复部分undefined（原因是请求还没获得返回，但是页面已经渲染了）的问题" />
     <MESSAGE value="文章归档接口做好了" />
@@ -756,7 +753,8 @@
     <MESSAGE value="整理首页和头部导航栏" />
     <MESSAGE value="整理博客详情页" />
     <MESSAGE value="整理评论组件" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理评论组件" />
+    <MESSAGE value="整理分类、标签页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理分类、标签页面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -44,3 +44,30 @@ export function deleteBlog(id) {
         method: 'delete'
     })
 }
+
+/**
+ * 添加博客
+ * @param params
+ * @returns {*}
+ */
+export function addBlog(params) {
+    return request({
+        url: '/web/blog',
+        method: 'post',
+        data: params
+    })
+}
+
+/**
+ * 修改博客
+ * @param blogUid
+ * @param params
+ * @returns {*}
+ */
+export function updateBlog(blogUid, params) {
+    return request({
+        url: '/web/blog/' + blogUid,
+        method: 'put',
+        data: params
+    })
+}

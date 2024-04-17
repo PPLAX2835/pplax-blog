@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
@@ -16,6 +17,8 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.commons.validator.group.Insert;
+import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
@@ -193,6 +196,36 @@ public class BlogController extends SuperController {
             return success();
         }
 
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+
+    @ApiOperation(value="编辑博客", notes="编辑博客")
+    @PutMapping("/{blogUid}")
+    public String updateBlog(@PathVariable("blogUid") String blogUid, @RequestBody @Validated(value = {Update.class}) BlogEditDto blogEditDto) {
+        blogEditDto.setUid(blogUid);
+        Boolean res = blogService.updateById(blogEditDto);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+
+    @ApiOperation(value="添加博客", notes="添加博客")
+    @PostMapping(value = "")
+    public String add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) BlogEditDto blogEditDto) {
+        String authorization = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
+        String payloadByBase64 = JwtUtil.getPayloadByBase64(authorization);
+        String userUid = JSON.parseObject(payloadByBase64).get("uid").toString();
+        blogEditDto.setUserUid(userUid);
+
+        Blog blog = blogService.save(blogEditDto);
+
+        if (blog != null) {
+            return success(blog);
+        }
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 

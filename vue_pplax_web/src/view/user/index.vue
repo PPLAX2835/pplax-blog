@@ -127,11 +127,11 @@
                                             {{ item.title }}
                                         </div>
                                     </router-link>
-                                    <div class="status" :style="{ backgroundColor: statusStyle[item.isPublish] }">
-                                        {{ statusList[item.isPublish] }}
+                                    <div class="status" :style="{ backgroundColor: statusList[item.status].style }">
+                                        {{ statusList[item.status].name }}
                                     </div>
                                     <div class="articleBtn" v-if="loginUser.uid === userUid">
-                                        <div v-if="pageData.index == 0">
+                                        <div v-if="pageData.index === 0">
                                             <el-tooltip class="item" effect="dark" content="修改文章" placement="top">
                                                 <el-button type="primary" size="mini" @click="handleUpdateArticle(item.uid)"
                                                     icon="el-icon-edit" circle></el-button>
@@ -143,7 +143,7 @@
                                             </el-tooltip>
                                         </div>
 
-                                        <el-tooltip v-if="pageData.index == 1" class="item" effect="dark" content="取消收藏"
+                                        <el-tooltip v-if="pageData.index === 1" class="item" effect="dark" content="取消收藏"
                                             placement="top">
                                             <el-button type="danger" size="mini" @click="handleCanCollect(index, item.uid)"
                                                 icon="el-icon-delete" circle></el-button>
@@ -322,8 +322,28 @@ export default {
                 isCollect: false,
                 index: 0
             },
-            statusList: ["下架", "上架", "待审核", "草稿"],
-            statusStyle: ["#F56C6C", "#67C23A", "#909399", "#E6A23C"],
+            statusList: {
+              '1': {
+                name: '发布',
+                style: '#67C23A'
+              },
+              '3': {
+                name: '置顶',
+                style: '#903749'
+              },
+              '4': {
+                name: '下架',
+                style: '#F56C6C'
+              },
+              '5': {
+                name: '待审核',
+                style: '#909399'
+              },
+              '6': {
+                name: '草稿',
+                style: '#E6A23C'
+              }
+            },
             form: {
             },
             feedbackForm: {
@@ -468,8 +488,8 @@ export default {
                 this.form.lastLoginTime = res.data.lastLoginTime
             })
         },
-        handleUpdateArticle(id) {
-            this.$router.push({ path: "/newposts", query: { id: id } })
+        handleUpdateArticle(uid) {
+            this.$router.push({ path: "/blogEdit", query: { uid: uid } })
         },
         handleCanCollect(index, id) {
             this.$confirm('确认取消收藏该文章吗？', '提示', {
@@ -490,7 +510,7 @@ export default {
                     this.$toast.info('取消关闭')
                 });
         },
-        handleDeleteArticle(index, id) {
+        handleDeleteArticle(index, uid) {
             this.$confirm('确认删除该文章吗？', '提示', {
                 lockScroll: false,
                 confirmButtonText: '确定',
@@ -498,7 +518,7 @@ export default {
                 type: 'warning'
             })
                 .then(_ => {
-                    deleteBlog(id).then(res => {
+                    deleteBlog(uid).then(res => {
                         this.dataList.splice(index, 1)
 
                         this.$toast.success('删除成功')

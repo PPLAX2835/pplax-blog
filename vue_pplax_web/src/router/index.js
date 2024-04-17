@@ -45,8 +45,8 @@ const routes = [
                 }
             },
             {
-                path: "/newposts",
-                component: resolve => require(["@/view/blog/Add"], resolve),
+                path: "/blogEdit",
+                component: resolve => require(["@/view/blog/Edit"], resolve),
             },
             {
                 path: "/archive",

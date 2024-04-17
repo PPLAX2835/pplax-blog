@@ -7,3 +7,11 @@ export function fetchTagList(param) {
         params: param
     })
 }
+
+export function addTag(params) {
+    return request({
+        url: '/web/tag',
+        method: 'post',
+        data: params
+    })
+}

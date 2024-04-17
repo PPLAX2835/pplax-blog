@@ -416,6 +416,9 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             blog.setUser(user);
         }
 
+        // 封装封面
+        blog.setCoverImage(fileStorageService.getById(blog.getCoverImageUid()));
+
         // 获得分类
         blog.setBlogSort(blogSortService.getById(blog.getBlogSortUid()));
 

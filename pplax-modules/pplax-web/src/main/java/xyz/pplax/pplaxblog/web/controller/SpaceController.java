@@ -11,8 +11,6 @@ import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
 import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
-import javax.servlet.http.HttpServletRequest;
-
 
 /**
  * 个人主页 Controller

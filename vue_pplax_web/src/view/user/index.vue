@@ -51,6 +51,7 @@
                                 </li>
                                 <li>
                                     <el-upload class="avatar-uploader" :show-file-list="false" ref="upload" name="filedatas"
+                                         action=""
                                         :http-request="uploadBjCoverFile"
                                         :before-upload="handleUploadBefore" multiple>
                                         <svg-icon icon-class="photo"></svg-icon> 修改封面
@@ -224,14 +225,14 @@
 <!--                        地址： {{ form.address }}-->
 <!--                    </span>-->
 <!--                </div>-->
-<!--                <div class="dialogItem item">-->
-<!--                    <span>-->
-<!--                      注册时间：{{ timeFormat(form.createTime) }}-->
-<!--                    </span>-->
-<!--                  <span>-->
-<!--                    最后登录：{{ timeFormat(form.lastLoginTime) }}-->
-<!--                    </span>-->
-<!--                </div>-->
+                <div class="dialogItem item">
+                    <span>
+                      注册时间：{{ timeFormat(form.createTime) }}
+                    </span>
+                  <span>
+                    最后登录：{{ timeFormat(form.lastLoginTime) }}
+                    </span>
+                </div>
             </div>
         </el-dialog>
 
@@ -241,7 +242,7 @@
             <el-form label-position="left" label-width="60px" :model="form">
                 <el-form-item label="头像：">
                     <el-upload class="avatar-uploader" :show-file-list="false" ref="upload" name="filedatas"
-                        :http-request="uploadSectionFile" :before-upload="handleUploadBefore"
+                        action="" :http-request="uploadSectionFile" :before-upload="handleUploadBefore"
                         multiple>
                         <img v-if="user.userInfo.avatar" style="width: 50%;height: 50%;" :src="user.userInfo.avatar.fileUrl" class="imgAvatar">
                         <i v-else class="el-icon-plus avatar-img-icon"></i>
@@ -288,7 +289,7 @@
 </template>
    
 <script>
-import { getBlogListByUserUid, getUserCount, getUserInfo, updateUserInfo } from "@/api/user";
+import { getBlogListByUserUid, getUserCount, getUserInfo, updateMyUserInfo } from "@/api/user";
 import {deleteBlog} from "@/api/blog";
 import { addFeedback } from "@/api/feedback";
 import { parseTime } from "@/utils";
@@ -439,8 +440,8 @@ export default {
             this.$store.commit('setUserInfo', this.user)
         },
         updateUserInfo() {
-            updateUserInfo(getUserUid(), this.form).then(res => {
-                this.user = this.form
+            updateMyUserInfo(this.form).then(res => {
+                this.user = res.data
 
                 this.$toast.success('修改成功')
                 this.after()
@@ -451,16 +452,20 @@ export default {
             this.$router.push({ path: path, query: { uid: id } })
         },
         handleUpdateInfo() {
-            // this.handleBefore()
+            this.handleBefore()
             this.editDialogTableVisible = true
         },
         handleClikeMoreData() {
-            // this.handleBefore()
+            this.handleBefore()
             this.dialogTableVisible = true
         },
         handleBefore() {
-            getUserInfo().then(res => {
-                this.form = res.data
+            getUserInfo(this.userUid).then(res => {
+                this.form.nickname = res.data.userInfo.nickname
+                this.form.summary = res.data.userInfo.summary
+                this.form.email = res.data.email
+                this.form.createTime = res.data.createTime
+                this.form.lastLoginTime = res.data.lastLoginTime
             })
         },
         handleUpdateArticle(id) {
@@ -504,7 +509,9 @@ export default {
                 });
         },
         timeFormat(time) {
-          return parseTime(time).split(" ")[0]
+          if (time) {
+            return parseTime(time).split(" ")[0]
+          }
         },
         onPage() {
             this.pageData.currentPage++;

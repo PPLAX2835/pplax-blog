@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/feedback.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SpaceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SpaceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -247,8 +243,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
@@ -363,14 +359,7 @@
       <workItem from="1713164330937" duration="7493000" />
       <workItem from="1713232936553" duration="12437000" />
       <workItem from="1713265350231" duration="1549000" />
-      <workItem from="1713319674918" duration="16329000" />
-    </task>
-    <task id="LOCAL-00350" summary="打算使用https://github.com/Naccl/NBlog进行二次开发">
-      <created>1711789309427</created>
-      <option name="number" value="00350" />
-      <option name="presentableId" value="LOCAL-00350" />
-      <option name="project" value="LOCAL" />
-      <updated>1711789309427</updated>
+      <workItem from="1713319674918" duration="17705000" />
     </task>
     <task id="LOCAL-00351" summary="后台增加站点设置，目前还不太优雅">
       <created>1711801208482</created>
@@ -708,7 +697,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713343025934</updated>
     </task>
-    <option name="localTasksCounter" value="399" />
+    <task id="LOCAL-00399" summary="个人空间可以查看别的人的信息了">
+      <created>1713347496358</created>
+      <option name="number" value="00399" />
+      <option name="presentableId" value="LOCAL-00399" />
+      <option name="project" value="LOCAL" />
+      <updated>1713347496358</updated>
+    </task>
+    <option name="localTasksCounter" value="400" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -743,7 +739,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成标签页面" />
     <MESSAGE value="完成友链页面" />
     <MESSAGE value="新增留言表，完成留言管理" />
     <MESSAGE value="新增聊天室表，完成聊天室管理" />
@@ -768,7 +763,8 @@
     <MESSAGE value="整理接口" />
     <MESSAGE value="整理评论接口" />
     <MESSAGE value="整理聊天接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理聊天接口" />
+    <MESSAGE value="个人空间可以查看别的人的信息了" />
+    <option name="LAST_COMMIT_MESSAGE" value="个人空间可以查看别的人的信息了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -68,20 +68,22 @@ public class UserController extends SuperController {
     }
 
 
-    @ApiOperation(value="修改用户信息", notes="修改用户信息")
-    @PutMapping(value = "/{userUid}/userInfo")
-    public String updateUserInfo (@PathVariable("userUid") String userUid, @RequestBody UserInfoEditDto userInfoEditDto) {
-        if (userService.isUsernameExist(userInfoEditDto.getUsername())) {
-            User user = userService.getById(userUid);
-            if (!user.getUsername().equals(userInfoEditDto.getUsername())) {
-                return toJson(ResponseResult.error(HttpStatus.USERNAME_EXIST));
-            }
+    @ApiOperation(value="修改个人信息", notes="修改个人信息")
+    @PutMapping(value = "/userInfo")
+    public String updateUserInfo (HttpServletRequest httpServletRequest, @RequestBody UserInfoEditDto userInfoEditDto) {
+        String userUid = null;
+        String authorization = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.isEmpty(authorization)) {
+            String accessToken = authorization.replace("Bearer ", "");
+            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+            userUid = (String) jsonObject.get("uid");
         }
 
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);
 
         if (res) {
-            return success();
+            return getMyUserInfo(httpServletRequest);
         }
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }

@@ -8,6 +8,13 @@ export function getMyUserInfo() {
     method: 'get',
   })
 }
+export function updateMyUserInfo(data) {
+  return request({
+    url: '/web/user/userInfo',
+    method: 'put',
+    data
+  })
+}
 
 /**
  * 获得用户信息

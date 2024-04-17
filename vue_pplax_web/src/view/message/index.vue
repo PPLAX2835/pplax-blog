@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { listMessage, addMessage } from "@/api/message";
+import { listLeaveMessage, addLeaveMessage } from "@/api/message";
 import {getWebSiteInfoValue} from "@/utils";
 export default {
   metaInfo: {
@@ -54,36 +54,45 @@ export default {
     document.title = "留言板";
 
     let that = this
-    this.requestTimer = setInterval(function () {
-      listMessage(that.paramData).then(res => {
-        for (let i = 0; i < res.data.length; i++) {
-          let item = res.data[i]
-          that.barrageList.push({
-            nickname: item ? item.userInfo.nickname : "游客",
-            avatar: item ? ( item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : this.getWebSiteInfoValue('touristAvatar')) : this.getWebSiteInfoValue('touristAvatar'),      		//头像
-            content: item.content,             	//弹幕消息
-            time: Math.floor(Math.random() * (21 - 10) + 10),
-            status: 1,
-          });
+    listLeaveMessage(that.paramData).then(res => {
+      for (let i = 0; i < res.data.length; i++) {
+        let item = res.data[i]
+        let userInfo = {}
+        if (item.userInfo) {
+          userInfo = item.userInfo
+          if (!userInfo.avatar) {
+            userInfo.avatar = {
+              fileUrl: that.getWebSiteInfoValue('touristAvatar')
+            }
+          }
+        } else {
+          userInfo = {
+            nickname: '游客',
+            avatar: {
+              fileUrl: that.getWebSiteInfoValue('touristAvatar')
+            }
+          }
         }
-        that.total = res.total
+        that.barrageList.push({
+          nickname: userInfo.nickname,
+          avatar: userInfo.avatar.fileUrl,      		//头像
+          content: item.content,             	//弹幕消息
+          time: Math.floor(Math.random() * (21 - 10) + 10),
+          status: 1,
+        });
+      }
+      that.total = res.total
 
-        if (that.paramData.currentPage >= Math.ceil((that.total / that.paramData.pageSize))) {
-          clearInterval(that.requestTimer)
-        }
-
-        that.paramData.currentPage++
-      });
-    }, 500)
+      that.paramData.currentPage++
+    });
   },
   data() {
     return {
-      requestTimer: null,
       total: 0,
       paramData: {
         type: 0,
         currentPage: 1,
-        pageSize: 20
+        pageSize: 100
       },
       show: false,
       img: process.env.VUE_APP_IMG_API,
@@ -114,9 +123,9 @@ export default {
         time: Math.floor(Math.random() * (21 - 10) + 10)
       };
 
-      addMessage({
-        content: this.content,
-        type: 0}
+      addLeaveMessage({
+        content: this.content
+      }
       ).then(res => {
         this.barrageList.push(message);
 

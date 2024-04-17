@@ -134,6 +134,33 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
         return pageList;
     }
 
+    /**
+     * 获取留言
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public IPage<Message> listLeaveMessage(Long currentPage, Long pageSize) {
+        QueryWrapper<Message> chatMessageQueryWrapper = new QueryWrapper<>();
+        chatMessageQueryWrapper.ne(MessageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        chatMessageQueryWrapper.eq(MessageSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
+        chatMessageQueryWrapper.orderByDesc(MessageSQLConstants.CREATE_TIME);
+
+        //分页
+        Page<Message> page = new Page<>();
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
+
+        IPage<Message> pageList = page(page, chatMessageQueryWrapper);
+        for (Message chatMessage : pageList.getRecords()) {
+            // 封装用户信息
+            chatMessage.setUserInfo(userInfoService.getByUserUid(chatMessage.getUserUid()));
+        }
+
+        return pageList;
+    }
+
     @Override
     public Boolean read(String userUid, String chatRoomUid) {
         UpdateWrapper<Message> messageUpdateWrapper = new UpdateWrapper<>();

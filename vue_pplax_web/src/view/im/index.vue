@@ -192,9 +192,9 @@
 import {getUserUid} from "@/utils/cookieUtil";
 
 let socket;
-import { getUserImHistoryList, imageUpload, withdraw, getRoomList, addRoom, read, deleteRoom } from '@/api/im'
+import { getUserImHistoryList, imageUpload, withdraw, addRoom } from '@/api/im'
+import {getChatRoomList, deleteChatRoom, listChatMessage, addChatMessage, read} from "@/api/message";
 import { parseTime } from "@/utils";
-import { listMessage, addMessage } from '@/api/message'
 import { EStatus } from "@/base/EStatus";
 import Emoji from '@/components/emoji'
 import imagePreview from '@/components/imagePreview'
@@ -226,8 +226,8 @@ export default {
             title: "PPLAX blog",
             lastIndex: null,
             userId: this.$route.query.userId,
+            chatRoomUid: null,
             pageData: {
-                chatRoomUid: null,
                 currentPage: 1,
                 pageSize: 10
             },
@@ -331,7 +331,7 @@ export default {
                 lockScroll: false,
                 type: 'warning'
             }).then(() => {
-                deleteRoom(id).then(res => {
+                deleteChatRoom(id).then(res => {
                     this.$delete(this.roomList, index);
 
                     this.$toast.success("删除成功");
@@ -400,13 +400,13 @@ export default {
 
 
             this.pageData.currentPage = 1
-            this.pageData.chatRoomUid = item.uid
+            this.chatRoomUid = item.uid
 
             //为空则是群聊
             this.title = item.name
             this.messageList = []
             this.selectUserOnline = item
-            listMessage(this.pageData).then(res => {
+            listChatMessage(this.chatRoomUid, this.pageData).then(res => {
                 let arr = res.data
                 for (let i = arr.length - 1; i >= 0; i--) {
                     this.messageList.push(arr[i])
@@ -486,17 +486,18 @@ export default {
             this.pageData.currentPage++;
             this.isBackTop = true
             this.isLoding = true
-            if (this.selectUserOnline) {
-                getUserImHistoryList(this.pageData).then(res => {
-                    let arr = res.data.records
-                    for (let i = 0; i < arr.length; i++) {
-                        this.messageList.unshift(arr[i])
-                    }
-                    this.isLoding = false
-                })
-                return;
-            }
-          listMessage(this.pageData).then(res => {
+            // 这个应该是socket的，之后再说
+            // if (this.selectUserOnline) {
+            //     getUserImHistoryList(this.pageData).then(res => {
+            //         let arr = res.data.records
+            //         for (let i = 0; i < arr.length; i++) {
+            //             this.messageList.unshift(arr[i])
+            //         }
+            //         this.isLoding = false
+            //     })
+            //     return;
+            // }
+          listChatMessage(this.chatRoomUid, this.pageData).then(res => {
                 let arr = res.data.records
                 for (let i = 0; i < arr.length; i++) {
                     this.messageList.unshift(arr[i])
@@ -506,8 +507,8 @@ export default {
         },
         //获取群聊历史记录
         getHistoryList() {
-          if (this.pageData.chatRoomUid) {
-            listMessage(this.pageData).then(res => {
+          if (this.chatRoomUid) {
+            listChatMessage(this.chatRoomUid, this.pageData).then(res => {
               let arr = res.data.records
               for (let i = arr.length - 1; i >= 0; i--) {
                 this.messageList.push(arr[i])
@@ -618,14 +619,12 @@ export default {
             }
 
             let message = {
-              'chatRoomUid': this.pageData.chatRoomUid,
               'content': content,
-              'readUserUids': this.userUid,
-              'type': 1
+              'readUserUids': this.userUid
             }
 
             //发送消息
-            addMessage(message).then(res => {
+          addChatMessage(this.chatRoomUid, message).then(res => {
               this.messageList.push(res.data)
             })
             // 构建消息内容，本人消息
@@ -712,7 +711,7 @@ export default {
         open() {
             console.log("websocket已打开");
             //获取房间列表
-            getRoomList(getUserUid()).then(res => {
+            getChatRoomList(getUserUid()).then(res => {
                 this.roomList.push(...res.data)
             })
             if (this.userId != null) {

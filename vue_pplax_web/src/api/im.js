@@ -10,15 +10,6 @@ export function imageUpload(data) {
         data
     })
 }
-export function getRoomList(userUid) {
-    return request({
-        url: '/web/chat/room/list',
-        method: 'get',
-        params: {
-            userUid: userUid
-        }
-    })
-}
 export function addRoom(userId) {
     return request({
         url: '/v1/im/addRoom',
@@ -40,21 +31,6 @@ export function getUserImHistoryList(params) {
         url: '/v1/im/selectUserImHistory',
         method: 'get',
         params: params
-    })
-}
-export function read(chatRoomUid) {
-    return request({
-        url: '/web/message/read',
-        method: 'get',
-        params: {
-            chatRoomUid: chatRoomUid
-        }
-    })
-}
-export function deleteRoom(roomId) {
-    return request({
-        url: '/web/chat/room/' + roomId,
-        method: 'delete'
     })
 }
 export function getMessageNotice(params) {

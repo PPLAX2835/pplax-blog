@@ -14,5 +14,7 @@ public interface MessageService extends SuperService<Message> {
 
     IPage<Message> listChatMessage(String userUid, String chatRoomUid, Long currentPage, Long pageSize);
 
+    IPage<Message> listLeaveMessage(Long currentPage, Long pageSize);
+
     Boolean read(String userUid, String chatRoomUid);
 }

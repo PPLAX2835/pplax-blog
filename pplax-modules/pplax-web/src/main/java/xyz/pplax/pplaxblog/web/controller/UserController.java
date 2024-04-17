@@ -29,9 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController extends SuperController {
 
     @Autowired
-    private AdminFeignClient adminFeignClient;
-
-    @Autowired
     private UserService userService;
 
     @Autowired

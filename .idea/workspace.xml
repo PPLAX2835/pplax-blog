@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整理评论接口">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/feedback.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/ChatController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/message/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/message/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/message/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/message/MessageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/im.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/im.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SpaceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SpaceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -363,14 +363,7 @@
       <workItem from="1713164330937" duration="7493000" />
       <workItem from="1713232936553" duration="12437000" />
       <workItem from="1713265350231" duration="1549000" />
-      <workItem from="1713319674918" duration="12110000" />
-    </task>
-    <task id="LOCAL-00349" summary="准备弄前台">
-      <created>1711523774760</created>
-      <option name="number" value="00349" />
-      <option name="presentableId" value="LOCAL-00349" />
-      <option name="project" value="LOCAL" />
-      <updated>1711523774760</updated>
+      <workItem from="1713319674918" duration="16329000" />
     </task>
     <task id="LOCAL-00350" summary="打算使用https://github.com/Naccl/NBlog进行二次开发">
       <created>1711789309427</created>
@@ -708,7 +701,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713339022044</updated>
     </task>
-    <option name="localTasksCounter" value="398" />
+    <task id="LOCAL-00398" summary="整理聊天接口">
+      <created>1713343025934</created>
+      <option name="number" value="00398" />
+      <option name="presentableId" value="LOCAL-00398" />
+      <option name="project" value="LOCAL" />
+      <updated>1713343025934</updated>
+    </task>
+    <option name="localTasksCounter" value="399" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -743,7 +743,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整分页组件" />
     <MESSAGE value="完成标签页面" />
     <MESSAGE value="完成友链页面" />
     <MESSAGE value="新增留言表，完成留言管理" />
@@ -768,7 +767,8 @@
     <MESSAGE value="整理关于、友链" />
     <MESSAGE value="整理接口" />
     <MESSAGE value="整理评论接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理评论接口" />
+    <MESSAGE value="整理聊天接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理聊天接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

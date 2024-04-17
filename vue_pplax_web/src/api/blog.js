@@ -37,3 +37,10 @@ export function blogLike(blogUid) {
         method: 'post'
     })
 }
+
+export function deleteBlog(id) {
+    return request({
+        url: '/web/blog/' + id,
+        method: 'delete'
+    })
+}

@@ -3,7 +3,7 @@
         <div class="user-warpper">
             <div class="userBox">
                 <div class="backgroupImg">
-                    <img v-lazy="user.userInfo.spaceBackgroundPicture !== undefined ? user.userInfo.spaceBackgroundPicture.fileUrl : ''" :key="user.userInfo.spaceBackgroundPicture.uid">
+                    <img v-lazy="user.userInfo.spaceBackgroundPicture ? user.userInfo.spaceBackgroundPicture.fileUrl : getWebSiteInfoValue('touristBackground')">
 
                     <el-row type="flex" class="row-bg top-btn">
                         <el-col :span="18">
@@ -40,7 +40,7 @@
 <!--                        </el-col>-->
                     </el-row>
 
-                    <div class="more hand-style">
+                    <div v-if="loginUser.uid === userUid" class="more hand-style">
                         <div class="menu">
                             <ul>
                                 <li @click="handleUpdateInfo">
@@ -51,7 +51,7 @@
                                 </li>
                                 <li>
                                     <el-upload class="avatar-uploader" :show-file-list="false" ref="upload" name="filedatas"
-                                        :action="uploadPictureHost" :http-request="uploadBjCoverFile"
+                                        :http-request="uploadBjCoverFile"
                                         :before-upload="handleUploadBefore" multiple>
                                         <svg-icon icon-class="photo"></svg-icon> 修改封面
                                     </el-upload>
@@ -67,16 +67,16 @@
                 </div>
                 <div class="user-item">
                     <div class="toolbar">
-                        <img class="cover" :src="user.userInfo.avatar !== undefined ? user.userInfo.avatar.fileUrl : ''" alt="">
+                        <img class="cover" :src="user.userInfo.avatar !== undefined ? user.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')" alt="">
                     </div>
                     <div class="userInfo">
                         <div class="nickname">
                             昵称：<span>{{ user.userInfo.nickname }}</span>
-                            <el-tooltip class="item" effect="dark" content="LV1" placement="top">
-                                <span>
-                                    <svg-icon icon-class="level1"></svg-icon>
-                                </span>
-                            </el-tooltip>
+<!--                            <el-tooltip class="item" effect="dark" content="LV1" placement="top">-->
+<!--                                <span>-->
+<!--                                    <svg-icon icon-class="level1"></svg-icon>-->
+<!--                                </span>-->
+<!--                            </el-tooltip>-->
 
                         </div>
                         <div class="desc">
@@ -96,7 +96,7 @@
             <div class="bottom-box">
                 <div class="title">
                     <ul>
-                        <li ref="btn" :class="index == 0 ? 'active hand-style' : 'hand-style'" @click="btnClike(index)"
+                        <li ref="btn" :class="index === 0 ? 'active hand-style' : 'hand-style'" @click="btnClike(index)"
                             v-for="(item, index) in btnList" :key="index">
                             <span class="item-title">
                                 <i :class="item.icon"></i> {{ item.name }}
@@ -115,7 +115,7 @@
                         <div v-if="pageData.index != 2" class="article" v-for="(item, index) in dataList" :key="index">
                             <router-link :to="'/blog/' + item.uid">
                                 <div class="article-cover hand-style">
-                                    <img v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : ''" :key="item.uid + 'coverImage'">
+                                    <img v-lazy="item.coverImage !== undefined ? item.coverImage.fileUrl : getWebSiteInfoValue('defaultBlogCoverImage')" :key="item.uid + 'coverImage'">
                                 </div>
                             </router-link>
 
@@ -129,12 +129,12 @@
                                     <div class="status" :style="{ backgroundColor: statusStyle[item.isPublish] }">
                                         {{ statusList[item.isPublish] }}
                                     </div>
-                                    <div class="articleBtn">
+                                    <div class="articleBtn" v-if="loginUser.uid === userUid">
                                         <div v-if="pageData.index == 0">
-<!--                                            <el-tooltip class="item" effect="dark" content="修改文章" placement="top">-->
-<!--                                                <el-button type="primary" size="mini" @click="handleUpdateArticle(item.uid)"-->
-<!--                                                    icon="el-icon-edit" circle></el-button>-->
-<!--                                            </el-tooltip>-->
+                                            <el-tooltip class="item" effect="dark" content="修改文章" placement="top">
+                                                <el-button type="primary" size="mini" @click="handleUpdateArticle(item.uid)"
+                                                    icon="el-icon-edit" circle></el-button>
+                                            </el-tooltip>
                                             <el-tooltip class="item" effect="dark" content="删除文章" placement="top">
                                                 <el-button type="danger" size="mini"
                                                     @click="handleDeleteArticle(index, item.uid)" icon="el-icon-delete"
@@ -224,14 +224,14 @@
 <!--                        地址： {{ form.address }}-->
 <!--                    </span>-->
 <!--                </div>-->
-                <div class="dialogItem item">
-                    <span>
-                      注册时间：{{ timeFormat(form.createTime) }}
-                    </span>
-                  <span>
-                    最后登录：{{ timeFormat(form.lastLoginTime) }}
-                    </span>
-                </div>
+<!--                <div class="dialogItem item">-->
+<!--                    <span>-->
+<!--                      注册时间：{{ timeFormat(form.createTime) }}-->
+<!--                    </span>-->
+<!--                  <span>-->
+<!--                    最后登录：{{ timeFormat(form.lastLoginTime) }}-->
+<!--                    </span>-->
+<!--                </div>-->
             </div>
         </el-dialog>
 
@@ -241,7 +241,7 @@
             <el-form label-position="left" label-width="60px" :model="form">
                 <el-form-item label="头像：">
                     <el-upload class="avatar-uploader" :show-file-list="false" ref="upload" name="filedatas"
-                        :action="uploadPictureHost" :http-request="uploadSectionFile" :before-upload="handleUploadBefore"
+                        :http-request="uploadSectionFile" :before-upload="handleUploadBefore"
                         multiple>
                         <img v-if="user.userInfo.avatar" style="width: 50%;height: 50%;" :src="user.userInfo.avatar.fileUrl" class="imgAvatar">
                         <i v-else class="el-icon-plus avatar-img-icon"></i>
@@ -288,23 +288,33 @@
 </template>
    
 <script>
-import {
-    updateUserInfo, getUserInfo, upload, getArticleByUserId,
-    deleteMyArticle, addFeedback, getUserCount
-} from '@/api'
-import {parseTime} from "@/utils";
+import { getBlogListByUserUid, getUserCount, getUserInfo, updateUserInfo } from "@/api/user";
+import {deleteBlog} from "@/api/blog";
+import { addFeedback } from "@/api/feedback";
+import { parseTime } from "@/utils";
 import { cancelCollect } from '@/api/collect'
 import { sign, validateTodayIsSign } from '@/api/sign'
 import {avatarUpload, spaceBackgroundPictureUpload} from "@/api/fileStorage";
+import {getWebSiteInfoValue} from "@/utils";
 import {getUserUid} from "@/utils/cookieUtil";
 export default {
     name: '',
     data() {
         return {
-            user: this.$store.state.user,
-            uploadPictureHost: process.env.VUE_APP_BASE_API + "/file/upload",
+            user: {
+              userInfo: {
+                avatar: {
+                  fileUrl: ''
+                },
+                spaceBackgroundPicture: {
+                  fileUrl: ''
+                }
+              }
+            },
+            loginUser: this.$store.state.user,
             dataList: [],
             total: 0,
+            userUid: this.$route.query.userUid,
             pageData: {
                 currentPage: 1,
                 pageSize: 10,
@@ -372,13 +382,19 @@ export default {
           isEmailActivated: this.user.isEmailActivated,
           lastLoginTime: this.user.lastLoginTime
         }
+        this.getUserInfo()
         this.selectAricleList()
         // this.validateTodayIsSign()
         this.getCount()
     },
     methods: {
+        getUserInfo() {
+          getUserInfo(this.userUid).then(res => {
+            this.user = res.data
+          })
+        },
         getCount() {
-            getUserCount().then(res => {
+            getUserCount(this.userUid).then(res => {
                 let count = {
                     article: res.data.blogCount,
                     collect: res.data.collectCount,
@@ -386,6 +402,9 @@ export default {
                 }
                 this.count = count
             })
+        },
+        getWebSiteInfoValue(key) {
+          return getWebSiteInfoValue(this.$store.state.webSiteInfo, key)
         },
         insertFeedback() {
             this.$refs['feedbackRuleForm'].validate((valid) => {
@@ -474,7 +493,7 @@ export default {
                 type: 'warning'
             })
                 .then(_ => {
-                    deleteMyArticle(id).then(res => {
+                    deleteBlog(id).then(res => {
                         this.dataList.splice(index, 1)
 
                         this.$toast.success('删除成功')
@@ -523,7 +542,7 @@ export default {
             if (type) {
                 this.pageData.type = type
             }
-            getArticleByUserId(this.pageData).then(res => {
+            getBlogListByUserUid(this.userUid, this.pageData).then(res => {
                 this.dataList.push(...res.data);
                 this.total = res.total
                 this.pages = res.data.pages

@@ -171,7 +171,7 @@
                         <img v-else :src="userInfo.userInfo.avatar.fileUrl" alt="" />
                     </div>
                     <el-dropdown-menu slot="dropdown" v-if="userInfo">
-                        <router-link style="text-decoration: none;color: #71777c;" :to="'/user'">
+                        <router-link style="text-decoration: none;color: #71777c;" :to="'/user?userUid=' + user.uid">
                             <el-dropdown-item>
                                 个人中心
                             </el-dropdown-item>

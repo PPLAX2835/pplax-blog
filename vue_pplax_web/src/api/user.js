@@ -1,4 +1,6 @@
 import service from '@/utils/request'
+import request from "@/utils/request";
+import user from "@/view/user";
 
 export function getMyUserInfo() {
   return service({
@@ -25,10 +27,23 @@ export function getUserInfo(userUid) {
  * @param params
  * @returns {*}
  */
-export function updateUserInfo(userUid, params) {
-  return service({
+export function updateUserInfo(userUid, data) {
+  return request({
     url: '/web/user/' + userUid + '/userInfo',
     method: 'put',
-    data: params
+    data
+  })
+}
+export function getBlogListByUserUid(userUid, params) {
+  return request({
+    url: '/web/user/' + userUid + '/space/blog/list',
+    method: 'get',
+    params: params
+  })
+}
+export function getUserCount(userUid) {
+  return request({
+    url: '/web/user/' + userUid + '/space/count',
+    method: 'get'
   })
 }

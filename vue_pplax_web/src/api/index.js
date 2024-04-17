@@ -1,18 +1,5 @@
 import request from '@/utils/request'
 
-export function getArticleByUserId(params) {
-    return request({
-        url: '/web/user/space/blog/list',
-        method: 'get',
-        params: params
-    })
-}
-export function deleteMyArticle(id) {
-    return request({
-        url: '/web/blog/' + id,
-        method: 'delete'
-    })
-}
 export function getMyArticleInfo(id) {
     return request({
         url: '/v1/article/selectMyArticleInfo',
@@ -147,13 +134,6 @@ export function emailRegister(data) {
         data
     })
 }
-export function updateUserInfo(userUid, data) {
-    return request({
-        url: '/web/user/' + userUid + '/userInfo',
-        method: 'put',
-        data
-    })
-}
 export function getUserInfo(userId) {
     return request({
         url: '/v1/user/info',
@@ -172,12 +152,6 @@ export function selectUserInfoByToken(token) {
         }
     })
 }
-export function getUserCount(id) {
-    return request({
-        url: '/web/user/space/count',
-        method: 'get'
-    })
-}
 export function upload(data) {
     return request({
         url: '/file/upload',
@@ -187,13 +161,6 @@ export function upload(data) {
     })
 }
 
-export function addFeedback(data) {
-    return request({
-        url: '/web/feedback',
-        method: 'post',
-        data
-    })
-}
 export function getCollect() {
     return request({
         url: '/v1/collect/',

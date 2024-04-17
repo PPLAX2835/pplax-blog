@@ -293,7 +293,7 @@ import {
     deleteMyArticle, addFeedback, getUserCount
 } from '@/api'
 import {parseTime} from "@/utils";
-import { cancelCollect, getCollect } from '@/api/collect'
+import { cancelCollect } from '@/api/collect'
 import { sign, validateTodayIsSign } from '@/api/sign'
 import {avatarUpload, spaceBackgroundPictureUpload} from "@/api/fileStorage";
 import {getUserUid} from "@/utils/cookieUtil";
@@ -530,12 +530,6 @@ export default {
                 this.$bus.$emit('close');
             }).catch(err => {
                 this.$bus.$emit('close');
-            })
-        },
-        selectCollectionList() {
-            getCollect(this.pageData).then(res => {
-                this.dataList.push(...res.data.records);
-                this.pages = res.data.pages
             })
         },
         handleUploadBefore() {

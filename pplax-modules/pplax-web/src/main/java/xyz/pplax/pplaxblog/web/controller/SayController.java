@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
+import xyz.pplax.pplaxblog.xo.entity.Comment;
 import xyz.pplax.pplaxblog.xo.entity.Say;
 import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
 import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
@@ -84,6 +86,38 @@ public class SayController extends SuperController {
         }
 
         boolean res = commentService.like(sayUid, userUid, CharacterConstants.NUM_THREE);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+
+    @ApiOperation(value = "评论", httpMethod = "POST", response = ResponseResult.class, notes = "评论")
+    @PostMapping("/{sayUid}/comment")
+    public String comment(
+            HttpServletRequest httpServletRequest,
+            @PathVariable("sayUid") String sayUid,
+            @RequestBody Comment comment
+    ){
+        String userUid = null;
+        String authorization = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.isEmpty(authorization)) {
+            String accessToken = authorization.replace("Bearer ", "");
+            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+            userUid = (String) jsonObject.get("uid");
+        }
+
+        comment.setOriginalUid(sayUid);
+        comment.setUid(StringUtils.getUUID());
+        comment.setUserUid(userUid);
+        comment.setIp(IpUtils.getIpAddress(httpServletRequest));
+        comment.setAddress(IpUtils.getCityInfo(comment.getIp()));
+
+        boolean res = commentService.save(comment);
 
         if (res) {
             return success();

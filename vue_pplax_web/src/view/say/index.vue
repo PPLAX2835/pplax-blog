@@ -148,7 +148,7 @@
   </div>
 </template>
 <script>
-import { getSayList, sayLike, sayComment } from '@/api/say'
+import { getSayList, sayLike } from '@/api/say'
 import {getWebSiteInfoValue} from "@/utils";
 import {postComment} from "@/api/comment";
 import Emoji from '@/components/emoji'
@@ -162,13 +162,6 @@ export default {
     imagePreview
   },
   metaInfo: {
-    meta: [{
-      name: 'keyWords',
-      content: "拾壹博客,开源博客,www.shiyit.com"  //变量或字符串
-    }, {
-      name: 'description',
-      content: "一个专注于技术分享的博客平台,大家以共同学习,乐于分享,拥抱开源的价值观进行学习交流"
-    }]
   },
   data() {
     return {

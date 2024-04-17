@@ -150,5 +150,51 @@ public class BlogController extends SuperController {
         return adminFeignClient.deleteBlog(blogUid);
     }
 
+
+    @ApiOperation(value = "获取评论列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取评论列表")
+    @GetMapping("/{blogUid}/comment/list")
+    public String getBlogList(
+            @PathVariable(value = "blogUid") String blogUid,
+            @RequestParam(value = "currentPage") Long currentPage,
+            @RequestParam(value = "pageSize") Long pageSize
+    ){
+
+        IPage<Comment> commentIPage = commentService.pageByBlogUid(blogUid, 0, currentPage, pageSize);
+
+        return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
+    }
+
+    @ApiOperation(value = "评论", httpMethod = "POST", response = ResponseResult.class, notes = "评论")
+    @PostMapping("/{blogUid}/comment")
+    public String comment(
+            HttpServletRequest httpServletRequest,
+            @PathVariable("blogUid") String blogUid,
+            @RequestBody Comment comment
+    ){
+        String userUid = null;
+        String authorization = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.isEmpty(authorization)) {
+            String accessToken = authorization.replace("Bearer ", "");
+            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+            userUid = (String) jsonObject.get("uid");
+        }
+
+        comment.setOriginalUid(blogUid);
+        comment.setType(0);
+        comment.setUid(StringUtils.getUUID());
+        comment.setUserUid(userUid);
+        comment.setIp(IpUtils.getIpAddress(httpServletRequest));
+        comment.setAddress(IpUtils.getCityInfo(comment.getIp()));
+
+        boolean res = commentService.save(comment);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
 }
 

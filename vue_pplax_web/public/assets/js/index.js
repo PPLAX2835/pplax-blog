@@ -3,13 +3,13 @@ var vm;
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
         //离开此标签页
-        document.title = "不要走吗o(>﹏<)o"
+        document.title = "o(>﹏<)o"
     } else {
         //进入此标签页
-        document.title = "咦~ 你又回来了O(∩_∩)O哈哈~"
+        document.title = "O(∩_∩)O"
 
         window.setTimeout(() => {
-            document.title = "拾壹博客-一个专注于技术分享的博客平台"
+            document.title = "PPLAX-blog"
         }, 800)
     }
 }, false);
@@ -80,7 +80,7 @@ color: rgb(30,152,255);
 `
 
 /* 内容代码 */
-var title1 = '🌒 拾壹博客 '
+var title1 = 'PPLAX blog'
 
 // => 读取配置型(在配置文件里配置这些会变动的网址)
 var offiUrl = 'https://www.shiyit.com/'

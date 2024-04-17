@@ -2,13 +2,6 @@ import request from '@/utils/request'
 import user from "@/view/user";
 
 // 聊天室接口
-export function getImHistory(params) {
-    return request({
-        url: '/v1/im/',
-        method: 'get',
-        params: params
-    })
-}
 export function imageUpload(data) {
     return request({
         url: '/file/message/image',
@@ -33,13 +26,6 @@ export function addRoom(userId) {
         params: {
             userId: userId
         }
-    })
-}
-export function send(data) {
-    return request({
-        url: '/v1/im/chat',
-        method: 'post',
-        data
     })
 }
 export function withdraw(data) {

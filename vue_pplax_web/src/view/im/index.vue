@@ -192,8 +192,7 @@
 import {getUserUid} from "@/utils/cookieUtil";
 
 let socket;
-import { upload } from '@/api'
-import { getImHistory, getUserImHistoryList, imageUpload, send, withdraw, getRoomList, addRoom, read, deleteRoom } from '@/api/im'
+import { getUserImHistoryList, imageUpload, withdraw, getRoomList, addRoom, read, deleteRoom } from '@/api/im'
 import { parseTime } from "@/utils";
 import { listMessage, addMessage } from '@/api/message'
 import { EStatus } from "@/base/EStatus";
@@ -224,7 +223,7 @@ export default {
             message: null,
             textImg: null,
             selectIndex: null,
-            title: "拾壹博客交流群",
+            title: "PPLAX blog",
             lastIndex: null,
             userId: this.$route.query.userId,
             pageData: {

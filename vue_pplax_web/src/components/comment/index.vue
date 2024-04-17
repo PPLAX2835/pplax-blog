@@ -223,7 +223,7 @@
   </div>
 </template>
 <script>
-import { postComment, featchComments } from '@/api/comment'
+import { fetchBlogCommentList, postBlogComment } from '@/api/blog'
 import {getWebSiteInfoValue, parseTime} from "@/utils/index";
 import Reply from './Reply.vue'
 import Emoji from '@/components/emoji'
@@ -245,10 +245,9 @@ export default {
       opacity: 0,
       show: null,
       user: this.$store.state.user,
+      blogUid: this.blogUid,
       // 加载层信息
       pageData: {
-        blogUid: this.blogUid,
-        type: 0,
         currentPage: 1,
         pageSize: 5,
       },
@@ -281,7 +280,7 @@ export default {
      * 获取评论
      */
     getComments() {
-      featchComments(this.pageData).then(res => {
+      fetchBlogCommentList(this.blogUid, this.pageData).then(res => {
         this.commentList = res.data
         this.total = res.total
       })
@@ -393,12 +392,10 @@ export default {
     reloadReply(index) {
       let query = {
         currentPage: this.pageData.currentPage,
-        pageSize: 5,
-        blogUid: this.blogUid,
-        type: 0
+        pageSize: 5
       }
 
-      featchComments(query).then(res => {
+      fetchBlogCommentList(this.blogUid, query).then(res => {
         this.commentList = res.data
         this.total = res.total
       })
@@ -433,11 +430,9 @@ export default {
         return;
       }
       let comment = {
-        originalUid: this.blogUid,
-        content: this.$refs.textareaRef.innerHTML,
-        type: 0
+        content: this.$refs.textareaRef.innerHTML
       }
-      postComment(comment).then(res => {
+      postBlogComment(this.blogUid, comment).then(res => {
         this.pageData.currentPage = 1
         this.getComments()
         this.$toast.success('评论成功')
@@ -448,7 +443,7 @@ export default {
     moreComment(val) {
       this.$bus.$emit('show');
       this.pageData.currentPage = val;
-      featchComments(this.pageData).then(res => {
+      fetchBlogCommentList(this.blogUid, this.pageData).then(res => {
         this.commentList.push(...res.data)
         this.total = res.total
         this.$bus.$emit('close');

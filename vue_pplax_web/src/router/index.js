@@ -8,14 +8,14 @@ const routes = [
         path: "/",
         component: home,
         meta: {
-            title: "拾壹博客-一个专注于技术分享的博客平台"
+            title: "PPLAX blog"
         },
         children: [
             {
                 path: "/",
                 component: resolve => require(["@/view/home/index.vue"], resolve),
                 meta: {
-                    title: "拾壹博客-一个专注于技术分享的博客平台"
+                    title: "PPLAX blog"
                 }
             },
             {
@@ -89,7 +89,7 @@ const routes = [
                 path: "/im",
                 component: resolve => require(["@/view/im/index"], resolve),
                 meta: {
-                    title: "拾壹博客-一个专注于技术分享的博客平台"
+                    title: "PPLAX blog"
                 }
             },
             {
@@ -104,7 +104,7 @@ const routes = [
                 path: "/notice",
                 component: resolve => require(["@/view/notice/index.vue"], resolve),
                 meta: {
-                    title: "拾壹博客-一个专注于技术分享的博客平台"
+                    title: "PPLAX blog"
                 }
             },
             {
@@ -118,7 +118,7 @@ const routes = [
                 path: "/user",
                 component: resolve => require(["@/view/user/index.vue"], resolve),
                 meta: {
-                    title: "拾壹博客-一个专注于技术分享的博客平台"
+                    title: "PPLAX blog"
                 }
             },
 

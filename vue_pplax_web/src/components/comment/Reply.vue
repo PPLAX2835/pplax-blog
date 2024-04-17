@@ -54,7 +54,7 @@
   </div>
 </template>
 <script>
-import { postComment } from '@/api/comment'
+import { commentReply } from '@/api/comment'
 import { getWebSiteInfoValue } from "@/utils";
 import Emoji from '@/components/emoji'
 export default {
@@ -190,10 +190,9 @@ export default {
         content: this.$refs.textareaRef.innerHTML,
         toUid: this.toUid,
         toUserUid: this.toUserUid,
-        originalUid: this.originalUid,
         type: this.type
       }
-      postComment(comment).then(res => {
+      commentReply(this.originalUid, comment).then(res => {
         this.$emit("reloadReply", this.index);
         this.$toast.success('评论成功')
         this.$store.commit("isCommentFlag", true)

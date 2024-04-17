@@ -36,25 +36,11 @@ public class CommentController extends SuperController {
     @Autowired
     private CommentService commentService;
 
-
-    @ApiOperation(value = "获取评论列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取评论列表")
-    @GetMapping("/list")
-    public String getBlogList(
-            @RequestParam(value = "blogUid") String blogUid,
-            @RequestParam(value = "type") Integer type,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
-    ){
-
-        IPage<Comment> commentIPage = commentService.pageByBlogUid(blogUid, type, currentPage, pageSize);
-
-        return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
-    }
-
-    @ApiOperation(value = "评论", httpMethod = "POST", response = ResponseResult.class, notes = "评论")
-    @PostMapping("")
+    @ApiOperation(value = "回复", httpMethod = "POST", response = ResponseResult.class, notes = "回复")
+    @PostMapping("/{commentUid}/reply")
     public String comment(
             HttpServletRequest httpServletRequest,
+            @PathVariable("commentUid") String commentUid,
             @RequestBody Comment comment
     ){
         String userUid = null;
@@ -66,6 +52,8 @@ public class CommentController extends SuperController {
             userUid = (String) jsonObject.get("uid");
         }
 
+        comment.setOriginalUid(commentUid);
+        comment.setType(4);
         comment.setUid(StringUtils.getUUID());
         comment.setUserUid(userUid);
         comment.setIp(IpUtils.getIpAddress(httpServletRequest));

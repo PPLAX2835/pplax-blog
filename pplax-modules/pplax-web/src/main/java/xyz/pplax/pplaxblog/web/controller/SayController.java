@@ -113,6 +113,7 @@ public class SayController extends SuperController {
 
         comment.setOriginalUid(sayUid);
         comment.setUid(StringUtils.getUUID());
+        comment.setType(2);
         comment.setUserUid(userUid);
         comment.setIp(IpUtils.getIpAddress(httpServletRequest));
         comment.setAddress(IpUtils.getCityInfo(comment.getIp()));

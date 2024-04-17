@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整理关于、友链">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/CommentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/collect.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/collect.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/im.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/im.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/say.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/say.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Reply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Reply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/search/Hot.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/search/Hot.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,9 +247,9 @@
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="Spring Boot.FileApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -371,14 +361,7 @@
       <workItem from="1713164330937" duration="7493000" />
       <workItem from="1713232936553" duration="12437000" />
       <workItem from="1713265350231" duration="1549000" />
-      <workItem from="1713319674918" duration="3839000" />
-    </task>
-    <task id="LOCAL-00347" summary="登录状态失效改为确认弹窗">
-      <created>1711268477436</created>
-      <option name="number" value="00347" />
-      <option name="presentableId" value="LOCAL-00347" />
-      <option name="project" value="LOCAL" />
-      <updated>1711268477436</updated>
+      <workItem from="1713319674918" duration="8147000" />
     </task>
     <task id="LOCAL-00348" summary="后台管理首页面板显示统计数据">
       <created>1711275265578</created>
@@ -716,7 +699,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713258010910</updated>
     </task>
-    <option name="localTasksCounter" value="396" />
+    <task id="LOCAL-00396" summary="整理接口">
+      <created>1713323825772</created>
+      <option name="number" value="00396" />
+      <option name="presentableId" value="LOCAL-00396" />
+      <option name="project" value="LOCAL" />
+      <updated>1713323825773</updated>
+    </task>
+    <option name="localTasksCounter" value="397" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -751,7 +741,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="文章归档接口做好了" />
     <MESSAGE value="文章分类页面调整好了" />
     <MESSAGE value="调整分页组件" />
     <MESSAGE value="完成标签页面" />
@@ -776,7 +765,8 @@
     <MESSAGE value="整理分类、标签页面" />
     <MESSAGE value="整理留言、说说页面" />
     <MESSAGE value="整理关于、友链" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理关于、友链" />
+    <MESSAGE value="整理接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

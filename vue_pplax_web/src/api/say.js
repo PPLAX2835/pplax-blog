@@ -16,6 +16,14 @@ export function sayLike(sayId) {
     })
 }
 
+export function postSayComment(sayUid, data) {
+    return request({
+        url: '/web/say/' + sayUid + '/comment',
+        method: 'post',
+        data
+    })
+}
+
 export function insertSay(data) {
     return request({
         url: '/v1/say/insertSay',

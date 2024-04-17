@@ -1,16 +1,8 @@
 import request from '@/utils/request'
 
-export function featchComments(params) {
+export function commentReply(commentUid, data) {
     return request({
-        url: '/web/comment/list',
-        method: 'get',
-        params: params
-    })
-}
-
-export function postComment(data) {
-    return request({
-        url: '/web/comment/',
+        url: '/web/comment/' + commentUid + '/reply',
         method: 'post',
         data
     })

@@ -148,9 +148,8 @@
   </div>
 </template>
 <script>
-import { getSayList, sayLike } from '@/api/say'
+import { getSayList, sayLike, postSayComment } from '@/api/say'
 import {getWebSiteInfoValue} from "@/utils";
-import {postComment} from "@/api/comment";
 import Emoji from '@/components/emoji'
 import imagePreview from '@/components/imagePreview'
 import { parseTime } from "@/utils";
@@ -178,10 +177,8 @@ export default {
       showEmoji: false,
       showCommentBox: false,
       placeholder: "请输入内容",
+      sayUid: null,
       comment: {
-        replyUserId: null,
-        replyUserNickname: null,
-        sayId: null,
         content: ""
       },
       commentIndex: null,
@@ -226,7 +223,7 @@ export default {
         return
       }
       this.comment.content = el.innerHTML
-      postComment(this.comment).then(res => {
+      postSayComment(this.sayUid, this.comment).then(res => {
         this.$refs.conetntInputBox[this.commentLastIndex].style.display = "none"
         this.showCommentBox = false
 
@@ -243,7 +240,7 @@ export default {
         this.comment = {}
       })
     },
-    handleShowCommentBox(comment, sayId, index) {
+    handleShowCommentBox(comment, sayUid, index) {
       if (this.commentLastIndex != null && this.commentLastIndex != index) {
         this.$refs.conetntInputBox[this.commentLastIndex].style.display = "none"
       }
@@ -260,18 +257,13 @@ export default {
 
       if (comment) {
         this.placeholder = "回复" + comment.commentator.userInfo.nickname + ":"
-        this.comment.userUid = getUserUid()
         this.comment.toUid = comment.uid
-        this.comment.originalUid = sayId
         this.comment.toUserUid = comment.userUid
-        this.comment.replyUserNickname = comment.nickname
       } else {
-        this.comment.replyUserId = null
-        this.comment.replyUserNickname = null
         this.placeholder = "请输入内容"
       }
       this.commentIndex = index
-      this.comment.originalUid = sayId
+      this.sayUid = sayUid
       this.comment.type = 2
       this.showCommentBox = !this.showCommentBox
 

@@ -17,12 +17,16 @@ import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.edit.CommentEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
 import xyz.pplax.pplaxblog.xo.entity.Say;
+import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
 import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
 import xyz.pplax.pplaxblog.xo.service.say.SayService;
+import xyz.pplax.pplaxblog.xo.service.user.UserService;
+import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,6 +46,12 @@ public class SayController extends SuperController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserInfoService userInfoService;
 
     @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
     @GetMapping("/list")
@@ -100,7 +110,7 @@ public class SayController extends SuperController {
     public String comment(
             HttpServletRequest httpServletRequest,
             @PathVariable("sayUid") String sayUid,
-            @RequestBody Comment comment
+            @RequestBody CommentEditDto commentEditDto
     ){
         String userUid = null;
         String authorization = httpServletRequest.getHeader("Authorization");
@@ -111,6 +121,10 @@ public class SayController extends SuperController {
             userUid = (String) jsonObject.get("uid");
         }
 
+        Comment comment = new Comment();
+        comment.setContent(commentEditDto.getContent());
+        comment.setToUid(commentEditDto.getToUid());
+        comment.setToUserUid(commentEditDto.getToUserUid());
         comment.setOriginalUid(sayUid);
         comment.setUid(StringUtils.getUUID());
         comment.setType(2);
@@ -121,7 +135,21 @@ public class SayController extends SuperController {
         boolean res = commentService.save(comment);
 
         if (res) {
-            return success();
+            User commentator = userService.getById(userUid);
+            if (commentator != null) {
+                commentator.setUserInfo(userInfoService.getById(commentator.getUserInfoUid()));
+                commentator.sensitiveDataRemove();
+            }
+            comment.setCommentator(commentator);
+
+            User targetUser = userService.getById(commentEditDto.getToUserUid());
+            if (targetUser != null) {
+                targetUser.setUserInfo(userInfoService.getById(targetUser.getUserInfoUid()));
+                targetUser.sensitiveDataRemove();
+            }
+            comment.setTargetUser(targetUser);
+
+            return success(comment);
         }
 
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));

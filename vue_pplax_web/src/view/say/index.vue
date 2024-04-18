@@ -164,6 +164,7 @@ export default {
   },
   data() {
     return {
+      user: this.$store.state.user,
       sayList: [],
       images: {},
       pageData: {
@@ -193,6 +194,7 @@ export default {
   },
   methods: {
     onInput(e) {
+      this.content = e.target.innerHTML
       let selection = window.getSelection()
       this.lastEditRange = selection.getRangeAt(0);
     },
@@ -216,31 +218,26 @@ export default {
       return getWebSiteInfoValue(this.$store.state.webSiteInfo, key)
     },
     sayComment() {
-      let el = document.getElementById("textarea")
-      if (!el.innerHTML) {
-
-        this.$toast.warning('请输入评论内容');
+      if (!this.content) {
         return
       }
-      this.comment.content = el.innerHTML
+      this.comment.content = this.content
       postSayComment(this.sayUid, this.comment).then(res => {
         this.$refs.conetntInputBox[this.commentLastIndex].style.display = "none"
         this.showCommentBox = false
 
-        let comment = {
-          commentator: {
-            uid: getUserUid(),
-            userInfo: {
-              nickname: this.$store.state.user.userInfo.nickname
-            }
-          },
-          content: this.comment.content
-        }
-        this.sayList[this.commentIndex].commentList.push(comment)
+        this.sayList[this.commentIndex].commentList.push(res.data)
         this.comment = {}
+
+        this.content = ''
       })
     },
     handleShowCommentBox(comment, sayUid, index) {
+      if (!this.user) {
+        this.$store.commit("setLoginFlag", true);// 存储到vuex
+        return
+      }
+
       if (this.commentLastIndex != null && this.commentLastIndex != index) {
         this.$refs.conetntInputBox[this.commentLastIndex].style.display = "none"
       }
@@ -340,6 +337,11 @@ export default {
 
     },
     canLike(say) {
+      if (!this.user) {
+        this.$store.commit("setLoginFlag", true);// 存储到vuex
+        return
+      }
+
       sayLike(say.uid).then(res => {
         let index = null;
         for (let i = 0; i < say.likeList.length; i++) {
@@ -356,13 +358,18 @@ export default {
       })
     },
     sayLike(say) {
+      if (!this.user) {
+        this.$store.commit("setLoginFlag", true);// 存储到vuex
+        return
+      }
+
       say.isLike = true
       sayLike(say.uid).then(res => {
         say.likeList.push({
           commentator: {
-            uid: getUserUid(),
+            uid: this.user.uid,
             userInfo: {
-              nickname: this.$store.state.user.userInfo.nickname
+              nickname: this.user ? this.user.userInfo.nickname : ''
             }
           }
         })

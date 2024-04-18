@@ -18,6 +18,7 @@ import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.edit.MessageEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.MessageGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Message;
 import xyz.pplax.pplaxblog.xo.entity.User;
@@ -72,7 +73,7 @@ public class MessageController extends SuperController {
 
     @ApiOperation(value = "添加留言", httpMethod = "POST", response = ResponseResult.class, notes = "添加留言")
     @PostMapping("/leave")
-    public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody Message message){
+    public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody MessageEditDto messageEditDto){
         String authorization = httpServletRequest.getHeader("Authorization");
         String accessToken = null;
         String userUid = null;
@@ -83,6 +84,8 @@ public class MessageController extends SuperController {
             userUid = (String) jsonObject.get("uid");
         }
 
+        Message message = new Message();
+        message.setContent(messageEditDto.getContent());
         message.setUid(StringUtils.getUUID());
         message.setType(0);
         message.setUserUid(userUid);

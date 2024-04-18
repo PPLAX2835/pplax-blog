@@ -1,5 +1,13 @@
 import request from '@/utils/request'
 
+export function searchBlog(params) {
+    return request({
+        url: '/web/blog/search',
+        method: 'get',
+        params: params
+    })
+}
+
 export function fetchBlogList(params) {
     return request({
         url: '/web/blog/list',

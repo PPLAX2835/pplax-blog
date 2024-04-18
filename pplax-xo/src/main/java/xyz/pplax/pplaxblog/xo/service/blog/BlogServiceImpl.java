@@ -88,6 +88,44 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     }
 
     @Override
+    public IPage<Blog> search(String keyword, Long currentPage, Long pageSize) {
+        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
+
+        blogQueryWrapper.and(
+                QueryWrapper -> QueryWrapper
+                        .like(BlogSQLConstants.TITLE, "%" + keyword + "%")
+                        .or()
+                        .like(BlogSQLConstants.SUMMARY, "%" + keyword + "%")
+        );
+
+        Page<Blog> blogPage = new Page<>();
+        blogPage.setCurrent(currentPage);
+        blogPage.setPages(pageSize);
+
+        Page<Blog> page = page(blogPage, blogQueryWrapper);
+
+        // 为查询结果打上高亮
+        for (Blog blog : page.getRecords()) {
+            String newKeyword = "<span style=\"color:red\">" + keyword + "</span>";
+
+            if (blog.getTitle() != null) {
+                blog.setTitle(blog.getTitle().replaceAll(keyword, newKeyword));
+            }
+
+            if (blog.getSummary() != null) {
+                blog.setSummary(blog.getSummary().replaceAll(keyword, newKeyword));
+            }
+        }
+
+        return page;
+    }
+
+    @Override
     public IPage<Blog> listByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize) {
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());

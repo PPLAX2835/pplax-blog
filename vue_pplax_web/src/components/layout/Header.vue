@@ -133,18 +133,18 @@
 
             </ul>
 
-<!--            &lt;!&ndash; 搜索框 &ndash;&gt;-->
-<!--            <div class="searchBox" v-show="!showSearch">-->
-<!--                <div class="search_ico">-->
-<!--                    <div class="hand-style" @click="handleOpenSearchDialog">-->
-<!--                        <i class="iconfont icon-search"></i>-->
-<!--                        搜索文章...-->
-<!--                        <span>-->
-<!--                            Ctrl+K-->
-<!--                        </span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!-- 搜索框 -->
+            <div class="searchBox" v-show="!showSearch">
+                <div class="search_ico">
+                    <div class="hand-style" @click="handleOpenSearchDialog">
+                        <i class="iconfont icon-search"></i>
+                        搜索文章...
+                        <span>
+                            Ctrl+K
+                        </span>
+                    </div>
+                </div>
+            </div>
 
 
 <!--            <div class="noticeBtn" v-if="showUser">-->

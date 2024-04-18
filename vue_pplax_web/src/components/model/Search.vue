@@ -10,35 +10,28 @@
             </div>
         </div>
 
-        <div class="tagBox" v-if="!list.length">
-            <div class="tag-title">标签搜索</div>
-            <div>
-                <span @click="handleToTag(tag.id)" :style="{ backgroundColor: `${randomColor()}` }"
-                    class="tag-item hand-style" v-for="(tag, index) in tagList" :key="index">{{ tag.name }}</span>
-            </div>
-        </div>
-
         <div class="search-article" :key=refKey>
             <div class="item" v-for="(item, index) in list" :key="index">
-                <router-link :to="'/article/' + item.id">
+                <router-link :to="'/blog/' + item.uid">
                     <a class="xiahuaxian article-title" v-html="item.title"></a>
                 </router-link>
-                <p>{{ item.summary }}</p>
+                <p v-html="item.summary"></p>
             </div>
             <!-- 分页按钮 -->
-            <sy-pagination v-show="list.length" :pageNo="pageData.pageNo" :pages="pages" @changePage="handlePage" />
+            <sy-pagination v-show="list.length" :currentPage="pageData.currentPage" :page-size="pageData.pageSize" :total="total" @changePage="handlePage" />
         </div>
     </el-dialog>
 </template>
    
 <script>
-import { searchArticle, fetchTagList } from '@/api'
+import {searchBlog} from "@/api/blog";
 export default {
     name: '',
     data() {
         return {
+            total: 0  ,
             pageData: {
-                pageNo: 1,
+                currentPage: 1,
                 pageSize: 10,
                 keyword: "",
             },
@@ -59,9 +52,6 @@ export default {
             get() {
                 this.pageData.keyword = ""
                 this.list = []
-                if (this.$store.state.searchDialogVisible) {
-                    this.getTagList()
-                }
                 return this.$store.state.searchDialogVisible;
             }
         },
@@ -70,10 +60,6 @@ export default {
 
     },
     methods: {
-        handleToTag(id) {
-            this.$store.state.searchDialogVisible = false
-            this.$router.push({ path: "/tags", query: { id: id } })
-        },
         inputChage(event) {
             this.pageData.keyword = event.replace(/\s/g, '')
             if (this.pageData.keyword == "") {
@@ -81,37 +67,22 @@ export default {
                 return
             }
             this.refKey = new Date().getTime()
-            this.pageData.pageNo = 1
-            searchArticle(this.pageData).then(res => {
-                this.list = res.data.records;
-                this.pages = res.data.pages
+            this.pageData.currentPage = 1
+            searchBlog(this.pageData).then(res => {
+                this.list = res.data;
+                this.total = res.total
             })
         },
         // 分页
         handlePage(val) {
-            this.pageData.pageNo = val
+            this.pageData.currentPage = val
             this.fetchArticleList()
         },
         fetchArticleList() {
-            searchArticle(this.pageData).then(res => {
-                this.list.push(...res.data.records);
-                this.pages = res.data.pages
+          searchBlog(this.pageData).then(res => {
+                this.list.push(...res.data);
+            this.total = res.total
             })
-        },
-        getTagList() {
-            fetchTagList().then(res => {
-                this.tagList = res.data
-            })
-        },
-        randomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            do {
-                for (var i = 0; i < 6; i++) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-            } while (color === '#FFFFFF' || color === '#000000');
-            return color;
         },
     },
 }

@@ -24,6 +24,8 @@ public interface BlogService extends SuperService<Blog> {
 
     IPage<Blog> listByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize);
 
+    IPage<Blog> search(String keyword, Long currentPage, Long pageSize);
+
     ResponseResult archive(String userUid);
 
     List<Blog> listByBanner();

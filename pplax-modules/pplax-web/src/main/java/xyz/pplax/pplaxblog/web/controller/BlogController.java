@@ -59,14 +59,21 @@ public class BlogController extends SuperController {
     @Autowired
     private CollectService collectService;
 
-    @Autowired
-    private UserService userService;
+    @ApiOperation(value = "查找", httpMethod = "GET", response = ResponseResult.class, notes = "查找")
+    @GetMapping("/search")
+    public String search(
+            @RequestParam(value = "keyword") String keyword,
+            @RequestParam(value = "currentPage") Long currentPage,
+            @RequestParam(value = "pageSize") Long pageSize
+    ){
+        IPage<Blog> blogIPage = blogService.search(keyword, currentPage, pageSize);
 
+        return toJson(ResponseResult.success(blogIPage.getRecords(), blogIPage.getTotal()));
+    }
 
     @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
     @GetMapping("/list")
     public String getBlogList(
-            @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "blogSortUid", required = false) String blogSortUid,
             @RequestParam(value = "tagUid", required = false) String tagUid,
             @RequestParam(value = "orderByDesc", required = false) String orderByDesc,

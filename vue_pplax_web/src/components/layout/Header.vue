@@ -325,7 +325,7 @@ export default {
             logout().then(res => {
                 removeToken()
                 removeUserUid()
-                this.$store.commit("setUserInfo", null)
+                this.$store.commit("setUser", null)
 
                 this.$toast.success('注销成功')
                 setTimeout(function (){

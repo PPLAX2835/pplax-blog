@@ -163,9 +163,14 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     }
 
     @Override
-    public IPage<Blog> listByBlogSort(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize) {
+    public IPage<Blog> listHomeBlog(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize) {
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
+
         if (!StringUtils.isEmpty(blogSortUid)) {
             blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
         }
@@ -215,12 +220,14 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
             commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
             commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
+            commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, item.getUid());
 
             long likeCount = commentService.count(commentQueryWrapper);
 
             commentQueryWrapper = new QueryWrapper<>();
             commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
             commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+            commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, item.getUid());
 
             long commentCount = commentService.count(commentQueryWrapper);
 
@@ -312,6 +319,11 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         blogQueryWrapper.ne(BlogSQLConstants.LEVEL, CharacterConstants.NUM_ZERO);             // 排除非推荐文章
+
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
+        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
+
         blogQueryWrapper.orderByDesc(BlogSQLConstants.LEVEL);
         blogQueryWrapper.orderByDesc(BlogSQLConstants.CREATE_TIME);
 
@@ -352,6 +364,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.eq(BlogSQLConstants.LEVEL, CharacterConstants.NUM_ZERO);
         blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        blogQueryWrapper.eq(BlogSQLConstants.C_STATUS, EStatus.ENABLE.getStatus());
         blogQueryWrapper.orderByDesc(BlogSQLConstants.CREATE_TIME);
 
         //分页

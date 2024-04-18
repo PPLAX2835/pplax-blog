@@ -457,7 +457,7 @@ export default {
             })
         },
         after() {
-            this.$store.commit('setUserInfo', this.user)
+            this.$store.commit('setUser', this.user)
         },
         updateUserInfo() {
             updateMyUserInfo(this.form).then(res => {

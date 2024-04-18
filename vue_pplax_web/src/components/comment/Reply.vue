@@ -186,11 +186,9 @@ export default {
         return;
       }
       let comment = {
-        userUid: this.userUid,
         content: this.$refs.textareaRef.innerHTML,
         toUid: this.toUid,
-        toUserUid: this.toUserUid,
-        type: this.type
+        toUserUid: this.toUserUid
       }
       commentReply(this.originalUid, comment).then(res => {
         this.$emit("reloadReply", this.index);

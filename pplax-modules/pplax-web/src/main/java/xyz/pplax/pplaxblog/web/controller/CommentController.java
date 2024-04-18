@@ -16,6 +16,7 @@ import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.edit.CommentEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.CommentGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
 import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
@@ -41,7 +42,7 @@ public class CommentController extends SuperController {
     public String comment(
             HttpServletRequest httpServletRequest,
             @PathVariable("commentUid") String commentUid,
-            @RequestBody Comment comment
+            @RequestBody CommentEditDto commentEditDto
     ){
         String userUid = null;
         String authorization = httpServletRequest.getHeader("Authorization");
@@ -52,6 +53,10 @@ public class CommentController extends SuperController {
             userUid = (String) jsonObject.get("uid");
         }
 
+        Comment comment = new Comment();
+        comment.setToUid(commentEditDto.getToUid());
+        comment.setContent(commentEditDto.getContent());
+        comment.setToUserUid(commentEditDto.getToUserUid());
         comment.setOriginalUid(commentUid);
         comment.setType(4);
         comment.setUid(StringUtils.getUUID());

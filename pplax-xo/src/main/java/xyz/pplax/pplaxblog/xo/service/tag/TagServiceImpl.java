@@ -87,6 +87,11 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
             QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
             blogQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tag.getUid() + "%");
             blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+
+            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
+            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
+            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
+
             tag.setCites(blogService.count(blogQueryWrapper));
 
             tagList.add(tag);

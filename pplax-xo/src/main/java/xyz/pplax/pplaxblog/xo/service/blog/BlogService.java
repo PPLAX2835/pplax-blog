@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service.blog;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.springframework.web.bind.annotation.RequestParam;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
@@ -19,7 +20,7 @@ public interface BlogService extends SuperService<Blog> {
 
     IPage<Blog> list(BlogGetListDto blogGetListDto);
 
-    IPage<Blog> listByBlogSort(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize);
+    IPage<Blog> listHomeBlog(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize);
 
     IPage<Blog> listByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize);
 

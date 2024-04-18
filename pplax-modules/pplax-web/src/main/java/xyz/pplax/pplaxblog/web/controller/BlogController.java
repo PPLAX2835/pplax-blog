@@ -22,6 +22,7 @@ import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.CommentEditDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.Collect;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
@@ -65,13 +66,14 @@ public class BlogController extends SuperController {
     @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
     @GetMapping("/list")
     public String getBlogList(
+            @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "blogSortUid", required = false) String blogSortUid,
             @RequestParam(value = "tagUid", required = false) String tagUid,
             @RequestParam(value = "orderByDesc", required = false) String orderByDesc,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        IPage<Blog> blogIPage = blogService.listByBlogSort(blogSortUid, tagUid, orderByDesc, currentPage, pageSize);
+        IPage<Blog> blogIPage = blogService.listHomeBlog(blogSortUid, tagUid, orderByDesc, currentPage, pageSize);
         return toJson(ResponseResult.success(blogIPage.getRecords(), blogIPage.getTotal()));
     }
 
@@ -172,7 +174,7 @@ public class BlogController extends SuperController {
     public String comment(
             HttpServletRequest httpServletRequest,
             @PathVariable("blogUid") String blogUid,
-            @RequestBody Comment comment
+            @RequestBody CommentEditDto commentEditDto
     ){
         String userUid = null;
         String authorization = httpServletRequest.getHeader("Authorization");
@@ -183,6 +185,8 @@ public class BlogController extends SuperController {
             userUid = (String) jsonObject.get("uid");
         }
 
+        Comment comment = new Comment();
+        comment.setContent(commentEditDto.getContent());
         comment.setOriginalUid(blogUid);
         comment.setType(0);
         comment.setUid(StringUtils.getUUID());

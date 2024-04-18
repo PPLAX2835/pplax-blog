@@ -32,7 +32,11 @@
         FROM (
             select create_time, `status`
             from t_blog
-            where `status` &lt;&gt; 0
+            where
+            `status` &lt;&gt; 0 and
+            `status` &lt;&gt; 4 and
+            `status` &lt;&gt; 5 and
+            `status` &lt;&gt; 6
             ORDER BY DATE(create_time) DESC
         ) as t
     </select>
@@ -41,7 +45,11 @@
         select
         `uid`, `title`, `create_time`
         from t_blog
-        where DATE(create_time) = #{date} and `status` &lt;&gt; 0
+        where DATE(create_time) = #{date} and
+          `status` &lt;&gt; 0 and
+          `status` &lt;&gt; 4 and
+          `status` &lt;&gt; 5 and
+          `status` &lt;&gt; 6
         <if test="userUid != null">
             and user_uid = #{userUid}
         </if>

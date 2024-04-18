@@ -57,80 +57,6 @@ public class MessageController extends SuperController {
     private UserService userService;
 
 
-    @ApiOperation(value = "获取消息列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取消息列表")
-    @GetMapping("/list")
-    public String getMessageList(
-            HttpServletRequest httpServletRequest,
-            @RequestParam(value = "chatRoomUid", required = false) String chatRoomUid,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
-    ){
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String accessToken = null;
-        String userUid = null;
-        if (!StringUtils.isBlank(authorization)) {
-            accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
-
-        IPage<Message> messageIPage = messageService.listChatMessage(userUid, chatRoomUid, currentPage, pageSize);
-
-        return toJson(ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal()));
-    }
-
-    @ApiOperation(value = "添加消息", httpMethod = "GET", response = ResponseResult.class, notes = "添加消息")
-    @PostMapping("")
-    public String addMessage(HttpServletRequest httpServletRequest, @RequestBody Message message){
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String accessToken = null;
-        String userUid = null;
-        if (!StringUtils.isBlank(authorization)) {
-            accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
-
-        message.setUid(StringUtils.getUUID());
-        message.setUserUid(userUid);
-        message.setIp(IpUtils.getIpAddress(httpServletRequest));
-        message.setAddress(IpUtils.getCityInfo(message.getIp()));
-
-
-        // 封装用户信息
-        message.setUserInfo(userInfoService.getByUserUid(message.getUserUid()));
-        if (message.getType() != 0) {
-            // 只有聊天消息才封装
-            // 封装已读用户
-            String[] readUserUids = message.getReadUserUids().split(",");
-            List<User> userList = userService.listByIds(Arrays.asList(readUserUids));
-            for (User user : userList) {
-                if (user != null) {
-                    user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
-                    user.sensitiveDataRemove();
-                }
-            }
-            message.setReadUserList(userList);
-            // 封装聊天室
-            message.setChatRoom(chatRoomService.getById(message.getChatRoomUid()));
-        }
-        // 修改撤回记录
-        if (message.getStatus() == EStatus.WITHDRAW.getStatus()) {
-            message.setContent("该消息已被撤回");
-        }
-
-        boolean res = messageService.save(message);
-
-        if (res) {
-            return success(message);
-        }
-
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
-    }
-
-
     @ApiOperation(value = "获取留言列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取留言列表")
     @GetMapping("/leave/list")
     public String getLeaveMessageList(
@@ -228,7 +154,7 @@ public class MessageController extends SuperController {
         return success();
     }
 
-    @ApiOperation(value = "添加聊天消息", httpMethod = "GET", response = ResponseResult.class, notes = "添加聊天消息")
+    @ApiOperation(value = "添加聊天消息", httpMethod = "POST", response = ResponseResult.class, notes = "添加聊天消息")
     @PostMapping("/room/{chatRoomUid}/chat")
     public String addChatMessage(
             HttpServletRequest httpServletRequest,

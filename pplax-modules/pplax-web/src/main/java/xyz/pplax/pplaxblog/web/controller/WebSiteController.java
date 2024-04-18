@@ -32,7 +32,7 @@ public class WebSiteController extends SuperController {
 
     private static Logger log = LogManager.getLogger(WebSiteController.class);
 
-    @ApiOperation(value="获取主页有关数据", notes="获取主页有关数据")
+    @ApiOperation(value="获取主页有关数据", httpMethod = "GET", notes="获取主页有关数据")
     @GetMapping("/homeData")
     public String getInfo() {
         return toJson(siteService.getHomeData());

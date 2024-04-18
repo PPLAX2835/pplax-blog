@@ -282,7 +282,7 @@ export default {
                         // 轮询判断用户是否已经登录
                         wxIsLogin(this.wechatLoginCode).then(res => {
                             setToken(res.data.token)
-                            this.$store.commit("setUserInfo", res.data)
+                            this.$store.commit("setUser", res.data)
                             this.close()
                             this.$toast.success('登录成功');
                             window.location.reload()

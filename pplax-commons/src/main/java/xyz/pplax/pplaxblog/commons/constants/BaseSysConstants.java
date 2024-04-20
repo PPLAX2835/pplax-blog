@@ -83,17 +83,6 @@ public class BaseSysConstants {
 	public final static String PAGE_SIZE = "pageSize";
 
 
-	/**
-	 * RabbitMQ的命令操作
-	 */
-	public final static String COMMAND = "command";
-	public final static String EDIT = "edit";
-	public final static String ADD = "add";
-	public final static String DELETE = "delete";
-	public final static String DELETE_BATCH = "deleteBatch";
-	public final static String EDIT_BATCH = "editBatch";
-	public final static String DELETE_ALL = "deleteAll";
-	public final static String EXCHANGE_DIRECT = "exchange.direct";
 
 	/**
 	 * 月份集合

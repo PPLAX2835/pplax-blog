@@ -8,8 +8,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
@@ -17,6 +19,7 @@ import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
+import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.MessageEditDto;
 import xyz.pplax.pplaxblog.xo.entity.Message;
@@ -40,6 +43,9 @@ import java.util.List;
 public class MessageController extends SuperController {
 
     private static Logger log = LogManager.getLogger(MessageController.class);
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private MessageService messageService;
@@ -91,13 +97,9 @@ public class MessageController extends SuperController {
         message.setIp(IpUtils.getIpAddress(httpServletRequest));
         message.setAddress(IpUtils.getCityInfo(message.getIp()));
 
-        boolean res = messageService.save(message);
+        rabbitTemplate.convertAndSend(MqConstants.EXCHANGE_DIRECT, MqConstants.PPLAX_LEAVE_MESSAGE, message);
 
-        if (res) {
-            return success(message);
-        }
-
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return success();
     }
 
     @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
@@ -180,7 +182,6 @@ public class MessageController extends SuperController {
         message.setIp(IpUtils.getIpAddress(httpServletRequest));
         message.setAddress(IpUtils.getCityInfo(message.getIp()));
 
-
         // 封装用户信息
         message.setUserInfo(userInfoService.getByUserUid(message.getUserUid()));
         if (message.getType() != 0) {
@@ -203,13 +204,9 @@ public class MessageController extends SuperController {
             message.setContent("该消息已被撤回");
         }
 
-        boolean res = messageService.save(message);
+        rabbitTemplate.convertAndSend(MqConstants.EXCHANGE_DIRECT, MqConstants.PPLAX_CHAT_MESSAGE, message);
 
-        if (res) {
-            return success(message);
-        }
-
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return success(message);
     }
 }
 

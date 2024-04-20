@@ -22,3 +22,5 @@ spring:
             group: PPLAX_BLOG
           - data-id: oauth-config.yaml            # oauth的相关配置
             group: PPLAX_BLOG
+          - data-id: amqp-config.yaml                     # 消息队列相关配置
+            group: PPLAX_BLOG

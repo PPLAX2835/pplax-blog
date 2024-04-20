@@ -44,6 +44,16 @@ public class RabbitMqConfig {
     }
 
     /**
+     * 声明chatMessage队列
+     *
+     * @return
+     */
+    @Bean(MqConstants.PPLAX_CHAT_MESSAGE)
+    public Queue PPLAX_CHAT_MESSAGE() {
+        return new Queue(MqConstants.PPLAX_CHAT_MESSAGE);
+    }
+
+    /**
      * 声明Email队列
      *
      * @return
@@ -85,6 +95,18 @@ public class RabbitMqConfig {
     @Bean
     public Binding BINDING_QUEUE_INFORM_LEAVE_MESSAGE(@Qualifier(MqConstants.PPLAX_LEAVE_MESSAGE) Queue queue, @Qualifier(MqConstants.EXCHANGE_DIRECT) Exchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(MqConstants.ROUTING_KEY_LEAVE_MESSAGE).noargs();
+    }
+
+    /**
+     * pplax.chatMessage 队列绑定交换机，指定routingKey
+     *
+     * @param queue
+     * @param exchange
+     * @return
+     */
+    @Bean
+    public Binding BINDING_QUEUE_INFORM_CHAT_MESSAGE(@Qualifier(MqConstants.PPLAX_CHAT_MESSAGE) Queue queue, @Qualifier(MqConstants.EXCHANGE_DIRECT) Exchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(MqConstants.ROUTING_KEY_CHAT_MESSAGE).noargs();
     }
 
     /**

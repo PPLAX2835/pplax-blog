@@ -11,6 +11,7 @@
         <module>pplax-swagger-starter</module>
         <module>pplax-security-starter</module>
         <module>pplax-redis-starter</module>
+        <module>pplax-amqp-starter</module>
     </modules>
 
     <parent>
@@ -41,10 +42,6 @@
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
-            <dependency>
-                <groupId>xyz.pplax</groupId>
-                <artifactId>pplax-security-starter</artifactId>
-            </dependency>
         </dependencies>
 
     </dependencyManagement>

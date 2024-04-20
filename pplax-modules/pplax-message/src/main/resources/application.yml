@@ -1,0 +1,31 @@
+#app
+server:
+  port: 4395
+
+#spring
+spring:
+  application:
+    name: message-server
+  thymeleaf:
+    cache: true   #关闭缓存
+  devtools:
+    restart:
+      enabled: false #启动热部署
+      additional-paths:
+        - src/main/java #设置重启的目录，添加哪个目录文件需要restart
+
+  # 配置文件上传大小限制
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl     #打印sql日志
+##logging
+logging:
+  root:
+    level: warn

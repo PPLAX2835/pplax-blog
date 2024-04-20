@@ -15,6 +15,8 @@
         <module name="pplax-gateway" />
         <module name="pplax-auth" />
         <module name="pplax-security-starter" />
+        <module name="pplax-amqp-starter" />
+        <module name="pplax-message" />
         <module name="pplax-xo" />
         <module name="pplax-redis-starter" />
         <module name="pplax-commons" />
@@ -25,6 +27,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="pplax-admin" target="8" />
+      <module name="pplax-amqp-starter" target="8" />
       <module name="pplax-auth" target="8" />
       <module name="pplax-blog" target="8" />
       <module name="pplax-commons" target="8" />
@@ -32,6 +35,7 @@
       <module name="pplax-feign" target="8" />
       <module name="pplax-file" target="8" />
       <module name="pplax-gateway" target="8" />
+      <module name="pplax-message" target="8" />
       <module name="pplax-modules" target="8" />
       <module name="pplax-mybatis-starter" target="8" />
       <module name="pplax-redis-starter" target="8" />

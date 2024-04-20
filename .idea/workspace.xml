@@ -4,14 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="搜索功能做好了">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_rabbitmq_amqp_client_5_7_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_amqp_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_rabbit_2_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_amqp_2_6_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_retry_spring_retry_1_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_messaging_5_2_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/MessageApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/NotifyMsgConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/pplax-amqp-starter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java/xyz/pplax/pplaxblog/starter/amqp/config/RabbitMqConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java/xyz/pplax/pplaxblog/starter/amqp/constants/MqConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/blog/BlogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +110,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_web/src/api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java/xyz/pplax/pplaxblog/starter/amqp" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -111,28 +129,28 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter\pplax-amqp-starter\src\main\java\xyz\pplax\pplaxblog\starter\amqp" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-message\src\main\resources" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src\api" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src\store" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src\components\sliderVerify" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_admin\src\views\chatMessage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-commons\src\main\resources" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-commons\src\main\java\xyz\pplax\pplaxblog\commons\enums" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\java\xyz\pplax\pplaxblog\admin\restapi" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter\pplax-redis-starter\src\main\java\xyz\pplax\pplaxblog\starter\redis\constants" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.message.mq.producer" />
+      <recent name="xyz.pplax.pplaxblog.message.controller" />
+      <recent name="xyz.pplax.pplaxblog.message" />
       <recent name="xyz.pplax.pplaxblog.xo.dto.edit" />
       <recent name="xyz.pplax.pplaxblog.web.controller" />
-      <recent name="xyz.pplax.pplaxblog.file.service" />
-      <recent name="xyz.pplax.pplaxblog.file.controller" />
-      <recent name="xyz.pplax.pplaxblog.xo.service.message" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -144,7 +162,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -171,15 +189,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-admin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AdminApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pplax-auth" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AuthApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -193,6 +212,26 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.FileApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="pplax-gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MessageApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pplax-message" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.MessageApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -231,19 +270,22 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.AdminApplication" />
+      <item itemvalue="npm.serve" />
+      <item itemvalue="Spring Boot.AuthApplication" />
+      <item itemvalue="Spring Boot.MessageApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
       <item itemvalue="npm.dev" />
-      <item itemvalue="npm.serve" />
+      <item itemvalue="Spring Boot.AdminApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="Spring Boot.FileApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="Spring Boot.FileApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -356,14 +398,9 @@
       <workItem from="1713232936553" duration="12437000" />
       <workItem from="1713265350231" duration="1549000" />
       <workItem from="1713319674918" duration="25367000" />
-      <workItem from="1713395771618" duration="15311000" />
-    </task>
-    <task id="LOCAL-00355" summary="丢了">
-      <created>1711876597091</created>
-      <option name="number" value="00355" />
-      <option name="presentableId" value="LOCAL-00355" />
-      <option name="project" value="LOCAL" />
-      <updated>1711876597091</updated>
+      <workItem from="1713395771618" duration="16345000" />
+      <workItem from="1713516817285" duration="3430000" />
+      <workItem from="1713575785883" duration="6015000" />
     </task>
     <task id="LOCAL-00356" summary="做分支吧，这个当个人的">
       <created>1712453284944</created>
@@ -701,7 +738,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713408011206</updated>
     </task>
-    <option name="localTasksCounter" value="404" />
+    <task id="LOCAL-00404" summary="搜索功能做好了">
+      <created>1713412171289</created>
+      <option name="number" value="00404" />
+      <option name="presentableId" value="LOCAL-00404" />
+      <option name="project" value="LOCAL" />
+      <updated>1713412171289</updated>
+    </task>
+    <option name="localTasksCounter" value="405" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,7 +780,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="前台页面完成登录" />
     <MESSAGE value="调整聊天室表" />
     <MESSAGE value="聊天页面对上聊天室接口" />
     <MESSAGE value="聊天功能对接上了" />
@@ -761,7 +804,8 @@
     <MESSAGE value="完成博客编辑功能" />
     <MESSAGE value="整理博客、评论回复、站点信息参数、业务逻辑" />
     <MESSAGE value="整理说说接口，后续需要把说说的评论拿出来单独请求" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理说说接口，后续需要把说说的评论拿出来单独请求" />
+    <MESSAGE value="搜索功能做好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="搜索功能做好了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

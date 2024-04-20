@@ -41,6 +41,7 @@
         <druid.version>1.1.8</druid.version>
         <ip2region.version>2.7.0</ip2region.version>
         <UserAgentUtils.version>1.21</UserAgentUtils.version>
+        <spring-boot-starter-amqp.version>2.6.13</spring-boot-starter-amqp.version>
 
     </properties>
 
@@ -99,6 +100,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-redis</artifactId>
                 <version>${spring-boot-starter-redis.version}</version>
+            </dependency>
+
+            <!-- rabbitmq -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring-boot-starter-amqp.version}</version>
             </dependency>
 
             <!-- jdbc -->

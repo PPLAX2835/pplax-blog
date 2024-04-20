@@ -12,10 +12,9 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
-import xyz.pplax.pplaxblog.xo.entity.Tag;
 import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.service.user.UserService;
-import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
+import xyz.pplax.pplaxblog.xo.service.UserService;
+import xyz.pplax.pplaxblog.xo.service.UserInfoService;
 
 
 /**

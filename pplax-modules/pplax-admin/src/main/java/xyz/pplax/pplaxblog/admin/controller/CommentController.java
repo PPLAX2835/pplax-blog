@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.xo.dto.list.BlogGetListDto;
 import xyz.pplax.pplaxblog.xo.dto.list.CommentGetListDto;
-import xyz.pplax.pplaxblog.xo.entity.Blog;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
-import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
+import xyz.pplax.pplaxblog.xo.service.CommentService;
 
 import java.util.List;
 

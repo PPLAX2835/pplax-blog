@@ -13,8 +13,7 @@ import xyz.pplax.pplaxblog.commons.validator.group.*;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
-import xyz.pplax.pplaxblog.xo.service.user.UserService;
-import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
+import xyz.pplax.pplaxblog.xo.service.UserService;
 
 import java.util.List;
 

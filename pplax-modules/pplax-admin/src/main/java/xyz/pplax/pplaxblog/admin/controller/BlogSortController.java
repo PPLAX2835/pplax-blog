@@ -15,7 +15,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
-import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
+import xyz.pplax.pplaxblog.xo.service.BlogSortService;
 
 import java.util.List;
 

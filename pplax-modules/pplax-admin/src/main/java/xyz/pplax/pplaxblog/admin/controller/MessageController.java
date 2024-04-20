@@ -13,7 +13,7 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.list.MessageGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Message;
-import xyz.pplax.pplaxblog.xo.service.message.MessageService;
+import xyz.pplax.pplaxblog.xo.service.MessageService;
 
 import java.util.List;
 

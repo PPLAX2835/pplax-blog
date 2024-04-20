@@ -22,11 +22,10 @@ import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
 import xyz.pplax.pplaxblog.xo.entity.Say;
 import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
-import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
-import xyz.pplax.pplaxblog.xo.service.say.SayService;
-import xyz.pplax.pplaxblog.xo.service.user.UserService;
-import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
+import xyz.pplax.pplaxblog.xo.service.CommentService;
+import xyz.pplax.pplaxblog.xo.service.SayService;
+import xyz.pplax.pplaxblog.xo.service.UserService;
+import xyz.pplax.pplaxblog.xo.service.UserInfoService;
 
 import javax.servlet.http.HttpServletRequest;
 

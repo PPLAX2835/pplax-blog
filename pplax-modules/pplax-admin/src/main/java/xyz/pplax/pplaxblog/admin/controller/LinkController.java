@@ -16,7 +16,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.LinkEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.LinkGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Link;
-import xyz.pplax.pplaxblog.xo.service.link.LinkService;
+import xyz.pplax.pplaxblog.xo.service.LinkService;
 
 import java.util.List;
 

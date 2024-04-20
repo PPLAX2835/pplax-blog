@@ -19,13 +19,12 @@ import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.MessageEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.MessageGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Message;
 import xyz.pplax.pplaxblog.xo.entity.User;
-import xyz.pplax.pplaxblog.xo.service.chatroom.ChatRoomService;
-import xyz.pplax.pplaxblog.xo.service.message.MessageService;
-import xyz.pplax.pplaxblog.xo.service.user.UserService;
-import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
+import xyz.pplax.pplaxblog.xo.service.ChatRoomService;
+import xyz.pplax.pplaxblog.xo.service.MessageService;
+import xyz.pplax.pplaxblog.xo.service.UserService;
+import xyz.pplax.pplaxblog.xo.service.UserInfoService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;

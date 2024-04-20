@@ -25,7 +25,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.SayEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Say;
-import xyz.pplax.pplaxblog.xo.service.say.SayService;
+import xyz.pplax.pplaxblog.xo.service.SayService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

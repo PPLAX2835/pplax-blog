@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
-import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
-import xyz.pplax.pplaxblog.xo.service.userinfo.UserInfoService;
+import xyz.pplax.pplaxblog.xo.service.BlogService;
+import xyz.pplax.pplaxblog.xo.service.UserInfoService;
 
 
 /**

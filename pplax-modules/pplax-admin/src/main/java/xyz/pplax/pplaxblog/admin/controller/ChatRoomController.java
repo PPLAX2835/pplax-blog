@@ -13,7 +13,7 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.list.ChatRoomGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
-import xyz.pplax.pplaxblog.xo.service.chatroom.ChatRoomService;
+import xyz.pplax.pplaxblog.xo.service.ChatRoomService;
 
 import java.util.List;
 

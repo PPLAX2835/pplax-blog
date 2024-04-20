@@ -2,7 +2,6 @@ package xyz.pplax.pplaxblog.file.service;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import io.minio.ObjectWriteResponse;
-import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,12 +15,8 @@ import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.file.components.MinioUtils;
 import xyz.pplax.pplaxblog.xo.constants.sql.FileStorageSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
-import xyz.pplax.pplaxblog.xo.service.filestorage.FileStorageService;
+import xyz.pplax.pplaxblog.xo.service.FileStorageService;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;

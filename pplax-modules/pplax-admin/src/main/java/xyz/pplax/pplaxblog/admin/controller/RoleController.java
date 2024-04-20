@@ -16,7 +16,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.RoleEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.RoleGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Role;
-import xyz.pplax.pplaxblog.xo.service.role.RoleService;
+import xyz.pplax.pplaxblog.xo.service.RoleService;
 
 import java.util.List;
 

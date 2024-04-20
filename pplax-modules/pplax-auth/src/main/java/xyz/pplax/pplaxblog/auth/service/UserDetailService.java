@@ -18,7 +18,7 @@ import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.mapper.RoleMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserInfoMapper;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
-import xyz.pplax.pplaxblog.xo.service.user.UserService;
+import xyz.pplax.pplaxblog.xo.service.UserService;
 
 import java.util.*;
 import java.util.regex.Pattern;

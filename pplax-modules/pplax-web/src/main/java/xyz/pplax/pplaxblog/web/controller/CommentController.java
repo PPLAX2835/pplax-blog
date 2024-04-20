@@ -3,7 +3,6 @@ package xyz.pplax.pplaxblog.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -17,9 +16,8 @@ import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.CommentEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.CommentGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
-import xyz.pplax.pplaxblog.xo.service.comment.CommentService;
+import xyz.pplax.pplaxblog.xo.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
 

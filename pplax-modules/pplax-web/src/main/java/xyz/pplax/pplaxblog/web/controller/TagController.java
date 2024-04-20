@@ -16,7 +16,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Tag;
-import xyz.pplax.pplaxblog.xo.service.tag.TagService;
+import xyz.pplax.pplaxblog.xo.service.TagService;
 
 
 /**

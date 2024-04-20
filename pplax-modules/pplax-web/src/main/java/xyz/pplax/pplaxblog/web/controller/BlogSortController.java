@@ -8,15 +8,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.xo.entity.BlogSort;
-import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
-import xyz.pplax.pplaxblog.xo.service.blogsort.BlogSortService;
-
-import java.util.List;
+import xyz.pplax.pplaxblog.xo.service.BlogSortService;
 
 
 /**

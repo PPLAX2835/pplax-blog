@@ -10,7 +10,6 @@ import io.swagger.annotations.Api;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
@@ -20,7 +19,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
-import xyz.pplax.pplaxblog.xo.service.blog.BlogService;
+import xyz.pplax.pplaxblog.xo.service.BlogService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

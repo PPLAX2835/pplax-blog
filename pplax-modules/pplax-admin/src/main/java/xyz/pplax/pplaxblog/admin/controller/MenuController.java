@@ -14,7 +14,7 @@ import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.MenuEditDto;
 import xyz.pplax.pplaxblog.xo.entity.Menu;
-import xyz.pplax.pplaxblog.xo.service.menu.MenuService;
+import xyz.pplax.pplaxblog.xo.service.MenuService;
 
 import java.util.List;
 

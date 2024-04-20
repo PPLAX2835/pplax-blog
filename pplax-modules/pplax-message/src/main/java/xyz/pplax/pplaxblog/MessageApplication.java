@@ -18,8 +18,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.starter.swagger",
         "xyz.pplax.pplaxblog.starter.redis",
         "xyz.pplax.pplaxblog.starter.amqp",
-        "xyz.pplax.pplaxblog.message.controller",
-        "xyz.pplax.pplaxblog.message.mq",
         "xyz.pplax.pplaxblog.feign",
         "xyz.pplax.pplaxblog.xo.service"
 })

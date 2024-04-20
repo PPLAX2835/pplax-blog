@@ -14,7 +14,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
 import xyz.pplax.pplaxblog.xo.dto.EditPasswordDto;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
-import xyz.pplax.pplaxblog.xo.service.auth.AuthService;
+import xyz.pplax.pplaxblog.xo.component.auth.AuthService;
 
 import javax.servlet.http.HttpServletRequest;
 

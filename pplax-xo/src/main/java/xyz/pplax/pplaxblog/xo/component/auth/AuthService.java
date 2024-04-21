@@ -25,6 +25,8 @@ public interface AuthService extends SuperService<User> {
 
     ResponseResult editPassword(HttpServletRequest httpServletRequest, EditPasswordDto editPasswordDto);
 
+    ResponseResult forgetPassword(HttpServletRequest httpServletRequest, EditPasswordDto editPasswordDto);
+
     void saveImageCode(String key, String code);
 
     ResponseResult getImageCaptcha(CaptchaDto captcha);

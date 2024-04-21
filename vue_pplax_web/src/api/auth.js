@@ -1,4 +1,5 @@
 import service from "../utils/request";
+import request from "@/utils/request";
 
 /**
  * 获取token
@@ -36,7 +37,13 @@ export function register(data) {
     data
   })
 }
-
+export function forgetPassword(data) {
+  return request({
+    url: '/web/auth/password',
+    method: 'put',
+    data
+  })
+}
 /**
  * 获得图片验证码
  * @returns {*}

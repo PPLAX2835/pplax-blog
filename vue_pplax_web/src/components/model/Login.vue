@@ -134,8 +134,8 @@
 </template>
 
 <script>
-import { emailLogin, wxIsLogin, openAuthUrl, getWechatLoginCode, sendEmailCode, emailRegister, forgetPassword } from "@/api";
-import { login, getEmailCaptcha, register} from "@/api/auth";
+import { emailLogin, wxIsLogin, openAuthUrl, getWechatLoginCode, sendEmailCode, emailRegister } from "@/api";
+import { login, getEmailCaptcha, register, forgetPassword} from "@/api/auth";
 import { isUsernameExist } from "@/api/user";
 import { setUrl, setToken, setUserUid } from '@/utils/cookieUtil'
 import sliderVerify from "@/components/sliderVerify/sliderVerify";
@@ -224,6 +224,8 @@ export default {
                         this.$toast.success('修改成功');
                         this.$store.state.loginFlag = true;
                         this.forgetFlag = false
+
+                        this.index = 1
                     })
                 } else {
                     console.log('error submit!!');
@@ -379,7 +381,7 @@ export default {
                           that.$toast.success("登录成功");
                           setTimeout(function (){
                             location.reload()
-                          }, 1000)
+                          }, 2000)
                         }
                       that.isShowSliderVerify = false
                     })

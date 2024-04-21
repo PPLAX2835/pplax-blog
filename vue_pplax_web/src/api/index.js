@@ -83,13 +83,6 @@ export function emailLogin(data) {
         data
     })
 }
-export function forgetPassword(data) {
-    return request({
-        url: '/oauth/forgetPassword',
-        method: 'put',
-        data
-    })
-}
 export function logout() {
     return request({
         url: '/logout',

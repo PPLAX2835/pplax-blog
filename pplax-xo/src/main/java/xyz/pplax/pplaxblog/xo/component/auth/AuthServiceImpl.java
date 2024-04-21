@@ -166,6 +166,36 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Override
+    public ResponseResult forgetPassword(HttpServletRequest httpServletRequest, EditPasswordDto editPasswordDto) {
+        // 检查验证码
+        String code = redisService.getCacheObject(AuthRedisConstants.EMAIL_CODE + AuthRedisConstants.SEGMENTATION + editPasswordDto.getEmail());
+        // 检查验证码
+        if (StringUtils.isEmpty(code) || !code.equalsIgnoreCase(editPasswordDto.getCode())) {
+            return ResponseResult.error(HttpStatus.VALIDATION_CODE_INCORRECT);
+        }
+
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.ne(UserSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        userQueryWrapper.eq(UserSQLConstants.EMAIL, editPasswordDto.getEmail());
+
+        User user = userService.getOne(userQueryWrapper);
+        if (user == null) {
+            return ResponseResult.error(HttpStatus.EMAIL_UNACTIVATED);
+        }
+
+
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        user.setPassword(passwordEncoder.encode(editPasswordDto.getPassword() + user.getSalt()));
+        boolean res = userService.updateById(user);
+
+        if (res) {
+            return ResponseResult.success();
+        }
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     /**
      * 修改密码
      * @param httpServletRequest

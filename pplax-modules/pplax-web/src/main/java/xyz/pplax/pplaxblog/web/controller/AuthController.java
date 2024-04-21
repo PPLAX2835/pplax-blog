@@ -78,10 +78,10 @@ public class AuthController extends SuperController {
 		return success();
 	}
 
-	@ApiOperation(value = "修改密码", notes = "修改密码", response = String.class)
+	@ApiOperation(value = "忘记密码", notes = "忘记密码", response = String.class)
 	@PutMapping(value = "/password")
 	public String editPassword(HttpServletRequest httpServletRequest, @RequestBody EditPasswordDto editPasswordDto) {
-		return toJson(authService.editPassword(httpServletRequest, editPasswordDto));
+		return toJson(authService.forgetPassword(httpServletRequest, editPasswordDto));
 	}
 
 }

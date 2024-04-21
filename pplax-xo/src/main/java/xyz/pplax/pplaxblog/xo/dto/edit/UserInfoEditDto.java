@@ -19,6 +19,9 @@ import java.util.Date;
 @Data
 public class UserInfoEditDto extends BaseDto<UserInfoEditDto> {
 
+    @ApiModelProperty(example = "false", notes = "邮箱是否激活", required = false)
+    private Boolean isEmailActivated;
+
     @ApiModelProperty(example = "", notes = "头像文件uid", required = false)
     @IdValid(required = false, groups = {Update.class})
     private String avatarPictureUid;

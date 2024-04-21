@@ -25,13 +25,40 @@ export function logout() {
 }
 
 /**
- * 获得验证码
+ * 注册
+ * @param data
  * @returns {*}
  */
-export function getCaptcha() {
+export function register(data) {
   return service({
-    url: '/web/auth/captcha',
+    url: '/web/auth/register',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 获得图片验证码
+ * @returns {*}
+ */
+export function getImageCaptcha() {
+  return service({
+    url: '/web/auth/imageCaptcha',
     method: 'get',
+  })
+}
+
+/**
+ * 获得邮箱验证码
+ * @returns {*}
+ */
+export function getEmailCaptcha(email) {
+  return service({
+    url: '/web/auth/emailCaptcha',
+    method: 'get',
+    params: {
+      email: email
+    }
   })
 }
 

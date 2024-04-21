@@ -6,6 +6,7 @@ import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
 import xyz.pplax.pplaxblog.xo.dto.EditPasswordDto;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
+import xyz.pplax.pplaxblog.xo.dto.RegisterDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,13 @@ public interface AuthService extends SuperService<User> {
 
     ResponseResult getToken(HttpServletRequest httpServletRequest, LoginDto loginDto);
 
+    ResponseResult register(RegisterDto registerDto);
+
     ResponseResult editPassword(HttpServletRequest httpServletRequest, EditPasswordDto editPasswordDto);
 
     void saveImageCode(String key, String code);
 
-    ResponseResult getCaptcha(CaptchaDto captcha);
+    ResponseResult getImageCaptcha(CaptchaDto captcha);
 
     ResponseResult checkImageCode(String imageKey, String imageCode);
 }

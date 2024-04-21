@@ -51,7 +51,7 @@ public class AuthController extends SuperController {
 	@ApiOperation(value = "获取验证码", notes = "获取验证码", response = String.class)
 	@GetMapping(value = "/captcha")
 	public String getCaptcha() {
-		return toJson(authService.getCaptcha(new CaptchaDto()));
+		return toJson(authService.getImageCaptcha(new CaptchaDto()));
 	}
 
 	@ApiOperation(value = "修改密码", notes = "修改密码", response = String.class)

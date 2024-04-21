@@ -21,6 +21,9 @@ public interface AdminFeignClient {
     @GetMapping(value = "/user/{userUid}/userInfo")
     String getUserInfo (@PathVariable("userUid") String userUid);
 
+    @GetMapping(value = "/user/exist")
+    String isUsernameExist(@RequestParam("username") String username);
+
     @DeleteMapping(value = "/chatRoom/{chatRoomUid}")
     String deleteChatRoom(@PathVariable("chatRoomUid") String chatRoomUid);
 

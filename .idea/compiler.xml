@@ -14,6 +14,7 @@
         <module name="pplax-web" />
         <module name="pplax-gateway" />
         <module name="pplax-auth" />
+        <module name="pplax-email-starter" />
         <module name="pplax-security-starter" />
         <module name="pplax-amqp-starter" />
         <module name="pplax-message" />
@@ -32,6 +33,7 @@
       <module name="pplax-blog" target="8" />
       <module name="pplax-commons" target="8" />
       <module name="pplax-durid-starter" target="8" />
+      <module name="pplax-email-starter" target="8" />
       <module name="pplax-feign" target="8" />
       <module name="pplax-file" target="8" />
       <module name="pplax-gateway" target="8" />

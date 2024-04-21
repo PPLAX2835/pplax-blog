@@ -12,6 +12,7 @@
         <module>pplax-security-starter</module>
         <module>pplax-redis-starter</module>
         <module>pplax-amqp-starter</module>
+        <module>pplax-email-starter</module>
     </modules>
 
     <parent>

@@ -4,16 +4,64 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/ChatMessageConsumer.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="发送的留言和聊天消息交给消费者处理">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_jakarta_mail_1_6_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_2_6_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_7_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_11_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_11_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_6_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/MailConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/templates/mail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/pplax-email-starter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/src/main/java/xyz/pplax/pplaxblog/starter/email/model/Mail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/src/main/java/xyz/pplax/pplaxblog/starter/email/service/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/RegisterDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_mail_mail_1_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseSysConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseSysConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pplax-commons.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/HttpStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/HttpStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/MailUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/SendMailUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AdminFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/MessageApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/MessageApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/NotifyMsgConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/LeaveMessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java/xyz/pplax/pplaxblog/starter/amqp/config/RabbitMqConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java/xyz/pplax/pplaxblog/starter/amqp/config/RabbitMqConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java/xyz/pplax/pplaxblog/starter/amqp/constants/MqConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java/xyz/pplax/pplaxblog/starter/amqp/constants/MqConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/redis/AuthRedisConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/redis/AuthRedisConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/UserInfoEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/UserInfoEditDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/layout/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/sliderVerify/sliderVerify.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/sliderVerify/sliderVerify.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,17 +98,17 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SayEditDto.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/say.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/say.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -94,7 +142,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/src/main/java/xyz/pplax/pplaxblog/starter/amqp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -113,8 +161,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter\pplax-amqp-starter\src\main\java\xyz\pplax\pplaxblog\starter\amqp" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-message\src\main\resources" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter\pplax-amqp-starter\src\main\java\xyz\pplax\pplaxblog\starter\amqp" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src\api" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\vue_pplax_web\src\store" />
@@ -130,11 +178,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.xo.dto" />
       <recent name="xyz.pplax.pplaxblog.message.consumer" />
       <recent name="xyz.pplax.pplaxblog.message.mq.producer" />
       <recent name="xyz.pplax.pplaxblog.message.controller" />
       <recent name="xyz.pplax.pplaxblog.message" />
-      <recent name="xyz.pplax.pplaxblog.xo.dto.edit" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -146,7 +194,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -189,6 +237,13 @@
     <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-auth" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AuthApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="pplax-file" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.FileApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -251,6 +306,7 @@
       <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.MessageApplication" />
+      <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
@@ -377,14 +433,9 @@
       <workItem from="1713395771618" duration="16345000" />
       <workItem from="1713516817285" duration="3430000" />
       <workItem from="1713575785883" duration="8857000" />
-      <workItem from="1713597242483" duration="2292000" />
-    </task>
-    <task id="LOCAL-00358" summary="对接homeData和report接口">
-      <created>1712480523926</created>
-      <option name="number" value="00358" />
-      <option name="presentableId" value="LOCAL-00358" />
-      <option name="project" value="LOCAL" />
-      <updated>1712480523926</updated>
+      <workItem from="1713597242483" duration="6717000" />
+      <workItem from="1713604052971" duration="2971000" />
+      <workItem from="1713657938015" duration="6397000" />
     </task>
     <task id="LOCAL-00359" summary="网站配置这里注掉了（两个项目表设计不一样），后续要改好&#10;获取网站信息接口对上了">
       <created>1712481563038</created>
@@ -722,7 +773,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713583351601</updated>
     </task>
-    <option name="localTasksCounter" value="407" />
+    <task id="LOCAL-00407" summary="发送的留言和聊天消息交给消费者处理">
+      <created>1713599593815</created>
+      <option name="number" value="00407" />
+      <option name="presentableId" value="LOCAL-00407" />
+      <option name="project" value="LOCAL" />
+      <updated>1713599593816</updated>
+    </task>
+    <option name="localTasksCounter" value="408" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -757,7 +815,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="聊天功能对接上了" />
     <MESSAGE value="博客页面可以评论了" />
     <MESSAGE value="完善说说评论点赞评论" />
     <MESSAGE value="博客收藏功能完成" />
@@ -782,7 +839,8 @@
     <MESSAGE value="搜索功能做好了" />
     <MESSAGE value="整合mq" />
     <MESSAGE value="整理服务层包结构" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理服务层包结构" />
+    <MESSAGE value="发送的留言和聊天消息交给消费者处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="发送的留言和聊天消息交给消费者处理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

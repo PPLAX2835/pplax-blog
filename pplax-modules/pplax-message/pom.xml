@@ -51,6 +51,10 @@
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-amqp-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-email-starter</artifactId>
+        </dependency>
         <!-- starter end -->
 
         <dependency>
@@ -81,6 +85,12 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        <!-- thymeleaf -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <!-- openfeign -->

@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
+import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.CaptchaUtils;
@@ -22,10 +23,13 @@ import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AuthFeignClient;
 import xyz.pplax.pplaxblog.xo.constants.redis.AuthRedisConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.ChatRoomSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
 import xyz.pplax.pplaxblog.xo.dto.EditPasswordDto;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
+import xyz.pplax.pplaxblog.xo.dto.RegisterDto;
+import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
 import xyz.pplax.pplaxblog.xo.service.UserService;
@@ -89,12 +93,19 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
                 }
         );
 
+        log.error(map);
+
         if (!StringUtils.isEmpty((String) map.get("access_token"))) {
             log.info("获取token成功，进行登录信息的储存");
 
             // 记录登录ip、登录次数、登录时间
             QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-            userQueryWrapper.eq(UserSQLConstants.USERNAME, loginDto.getUsername());
+            userQueryWrapper.and(
+                    QueryWrapper -> QueryWrapper
+                            .eq(UserSQLConstants.USERNAME, loginDto.getUsername())
+                            .or()
+                            .eq(UserSQLConstants.EMAIL, loginDto.getUsername())
+            );
 
             // 修改登录信息
             User user = userService.getOne(userQueryWrapper);
@@ -116,6 +127,43 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             log.warn("token未获取到");
             return ResponseResult.error(HttpStatus.TOKEN_GET_FAILED);
         }
+    }
+
+    @Override
+    public ResponseResult register(RegisterDto registerDto) {
+        // 检查邮箱是否已经被使用
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.ne(UserSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        userQueryWrapper.eq(UserSQLConstants.EMAIL, registerDto.getEmail());
+        int count = userService.count(userQueryWrapper);
+        if (count > 0) {
+            return ResponseResult.error(HttpStatus.USER_OR_EMAIL_EXIST);
+        }
+
+
+        String code = redisService.getCacheObject(AuthRedisConstants.EMAIL_CODE + AuthRedisConstants.SEGMENTATION + registerDto.getEmail());
+
+        // 检查验证码
+        if (StringUtils.isEmpty(code) || !code.equalsIgnoreCase(registerDto.getCode())) {
+            return ResponseResult.error(HttpStatus.VALIDATION_CODE_INCORRECT);
+        }
+
+        UserInfoEditDto userInfoEditDto = new UserInfoEditDto();
+        userInfoEditDto.setUsername(registerDto.getUsername());
+        userInfoEditDto.setPassword(registerDto.getPassword());
+        userInfoEditDto.setStatus(EStatus.ENABLE.getStatus());
+        userInfoEditDto.setRoleUid("ffca2113713df757e0293c6dfd3b4e32");             // 这里写死了，之后要改
+        userInfoEditDto.setNickname(registerDto.getNickname());
+        userInfoEditDto.setEmail(registerDto.getEmail());
+        userInfoEditDto.setIsEmailActivated(true);
+
+        Boolean save = userService.save(userInfoEditDto);
+
+        if (save) {
+            return ResponseResult.success();
+        }
+
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     /**
@@ -195,7 +243,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
      * @param captcha
      * @return
      */
-    public ResponseResult getCaptcha(CaptchaDto captcha) {
+    public ResponseResult getImageCaptcha(CaptchaDto captcha) {
 
         //设置画布宽度默认值
         if (captcha.getCanvasWidth() == null) {

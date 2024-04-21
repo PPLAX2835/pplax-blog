@@ -10,6 +10,7 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
@@ -26,6 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 @Api(value="用户Controller", tags={"用户Controller"})
 public class UserController extends SuperController {
+
+    @Autowired
+    private AdminFeignClient adminFeignClient;
 
     @Autowired
     private UserService userService;
@@ -64,6 +68,12 @@ public class UserController extends SuperController {
         }
 
         return success(user);
+    }
+
+    @ApiOperation(value="判断用户名是否存在", notes="判断用户名是否存在")
+    @GetMapping(value = "/exist")
+    public String isUsernameExist(@RequestParam("username") String username) {
+        return adminFeignClient.isUsernameExist(username);
     }
 
 

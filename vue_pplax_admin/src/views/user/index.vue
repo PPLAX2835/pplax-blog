@@ -194,7 +194,7 @@ export default {
         ],
         nickname: [
           { required: true, message: '请输入昵称', trigger: 'blur' },
-          { min: 1, max: 50, message: '长度在1到50个字符' },
+          { min: 1, max: 20, message: '长度在1到20个字符' },
         ],
         birthday: [
           { required: false, message: '请输选择生日', trigger: 'blur' },

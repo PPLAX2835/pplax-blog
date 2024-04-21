@@ -49,12 +49,16 @@
 <!--                    </div>-->
 <!--                </div>-->
             </div>
+
             <!-- 注册 -->
             <div v-if="index == 2">
                 <el-form :model="form" :rules="rules" ref="ruleForm" label-position="left">
                     <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
                         <el-input class="input" placeholder="请输入邮箱" v-model="form.email" autocomplete="off"></el-input>
                     </el-form-item>
+                  <el-form-item label="用户名" :label-width="formLabelWidth" prop="username">
+                    <el-input class="input" placeholder="请输入用户名" v-model="form.username" autocomplete="off"></el-input>
+                  </el-form-item>
                     <el-form-item label="昵称" :label-width="formLabelWidth" prop="nickname">
                         <el-input class="input" placeholder="请输入昵称" v-model="form.nickname" autocomplete="off"></el-input>
                     </el-form-item>
@@ -78,6 +82,7 @@
                 </div>
             </div>
 
+          <!-- 重置密码 -->
             <div v-if="index == 3">
                 <el-form :model="form" :rules="rules" ref="ruleForm" label-position="left">
                     <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
@@ -130,7 +135,8 @@
 
 <script>
 import { emailLogin, wxIsLogin, openAuthUrl, getWechatLoginCode, sendEmailCode, emailRegister, forgetPassword } from "@/api";
-import {login} from "@/api/auth";
+import { login, getEmailCaptcha, register} from "@/api/auth";
+import { isUsernameExist } from "@/api/user";
 import { setUrl, setToken, setUserUid } from '@/utils/cookieUtil'
 import sliderVerify from "@/components/sliderVerify/sliderVerify";
 
@@ -157,16 +163,21 @@ export default {
             countdown: 60, // 倒计时初始值为 60 秒
             rules: {
                 username: [
-                  { required: true, message: '请输入账号', trigger: 'blur' },
+                  { required: true, message: '请输入用户名', trigger: 'blur' },
+                  { validator: this.isExist, trigger: 'change'},
+                  { min: 3, max: 30, message: '长度在3到30个字符' },
                 ],
                 email: [
-                    { required: true, message: '请输入账号', trigger: 'blur' },
+                    { required: true, message: '请输入邮箱', trigger: 'blur' },
+                    { pattern: /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/, message: '请输入合法的邮箱', trigger: 'blur' },
                 ],
                 nickname: [
                     { required: true, message: '请输入昵称', trigger: 'blur' },
+                    { min: 1, max: 20, message: '长度在1到20个字符' },
                 ],
                 password: [
                     { required: true, message: '请输入密码', trigger: 'blur' },
+                    { min: 8, max: 16, message: '长度在8到16个字符' },
                 ],
                 code: [
                     { required: true, message: '请输入验证码', trigger: 'blur' },
@@ -220,14 +231,35 @@ export default {
                 }
             });
         },
+        /**
+         * 检查用户名是否存在
+         * @param rule
+         * @param value
+         * @param callback
+         */
+        isExist(rule, value, callback) {
+          if (this.index === 2 && value.trim() !== '') {
+            isUsernameExist(value).then(res => {
+
+              if (res.data) {
+                callback(new Error('该用户名已存在'))
+              } else {
+                callback()
+              }
+
+            })
+          } else {
+            callback()
+          }
+        },
         register() {
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    emailRegister(this.form).then(res => {
+                    register(this.form).then(res => {
 
                         this.$toast.success('注册成功');
                         this.$store.state.loginFlag = true;
-                        this.emailRegistFlag = false
+                        this.index = 1
                     })
                 } else {
                     console.log('error submit!!');
@@ -241,7 +273,7 @@ export default {
                 this.$toast.error('请输入邮箱');
                 return
             }
-            sendEmailCode(this.form.email).then(res => {
+            getEmailCaptcha(this.form.email).then(res => {
                 this.timer = setInterval(() => {
                     if (this.countdown > 0) {
                         this.showSendBtnFlag = false

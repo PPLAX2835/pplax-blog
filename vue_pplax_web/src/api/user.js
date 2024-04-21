@@ -28,6 +28,15 @@ export function getUserInfo(userUid) {
   })
 }
 
+export function isUsernameExist(username) {
+  return service({
+    url: '/web/user/exist',
+    method: 'get',
+    params: {
+      username: username
+    }
+  })
+}
 /**
  * 更新用户信息
  * @param userUid

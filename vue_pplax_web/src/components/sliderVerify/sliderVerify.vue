@@ -53,7 +53,7 @@ function square(x) {
     return x * x;
 }
 
-import { getCaptcha } from "@/api/auth";
+import { getImageCaptcha } from "@/api/auth";
 export default {
     name: 'sliderVerify',
     props: {
@@ -163,7 +163,7 @@ export default {
         getCaptcha() {
             let self = this;
             //取后端默认值
-            getCaptcha().then(response => {
+            getImageCaptcha().then(response => {
                 const data = response.data;
                 self.nonceStr = data.nonceStr;
                 self.$refs.block.src = data.blockSrc;

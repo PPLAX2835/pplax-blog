@@ -248,6 +248,11 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         }
         user.setUsername(userInfoEditDto.getUsername());
 
+        if (!StringUtils.isEmpty(userInfoEditDto.getEmail())) {
+            user.setEmail(userInfoEditDto.getEmail());
+            user.setIsEmailActivated(userInfoEditDto.getIsEmailActivated());
+        }
+
         if (StringUtils.isEmpty(userInfoEditDto.getPassword())) {
             // 密码非空
             return false;

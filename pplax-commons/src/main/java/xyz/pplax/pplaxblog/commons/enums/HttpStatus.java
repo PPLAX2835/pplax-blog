@@ -161,6 +161,7 @@ public enum HttpStatus {
     LOGIN_DISABLE(401007, "该账号已被封禁"),
     VALIDATION_CODE_EXPIRED(401008, "验证码已失效"),
     VALIDATION_FAIL(401009, "验证失败，请控制拼图对齐缺口"),
+    VALIDATION_CODE_INCORRECT(401010, "验证码不正确"),
 
     /**
      * 权限相关     40100-40199

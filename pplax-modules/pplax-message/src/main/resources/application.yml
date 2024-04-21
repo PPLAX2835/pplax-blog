@@ -6,14 +6,34 @@ server:
 spring:
   application:
     name: message-server
+  # thymeleaf
   thymeleaf:
-    cache: true   #关闭缓存
+    cache: false   #关闭缓存
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+  # mail
+  mail:
+    host: smtp.qq.com
+    username: 1458667357@qq.com
+    password: jcwbzpcyhhwzjdcd
+    default-encoding: utf-8
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
   devtools:
     restart:
       enabled: false #启动热部署
       additional-paths:
         - src/main/java #设置重启的目录，添加哪个目录文件需要restart
-
   # 配置文件上传大小限制
   servlet:
     multipart:

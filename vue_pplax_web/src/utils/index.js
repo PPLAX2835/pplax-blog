@@ -111,5 +111,5 @@ export function parseTime(time) {
 
 
 export const getWebSiteInfoValue = function (webSiteInfo, key) {
-    return webSiteInfo ? (webSiteInfo[key].value ? webSiteInfo[key].value : '') : ''
+    return webSiteInfo ? (webSiteInfo[key] ? webSiteInfo[key].value : '') : ''
 }

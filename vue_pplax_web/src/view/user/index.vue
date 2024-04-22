@@ -43,6 +43,9 @@
                     <div v-if="loginUser.uid === userUid" class="more hand-style">
                         <div class="menu">
                             <ul>
+                                <li @click="handleEditArticle">
+                                  <svg-icon icon-class="message"></svg-icon> 撰写博客
+                                </li>
                                 <li @click="handleUpdateInfo">
                                     <svg-icon icon-class="edit"></svg-icon> 修改资料
                                 </li>
@@ -490,6 +493,9 @@ export default {
         },
         handleUpdateArticle(uid) {
             this.$router.push({ path: "/blogEdit", query: { uid: uid } })
+        },
+        handleEditArticle() {
+          this.$router.push({ path: "/blogEdit" })
         },
         handleCanCollect(index, id) {
             this.$confirm('确认取消收藏该文章吗？', '提示', {

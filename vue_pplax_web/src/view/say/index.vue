@@ -6,6 +6,14 @@
         <div class="info">说说</div>
       </div>
       <div class="contentBox">
+        <div class="sayBox box-shadow">
+          <router-link :to="'/newSays'">
+            <a class="say-item">
+              <svg-icon icon-class="say"></svg-icon>
+              <span class="say-content" v-html="'发表说说'"> </span>
+            </a>
+          </router-link>
+        </div>
         <div class="sayItem" v-for="(item, index) in sayList" :key="index">
           <div class="avatar">
             <el-avatar
@@ -539,6 +547,61 @@ export default {
       margin-top: 20px;
       width: 100%;
       color: var(--text-color);
+
+      .sayBox {
+        background-color: var(--background-color);
+        width: 100%;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        overflow: hidden;
+
+        /deep/ a {
+          text-decoration: none;
+        }
+
+        .say-item {
+          display: flex;
+          padding: 10px;
+          color: var(--article-color);
+          animation: fade-in 0.45s linear 1;
+
+          @keyframes fade-in {
+            0% {
+              transform: translateY(-30px);
+            }
+
+            100% {
+              transform: translateY(0);
+            }
+          }
+
+          .say-content {
+            display: inline-block;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          svg {
+            margin-right: 15px;
+            width: 22px;
+            height: 22px;
+            vertical-align: -5px;
+            animation: show 1s ease-in-out infinite alternate;
+          }
+
+          @keyframes show {
+            0% {
+              opacity: 1;
+            }
+
+            100% {
+              opacity: 0.6;
+            }
+          }
+        }
+      }
 
       .sayItem {
         padding: 10px;

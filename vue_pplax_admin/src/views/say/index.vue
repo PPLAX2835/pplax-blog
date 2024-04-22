@@ -110,9 +110,7 @@
           </el-col>
           <el-col :span="10">
             <el-form-item prop="address" label="地址" :label-width="formLabelWidth" >
-              <el-row v-model="form.address">
-                <el-button @click="fetchAddress" icon="el-icon-location-outline">{{ form.address }}</el-button>
-              </el-row>
+              <el-button @click="fetchAddress" icon="el-icon-location-outline">{{ form.address }}</el-button>
             </el-form-item>
           </el-col>
         </el-row>
@@ -129,8 +127,8 @@
 
 <script>
 import {addSay, getSayList, updateSay, deleteSayBatch, deleteSay, getAddress } from "../../api/say";
-import {blogCoverImageUpload, sayImageUpload} from "../../api/fileStorage";
-import {getUserUid, hasAuth} from "../../utils/auth";
+import {sayImageUpload} from "../../api/fileStorage";
+import { hasAuth} from "../../utils/auth";
 import { parseTime } from "../../utils";
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
@@ -385,7 +383,7 @@ export default {
         let that = this
         setTimeout(function () {
           that.form.address = ''
-        }, 3000)
+        }, 1000)
       })
     },
     /**

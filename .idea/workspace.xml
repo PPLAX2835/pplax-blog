@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="优化getWebSiteInfoValue方法">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="个人空间增加撰写博客选项">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/say.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/say.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/Add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/Add.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,14 +386,7 @@
       <workItem from="1713604052971" duration="2971000" />
       <workItem from="1713657938015" duration="6864000" />
       <workItem from="1713686853798" duration="2889000" />
-      <workItem from="1713755766056" duration="2538000" />
-    </task>
-    <task id="LOCAL-00363" summary="优化站点管理">
-      <created>1712562516282</created>
-      <option name="number" value="00363" />
-      <option name="presentableId" value="LOCAL-00363" />
-      <option name="project" value="LOCAL" />
-      <updated>1712562516283</updated>
+      <workItem from="1713755766056" duration="8191000" />
     </task>
     <task id="LOCAL-00364" summary="根据分类显示文章列表">
       <created>1712565550596</created>
@@ -727,7 +724,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713757636304</updated>
     </task>
-    <option name="localTasksCounter" value="412" />
+    <task id="LOCAL-00412" summary="个人空间增加撰写博客选项">
+      <created>1713758475895</created>
+      <option name="number" value="00412" />
+      <option name="presentableId" value="LOCAL-00412" />
+      <option name="project" value="LOCAL" />
+      <updated>1713758475895</updated>
+    </task>
+    <option name="localTasksCounter" value="413" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -762,7 +766,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成反馈功能" />
     <MESSAGE value="姑且实现用户管理自己的文章" />
     <MESSAGE value="开始想办法优化" />
     <MESSAGE value="整理首页和头部导航栏" />
@@ -787,7 +790,8 @@
     <MESSAGE value="忘记密码的重置密码功能实现了" />
     <MESSAGE value="评论也交给消息队列了" />
     <MESSAGE value="优化getWebSiteInfoValue方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化getWebSiteInfoValue方法" />
+    <MESSAGE value="个人空间增加撰写博客选项" />
+    <option name="LAST_COMMIT_MESSAGE" value="个人空间增加撰写博客选项" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

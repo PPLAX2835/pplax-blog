@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="个人空间增加撰写博客选项">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="完成发表说说功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/say.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/say.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/Add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/Add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/config/GatewaySecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/config/GatewaySecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/properties/GatewayProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/properties/GatewayProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/FeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/FeedbackController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,8 +261,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
       </list>
@@ -386,14 +384,7 @@
       <workItem from="1713604052971" duration="2971000" />
       <workItem from="1713657938015" duration="6864000" />
       <workItem from="1713686853798" duration="2889000" />
-      <workItem from="1713755766056" duration="8191000" />
-    </task>
-    <task id="LOCAL-00364" summary="根据分类显示文章列表">
-      <created>1712565550596</created>
-      <option name="number" value="00364" />
-      <option name="presentableId" value="LOCAL-00364" />
-      <option name="project" value="LOCAL" />
-      <updated>1712565550596</updated>
+      <workItem from="1713755766056" duration="16924000" />
     </task>
     <task id="LOCAL-00365" summary="添加文章列表封面图片">
       <created>1712565922270</created>
@@ -731,7 +722,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713758475895</updated>
     </task>
-    <option name="localTasksCounter" value="413" />
+    <task id="LOCAL-00413" summary="完成发表说说功能">
+      <created>1713771990649</created>
+      <option name="number" value="00413" />
+      <option name="presentableId" value="LOCAL-00413" />
+      <option name="project" value="LOCAL" />
+      <updated>1713771990650</updated>
+    </task>
+    <option name="localTasksCounter" value="414" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +764,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="姑且实现用户管理自己的文章" />
     <MESSAGE value="开始想办法优化" />
     <MESSAGE value="整理首页和头部导航栏" />
     <MESSAGE value="整理博客详情页" />
@@ -791,7 +788,8 @@
     <MESSAGE value="评论也交给消息队列了" />
     <MESSAGE value="优化getWebSiteInfoValue方法" />
     <MESSAGE value="个人空间增加撰写博客选项" />
-    <option name="LAST_COMMIT_MESSAGE" value="个人空间增加撰写博客选项" />
+    <MESSAGE value="完成发表说说功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成发表说说功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

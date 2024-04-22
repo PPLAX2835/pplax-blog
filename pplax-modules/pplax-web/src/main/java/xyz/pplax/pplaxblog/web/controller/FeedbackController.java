@@ -35,7 +35,7 @@ public class FeedbackController extends SuperController {
     private FeedbackService feedbackService;
 
 
-    @ApiOperation(value = "添加反馈", httpMethod = "GET", response = ResponseResult.class, notes = "添加反馈")
+    @ApiOperation(value = "添加反馈", httpMethod = "POST", response = ResponseResult.class, notes = "添加反馈")
     @PostMapping("")
     public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody Feedback feedback){
         String authorization = httpServletRequest.getHeader("Authorization");

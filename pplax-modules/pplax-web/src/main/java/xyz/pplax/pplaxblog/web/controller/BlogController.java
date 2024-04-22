@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
+import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.CommentEditDto;
@@ -45,6 +47,9 @@ public class BlogController extends SuperController {
 
     @Autowired
     private AdminFeignClient adminFeignClient;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private BlogService blogService;
@@ -197,13 +202,9 @@ public class BlogController extends SuperController {
         comment.setIp(IpUtils.getIpAddress(httpServletRequest));
         comment.setAddress(IpUtils.getCityInfo(comment.getIp()));
 
-        boolean res = commentService.save(comment);
+        rabbitTemplate.convertAndSend(MqConstants.EXCHANGE_DIRECT, MqConstants.PPLAX_COMMENT, comment);
 
-        if (res) {
-            return success();
-        }
-
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return success();
     }
 
 

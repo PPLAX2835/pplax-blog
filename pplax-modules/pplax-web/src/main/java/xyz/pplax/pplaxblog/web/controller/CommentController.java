@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
@@ -14,6 +15,7 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.CommentEditDto;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
@@ -33,7 +35,7 @@ public class CommentController extends SuperController {
     private static Logger log = LogManager.getLogger(CommentController.class);
 
     @Autowired
-    private CommentService commentService;
+    private RabbitTemplate rabbitTemplate;
 
     @ApiOperation(value = "回复", httpMethod = "POST", response = ResponseResult.class, notes = "回复")
     @PostMapping("/{commentUid}/reply")
@@ -62,13 +64,9 @@ public class CommentController extends SuperController {
         comment.setIp(IpUtils.getIpAddress(httpServletRequest));
         comment.setAddress(IpUtils.getCityInfo(comment.getIp()));
 
-        boolean res = commentService.save(comment);
+        rabbitTemplate.convertAndSend(MqConstants.EXCHANGE_DIRECT, MqConstants.PPLAX_COMMENT, comment);
 
-        if (res) {
-            return success();
-        }
-
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return success();
     }
 }
 

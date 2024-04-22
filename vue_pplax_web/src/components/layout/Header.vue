@@ -167,7 +167,7 @@
             <div class="userInfo" v-if="showUser">
                 <el-dropdown trigger="hover">
                     <div class="el-dropdown-link hand-style">
-                        <img v-if="(!userInfo || userInfo.userInfo || !userInfo.userInfo.avatar)" :src="webSiteInfo ? webSiteInfo.touristAvatar.value : ''" alt="">
+                        <img v-if="(!userInfo || !userInfo.userInfo || !userInfo.userInfo.avatar)" :src="webSiteInfo ? webSiteInfo.touristAvatar.value : ''" alt="">
                         <img v-else :src="userInfo.userInfo.avatar.fileUrl" alt="" />
                     </div>
                     <el-dropdown-menu slot="dropdown" v-if="userInfo">

@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
@@ -39,6 +40,9 @@ import javax.servlet.http.HttpServletRequest;
 public class SayController extends SuperController {
 
     private static Logger log = LogManager.getLogger(SayController.class);
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private SayService sayService;

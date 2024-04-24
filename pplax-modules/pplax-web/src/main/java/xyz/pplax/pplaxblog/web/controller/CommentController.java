@@ -44,14 +44,8 @@ public class CommentController extends SuperController {
             @PathVariable("commentUid") String commentUid,
             @RequestBody CommentEditDto commentEditDto
     ){
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+
+        String userUid = getUserUid(httpServletRequest);
 
         Comment comment = new Comment();
         comment.setToUid(commentEditDto.getToUid());

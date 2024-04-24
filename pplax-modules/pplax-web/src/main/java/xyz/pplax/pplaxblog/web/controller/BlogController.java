@@ -91,14 +91,7 @@ public class BlogController extends SuperController {
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "blogUid", required = false) String blogUid
     ){
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         return success(blogService.getByIdWithAll(blogUid, userUid));
     }
@@ -109,14 +102,7 @@ public class BlogController extends SuperController {
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "blogUid") String blogUid
     ){
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         boolean res = commentService.like(blogUid, userUid, CharacterConstants.NUM_ONE);
 
@@ -133,14 +119,7 @@ public class BlogController extends SuperController {
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "blogUid") String blogUid
     ){
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         Collect collect = new Collect();
         collect.setUid(StringUtils.getUUID());
@@ -184,14 +163,7 @@ public class BlogController extends SuperController {
             @PathVariable("blogUid") String blogUid,
             @RequestBody CommentEditDto commentEditDto
     ){
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         Comment comment = new Comment();
         comment.setContent(commentEditDto.getContent());
@@ -224,9 +196,8 @@ public class BlogController extends SuperController {
     @ApiOperation(value="添加博客", notes="添加博客")
     @PostMapping(value = "")
     public String add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) BlogEditDto blogEditDto) {
-        String authorization = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
-        String payloadByBase64 = JwtUtil.getPayloadByBase64(authorization);
-        String userUid = JSON.parseObject(payloadByBase64).get("uid").toString();
+
+        String userUid = getUserUid(httpServletRequest);
         blogEditDto.setUserUid(userUid);
 
         Blog blog = blogService.save(blogEditDto);

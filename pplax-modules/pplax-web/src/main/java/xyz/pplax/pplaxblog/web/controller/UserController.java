@@ -40,14 +40,7 @@ public class UserController extends SuperController {
     @ApiOperation(value="获取自己的信息", notes="获取自己的信息")
     @GetMapping(value = "/userInfo")
     public String getMyUserInfo (HttpServletRequest httpServletRequest) {
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         User user = userService.getById(userUid);
         if (user != null) {

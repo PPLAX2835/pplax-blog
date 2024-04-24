@@ -77,15 +77,8 @@ public class MessageController extends SuperController {
     @ApiOperation(value = "添加留言", httpMethod = "POST", response = ResponseResult.class, notes = "添加留言")
     @PostMapping("/leave")
     public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody MessageEditDto messageEditDto){
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String accessToken = null;
-        String userUid = null;
-        if (!StringUtils.isBlank(authorization)) {
-            accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+
+        String userUid = getUserUid(httpServletRequest);
 
         Message message = new Message();
         message.setContent(messageEditDto.getContent());
@@ -120,15 +113,7 @@ public class MessageController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String accessToken = null;
-        String userUid = null;
-        if (!StringUtils.isBlank(authorization)) {
-            accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         IPage<Message> messageIPage = messageService.listChatMessage(userUid, chatRoomUid, currentPage, pageSize);
 
@@ -141,15 +126,7 @@ public class MessageController extends SuperController {
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "chatRoomUid") String chatRoomUid
     ){
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String accessToken = null;
-        String userUid = null;
-        if (!StringUtils.isBlank(authorization)) {
-            accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         messageService.read(userUid, chatRoomUid);
 
@@ -163,15 +140,7 @@ public class MessageController extends SuperController {
             @PathVariable("chatRoomUid") String chatRoomUid,
             @RequestBody Message message
     ){
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String accessToken = null;
-        String userUid = null;
-        if (!StringUtils.isBlank(authorization)) {
-            accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         message.setChatRoomUid(chatRoomUid);
         message.setType(1);

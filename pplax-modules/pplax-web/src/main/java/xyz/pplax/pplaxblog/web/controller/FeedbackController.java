@@ -38,15 +38,8 @@ public class FeedbackController extends SuperController {
     @ApiOperation(value = "添加反馈", httpMethod = "POST", response = ResponseResult.class, notes = "添加反馈")
     @PostMapping("")
     public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody Feedback feedback){
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String accessToken = null;
-        String userUid = null;
-        if (!StringUtils.isBlank(authorization)) {
-            accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+
+        String userUid = getUserUid(httpServletRequest);
         feedback.setUserUid(userUid);
         feedback.setStatus(EStatus.UNRESOLVED.getStatus());
 

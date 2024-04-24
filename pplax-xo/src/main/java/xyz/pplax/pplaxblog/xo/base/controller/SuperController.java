@@ -1,14 +1,36 @@
 package xyz.pplax.pplaxblog.xo.base.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 /**
  * Controller基类
  */
 public class SuperController {
+
+	/**
+	 * 获取登录用户uid
+	 * @param httpServletRequest
+	 * @return
+	 */
+	public String getUserUid(HttpServletRequest httpServletRequest) {
+		String userUid = null;
+		String authorization = httpServletRequest.getHeader("Authorization");
+		if (!StringUtils.isEmpty(authorization)) {
+			String accessToken = authorization.replace("Bearer ", "");
+			String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
+			JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+			userUid = (String) jsonObject.get("uid");
+		}
+
+		return userUid;
+	}
 
 	/**
 	 * 将对象转为json串

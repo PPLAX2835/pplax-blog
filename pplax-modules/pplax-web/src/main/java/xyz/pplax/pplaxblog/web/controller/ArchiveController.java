@@ -35,15 +35,8 @@ public class ArchiveController extends SuperController {
     @ApiOperation(value="获得归档列表", notes="获得归档列表")
     @GetMapping("")
     public String getArchive(HttpServletRequest httpServletRequest) {
-        String authorization = httpServletRequest.getHeader("Authorization");
-        String accessToken = null;
-        String userUid = null;
-        if (!StringUtils.isBlank(authorization)) {
-            accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+
+        String userUid = getUserUid(httpServletRequest);
 
         // 目前还不是根据用户查询
         return toJson(blogService.archive(userUid));

@@ -67,10 +67,7 @@ public class SayController extends SuperController {
     @PostMapping("")
     public String add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) SayEditDto sayEditDto) {
         // 获取用户uid
-        String accessToken = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
-        String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-        JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-        String userUid = (String) jsonObject.get("uid");
+        String userUid = getUserUid(httpServletRequest);
 
         sayEditDto.setUserUid(userUid);
         Boolean res = sayService.save(sayEditDto);
@@ -99,14 +96,7 @@ public class SayController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         SayGetListDto sayGetListDto = new SayGetListDto();
         sayGetListDto.setUserUid(userUid);
@@ -140,14 +130,7 @@ public class SayController extends SuperController {
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "sayUid") String sayUid
     ){
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         boolean res = commentService.like(sayUid, userUid, CharacterConstants.NUM_THREE);
 
@@ -166,14 +149,7 @@ public class SayController extends SuperController {
             @PathVariable("sayUid") String sayUid,
             @RequestBody CommentEditDto commentEditDto
     ){
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
-        }
+        String userUid = getUserUid(httpServletRequest);
 
         Comment comment = new Comment();
         comment.setContent(commentEditDto.getContent());

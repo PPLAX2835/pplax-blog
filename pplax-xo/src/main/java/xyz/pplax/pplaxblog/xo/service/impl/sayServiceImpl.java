@@ -9,6 +9,7 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.CommentSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.SaySQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.SayEditDto;
@@ -46,10 +47,10 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
 
     @Override
     public IPage<Say> list(SayGetListDto sayGetListDto) {
-        QueryWrapper<Say> sayQueryWrapper = new QueryWrapper<>();
+        PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
         if(!StringUtils.isEmpty(sayGetListDto.getKeyword())) {
             // 如果关键词参数非空，就按该条件查询
-            sayQueryWrapper.like(SaySQLConstants.CONTENT, "%" + sayGetListDto.getKeyword() + "%");
+            sayPQueryWrapper.like(SaySQLConstants.CONTENT, "%" + sayGetListDto.getKeyword() + "%");
         }
 
         //分页
@@ -57,11 +58,7 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
         page.setCurrent(sayGetListDto.getCurrentPage());
         page.setSize(sayGetListDto.getPageSize());
 
-        // 获得非删除状态的
-        sayQueryWrapper.ne(SaySQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-
-        IPage<Say> sayPage = page(page, sayQueryWrapper);
-        List<Say> sayList = new ArrayList<>();
+        IPage<Say> sayPage = page(page, sayPQueryWrapper);
         for (Say say : sayPage.getRecords()) {
             // 封装图片
             if (!StringUtils.isBlank(say.getImageUids())) {
@@ -94,22 +91,17 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
             // 判断自己是否已经点赞
             boolean isLike = false;
             if (!StringUtils.isBlank(sayGetListDto.getUserUid())) {
-                QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
-                commentQueryWrapper.ne(CommentSQLConstants.STATUS, EStatus.DISABLED.getStatus());
-                commentQueryWrapper.eq(CommentSQLConstants.USER_UID, sayGetListDto.getUserUid());
-                commentQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_THREE);
-                commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, say.getUid());
-                int count = commentService.count(commentQueryWrapper);
+                PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
+                commentPQueryWrapper.eq(CommentSQLConstants.USER_UID, sayGetListDto.getUserUid());
+                commentPQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_THREE);
+                commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, say.getUid());
+                int count = commentService.count(commentPQueryWrapper);
                 if (count > 0) {
                     isLike = true;
                 }
             }
             say.setIsLike(isLike);
-
-            sayList.add(say);
         }
-
-        sayPage.setRecords(sayList);
 
         return sayPage;
     }

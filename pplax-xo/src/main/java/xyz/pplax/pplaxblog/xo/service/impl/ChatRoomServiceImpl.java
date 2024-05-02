@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.ChatRoomSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.list.ChatRoomGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
@@ -37,15 +38,14 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
 
     @Override
     public IPage<ChatRoom> list(ChatRoomGetListDto chatRoomGetListDto) {
-        QueryWrapper<ChatRoom> chatRoomQueryWrapper = new QueryWrapper<>();
-        chatRoomQueryWrapper.ne(ChatRoomSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        PQueryWrapper<ChatRoom> chatRoomPQueryWrapper = new PQueryWrapper<>();
 
         //分页
         Page<ChatRoom> page = new Page<>();
         page.setCurrent(chatRoomGetListDto.getCurrentPage());
         page.setSize(chatRoomGetListDto.getPageSize());
 
-        IPage<ChatRoom> pageList = page(page, chatRoomQueryWrapper);
+        IPage<ChatRoom> pageList = page(page, chatRoomPQueryWrapper);
         for (ChatRoom chatRoom : pageList.getRecords()) {
             // 封装头像
             chatRoom.setAvatar(fileStorageService.getById(chatRoom.getAvatarUid()));
@@ -65,10 +65,9 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
 
     @Override
     public List<ChatRoom> getByUserUid(String userUid) {
-        QueryWrapper<ChatRoom> chatRoomQueryWrapper = new QueryWrapper<>();
-        chatRoomQueryWrapper.ne(ChatRoomSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        PQueryWrapper<ChatRoom> chatRoomPQueryWrapper = new PQueryWrapper<>();
 
-        chatRoomQueryWrapper
+        chatRoomPQueryWrapper
                 .and(
                         QueryWrapper -> QueryWrapper
                         .eq(ChatRoomSQLConstants.OWNER_UID, userUid)
@@ -76,7 +75,7 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
                         .like(ChatRoomSQLConstants.MEMBER_UIDS, "%" + userUid + "%")
                 );
 
-        List<ChatRoom> chatRoomList = list(chatRoomQueryWrapper);
+        List<ChatRoom> chatRoomList = list(chatRoomPQueryWrapper);
 
         for (ChatRoom chatRoom : chatRoomList) {
             // 封装头像

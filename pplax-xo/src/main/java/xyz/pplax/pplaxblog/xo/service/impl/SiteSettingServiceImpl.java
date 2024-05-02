@@ -1,18 +1,14 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
-import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
-import xyz.pplax.pplaxblog.xo.constants.sql.SiteSettingSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.SiteSettingEditDto;
 import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.mapper.SiteSettingMapper;
-import xyz.pplax.pplaxblog.xo.service.BlogSortService;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
 import java.util.*;
@@ -23,15 +19,11 @@ import java.util.*;
 @Service
 public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, SiteSetting> implements SiteSettingService {
 
-    @Autowired
-    private BlogSortService blogSortService;
-
     @Override
     public List<SiteSetting> list() {
-        QueryWrapper<SiteSetting> siteSettingQueryWrapper = new QueryWrapper<>();
-        siteSettingQueryWrapper.ne(SiteSettingSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        PQueryWrapper<SiteSetting> siteSettingPQueryWrapper = new PQueryWrapper<>();
 
-        List<SiteSetting> siteSettingList = list(siteSettingQueryWrapper);
+        List<SiteSetting> siteSettingList = list(siteSettingPQueryWrapper);
         for (SiteSetting siteSetting : siteSettingList) {
             // 如果是json形式就转化为json
             if (!StringUtils.isBlank((String) siteSetting.getValue()) && (((String) siteSetting.getValue()).matches(BaseRegexConstants.JSON_REGEX))) {

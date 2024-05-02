@@ -9,6 +9,7 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.CommentSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.list.CommentGetListDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
@@ -42,7 +43,7 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
 
     @Override
     public IPage<Comment> list(CommentGetListDto commentGetListDto) {
-        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
+        PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
 
         if (!StringUtils.isEmpty(commentGetListDto.getNickname())) {
             UserGetListDto userGetListDto = new UserGetListDto();
@@ -56,17 +57,17 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
                 userUidList.add(user.getUid());
             }
             if (userUidList.size() > 0) {
-                commentQueryWrapper.in(CommentSQLConstants.USER_UID, userUidList);
+                commentPQueryWrapper.in(CommentSQLConstants.USER_UID, userUidList);
             }
         }
         if (!StringUtils.isEmpty(commentGetListDto.getKeyword())) {
-            commentQueryWrapper.like(CommentSQLConstants.CONTENT, "%" + commentGetListDto.getKeyword() + "%");
+            commentPQueryWrapper.like(CommentSQLConstants.CONTENT, "%" + commentGetListDto.getKeyword() + "%");
         }
         if (commentGetListDto.getType() != null) {
-            commentQueryWrapper.eq(CommentSQLConstants.TYPE, commentGetListDto.getType());
+            commentPQueryWrapper.eq(CommentSQLConstants.TYPE, commentGetListDto.getType());
         }
         if (!StringUtils.isBlank(commentGetListDto.getOriginalUid())) {
-            commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, commentGetListDto.getOriginalUid());
+            commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, commentGetListDto.getOriginalUid());
         }
 
         //分页
@@ -74,17 +75,13 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
         page.setCurrent(commentGetListDto.getCurrentPage());
         page.setSize(commentGetListDto.getPageSize());
 
-        // 获得非删除状态的
-        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-
         IPage<Comment> pageList = null;
 
         // 按创建时间排序
-        commentQueryWrapper.orderByDesc(CommentSQLConstants.C_CREATE_TIME);
+        commentPQueryWrapper.orderByDesc(CommentSQLConstants.C_CREATE_TIME);
 
-        pageList = page(page, commentQueryWrapper);
+        pageList = page(page, commentPQueryWrapper);
 
-        List<Comment> commentList = new ArrayList<>();
         for (Comment comment : pageList.getRecords()) {
             // 封装所属原文
             if (comment.getType() == 0 || comment.getType() == 1) {
@@ -121,22 +118,18 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
             }
             comment.setTargetUser(targetUser);
 
-            commentList.add(comment);
         }
-
-        pageList.setRecords(commentList);
 
         return pageList;
     }
 
     @Override
     public List<Comment> listByOriginalUid(String originalUid, Integer type) {
-        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
-        commentQueryWrapper.eq(CommentSQLConstants.TYPE, type);
-        commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
-        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
+        commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
+        commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
 
-        List<Comment> commentList = list(commentQueryWrapper);
+        List<Comment> commentList = list(commentPQueryWrapper);
         for (Comment comment : commentList) {
             // 封装评论人
             User commentator = userService.getById(comment.getUserUid());
@@ -168,17 +161,16 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
 
     @Override
     public IPage<Comment> pageByBlogUid(String blogUid, Integer type, Long currentPage, Long pageSize) {
-        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
-        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        commentQueryWrapper.eq(CommentSQLConstants.TYPE, type);
-        commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, blogUid);
+        PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
+        commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
+        commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, blogUid);
 
         //分页
         Page<Comment> page = new Page<>();
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        IPage<Comment> commentIPage = page(page, commentQueryWrapper);
+        IPage<Comment> commentIPage = page(page, commentPQueryWrapper);
         for (Comment comment : commentIPage.getRecords()) {
             // 封装子评论
             comment.setChildren(listByOriginalUid(comment.getUid(), CharacterConstants.NUM_FOUR));
@@ -201,13 +193,12 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
 
     @Override
     public Boolean like(String originalUid, String userUid, Integer type) {
-        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
-        commentQueryWrapper.eq(CommentSQLConstants.USER_UID, userUid);
-        commentQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
-        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        commentQueryWrapper.eq(CommentSQLConstants.TYPE, type);
+        PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
+        commentPQueryWrapper.eq(CommentSQLConstants.USER_UID, userUid);
+        commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
+        commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
 
-        Comment record = getOne(commentQueryWrapper);           // 这里可能会在高并发点赞时出问题吧，以后要优化
+        Comment record = getOne(commentPQueryWrapper);           // 这里可能会在高并发点赞时出问题吧，以后要优化
         if (record == null) {
             Comment comment = new Comment();
             comment.setUid(StringUtils.getUUID());

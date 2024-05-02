@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.log4j.LogManager;
@@ -9,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
-import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.redis.RoleRedisConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.MenuSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.RoleSQLConstants;
@@ -42,16 +41,13 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     private MenuService menuService;
 
     @Autowired
-    private RoleMapper roleMapper;
-
-    @Autowired
     private RedisService redisService;
 
     @Override
     public IPage<Role> list(RoleGetListDto roleGetListDto) {
-        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
+        PQueryWrapper<Role> rolePQueryWrapper = new PQueryWrapper<>();
         if (!StringUtils.isEmpty(roleGetListDto.getKeyword())) {
-            roleQueryWrapper.like(RoleSQLConstants.ROLE_AME, "%" + roleGetListDto.getKeyword() + "%");
+            rolePQueryWrapper.like(RoleSQLConstants.ROLE_AME, "%" + roleGetListDto.getKeyword() + "%");
         }
 
         //分页
@@ -59,13 +55,10 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
         page.setCurrent(roleGetListDto.getCurrentPage());
         page.setSize(roleGetListDto.getPageSize());
 
-        // 获得非删除状态的
-        roleQueryWrapper.ne(RoleSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-
         IPage<Tag> pageList = null;
 
         List<Role> roleList = new ArrayList<>();
-        Page<Role> rolePage = roleMapper.selectPage(page, roleQueryWrapper);
+        Page<Role> rolePage = page(page, rolePQueryWrapper);
         for (Role role : rolePage.getRecords()) {
             roleList.add(setMenu(role));
         }
@@ -98,10 +91,10 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
         Role role = getById(roleUid);
         String[] menuUids = role.getMenuUids().split(",");
 
-        QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
-        menuQueryWrapper.in(MenuSQLConstants.UID, menuUids);
-        menuQueryWrapper.ne(MenuSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        int count = menuService.count(menuQueryWrapper);
+        PQueryWrapper<Menu> menuPQueryWrapper = new PQueryWrapper<>();
+        menuPQueryWrapper.in(MenuSQLConstants.UID, menuUids);
+
+        int count = menuService.count(menuPQueryWrapper);
 
         if (count > 0) {
             return new ResponseResult(HttpStatus.MENU_UNDER_THIS_ROLE);
@@ -150,10 +143,9 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     @Override
     public List<Role> list() {
 
-        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
-        roleQueryWrapper.ne(RoleSQLConstants.STATUS, EStatus.DISABLED);
+        PQueryWrapper<Role> rolePQueryWrapper = new PQueryWrapper<>();
 
-        List<Role> roleList = super.list(roleQueryWrapper);
+        List<Role> roleList = super.list(rolePQueryWrapper);
         List<Role> result = new ArrayList<>();
 
         for (Role role : roleList) {
@@ -178,10 +170,10 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
         String[] menuUids = role.getMenuUids().split(CharacterConstants.SYMBOL_COMMA);
 
         // 查询
-        QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
-        menuQueryWrapper.in(MenuSQLConstants.C_UID, menuUids);
-        menuQueryWrapper.orderByAsc(MenuSQLConstants.SORT_NO);
-        List<Menu> menuList = menuService.list(menuQueryWrapper);
+        PQueryWrapper<Menu> menuPQueryWrapper = new PQueryWrapper<>();
+        menuPQueryWrapper.in(MenuSQLConstants.C_UID, menuUids);
+        menuPQueryWrapper.orderByAsc(MenuSQLConstants.SORT_NO);
+        List<Menu> menuList = menuService.list(menuPQueryWrapper);
 
         role.setMenuList(menuService.organizeMenus(menuList));
 

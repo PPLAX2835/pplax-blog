@@ -1,10 +1,9 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
-import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.CollectSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.Collect;
 import xyz.pplax.pplaxblog.xo.mapper.CollectMapper;
@@ -18,12 +17,11 @@ public class CollectServiceImpl extends SuperServiceImpl<CollectMapper, Collect>
 
     @Override
     public Boolean save(String blogUid, String userUid) {
-        QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
-        collectQueryWrapper.ne(CollectSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        collectQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
-        collectQueryWrapper.eq(CollectSQLConstants.BLOG_UID, blogUid);
+        PQueryWrapper<Collect> collectPQueryWrapper = new PQueryWrapper<>();
+        collectPQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
+        collectPQueryWrapper.eq(CollectSQLConstants.BLOG_UID, blogUid);
 
-        Collect record = getOne(collectQueryWrapper);
+        Collect record = getOne(collectPQueryWrapper);
         if (record != null) {
            return removeById(record.getUid());
         }

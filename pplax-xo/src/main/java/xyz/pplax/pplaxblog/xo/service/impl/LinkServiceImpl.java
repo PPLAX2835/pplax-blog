@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.FileStorageSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.LinkSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.LinkEditDto;
@@ -32,13 +33,13 @@ public class LinkServiceImpl extends SuperServiceImpl<LinkMapper, Link> implemen
 
     @Override
     public IPage<Link> list(LinkGetListDto linkGetListDto) {
-        QueryWrapper<Link> linkQueryWrapper = new QueryWrapper<>();
+        PQueryWrapper<Link> linkPQueryWrapper = new PQueryWrapper<>();
         if (!StringUtils.isEmpty(linkGetListDto.getKeyword())) {
             // 如果关键词参数非空，就按该条件查询
-            linkQueryWrapper.like(LinkSQLConstants.TITLE, "%" + linkGetListDto.getKeyword() + "%");
+            linkPQueryWrapper.like(LinkSQLConstants.TITLE, "%" + linkGetListDto.getKeyword() + "%");
         }
         if (linkGetListDto.getStatus() != null) {
-            linkQueryWrapper.eq(LinkSQLConstants.C_STATUS, linkGetListDto.getStatus());
+            linkPQueryWrapper.eq(LinkSQLConstants.C_STATUS, linkGetListDto.getStatus());
         }
 
         //分页
@@ -46,19 +47,13 @@ public class LinkServiceImpl extends SuperServiceImpl<LinkMapper, Link> implemen
         page.setCurrent(linkGetListDto.getCurrentPage());
         page.setSize(linkGetListDto.getPageSize());
 
-        // 获得非删除状态的
-        linkQueryWrapper.ne(LinkSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-
-        IPage<Link> pageList = page(page, linkQueryWrapper);
+        IPage<Link> pageList = page(page, linkPQueryWrapper);
 
         List<Link> linkList = new ArrayList<>();
 
         // 封装图标
         for (Link link : pageList.getRecords()) {
-            QueryWrapper<FileStorage> fileStorageQueryWrapper = new QueryWrapper<>();
-            fileStorageQueryWrapper.eq(FileStorageSQLConstants.C_UID, link.getIconImageUid());
-            fileStorageQueryWrapper.ne(FileStorageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-            FileStorage fileStorage = fileStorageService.getOne(fileStorageQueryWrapper);
+            FileStorage fileStorage = fileStorageService.getById(link.getIconImageUid());
 
             link.setIconImage(fileStorage);
             linkList.add(link);

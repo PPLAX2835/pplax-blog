@@ -13,6 +13,7 @@ import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Blog;
@@ -84,18 +85,13 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
             pageList = blogSortMapper.selectPage(page, blogSortQueryWrapper);
         }
 
-        List<BlogSort> blogSortList = new ArrayList<>();
         // 获得引用量
         for (BlogSort blogSort : pageList.getRecords()) {
             QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
             blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSort.getUid());
             blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
             blogSort.setCites(blogService.count(blogQueryWrapper));
-
-            blogSortList.add(blogSort);
         }
-
-        pageList.setRecords(blogSortList);
 
         // 返回
         return pageList;
@@ -103,22 +99,20 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
 
     @Override
     public List<BlogSort> list() {
-        QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
-        blogSortQueryWrapper.ne(BlogSortSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        PQueryWrapper<BlogSort> blogSortPQueryWrapper = new PQueryWrapper<>();
 
-        List<BlogSort> blogSortList = list(blogSortQueryWrapper);
+        List<BlogSort> blogSortList = list(blogSortPQueryWrapper);
         for (BlogSort blogSort : blogSortList) {
             // 封装文章数
-            QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
-            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
 
-            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
-            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
-            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
+            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
+            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
+            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
 
-            blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSort.getUid());
+            blogPQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSort.getUid());
 
-            blogSort.setCites(blogService.count(blogQueryWrapper));
+            blogSort.setCites(blogService.count(blogPQueryWrapper));
         }
 
         return blogSortList;
@@ -145,9 +139,9 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
     @Override
     public Boolean promoteCancel(String blogSortUid) {
         // 先获得排序了的分类列表
-        QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
-        blogSortQueryWrapper.orderByAsc(BlogSortSQLConstants.SORT_NO);
-        List<BlogSort> blogSortList = list(blogSortQueryWrapper);
+        PQueryWrapper<BlogSort> blogSortPQueryWrapper = new PQueryWrapper<>();
+        blogSortPQueryWrapper.orderByAsc(BlogSortSQLConstants.SORT_NO);
+        List<BlogSort> blogSortList = list(blogSortPQueryWrapper);
 
         int index = 0;
         int gapSortNo = 1;

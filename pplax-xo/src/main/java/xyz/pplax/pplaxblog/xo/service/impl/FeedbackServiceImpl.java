@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.FeedBackSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.FeedbackEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.FeedbackGetListDto;
@@ -38,14 +39,14 @@ public class FeedbackServiceImpl extends SuperServiceImpl<FeedbackMapper, Feedba
 
     @Override
     public IPage<Feedback> list(FeedbackGetListDto feedbackGetListDto) {
-        QueryWrapper<Feedback> feedbackQueryWrapper = new QueryWrapper<>();
+        PQueryWrapper<Feedback> feedbackPQueryWrapper = new PQueryWrapper<>();
 
         if (feedbackGetListDto.getType() != null) {
-            feedbackQueryWrapper.eq(FeedBackSQLConstants.TYPE, feedbackGetListDto.getType());
+            feedbackPQueryWrapper.eq(FeedBackSQLConstants.TYPE, feedbackGetListDto.getType());
         }
 
         if (feedbackGetListDto.getStatus() != null) {
-            feedbackQueryWrapper.eq(FeedBackSQLConstants.STATUS, feedbackGetListDto.getStatus());
+            feedbackPQueryWrapper.eq(FeedBackSQLConstants.STATUS, feedbackGetListDto.getStatus());
         }
 
         //分页
@@ -53,17 +54,13 @@ public class FeedbackServiceImpl extends SuperServiceImpl<FeedbackMapper, Feedba
         page.setCurrent(feedbackGetListDto.getCurrentPage());
         page.setSize(feedbackGetListDto.getPageSize());
 
-        // 获得非删除状态的
-        feedbackQueryWrapper.ne(FeedBackSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-
         IPage<Feedback> pageList = null;
 
         // 按创建时间排序
-        feedbackQueryWrapper.orderByDesc(FeedBackSQLConstants.C_CREATE_TIME);
+        feedbackPQueryWrapper.orderByDesc(FeedBackSQLConstants.C_CREATE_TIME);
 
-        pageList = page(page, feedbackQueryWrapper);
+        pageList = page(page, feedbackPQueryWrapper);
 
-        List<Feedback> feedbackList = new ArrayList<>();
         for (Feedback feedback : pageList.getRecords()) {
             // 封装反馈人
             User user = userService.getById(feedback.getUserUid());
@@ -77,9 +74,7 @@ public class FeedbackServiceImpl extends SuperServiceImpl<FeedbackMapper, Feedba
             FileStorage fileStorage = fileStorageService.getById(feedback.getPictureUid());
             feedback.setPicture(fileStorage);
 
-            feedbackList.add(feedback);
         }
-        pageList.setRecords(feedbackList);
 
         return pageList;
     }

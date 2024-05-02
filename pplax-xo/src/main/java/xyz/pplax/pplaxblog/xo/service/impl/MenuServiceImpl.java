@@ -7,6 +7,7 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.MenuSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.MenuEditDto;
 import xyz.pplax.pplaxblog.xo.entity.Menu;
@@ -27,10 +28,9 @@ public class MenuServiceImpl extends SuperServiceImpl<MenuMapper, Menu> implemen
      */
     @Override
     public List<Menu> tree() {
-        QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
-        menuQueryWrapper.ne(MenuSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        menuQueryWrapper.orderByAsc(MenuSQLConstants.SORT_NO);
-        return organizeMenus(list(menuQueryWrapper));
+        PQueryWrapper<Menu> menuPQueryWrapper = new PQueryWrapper<>();
+        menuPQueryWrapper.orderByAsc(MenuSQLConstants.SORT_NO);
+        return organizeMenus(list(menuPQueryWrapper));
     }
 
 
@@ -87,10 +87,9 @@ public class MenuServiceImpl extends SuperServiceImpl<MenuMapper, Menu> implemen
     @Override
     public ResponseResult removeById(String menuUid) {
         // 检查是否还有子菜单
-        QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
-        menuQueryWrapper.eq(MenuSQLConstants.PARENT_UID, menuUid);
-        menuQueryWrapper.ne(MenuSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        int count = count(menuQueryWrapper);
+        PQueryWrapper<Menu> menuPQueryWrapper = new PQueryWrapper<>();
+        menuPQueryWrapper.eq(MenuSQLConstants.PARENT_UID, menuUid);
+        int count = count(menuPQueryWrapper);
         if (count > 0) {
             return new ResponseResult(HttpStatus.CHILDREN_UNDER_THIS_MENU);
         }

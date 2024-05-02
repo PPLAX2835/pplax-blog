@@ -10,6 +10,7 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.MessageSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.list.MessageGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Message;
@@ -40,16 +41,16 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
 
     @Override
     public IPage<Message> list(MessageGetListDto messageGetListDto) {
-        QueryWrapper<Message> chatMessageQueryWrapper = new QueryWrapper<>();
-        chatMessageQueryWrapper.ne(MessageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+        PQueryWrapper<Message> chatMessagePQueryWrapper = new PQueryWrapper<>();
+
         if (!StringUtils.isEmpty(messageGetListDto.getKeyword())) {
-            chatMessageQueryWrapper.like(MessageSQLConstants.CONTENT, "%" + messageGetListDto.getKeyword() + "%");
+            chatMessagePQueryWrapper.like(MessageSQLConstants.CONTENT, "%" + messageGetListDto.getKeyword() + "%");
         }
         if (messageGetListDto.getType() != null) {
-            chatMessageQueryWrapper.eq(MessageSQLConstants.TYPE, messageGetListDto.getType());
+            chatMessagePQueryWrapper.eq(MessageSQLConstants.TYPE, messageGetListDto.getType());
         }
         if (!StringUtils.isEmpty(messageGetListDto.getChatRoomUid())) {
-            chatMessageQueryWrapper.eq(MessageSQLConstants.CHAT_ROOM_UID, messageGetListDto.getChatRoomUid());
+            chatMessagePQueryWrapper.eq(MessageSQLConstants.CHAT_ROOM_UID, messageGetListDto.getChatRoomUid());
         }
 
         //分页
@@ -57,7 +58,7 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
         page.setCurrent(messageGetListDto.getCurrentPage());
         page.setSize(messageGetListDto.getPageSize());
 
-        IPage<Message> pageList = page(page, chatMessageQueryWrapper);
+        IPage<Message> pageList = page(page, chatMessagePQueryWrapper);
         for (Message chatMessage : pageList.getRecords()) {
             // 封装用户信息
             chatMessage.setUserInfo(userInfoService.getByUserUid(chatMessage.getUserUid()));
@@ -89,20 +90,20 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
      */
     @Override
     public IPage<Message> listChatMessage(String userUid, String chatRoomUid, Long currentPage, Long pageSize) {
-        QueryWrapper<Message> chatMessageQueryWrapper = new QueryWrapper<>();
-        chatMessageQueryWrapper.ne(MessageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        chatMessageQueryWrapper.eq(MessageSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+        PQueryWrapper<Message> chatMessagePQueryWrapper = new PQueryWrapper<>();
+
+        chatMessagePQueryWrapper.eq(MessageSQLConstants.TYPE, CharacterConstants.NUM_ONE);
         if (!StringUtils.isEmpty(chatRoomUid)) {
-            chatMessageQueryWrapper.eq(MessageSQLConstants.CHAT_ROOM_UID, chatRoomUid);
+            chatMessagePQueryWrapper.eq(MessageSQLConstants.CHAT_ROOM_UID, chatRoomUid);
         }
-        chatMessageQueryWrapper.orderByDesc(MessageSQLConstants.CREATE_TIME);
+        chatMessagePQueryWrapper.orderByDesc(MessageSQLConstants.CREATE_TIME);
 
         //分页
         Page<Message> page = new Page<>();
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        IPage<Message> pageList = page(page, chatMessageQueryWrapper);
+        IPage<Message> pageList = page(page, chatMessagePQueryWrapper);
         for (Message chatMessage : pageList.getRecords()) {
             // 封装用户信息
             chatMessage.setUserInfo(userInfoService.getByUserUid(chatMessage.getUserUid()));
@@ -143,17 +144,16 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
      */
     @Override
     public IPage<Message> listLeaveMessage(Long currentPage, Long pageSize) {
-        QueryWrapper<Message> chatMessageQueryWrapper = new QueryWrapper<>();
-        chatMessageQueryWrapper.ne(MessageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        chatMessageQueryWrapper.eq(MessageSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
-        chatMessageQueryWrapper.orderByDesc(MessageSQLConstants.CREATE_TIME);
+        PQueryWrapper<Message> chatMessagePQueryWrapper = new PQueryWrapper<>();
+        chatMessagePQueryWrapper.eq(MessageSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
+        chatMessagePQueryWrapper.orderByDesc(MessageSQLConstants.CREATE_TIME);
 
         //分页
         Page<Message> page = new Page<>();
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        IPage<Message> pageList = page(page, chatMessageQueryWrapper);
+        IPage<Message> pageList = page(page, chatMessagePQueryWrapper);
         for (Message chatMessage : pageList.getRecords()) {
             // 封装用户信息
             chatMessage.setUserInfo(userInfoService.getByUserUid(chatMessage.getUserUid()));

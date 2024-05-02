@@ -14,6 +14,7 @@ import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.*;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
@@ -117,9 +118,9 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
      */
     @Override
     public Boolean isUsernameExist(String username) {
-        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        userQueryWrapper.eq(UserSQLConstants.USERNAME, username);
-        return count(userQueryWrapper) > 0;
+        PQueryWrapper<User> userPQueryWrapper = new PQueryWrapper<>();
+        userPQueryWrapper.eq(UserSQLConstants.USERNAME, username);
+        return count(userPQueryWrapper) > 0;
     }
 
     /**
@@ -133,55 +134,49 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         User user = getById(userUid);
 
         // 检查该用户下是否还有别的数据
-        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
-        blogQueryWrapper.eq(BlogSQLConstants.USER_UID, user.getUid());
-        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        int blogCount = blogService.count(blogQueryWrapper);
+        PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
+        blogPQueryWrapper.eq(BlogSQLConstants.USER_UID, user.getUid());
+        int blogCount = blogService.count(blogPQueryWrapper);
         if (blogCount > 0) {
             // 还有博客，无法删除
             return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_USER);
         }
 
-        QueryWrapper<Say> sayQueryWrapper = new QueryWrapper<>();
-        sayQueryWrapper.eq(SaySQLConstants.USER_UID, user.getUid());
-        sayQueryWrapper.ne(SaySQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        int sayCount = sayService.count(sayQueryWrapper);
+        PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
+        sayPQueryWrapper.eq(SaySQLConstants.USER_UID, user.getUid());
+        int sayCount = sayService.count(sayPQueryWrapper);
         if (sayCount > 0) {
             // 还有说说，无法删除
             return new ResponseResult(HttpStatus.SAY_UNDER_THIS_USER);
         }
 
-        QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
-        collectQueryWrapper.eq(CollectSQLConstants.USER_UID, user.getUid());
-        collectQueryWrapper.ne(CollectSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        int collectCount = collectService.count(collectQueryWrapper);
+        PQueryWrapper<Collect> collectPQueryWrapper = new PQueryWrapper<>();
+        collectPQueryWrapper.eq(CollectSQLConstants.USER_UID, user.getUid());
+        int collectCount = collectService.count(collectPQueryWrapper);
         if (collectCount > 0) {
             // 收藏还有东西，无法删除
             return new ResponseResult(HttpStatus.COLLECTION_UNDER_THIS_USER);
         }
 
-        QueryWrapper<Comment> commentQueryWrapper = new QueryWrapper<>();
-        commentQueryWrapper.eq(CommentSQLConstants.USER_UID, user.getUid());
-        commentQueryWrapper.ne(CommentSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        int commentCount = commentService.count(commentQueryWrapper);
+        PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
+        commentPQueryWrapper.eq(CommentSQLConstants.USER_UID, user.getUid());
+        int commentCount = commentService.count(commentPQueryWrapper);
         if (commentCount > 0) {
             // 还有评论
             return new ResponseResult(HttpStatus.COMMENT_UNDER_THIS_USER);
         }
 
-        QueryWrapper<Feedback> feedbackQueryWrapper = new QueryWrapper<>();
-        feedbackQueryWrapper.eq(FeedBackSQLConstants.USER_UID, user.getUid());
-        feedbackQueryWrapper.ne(FeedBackSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        int feedbackCount = feedbackService.count(feedbackQueryWrapper);
+        PQueryWrapper<Feedback> feedbackPQueryWrapper = new PQueryWrapper<>();
+        feedbackPQueryWrapper.eq(FeedBackSQLConstants.USER_UID, user.getUid());
+        int feedbackCount = feedbackService.count(feedbackPQueryWrapper);
         if (feedbackCount > 0) {
             // 还有反馈
             return new ResponseResult(HttpStatus.FEEDBACK_UNDER_THIS_USER);
         }
 
-        QueryWrapper<FileStorage> fileStorageQueryWrapper = new QueryWrapper<>();
-        fileStorageQueryWrapper.eq(FileStorageSQLConstants.USER_UID, user.getUid());
-        fileStorageQueryWrapper.ne(FileStorageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        int fileStorageCount = fileStorageService.count(fileStorageQueryWrapper);
+        PQueryWrapper<FileStorage> fileStoragePQueryWrapper = new PQueryWrapper<>();
+        fileStoragePQueryWrapper.eq(FileStorageSQLConstants.USER_UID, user.getUid());
+        int fileStorageCount = fileStorageService.count(fileStoragePQueryWrapper);
         if (fileStorageCount > 0) {
             // 还有文件
             return new ResponseResult(HttpStatus.FILE_STORAGE_UNDER_THIS_USER);

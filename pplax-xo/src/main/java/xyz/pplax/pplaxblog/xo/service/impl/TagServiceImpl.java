@@ -12,6 +12,7 @@ import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.TagSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
@@ -45,10 +46,10 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
      */
     @Override
     public IPage<Tag> list(TagGetListDto tagGetListDto) {
-        QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
+        PQueryWrapper<Tag> tagPQueryWrapper = new PQueryWrapper<>();
         if(!StringUtils.isEmpty(tagGetListDto.getKeyword())) {
             // 如果关键词参数非空，就按该条件查询
-            tagQueryWrapper.like(TagSQLConstants.NAME, "%" + tagGetListDto.getKeyword() + "%");
+            tagPQueryWrapper.like(TagSQLConstants.NAME, "%" + tagGetListDto.getKeyword() + "%");
         }
 
         //分页
@@ -56,43 +57,39 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         page.setCurrent(tagGetListDto.getCurrentPage());
         page.setSize(tagGetListDto.getPageSize());
 
-        // 获得非删除状态的
-        tagQueryWrapper.ne(TagSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-
         IPage<Tag> pageList = null;
         // 排序
         if (tagGetListDto.getSortByClickCount() != null && tagGetListDto.getSortByClickCount()) {
             // 按点击量排序
-            tagQueryWrapper.orderByAsc(TagSQLConstants.CLICK_COUNT);
+            tagPQueryWrapper.orderByAsc(TagSQLConstants.CLICK_COUNT);
             // 查询
-            pageList = tagMapper.selectPage(page, tagQueryWrapper);
+            pageList = page(page, tagPQueryWrapper);
         } else if (tagGetListDto.getSortByCites() != null && tagGetListDto.getSortByCites()) {
             // 按引用量排序
-            tagQueryWrapper.and(
+            tagPQueryWrapper.and(
                     i -> i.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus())
                             .or().isNull(BlogSQLConstants.C_STATUS)
             );
             // 查询
-            pageList = tagMapper.selectListSortByCites(page, tagQueryWrapper);
+            pageList = tagMapper.selectListSortByCites(page, tagPQueryWrapper);
         } else {
             // 按创建时间排序
-            tagQueryWrapper.orderByDesc(TagSQLConstants.C_CREATE_TIME);
+            tagPQueryWrapper.orderByDesc(TagSQLConstants.C_CREATE_TIME);
             // 查询
-            pageList = tagMapper.selectPage(page, tagQueryWrapper);
+            pageList = page(page, tagPQueryWrapper);
         }
 
         List<Tag> tagList = new ArrayList<>();
         // 获得引用量
         for (Tag tag : pageList.getRecords()) {
-            QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
-            blogQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tag.getUid() + "%");
-            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
+            PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
+            blogPQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tag.getUid() + "%");
 
-            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
-            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
-            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
+            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
+            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
+            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
 
-            tag.setCites(blogService.count(blogQueryWrapper));
+            tag.setCites(blogService.count(blogPQueryWrapper));
 
             tagList.add(tag);
         }
@@ -138,10 +135,10 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
 
     @Override
     public Integer count(String name) {
-        QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
-        tagQueryWrapper.eq(TagSQLConstants.NAME, name);
+        PQueryWrapper<Tag> blogPQueryWrapper = new PQueryWrapper<>();
+        blogPQueryWrapper.eq(TagSQLConstants.NAME, name);
 
-        return count(tagQueryWrapper);
+        return count(blogPQueryWrapper);
     }
 
     /**
@@ -151,10 +148,9 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
      */
     @Override
     public ResponseResult removeById(String tagUid) {
-        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
-        blogQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tagUid + "%");
-        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED);
-        int count = blogService.count(blogQueryWrapper);
+        PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
+        blogPQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tagUid + "%");
+        int count = blogService.count(blogPQueryWrapper);
 
         if (count > 0) {
             return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_TAG);

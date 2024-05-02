@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.BlogSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.CollectSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
@@ -126,17 +127,15 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
 
     @Override
     public Map<String, Integer> getUserCount(String userUid) {
-        QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
-        blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        blogQueryWrapper.eq(BlogSQLConstants.USER_UID, userUid);
+        PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
+        blogPQueryWrapper.eq(BlogSQLConstants.USER_UID, userUid);
 
-        int blogCount = blogService.count(blogQueryWrapper);
+        int blogCount = blogService.count(blogPQueryWrapper);
 
-        QueryWrapper<Collect> collectQueryWrapper = new QueryWrapper<>();
-        collectQueryWrapper.ne(CollectSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        collectQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
+        PQueryWrapper<Collect> collectPQueryWrapper = new PQueryWrapper<>();
+        collectPQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
 
-        int collectCount = collectService.count(collectQueryWrapper);
+        int collectCount = collectService.count(collectPQueryWrapper);
 
 
         Map<String, Integer> res = new HashMap<>();

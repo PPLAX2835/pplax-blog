@@ -160,6 +160,47 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
     }
 
     @Override
+    public IPage<Comment> pageByOriginalUid(String originalUid, Integer type, Long currentPage, Long pageSize) {
+        PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
+        commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
+        commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
+
+        //分页
+        Page<Comment> page = new Page<>();
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
+
+        IPage<Comment> commentIPage = page(page, commentPQueryWrapper);
+        for (Comment comment : commentIPage.getRecords()) {
+            // 封装评论人
+            User commentator = userService.getById(comment.getUserUid());
+            if (commentator != null) {
+                UserInfo commentatorUserInfo = userInfoService.getById(commentator.getUserInfoUid());
+                FileStorage commentatorAvatar = fileStorageService.getById(commentatorUserInfo.getAvatarPictureUid());
+                commentatorUserInfo.setAvatar(commentatorAvatar);
+                commentator.setUserInfo(commentatorUserInfo);
+                // 脱敏
+                commentator.sensitiveDataRemove();
+            }
+            comment.setCommentator(commentator);
+
+            // 封装被评论人
+            User targetUser = userService.getById(comment.getToUserUid());
+            if (targetUser != null) {
+                UserInfo targetUserUserInfo = userInfoService.getById(targetUser.getUserInfoUid());
+                FileStorage commentatorAvatar = fileStorageService.getById(targetUserUserInfo.getAvatarPictureUid());
+                targetUserUserInfo.setAvatar(commentatorAvatar);
+                targetUser.setUserInfo(targetUserUserInfo);
+                // 脱敏
+                targetUser.sensitiveDataRemove();
+            }
+            comment.setTargetUser(targetUser);
+        }
+
+        return commentIPage;
+    }
+
+    @Override
     public IPage<Comment> pageByBlogUid(String blogUid, Integer type, Long currentPage, Long pageSize) {
         PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
         commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
@@ -173,7 +214,9 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
         IPage<Comment> commentIPage = page(page, commentPQueryWrapper);
         for (Comment comment : commentIPage.getRecords()) {
             // 封装子评论
-            comment.setChildren(listByOriginalUid(comment.getUid(), CharacterConstants.NUM_FOUR));
+            IPage<Comment> childrenIPage = pageByOriginalUid(comment.getUid(), CharacterConstants.NUM_FOUR, 1L, 4L);
+            comment.setChildrenTotal(childrenIPage.getTotal());
+            comment.setChildren(childrenIPage.getRecords());
 
             // 封装评论人
             User commentator = userService.getById(comment.getUserUid());

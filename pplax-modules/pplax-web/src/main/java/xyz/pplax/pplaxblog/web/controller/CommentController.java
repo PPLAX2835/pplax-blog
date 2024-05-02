@@ -3,6 +3,7 @@ package xyz.pplax.pplaxblog.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -10,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
@@ -37,6 +39,9 @@ public class CommentController extends SuperController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private CommentService commentService;
+
     @ApiOperation(value = "回复", httpMethod = "POST", response = ResponseResult.class, notes = "回复")
     @PostMapping("/{commentUid}/reply")
     public String comment(
@@ -61,6 +66,20 @@ public class CommentController extends SuperController {
         rabbitTemplate.convertAndSend(MqConstants.EXCHANGE_DIRECT, MqConstants.PPLAX_COMMENT, comment);
 
         return success();
+    }
+
+
+    @ApiOperation(value = "获得回复列表", httpMethod = "GET", response = ResponseResult.class, notes = "获得回复列表")
+    @GetMapping("/{commentUid}/reply/list")
+    public String comment(
+            @PathVariable("commentUid") String commentUid,
+            @RequestParam(value = "currentPage") Long currentPage,
+            @RequestParam(value = "pageSize") Long pageSize
+    ){
+
+        IPage<Comment> commentIPage = commentService.pageByOriginalUid(commentUid, CharacterConstants.NUM_FOUR, currentPage, pageSize);
+
+        return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
     }
 }
 

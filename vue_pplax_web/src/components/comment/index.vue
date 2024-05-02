@@ -76,7 +76,7 @@
                   </div>
                   <a
                       :ref="'replyBtn' + item.uid"
-                      @click="replyComment(item, item.uid, false)"
+                      @click="replyComment(item, false)"
                       class="comment-reply-link hand-style"
                   >回复</a
                   >
@@ -115,96 +115,10 @@
           </div>
           <ul class="children">
             <div class="comment-wrp">
-              <li
-                  class="ul-item"
-                  v-for="( childrenItem, childrenIndex ) in  item.children "
-                  :key="childrenIndex"
-              >
-                <!-- 评论内容 -->
-                <div
-                    class="comment"
-                    @mouseenter="replyEnter(childrenItem.uid, true)"
-                    @mouseleave="replyLeave(childrenItem.uid, true, index)"
-                >
-                  <div class="main">
-                    <div class="profile">
-                      <el-avatar
-                          :src="childrenItem.commentator.userInfo.avatar ? childrenItem.commentator.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')"
-                          size="medium"
-                      ></el-avatar>
-                    </div>
-                    <div class="commentinfo">
-                      <section class="commeta">
-                        <div class="left">
-                          <h4 class="author">
-                            <a target="_blank" class="disabled">
-                              {{ childrenItem.commentator.userInfo.nickname }}
-                            </a>
-                          </h4>
-                        </div>
-                        <a
-                            href="javascript:;"
-                            :ref="'childrenBtn' + childrenItem.uid"
-                            @click="replyComment(childrenItem, item.uid, true)"
-                            class="comment-reply-link hand-style"
-                        >回复</a
-                        >
-                        <div class="right">
-                          <div class="info">
-                            <time
-                                itemprop="datePublished"
-                                datetime="1680523318635"
-                                class="comment-time"
-                            >发布于
-                              {{ timeFormat(childrenItem.createTime) }}
-                            </time>
-                            <!--                                                        <span class="useragent-info">（-->
-                            <!--                                                            <svg-icon :icon-class="childrenItem.browser" />-->
-                            <!--                                                            {{ childrenItem.browserVersion }} &nbsp;-->
-                            <!--                                                            <svg-icon :icon-class="childrenItem.system" />-->
-                            <!--                                                            {{ childrenItem.systemVersion }}-->
-                            <!--                                                            ）-->
-                            <!--                                                        </span>-->
-                            <span class="ipAddress">
-                              IP属地:{{ splitIpAddress(childrenItem.address) }}
-                            </span>
-                          </div>
-                        </div>
-                      </section>
-                      <div class="body markdown-body">
-                        <div class="markdown-content">
-                          <p>
-                            <a
-                                href="javascript:;"
-                                style="color: #99ce00; text-decoration: none"
-                            >@{{
-                                childrenItem.commentator.userInfo.nickname }}
-                            </a>
 
-                            <span v-if="childrenItem.toUid">
-                              回复
-                              <a
-                                  href="javascript:;"
-                                  style="color: #99ce00; text-decoration: none"
-                              >
-                                @{{ childrenItem.targetUser.userInfo.nickname }}
-                              </a>
-                            </span>
+              <children :children="item.children" :total="item.childrenTotal" :comment-uid="item.uid"></children>
 
-                            <span v-html="childrenItem.content"></span>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- 回复框 -->
-                      <Reply
-                          :ref="'replys' + childrenItem.uid"
-                          @reloadReply="reloadReply"
-                      >
-                      </Reply>
-                    </div>
-                  </div>
-                </div>
-              </li>
+
             </div>
           </ul>
         </li>
@@ -226,12 +140,14 @@
 import { fetchBlogCommentList, postBlogComment } from '@/api/blog'
 import {getWebSiteInfoValue, parseTime} from "@/utils/index";
 import Reply from './Reply.vue'
+import Children from "./Children";
 import Emoji from '@/components/emoji'
 import {getUserUid} from "@/utils/cookieUtil";
 export default {
   components: {
     Reply,
-    Emoji
+    Emoji,
+    Children
   },
   props: {
     blogUid: {
@@ -245,7 +161,6 @@ export default {
       opacity: 0,
       show: null,
       user: this.$store.state.user,
-      blogUid: this.blogUid,
       // 加载层信息
       pageData: {
         currentPage: 1,
@@ -343,7 +258,7 @@ export default {
 
       }
     },
-    replyComment(item, parentId, isChildren) {
+    replyComment(item, isChildren) {
       if (this.user == null) {
         this.$store.state.loginFlag = true;
         return

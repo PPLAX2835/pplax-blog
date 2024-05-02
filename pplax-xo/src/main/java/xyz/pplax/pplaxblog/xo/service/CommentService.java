@@ -19,6 +19,8 @@ public interface CommentService extends SuperService<Comment> {
 
     List<Comment> listByOriginalUid(String originalUid, Integer type);
 
+    IPage<Comment> pageByOriginalUid(String originalUid, Integer type, Long currentPage, Long pageSize);
+
     IPage<Comment> pageByBlogUid(String blogUid, Integer type, Long currentPage, Long pageSize);
 
     Boolean like(String originalUid, String userUid, Integer type);

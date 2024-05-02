@@ -64,6 +64,9 @@ public class Comment extends SuperEntity {
     private List<Comment> children;           // 子评论列表
 
     @TableField(exist = false)
+    private Long childrenTotal;             // 子评论总数
+
+    @TableField(exist = false)
     private User commentator;           // 评论人
 
     @TableField(exist = false)

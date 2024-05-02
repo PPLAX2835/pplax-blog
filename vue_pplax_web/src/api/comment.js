@@ -7,3 +7,11 @@ export function commentReply(commentUid, data) {
         data
     })
 }
+
+export function commentReplyList(commentUid, param) {
+    return request({
+        url: '/web/comment/' + commentUid + '/reply/list',
+        method: 'get',
+        params: param
+    })
+}

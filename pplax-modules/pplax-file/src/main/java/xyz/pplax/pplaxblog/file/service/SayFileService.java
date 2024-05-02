@@ -13,12 +13,11 @@ public class SayFileService extends FileService {
 
     /**
      * 说说图片上传
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult imageUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult imageUpload(MultipartFile file) throws Exception {
 
         // 判断是否是图片
         String contentType = file.getContentType();
@@ -29,7 +28,7 @@ public class SayFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/say/image/" + simpleDateFormat.format(date) + "/", file);
+        return upload("/say/image/" + simpleDateFormat.format(date) + "/", file);
     }
 
 }

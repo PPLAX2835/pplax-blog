@@ -20,12 +20,11 @@ public class BlogFileService extends FileService {
 
     /**
      * 上传博客封面图
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult blogCoverImageUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult blogCoverImageUpload(MultipartFile file) throws Exception {
 
         // 判断是否是图片
         String contentType = file.getContentType();
@@ -47,32 +46,30 @@ public class BlogFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/blog/coverImage/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
+        return upload("/blog/coverImage/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
     }
 
     /**
      * 为博客内容上传文件
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult attachUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult attachUpload(MultipartFile file) throws Exception {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/blog/attach/" + simpleDateFormat.format(date) + "/", file);
+        return upload("/blog/attach/" + simpleDateFormat.format(date) + "/", file);
     }
 
     /**
      * 为博客内容上传图片
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult imageAttachUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult imageAttachUpload( MultipartFile file) throws Exception {
 
         // 判断是否是图片
         String contentType = file.getContentType();
@@ -83,17 +80,16 @@ public class BlogFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/blog/attach/" + simpleDateFormat.format(date) + "/", file);
+        return upload("/blog/attach/" + simpleDateFormat.format(date) + "/", file);
     }
 
     /**
      * 为博客内容上传视频
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult videoAttachUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult videoAttachUpload(MultipartFile file) throws Exception {
         // 判断是否是视频
         String contentType = file.getContentType();
         if (contentType == null || !contentType.startsWith("video/")) {
@@ -103,7 +99,7 @@ public class BlogFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/blog/attach/" + simpleDateFormat.format(date) + "/", file);
+        return upload("/blog/attach/" + simpleDateFormat.format(date) + "/", file);
     }
 
 }

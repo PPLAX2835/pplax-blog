@@ -28,14 +28,11 @@ public class SayFileController extends SuperController {
     @Autowired
     private SayFileService sayFileService;
 
-    @Value("${pplax.storage.mode:localStorage}")
-    private String storageMode;
-
     @ApiOperation(value = "上传友链图标", notes = "上传友链图标")
     @PostMapping(value = "/image")
     public String imageUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(sayFileService.imageUpload(storageMode, file));
+        return toJson(sayFileService.imageUpload(file));
     }
 
 

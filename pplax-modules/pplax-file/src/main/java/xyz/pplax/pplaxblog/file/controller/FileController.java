@@ -30,9 +30,6 @@ import java.util.List;
 public class FileController extends SuperController {
     private static final Logger log = LogManager.getLogger(FileController.class);
 
-    @Value("${pplax.storage.mode:localStorage}")
-    private String storageMode;
-
     @Autowired
     private FileStorageService fileStorageService;
 
@@ -55,16 +52,16 @@ public class FileController extends SuperController {
         return toJson(ResponseResult.success(fileStorageIPage.getRecords(), fileStorageIPage.getTotal()));
     }
 
-    @ApiOperation(value="删除标签", notes="删除标签")
+    @ApiOperation(value="删除文件", notes="删除文件")
     @DeleteMapping("/{fileStorageUid}")
     public String delete(@PathVariable("fileStorageUid") String fileStorageUid) throws Exception {
-        return toJson(fileService.delete(storageMode, fileStorageUid));
+        return toJson(fileService.delete(fileStorageUid));
     }
 
-    @ApiOperation(value = "批量删除标签", notes = "批量删除标签")
+    @ApiOperation(value = "批量删除文件", notes = "批量删除文件")
     @DeleteMapping(value = "")
     public String delete(@RequestBody List<String> tagUidList) throws Exception {
-        return toJson(fileService.deleteBatch(storageMode, tagUidList));
+        return toJson(fileService.deleteBatch(tagUidList));
     }
 
 }

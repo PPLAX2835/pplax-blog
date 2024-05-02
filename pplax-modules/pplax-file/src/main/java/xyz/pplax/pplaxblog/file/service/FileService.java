@@ -37,16 +37,18 @@ public class FileService {
     @Value("${pplax.storage.minio.endpoint:pplax.xyz:9002}")
     private String minioEndpoint;
 
+    @Value("${pplax.storage.mode:localStorage}")
+    private String storageMode;
+
     /**
      * 上传文件
-     * @param mode
      * @param path
      * @param file
      * @return
      */
-    public ResponseResult upload(String mode, String path, MultipartFile file) throws Exception {
+    public ResponseResult upload(String path, MultipartFile file) throws Exception {
         // 存储模式参数不能为空
-        if (StringUtils.isEmpty(mode)) {
+        if (StringUtils.isEmpty(storageMode)) {
             return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -67,7 +69,7 @@ public class FileService {
 
         FileStorage fileStorage = new FileStorage();
         // 判断使用什么方式存储
-        if (mode.equals(StorageModeConstants.MINIO)) {      // minio的存储方式
+        if (storageMode.equals(StorageModeConstants.MINIO)) {      // minio的存储方式
 
             String fileStoragePath = path;
             String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
@@ -89,7 +91,7 @@ public class FileService {
             fileStorage.setFileUrl(fileUrl);
 
             fileStorageService.save(fileStorage);
-        } else if (mode.equals(StorageModeConstants.LOCAL_STORAGE)) {
+        } else if (storageMode.equals(StorageModeConstants.LOCAL_STORAGE)) {
             // 本地存储
 
         }
@@ -101,21 +103,20 @@ public class FileService {
 
     /**
      * 删除文件
-     * @param mode
      * @param fileUid
      * @return
      * @throws Exception
      */
-    public ResponseResult delete(String mode, String fileUid) throws Exception {
+    public ResponseResult delete(String fileUid) throws Exception {
         // 校验参数
-        if (StringUtils.isEmpty(mode) || StringUtils.isEmpty(fileUid)) {
+        if (StringUtils.isEmpty(storageMode) || StringUtils.isEmpty(fileUid)) {
             return ResponseResult.error(HttpStatus.BAD_REQUEST);
         }
 
         // 获取这个文件的信息
         FileStorage fileStorage = fileStorageService.getById(fileUid);
 
-        if (mode.equals(StorageModeConstants.MINIO)) {
+        if (storageMode.equals(StorageModeConstants.MINIO)) {
             // 在minio中删除
             minioUtils.removeObject(minioBucketName, fileStorage.getFilePath() + fileStorage.getFileName());
         }
@@ -130,9 +131,9 @@ public class FileService {
     }
 
     @Transactional
-    public ResponseResult deleteBatch(String mode, List<String> fileStorageUidList) throws Exception {
+    public ResponseResult deleteBatch(List<String> fileStorageUidList) throws Exception {
         for (String fileStorageUid : fileStorageUidList) {
-            ResponseResult responseResult = delete(mode, fileStorageUid);
+            ResponseResult responseResult = delete(fileStorageUid);
 
             if (!Objects.equals(responseResult.getCode(), ResponseResult.success().getCode())) {
                 throw new RuntimeException();

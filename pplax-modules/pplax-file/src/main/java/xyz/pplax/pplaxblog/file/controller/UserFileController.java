@@ -25,28 +25,25 @@ public class UserFileController extends SuperController {
     @Autowired
     private UserFileService userFileService;
 
-    @Value("${pplax.storage.mode:localStorage}")
-    private String storageMode;
-
     @ApiOperation(value = "上传头像", notes = "上传头像")
     @PostMapping(value = "/avatar")
     public String avatarUpload( @RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(userFileService.avatarUpload(storageMode, file));
+        return toJson(userFileService.avatarUpload(file));
     }
 
     @ApiOperation(value = "删除头像", notes = "删除头像")
     @DeleteMapping(value = "/avatar/{fileUid}")
     public String avatarDelete( @PathVariable String fileUid) throws Exception {
 
-        return toJson(userFileService.delete(storageMode, fileUid));
+        return toJson(userFileService.delete(fileUid));
     }
 
     @ApiOperation(value = "上传个人空间背景图片", notes = "上传个人空间背景图片")
     @PostMapping(value = "/spaceBackgroundPicture")
     public String spaceBackgroundPictureUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(userFileService.spaceBackgroundPictureUpload(storageMode, file));
+        return toJson(userFileService.spaceBackgroundPictureUpload(file));
     }
 
 

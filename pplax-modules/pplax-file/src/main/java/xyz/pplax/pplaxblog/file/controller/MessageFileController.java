@@ -28,14 +28,11 @@ public class MessageFileController extends SuperController {
     @Autowired
     private MessageFileService messageFileService;
 
-    @Value("${pplax.storage.mode:localStorage}")
-    private String storageMode;
-
     @ApiOperation(value = "上传消息图片", notes = "上传消息图片")
     @PostMapping(value = "/image")
     public String iconImageUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(messageFileService.imageUpload(storageMode, file));
+        return toJson(messageFileService.imageUpload(file));
     }
 
 

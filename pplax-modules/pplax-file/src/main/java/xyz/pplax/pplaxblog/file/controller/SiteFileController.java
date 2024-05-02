@@ -28,14 +28,12 @@ public class SiteFileController extends SuperController {
     @Autowired
     private SiteFileService siteFileService;
 
-    @Value("${pplax.storage.mode:localStorage}")
-    private String storageMode;
 
     @ApiOperation(value = "上传博客封面", notes = "上传博客封面")
     @PostMapping(value = "/logo")
     public String coverImageUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(siteFileService.logoUpload(storageMode, file));
+        return toJson(siteFileService.logoUpload(file));
     }
 
 }

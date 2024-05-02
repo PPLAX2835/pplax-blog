@@ -32,8 +32,18 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="route" label="路由" width="250"></el-table-column>
-        <el-table-column prop="endpoint" label="请求" width="250"></el-table-column>
+        <el-table-column label="路由/请求" width="250">
+          <template slot-scope="scope">
+            <span v-if="scope.row.route">{{ scope.row.route }}</span>
+            <span v-else>
+              <el-tag>
+                {{ scope.row.endpoint.split(':')[0] }}
+              </el-tag>
+                {{ scope.row.endpoint.split(':')[1] }}
+            </span>
+          </template>
+
+        </el-table-column>
 
         <el-table-column width="180" align="center" label="菜单级别">
           <template slot-scope="scope">

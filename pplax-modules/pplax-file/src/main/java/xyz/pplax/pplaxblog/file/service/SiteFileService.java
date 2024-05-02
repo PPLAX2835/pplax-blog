@@ -20,12 +20,11 @@ public class SiteFileService extends FileService {
 
     /**
      * 上传logo
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult logoUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult logoUpload( MultipartFile file) throws Exception {
 
         // 判断是否是图片
         String contentType = file.getContentType();
@@ -47,7 +46,7 @@ public class SiteFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/site/logo/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
+        return upload("/site/logo/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
     }
 
 }

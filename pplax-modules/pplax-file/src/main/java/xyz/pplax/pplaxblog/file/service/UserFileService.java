@@ -22,12 +22,11 @@ public class UserFileService extends FileService {
 
     /**
      * 上传头像
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult avatarUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult avatarUpload(MultipartFile file) throws Exception {
 
         // 判断是否是图片
         String contentType = file.getContentType();
@@ -49,17 +48,16 @@ public class UserFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/user/avatar/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
+        return upload("/user/avatar/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
     }
 
     /**
      * 上传空间背景图
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult spaceBackgroundPictureUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult spaceBackgroundPictureUpload(MultipartFile file) throws Exception {
 
         // 判断是否是图片
         String contentType = file.getContentType();
@@ -81,7 +79,7 @@ public class UserFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/user/spaceBackgroundPicture/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
+        return upload("/user/spaceBackgroundPicture/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
     }
 
 }

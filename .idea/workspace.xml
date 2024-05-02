@@ -4,16 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="优化鉴权">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整理文件服务">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/ArchiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/ArchiveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/FeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/FeedbackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/controller/SuperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/controller/SuperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/BlogFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/BlogFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/LinkFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/LinkFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/MessageFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/MessageFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SiteFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SiteFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/UserFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/UserFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/BlogFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/BlogFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/LinkFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/LinkFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/MessageFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/MessageFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/SayFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/SayFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/SiteFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/SiteFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/UserFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/UserFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/menu/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/menu/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,8 +273,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
       </list>
@@ -390,14 +397,9 @@
       <workItem from="1713657938015" duration="6864000" />
       <workItem from="1713686853798" duration="2889000" />
       <workItem from="1713755766056" duration="18706000" />
-      <workItem from="1713946849684" duration="892000" />
-    </task>
-    <task id="LOCAL-00366" summary="增加说说表，后台新增说说管理">
-      <created>1712633503173</created>
-      <option name="number" value="00366" />
-      <option name="presentableId" value="LOCAL-00366" />
-      <option name="project" value="LOCAL" />
-      <updated>1712633503174</updated>
+      <workItem from="1713946849684" duration="1656000" />
+      <workItem from="1714004637441" duration="1826000" />
+      <workItem from="1714615157375" duration="1632000" />
     </task>
     <task id="LOCAL-00367" summary="前台调整说说列表接口">
       <created>1712649240192</created>
@@ -735,7 +737,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713782452847</updated>
     </task>
-    <option name="localTasksCounter" value="415" />
+    <task id="LOCAL-00415" summary="在公共父级controller中编写根据request获取用户uid的方法（早该这么干的）">
+      <created>1713947872075</created>
+      <option name="number" value="00415" />
+      <option name="presentableId" value="LOCAL-00415" />
+      <option name="project" value="LOCAL" />
+      <updated>1713947872075</updated>
+    </task>
+    <option name="localTasksCounter" value="416" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -770,7 +779,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理首页和头部导航栏" />
     <MESSAGE value="整理博客详情页" />
     <MESSAGE value="整理评论组件" />
     <MESSAGE value="整理分类、标签页面" />
@@ -795,7 +803,8 @@
     <MESSAGE value="个人空间增加撰写博客选项" />
     <MESSAGE value="完成发表说说功能" />
     <MESSAGE value="优化鉴权" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化鉴权" />
+    <MESSAGE value="在公共父级controller中编写根据request获取用户uid的方法（早该这么干的）" />
+    <option name="LAST_COMMIT_MESSAGE" value="在公共父级controller中编写根据request获取用户uid的方法（早该这么干的）" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

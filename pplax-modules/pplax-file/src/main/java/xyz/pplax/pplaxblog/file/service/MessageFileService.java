@@ -12,12 +12,11 @@ public class MessageFileService extends FileService {
 
     /**
      * 上传图片
-     * @param mode
      * @param file
      * @return
      * @throws Exception
      */
-    public ResponseResult imageUpload(String mode, MultipartFile file) throws Exception {
+    public ResponseResult imageUpload(MultipartFile file) throws Exception {
 
         // 判断是否是图片
         String contentType = file.getContentType();
@@ -28,7 +27,7 @@ public class MessageFileService extends FileService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload(mode, "/message/" + simpleDateFormat.format(date) + "/", file);
+        return upload("/message/" + simpleDateFormat.format(date) + "/", file);
     }
 
 }

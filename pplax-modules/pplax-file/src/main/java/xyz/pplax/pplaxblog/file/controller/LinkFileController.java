@@ -29,14 +29,11 @@ public class LinkFileController extends SuperController {
     @Autowired
     private LinkFileService linkFileService;
 
-    @Value("${pplax.storage.mode:localStorage}")
-    private String storageMode;
-
     @ApiOperation(value = "上传友链图标", notes = "上传友链图标")
     @PostMapping(value = "/iconImage")
     public String iconImageUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(linkFileService.iconImageUpload(storageMode, file));
+        return toJson(linkFileService.iconImageUpload(file));
     }
 
 

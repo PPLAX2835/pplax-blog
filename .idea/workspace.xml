@@ -4,13 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="说说评论实现分页">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SiteSettingFileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/SiteSettingFileService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/SiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/SiteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/SiteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/SiteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/dashboard/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseSysConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseSysConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SiteSettingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SiteSettingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SiteFileController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/SiteFileService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/serviceImpl/SuperServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/redis/SiteRedisConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/redis/SiteRedisConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/SiteSettingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/SiteSettingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/SiteSettingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/SiteSettingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/siteSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/siteSetting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,11 +135,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.file.controller" />
+      <recent name="xyz.pplax.pplaxblog.file.service" />
       <recent name="xyz.pplax.pplaxblog.message.consumer" />
       <recent name="xyz.pplax.pplaxblog.xo.dto" />
       <recent name="xyz.pplax.pplaxblog.message.mq.producer" />
-      <recent name="xyz.pplax.pplaxblog.message.controller" />
-      <recent name="xyz.pplax.pplaxblog.message" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -262,8 +270,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
@@ -390,14 +398,7 @@
       <workItem from="1713946849684" duration="1656000" />
       <workItem from="1714004637441" duration="1826000" />
       <workItem from="1714615157375" duration="16319000" />
-      <workItem from="1714698388626" duration="5435000" />
-    </task>
-    <task id="LOCAL-00371" summary="文章归档接口做好了">
-      <created>1712802121725</created>
-      <option name="number" value="00371" />
-      <option name="presentableId" value="LOCAL-00371" />
-      <option name="project" value="LOCAL" />
-      <updated>1712802121725</updated>
+      <workItem from="1714698388626" duration="18337000" />
     </task>
     <task id="LOCAL-00372" summary="文章分类页面调整好了">
       <created>1712803680107</created>
@@ -735,7 +736,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714700331309</updated>
     </task>
-    <option name="localTasksCounter" value="420" />
+    <task id="LOCAL-00420" summary="整理后台 面板部分的数据呈现">
+      <created>1714712150491</created>
+      <option name="number" value="00420" />
+      <option name="presentableId" value="LOCAL-00420" />
+      <option name="project" value="LOCAL" />
+      <updated>1714712150491</updated>
+    </task>
+    <option name="localTasksCounter" value="421" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -770,7 +778,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理关于、友链" />
     <MESSAGE value="整理接口" />
     <MESSAGE value="整理评论接口" />
     <MESSAGE value="整理聊天接口" />
@@ -795,7 +802,8 @@
     <MESSAGE value="使用统一的父级QueryWrapper" />
     <MESSAGE value="博客的子评论实现分页加载" />
     <MESSAGE value="说说评论实现分页" />
-    <option name="LAST_COMMIT_MESSAGE" value="说说评论实现分页" />
+    <MESSAGE value="整理后台 面板部分的数据呈现" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理后台 面板部分的数据呈现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

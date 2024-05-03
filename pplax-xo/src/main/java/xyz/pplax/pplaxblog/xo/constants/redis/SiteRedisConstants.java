@@ -18,4 +18,9 @@ public class SiteRedisConstants extends BaseRedisConstants {
      * 博客浏览量
      */
     public static final String BLOG_VIEWS_COUNT = "blog_views_count";
+
+    /**
+     * 站点配置
+     */
+    public static final String SITE_SETTING = "site_setting";
 }

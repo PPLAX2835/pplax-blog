@@ -7,6 +7,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.BaseSQLConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
@@ -102,6 +103,36 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T extends SuperEntity> e
     }
 
     /**
+     * 批量更新
+     * @param entityList
+     * @return
+     */
+    @Override
+    @Transactional
+    public boolean updateBatchById(Collection<T> entityList) {
+
+        boolean res = super.updateBatchById(entityList);
+
+        if (res) {
+            // 移除缓存
+            for (T entity : entityList) {
+                String redisKeyName = null;
+                ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
+                Class<T> entityClass = (Class<T>) superClass.getActualTypeArguments()[1];
+
+                // 获取uid字段和key
+                redisKeyName = RedisUtils.getRedisKey(entityClass.getSimpleName()) + entity.getUid();
+                log.info("redis key:" + redisKeyName);
+
+                log.info("更新成功，移除缓存");
+                redisService.deleteObject(redisKeyName);
+            }
+        }
+
+        return res;
+    }
+
+    /**
      * 将删除方法重写为逻辑删除
      * @param id
      * @return
@@ -129,6 +160,7 @@ public class SuperServiceImpl<M extends SuperMapper<T>, T extends SuperEntity> e
      * @return
      */
     @Override
+    @Transactional
     public boolean removeByIds(Collection<? extends Serializable> idList) {
         UpdateWrapper<T> updateWrapper = new UpdateWrapper<>();
         updateWrapper.set(BaseSQLConstants.STATUS, EStatus.DISABLED.getStatus());

@@ -15,6 +15,8 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.SiteSettingEditDto;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
+import java.util.Map;
+
 /**
  * 站点设置 Controller
  */
@@ -36,11 +38,30 @@ public class SiteSettingController extends SuperController {
         return toJson(ResponseResult.success(siteSettingService.list()));
     }
 
+    @ApiOperation(value="获取配置map形式", notes="获取配置map形式")
+    @GetMapping("/map")
+    public String getMap() {
+        // 封装
+        return toJson(ResponseResult.success(siteSettingService.map()));
+    }
+
     @ApiOperation(value="编辑配置", notes="编辑配置")
     @PutMapping("/{siteSettingUid}")
-    public String update(@PathVariable("siteSettingUid") String siteSettingUid, @RequestBody @Validated(value = {Update.class}) SiteSettingEditDto siteSettingEditDto) {
+    public String updateById(@PathVariable("siteSettingUid") String siteSettingUid, @RequestBody @Validated(value = {Update.class}) SiteSettingEditDto siteSettingEditDto) {
         siteSettingEditDto.setUid(siteSettingUid);
         Boolean res = siteSettingService.updateById(siteSettingEditDto);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+    @ApiOperation(value="编辑配置", notes="编辑配置")
+    @PutMapping("")
+    public String updateByMap(@RequestBody Map<String, Object> data) {
+
+        Boolean res = siteSettingService.updateByMap(data);
 
         if (res) {
             return success();

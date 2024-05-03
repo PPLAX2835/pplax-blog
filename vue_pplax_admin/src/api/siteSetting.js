@@ -7,6 +7,13 @@ export function getSiteSettingList() {
   })
 }
 
+export function getSiteSettingMap() {
+  return service({
+    url: '/admin/siteSetting/map',
+    method: 'get'
+  })
+}
+
 export function addSiteSetting(params) {
   return service({
     url: '/admin/siteSetting',
@@ -15,9 +22,9 @@ export function addSiteSetting(params) {
   })
 }
 
-export function updateSiteSetting(siteSettingUid, params) {
+export function updateSiteSetting(params) {
   return service({
-    url: '/admin/siteSetting/' + siteSettingUid,
+    url: '/admin/siteSetting',
     method: 'put',
     data: params
   })

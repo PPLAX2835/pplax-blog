@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.SiteSettingEditDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
@@ -19,6 +20,8 @@ public interface SiteSettingService extends SuperService<SiteSetting> {
     Boolean save(SiteSettingEditDto siteSettingEditDto);
 
     Boolean updateById(SiteSettingEditDto siteSettingEditDto);
+
+    Boolean updateByMap(Map<String, Object> data);
 
     Map<String, Object> map();
 

@@ -142,7 +142,22 @@ export function deleteFileStorageBatch(fileStorageUids) {
 export function siteLogoImageUpload(param) {
 
   return service({
-    url: '/file/site/logo',
+    url: '/file/siteSetting/logo',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}
+
+/**
+ * aboutMe上传图片
+ * @param param
+ * @returns {*}
+ */
+export function aboutMeImageAttachUpload(param) {
+
+  return service({
+    url: '/file/siteSetting/aboutMe/image',
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
     data: param

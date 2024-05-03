@@ -16,7 +16,29 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class SiteFileService extends FileService {
+public class SiteSettingFileService extends FileService {
+
+
+    /**
+     * 为aboutMe上传图片
+     * @param file
+     * @return
+     * @throws Exception
+     */
+    public ResponseResult siteSettingAboutMeImageAttachUpload( MultipartFile file) throws Exception {
+
+        // 判断是否是图片
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("image/")) {
+            return ResponseResult.error(HttpStatus.NOT_IMAGE);
+        }
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+
+        return upload("/siteSetting/aboutMe/" + simpleDateFormat.format(date) + "/", file);
+    }
+
 
     /**
      * 上传logo

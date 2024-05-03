@@ -1,11 +1,20 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
+import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
+import xyz.pplax.pplaxblog.xo.constants.redis.SiteRedisConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.SiteSettingEditDto;
 import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.mapper.SiteSettingMapper;
@@ -18,6 +27,9 @@ import java.util.*;
  */
 @Service
 public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, SiteSetting> implements SiteSettingService {
+
+    @Autowired
+    private RedisService redisService;
 
     @Override
     public List<SiteSetting> list() {
@@ -67,9 +79,33 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
     }
 
     @Override
-    public Map<String, Object> map() {
-        List<SiteSetting> siteSettingList = list();
+    public Boolean updateByMap(Map<String, Object> data) {
 
+        for (Object value : data.values()) {
+            JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(value));
+
+            SiteSetting siteSetting = new SiteSetting();
+            siteSetting.setUid((String) jsonObject.get(BaseSysConstants.UID));
+            siteSetting.setValue(jsonObject.get(BaseSysConstants.VALUE));
+
+            if (!updateById(siteSetting)) {
+                throw new DeleteFailException(JSON.toJSONString(siteSetting));
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public Map<String, Object> map() {
+        Map<String, Object> setting = redisService.getCacheObject(SiteRedisConstants.SITE_SETTING);
+
+        // 如果缓存中有，直接返回即可
+        if (setting != null) {
+            return setting;
+        }
+
+        List<SiteSetting> siteSettingList = list();
         Map<String, Object> res = new HashMap<>();
         for (SiteSetting siteSetting : siteSettingList) {
 
@@ -81,6 +117,8 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
 
             res.put(siteSetting.getNameEn(), siteSetting);
         }
+        // 放到缓存中
+        redisService.setCacheObject(SiteRedisConstants.SITE_SETTING, res);
 
         return res;
     }

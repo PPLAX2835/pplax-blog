@@ -53,6 +53,7 @@ public class BaseSysConstants {
 	public final static String CODE = "code";
 	public final static String DATA = "data";
 	public final static String UID = "uid";
+	public final static String VALUE = "value";
 	public final static String PAGE_NAME = "pageName";
 	public final static String LEFT = "left";
 	public final static String RIGHT = "right";

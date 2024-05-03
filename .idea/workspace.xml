@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="优化站点配置">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -386,14 +385,7 @@
       <workItem from="1713946849684" duration="1656000" />
       <workItem from="1714004637441" duration="1826000" />
       <workItem from="1714615157375" duration="16319000" />
-      <workItem from="1714698388626" duration="18827000" />
-    </task>
-    <task id="LOCAL-00373" summary="调整分页组件">
-      <created>1712805877228</created>
-      <option name="number" value="00373" />
-      <option name="presentableId" value="LOCAL-00373" />
-      <option name="project" value="LOCAL" />
-      <updated>1712805877228</updated>
+      <workItem from="1714698388626" duration="20707000" />
     </task>
     <task id="LOCAL-00374" summary="完成标签页面">
       <created>1712819734425</created>
@@ -731,7 +723,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714735864391</updated>
     </task>
-    <option name="localTasksCounter" value="422" />
+    <task id="LOCAL-00422" summary="简单调整">
+      <created>1714739602956</created>
+      <option name="number" value="00422" />
+      <option name="presentableId" value="LOCAL-00422" />
+      <option name="project" value="LOCAL" />
+      <updated>1714739602957</updated>
+    </task>
+    <option name="localTasksCounter" value="423" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +765,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理评论接口" />
     <MESSAGE value="整理聊天接口" />
     <MESSAGE value="个人空间可以查看别的人的信息了" />
     <MESSAGE value="整理个人信息相关接口" />
@@ -791,7 +789,8 @@
     <MESSAGE value="说说评论实现分页" />
     <MESSAGE value="整理后台 面板部分的数据呈现" />
     <MESSAGE value="优化站点配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化站点配置" />
+    <MESSAGE value="简单调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="简单调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

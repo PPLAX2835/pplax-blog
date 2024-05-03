@@ -91,7 +91,6 @@
                 <div
                     class="commentItem"
                     v-for="(comment) in item.commentList"
-                    :key="comment.uid"
                     v-if="item.commentList.length"
                 >
                   <div>

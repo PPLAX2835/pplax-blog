@@ -8,8 +8,20 @@
             <svg-icon icon-class="eye" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
-            <div class="card-panel-text">今日访问量：</div>
-            <count-to class="card-panel-num" :startVal="0" :endVal="statistics.visitAddTotal" :duration="3200"></count-to>
+            <div class="card-panel-text">访问量：</div>
+            <count-to class="card-panel-num" :startVal="0" :endVal="statistics.siteAccess" :duration="3200"></count-to>
+          </div>
+        </div>
+      </el-col>
+
+      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+        <div class="card-panel">
+          <div class="card-panel-icon-wrapper icon-money">
+            <svg-icon icon-class="user" class-name="card-panel-icon" />
+          </div>
+          <div class="card-panel-description">
+            <div class="card-panel-text">访客量：</div>
+            <count-to class="card-panel-num" :startVal="0" :endVal="statistics.visitorAccess" :duration="3200"></count-to>
           </div>
         </div>
       </el-col>

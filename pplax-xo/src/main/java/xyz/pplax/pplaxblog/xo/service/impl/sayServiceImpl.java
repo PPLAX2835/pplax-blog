@@ -48,6 +48,7 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
     @Override
     public IPage<Say> list(SayGetListDto sayGetListDto) {
         PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
+        sayPQueryWrapper.eq(SaySQLConstants.IS_PUBLIC, true);
         if(!StringUtils.isEmpty(sayGetListDto.getKeyword())) {
             // 如果关键词参数非空，就按该条件查询
             sayPQueryWrapper.like(SaySQLConstants.CONTENT, "%" + sayGetListDto.getKeyword() + "%");
@@ -78,9 +79,10 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
             CommentGetListDto commentGetListDto = new CommentGetListDto();
             commentGetListDto.setOriginalUid(say.getUid());
             commentGetListDto.setCurrentPage(1L);
-            commentGetListDto.setPageSize(Long.MAX_VALUE);
+            commentGetListDto.setPageSize(4L);
             commentGetListDto.setType(CharacterConstants.NUM_TWO);
             IPage<Comment> commentIPage = commentService.list(commentGetListDto);
+            say.setCommentTotal(commentIPage.getTotal());
             say.setCommentList(commentIPage.getRecords());
 
             // 封装点赞列表

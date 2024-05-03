@@ -89,7 +89,7 @@ public class SayController extends SuperController {
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
-    @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
+    @ApiOperation(value = "获取说说列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取说说列表")
     @GetMapping("/list")
     public String getSayList(
             HttpServletRequest httpServletRequest,
@@ -183,6 +183,20 @@ public class SayController extends SuperController {
         }
 
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+
+    @ApiOperation(value = "获取评论列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取评论列表")
+    @GetMapping("/{sayUid}/comment/list")
+    public String getBlogList(
+            @PathVariable(value = "sayUid") String sayUid,
+            @RequestParam(value = "currentPage") Long currentPage,
+            @RequestParam(value = "pageSize") Long pageSize
+    ){
+
+        IPage<Comment> commentIPage = commentService.pageByOriginalUid(sayUid, CharacterConstants.NUM_TWO, currentPage, pageSize);
+
+        return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
     }
 }
 

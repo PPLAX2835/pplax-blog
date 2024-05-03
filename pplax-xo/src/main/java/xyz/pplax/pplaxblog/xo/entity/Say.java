@@ -55,6 +55,9 @@ public class Say extends SuperEntity {
 	private List<Comment> commentList;
 
 	@TableField(exist = false)
+	private Long commentTotal;
+
+	@TableField(exist = false)
 	private List<Comment> likeList;
 
 	@TableField(exist = false)

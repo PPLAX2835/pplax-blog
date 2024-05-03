@@ -18,6 +18,14 @@ export function getSayList(params) {
     })
 }
 
+export function getSayCommentList(uid, params) {
+    return request({
+        url: '/web/say/' + uid + '/comment/list',
+        method: 'get',
+        params: params
+    })
+}
+
 export function sayLike(sayId) {
     return request({
         url: '/web/say/' + sayId + '/like',

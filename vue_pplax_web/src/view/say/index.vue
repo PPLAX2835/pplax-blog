@@ -118,6 +118,13 @@
                   </div>
                 </div>
 
+                <!-- 分页按钮 -->
+                <div>
+                  <div class="page hand-style no-select" v-if="item.commentTotal > item.commentList.length" @click="handleCommentPage(item)">
+                    加载更多
+                  </div>
+                </div>
+
                 <div class="conetntInputBox" ref="conetntInputBox">
                   <div class="">
                     <div
@@ -156,7 +163,7 @@
   </div>
 </template>
 <script>
-import { getSayList, sayLike, postSayComment } from '@/api/say'
+import { getSayList, sayLike, postSayComment, getSayCommentList } from '@/api/say'
 import {getWebSiteInfoValue} from "@/utils";
 import Emoji from '@/components/emoji'
 import imagePreview from '@/components/imagePreview'
@@ -393,6 +400,14 @@ export default {
     getSayList() {
       this.$bus.$emit('show');
       getSayList(this.pageData).then(res => {
+
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].commentPageData = {
+            currentPage: 1,
+            pageSize: 4
+          }
+        }
+
         this.sayList.push(...res.data)
         this.total = res.total
         this.$bus.$emit('close')
@@ -403,6 +418,13 @@ export default {
     handlePage(val) {
       this.pageData.currentPage = val;
       this.getSayList()
+    },
+    handleCommentPage(say) {
+      say.commentPageData.currentPage++
+      getSayCommentList(say.uid, say.commentPageData).then(resp => {
+        say.commentList.push(...resp.data)
+        say.commentTotal = res.total
+      })
     },
     checkImg(img) {
       return this.splitImg(img).length > 0
@@ -428,6 +450,30 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
+.page {
+  text-align: center;
+  background-color: var(--pagination-background-color);
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50px;
+  margin: 0 auto;
+  margin-top: 20px;
+  position: relative;
+  white-space: nowrap;
+  border: 1px solid var(--pagination-border-color);
+  transition: all .3s;
+  color: rgba(0, 0, 0, .65);
+
+  &:hover {
+    background-color: var(--pagination-hover-color)
+  }
+
+  &:active {
+    transform: scale(0.7);
+  }
+}
 .say-main {
   @media screen and (max-width: 1118px) {
     padding: 0 5px;

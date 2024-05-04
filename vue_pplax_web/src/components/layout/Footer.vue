@@ -12,7 +12,9 @@
                     </span>
                 </p>
                 <p>
-                    Copyright©2022-{{ nowYear }} <a href="https://gitee.com/quequnlong/shiyi-blog" target="_blank">pplax blog</a>
+                  <a :href="$store.state.webSiteInfo.gitee !== undefined ? $store.state.webSiteInfo.gitee.value : ''" target="_blank">{{
+                      $store.state.webSiteInfo.copyright !== undefined ? $store.state.webSiteInfo.copyright.value : ''
+                    }}</a>
                     <a href="https://beian.miit.gov.cn/" target="_blank" style="margin-left: 10px">{{
                         $store.state.webSiteInfo.recordNum !== undefined ? $store.state.webSiteInfo.recordNum.value : ''
                     }}</a>

@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class StorageConfigProperties {
 
+    private String storageMode;
+
     private String endpoint;
 
     private String accessKey;

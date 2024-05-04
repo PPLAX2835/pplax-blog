@@ -42,8 +42,7 @@
             <el-row>
               <el-col :span="6">
                 <el-form-item label="Copyright" prop="copyright">
-                  <el-input v-model="settingMap.copyright.value.siteName" auto-complete="off"></el-input>
-                  <el-input v-model="settingMap.copyright.value.title" auto-complete="off"></el-input>
+                  <el-input v-model="settingMap.copyright.value" auto-complete="off"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -232,10 +231,7 @@ export default {
         "qq": {},
         "summary": {},
         "github": {},
-        "copyright": {
-          "value": {
-          },
-        },
+        "copyright": {},
         "blogName": {},
         "author": {},
         "authorInfo": {},

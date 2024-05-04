@@ -13,6 +13,7 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.file.components.MinioUtils;
+import xyz.pplax.pplaxblog.file.model.StorageConfigProperties;
 import xyz.pplax.pplaxblog.xo.constants.sql.FileStorageSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.service.FileStorageService;
@@ -31,14 +32,8 @@ public class FileService {
     @Autowired
     private MinioUtils minioUtils;
 
-    @Value("${pplax.storage.minio.bucketName:pplax-blog}")
-    private String minioBucketName;
-
-    @Value("${pplax.storage.minio.endpoint:pplax.xyz:9002}")
-    private String minioEndpoint;
-
-    @Value("${pplax.storage.mode:localStorage}")
-    private String storageMode;
+    @Autowired
+    private StorageConfigProperties storageConfigProperties;
 
     /**
      * 上传文件
@@ -48,7 +43,7 @@ public class FileService {
      */
     public ResponseResult upload(String path, MultipartFile file) throws Exception {
         // 存储模式参数不能为空
-        if (StringUtils.isEmpty(storageMode)) {
+        if (StringUtils.isEmpty(storageConfigProperties.getStorageMode())) {
             return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -69,15 +64,15 @@ public class FileService {
 
         FileStorage fileStorage = new FileStorage();
         // 判断使用什么方式存储
-        if (storageMode.equals(StorageModeConstants.MINIO)) {      // minio的存储方式
+        if (storageConfigProperties.getStorageMode().equals(StorageModeConstants.MINIO)) {      // minio的存储方式
 
             String fileStoragePath = path;
             String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
 
             // 上传到minio
-            ObjectWriteResponse objectWriteResponse = minioUtils.putObject(minioBucketName, fileStoragePath + fileStorageName, inputStream);
+            ObjectWriteResponse objectWriteResponse = minioUtils.putObject(storageConfigProperties.getBucketName(), fileStoragePath + fileStorageName, inputStream);
             // 从响应中获得访问地址
-            String fileUrl = minioEndpoint + "/" + minioBucketName + objectWriteResponse.object();
+            String fileUrl = storageConfigProperties.getEndpoint() + "/" + storageConfigProperties.getBucketName() + objectWriteResponse.object();
 
             // 封装
             fileStorage.setOriginalName(file.getOriginalFilename());
@@ -91,7 +86,7 @@ public class FileService {
             fileStorage.setFileUrl(fileUrl);
 
             fileStorageService.save(fileStorage);
-        } else if (storageMode.equals(StorageModeConstants.LOCAL_STORAGE)) {
+        } else if (storageConfigProperties.getStorageMode().equals(StorageModeConstants.LOCAL_STORAGE)) {
             // 本地存储
 
         }
@@ -109,16 +104,16 @@ public class FileService {
      */
     public ResponseResult delete(String fileUid) throws Exception {
         // 校验参数
-        if (StringUtils.isEmpty(storageMode) || StringUtils.isEmpty(fileUid)) {
+        if (StringUtils.isEmpty(storageConfigProperties.getStorageMode()) || StringUtils.isEmpty(fileUid)) {
             return ResponseResult.error(HttpStatus.BAD_REQUEST);
         }
 
         // 获取这个文件的信息
         FileStorage fileStorage = fileStorageService.getById(fileUid);
 
-        if (storageMode.equals(StorageModeConstants.MINIO)) {
+        if (storageConfigProperties.getStorageMode().equals(StorageModeConstants.MINIO)) {
             // 在minio中删除
-            minioUtils.removeObject(minioBucketName, fileStorage.getFilePath() + fileStorage.getFileName());
+            minioUtils.removeObject(storageConfigProperties.getBucketName(), fileStorage.getFilePath() + fileStorage.getFileName());
         }
 
         // 逻辑删除表数据

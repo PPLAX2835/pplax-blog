@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.file.model.StorageConfigProperties;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +34,8 @@ public class MinioUtils {
     @Autowired
     private MinioClient minioClient;
 
-    @Value("${pplax.storage.minio.endpoint:pplax.xyz:9002}")
-    private static String endpoint;
+    @Autowired
+    private StorageConfigProperties storageConfigProperties;
 
     private static final String SEPARATOR = "/";
 
@@ -43,8 +44,8 @@ public class MinioUtils {
      *
      * @return url
      */
-    public static String getBasisUrl(String bucketName) {
-        return endpoint + SEPARATOR + bucketName + SEPARATOR;
+    public String getBasisUrl(String bucketName) {
+        return storageConfigProperties.getEndpoint() + SEPARATOR + bucketName + SEPARATOR;
     }
 
     /**

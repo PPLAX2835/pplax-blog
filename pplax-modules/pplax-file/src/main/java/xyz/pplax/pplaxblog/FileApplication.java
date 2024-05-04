@@ -16,10 +16,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.starter.swagger",
         "xyz.pplax.pplaxblog.starter.redis",
         "xyz.pplax.pplaxblog.xo.service",
-        "xyz.pplax.pplaxblog.file.components",
         "xyz.pplax.pplaxblog.file.controller",
-        "xyz.pplax.pplaxblog.file.service",
-        "xyz.pplax.pplaxblog.file.config"
+        "xyz.pplax.pplaxblog.file.service"
 })
 public class FileApplication {
 

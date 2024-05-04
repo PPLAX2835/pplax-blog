@@ -1,16 +1,13 @@
-package xyz.pplax.pplaxblog.file.components;
+package xyz.pplax.pplaxblog.file.utils;
 
 import io.minio.*;
 import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.DeleteObject;
 import io.minio.messages.Item;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
-import xyz.pplax.pplaxblog.file.model.StorageConfigProperties;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -24,18 +21,28 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @Author: haoruijie
- * @Description: Minio工具类
- */
-@Component
+@Data
 public class MinioUtils {
 
-    @Autowired
-    private MinioClient minioClient;
+    public MinioUtils(
+            MinioClient minioClient,
+            String minioEndpoint,
+            String minioAccessKey,
+            String minioSecretKey,
+            String minioBucketName
+    ) {
+        this.minioClient = minioClient;
+        this.minioEndpoint = minioEndpoint;
+        this.minioAccessKey = minioAccessKey;
+        this.minioSecretKey = minioSecretKey;
+        this.minioBucketName = minioBucketName;
+    }
 
-    @Autowired
-    private StorageConfigProperties storageConfigProperties;
+    private MinioClient minioClient;
+    private String minioEndpoint;
+    private String minioAccessKey;
+    private String minioSecretKey;
+    private String minioBucketName;
 
     private static final String SEPARATOR = "/";
 
@@ -45,7 +52,7 @@ public class MinioUtils {
      * @return url
      */
     public String getBasisUrl(String bucketName) {
-        return storageConfigProperties.getEndpoint() + SEPARATOR + bucketName + SEPARATOR;
+        return minioEndpoint + SEPARATOR + bucketName + SEPARATOR;
     }
 
     /**

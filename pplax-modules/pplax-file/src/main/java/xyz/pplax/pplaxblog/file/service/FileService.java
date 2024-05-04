@@ -1,9 +1,11 @@
 package xyz.pplax.pplaxblog.file.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import io.minio.MinioClient;
 import io.minio.ObjectWriteResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,16 +14,16 @@ import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
-import xyz.pplax.pplaxblog.file.components.MinioUtils;
-import xyz.pplax.pplaxblog.file.model.StorageConfigProperties;
+import xyz.pplax.pplaxblog.file.utils.MinioUtils;
 import xyz.pplax.pplaxblog.xo.constants.sql.FileStorageSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
+import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.service.FileStorageService;
+import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
+import javax.validation.constraints.Min;
 import java.io.InputStream;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class FileService {
@@ -30,10 +32,7 @@ public class FileService {
     private FileStorageService fileStorageService;
 
     @Autowired
-    private MinioUtils minioUtils;
-
-    @Autowired
-    private StorageConfigProperties storageConfigProperties;
+    private SiteSettingService siteSettingService;
 
     /**
      * 上传文件
@@ -42,11 +41,14 @@ public class FileService {
      * @return
      */
     public ResponseResult upload(String path, MultipartFile file) throws Exception {
+        // 获取必要实例，不使用注入方式了
+        String storageMode = getStorageMode();
+        MinioUtils minioUtils = getMinioUtils();
+
         // 存储模式参数不能为空
-        if (StringUtils.isEmpty(storageConfigProperties.getStorageMode())) {
+        if (StringUtils.isEmpty(storageMode)) {
             return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
         // 获得文件后缀
         String originalFilename = file.getOriginalFilename();
         String suffix = null;
@@ -64,15 +66,15 @@ public class FileService {
 
         FileStorage fileStorage = new FileStorage();
         // 判断使用什么方式存储
-        if (storageConfigProperties.getStorageMode().equals(StorageModeConstants.MINIO)) {      // minio的存储方式
+        if (StorageModeConstants.MINIO.equals(storageMode)) {      // minio的存储方式
 
             String fileStoragePath = path;
             String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
 
             // 上传到minio
-            ObjectWriteResponse objectWriteResponse = minioUtils.putObject(storageConfigProperties.getBucketName(), fileStoragePath + fileStorageName, inputStream);
+            ObjectWriteResponse objectWriteResponse = minioUtils.putObject(minioUtils.getMinioBucketName(), fileStoragePath + fileStorageName, inputStream);
             // 从响应中获得访问地址
-            String fileUrl = storageConfigProperties.getEndpoint() + "/" + storageConfigProperties.getBucketName() + objectWriteResponse.object();
+            String fileUrl = minioUtils.getMinioEndpoint() + "/" + minioUtils.getMinioBucketName() + objectWriteResponse.object();
 
             // 封装
             fileStorage.setOriginalName(file.getOriginalFilename());
@@ -86,7 +88,7 @@ public class FileService {
             fileStorage.setFileUrl(fileUrl);
 
             fileStorageService.save(fileStorage);
-        } else if (storageConfigProperties.getStorageMode().equals(StorageModeConstants.LOCAL_STORAGE)) {
+        } else if (StorageModeConstants.LOCAL_STORAGE.equals(storageMode)) {
             // 本地存储
 
         }
@@ -103,17 +105,15 @@ public class FileService {
      * @throws Exception
      */
     public ResponseResult delete(String fileUid) throws Exception {
-        // 校验参数
-        if (StringUtils.isEmpty(storageConfigProperties.getStorageMode()) || StringUtils.isEmpty(fileUid)) {
-            return ResponseResult.error(HttpStatus.BAD_REQUEST);
-        }
+        // 获取必要实例，不使用注入方式了
+        MinioUtils minioUtils = getMinioUtils();
 
         // 获取这个文件的信息
         FileStorage fileStorage = fileStorageService.getById(fileUid);
 
-        if (storageConfigProperties.getStorageMode().equals(StorageModeConstants.MINIO)) {
+        if (StorageModeConstants.MINIO.equals(fileStorage.getStorageMode())) {
             // 在minio中删除
-            minioUtils.removeObject(storageConfigProperties.getBucketName(), fileStorage.getFilePath() + fileStorage.getFileName());
+            minioUtils.removeObject(minioUtils.getMinioBucketName(), fileStorage.getFilePath() + fileStorage.getFileName());
         }
 
         // 逻辑删除表数据
@@ -139,4 +139,41 @@ public class FileService {
         return ResponseResult.success();
     }
 
+
+    /**
+     * 获取minioUtils
+     * @return
+     */
+    private MinioUtils getMinioUtils() {
+        Object o =  siteSettingService.map();
+        Map<String, JSON> jsonObjectMap = (Map<String, JSON>) o;
+
+        SiteSetting minioEndpointSetting = JSON.toJavaObject(jsonObjectMap.get("minioEndpoint"), SiteSetting.class);
+        SiteSetting minioBucketNameSetting = JSON.toJavaObject(jsonObjectMap.get("minioBucketName"), SiteSetting.class);
+        SiteSetting minioAccessKeySetting = JSON.toJavaObject(jsonObjectMap.get("minioAccessKey"), SiteSetting.class);
+        SiteSetting minioSecretKeySetting = JSON.toJavaObject(jsonObjectMap.get("minioSecretKey"), SiteSetting.class);
+
+        return new MinioUtils(
+                MinioClient.builder()
+                        .endpoint((String) minioEndpointSetting.getValue())
+                        .credentials((String) minioAccessKeySetting.getValue(), (String) minioSecretKeySetting.getValue())
+                        .build(),
+                (String) minioEndpointSetting.getValue(),
+                (String) minioAccessKeySetting.getValue(),
+                (String) minioSecretKeySetting.getValue(),
+                (String) minioBucketNameSetting.getValue()
+        );
+    }
+
+    /**
+     * 获取存储模式
+     * @return
+     */
+    private String getStorageMode() {
+        Object o = siteSettingService.map();
+        Map<String, JSON> jsonObjectMap = (Map<String, JSON>) o;
+
+        SiteSetting minioEndpointSetting = JSON.toJavaObject(jsonObjectMap.get("storageMode"), SiteSetting.class);
+        return (String) minioEndpointSetting.getValue();
+    }
 }

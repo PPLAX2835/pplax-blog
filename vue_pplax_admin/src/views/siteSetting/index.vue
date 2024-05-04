@@ -205,6 +205,52 @@
             </el-row>
           </el-form>
         </el-tab-pane>
+
+        <el-tab-pane label="存储" name="storage">
+          <el-form>
+            <el-row>
+              <el-form-item prop="storageMode" label="存储模式" >
+                <div>
+                  <el-radio v-model="settingMap.storageMode.value" :label="'localStorage'" border>本地存储</el-radio>
+                  <el-radio v-model="settingMap.storageMode.value" :label="'minio'" border>minio</el-radio>
+                  <el-radio v-model="settingMap.storageMode.value" :label="'qiniu'" border>七牛云</el-radio>
+                </div>
+              </el-form-item>
+            </el-row>
+
+            <div v-if="settingMap.storageMode.value === 'minio'">
+              <el-row>
+                <el-col :span="6">
+                  <el-form-item label="端点" prop="minioEndpoint">
+                    <el-input v-model="settingMap.minioEndpoint.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+
+                <el-col :span="6">
+                  <el-form-item label="访问key" prop="minioAccessKey">
+                    <el-input v-model="settingMap.minioAccessKey.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+
+              <el-row>
+                <el-col :span="6">
+                  <el-form-item label="访问密钥" prop="minioSecretKey">
+                    <el-input v-model="settingMap.minioSecretKey.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+
+                <el-col :span="6">
+                  <el-form-item label="桶名" prop="minioBucketName">
+                    <el-input v-model="settingMap.minioBucketName.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </div>
+
+
+          </el-form>
+        </el-tab-pane>
       </el-tabs>
       <el-row>
         <el-button @click="submit" type="primary" >保存</el-button>
@@ -250,7 +296,8 @@ export default {
         "touristBackground": {},
         "keyword": {},
         "email": {},
-        "leaveMessagePageBackground": {}
+        "leaveMessagePageBackground": {},
+        "storageMode": {}
       }
     }
   },

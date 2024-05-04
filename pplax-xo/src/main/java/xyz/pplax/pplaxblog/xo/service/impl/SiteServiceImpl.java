@@ -185,7 +185,7 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     public ResponseResult getWebSiteInfo() {
-        Map<String, Object> data = siteSettingService.map();
+        Map<String, SiteSetting> data = siteSettingService.map();
 
         Map<String, Object> extra = new HashMap<>();
 

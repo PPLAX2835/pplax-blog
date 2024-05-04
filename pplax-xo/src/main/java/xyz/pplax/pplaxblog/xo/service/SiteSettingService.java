@@ -21,8 +21,8 @@ public interface SiteSettingService extends SuperService<SiteSetting> {
 
     Boolean updateById(SiteSettingEditDto siteSettingEditDto);
 
-    Boolean updateByMap(Map<String, Object> data);
+    Boolean updateByMap(Map<String, SiteSetting> data);
 
-    Map<String, Object> map();
+    Map<String, SiteSetting> map();
 
 }

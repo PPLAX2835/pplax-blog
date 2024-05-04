@@ -13,6 +13,7 @@ import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.SiteSettingEditDto;
+import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
 import java.util.Map;
@@ -59,7 +60,7 @@ public class SiteSettingController extends SuperController {
 
     @ApiOperation(value="编辑配置", notes="编辑配置")
     @PutMapping("")
-    public String updateByMap(@RequestBody Map<String, Object> data) {
+    public String updateByMap(@RequestBody Map<String, SiteSetting> data) {
 
         Boolean res = siteSettingService.updateByMap(data);
 

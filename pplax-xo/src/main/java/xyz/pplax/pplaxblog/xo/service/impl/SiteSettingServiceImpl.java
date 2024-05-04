@@ -79,26 +79,20 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
     }
 
     @Override
-    public Boolean updateByMap(Map<String, Object> data) {
+    public Boolean updateByMap(Map<String, SiteSetting> data) {
+        boolean res = updateBatchById(data.values());
 
-        for (Object value : data.values()) {
-            JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(value));
-
-            SiteSetting siteSetting = new SiteSetting();
-            siteSetting.setUid((String) jsonObject.get(BaseSysConstants.UID));
-            siteSetting.setValue(jsonObject.get(BaseSysConstants.VALUE));
-
-            if (!updateById(siteSetting)) {
-                throw new DeleteFailException(JSON.toJSONString(siteSetting));
-            }
+        if (res) {
+            // 删除缓存
+            boolean b = redisService.deleteObject(SiteRedisConstants.SITE_SETTING);
         }
 
-        return true;
+        return res;
     }
 
     @Override
-    public Map<String, Object> map() {
-        Map<String, Object> setting = redisService.getCacheObject(SiteRedisConstants.SITE_SETTING);
+    public Map<String, SiteSetting> map() {
+        Map<String, SiteSetting> setting = redisService.getCacheObject(SiteRedisConstants.SITE_SETTING);
 
         // 如果缓存中有，直接返回即可
         if (setting != null) {
@@ -106,15 +100,8 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         }
 
         List<SiteSetting> siteSettingList = list();
-        Map<String, Object> res = new HashMap<>();
+        Map<String, SiteSetting> res = new HashMap<>();
         for (SiteSetting siteSetting : siteSettingList) {
-
-            if (!StringUtils.isBlank((String) siteSetting.getValue()) && (((String) siteSetting.getValue()).matches(BaseRegexConstants.JSON_REGEX))) {
-                siteSetting.setValue(JSON.parseObject((String) siteSetting.getValue()));
-            } else {
-                siteSetting.setValue(siteSetting.getValue());
-            }
-
             res.put(siteSetting.getNameEn(), siteSetting);
         }
         // 放到缓存中

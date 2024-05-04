@@ -264,7 +264,7 @@ export default {
   methods: {
     getData() {
       getSiteSettingMap().then(res => {
-        this.settingMap = res.extra
+        this.settingMap = res.data
       })
     },
     imageAttachAdd: function (pos, $file) {

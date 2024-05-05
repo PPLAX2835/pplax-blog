@@ -4,6 +4,7 @@ package xyz.pplax.pplaxblog.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -67,9 +68,9 @@ public class BlogController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        IPage<Blog> blogIPage = blogService.search(keyword, currentPage, pageSize);
+        Page<Blog> blogPage = blogService.search(keyword, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(blogIPage.getRecords(), blogIPage.getTotal()));
+        return toJson(ResponseResult.success(blogPage.getRecords(), blogPage.getTotal()));
     }
 
     @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
@@ -81,8 +82,8 @@ public class BlogController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        IPage<Blog> blogIPage = blogService.listHomeBlog(blogSortUid, tagUid, orderByDesc, currentPage, pageSize);
-        return toJson(ResponseResult.success(blogIPage.getRecords(), blogIPage.getTotal()));
+        Page<Blog> blogPage = blogService.pageHomeBlog(blogSortUid, tagUid, orderByDesc, currentPage, pageSize);
+        return toJson(ResponseResult.success(blogPage.getRecords(), blogPage.getTotal()));
     }
 
     @ApiOperation(value = "获取博客", httpMethod = "GET", response = ResponseResult.class, notes = "获取博客")

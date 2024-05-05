@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.RequestParam;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
@@ -18,19 +19,19 @@ import java.util.Map;
  */
 public interface BlogService extends SuperService<Blog> {
 
-    IPage<Blog> list(BlogGetListDto blogGetListDto);
+    Page<Blog> page(String blogTitle, String blogSortUid, String tagUid, Integer status, Long currentPage, Long pageSize);
 
-    IPage<Blog> listHomeBlog(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize);
+    Page<Blog> pageHomeBlog(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize);
 
-    IPage<Blog> listByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize);
+    Page<Blog> pageByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize);
 
-    IPage<Blog> search(String keyword, Long currentPage, Long pageSize);
+    Page<Blog> search(String keyword, Long currentPage, Long pageSize);
 
     ResponseResult archive(String userUid);
 
     List<Blog> listByBanner();
 
-    IPage<Blog> listNotByBannerNew(Integer size);
+    Page<Blog> pageNotByBannerNew(Integer size);
 
     BlogContent getBlogContentByBlogUid(String blogUid);
 

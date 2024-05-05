@@ -149,12 +149,12 @@ public class SiteServiceImpl implements SiteService {
 
         List<Blog> bannerBlogList = blogService.listByBanner();
 
-        IPage<Blog> notByBannerNewIpage = blogService.listNotByBannerNew(CharacterConstants.NUM_TWENTY);
+        Page<Blog> notByBannerNewPage = blogService.pageNotByBannerNew(CharacterConstants.NUM_TWENTY);
 
         Map<String,Object> extra = new HashMap<>();
         extra.put("bannerList", bannerBlogList);
         extra.put("tagList", tagIPage.getRecords());
-        extra.put("newBlogList", notByBannerNewIpage.getRecords());
+        extra.put("newBlogList", notByBannerNewPage.getRecords());
 
         return ResponseResult.success(extra);
     }

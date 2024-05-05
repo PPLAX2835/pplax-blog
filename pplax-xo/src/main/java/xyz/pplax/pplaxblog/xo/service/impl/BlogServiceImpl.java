@@ -87,7 +87,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     }
 
     @Override
-    public IPage<Blog> search(String keyword, Long currentPage, Long pageSize) {
+    public Page<Blog> search(String keyword, Long currentPage, Long pageSize) {
         PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
 
         blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
@@ -109,14 +109,27 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
 
         // 为查询结果打上高亮
         for (Blog blog : page.getRecords()) {
-            String newKeyword = "<span style=\"color:red\">" + keyword + "</span>";
 
             if (blog.getTitle() != null) {
-                blog.setTitle(blog.getTitle().replaceAll(keyword, newKeyword));
+                String title = blog.getTitle();
+                // 获取所有关键词
+                ArrayList<String> allMatchingStrings = getAllMatchingStrings(title, keyword);
+                // 遍历，全打上高亮
+                for (String matchingString : allMatchingStrings) {
+                    String newKeyword = "<span style=\"color:red\">" + matchingString + "</span>";
+                    blog.setTitle(title.replace(matchingString, newKeyword));
+                }
             }
 
             if (blog.getSummary() != null) {
-                blog.setSummary(blog.getSummary().replaceAll(keyword, newKeyword));
+                String summary = blog.getSummary();
+                // 获取所有关键词
+                ArrayList<String> allMatchingStrings = getAllMatchingStrings(summary, keyword);
+                // 遍历，全打上高亮
+                for (String matchingString : allMatchingStrings) {
+                    String newKeyword = "<span style=\"color:red\">" + matchingString + "</span>";
+                    blog.setSummary(summary.replace(matchingString, newKeyword));
+                }
             }
         }
 
@@ -132,7 +145,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
      * @return
      */
     @Override
-    public IPage<Blog> listByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize) {
+    public Page<Blog> pageByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize) {
         PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
         blogPQueryWrapper.eq(BlogSQLConstants.USER_UID, userUid);
 
@@ -213,7 +226,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
      * @return
      */
     @Override
-    public IPage<Blog> listHomeBlog(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize) {
+    public Page<Blog> pageHomeBlog(String blogSortUid, String tagUid, String orderByDesc, Long currentPage, Long pageSize) {
         PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
 
         blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
@@ -245,7 +258,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        IPage<Blog> pageList = page(page, blogPQueryWrapper);
+        Page<Blog> pageList = page(page, blogPQueryWrapper);
 
         pageList.getRecords().forEach(item ->{
             // 获得标签
@@ -291,41 +304,39 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     }
 
     @Override
-    public IPage<Blog> list(BlogGetListDto blogGetListDto) {
+    public Page<Blog> page(String blogTitle, String blogSortUid, String tagUid, Integer status, Long currentPage, Long pageSize) {
         PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
 
-        if (!StringUtils.isEmpty(blogGetListDto.getBlogTitle())) {
+        if (!StringUtils.isEmpty(blogTitle)) {
             // 博客名
-            blogPQueryWrapper.like(BlogSQLConstants.TITLE, "%" + blogGetListDto.getBlogTitle() + "%");
+            blogPQueryWrapper.like(BlogSQLConstants.TITLE, "%" + blogTitle + "%");
         }
 
-        if (!StringUtils.isEmpty(blogGetListDto.getBlogSortUid())) {
+        if (!StringUtils.isEmpty(blogSortUid)) {
             // 分类uid
-            blogPQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogGetListDto.getBlogSortUid());
+            blogPQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
         }
 
-        if (!StringUtils.isEmpty(blogGetListDto.getTagUid())) {
+        if (!StringUtils.isEmpty(tagUid)) {
             // 标签uid
-            blogPQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + blogGetListDto.getTagUid() + "%");
+            blogPQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tagUid + "%");
         }
 
-        if (blogGetListDto.getStatus() != null) {
+        if (status != null) {
             // 状态
-            blogPQueryWrapper.eq(BlogSQLConstants.C_STATUS, blogGetListDto.getStatus());
+            blogPQueryWrapper.eq(BlogSQLConstants.C_STATUS, status);
         }
 
         //分页
         Page<Blog> page = new Page<>();
-        page.setCurrent(blogGetListDto.getCurrentPage());
-        page.setSize(blogGetListDto.getPageSize());
-
-        IPage<Blog> pageList = null;
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
         // 按创建时间排序
         blogPQueryWrapper.orderByDesc(BlogSQLConstants.C_CREATE_TIME);
 
         // 查询
-        pageList = page(page, blogPQueryWrapper);
+        Page<Blog> pageList = page(page, blogPQueryWrapper);
 
         for (Blog blog : page.getRecords()) {
             // 查询封面图
@@ -400,7 +411,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
      * @return
      */
     @Override
-    public IPage<Blog> listNotByBannerNew(Integer size) {
+    public Page<Blog> pageNotByBannerNew(Integer size) {
         PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
         blogPQueryWrapper.eq(BlogSQLConstants.LEVEL, CharacterConstants.NUM_ZERO);
         blogPQueryWrapper.eq(BlogSQLConstants.C_STATUS, EStatus.ENABLE.getStatus());
@@ -411,7 +422,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         page.setCurrent(1);
         page.setSize(size);
 
-        IPage<Blog> pageList = page(page, blogPQueryWrapper);
+        Page<Blog> pageList = page(page, blogPQueryWrapper);
 
         for (Blog blog : page.getRecords()) {
             // 查询封面图
@@ -646,5 +657,26 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             }
         }
         return true;
+    }
+
+
+    /**
+     * 获取所有mainString中与targetString相同的字符串，匹配时忽略大小写
+     * @param mainString
+     * @param targetString
+     * @return
+     */
+    public static ArrayList<String> getAllMatchingStrings(String mainString, String targetString) {
+        ArrayList<String> matchingStrings = new ArrayList<>();
+        String lowerMainString = mainString.toLowerCase();
+        String lowerTargetString = targetString.toLowerCase();
+
+        int index = lowerMainString.indexOf(lowerTargetString);
+        while (index != -1) {
+            matchingStrings.add(mainString.substring(index, index + targetString.length()));
+            index = lowerMainString.indexOf(lowerTargetString, index + 1);
+        }
+
+        return matchingStrings;
     }
 }

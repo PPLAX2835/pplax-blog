@@ -3,6 +3,7 @@ package xyz.pplax.pplaxblog.admin.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -47,18 +48,10 @@ public class BlogController extends SuperController {
 			@RequestParam(value = "currentPage") Long currentPage,
 			@RequestParam(value = "pageSize") Long pageSize
 	) {
-		// 封装
-		BlogGetListDto blogGetListDto = new BlogGetListDto();
-		blogGetListDto.setBlogTitle(blogTitle);
-		blogGetListDto.setBlogSortUid(blogSortUid);
-		blogGetListDto.setTagUid(tagUid);
-		blogGetListDto.setStatus(status);
-		blogGetListDto.setCurrentPage(currentPage);
-		blogGetListDto.setPageSize(pageSize);
 
-		IPage<Blog> blogIPage = blogService.list(blogGetListDto);
+		Page<Blog> blogPage = blogService.page(blogTitle, blogSortUid, tagUid, status, currentPage, pageSize);
 
-		return toJson(ResponseResult.success(blogIPage.getRecords(), blogIPage.getTotal()));
+		return toJson(ResponseResult.success(blogPage.getRecords(), blogPage.getTotal()));
 	}
 
 

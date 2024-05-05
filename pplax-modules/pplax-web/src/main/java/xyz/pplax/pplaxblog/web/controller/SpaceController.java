@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.web.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class SpaceController extends SuperController {
             @RequestParam(value = "pageSize") Long pageSize
     ){
 
-        IPage<Blog> blogIPage = blogService.listByUserUid(userUid, isCollect, currentPage, pageSize);
-        return toJson(ResponseResult.success(blogIPage.getRecords(), blogIPage.getTotal()));
+        Page<Blog> blogPage = blogService.pageByUserUid(userUid, isCollect, currentPage, pageSize);
+        return toJson(ResponseResult.success(blogPage.getRecords(), blogPage.getTotal()));
     }
 }

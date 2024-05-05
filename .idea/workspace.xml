@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="调整">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/about/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/about/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,14 +392,7 @@
       <workItem from="1714698388626" duration="20707000" />
       <workItem from="1714807838757" duration="3451000" />
       <workItem from="1714823358641" duration="2496000" />
-      <workItem from="1714872152580" duration="8769000" />
-    </task>
-    <task id="LOCAL-00379" summary="前台页面完成登录">
-      <created>1712909331663</created>
-      <option name="number" value="00379" />
-      <option name="presentableId" value="LOCAL-00379" />
-      <option name="project" value="LOCAL" />
-      <updated>1712909331664</updated>
+      <workItem from="1714872152580" duration="15989000" />
     </task>
     <task id="LOCAL-00380" summary="调整聊天室表">
       <created>1712913729565</created>
@@ -734,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714891228230</updated>
     </task>
-    <option name="localTasksCounter" value="428" />
+    <task id="LOCAL-00428" summary="调整">
+      <created>1714891895237</created>
+      <option name="number" value="00428" />
+      <option name="presentableId" value="LOCAL-00428" />
+      <option name="project" value="LOCAL" />
+      <updated>1714891895237</updated>
+    </task>
+    <option name="localTasksCounter" value="429" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,7 +772,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理说说接口，后续需要把说说的评论拿出来单独请求" />
     <MESSAGE value="搜索功能做好了" />
     <MESSAGE value="整合mq" />
     <MESSAGE value="整理服务层包结构" />
@@ -794,7 +796,8 @@
     <MESSAGE value="后台 站点设置增加储存选项" />
     <MESSAGE value="整合七牛云" />
     <MESSAGE value="修改say 后台和前台查询混乱的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改say 后台和前台查询混乱的问题" />
+    <MESSAGE value="调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

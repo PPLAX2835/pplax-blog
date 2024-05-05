@@ -29,23 +29,28 @@
                 </el-form-item>
               </el-col>
               <el-col :span="8">
+                <el-form-item label="api域名" prop="apiDomain">
+                  <el-input v-model="settingMap.apiDomain.value" auto-complete="off"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
                 <el-form-item label="关键词" prop="keyword">
                   <el-input v-model="settingMap.keyword.value" auto-complete="off"></el-input>
                 </el-form-item>
               </el-col>
+            </el-row>
+            <el-row>
               <el-col :span="8">
                 <el-form-item label="站点介绍" prop="summary">
                   <el-input v-model="settingMap.summary.value" auto-complete="off"></el-input>
                 </el-form-item>
               </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="6">
+              <el-col :span="8">
                 <el-form-item label="Copyright" prop="copyright">
                   <el-input v-model="settingMap.copyright.value" auto-complete="off"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="8">
                 <el-form-item label="备案号" prop="recordNum">
                   <el-input v-model="settingMap.recordNum.value" auto-complete="off"></el-input>
                 </el-form-item>
@@ -217,7 +222,15 @@
                 </div>
               </el-form-item>
             </el-row>
-
+            <div v-if="settingMap.storageMode.value === 'localStorage'">
+              <el-row>
+                <el-col :span="6">
+                  <el-form-item label="基本路径" prop="localStorageBasePath">
+                    <el-input v-model="settingMap.localStorageBasePath.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </div>
             <div v-if="settingMap.storageMode.value === 'minio'">
               <el-row>
                 <el-col :span="6">
@@ -346,7 +359,8 @@ export default {
         "qiniuEndpoint": {},
         "qiniuSecretKey": {},
         "qiniuZone": {},
-        "storageMode": {}
+        "storageMode": {},
+        "localStorageBasePath": {}
       }
     }
   },

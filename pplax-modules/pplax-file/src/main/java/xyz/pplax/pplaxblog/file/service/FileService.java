@@ -6,13 +6,20 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import io.minio.MinioClient;
 import io.minio.ObjectWriteResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.FileUtils;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.file.utils.MinioUtils;
 import xyz.pplax.pplaxblog.file.utils.QiniuUtils;
@@ -22,7 +29,12 @@ import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.service.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Service
@@ -67,6 +79,7 @@ public class FileService {
         FileStorage fileStorage = new FileStorage();
         String fileStoragePath = path;
         String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
+        fileStorage.setUid(StringUtils.getUUID());
         fileStorage.setOriginalName(file.getOriginalFilename());
         fileStorage.setFileName(fileStorageName);        // 用时间戳命名
         fileStorage.setSuffix(suffix);
@@ -91,7 +104,14 @@ public class FileService {
             fileStorageService.save(fileStorage);
         } else if (StorageModeConstants.LOCAL_STORAGE.equals(storageMode)) {
             // 本地存储
+            String localStorageBasePath = getLocalStorageBasePath();
+            boolean res = FileUtils.saveFile(inputStream, localStorageBasePath + fileStorage.getFilePath(), fileStorageName);
 
+            if (res) {
+                String apiDomain = getApiDomain();
+                fileStorage.setFileUrl(apiDomain + "/api/file/localStorage/" + fileStorage.getUid());
+                fileStorageService.save(fileStorage);
+            }
         } else if (StorageModeConstants.QINIU.equals(storageMode)) {
             // 七牛云
             QiniuUtils qiniuUtils = getQiniuUtils();
@@ -196,6 +216,30 @@ public class FileService {
                 (String) qiniuZoneSetting.getValue(),
                 (String) qiniuBucketNameSetting.getValue()
         );
+    }
+
+    /**
+     * 获取本地存储的基本路径
+     * @return
+     */
+    private String getLocalStorageBasePath() {
+        Object o = siteSettingService.map();
+        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
+
+        SiteSetting localStorageBasePathSetting = JSON.toJavaObject(jsonObjectMap.get("localStorageBasePath"), SiteSetting.class);
+        return (String) localStorageBasePathSetting.getValue();
+    }
+
+    /**
+     * 获取api域名 （即网关）
+     * @return
+     */
+    private String getApiDomain() {
+        Object o = siteSettingService.map();
+        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
+
+        SiteSetting apiDomainSetting = JSON.toJavaObject(jsonObjectMap.get("apiDomain"), SiteSetting.class);
+        return (String) apiDomainSetting.getValue();
     }
 
     /**

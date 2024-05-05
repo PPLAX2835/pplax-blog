@@ -2,12 +2,14 @@
     <div class="about-box container">
         <el-card class="box1">
             <h1 class="title">关于本站</h1>
-            <div class="content" v-html="$store.state.webSiteInfo.aboutMe.value" ref="preview" />
+            <div class="content" v-html="mdToHtml(getWebSiteInfoValue('aboutMe'))" ref="preview" />
         </el-card>
 
     </div>
 </template>
 <script>
+import { getWebSiteInfoValue } from "@/utils";
+import MarkdownIt from 'markdown-it'
 export default {
     metaInfo: {
     },
@@ -17,6 +19,22 @@ export default {
         return {
         }
     },
+    methods: {
+      mdToHtml(mdStr) {
+        // 将博客内容从markdown转译为html
+        const md = new MarkdownIt()
+        let htmlStr = md.render(mdStr)    // markdown转html
+        // 把被转义掉的video标签转义回来
+        htmlStr = htmlStr.replace('&lt;video', '<video')
+        htmlStr = htmlStr.replace('src=&quot;', 'src="')
+        htmlStr = htmlStr.replace('&quot;&gt;&lt;/video&gt;', '"></video>')
+
+        return htmlStr
+      },
+      getWebSiteInfoValue(key) {
+        return getWebSiteInfoValue(this.$store.state.webSiteInfo, key)
+      }
+    }
 
 }
 </script>

@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="整合七牛云">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/SayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/SayService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/sayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/sayServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/about/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/about/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -392,14 +389,7 @@
       <workItem from="1714698388626" duration="20707000" />
       <workItem from="1714807838757" duration="3451000" />
       <workItem from="1714823358641" duration="2496000" />
-      <workItem from="1714872152580" duration="7968000" />
-    </task>
-    <task id="LOCAL-00378" summary="留言功能实现">
-      <created>1712889148610</created>
-      <option name="number" value="00378" />
-      <option name="presentableId" value="LOCAL-00378" />
-      <option name="project" value="LOCAL" />
-      <updated>1712889148610</updated>
+      <workItem from="1714872152580" duration="8769000" />
     </task>
     <task id="LOCAL-00379" summary="前台页面完成登录">
       <created>1712909331663</created>
@@ -737,7 +727,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714890049194</updated>
     </task>
-    <option name="localTasksCounter" value="427" />
+    <task id="LOCAL-00427" summary="修改say 后台和前台查询混乱的问题">
+      <created>1714891228230</created>
+      <option name="number" value="00427" />
+      <option name="presentableId" value="LOCAL-00427" />
+      <option name="project" value="LOCAL" />
+      <updated>1714891228230</updated>
+    </task>
+    <option name="localTasksCounter" value="428" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -772,7 +769,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理博客、评论回复、站点信息参数、业务逻辑" />
     <MESSAGE value="整理说说接口，后续需要把说说的评论拿出来单独请求" />
     <MESSAGE value="搜索功能做好了" />
     <MESSAGE value="整合mq" />
@@ -797,7 +793,8 @@
     <MESSAGE value="调整文件处理逻辑，取消注入配置的方式，这样就能在修改配置后动态切换了" />
     <MESSAGE value="后台 站点设置增加储存选项" />
     <MESSAGE value="整合七牛云" />
-    <option name="LAST_COMMIT_MESSAGE" value="整合七牛云" />
+    <MESSAGE value="修改say 后台和前台查询混乱的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改say 后台和前台查询混乱的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

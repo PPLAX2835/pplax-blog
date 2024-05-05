@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="后台 站点设置增加储存选项">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_qiniu_qiniu_java_sdk_7_2_29.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/QiniuUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/StorageModeConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/StorageModeConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/MinioUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/MinioUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,8 +121,8 @@
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter\pplax-amqp-starter\src\main\java\xyz\pplax\pplaxblog\starter\amqp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-file\src\main\java\xyz\pplax\pplaxblog\file\model" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
+      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-file\src\main\java\xyz\pplax\pplaxblog\file\model" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-commons\src\main\resources" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-commons\src\main\java\xyz\pplax\pplaxblog\commons\enums" />
@@ -140,7 +147,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -259,11 +266,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.dev" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -389,14 +396,8 @@
       <workItem from="1714615157375" duration="16319000" />
       <workItem from="1714698388626" duration="20707000" />
       <workItem from="1714807838757" duration="3451000" />
-      <workItem from="1714823358641" duration="2267000" />
-    </task>
-    <task id="LOCAL-00376" summary="新增留言表，完成留言管理">
-      <created>1712828664949</created>
-      <option name="number" value="00376" />
-      <option name="presentableId" value="LOCAL-00376" />
-      <option name="project" value="LOCAL" />
-      <updated>1712828664950</updated>
+      <workItem from="1714823358641" duration="2496000" />
+      <workItem from="1714872152580" duration="6944000" />
     </task>
     <task id="LOCAL-00377" summary="新增聊天室表，完成聊天室管理">
       <created>1712835265192</created>
@@ -734,7 +735,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714824598078</updated>
     </task>
-    <option name="localTasksCounter" value="425" />
+    <task id="LOCAL-00425" summary="后台 站点设置增加储存选项">
+      <created>1714825870079</created>
+      <option name="number" value="00425" />
+      <option name="presentableId" value="LOCAL-00425" />
+      <option name="project" value="LOCAL" />
+      <updated>1714825870079</updated>
+    </task>
+    <option name="localTasksCounter" value="426" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,7 +777,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理个人信息相关接口" />
     <MESSAGE value="完成博客编辑功能" />
     <MESSAGE value="整理博客、评论回复、站点信息参数、业务逻辑" />
     <MESSAGE value="整理说说接口，后续需要把说说的评论拿出来单独请求" />
@@ -794,7 +801,8 @@
     <MESSAGE value="简单调整" />
     <MESSAGE value="调整siteSetting相关方法" />
     <MESSAGE value="调整文件处理逻辑，取消注入配置的方式，这样就能在修改配置后动态切换了" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整文件处理逻辑，取消注入配置的方式，这样就能在修改配置后动态切换了" />
+    <MESSAGE value="后台 站点设置增加储存选项" />
+    <option name="LAST_COMMIT_MESSAGE" value="后台 站点设置增加储存选项" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

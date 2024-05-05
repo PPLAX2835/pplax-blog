@@ -15,13 +15,13 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.file.utils.MinioUtils;
+import xyz.pplax.pplaxblog.file.utils.QiniuUtils;
 import xyz.pplax.pplaxblog.xo.constants.sql.FileStorageSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.service.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
-import javax.validation.constraints.Min;
 import java.io.InputStream;
 import java.util.*;
 
@@ -43,7 +43,6 @@ public class FileService {
     public ResponseResult upload(String path, MultipartFile file) throws Exception {
         // 获取必要实例，不使用注入方式了
         String storageMode = getStorageMode();
-        MinioUtils minioUtils = getMinioUtils();
 
         // 存储模式参数不能为空
         if (StringUtils.isEmpty(storageMode)) {
@@ -64,33 +63,47 @@ public class FileService {
         // 获得输入流
         InputStream inputStream = file.getInputStream();
 
+        // 封装
         FileStorage fileStorage = new FileStorage();
-        // 判断使用什么方式存储
-        if (StorageModeConstants.MINIO.equals(storageMode)) {      // minio的存储方式
+        String fileStoragePath = path;
+        String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
+        fileStorage.setOriginalName(file.getOriginalFilename());
+        fileStorage.setFileName(fileStorageName);        // 用时间戳命名
+        fileStorage.setSuffix(suffix);
+        fileStorage.setFilePath(fileStoragePath);
+        fileStorage.setFileSize(file.getSize());
+        fileStorage.setIsDirectory(false);
+        fileStorage.setStorageMode(storageMode);
 
-            String fileStoragePath = path;
-            String fileStorageName = new Date().getTime() + (suffix == null ? "" : "." + suffix);
+        // 判断使用什么方式存储
+        if (StorageModeConstants.MINIO.equals(storageMode)) {
+            // minio的存储方式
+            MinioUtils minioUtils = getMinioUtils();
 
             // 上传到minio
-            ObjectWriteResponse objectWriteResponse = minioUtils.putObject(minioUtils.getMinioBucketName(), fileStoragePath + fileStorageName, inputStream);
+            ObjectWriteResponse objectWriteResponse = minioUtils.putObject(minioUtils.getBucketName(), fileStoragePath + fileStorageName, inputStream);
             // 从响应中获得访问地址
-            String fileUrl = minioUtils.getMinioEndpoint() + "/" + minioUtils.getMinioBucketName() + objectWriteResponse.object();
+            String fileUrl = minioUtils.getEndpoint() + "/" + minioUtils.getBucketName() + objectWriteResponse.object();
 
-            // 封装
-            fileStorage.setOriginalName(file.getOriginalFilename());
-            fileStorage.setFileName(fileStorageName);        // 用时间戳命名
-            fileStorage.setSuffix(suffix);
-            fileStorage.setFilePath(fileStoragePath);
-            fileStorage.setFileSize(file.getSize());
-            fileStorage.setIsDirectory(false);
-            fileStorage.setIsImage(true);
-            fileStorage.setStorageMode(StorageModeConstants.MINIO);
+            // 封装fileUrl
             fileStorage.setFileUrl(fileUrl);
 
             fileStorageService.save(fileStorage);
         } else if (StorageModeConstants.LOCAL_STORAGE.equals(storageMode)) {
             // 本地存储
 
+        } else if (StorageModeConstants.QINIU.equals(storageMode)) {
+            // 七牛云
+            QiniuUtils qiniuUtils = getQiniuUtils();
+
+            // 上传到七牛云
+            String upload = qiniuUtils.upload(inputStream, fileStoragePath.substring(1) + fileStorageName);
+            if (upload != null) {
+                // 上传成功，封装fileUrl
+                fileStorage.setFileUrl(qiniuUtils.getEndpoint() + fileStoragePath + fileStorageName);
+                // 持久化
+                fileStorageService.save(fileStorage);
+            }
         }
 
         return ResponseResult.success(fileStorage);
@@ -105,22 +118,23 @@ public class FileService {
      * @throws Exception
      */
     public ResponseResult delete(String fileUid) throws Exception {
-        // 获取必要实例，不使用注入方式了
-        MinioUtils minioUtils = getMinioUtils();
-
         // 获取这个文件的信息
         FileStorage fileStorage = fileStorageService.getById(fileUid);
 
         if (StorageModeConstants.MINIO.equals(fileStorage.getStorageMode())) {
+            // 获取MinioUtils实例
+            MinioUtils minioUtils = getMinioUtils();
             // 在minio中删除
-            minioUtils.removeObject(minioUtils.getMinioBucketName(), fileStorage.getFilePath() + fileStorage.getFileName());
+            minioUtils.removeObject(minioUtils.getBucketName(), fileStorage.getFilePath() + fileStorage.getFileName());
+        } else if (StorageModeConstants.QINIU.equals(fileStorage.getStorageMode())) {
+            // 获取qiniuUtil实例
+            QiniuUtils qiniuUtils = getQiniuUtils();
+            // 在七牛云中删除
+            qiniuUtils.delete(fileStorage.getFilePath().substring(1) + fileStorage.getFileName());
         }
 
         // 逻辑删除表数据
-        UpdateWrapper<FileStorage> fileStorageUpdateWrapper = new UpdateWrapper<>();
-        fileStorageUpdateWrapper.set(FileStorageSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        fileStorageUpdateWrapper.eq(FileStorageSQLConstants.C_UID, fileUid);
-        fileStorageService.update(fileStorageUpdateWrapper);
+        fileStorageService.removeById(fileUid);
 
         return ResponseResult.success();
     }
@@ -146,7 +160,7 @@ public class FileService {
      */
     private MinioUtils getMinioUtils() {
         Object o =  siteSettingService.map();
-        Map<String, JSON> jsonObjectMap = (Map<String, JSON>) o;
+        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
 
         SiteSetting minioEndpointSetting = JSON.toJavaObject(jsonObjectMap.get("minioEndpoint"), SiteSetting.class);
         SiteSetting minioBucketNameSetting = JSON.toJavaObject(jsonObjectMap.get("minioBucketName"), SiteSetting.class);
@@ -154,14 +168,33 @@ public class FileService {
         SiteSetting minioSecretKeySetting = JSON.toJavaObject(jsonObjectMap.get("minioSecretKey"), SiteSetting.class);
 
         return new MinioUtils(
-                MinioClient.builder()
-                        .endpoint((String) minioEndpointSetting.getValue())
-                        .credentials((String) minioAccessKeySetting.getValue(), (String) minioSecretKeySetting.getValue())
-                        .build(),
                 (String) minioEndpointSetting.getValue(),
                 (String) minioAccessKeySetting.getValue(),
                 (String) minioSecretKeySetting.getValue(),
                 (String) minioBucketNameSetting.getValue()
+        );
+    }
+
+    /**
+     * 获得七牛云utils
+     * @return
+     */
+    private QiniuUtils getQiniuUtils() {
+        Object o =  siteSettingService.map();
+        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
+
+        SiteSetting qiniuEndpointSetting = JSON.toJavaObject(jsonObjectMap.get("qiniuEndpoint"), SiteSetting.class);
+        SiteSetting qiniuBucketNameSetting = JSON.toJavaObject(jsonObjectMap.get("qiniuBucketName"), SiteSetting.class);
+        SiteSetting qiniuAccessKeySetting = JSON.toJavaObject(jsonObjectMap.get("qiniuAccessKey"), SiteSetting.class);
+        SiteSetting qiniuSecretKeySetting = JSON.toJavaObject(jsonObjectMap.get("qiniuSecretKey"), SiteSetting.class);
+        SiteSetting qiniuZoneSetting = JSON.toJavaObject(jsonObjectMap.get("qiniuZone"), SiteSetting.class);
+
+        return new QiniuUtils(
+                (String) qiniuEndpointSetting.getValue(),
+                (String) qiniuAccessKeySetting.getValue(),
+                (String) qiniuSecretKeySetting.getValue(),
+                (String) qiniuZoneSetting.getValue(),
+                (String) qiniuBucketNameSetting.getValue()
         );
     }
 
@@ -171,7 +204,7 @@ public class FileService {
      */
     private String getStorageMode() {
         Object o = siteSettingService.map();
-        Map<String, JSON> jsonObjectMap = (Map<String, JSON>) o;
+        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
 
         SiteSetting minioEndpointSetting = JSON.toJavaObject(jsonObjectMap.get("storageMode"), SiteSetting.class);
         return (String) minioEndpointSetting.getValue();

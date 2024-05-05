@@ -247,7 +247,47 @@
                 </el-col>
               </el-row>
             </div>
+            <div v-if="settingMap.storageMode.value === 'qiniu'">
+              <el-row>
+                <el-col :span="6">
+                  <el-form-item label="地区" prop="qiniuZone">
+                    <el-select size="small" v-model="settingMap.qiniuZone.value" placeholder="请选择地区">
+                      <el-option label="华东" value="huadong" />
+                      <el-option label="华北" value="huabei" />
+                      <el-option label="华南" value="huanan" />
+                      <el-option label="北美" value="beimei" />
+                      <el-option label="东南亚" value="xinjiapo" />
+                    </el-select>
+                  </el-form-item>
+                </el-col>
 
+                <el-col :span="6">
+                  <el-form-item label="端点" prop="qiniuEndpoint">
+                    <el-input v-model="settingMap.qiniuEndpoint.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+
+                <el-col :span="6">
+                  <el-form-item label="访问key" prop="qiniuAccessKey">
+                    <el-input v-model="settingMap.qiniuAccessKey.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+
+              <el-row>
+                <el-col :span="6">
+                  <el-form-item label="访问密钥" prop="qiniuSecretKey">
+                    <el-input v-model="settingMap.qiniuSecretKey.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+
+                <el-col :span="6">
+                  <el-form-item label="桶名" prop="qiniuBucketName">
+                    <el-input v-model="settingMap.qiniuBucketName.value" auto-complete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </div>
 
           </el-form>
         </el-tab-pane>
@@ -297,6 +337,15 @@ export default {
         "keyword": {},
         "email": {},
         "leaveMessagePageBackground": {},
+        "minioAccessKey": {},
+        "minioBucketName": {},
+        "minioEndpoint": {},
+        "minioSecretKey": {},
+        "qiniuAccessKey": {},
+        "qiniuBucketName": {},
+        "qiniuEndpoint": {},
+        "qiniuSecretKey": {},
+        "qiniuZone": {},
         "storageMode": {}
       }
     }

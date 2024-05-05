@@ -25,24 +25,26 @@ import java.util.concurrent.TimeUnit;
 public class MinioUtils {
 
     public MinioUtils(
-            MinioClient minioClient,
-            String minioEndpoint,
-            String minioAccessKey,
-            String minioSecretKey,
-            String minioBucketName
+            String endpoint,
+            String accessKey,
+            String secretKey,
+            String bucketName
     ) {
-        this.minioClient = minioClient;
-        this.minioEndpoint = minioEndpoint;
-        this.minioAccessKey = minioAccessKey;
-        this.minioSecretKey = minioSecretKey;
-        this.minioBucketName = minioBucketName;
+        this.endpoint = endpoint;
+        this.accessKey = accessKey;
+        this.secretKey = secretKey;
+        this.bucketName = bucketName;
+        this.minioClient = MinioClient.builder()
+                            .endpoint(endpoint)
+                            .credentials(accessKey, secretKey)
+                            .build();
     }
 
     private MinioClient minioClient;
-    private String minioEndpoint;
-    private String minioAccessKey;
-    private String minioSecretKey;
-    private String minioBucketName;
+    private String endpoint;
+    private String accessKey;
+    private String secretKey;
+    private String bucketName;
 
     private static final String SEPARATOR = "/";
 
@@ -52,7 +54,7 @@ public class MinioUtils {
      * @return url
      */
     public String getBasisUrl(String bucketName) {
-        return minioEndpoint + SEPARATOR + bucketName + SEPARATOR;
+        return endpoint + SEPARATOR + bucketName + SEPARATOR;
     }
 
     /**

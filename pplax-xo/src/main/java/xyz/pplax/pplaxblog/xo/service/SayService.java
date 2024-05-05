@@ -17,7 +17,9 @@ import java.util.List;
  */
 public interface SayService extends SuperService<Say> {
 
-    IPage<Say> list(SayGetListDto sayGetListDto);
+    IPage<Say> listPublic(String userUid, Long currentPage, Long pageSize);
+
+    IPage<Say> list(String keyword, Long currentPage, Long pageSize);
 
     Boolean save(SayEditDto sayEditDto);
 

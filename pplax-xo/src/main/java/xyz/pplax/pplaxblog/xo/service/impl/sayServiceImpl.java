@@ -45,19 +45,22 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
     @Autowired
     private CommentService commentService;
 
+    /**
+     * 获取公开的说说列表
+     * @param userUid
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
     @Override
-    public IPage<Say> list(SayGetListDto sayGetListDto) {
+    public IPage<Say> listPublic(String userUid, Long currentPage, Long pageSize) {
         PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
         sayPQueryWrapper.eq(SaySQLConstants.IS_PUBLIC, true);
-        if(!StringUtils.isEmpty(sayGetListDto.getKeyword())) {
-            // 如果关键词参数非空，就按该条件查询
-            sayPQueryWrapper.like(SaySQLConstants.CONTENT, "%" + sayGetListDto.getKeyword() + "%");
-        }
 
         //分页
         Page<Say> page = new Page<>();
-        page.setCurrent(sayGetListDto.getCurrentPage());
-        page.setSize(sayGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
         IPage<Say> sayPage = page(page, sayPQueryWrapper);
         for (Say say : sayPage.getRecords()) {
@@ -92,9 +95,9 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
 
             // 判断自己是否已经点赞
             boolean isLike = false;
-            if (!StringUtils.isBlank(sayGetListDto.getUserUid())) {
+            if (!StringUtils.isBlank(userUid)) {
                 PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
-                commentPQueryWrapper.eq(CommentSQLConstants.USER_UID, sayGetListDto.getUserUid());
+                commentPQueryWrapper.eq(CommentSQLConstants.USER_UID, userUid);
                 commentPQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_THREE);
                 commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, say.getUid());
                 int count = commentService.count(commentPQueryWrapper);
@@ -103,6 +106,39 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
                 }
             }
             say.setIsLike(isLike);
+        }
+
+        return sayPage;
+    }
+
+    @Override
+    public IPage<Say> list(String keyword, Long currentPage, Long pageSize) {
+        PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
+        if(!StringUtils.isEmpty(keyword)) {
+            // 如果关键词参数非空，就按该条件查询
+            sayPQueryWrapper.like(SaySQLConstants.CONTENT, "%" + keyword + "%");
+        }
+
+        //分页
+        Page<Say> page = new Page<>();
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
+
+        IPage<Say> sayPage = page(page, sayPQueryWrapper);
+        for (Say say : sayPage.getRecords()) {
+            // 封装图片
+            if (!StringUtils.isBlank(say.getImageUids())) {
+                String[] imageUids = say.getImageUids().split(",");
+                say.setImageList(fileStorageService.listByIds(Arrays.asList(imageUids)));
+            }
+
+            // 封装用户
+            User user = userService.getById(say.getUserUid());
+            if (user != null) {
+                user.sensitiveDataRemove();
+                user.setUserInfo(userInfoService.getByUserUid(user.getUid()));
+                say.setUser(user);
+            }
         }
 
         return sayPage;

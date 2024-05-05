@@ -103,7 +103,7 @@ public class SayController extends SuperController {
         sayGetListDto.setCurrentPage(currentPage);
         sayGetListDto.setPageSize(pageSize);
 
-        IPage<Say> sayIPage = sayService.list(sayGetListDto);
+        IPage<Say> sayIPage = sayService.listPublic(userUid, currentPage, pageSize);
 
         return toJson(ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal()));
     }

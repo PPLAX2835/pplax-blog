@@ -42,42 +42,45 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
 
     /**
      * 获取博客分类列表
-     *
-     * @param blogSortGetListDto
+     * @param keyword
+     * @param sortByClickCount
+     * @param sortByCites
+     * @param currentPage
+     * @param pageSize
      * @return
      */
     @Override
-    public IPage<BlogSort> list(BlogSortGetListDto blogSortGetListDto) {
+    public Page<BlogSort> page(String keyword, Boolean sortByClickCount, Boolean sortByCites, Long currentPage, Long pageSize) {
         QueryWrapper<BlogSort> blogSortQueryWrapper = new QueryWrapper<>();
-        if(!StringUtils.isEmpty(blogSortGetListDto.getKeyword())) {
+        if(!StringUtils.isEmpty(keyword)) {
             // 如果关键词参数非空，就按该条件查询
-            blogSortQueryWrapper.like(BlogSortSQLConstants.SORT_NAME, "%" + blogSortGetListDto.getKeyword() + "%");
+            blogSortQueryWrapper.like(BlogSortSQLConstants.SORT_NAME, "%" + keyword + "%");
         }
 
         //分页
         Page<BlogSort> page = new Page<>();
-        page.setCurrent(blogSortGetListDto.getCurrentPage());
-        page.setSize(blogSortGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
         // 获得非删除状态的
         blogSortQueryWrapper.ne(BlogSortSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
 
-        IPage<BlogSort> pageList = null;
+        Page<BlogSort> pageList = null;
 
         // 排序
-        if (blogSortGetListDto.getSortByClickCount() != null && blogSortGetListDto.getSortByClickCount()) {
+        if (sortByClickCount != null && sortByClickCount) {
             // 按点击量排序
             blogSortQueryWrapper.orderByAsc(BlogSortSQLConstants.CLICK_COUNT);
             // 查询
             pageList = blogSortMapper.selectPage(page, blogSortQueryWrapper);
-        } else if (blogSortGetListDto.getSortByCites() != null && blogSortGetListDto.getSortByCites()) {
+        } else if (sortByCites != null && sortByCites) {
             // 按引用量排序
             blogSortQueryWrapper.and(
                     i -> i.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus())
                             .or().isNull(BlogSQLConstants.C_STATUS)
             );
             // 查询
-            pageList = blogSortMapper.selectListSortByCites(page, blogSortQueryWrapper);
+            pageList = blogSortMapper.selectPageSortByCites(page, blogSortQueryWrapper);
         } else {
             // 按创建时间排序
             blogSortQueryWrapper.orderByDesc(BlogSortSQLConstants.C_CREATE_TIME);

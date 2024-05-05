@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -39,16 +40,9 @@ public class BlogSortController extends SuperController {
         @RequestParam(value = "pageSize", required = false) Long pageSize
     ) {
         // 封装
-        BlogSortGetListDto blogSortGetListDto = new BlogSortGetListDto();
-        blogSortGetListDto.setKeyword(keyword);
-        blogSortGetListDto.setSortByClickCount(sortByClickCount);
-        blogSortGetListDto.setSortByCites(sortByCites);
-        blogSortGetListDto.setCurrentPage(currentPage);
-        blogSortGetListDto.setPageSize(pageSize);
+        Page<BlogSort> blogSortPage = blogSortService.page(keyword, sortByClickCount, sortByCites, currentPage, pageSize);
 
-        IPage<BlogSort> blogSortIPage = blogSortService.list(blogSortGetListDto);
-
-        return toJson(ResponseResult.success(blogSortIPage.getRecords(), blogSortIPage.getTotal()));
+        return toJson(ResponseResult.success(blogSortPage.getRecords(), blogSortPage.getTotal()));
     }
 
     @ApiOperation(value="编辑分类", notes="编辑分类")

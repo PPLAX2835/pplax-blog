@@ -1,10 +1,9 @@
 package xyz.pplax.pplaxblog.xo.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.BlogSortEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.BlogSortGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.BlogSort;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public interface BlogSortService extends SuperService<BlogSort> {
 
-    IPage<BlogSort> list(BlogSortGetListDto blogSortGetListDto);
+    Page<BlogSort> page(String keyword, Boolean sortByClickCount, Boolean sortByCites, Long currentPage, Long pageSize);
 
     List<BlogSort> list();
 

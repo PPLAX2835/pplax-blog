@@ -39,7 +39,7 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         String redisKey = SiteRedisConstants.SITE_SETTING + SiteRedisConstants.SEGMENTATION + nameEn;
 
         // 先从缓存中找
-        SiteSetting siteSetting = redisService.getCacheObject(redisKey);
+        SiteSetting siteSetting = JSON.toJavaObject(redisService.getCacheObject(redisKey), SiteSetting.class) ;
         if (siteSetting != null) {
             return siteSetting;
         }

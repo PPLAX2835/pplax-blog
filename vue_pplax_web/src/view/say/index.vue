@@ -17,7 +17,7 @@
         <div class="sayItem" v-for="(item, index) in sayList" :key="index">
           <div class="avatar">
             <el-avatar
-                :src="item.user.userInfo.avatar.fileUrl"
+                :src="item.user.userInfo.avatar ? item.user.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')"
                 alt=""
             ></el-avatar>
           </div>
@@ -29,14 +29,14 @@
             <div v-if="item.imageList">
               <div
                   v-for="imageItem in item.imageList"
-                  :class="ckeckImgClass(imageItem.fileUrl)"
+                  :class="ckeckImgClass(imageItem ? imageItem.fileUrl : '')"
               >
                 <div
                     class="imgBox"
-                    @click="handlePreviewImg(imageItem.fileUrl)"
-                    v-if="checkImg(imageItem.fileUrl)"
+                    @click="handlePreviewImg(imageItem ? imageItem.fileUrl : '')"
+                    v-if="checkImg(imageItem ? imageItem.fileUrl : '')"
                 >
-                  <img :key="imageItem.uid" v-lazy="imageItem.fileUrl" alt="" />
+                  <img :key="imageItem.uid" v-lazy="imageItem ? imageItem.fileUrl : ''" alt="" />
                 </div>
               </div>
             </div>

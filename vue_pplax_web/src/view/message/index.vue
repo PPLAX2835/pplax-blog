@@ -75,7 +75,7 @@ export default {
         }
         that.barrageList.push({
           nickname: userInfo.nickname,
-          avatar: userInfo.avatar.fileUrl,      		//头像
+          avatar: userInfo.avatar ? userInfo.avatar.fileUrl : that.getWebSiteInfoValue('touristAvatar'),      		//头像
           content: item.content,             	//弹幕消息
           time: Math.floor(Math.random() * (21 - 10) + 10),
           status: 1,
@@ -116,7 +116,7 @@ export default {
         return false;
       }
       var message = {
-        avatar: this.user ? this.user.userInfo.avatar.fileUrl :this.getWebSiteInfoValue('touristAvatar'),
+        avatar: this.user ? (this.user.userInfo.avatar ? this.user.userInfo.avatar.fileUrl : this.getWebSiteInfoValue('touristAvatar'))  : this.getWebSiteInfoValue('touristAvatar'),
         status: 1,
         nickname: this.user ? this.user.userInfo.nickname : "游客",
         content: this.content,

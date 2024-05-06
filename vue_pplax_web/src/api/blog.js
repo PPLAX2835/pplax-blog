@@ -26,7 +26,7 @@ export function fetchBlogCommentList(blogUid, params) {
 
 export function postBlogComment(blogUid, data) {
     return request({
-        url: '/web/blog/' + blogUid + '/comment/',
+        url: '/web/blog/' + blogUid + '/comment',
         method: 'post',
         data
     })

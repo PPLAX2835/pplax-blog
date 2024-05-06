@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
+import xyz.pplax.pplaxblog.commons.constants.SiteSettingConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
@@ -32,6 +33,7 @@ import xyz.pplax.pplaxblog.xo.dto.RegisterDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
+import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 import xyz.pplax.pplaxblog.xo.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +51,9 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SiteSettingService siteSettingService;
 
     @Autowired
     private AuthFeignClient authFeignClient;
@@ -152,7 +157,7 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         userInfoEditDto.setUsername(registerDto.getUsername());
         userInfoEditDto.setPassword(registerDto.getPassword());
         userInfoEditDto.setStatus(EStatus.ENABLE.getStatus());
-        userInfoEditDto.setRoleUid("ffca2113713df757e0293c6dfd3b4e32");             // 这里写死了，之后要改
+        userInfoEditDto.setRoleUid((String) siteSettingService.getByNameEn(SiteSettingConstants.DEFAULT_ROLE_UID_NAME_EN).getValue());
         userInfoEditDto.setNickname(registerDto.getNickname());
         userInfoEditDto.setEmail(registerDto.getEmail());
         userInfoEditDto.setIsEmailActivated(true);

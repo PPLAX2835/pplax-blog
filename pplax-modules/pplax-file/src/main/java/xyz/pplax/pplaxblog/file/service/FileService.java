@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import xyz.pplax.pplaxblog.commons.constants.SiteSettingConstants;
 import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
@@ -179,10 +180,10 @@ public class FileService {
      * @return
      */
     private MinioUtils getMinioUtils() {
-        SiteSetting minioEndpointSetting = siteSettingService.getByNameEn("minioEndpoint");
-        SiteSetting minioBucketNameSetting = siteSettingService.getByNameEn("minioBucketName");
-        SiteSetting minioAccessKeySetting = siteSettingService.getByNameEn("minioAccessKey");
-        SiteSetting minioSecretKeySetting = siteSettingService.getByNameEn("minioSecretKey");
+        SiteSetting minioEndpointSetting = siteSettingService.getByNameEn(SiteSettingConstants.MINIO_ENDPOINT_NAME_EN);
+        SiteSetting minioBucketNameSetting = siteSettingService.getByNameEn(SiteSettingConstants.MINIO_BUCKET_NAME_NAME_EN);
+        SiteSetting minioAccessKeySetting = siteSettingService.getByNameEn(SiteSettingConstants.MINIO_ACCESS_KEY_NAME_EN);
+        SiteSetting minioSecretKeySetting = siteSettingService.getByNameEn(SiteSettingConstants.MINIO_SECRET_KEY_NAME_EN);
 
         return new MinioUtils(
                 (String) minioEndpointSetting.getValue(),
@@ -197,11 +198,11 @@ public class FileService {
      * @return
      */
     private QiniuUtils getQiniuUtils() {
-        SiteSetting qiniuEndpointSetting = siteSettingService.getByNameEn("qiniuEndpoint");
-        SiteSetting qiniuBucketNameSetting = siteSettingService.getByNameEn("qiniuBucketName");
-        SiteSetting qiniuAccessKeySetting = siteSettingService.getByNameEn("qiniuAccessKey");
-        SiteSetting qiniuSecretKeySetting = siteSettingService.getByNameEn("qiniuSecretKey");
-        SiteSetting qiniuZoneSetting = siteSettingService.getByNameEn("qiniuZone");
+        SiteSetting qiniuEndpointSetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_ENDPOINT_NAME_EN);
+        SiteSetting qiniuBucketNameSetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_BUCKET_NAME_NAME_EN);
+        SiteSetting qiniuAccessKeySetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_SECRET_KEY_NAME_EN);
+        SiteSetting qiniuSecretKeySetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_SECRET_KEY_NAME_EN);
+        SiteSetting qiniuZoneSetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_ZONE_NAME_EN);
 
         return new QiniuUtils(
                 (String) qiniuEndpointSetting.getValue(),
@@ -217,7 +218,7 @@ public class FileService {
      * @return
      */
     private String getLocalStorageBasePath() {
-        SiteSetting localStorageBasePathSetting = siteSettingService.getByNameEn("localStorageBasePath");
+        SiteSetting localStorageBasePathSetting = siteSettingService.getByNameEn(SiteSettingConstants.LOCAL_STORAGE_BASE_PATH_NAME_EN);
         return (String) localStorageBasePathSetting.getValue();
     }
 
@@ -226,7 +227,7 @@ public class FileService {
      * @return
      */
     private String getApiDomain() {
-        SiteSetting apiDomainSetting = siteSettingService.getByNameEn("apiDomain");
+        SiteSetting apiDomainSetting = siteSettingService.getByNameEn(SiteSettingConstants.API_DOMAIN_NAME_EN);
         return (String) apiDomainSetting.getValue();
     }
 
@@ -235,7 +236,7 @@ public class FileService {
      * @return
      */
     private String getStorageMode() {
-        SiteSetting minioEndpointSetting = siteSettingService.getByNameEn("storageMode");
+        SiteSetting minioEndpointSetting = siteSettingService.getByNameEn(SiteSettingConstants.STORAGE_MODE_NAME_EN);
         return (String) minioEndpointSetting.getValue();
     }
 }

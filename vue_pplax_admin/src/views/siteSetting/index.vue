@@ -21,6 +21,13 @@
                   <el-input v-model="settingMap.blogName.value" auto-complete="off"></el-input>
                 </el-form-item>
               </el-col>
+              <el-col :span="6">
+                <el-form-item label="用户默认角色" prop="defaultRoleUid">
+                    <el-select filterable size="small" :filter-method="handleRoleSearch" v-model="settingMap.defaultRoleUid.value" placeholder="请选择">
+                      <el-option v-for="role in roleList" :label="role.roleName" :value="role.uid"></el-option>
+                    </el-select>
+                </el-form-item>
+              </el-col>
             </el-row>
             <el-row>
               <el-col :span="6">
@@ -314,6 +321,7 @@
 
 <script>
 import { getSiteSettingMap, updateSiteSetting } from "../../api/siteSetting";
+import {getRoleList} from "../../api/role";
 import {aboutMeImageAttachUpload} from "../../api/fileStorage";
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -326,41 +334,49 @@ export default {
   data() {
     return {
       deleteIds: [],
+      roleList: [],
+      roleParam: {
+        keyword: '',
+        currentPage: 1,
+        pageSize: 5
+      },
       settingMap: {
-        "qq": {},
-        "summary": {},
-        "github": {},
-        "copyright": {},
-        "blogName": {},
-        "author": {},
-        "authorInfo": {},
-        "touristAvatar": {},
-        "siteLogo": {},
-        "bilibili": {},
-        "recordNum": {},
-        "gitee": {},
-        "siteDomain": {},
-        "authorAvatar": {},
-        "aboutMe": {},
-        "sayPageBackground": {},
-        "authorBackground": {},
-        "authorAvatarPendant": {},
-        "defaultBlogCoverImage": {},
-        "touristBackground": {},
-        "keyword": {},
-        "email": {},
-        "leaveMessagePageBackground": {},
-        "minioAccessKey": {},
-        "minioBucketName": {},
-        "minioEndpoint": {},
-        "minioSecretKey": {},
-        "qiniuAccessKey": {},
-        "qiniuBucketName": {},
-        "qiniuEndpoint": {},
-        "qiniuSecretKey": {},
-        "qiniuZone": {},
-        "storageMode": {},
-        "localStorageBasePath": {}
+        aboutMe: {},
+        apiDomain: {},
+        author: {},
+        authorAvatar: {},
+        authorAvatarPendant: {},
+        authorBackground: {},
+        authorInfo: {},
+        bilibili: {},
+        blogName: {},
+        copyright: {},
+        defaultBlogCoverImage: {},
+        defaultRoleUid: {},
+        email: {},
+        gitee: {},
+        github: {},
+        keyword: {},
+        leaveMessagePageBackground: {},
+        localStorageBasePath: {},
+        minioAccessKey: {},
+        minioBucketName: {},
+        minioEndpoint: {},
+        minioSecretKey: {},
+        qiniuAccessKey: {},
+        qiniuBucketName: {},
+        qiniuEndpoint: {},
+        qiniuSecretKey: {},
+        qiniuZone: {},
+        qq: {},
+        recordNum: {},
+        sayPageBackground: {},
+        siteDomain: {},
+        siteLogo: {},
+        storageMode: {},
+        summary: {},
+        touristAvatar: {},
+        touristBackground: {},
       }
     }
   },
@@ -371,6 +387,15 @@ export default {
     getData() {
       getSiteSettingMap().then(res => {
         this.settingMap = res.data
+      })
+      getRoleList(this.roleParam).then(res => {
+        this.roleList = res.data
+      })
+    },
+    handleRoleSearch(e) {
+      this.roleParam.keyword = e
+      getRoleList(this.roleParam).then(res => {
+        this.roleList = res.data
       })
     },
     imageAttachAdd: function (pos, $file) {

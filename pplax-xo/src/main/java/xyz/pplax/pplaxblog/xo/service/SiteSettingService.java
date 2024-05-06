@@ -17,6 +17,8 @@ public interface SiteSettingService extends SuperService<SiteSetting> {
 
     List<SiteSetting> list();
 
+    SiteSetting getByNameEn(String nameEn);
+
     Boolean save(SiteSettingEditDto siteSettingEditDto);
 
     Boolean updateById(SiteSettingEditDto siteSettingEditDto);

@@ -179,13 +179,10 @@ public class FileService {
      * @return
      */
     private MinioUtils getMinioUtils() {
-        Object o =  siteSettingService.map();
-        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
-
-        SiteSetting minioEndpointSetting = JSON.toJavaObject(jsonObjectMap.get("minioEndpoint"), SiteSetting.class);
-        SiteSetting minioBucketNameSetting = JSON.toJavaObject(jsonObjectMap.get("minioBucketName"), SiteSetting.class);
-        SiteSetting minioAccessKeySetting = JSON.toJavaObject(jsonObjectMap.get("minioAccessKey"), SiteSetting.class);
-        SiteSetting minioSecretKeySetting = JSON.toJavaObject(jsonObjectMap.get("minioSecretKey"), SiteSetting.class);
+        SiteSetting minioEndpointSetting = siteSettingService.getByNameEn("minioEndpoint");
+        SiteSetting minioBucketNameSetting = siteSettingService.getByNameEn("minioBucketName");
+        SiteSetting minioAccessKeySetting = siteSettingService.getByNameEn("minioAccessKey");
+        SiteSetting minioSecretKeySetting = siteSettingService.getByNameEn("minioSecretKey");
 
         return new MinioUtils(
                 (String) minioEndpointSetting.getValue(),
@@ -200,14 +197,11 @@ public class FileService {
      * @return
      */
     private QiniuUtils getQiniuUtils() {
-        Object o =  siteSettingService.map();
-        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
-
-        SiteSetting qiniuEndpointSetting = JSON.toJavaObject(jsonObjectMap.get("qiniuEndpoint"), SiteSetting.class);
-        SiteSetting qiniuBucketNameSetting = JSON.toJavaObject(jsonObjectMap.get("qiniuBucketName"), SiteSetting.class);
-        SiteSetting qiniuAccessKeySetting = JSON.toJavaObject(jsonObjectMap.get("qiniuAccessKey"), SiteSetting.class);
-        SiteSetting qiniuSecretKeySetting = JSON.toJavaObject(jsonObjectMap.get("qiniuSecretKey"), SiteSetting.class);
-        SiteSetting qiniuZoneSetting = JSON.toJavaObject(jsonObjectMap.get("qiniuZone"), SiteSetting.class);
+        SiteSetting qiniuEndpointSetting = siteSettingService.getByNameEn("qiniuEndpoint");
+        SiteSetting qiniuBucketNameSetting = siteSettingService.getByNameEn("qiniuBucketName");
+        SiteSetting qiniuAccessKeySetting = siteSettingService.getByNameEn("qiniuAccessKey");
+        SiteSetting qiniuSecretKeySetting = siteSettingService.getByNameEn("qiniuSecretKey");
+        SiteSetting qiniuZoneSetting = siteSettingService.getByNameEn("qiniuZone");
 
         return new QiniuUtils(
                 (String) qiniuEndpointSetting.getValue(),
@@ -223,10 +217,7 @@ public class FileService {
      * @return
      */
     private String getLocalStorageBasePath() {
-        Object o = siteSettingService.map();
-        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
-
-        SiteSetting localStorageBasePathSetting = JSON.toJavaObject(jsonObjectMap.get("localStorageBasePath"), SiteSetting.class);
+        SiteSetting localStorageBasePathSetting = siteSettingService.getByNameEn("localStorageBasePath");
         return (String) localStorageBasePathSetting.getValue();
     }
 
@@ -235,10 +226,7 @@ public class FileService {
      * @return
      */
     private String getApiDomain() {
-        Object o = siteSettingService.map();
-        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
-
-        SiteSetting apiDomainSetting = JSON.toJavaObject(jsonObjectMap.get("apiDomain"), SiteSetting.class);
+        SiteSetting apiDomainSetting = siteSettingService.getByNameEn("apiDomain");
         return (String) apiDomainSetting.getValue();
     }
 
@@ -247,10 +235,7 @@ public class FileService {
      * @return
      */
     private String getStorageMode() {
-        Object o = siteSettingService.map();
-        Map<String, JSONObject> jsonObjectMap = (Map<String, JSONObject>) o;
-
-        SiteSetting minioEndpointSetting = JSON.toJavaObject(jsonObjectMap.get("storageMode"), SiteSetting.class);
+        SiteSetting minioEndpointSetting = siteSettingService.getByNameEn("storageMode");
         return (String) minioEndpointSetting.getValue();
     }
 }

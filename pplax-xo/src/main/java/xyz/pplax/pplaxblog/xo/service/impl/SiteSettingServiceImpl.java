@@ -12,15 +12,18 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
+import xyz.pplax.pplaxblog.starter.redis.utils.RedisUtils;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.constants.redis.SiteRedisConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.SiteSettingSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.SiteSettingEditDto;
 import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.mapper.SiteSettingMapper;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 站点设置 服务实现类
@@ -30,6 +33,30 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
 
     @Autowired
     private RedisService redisService;
+
+    @Override
+    public SiteSetting getByNameEn(String nameEn) {
+        String redisKey = SiteRedisConstants.SITE_SETTING + SiteRedisConstants.SEGMENTATION + nameEn;
+
+        // 先从缓存中找
+        SiteSetting siteSetting = redisService.getCacheObject(redisKey);
+        if (siteSetting != null) {
+            return siteSetting;
+        }
+
+        // 从数据库中找
+        PQueryWrapper<SiteSetting> siteSettingPQueryWrapper = new PQueryWrapper<>();
+        siteSettingPQueryWrapper.eq(SiteSettingSQLConstants.NAME_EN, nameEn);
+
+        siteSetting = getOne(siteSettingPQueryWrapper);
+
+        if (siteSetting != null) {
+            // 保存到缓存中，过期时间为300周围
+            redisService.setCacheObject(redisKey, siteSetting, RedisUtils.getRandomExpire(300L), TimeUnit.SECONDS);
+        }
+
+        return siteSetting;
+    }
 
     @Override
     public List<SiteSetting> list() {
@@ -92,10 +119,10 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
 
     @Override
     public Map<String, SiteSetting> map() {
-        Map<String, SiteSetting> setting = redisService.getCacheObject(SiteRedisConstants.SITE_SETTING);
+        Map<String, SiteSetting> setting = redisService.getCacheMap(SiteRedisConstants.SITE_SETTING);
 
         // 如果缓存中有，直接返回即可
-        if (setting != null) {
+        if (setting != null && setting.size() != 0) {
             return setting;
         }
 
@@ -105,7 +132,7 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
             res.put(siteSetting.getNameEn(), siteSetting);
         }
         // 放到缓存中
-        redisService.setCacheObject(SiteRedisConstants.SITE_SETTING, res);
+        redisService.setCacheMap(SiteRedisConstants.SITE_SETTING, res);
 
         return res;
     }

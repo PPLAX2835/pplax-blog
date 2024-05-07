@@ -173,14 +173,6 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             // 还有反馈
             return new ResponseResult(HttpStatus.FEEDBACK_UNDER_THIS_USER);
         }
-
-        PQueryWrapper<FileStorage> fileStoragePQueryWrapper = new PQueryWrapper<>();
-        fileStoragePQueryWrapper.eq(FileStorageSQLConstants.USER_UID, user.getUid());
-        int fileStorageCount = fileStorageService.count(fileStoragePQueryWrapper);
-        if (fileStorageCount > 0) {
-            // 还有文件
-            return new ResponseResult(HttpStatus.FILE_STORAGE_UNDER_THIS_USER);
-        }
         
         boolean res1 = super.removeById(userUid);
         boolean res2 = userInfoService.removeById(user.getUserInfoUid());

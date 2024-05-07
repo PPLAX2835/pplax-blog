@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/SiteSettingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/SiteSettingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/message/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/FileStorageSQLConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/FileStorageSQLConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +140,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -262,11 +259,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -394,14 +391,8 @@
       <workItem from="1714807838757" duration="3451000" />
       <workItem from="1714823358641" duration="2496000" />
       <workItem from="1714872152580" duration="20736000" />
-      <workItem from="1714981858831" duration="8109000" />
-    </task>
-    <task id="LOCAL-00385" summary="博客收藏功能完成">
-      <created>1713061509724</created>
-      <option name="number" value="00385" />
-      <option name="presentableId" value="LOCAL-00385" />
-      <option name="project" value="LOCAL" />
-      <updated>1713061509724</updated>
+      <workItem from="1714981858831" duration="8387000" />
+      <workItem from="1715070433654" duration="884000" />
     </task>
     <task id="LOCAL-00386" summary="用户个人信息管理姑且算是做好了">
       <created>1713081187760</created>
@@ -739,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714987162079</updated>
     </task>
-    <option name="localTasksCounter" value="434" />
+    <task id="LOCAL-00434" summary="修改小bug">
+      <created>1714990260060</created>
+      <option name="number" value="00434" />
+      <option name="presentableId" value="LOCAL-00434" />
+      <option name="project" value="LOCAL" />
+      <updated>1714990260061</updated>
+    </task>
+    <option name="localTasksCounter" value="435" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +772,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="忘记密码的重置密码功能实现了" />
     <MESSAGE value="评论也交给消息队列了" />
     <MESSAGE value="优化getWebSiteInfoValue方法" />
     <MESSAGE value="个人空间增加撰写博客选项" />
@@ -799,7 +796,8 @@
     <MESSAGE value="整理blogSort服务类的方法名" />
     <MESSAGE value="修改siteSettingService中map方法在redis中获取对象时反序列化异常的问题" />
     <MESSAGE value="设置默认角色" />
-    <option name="LAST_COMMIT_MESSAGE" value="设置默认角色" />
+    <MESSAGE value="修改小bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改小bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

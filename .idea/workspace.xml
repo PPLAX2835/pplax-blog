@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修改小bug">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/blog/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/blog/Edit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +139,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -258,11 +258,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -393,14 +393,8 @@
       <workItem from="1714981858831" duration="8387000" />
       <workItem from="1715070433654" duration="935000" />
       <workItem from="1715091040516" duration="1460000" />
-      <workItem from="1715128433145" duration="2034000" />
-    </task>
-    <task id="LOCAL-00387" summary="完成反馈功能">
-      <created>1713081971948</created>
-      <option name="number" value="00387" />
-      <option name="presentableId" value="LOCAL-00387" />
-      <option name="project" value="LOCAL" />
-      <updated>1713081971948</updated>
+      <workItem from="1715128433145" duration="2185000" />
+      <workItem from="1715140710923" duration="1873000" />
     </task>
     <task id="LOCAL-00388" summary="姑且实现用户管理自己的文章">
       <created>1713082521550</created>
@@ -738,7 +732,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715071335988</updated>
     </task>
-    <option name="localTasksCounter" value="436" />
+    <task id="LOCAL-00436" summary="修复个人资料上传头像后不能正确显示的bug">
+      <created>1715130618134</created>
+      <option name="number" value="00436" />
+      <option name="presentableId" value="LOCAL-00436" />
+      <option name="project" value="LOCAL" />
+      <updated>1715130618134</updated>
+    </task>
+    <option name="localTasksCounter" value="437" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -773,7 +774,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="评论也交给消息队列了" />
     <MESSAGE value="优化getWebSiteInfoValue方法" />
     <MESSAGE value="个人空间增加撰写博客选项" />
     <MESSAGE value="完成发表说说功能" />
@@ -798,7 +798,8 @@
     <MESSAGE value="修改siteSettingService中map方法在redis中获取对象时反序列化异常的问题" />
     <MESSAGE value="设置默认角色" />
     <MESSAGE value="修改小bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改小bug" />
+    <MESSAGE value="修复个人资料上传头像后不能正确显示的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复个人资料上传头像后不能正确显示的bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

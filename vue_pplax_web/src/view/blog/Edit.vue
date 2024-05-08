@@ -547,7 +547,7 @@ export default {
       formData.append("userUid", this.user.uid)
       blogCoverImageUpload(formData).then(res => {
         this.coverImageUrl = res.data.fileUrl
-        this.blog.coverImageUid = res.data.uid
+        this.form.coverImageUid = res.data.uid
         this.$bus.$emit('close')
       }).catch(err => {
         this.$bus.$emit('close')

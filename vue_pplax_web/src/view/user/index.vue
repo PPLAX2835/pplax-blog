@@ -247,8 +247,7 @@
                     <el-upload class="avatar-uploader" :show-file-list="false" ref="upload" name="filedatas"
                         action="" :http-request="uploadSectionFile" :before-upload="handleUploadBefore"
                         multiple>
-                        <img v-if="user.userInfo.avatar" style="width: 50%;height: 50%;" :src="user.userInfo.avatar.fileUrl" class="imgAvatar">
-                        <i v-else class="el-icon-plus avatar-img-icon"></i>
+                        <img style="width: 50%;height: 50%;" :src="loginUserAvatarUrl ? loginUserAvatarUrl : getWebSiteInfoValue('touristAvatar')" class="imgAvatar">
                     </el-upload>
                 </el-form-item>
                 <el-form-item label="昵称：">
@@ -297,7 +296,6 @@ import {deleteBlog} from "@/api/blog";
 import { addFeedback } from "@/api/feedback";
 import { parseTime } from "@/utils";
 import { cancelCollect } from '@/api/collect'
-import { sign, validateTodayIsSign } from '@/api/sign'
 import {avatarUpload, spaceBackgroundPictureUpload} from "@/api/fileStorage";
 import {getWebSiteInfoValue} from "@/utils";
 import {getUserUid} from "@/utils/cookieUtil";
@@ -315,10 +313,11 @@ export default {
                 }
               }
             },
+            userUid: this.$route.query.userUid,
             loginUser: this.$store.state.user,
+            loginUserAvatarUrl: '',
             dataList: [],
             total: 0,
-            userUid: this.$route.query.userUid,
             pageData: {
                 currentPage: 1,
                 pageSize: 10,
@@ -355,7 +354,6 @@ export default {
               content: '',
               type: ''
             },
-            files: {},
             dialogTableVisible: false,
             editDialogTableVisible: false,
             feedbackDialogTableVisible: false,
@@ -394,17 +392,17 @@ export default {
     },
     created() {
         this.form = {
-          avatarPictureUid: this.user.userInfo.avatarPictureUid,
-          birthday: this.user.userInfo.birthday,
-          createTime: this.user.createTime,
-          gender: this.user.userInfo.gender,
-          nickname: this.user.userInfo.nickname,
-          spaceBackgroundPictureUid: this.user.userInfo.spaceBackgroundPictureUid,
-          summary: this.user.userInfo.summary,
-          updateTime: this.user.updateTime,
-          email: this.user.email,
-          isEmailActivated: this.user.isEmailActivated,
-          lastLoginTime: this.user.lastLoginTime
+          avatarPictureUid: this.loginUser.userInfo.avatarPictureUid,
+          birthday: this.loginUser.userInfo.birthday,
+          createTime: this.loginUser.createTime,
+          gender: this.loginUser.userInfo.gender,
+          nickname: this.loginUser.userInfo.nickname,
+          spaceBackgroundPictureUid: this.loginUser.userInfo.spaceBackgroundPictureUid,
+          summary: this.loginUser.userInfo.summary,
+          updateTime: this.loginUser.updateTime,
+          email: this.loginUser.email,
+          isEmailActivated: this.loginUser.isEmailActivated,
+          lastLoginTime: this.loginUser.lastLoginTime
         }
         this.getUserInfo()
         this.selectAricleList()
@@ -445,26 +443,13 @@ export default {
                 }
             });
         },
-        validateTodayIsSign() {
-            validateTodayIsSign().then(res => {
-                if (res.data != null) {
-                    this.isTodaySign = true
-                }
-            })
-        },
-        handleSign() {
-            sign(this.today).then(res => {
-                this.isTodaySign = true
-
-                this.$toast.success('签到成功')
-            })
-        },
         after() {
-            this.$store.commit('setUser', this.user)
+            this.$store.commit('setUser', this.loginUser)
         },
         updateUserInfo() {
             updateMyUserInfo(this.form).then(res => {
                 this.user = res.data
+                this.loginUser = res.data
 
                 this.$toast.success('修改成功')
                 this.after()
@@ -596,10 +581,8 @@ export default {
           formData.append('file', file)
           spaceBackgroundPictureUpload(formData).then(res => {
             this.form.spaceBackgroundPictureUid = res.data.uid
-            this.user.userInfo.spaceBackgroundPicture.fileUrl = res.data.fileUrl
-            this.$bus.$emit('close')
-            this.$toast.success('修改成功')
             this.updateUserInfo()
+            this.$bus.$emit('close')
           }).catch(err => {
             this.$bus.$emit('close')
           })
@@ -613,7 +596,9 @@ export default {
             formData.append('file', file)
             avatarUpload(formData).then(res => {
               this.form.avatarPictureUid = res.data.uid
-              this.user.userInfo.avatar.fileUrl = res.data.fileUrl
+              this.user.userInfo.avatar = res.data
+              this.loginUser.userInfo.avatar = res.data
+              this.loginUserAvatarUrl = res.data.fileUrl
               this.$bus.$emit('close')
             }).catch(err => {
               this.$bus.$emit('close')

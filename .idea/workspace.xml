@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修改小bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/FileStorageSQLConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/FileStorageSQLConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,9 +258,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
       </list>
@@ -392,14 +391,9 @@
       <workItem from="1714823358641" duration="2496000" />
       <workItem from="1714872152580" duration="20736000" />
       <workItem from="1714981858831" duration="8387000" />
-      <workItem from="1715070433654" duration="884000" />
-    </task>
-    <task id="LOCAL-00386" summary="用户个人信息管理姑且算是做好了">
-      <created>1713081187760</created>
-      <option name="number" value="00386" />
-      <option name="presentableId" value="LOCAL-00386" />
-      <option name="project" value="LOCAL" />
-      <updated>1713081187760</updated>
+      <workItem from="1715070433654" duration="935000" />
+      <workItem from="1715091040516" duration="1460000" />
+      <workItem from="1715128433145" duration="2034000" />
     </task>
     <task id="LOCAL-00387" summary="完成反馈功能">
       <created>1713081971948</created>
@@ -737,7 +731,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714990260061</updated>
     </task>
-    <option name="localTasksCounter" value="435" />
+    <task id="LOCAL-00435" summary="修改小bug">
+      <created>1715071335988</created>
+      <option name="number" value="00435" />
+      <option name="presentableId" value="LOCAL-00435" />
+      <option name="project" value="LOCAL" />
+      <updated>1715071335988</updated>
+    </task>
+    <option name="localTasksCounter" value="436" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

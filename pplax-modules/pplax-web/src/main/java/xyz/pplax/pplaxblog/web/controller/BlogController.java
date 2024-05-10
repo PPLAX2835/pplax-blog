@@ -152,7 +152,7 @@ public class BlogController extends SuperController {
             @RequestParam(value = "pageSize") Long pageSize
     ){
 
-        IPage<Comment> commentIPage = commentService.pageByBlogUid(blogUid, 0, currentPage, pageSize);
+        Page<Comment> commentIPage = commentService.pageByBlogUid(blogUid, 0, currentPage, pageSize);
 
         return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
     }

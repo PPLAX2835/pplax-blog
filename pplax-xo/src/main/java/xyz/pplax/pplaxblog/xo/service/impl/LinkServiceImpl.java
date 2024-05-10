@@ -32,22 +32,22 @@ public class LinkServiceImpl extends SuperServiceImpl<LinkMapper, Link> implemen
     private FileStorageService fileStorageService;
 
     @Override
-    public IPage<Link> list(LinkGetListDto linkGetListDto) {
+    public Page<Link> page(String keyword, Integer status, Long currentPage, Long pageSize) {
         PQueryWrapper<Link> linkPQueryWrapper = new PQueryWrapper<>();
-        if (!StringUtils.isEmpty(linkGetListDto.getKeyword())) {
+        if (!StringUtils.isEmpty(keyword)) {
             // 如果关键词参数非空，就按该条件查询
-            linkPQueryWrapper.like(LinkSQLConstants.TITLE, "%" + linkGetListDto.getKeyword() + "%");
+            linkPQueryWrapper.like(LinkSQLConstants.TITLE, "%" + keyword + "%");
         }
-        if (linkGetListDto.getStatus() != null) {
-            linkPQueryWrapper.eq(LinkSQLConstants.C_STATUS, linkGetListDto.getStatus());
+        if (status != null) {
+            linkPQueryWrapper.eq(LinkSQLConstants.C_STATUS, status);
         }
 
         //分页
         Page<Link> page = new Page<>();
-        page.setCurrent(linkGetListDto.getCurrentPage());
-        page.setSize(linkGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
-        IPage<Link> pageList = page(page, linkPQueryWrapper);
+        Page<Link> pageList = page(page, linkPQueryWrapper);
 
         List<Link> linkList = new ArrayList<>();
 

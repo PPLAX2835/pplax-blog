@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.admin.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -39,14 +40,7 @@ public class FeedbackController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ) {
-        // 封装
-        FeedbackGetListDto feedbackGetListDto = new FeedbackGetListDto();
-        feedbackGetListDto.setStatus(status);
-        feedbackGetListDto.setType(type);
-        feedbackGetListDto.setCurrentPage(currentPage);
-        feedbackGetListDto.setPageSize(pageSize);
-
-        IPage<Feedback> feedbackIPage = feedbackService.list(feedbackGetListDto);
+        Page<Feedback> feedbackIPage = feedbackService.page(type, status, currentPage, pageSize);
 
         return toJson(ResponseResult.success(feedbackIPage.getRecords(), feedbackIPage.getTotal()));
     }

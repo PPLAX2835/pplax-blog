@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -41,13 +42,8 @@ public class RoleController extends SuperController {
             @RequestParam(value = "currentPage", required = false) Long currentPage,
             @RequestParam(value = "pageSize", required = false) Long pageSize
     ) {
-        // 封装
-        RoleGetListDto roleGetListDto = new RoleGetListDto();
-        roleGetListDto.setCurrentPage(currentPage == null ? 0L : currentPage);
-        roleGetListDto.setPageSize(pageSize == null ? 50L : pageSize);
-        roleGetListDto.setKeyword(keyword);
 
-        IPage<Role> roleIPage = roleService.list(roleGetListDto);
+        Page<Role> roleIPage = roleService.page(keyword, currentPage, pageSize);
 
         return toJson(ResponseResult.success(roleIPage.getRecords(), roleIPage.getTotal()));
     }

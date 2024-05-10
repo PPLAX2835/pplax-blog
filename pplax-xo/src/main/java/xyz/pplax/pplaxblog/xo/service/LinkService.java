@@ -1,24 +1,16 @@
 package xyz.pplax.pplaxblog.xo.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.LinkEditDto;
-import xyz.pplax.pplaxblog.xo.dto.edit.TagEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.LinkGetListDto;
-import xyz.pplax.pplaxblog.xo.dto.list.TagGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Link;
-import xyz.pplax.pplaxblog.xo.entity.Tag;
-
-import java.util.List;
 
 /**
  * 友情链接 服务类
  */
 public interface LinkService extends SuperService<Link> {
 
-    IPage<Link> list(LinkGetListDto linkGetListDto);
+    Page<Link> page(String keyword, Integer status, Long currentPage, Long pageSize);
 
     Boolean save(LinkEditDto linkEditDto);
 

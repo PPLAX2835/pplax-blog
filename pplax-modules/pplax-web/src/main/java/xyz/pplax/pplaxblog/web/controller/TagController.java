@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.web.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -39,12 +40,8 @@ public class TagController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
-        TagGetListDto tagGetListDto = new TagGetListDto();
-        tagGetListDto.setKeyword(keyword);
-        tagGetListDto.setCurrentPage(currentPage);
-        tagGetListDto.setPageSize(pageSize);
 
-        IPage<Tag> tagIPage = tagService.list(tagGetListDto);
+        Page<Tag> tagIPage = tagService.page(keyword, false, false, currentPage, pageSize);
 
         return toJson(ResponseResult.success(tagIPage.getRecords(), tagIPage.getTotal()));
     }

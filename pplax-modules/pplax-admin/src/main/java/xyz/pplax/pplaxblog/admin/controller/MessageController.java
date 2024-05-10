@@ -1,7 +1,7 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
-import xyz.pplax.pplaxblog.xo.dto.list.MessageGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Message;
 import xyz.pplax.pplaxblog.xo.service.MessageService;
 
@@ -38,14 +37,8 @@ public class MessageController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ) {
-        // 封装
-        MessageGetListDto messageGetListDto = new MessageGetListDto();
-        messageGetListDto.setType(type);
-        messageGetListDto.setKeyword(keyword);
-        messageGetListDto.setCurrentPage(currentPage);
-        messageGetListDto.setPageSize(pageSize);
 
-        IPage<Message> messageIPage = messageService.list(messageGetListDto);
+        Page<Message> messageIPage = messageService.page(keyword, type, null, currentPage, pageSize);
 
         return toJson(ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal()));
     }

@@ -4,6 +4,7 @@ package xyz.pplax.pplaxblog.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -68,7 +69,7 @@ public class MessageController extends SuperController {
             @RequestParam(value = "pageSize") Long pageSize
     ){
 
-        IPage<Message> messageIPage = messageService.listLeaveMessage(currentPage, pageSize);
+        Page<Message> messageIPage = messageService.pageLeaveMessage(currentPage, pageSize);
 
         return toJson(ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal()));
     }
@@ -115,7 +116,7 @@ public class MessageController extends SuperController {
     ){
         String userUid = getUserUid(httpServletRequest);
 
-        IPage<Message> messageIPage = messageService.listChatMessage(userUid, chatRoomUid, currentPage, pageSize);
+        Page<Message> messageIPage = messageService.pageChatMessage(userUid, chatRoomUid, currentPage, pageSize);
 
         return toJson(ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal()));
     }

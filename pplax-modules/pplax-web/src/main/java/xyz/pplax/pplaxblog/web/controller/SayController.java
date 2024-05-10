@@ -4,6 +4,7 @@ package xyz.pplax.pplaxblog.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
@@ -103,7 +104,7 @@ public class SayController extends SuperController {
         sayGetListDto.setCurrentPage(currentPage);
         sayGetListDto.setPageSize(pageSize);
 
-        IPage<Say> sayIPage = sayService.listPublic(userUid, currentPage, pageSize);
+        Page<Say> sayIPage = sayService.pagePublic(userUid, currentPage, pageSize);
 
         return toJson(ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal()));
     }
@@ -194,7 +195,7 @@ public class SayController extends SuperController {
             @RequestParam(value = "pageSize") Long pageSize
     ){
 
-        IPage<Comment> commentIPage = commentService.pageByOriginalUid(sayUid, CharacterConstants.NUM_TWO, currentPage, pageSize);
+        Page<Comment> commentIPage = commentService.pageByOriginalUid(sayUid, CharacterConstants.NUM_TWO, currentPage, pageSize);
 
         return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
     }

@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.admin.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -39,15 +40,7 @@ public class CommentController extends SuperController {
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ) {
-        // 封装
-        CommentGetListDto commentGetListDto = new CommentGetListDto();
-        commentGetListDto.setKeyword(keyword);
-        commentGetListDto.setNickname(nickname);
-        commentGetListDto.setType(type);
-        commentGetListDto.setCurrentPage(currentPage);
-        commentGetListDto.setPageSize(pageSize);
-
-        IPage<Comment> commentIPage = commentService.list(commentGetListDto);
+        Page<Comment> commentIPage = commentService.page(keyword, nickname, type, null, currentPage, pageSize);
 
         return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
     }

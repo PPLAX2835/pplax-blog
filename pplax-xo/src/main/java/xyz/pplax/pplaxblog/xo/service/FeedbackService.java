@@ -1,12 +1,8 @@
 package xyz.pplax.pplaxblog.xo.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
-import xyz.pplax.pplaxblog.xo.dto.edit.BlogEditDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.FeedbackEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.CommentGetListDto;
-import xyz.pplax.pplaxblog.xo.dto.list.FeedbackGetListDto;
-import xyz.pplax.pplaxblog.xo.entity.Comment;
 import xyz.pplax.pplaxblog.xo.entity.Feedback;
 
 /**
@@ -14,7 +10,7 @@ import xyz.pplax.pplaxblog.xo.entity.Feedback;
  */
 public interface FeedbackService extends SuperService<Feedback> {
 
-    IPage<Feedback> list(FeedbackGetListDto feedbackGetListDto);
+    Page<Feedback> page(Integer type, Integer status, Long currentPage, Long pageSize);
 
     Boolean updateById(FeedbackEditDto feedbackEditDto);
 }

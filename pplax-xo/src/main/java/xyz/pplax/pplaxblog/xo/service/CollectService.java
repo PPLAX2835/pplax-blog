@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.xo.service;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.entity.Collect;
 

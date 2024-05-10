@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.web.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -36,12 +37,7 @@ public class LinkController extends SuperController {
     @ApiOperation(value="获得友链列表", notes="获得友链列表")
     @GetMapping("/list")
     public String getLinkList(@RequestParam("currentPage") Long currentPage, @RequestParam("pageSize") Long pageSize) {
-        LinkGetListDto linkGetListDto = new LinkGetListDto();
-        linkGetListDto.setStatus(EStatus.ENABLE.getStatus());
-        linkGetListDto.setPageSize(pageSize);
-        linkGetListDto.setCurrentPage(currentPage);
-
-        IPage<Link> linkIPage = linkService.list(linkGetListDto);
+        Page<Link> linkIPage = linkService.page(null, EStatus.ENABLE.getStatus(), currentPage, pageSize);
         // 目前还不是根据用户查询
         return toJson(ResponseResult.success(linkIPage.getRecords(), linkIPage.getTotal()) );
     }

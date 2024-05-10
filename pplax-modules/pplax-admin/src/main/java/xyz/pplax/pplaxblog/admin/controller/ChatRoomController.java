@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.admin.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -37,11 +38,7 @@ public class ChatRoomController extends SuperController {
             @RequestParam(value = "pageSize") Long pageSize
     ) {
         // 封装
-        ChatRoomGetListDto chatRoomGetListDto = new ChatRoomGetListDto();
-        chatRoomGetListDto.setCurrentPage(currentPage);
-        chatRoomGetListDto.setPageSize(pageSize);
-
-        IPage<ChatRoom> chatRoomIPage = chatRoomService.list(chatRoomGetListDto);
+        Page<ChatRoom> chatRoomIPage = chatRoomService.page(currentPage, pageSize);
 
         return toJson(ResponseResult.success(chatRoomIPage.getRecords(), chatRoomIPage.getTotal()));
     }

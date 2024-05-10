@@ -41,31 +41,35 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
 
     /**
      * 获得标签列表
-     * @param tagGetListDto
+     * @param keyword
+     * @param sortByClickCount
+     * @param sortByCites
+     * @param currentPage
+     * @param pageSize
      * @return
      */
     @Override
-    public IPage<Tag> list(TagGetListDto tagGetListDto) {
+    public Page<Tag> page(String keyword, Boolean sortByClickCount, Boolean sortByCites, Long currentPage, Long pageSize) {
         QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
         tagQueryWrapper.ne(TagSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
-        if(!StringUtils.isEmpty(tagGetListDto.getKeyword())) {
+        if(!StringUtils.isEmpty(keyword)) {
             // 如果关键词参数非空，就按该条件查询
-            tagQueryWrapper.like(TagSQLConstants.NAME, "%" + tagGetListDto.getKeyword() + "%");
+            tagQueryWrapper.like(TagSQLConstants.NAME, "%" + keyword + "%");
         }
 
         //分页
         Page<Tag> page = new Page<>();
-        page.setCurrent(tagGetListDto.getCurrentPage());
-        page.setSize(tagGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
-        IPage<Tag> pageList = null;
+        Page<Tag> pageList = null;
         // 排序
-        if (tagGetListDto.getSortByClickCount() != null && tagGetListDto.getSortByClickCount()) {
+        if (sortByClickCount != null && sortByClickCount) {
             // 按点击量排序
             tagQueryWrapper.orderByDesc(TagSQLConstants.CLICK_COUNT);
             // 查询
             pageList = page(page, tagQueryWrapper);
-        } else if (tagGetListDto.getSortByCites() != null && tagGetListDto.getSortByCites()) {
+        } else if (sortByCites != null && sortByCites) {
             // 按引用量排序
             tagQueryWrapper.and(
                     i -> i.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus())

@@ -37,15 +37,15 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
 
 
     @Override
-    public IPage<ChatRoom> list(ChatRoomGetListDto chatRoomGetListDto) {
+    public Page<ChatRoom> page(Long currentPage, Long pageSize) {
         PQueryWrapper<ChatRoom> chatRoomPQueryWrapper = new PQueryWrapper<>();
 
         //分页
         Page<ChatRoom> page = new Page<>();
-        page.setCurrent(chatRoomGetListDto.getCurrentPage());
-        page.setSize(chatRoomGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
-        IPage<ChatRoom> pageList = page(page, chatRoomPQueryWrapper);
+        Page<ChatRoom> pageList = page(page, chatRoomPQueryWrapper);
         for (ChatRoom chatRoom : pageList.getRecords()) {
             // 封装头像
             chatRoom.setAvatar(fileStorageService.getById(chatRoom.getAvatarUid()));

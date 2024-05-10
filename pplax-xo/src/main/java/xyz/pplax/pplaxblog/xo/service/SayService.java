@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.SayEditDto;
@@ -17,9 +18,9 @@ import java.util.List;
  */
 public interface SayService extends SuperService<Say> {
 
-    IPage<Say> listPublic(String userUid, Long currentPage, Long pageSize);
+    Page<Say> pagePublic(String userUid, Long currentPage, Long pageSize);
 
-    IPage<Say> list(String keyword, Long currentPage, Long pageSize);
+    Page<Say> page(String keyword, Long currentPage, Long pageSize);
 
     Boolean save(SayEditDto sayEditDto);
 

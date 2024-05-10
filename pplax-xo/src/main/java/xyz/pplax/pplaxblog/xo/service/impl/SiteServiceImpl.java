@@ -140,12 +140,7 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     public ResponseResult getHomeData() {
-        TagGetListDto tagGetListDto = new TagGetListDto();
-        tagGetListDto.setCurrentPage(1L);
-        tagGetListDto.setPageSize(10L);
-        tagGetListDto.setSortByCites(true);
-        tagGetListDto.setSortByClickCount(true);
-        IPage<Tag> tagIPage = tagService.list(tagGetListDto);
+        Page<Tag> tagIPage = tagService.page(null, true, true, 1L, 10L);
 
         List<Blog> bannerBlogList = blogService.listByBanner();
 

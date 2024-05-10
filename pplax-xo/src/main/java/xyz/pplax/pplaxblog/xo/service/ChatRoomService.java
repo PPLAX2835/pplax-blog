@@ -1,8 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
-import xyz.pplax.pplaxblog.xo.dto.list.ChatRoomGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public interface ChatRoomService extends SuperService<ChatRoom> {
 
-    IPage<ChatRoom> list(ChatRoomGetListDto chatRoomGetListDto);
+    Page<ChatRoom> page(Long currentPage, Long pageSize);
 
     List<ChatRoom> getByUserUid(String userUid);
 }

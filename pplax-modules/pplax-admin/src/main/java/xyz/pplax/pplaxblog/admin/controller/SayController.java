@@ -50,13 +50,8 @@ public class SayController extends SuperController {
             @RequestParam(value = "currentPage", required = false) Long currentPage,
             @RequestParam(value = "pageSize", required = false) Long pageSize
     ) {
-        // 封装
-        SayGetListDto sayGetListDto = new SayGetListDto();
-        sayGetListDto.setKeyword(keyword);
-        sayGetListDto.setCurrentPage(currentPage);
-        sayGetListDto.setPageSize(pageSize);
 
-        IPage<Say> sayIPage = sayService.list(keyword, currentPage, pageSize);
+        IPage<Say> sayIPage = sayService.page(keyword, currentPage, pageSize);
 
         return toJson(ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal()));
     }

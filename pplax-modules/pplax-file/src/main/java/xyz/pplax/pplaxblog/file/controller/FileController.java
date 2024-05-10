@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.file.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
@@ -55,12 +56,8 @@ public class FileController extends SuperController {
             @RequestParam(value = "currentPage", required = false) Long currentPage,
             @RequestParam(value = "pageSize", required = false) Long pageSize
     ) {
-        // 封装
-        FileStorageGetListDto fileStorageGetListDto = new FileStorageGetListDto();
-        fileStorageGetListDto.setCurrentPage(currentPage);
-        fileStorageGetListDto.setPageSize(pageSize);
 
-        IPage<FileStorage> fileStorageIPage = fileStorageService.list(fileStorageGetListDto);
+        Page<FileStorage> fileStorageIPage = fileStorageService.page(currentPage, pageSize);
 
         return toJson(ResponseResult.success(fileStorageIPage.getRecords(), fileStorageIPage.getTotal()));
     }

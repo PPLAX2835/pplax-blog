@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.edit.RoleEditDto;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public interface RoleService extends SuperService<Role> {
 
-    IPage<Role> list(RoleGetListDto roleGetListDto);
+    Page<Role> page(String keyword, Long currentPage, Long pageSize);
 
     Boolean save(RoleEditDto roleEditDto);
 

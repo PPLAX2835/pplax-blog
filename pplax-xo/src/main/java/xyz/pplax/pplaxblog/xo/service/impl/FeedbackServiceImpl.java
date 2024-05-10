@@ -38,23 +38,23 @@ public class FeedbackServiceImpl extends SuperServiceImpl<FeedbackMapper, Feedba
 
 
     @Override
-    public IPage<Feedback> list(FeedbackGetListDto feedbackGetListDto) {
+    public Page<Feedback> page(Integer type, Integer status, Long currentPage, Long pageSize) {
         PQueryWrapper<Feedback> feedbackPQueryWrapper = new PQueryWrapper<>();
 
-        if (feedbackGetListDto.getType() != null) {
-            feedbackPQueryWrapper.eq(FeedBackSQLConstants.TYPE, feedbackGetListDto.getType());
+        if (type != null) {
+            feedbackPQueryWrapper.eq(FeedBackSQLConstants.TYPE, type);
         }
 
-        if (feedbackGetListDto.getStatus() != null) {
-            feedbackPQueryWrapper.eq(FeedBackSQLConstants.STATUS, feedbackGetListDto.getStatus());
+        if (status != null) {
+            feedbackPQueryWrapper.eq(FeedBackSQLConstants.STATUS, status);
         }
 
         //分页
         Page<Feedback> page = new Page<>();
-        page.setCurrent(feedbackGetListDto.getCurrentPage());
-        page.setSize(feedbackGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
-        IPage<Feedback> pageList = null;
+        Page<Feedback> pageList = null;
 
         // 按创建时间排序
         feedbackPQueryWrapper.orderByDesc(FeedBackSQLConstants.C_CREATE_TIME);

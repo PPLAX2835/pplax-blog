@@ -20,12 +20,12 @@ import xyz.pplax.pplaxblog.xo.service.FileStorageService;
 public class FileStorageServiceImpl extends SuperServiceImpl<FileStorageMapper, FileStorage> implements FileStorageService {
 
     @Override
-    public IPage<FileStorage> list(FileStorageGetListDto fileStorageGetListDto) {
+    public Page<FileStorage> page(Long currentPage, Long pageSize) {
         PQueryWrapper<FileStorage> fileStoragePQueryWrapper = new PQueryWrapper<>();
         //分页
         Page<FileStorage> page = new Page<>();
-        page.setCurrent(fileStorageGetListDto.getCurrentPage());
-        page.setSize(fileStorageGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
         // 按创建时间排序
         fileStoragePQueryWrapper.orderByDesc(FileStorageSQLConstants.C_CREATE_TIME);

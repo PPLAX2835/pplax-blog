@@ -53,7 +53,7 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
      * @return
      */
     @Override
-    public IPage<Say> listPublic(String userUid, Long currentPage, Long pageSize) {
+    public Page<Say> pagePublic(String userUid, Long currentPage, Long pageSize) {
         PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
         sayPQueryWrapper.eq(SaySQLConstants.IS_PUBLIC, true);
 
@@ -62,7 +62,7 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        IPage<Say> sayPage = page(page, sayPQueryWrapper);
+        Page<Say> sayPage = page(page, sayPQueryWrapper);
         for (Say say : sayPage.getRecords()) {
             // 封装图片
             if (!StringUtils.isBlank(say.getImageUids())) {
@@ -79,18 +79,12 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
             }
 
             // 封装评论列表
-            CommentGetListDto commentGetListDto = new CommentGetListDto();
-            commentGetListDto.setOriginalUid(say.getUid());
-            commentGetListDto.setCurrentPage(1L);
-            commentGetListDto.setPageSize(4L);
-            commentGetListDto.setType(CharacterConstants.NUM_TWO);
-            IPage<Comment> commentIPage = commentService.list(commentGetListDto);
+            Page<Comment> commentIPage = commentService.page(null, null, CharacterConstants.NUM_TWO, say.getUid(), 1L, 4L);
             say.setCommentTotal(commentIPage.getTotal());
             say.setCommentList(commentIPage.getRecords());
 
             // 封装点赞列表
-            commentGetListDto.setType(CharacterConstants.NUM_THREE);
-            IPage<Comment> likeIPage = commentService.list(commentGetListDto);
+            Page<Comment> likeIPage = commentService.page(null, null, CharacterConstants.NUM_THREE, say.getUid(), 1L, 4L);
             say.setLikeList(likeIPage.getRecords());
 
             // 判断自己是否已经点赞
@@ -112,7 +106,7 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
     }
 
     @Override
-    public IPage<Say> list(String keyword, Long currentPage, Long pageSize) {
+    public Page<Say> page(String keyword, Long currentPage, Long pageSize) {
         PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
         if(!StringUtils.isEmpty(keyword)) {
             // 如果关键词参数非空，就按该条件查询
@@ -124,7 +118,7 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        IPage<Say> sayPage = page(page, sayPQueryWrapper);
+        Page<Say> sayPage = page(page, sayPQueryWrapper);
         for (Say say : sayPage.getRecords()) {
             // 封装图片
             if (!StringUtils.isBlank(say.getImageUids())) {

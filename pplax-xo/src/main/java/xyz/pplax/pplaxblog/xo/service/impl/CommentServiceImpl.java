@@ -42,14 +42,14 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
     private FileStorageService fileStorageService;
 
     @Override
-    public IPage<Comment> list(CommentGetListDto commentGetListDto) {
+    public Page<Comment> page(String keyword, String nickname, Integer type, String originalUid, Long currentPage, Long pageSize) {
         PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
 
-        if (!StringUtils.isEmpty(commentGetListDto.getNickname())) {
+        if (!StringUtils.isEmpty(nickname)) {
             UserGetListDto userGetListDto = new UserGetListDto();
-            userGetListDto.setNickname(commentGetListDto.getNickname());
-            userGetListDto.setCurrentPage(commentGetListDto.getCurrentPage());
-            userGetListDto.setPageSize(commentGetListDto.getPageSize());
+            userGetListDto.setNickname(nickname);
+            userGetListDto.setCurrentPage(currentPage);
+            userGetListDto.setPageSize(currentPage);
             List<User> userList = userService.listByNicknameAndUsername(userGetListDto);
 
             List<String> userUidList = new ArrayList<>();
@@ -60,22 +60,22 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
                 commentPQueryWrapper.in(CommentSQLConstants.USER_UID, userUidList);
             }
         }
-        if (!StringUtils.isEmpty(commentGetListDto.getKeyword())) {
-            commentPQueryWrapper.like(CommentSQLConstants.CONTENT, "%" + commentGetListDto.getKeyword() + "%");
+        if (!StringUtils.isEmpty(keyword)) {
+            commentPQueryWrapper.like(CommentSQLConstants.CONTENT, "%" + keyword + "%");
         }
-        if (commentGetListDto.getType() != null) {
-            commentPQueryWrapper.eq(CommentSQLConstants.TYPE, commentGetListDto.getType());
+        if (type != null) {
+            commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
         }
-        if (!StringUtils.isBlank(commentGetListDto.getOriginalUid())) {
-            commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, commentGetListDto.getOriginalUid());
+        if (!StringUtils.isBlank(originalUid)) {
+            commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
         }
 
         //分页
         Page<Comment> page = new Page<>();
-        page.setCurrent(commentGetListDto.getCurrentPage());
-        page.setSize(commentGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
-        IPage<Comment> pageList = null;
+        Page<Comment> pageList = null;
 
         // 按创建时间排序
         commentPQueryWrapper.orderByDesc(CommentSQLConstants.C_CREATE_TIME);
@@ -160,7 +160,7 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
     }
 
     @Override
-    public IPage<Comment> pageByOriginalUid(String originalUid, Integer type, Long currentPage, Long pageSize) {
+    public Page<Comment> pageByOriginalUid(String originalUid, Integer type, Long currentPage, Long pageSize) {
         PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
         commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
         commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
@@ -170,7 +170,7 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        IPage<Comment> commentIPage = page(page, commentPQueryWrapper);
+        Page<Comment> commentIPage = page(page, commentPQueryWrapper);
         for (Comment comment : commentIPage.getRecords()) {
             // 封装评论人
             User commentator = userService.getById(comment.getUserUid());
@@ -201,7 +201,7 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
     }
 
     @Override
-    public IPage<Comment> pageByBlogUid(String blogUid, Integer type, Long currentPage, Long pageSize) {
+    public Page<Comment> pageByBlogUid(String blogUid, Integer type, Long currentPage, Long pageSize) {
         PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
         commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
         commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, blogUid);
@@ -211,10 +211,10 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
         page.setCurrent(currentPage);
         page.setSize(pageSize);
 
-        IPage<Comment> commentIPage = page(page, commentPQueryWrapper);
+        Page<Comment> commentIPage = page(page, commentPQueryWrapper);
         for (Comment comment : commentIPage.getRecords()) {
             // 封装子评论
-            IPage<Comment> childrenIPage = pageByOriginalUid(comment.getUid(), CharacterConstants.NUM_FOUR, 1L, 4L);
+            Page<Comment> childrenIPage = pageByOriginalUid(comment.getUid(), CharacterConstants.NUM_FOUR, 1L, 4L);
             comment.setChildrenTotal(childrenIPage.getTotal());
             comment.setChildren(childrenIPage.getRecords());
 

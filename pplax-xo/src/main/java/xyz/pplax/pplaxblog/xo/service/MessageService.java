@@ -1,8 +1,8 @@
 package xyz.pplax.pplaxblog.xo.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
-import xyz.pplax.pplaxblog.xo.dto.list.MessageGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Message;
 
 /**
@@ -10,11 +10,11 @@ import xyz.pplax.pplaxblog.xo.entity.Message;
  */
 public interface MessageService extends SuperService<Message> {
 
-    IPage<Message> list(MessageGetListDto messageGetListDto);
+    Page<Message> page(String keyword, Integer type, String chatRoomUid, Long currentPage, Long pageSize);
 
-    IPage<Message> listChatMessage(String userUid, String chatRoomUid, Long currentPage, Long pageSize);
+    Page<Message> pageChatMessage(String userUid, String chatRoomUid, Long currentPage, Long pageSize);
 
-    IPage<Message> listLeaveMessage(Long currentPage, Long pageSize);
+    Page<Message> pageLeaveMessage(Long currentPage, Long pageSize);
 
     Boolean read(String userUid, String chatRoomUid);
 }

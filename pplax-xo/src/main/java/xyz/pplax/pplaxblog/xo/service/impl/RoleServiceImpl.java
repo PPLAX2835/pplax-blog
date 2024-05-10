@@ -44,18 +44,18 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     private RedisService redisService;
 
     @Override
-    public IPage<Role> list(RoleGetListDto roleGetListDto) {
+    public Page<Role> page(String keyword, Long currentPage, Long pageSize) {
         PQueryWrapper<Role> rolePQueryWrapper = new PQueryWrapper<>();
-        if (!StringUtils.isEmpty(roleGetListDto.getKeyword())) {
-            rolePQueryWrapper.like(RoleSQLConstants.ROLE_AME, "%" + roleGetListDto.getKeyword() + "%");
+        if (!StringUtils.isEmpty(keyword)) {
+            rolePQueryWrapper.like(RoleSQLConstants.ROLE_AME, "%" + keyword + "%");
         }
 
         //分页
         Page<Role> page = new Page<>();
-        page.setCurrent(roleGetListDto.getCurrentPage());
-        page.setSize(roleGetListDto.getPageSize());
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
 
-        IPage<Tag> pageList = null;
+        Page<Tag> pageList = null;
 
         List<Role> roleList = new ArrayList<>();
         Page<Role> rolePage = page(page, rolePQueryWrapper);

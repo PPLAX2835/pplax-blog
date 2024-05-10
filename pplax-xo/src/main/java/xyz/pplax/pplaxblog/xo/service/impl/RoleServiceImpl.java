@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -19,7 +18,6 @@ import xyz.pplax.pplaxblog.xo.constants.redis.RoleRedisConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.MenuSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.RoleSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.RoleEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.RoleGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Menu;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.entity.Tag;

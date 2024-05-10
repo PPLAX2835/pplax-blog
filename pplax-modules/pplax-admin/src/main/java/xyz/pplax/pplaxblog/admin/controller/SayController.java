@@ -23,7 +23,6 @@ import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.SayEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Say;
 import xyz.pplax.pplaxblog.xo.service.SayService;
 

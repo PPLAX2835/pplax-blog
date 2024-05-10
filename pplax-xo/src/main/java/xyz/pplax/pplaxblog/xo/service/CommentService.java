@@ -1,9 +1,7 @@
 package xyz.pplax.pplaxblog.xo.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
-import xyz.pplax.pplaxblog.xo.dto.list.CommentGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
 
 import java.util.List;

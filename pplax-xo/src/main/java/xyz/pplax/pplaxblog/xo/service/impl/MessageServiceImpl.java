@@ -12,7 +12,6 @@ import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.MessageSQLConstants;
-import xyz.pplax.pplaxblog.xo.dto.list.MessageGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Message;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.MessageMapper;

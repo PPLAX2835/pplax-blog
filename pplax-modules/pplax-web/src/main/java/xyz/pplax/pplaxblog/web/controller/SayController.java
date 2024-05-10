@@ -1,9 +1,5 @@
 package xyz.pplax.pplaxblog.web.controller;
 
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
@@ -21,13 +17,11 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
-import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.CommentEditDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.SayEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.SayGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Comment;
 import xyz.pplax.pplaxblog.xo.entity.Say;
 import xyz.pplax.pplaxblog.xo.entity.User;
@@ -98,11 +92,6 @@ public class SayController extends SuperController {
             @RequestParam(value = "pageSize") Long pageSize
     ){
         String userUid = getUserUid(httpServletRequest);
-
-        SayGetListDto sayGetListDto = new SayGetListDto();
-        sayGetListDto.setUserUid(userUid);
-        sayGetListDto.setCurrentPage(currentPage);
-        sayGetListDto.setPageSize(pageSize);
 
         Page<Say> sayIPage = sayService.pagePublic(userUid, currentPage, pageSize);
 

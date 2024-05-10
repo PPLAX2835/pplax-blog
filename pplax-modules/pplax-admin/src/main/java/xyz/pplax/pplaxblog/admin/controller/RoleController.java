@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,11 +10,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.RoleEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.RoleGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Role;
 import xyz.pplax.pplaxblog.xo.service.RoleService;
 
@@ -42,6 +41,10 @@ public class RoleController extends SuperController {
             @RequestParam(value = "currentPage", required = false) Long currentPage,
             @RequestParam(value = "pageSize", required = false) Long pageSize
     ) {
+        if (StringUtils.isEmpty(keyword) && currentPage == null && pageSize == null) {
+            List<Role> roleList = roleService.list();
+            return toJson(ResponseResult.success(roleList, (long) roleList.size()));
+        }
 
         Page<Role> roleIPage = roleService.page(keyword, currentPage, pageSize);
 

@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +14,6 @@ import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.LinkEditDto;
-import xyz.pplax.pplaxblog.xo.dto.list.LinkGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.Link;
 import xyz.pplax.pplaxblog.xo.service.LinkService;
 

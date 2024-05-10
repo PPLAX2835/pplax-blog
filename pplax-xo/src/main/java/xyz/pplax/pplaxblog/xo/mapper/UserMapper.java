@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.xo.mapper;
 
-import xyz.pplax.pplaxblog.xo.base.dto.PageDto;
 import xyz.pplax.pplaxblog.xo.base.mapper.SuperMapper;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.User;

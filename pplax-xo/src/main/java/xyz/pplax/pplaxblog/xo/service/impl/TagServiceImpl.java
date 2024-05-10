@@ -46,10 +46,11 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
      */
     @Override
     public IPage<Tag> list(TagGetListDto tagGetListDto) {
-        PQueryWrapper<Tag> tagPQueryWrapper = new PQueryWrapper<>();
+        QueryWrapper<Tag> tagQueryWrapper = new QueryWrapper<>();
+        tagQueryWrapper.ne(TagSQLConstants.C_STATUS, EStatus.DISABLED.getStatus());
         if(!StringUtils.isEmpty(tagGetListDto.getKeyword())) {
             // 如果关键词参数非空，就按该条件查询
-            tagPQueryWrapper.like(TagSQLConstants.NAME, "%" + tagGetListDto.getKeyword() + "%");
+            tagQueryWrapper.like(TagSQLConstants.NAME, "%" + tagGetListDto.getKeyword() + "%");
         }
 
         //分页
@@ -61,35 +62,35 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
         // 排序
         if (tagGetListDto.getSortByClickCount() != null && tagGetListDto.getSortByClickCount()) {
             // 按点击量排序
-            tagPQueryWrapper.orderByAsc(TagSQLConstants.CLICK_COUNT);
+            tagQueryWrapper.orderByDesc(TagSQLConstants.CLICK_COUNT);
             // 查询
-            pageList = page(page, tagPQueryWrapper);
+            pageList = page(page, tagQueryWrapper);
         } else if (tagGetListDto.getSortByCites() != null && tagGetListDto.getSortByCites()) {
             // 按引用量排序
-            tagPQueryWrapper.and(
+            tagQueryWrapper.and(
                     i -> i.ne(BlogSQLConstants.C_STATUS, EStatus.DISABLED.getStatus())
                             .or().isNull(BlogSQLConstants.C_STATUS)
             );
             // 查询
-            pageList = tagMapper.selectListSortByCites(page, tagPQueryWrapper);
+            pageList = tagMapper.selectListSortByCites(page, tagQueryWrapper);
         } else {
             // 按创建时间排序
-            tagPQueryWrapper.orderByDesc(TagSQLConstants.C_CREATE_TIME);
+            tagQueryWrapper.orderByDesc(TagSQLConstants.C_CREATE_TIME);
             // 查询
-            pageList = page(page, tagPQueryWrapper);
+            pageList = page(page, tagQueryWrapper);
         }
 
         List<Tag> tagList = new ArrayList<>();
         // 获得引用量
         for (Tag tag : pageList.getRecords()) {
-            PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
-            blogPQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tag.getUid() + "%");
+            QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
+            blogQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tag.getUid() + "%");
 
-            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
-            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
-            blogPQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
+            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.OFF_SHELF.getStatus());          // 排除非正常状态
+            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.PENDING_APPROVAL.getStatus());
+            blogQueryWrapper.ne(BlogSQLConstants.C_STATUS, EStatus.DRAFT.getStatus());
 
-            tag.setCites(blogService.count(blogPQueryWrapper));
+            tag.setCites(blogService.count(blogQueryWrapper));
 
             tagList.add(tag);
         }

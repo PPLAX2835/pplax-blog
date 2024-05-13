@@ -184,7 +184,8 @@ export default {
         status: '',
         username: '',
         birthday: '',
-        summary: ''
+        summary: '',
+        email: ''
       },
       rules: {
         username: [
@@ -374,6 +375,7 @@ export default {
       this.form.password = ''
       this.form.birthday = ''
       this.form.summary = ''
+      this.form.email = ''
       this.confirmPassword = ''
       this.avatarUrl = ''
       this.spaceBackgroundPictureUrl = ''
@@ -401,6 +403,7 @@ export default {
       this.form.username = scope.row.username
       this.form.birthday = scope.row.userInfo.birthday
       this.form.summary = scope.row.userInfo.summary
+      this.form.email = scope.row.email
       this.form.password = ''
       if (scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined) {
         this.avatarUrl = scope.row.userInfo.avatar.fileUrl

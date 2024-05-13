@@ -174,7 +174,7 @@
               <el-select style="width: 130px" size="small" v-model="form.blogSortUid" placeholder="请选择分类">
                 <el-option
                   v-for="item in blogSortOptionList"
-                  :key="item.sortName"
+                  :key="item.uid"
                   :label="item.sortName"
                   :value="item.uid"></el-option>
               </el-select>
@@ -453,7 +453,7 @@ export default {
         sortByCites: false,
         keyword: key,
         currentPage: 1,
-        pageSize: 5
+        pageSize: 20
       }).then(res =>{
         this.blogSortOptionList = res.data
       }).catch(err =>{

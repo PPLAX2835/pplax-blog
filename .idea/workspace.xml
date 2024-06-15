@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="去掉冗余的dto类">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修改修改用户时参数验证报错、博客管理增加分类选项">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/role/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/role/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +139,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -259,11 +258,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.serve" />
-        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -402,14 +401,14 @@
       <workItem from="1715476879990" duration="5997000" />
       <workItem from="1715556091345" duration="828000" />
       <workItem from="1715582558078" duration="3806000" />
-      <workItem from="1715592883170" duration="430000" />
-    </task>
-    <task id="LOCAL-00392" summary="整理评论组件">
-      <created>1713253108477</created>
-      <option name="number" value="00392" />
-      <option name="presentableId" value="LOCAL-00392" />
-      <option name="project" value="LOCAL" />
-      <updated>1713253108477</updated>
+      <workItem from="1715592883170" duration="741000" />
+      <workItem from="1716344212925" duration="741000" />
+      <workItem from="1716362894688" duration="1366000" />
+      <workItem from="1716534259142" duration="214000" />
+      <workItem from="1716591684930" duration="1157000" />
+      <workItem from="1716687043090" duration="797000" />
+      <workItem from="1718095962899" duration="8000" />
+      <workItem from="1718425172377" duration="2887000" />
     </task>
     <task id="LOCAL-00393" summary="整理分类、标签页面">
       <created>1713254138111</created>
@@ -747,7 +746,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715341504667</updated>
     </task>
-    <option name="localTasksCounter" value="441" />
+    <task id="LOCAL-00441" summary="修改修改用户时参数验证报错、博客管理增加分类选项">
+      <created>1715593521425</created>
+      <option name="number" value="00441" />
+      <option name="presentableId" value="LOCAL-00441" />
+      <option name="project" value="LOCAL" />
+      <updated>1715593521426</updated>
+    </task>
+    <option name="localTasksCounter" value="442" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,7 +788,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="在公共父级controller中编写根据request获取用户uid的方法（早该这么干的）" />
     <MESSAGE value="整理文件服务" />
     <MESSAGE value="使用统一的父级QueryWrapper" />
     <MESSAGE value="博客的子评论实现分页加载" />
@@ -807,7 +812,8 @@
     <MESSAGE value="修复标签列表方法引用量查询抛异常的问题" />
     <MESSAGE value="调整剩下的服务类方法名" />
     <MESSAGE value="去掉冗余的dto类" />
-    <option name="LAST_COMMIT_MESSAGE" value="去掉冗余的dto类" />
+    <MESSAGE value="修改修改用户时参数验证报错、博客管理增加分类选项" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改修改用户时参数验证报错、博客管理增加分类选项" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -3,14 +3,14 @@
         <el-dialog :lock-scroll="false" :close-on-click-modal="false" class="dialog" center :title="title"
             :visible.sync="dialogFormVisible">
             <!-- 账号登录 -->
-            <div v-if="index == 1">
+            <div v-if="index === 1">
                 <el-form :model="form" :rules="rules" ref="ruleForm">
                     <el-form-item label="账号" :label-width="formLabelWidth" prop="username">
-                        <el-input placeholder="请输入账号/邮箱" @keyup.enter.native="login" v-model="form.username"
+                        <el-input placeholder="请输入账号/邮箱" @keyup.enter.native="handleLogin" v-model="form.username"
                             autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" :label-width="formLabelWidth" prop="password">
-                        <el-input placeholder="请输入密码" @keyup.enter.native="login" v-model="form.password" autocomplete="off"
+                        <el-input placeholder="请输入密码" @keyup.enter.native="handleLogin" v-model="form.password" autocomplete="off"
                             show-password></el-input>
                     </el-form-item>
                 </el-form>
@@ -27,31 +27,10 @@
                     <a class="forget hand-style" @click="handleChangeLoginMethod(3)">忘记密码</a>
                 </div>
 
-<!--                <div>-->
-<!--                    <div class="social-login-title">社交账号登录</div>-->
-<!--                    <div class="social-login-wrapper">-->
-<!--                        <a class="hand-style" v-show="isShow(2)" @click="openAuthLogin('qq')">-->
-<!--                            <svg-icon icon-class="qq" />-->
-<!--                        </a>-->
-
-<!--                        <a class="hand-style" v-show="isShow(4)" @click="openAuthLogin('gitee')">-->
-<!--                            <svg-icon icon-class="gitee" />-->
-<!--                        </a>-->
-<!--                        <a class="hand-style" v-show="isShow(3)" @click="openAuthLogin('weibo')">-->
-<!--                            <svg-icon icon-class="weibo" />-->
-<!--                        </a>-->
-<!--                        <a class="hand-style" v-show="isShow(5)" @click="handleChangeLoginMethod(4)">-->
-<!--                            <svg-icon icon-class="wechat" />-->
-<!--                        </a>-->
-<!--                        <a class="hand-style" v-show="isShow(6)" @click="openAuthLogin('github')">-->
-<!--                            <svg-icon icon-class="github" />-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
 
             <!-- 注册 -->
-            <div v-if="index == 2">
+            <div v-if="index === 2">
                 <el-form :model="form" :rules="rules" ref="ruleForm" label-position="left">
                     <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
                         <el-input class="input" placeholder="请输入邮箱" v-model="form.email" autocomplete="off"></el-input>
@@ -83,7 +62,7 @@
             </div>
 
           <!-- 重置密码 -->
-            <div v-if="index == 3">
+            <div v-if="index === 3">
                 <el-form :model="form" :rules="rules" ref="ruleForm" label-position="left">
                     <el-form-item label="邮箱" :label-width="formLabelWidth" prop="email">
                         <el-input class="input" placeholder="请输入邮箱" v-model="form.email" autocomplete="off"></el-input>
@@ -108,33 +87,13 @@
                 </div>
             </div>
 
-            <div v-if="index == 4">
-                <el-image class="wxImg" src="http://img.shiyit.com/wechatQr.jpg">
-                    <div slot="error" class="image-slot">
-                        加载中<span class="dot">...</span>
-                    </div>
-                </el-image>
-                <div style="text-align: center;">
-                    <p>
-                        扫码关注公众号，回复验证码完成登录
-                    </p>
-                    <p>
-                        登录验证码： <span style="color: red;margin-right: 5px;">{{ this.wechatLoginCode }}</span>
-                        <i style="cursor: url(https://img.shiyit.com/link.cur),pointer;" @click="getWecahtLoginCode()"
-                            class="el-icon-refresh"></i>
-                    </p>
-                </div>
-                <div style="text-align: center;margin-top: 20px;" slot="footer" class="dialog-footer">
-                    <el-button @click="handleChangeLoginMethod(1)">返回登录</el-button>
-                </div>
-            </div>
         </el-dialog>
 
     </div>
 </template>
 
 <script>
-import { emailLogin, wxIsLogin, openAuthUrl, getWechatLoginCode, sendEmailCode, emailRegister } from "@/api";
+import { wxIsLogin, getWechatLoginCode } from "@/api";
 import { login, getEmailCaptcha, register, forgetPassword} from "@/api/auth";
 import { isUsernameExist } from "@/api/user";
 import { setUrl, setToken, setUserUid } from '@/utils/cookieUtil'
@@ -209,9 +168,6 @@ export default {
                 this.title = "邮箱注册"
             } else if (condition === 3) {
                 this.title = "忘记密码"
-            } else {
-                this.getWecahtLoginCode()
-                this.title = "微信扫码登录"
             }
             this.index = condition;
 
@@ -254,6 +210,9 @@ export default {
             callback()
           }
         },
+      /**
+       * 注册
+       */
         register() {
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
@@ -269,6 +228,9 @@ export default {
                 }
             });
         },
+      /**
+       * 获取邮箱验证码，即发送邮箱
+       */
         handleSendEmailCode() {
             if (this.form.email == null || this.form.email === '') {
 
@@ -305,41 +267,6 @@ export default {
             this.$store.state.loginFlag = false;
             this.wechatLoginFlag = false
         },
-        getWecahtLoginCode() {
-            getWechatLoginCode().then(res => {
-                this.wechatLoginCode = res.data
-                this.$toast.success('验证码获取成功');
-                this.countdown = 60
-                this.timer = setInterval(() => {
-                    if (this.countdown > 0) {
-                        this.countdown--
-                        // 轮询判断用户是否已经登录
-                        wxIsLogin(this.wechatLoginCode).then(res => {
-                            setToken(res.data.token)
-                            this.$store.commit("setUser", res.data)
-                            this.close()
-                            this.$toast.success('登录成功');
-                            window.location.reload()
-                        })
-                    } else {
-                        // 倒计时结束，处理逻辑
-                        clearInterval(this.timer);
-                        this.wechatLoginCode = "验证码失效，请刷新获取"
-                    }
-                }, 1000);
-            })
-        },
-
-        isShow(type) {
-            // return this.$store.state.webSiteInfo.loginTypeList.indexOf(type) != -1
-        },
-        //Enter事件
-        handkeyEnter(event) {
-            if (event.keyCode == 13) {
-                this.login()
-            }
-        },
-
         /* 提交*/
         handleLogin() {
           let self = this;
@@ -392,20 +319,6 @@ export default {
             });
 
         },
-        openAuthLogin(source) {
-            //保留当前路径
-            this.settingUrl()
-            openAuthUrl(source).then(res => {
-                window.open(res.data, "_self");
-            });
-        },
-        settingUrl() {
-            if (this.$route.path == "/articleInfo") {
-                setUrl("articleId=" + this.$route.query.articleId)
-            } else {
-                setUrl(this.$route.path)
-            }
-        }
     }
 };
 </script>

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修复权限配置的子菜单选择递归不生效的bug">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -412,14 +411,7 @@
       <workItem from="1718425172377" duration="3169000" />
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
-      <workItem from="1719137863722" duration="2219000" />
-    </task>
-    <task id="LOCAL-00394" summary="整理留言、说说页面">
-      <created>1713257007501</created>
-      <option name="number" value="00394" />
-      <option name="presentableId" value="LOCAL-00394" />
-      <option name="project" value="LOCAL" />
-      <updated>1713257007501</updated>
+      <workItem from="1719137863722" duration="2990000" />
     </task>
     <task id="LOCAL-00395" summary="整理关于、友链">
       <created>1713258010910</created>
@@ -757,7 +749,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718428627349</updated>
     </task>
-    <option name="localTasksCounter" value="443" />
+    <task id="LOCAL-00443" summary="修改使用不存在的用户名或邮箱登录时的空指针异常问题">
+      <created>1719145563928</created>
+      <option name="number" value="00443" />
+      <option name="presentableId" value="LOCAL-00443" />
+      <option name="project" value="LOCAL" />
+      <updated>1719145563930</updated>
+    </task>
+    <option name="localTasksCounter" value="444" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -792,7 +791,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="使用统一的父级QueryWrapper" />
     <MESSAGE value="博客的子评论实现分页加载" />
     <MESSAGE value="说说评论实现分页" />
     <MESSAGE value="整理后台 面板部分的数据呈现" />
@@ -817,7 +815,8 @@
     <MESSAGE value="去掉冗余的dto类" />
     <MESSAGE value="修改修改用户时参数验证报错、博客管理增加分类选项" />
     <MESSAGE value="修复权限配置的子菜单选择递归不生效的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复权限配置的子菜单选择递归不生效的bug" />
+    <MESSAGE value="修改使用不存在的用户名或邮箱登录时的空指针异常问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改使用不存在的用户名或邮箱登录时的空指针异常问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

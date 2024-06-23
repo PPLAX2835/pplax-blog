@@ -53,10 +53,14 @@ public class UserInfoEditDto extends BaseDto<UserInfoEditDto> {
     private Date birthday;
 
     @ApiModelProperty(example = "这个人很懒，后边忘了", notes = "个性签名", required = false)
-    @Range(max = 100, groups = {Update.class, Insert.class})
+    @Range(max = 100, groups = {Update.class, Insert.class}, message = "简介最长不超过100")
     private String summary;
 
     @ApiModelProperty(example = "普拉克斯", notes = "昵称", required = true)
     @Range(min = 1, max = 50, groups = {Update.class, Insert.class}, message = "长度限制在1到50之间")
     private String email;
+
+    @ApiModelProperty(example = "1234", notes = "验证码", required = false)
+    @Range(required = false, min = 1, max = 50, groups = {Update.class, Insert.class}, message = "长度限制在1到50之间")
+    private String code;
 }

@@ -11,7 +11,9 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
+import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.constants.redis.AuthRedisConstants;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.service.UserService;
@@ -36,6 +38,9 @@ public class UserController extends SuperController {
 
     @Autowired
     private UserInfoService userInfoService;
+
+    @Autowired
+    private RedisService redisService;
 
     @ApiOperation(value="获取自己的信息", notes="获取自己的信息")
     @GetMapping(value = "/userInfo")
@@ -73,13 +78,12 @@ public class UserController extends SuperController {
     @ApiOperation(value="修改个人信息", notes="修改个人信息")
     @PutMapping(value = "/userInfo")
     public String updateUserInfo (HttpServletRequest httpServletRequest, @RequestBody UserInfoEditDto userInfoEditDto) {
-        String userUid = null;
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (!StringUtils.isEmpty(authorization)) {
-            String accessToken = authorization.replace("Bearer ", "");
-            String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-            JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-            userUid = (String) jsonObject.get("uid");
+        String userUid = getUserUid(httpServletRequest);
+
+        // 检查验证码
+        String code = redisService.getCacheObject(AuthRedisConstants.EMAIL_CODE + AuthRedisConstants.SEGMENTATION + userInfoEditDto.getEmail());
+        if (StringUtils.isEmpty(code) || !code.equals(userInfoEditDto.getCode())) {
+            return toJson(ResponseResult.error(HttpStatus.VALIDATION_CODE_INCORRECT));
         }
 
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);

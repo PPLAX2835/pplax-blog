@@ -22,22 +22,6 @@
                                 </a>
                             </div>
                         </el-col>
-<!--                        <el-col :span="18">-->
-<!--                            <div class="grid-content bg-purple">-->
-<!--                                <a class="topBtnItem hand-style">-->
-<!--                                    <div>{{ count.followed }}</div>-->
-<!--                                    关注-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </el-col>-->
-<!--                        <el-col :span="18">-->
-<!--                            <div class="grid-content bg-purple">-->
-<!--                                <a class="topBtnItem hand-style">-->
-<!--                                    <div>0</div>-->
-<!--                                    勋章-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </el-col>-->
                     </el-row>
 
                     <div v-if="loginUser.uid === userUid" class="more hand-style">
@@ -76,24 +60,12 @@
                     <div class="userInfo">
                         <div class="nickname">
                             昵称：<span>{{ user.userInfo.nickname }}</span>
-<!--                            <el-tooltip class="item" effect="dark" content="LV1" placement="top">-->
-<!--                                <span>-->
-<!--                                    <svg-icon icon-class="level1"></svg-icon>-->
-<!--                                </span>-->
-<!--                            </el-tooltip>-->
 
                         </div>
                         <div class="desc">
                             个人简介：{{ user.userInfo.summary ? user.userInfo.summary : "这家伙很懒，什么都没有写..." }}
                         </div>
                     </div>
-<!--                    <div class="sign">-->
-<!--                        <button :class="!isTodaySign ? 'signBtn hand-style' : 'disabledSignBtn hand-style'"-->
-<!--                            :disabled="isTodaySign" @click="handleSign">-->
-<!--                            <svg-icon icon-class="sign1"></svg-icon>-->
-<!--                            <span>{{ isTodaySign ? "今天已签到" : "立即签到" }}</span>-->
-<!--                        </button>-->
-<!--                    </div>-->
                 </div>
 
             </div>
@@ -202,38 +174,33 @@
             <div style="">
                 <div class="dialogItem item">
                     <span>
-                        昵称：{{ form.nickname }}
+                        昵称：{{ userInfoForm.nickname }}
                     </span>
                     <span>
-                        简介：{{ form.summary }}
+                        简介：{{ userInfoForm.summary }}
                     </span>
                 </div>
               <div class="item">
                     <span>
                         性别：
-                      <span v-if="form.gender === 1">男</span>
-                      <span v-else-if="form.gender === 0">女</span>
+                      <span v-if="userInfoForm.gender === 1">男</span>
+                      <span v-else-if="userInfoForm.gender === 0">女</span>
                       <span v-else>保密</span>
                     </span>
               </div>
 
                 <div class=" item">
                     <span>
-                        邮箱： {{ form.email }}
-                      <span v-if="form.isEmailActivated" >（未验证）</span>
+                        邮箱： {{ userInfoForm.email }}
+                      <span v-if="!userInfoForm.isEmailActivated" >（未验证）</span>
                     </span>
                 </div>
-<!--                <div class="dialogItem item">-->
-<!--                    <span>-->
-<!--                        地址： {{ form.address }}-->
-<!--                    </span>-->
-<!--                </div>-->
                 <div class="dialogItem item">
                     <span>
-                      注册时间：{{ timeFormat(form.createTime) }}
+                      注册时间：{{ timeFormat(userInfoForm.createTime) }}
                     </span>
                   <span>
-                    最后登录：{{ timeFormat(form.lastLoginTime) }}
+                    最后登录：{{ timeFormat(userInfoForm.lastLoginTime) }}
                     </span>
                 </div>
             </div>
@@ -242,25 +209,33 @@
         <!-- 修改资料弹出框 -->
         <el-dialog title="修改资料" center :visible.sync="editDialogTableVisible" :lock-scroll="false"
             :close-on-click-modal="false">
-            <el-form label-position="left" label-width="60px" :model="form">
+            <el-form :rules="userInfoRules" label-position="left" label-width="70px" :model="userInfoForm">
                 <el-form-item label="头像：">
                     <el-upload class="avatar-uploader" :show-file-list="false" ref="upload" name="filedatas"
                         action="" :http-request="uploadSectionFile" :before-upload="handleUploadBefore"
                         multiple>
-                        <img style="width: 50%;height: 50%;" :src="loginUserAvatarUrl ? loginUserAvatarUrl : getWebSiteInfoValue('touristAvatar')" class="imgAvatar">
+                        <img style="width: 50%;height: 50%;" :src="loginUser.userInfo.avatar ? loginUser.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')" class="imgAvatar">
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="昵称：">
-                    <el-input v-model="form.nickname"></el-input>
+                <el-form-item label="昵称：" prop="nickname">
+                    <el-input v-model="userInfoForm.nickname"></el-input>
                 </el-form-item>
-                <el-form-item label="简介：">
-                    <el-input v-model="form.summary"></el-input>
+                <el-form-item label="简介：" prop="summary">
+                    <el-input v-model="userInfoForm.summary"></el-input>
                 </el-form-item>
-<!--                <el-form-item label="站点：">-->
-<!--                    <el-input v-model="form.webSite"></el-input>-->
-<!--                </el-form-item>-->
-                <el-form-item label="邮箱">
-                    <el-input v-model="form.email"></el-input>
+                <el-form-item label="邮箱：" prop="email">
+                    <el-input v-model="userInfoForm.email"></el-input>
+                </el-form-item>
+                <el-form-item label="验证码" lab prop="code">
+                  <div style="display: flex;">
+                    <el-col>
+                      <el-input class="input" placeholder="请输入验证码" v-model="userInfoForm.code" autocomplete="off"></el-input>
+                    </el-col>
+                    <el-col>
+                      <a v-if="showSendBtnFlag" class="send hand-style" @click="handleSendEmailCode">发送</a>
+                      <a v-else class="send hand-style">{{ countdown }}s</a>
+                    </el-col>
+                  </div>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -299,6 +274,7 @@ import { cancelCollect } from '@/api/collect'
 import {avatarUpload, spaceBackgroundPictureUpload} from "@/api/fileStorage";
 import {getWebSiteInfoValue} from "@/utils";
 import {getUserUid} from "@/utils/cookieUtil";
+import {getEmailCaptcha} from "@/api/auth";
 export default {
     name: '',
     data() {
@@ -315,7 +291,6 @@ export default {
             },
             userUid: this.$route.query.userUid,
             loginUser: this.$store.state.user,
-            loginUserAvatarUrl: '',
             dataList: [],
             total: 0,
             pageData: {
@@ -346,7 +321,7 @@ export default {
                 style: '#E6A23C'
               }
             },
-            form: {
+          userInfoForm: {
             },
             feedbackForm: {
               userUid: getUserUid(),
@@ -371,6 +346,25 @@ export default {
             today: new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? ('0' + (new Date().getMonth() + 1)) : new Date().getMonth() + 1) + '-'
                 + (new Date().getDate() < 10 ? ('0' + new Date().getDate()) : new Date().getDate()),
             isTodaySign: false,
+            showSendBtnFlag: true,
+            countdown: 60, // 倒计时初始值为 60 秒
+            userInfoRules: {
+              nickname: [
+                { required: true, message: '请输入昵称', trigger: 'blur' },
+                { min: 1,max: 50, message: '昵称长度在1到50之间', trigger: 'blur' },
+              ],
+              summary: [
+                { max: 100, message: '简介最长不超过100', trigger: 'blur' },
+              ],
+              email: [
+                { required: true, message: '请输入邮箱', trigger: 'blur' },
+                { pattern: /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/, message: '请输入合法的邮箱', trigger: 'blur' },
+                { min: 1,max: 50, message: '邮箱长度在1到50之间', trigger: 'blur' },
+              ],
+              code: [
+                { required: true, message: '请输入验证码', trigger: 'blur' },
+              ]
+            },
             rules: {
                 title: [
                     { required: true, message: '请输入反馈标题', trigger: 'blur' },
@@ -391,7 +385,7 @@ export default {
         }
     },
     created() {
-        this.form = {
+        this.userInfoForm = {
           avatarPictureUid: this.loginUser.userInfo.avatarPictureUid,
           birthday: this.loginUser.userInfo.birthday,
           createTime: this.loginUser.createTime,
@@ -446,12 +440,38 @@ export default {
         after() {
             this.$store.commit('setUser', this.loginUser)
         },
+        /**
+         * 获取邮箱验证码，即发送邮箱
+         */
+        handleSendEmailCode() {
+          if (this.userInfoForm.email == null || this.userInfoForm.email === '') {
+
+            this.$toast.error('请输入邮箱');
+            return
+          }
+          getEmailCaptcha(this.userInfoForm.email).then(res => {
+            this.timer = setInterval(() => {
+              if (this.countdown > 0) {
+                this.showSendBtnFlag = false
+                this.countdown--;
+              } else {
+                this.showSendBtnFlag = true
+                clearInterval(this.timer);
+                this.timer = null;
+                this.countdown = 60
+              }
+            }, 1000);
+
+            this.$toast.success('验证码发送成功');
+          })
+        },
         updateUserInfo() {
-            updateMyUserInfo(this.form).then(res => {
+            updateMyUserInfo(this.userInfoForm).then(res => {
                 this.user = res.data
                 this.loginUser = res.data
 
                 this.$toast.success('修改成功')
+                this.userInfoForm.code = ''
                 this.after()
                 this.editDialogTableVisible = false
             })
@@ -469,11 +489,11 @@ export default {
         },
         handleBefore() {
             getUserInfo(this.userUid).then(res => {
-                this.form.nickname = res.data.userInfo.nickname
-                this.form.summary = res.data.userInfo.summary
-                this.form.email = res.data.email
-                this.form.createTime = res.data.createTime
-                this.form.lastLoginTime = res.data.lastLoginTime
+                this.userInfoForm.nickname = res.data.userInfo.nickname
+                this.userInfoForm.summary = res.data.userInfo.summary
+                this.userInfoForm.email = res.data.email
+                this.userInfoForm.createTime = res.data.createTime
+                this.userInfoForm.lastLoginTime = res.data.lastLoginTime
             })
         },
         handleUpdateArticle(uid) {
@@ -580,7 +600,7 @@ export default {
           // 文件对象
           formData.append('file', file)
           spaceBackgroundPictureUpload(formData).then(res => {
-            this.form.spaceBackgroundPictureUid = res.data.uid
+            this.userInfoForm.spaceBackgroundPictureUid = res.data.uid
             this.updateUserInfo()
             this.$bus.$emit('close')
           }).catch(err => {
@@ -595,7 +615,7 @@ export default {
             // 文件对象
             formData.append('file', file)
             avatarUpload(formData).then(res => {
-              this.form.avatarPictureUid = res.data.uid
+              this.userInfoForm.avatarPictureUid = res.data.uid
               this.user.userInfo.avatar = res.data
               this.loginUser.userInfo.avatar = res.data
               this.loginUserAvatarUrl = res.data.fileUrl

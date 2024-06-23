@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/UserInfoEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/UserInfoEditDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,11 +260,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.dev" />
+        <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -411,14 +413,7 @@
       <workItem from="1718425172377" duration="3169000" />
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
-      <workItem from="1719137863722" duration="2990000" />
-    </task>
-    <task id="LOCAL-00395" summary="整理关于、友链">
-      <created>1713258010910</created>
-      <option name="number" value="00395" />
-      <option name="presentableId" value="LOCAL-00395" />
-      <option name="project" value="LOCAL" />
-      <updated>1713258010910</updated>
+      <workItem from="1719137863722" duration="7193000" />
     </task>
     <task id="LOCAL-00396" summary="整理接口">
       <created>1713323825772</created>
@@ -756,7 +751,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719145563930</updated>
     </task>
-    <option name="localTasksCounter" value="444" />
+    <task id="LOCAL-00444" summary="修改前台登录回车直接提交的问题">
+      <created>1719146300066</created>
+      <option name="number" value="00444" />
+      <option name="presentableId" value="LOCAL-00444" />
+      <option name="project" value="LOCAL" />
+      <updated>1719146300066</updated>
+    </task>
+    <option name="localTasksCounter" value="445" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -791,7 +793,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="博客的子评论实现分页加载" />
     <MESSAGE value="说说评论实现分页" />
     <MESSAGE value="整理后台 面板部分的数据呈现" />
     <MESSAGE value="优化站点配置" />
@@ -816,7 +817,8 @@
     <MESSAGE value="修改修改用户时参数验证报错、博客管理增加分类选项" />
     <MESSAGE value="修复权限配置的子菜单选择递归不生效的bug" />
     <MESSAGE value="修改使用不存在的用户名或邮箱登录时的空指针异常问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改使用不存在的用户名或邮箱登录时的空指针异常问题" />
+    <MESSAGE value="修改前台登录回车直接提交的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改前台登录回车直接提交的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

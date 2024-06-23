@@ -55,7 +55,7 @@ public class UserDetailService  implements UserDetailsService {
             userQueryWrapper.eq(UserSQLConstants.EMAIL, username);
             user = userMapper.selectOne(userQueryWrapper);
 
-            if (user.getIsEmailActivated() == null || !user.getIsEmailActivated()) {
+            if (user == null || user.getIsEmailActivated() == null || !user.getIsEmailActivated()) {
                 return new SecurityUserDetails(HttpStatus.EMAIL_UNACTIVATED.getMessage(), HttpStatus.EMAIL_UNACTIVATED.getMessage(), new ArrayList<>());
             }
         } else if (Pattern.matches(mobileRegex, username)) {
@@ -63,7 +63,7 @@ public class UserDetailService  implements UserDetailsService {
             userQueryWrapper.eq(UserSQLConstants.MOBILE, username);
             user = userMapper.selectOne(userQueryWrapper);
 
-            if (user.getIsMobileActivated() == null || !user.getIsMobileActivated()) {
+            if (user == null || user.getIsMobileActivated() == null || !user.getIsMobileActivated()) {
                 return new SecurityUserDetails(HttpStatus.MOBILE_UNACTIVATED.getMessage(), HttpStatus.MOBILE_UNACTIVATED.getMessage(), new ArrayList<>());
             }
         } else {

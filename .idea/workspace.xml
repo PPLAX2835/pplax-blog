@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修改修改用户时参数验证报错、博客管理增加分类选项">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修复权限配置的子菜单选择递归不生效的bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/role/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/role/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,10 +259,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
-        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
@@ -408,14 +409,10 @@
       <workItem from="1716591684930" duration="1157000" />
       <workItem from="1716687043090" duration="797000" />
       <workItem from="1718095962899" duration="8000" />
-      <workItem from="1718425172377" duration="2887000" />
-    </task>
-    <task id="LOCAL-00393" summary="整理分类、标签页面">
-      <created>1713254138111</created>
-      <option name="number" value="00393" />
-      <option name="presentableId" value="LOCAL-00393" />
-      <option name="project" value="LOCAL" />
-      <updated>1713254138111</updated>
+      <workItem from="1718425172377" duration="3169000" />
+      <workItem from="1718432802060" duration="874000" />
+      <workItem from="1718434448369" duration="10000" />
+      <workItem from="1719137863722" duration="2219000" />
     </task>
     <task id="LOCAL-00394" summary="整理留言、说说页面">
       <created>1713257007501</created>
@@ -753,7 +750,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715593521426</updated>
     </task>
-    <option name="localTasksCounter" value="442" />
+    <task id="LOCAL-00442" summary="修复权限配置的子菜单选择递归不生效的bug">
+      <created>1718428627349</created>
+      <option name="number" value="00442" />
+      <option name="presentableId" value="LOCAL-00442" />
+      <option name="project" value="LOCAL" />
+      <updated>1718428627349</updated>
+    </task>
+    <option name="localTasksCounter" value="443" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +792,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理文件服务" />
     <MESSAGE value="使用统一的父级QueryWrapper" />
     <MESSAGE value="博客的子评论实现分页加载" />
     <MESSAGE value="说说评论实现分页" />
@@ -813,7 +816,8 @@
     <MESSAGE value="调整剩下的服务类方法名" />
     <MESSAGE value="去掉冗余的dto类" />
     <MESSAGE value="修改修改用户时参数验证报错、博客管理增加分类选项" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改修改用户时参数验证报错、博客管理增加分类选项" />
+    <MESSAGE value="修复权限配置的子菜单选择递归不生效的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复权限配置的子菜单选择递归不生效的bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

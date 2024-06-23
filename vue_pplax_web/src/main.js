@@ -70,9 +70,9 @@ import VueLazyLoad from 'vue-lazyload'
 Vue.use(VueLazyLoad, {
   preLoad: 1,
   // 懒加载默认加载图片
-  loading: 'https://img2.imgtp.com/2024/04/22/CaDoMDY4.gif',
+  loading: 'http://127.0.0.1:9001/api/v1/buckets/pplax-blog/objects/download?preview=true&prefix=aW1nL2JhY2tncm91bmQvMjAyMTA2MjIxMTM1MDU5NDMuZ2lm&version_id=null',
   // 加载失败后加载的图片
-  error: 'https://img2.imgtp.com/2024/04/15/BCxIePQm.png',
+  error: 'http://127.0.0.1:9001/api/v1/buckets/pplax-blog/objects/download?preview=true&prefix=aW1nL2F2YXRhci9SLUMucG5n&version_id=null',
   attempt: 1
   // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
   // listenEvents: [ 'scroll' ]

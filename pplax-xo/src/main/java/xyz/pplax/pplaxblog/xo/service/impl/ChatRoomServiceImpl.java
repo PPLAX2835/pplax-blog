@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import xyz.pplax.pplaxblog.xo.service.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.UserService;
 import xyz.pplax.pplaxblog.xo.service.UserInfoService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,6 +60,41 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         }
 
         return pageList;
+    }
+
+    /**
+     * 退出聊天室，如果是群主就直接解散
+     * @param userUid
+     * @param chatRoomUid
+     * @return
+     */
+    @Override
+    public Boolean exitChatRoom(String userUid, String chatRoomUid) {
+        ChatRoom chatRoom = getById(chatRoomUid);
+
+        // 如果是群主就直接解散
+        if (chatRoom.getOwnerUid().equals(userUid)) {
+            return removeById(chatRoomUid);
+        }
+
+        // 创建一个列表来存放保留的UID
+        String[] uidArray = chatRoom.getMemberUids().split(",");
+
+        // 使用StringBuilder来构建新的字符串
+        StringBuilder result = new StringBuilder();
+
+        for (String uid : uidArray) {
+            // 如果当前uid不是要移除的那个，才追加到结果中
+            if (!uid.equals(userUid)) {
+                if (result.length() > 0) {
+                    result.append(",");
+                }
+                result.append(uid);
+            }
+        }
+        chatRoom.setMemberUids(result.toString());
+
+        return updateById(chatRoom);
     }
 
     @Override

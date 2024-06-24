@@ -211,6 +211,13 @@
       <!-- 房间列表 -->
       <div class="online">
         <ul class="online-item">
+          <li class="onlineLi hand-style">
+            <div class="room-list-item">
+              <div class="roomName el-icon-circle-plus-outline"></div>
+              <span>/</span>
+              <div class="roomName el-icon-search"></div>
+            </div>
+          </li>
           <li
               ref="room"
               :class="!index ? 'onlineLi hand-style active' : 'onlineLi hand-style'"
@@ -219,7 +226,7 @@
           >
             <div class="room-list-item" @click="selectUserIm(item, index)">
               <div class="room-list-item">
-                <img
+                <el-avatar
                     class="img"
                     :src="item.avatar !== undefined ? item.avatar.fileUrl : ''"
                     alt=""
@@ -229,7 +236,7 @@
                 </div>
               </div>
             </div>
-            <div class="close" @click="closeRoom(item.uid, index)">
+            <div v-if="item.type !== 0" class="close" @click="closeRoom(item.uid, index)">
               <span><i class="el-icon-close"></i></span>
             </div>
           </li>

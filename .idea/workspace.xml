@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,11 +262,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.serve" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -413,14 +416,7 @@
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
-      <workItem from="1719190991961" duration="11281000" />
-    </task>
-    <task id="LOCAL-00403" summary="整理说说接口，后续需要把说说的评论拿出来单独请求">
-      <created>1713408011206</created>
-      <option name="number" value="00403" />
-      <option name="presentableId" value="LOCAL-00403" />
-      <option name="project" value="LOCAL" />
-      <updated>1713408011206</updated>
+      <workItem from="1719190991961" duration="15715000" />
     </task>
     <task id="LOCAL-00404" summary="搜索功能做好了">
       <created>1713412171289</created>
@@ -758,7 +754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719215136444</updated>
     </task>
-    <option name="localTasksCounter" value="452" />
+    <task id="LOCAL-00452" summary="禁用了overlay">
+      <created>1719216414089</created>
+      <option name="number" value="00452" />
+      <option name="presentableId" value="LOCAL-00452" />
+      <option name="project" value="LOCAL" />
+      <updated>1719216414090</updated>
+    </task>
+    <option name="localTasksCounter" value="453" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -793,7 +796,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整合七牛云" />
     <MESSAGE value="修改say 后台和前台查询混乱的问题" />
     <MESSAGE value="调整" />
     <MESSAGE value="整合本地存储方式" />
@@ -818,7 +820,8 @@
     <MESSAGE value="修改前台编辑博客时重复点击保存草稿或提交审核会多次添加的问题" />
     <MESSAGE value="修改用户可以修改非自己撰写的博客的bug" />
     <MESSAGE value="修改说说定位相关bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改说说定位相关bug" />
+    <MESSAGE value="禁用了overlay" />
+    <option name="LAST_COMMIT_MESSAGE" value="禁用了overlay" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

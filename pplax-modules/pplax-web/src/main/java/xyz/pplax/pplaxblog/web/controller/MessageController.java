@@ -13,6 +13,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
@@ -48,9 +49,6 @@ public class MessageController extends SuperController {
 
     @Autowired
     private MessageService messageService;
-
-    @Autowired
-    private AdminFeignClient adminFeignClient;
 
     @Autowired
     private ChatRoomService chatRoomService;
@@ -100,10 +98,18 @@ public class MessageController extends SuperController {
         return toJson(ResponseResult.success(chatRoomService.getByUserUid(userUid)));
     }
 
-    @ApiOperation(value="删除聊天室", notes="删除聊天室")
+    @ApiOperation(value="退出聊天室", notes="退出聊天室")
     @DeleteMapping("/room/{chatRoomUid}")
-    public String deleteChatRoom(@PathVariable("chatRoomUid") String chatRoomUid) {
-        return adminFeignClient.deleteChatRoom(chatRoomUid);
+    public String deleteChatRoom(HttpServletRequest httpServletRequest, @PathVariable("chatRoomUid") String chatRoomUid) {
+        String userUid = getUserUid(httpServletRequest);
+
+        Boolean res = chatRoomService.exitChatRoom(userUid, chatRoomUid);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value = "获取聊天记录", httpMethod = "GET", response = ResponseResult.class, notes = "获取聊天记录")

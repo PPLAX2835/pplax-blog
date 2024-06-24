@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/UserInfoEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/UserInfoEditDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/sayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/sayServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +142,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -413,14 +414,8 @@
       <workItem from="1718425172377" duration="3169000" />
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
-      <workItem from="1719137863722" duration="7193000" />
-    </task>
-    <task id="LOCAL-00396" summary="整理接口">
-      <created>1713323825772</created>
-      <option name="number" value="00396" />
-      <option name="presentableId" value="LOCAL-00396" />
-      <option name="project" value="LOCAL" />
-      <updated>1713323825773</updated>
+      <workItem from="1719137863722" duration="7420000" />
+      <workItem from="1719190991961" duration="1758000" />
     </task>
     <task id="LOCAL-00397" summary="整理评论接口">
       <created>1713339022044</created>
@@ -758,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719146300066</updated>
     </task>
-    <option name="localTasksCounter" value="445" />
+    <task id="LOCAL-00445" summary="现在前台修改个人资料需要进行邮箱验证">
+      <created>1719151480020</created>
+      <option name="number" value="00445" />
+      <option name="presentableId" value="LOCAL-00445" />
+      <option name="project" value="LOCAL" />
+      <updated>1719151480021</updated>
+    </task>
+    <option name="localTasksCounter" value="446" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -793,7 +795,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="说说评论实现分页" />
     <MESSAGE value="整理后台 面板部分的数据呈现" />
     <MESSAGE value="优化站点配置" />
     <MESSAGE value="简单调整" />
@@ -818,7 +819,8 @@
     <MESSAGE value="修复权限配置的子菜单选择递归不生效的bug" />
     <MESSAGE value="修改使用不存在的用户名或邮箱登录时的空指针异常问题" />
     <MESSAGE value="修改前台登录回车直接提交的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改前台登录回车直接提交的问题" />
+    <MESSAGE value="现在前台修改个人资料需要进行邮箱验证" />
+    <option name="LAST_COMMIT_MESSAGE" value="现在前台修改个人资料需要进行邮箱验证" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

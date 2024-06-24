@@ -160,6 +160,7 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
         PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
         commentPQueryWrapper.eq(CommentSQLConstants.TYPE, type);
         commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, originalUid);
+        commentPQueryWrapper.orderByAsc(CommentSQLConstants.C_CREATE_TIME);
 
         //分页
         Page<Comment> page = new Page<>();

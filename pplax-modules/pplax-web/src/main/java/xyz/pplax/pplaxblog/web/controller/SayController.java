@@ -44,9 +44,6 @@ public class SayController extends SuperController {
     private static Logger log = LogManager.getLogger(SayController.class);
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
-
-    @Autowired
     private SayService sayService;
 
     @Autowired

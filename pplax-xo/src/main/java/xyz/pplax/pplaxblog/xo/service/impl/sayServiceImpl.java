@@ -49,6 +49,7 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
     public Page<Say> pagePublic(String userUid, Long currentPage, Long pageSize) {
         PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
         sayPQueryWrapper.eq(SaySQLConstants.IS_PUBLIC, true);
+        sayPQueryWrapper.orderByDesc(SaySQLConstants.C_CREATE_TIME);
 
         //分页
         Page<Say> page = new Page<>();
@@ -72,12 +73,12 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
             }
 
             // 封装评论列表
-            Page<Comment> commentIPage = commentService.page(null, null, CharacterConstants.NUM_TWO, say.getUid(), 1L, 4L);
+            Page<Comment> commentIPage = commentService.pageByOriginalUid(say.getUid(), CharacterConstants.NUM_TWO, 1L, 4L);
             say.setCommentTotal(commentIPage.getTotal());
             say.setCommentList(commentIPage.getRecords());
 
             // 封装点赞列表
-            Page<Comment> likeIPage = commentService.page(null, null, CharacterConstants.NUM_THREE, say.getUid(), 1L, 4L);
+            Page<Comment> likeIPage = commentService.pageByOriginalUid(say.getUid(), CharacterConstants.NUM_THREE, 1L, 4L);
             say.setLikeList(likeIPage.getRecords());
 
             // 判断自己是否已经点赞

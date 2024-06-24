@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.xo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
@@ -97,8 +98,64 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         return updateById(chatRoom);
     }
 
+    /**
+     * 加入群聊
+     * @param userUid
+     * @param chatRoomUid
+     * @return
+     */
     @Override
-    public List<ChatRoom> getByUserUid(String userUid) {
+    public Boolean joinChatRoom(String userUid, String chatRoomUid) {
+        ChatRoom chatRoom = getById(chatRoomUid);
+
+        if (chatRoom == null || chatRoom.getOwnerUid().equals(userUid) || chatRoom.getMemberUids().contains(userUid)) {
+            return false;
+        }
+
+        String newMemberUids = chatRoom.getMemberUids() + "," + userUid;
+        newMemberUids = StringUtils.removeStart(newMemberUids, ",");
+        newMemberUids = StringUtils.removeEnd(newMemberUids, ",");
+
+        chatRoom.setMemberUids(newMemberUids);
+
+        return updateById(chatRoom);
+    }
+
+    @Override
+    public Page<ChatRoom> pageGroupChatNotInByName(String userUid, String name, Long currentPage, Long pageSize) {
+        PQueryWrapper<ChatRoom> chatRoomPQueryWrapper = new PQueryWrapper<>();
+
+        // 排除掉已经进入的群聊
+        chatRoomPQueryWrapper
+                .and(
+                        QueryWrapper -> QueryWrapper
+                                .ne(ChatRoomSQLConstants.OWNER_UID, userUid)
+                                .notLike(ChatRoomSQLConstants.MEMBER_UIDS, "%" + userUid + "%")
+                );
+
+        // 只要群聊类型
+        chatRoomPQueryWrapper.eq(ChatRoomSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+
+        // 根据群聊名查询
+        chatRoomPQueryWrapper.like(ChatRoomSQLConstants.NAME, "%" + name + "%");
+
+        //分页
+        Page<ChatRoom> page = new Page<>();
+        page.setCurrent(currentPage);
+        page.setSize(pageSize);
+
+        Page<ChatRoom> pageList = page(page, chatRoomPQueryWrapper);
+
+        for (ChatRoom chatRoom : pageList.getRecords()) {
+            // 封装头像
+            chatRoom.setAvatar(fileStorageService.getById(chatRoom.getAvatarUid()));
+        }
+
+        return pageList;
+    }
+
+    @Override
+    public List<ChatRoom> listByUserUid(String userUid) {
         PQueryWrapper<ChatRoom> chatRoomPQueryWrapper = new PQueryWrapper<>();
 
         chatRoomPQueryWrapper

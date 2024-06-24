@@ -9,8 +9,8 @@
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/message.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,14 +416,7 @@
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
-      <workItem from="1719190991961" duration="15715000" />
-    </task>
-    <task id="LOCAL-00404" summary="搜索功能做好了">
-      <created>1713412171289</created>
-      <option name="number" value="00404" />
-      <option name="presentableId" value="LOCAL-00404" />
-      <option name="project" value="LOCAL" />
-      <updated>1713412171289</updated>
+      <workItem from="1719190991961" duration="22564000" />
     </task>
     <task id="LOCAL-00405" summary="整合mq">
       <created>1713581964987</created>
@@ -761,7 +754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719216414090</updated>
     </task>
-    <option name="localTasksCounter" value="453" />
+    <task id="LOCAL-00453" summary="前台删除群聊修改为退出群聊">
+      <created>1719220720505</created>
+      <option name="number" value="00453" />
+      <option name="presentableId" value="LOCAL-00453" />
+      <option name="project" value="LOCAL" />
+      <updated>1719220720506</updated>
+    </task>
+    <option name="localTasksCounter" value="454" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -796,7 +796,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改say 后台和前台查询混乱的问题" />
     <MESSAGE value="调整" />
     <MESSAGE value="整合本地存储方式" />
     <MESSAGE value="整理blog服务类的方法名以及部分逻辑" />
@@ -821,7 +820,8 @@
     <MESSAGE value="修改用户可以修改非自己撰写的博客的bug" />
     <MESSAGE value="修改说说定位相关bug" />
     <MESSAGE value="禁用了overlay" />
-    <option name="LAST_COMMIT_MESSAGE" value="禁用了overlay" />
+    <MESSAGE value="前台删除群聊修改为退出群聊" />
+    <option name="LAST_COMMIT_MESSAGE" value="前台删除群聊修改为退出群聊" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -838,11 +838,6 @@
           <url>jar://E:/Environment/Maven/Repository/org/springframework/cloud/spring-cloud-gateway-core/2.2.2.RELEASE/spring-cloud-gateway-core-2.2.2.RELEASE.jar!/org/springframework/cloud/gateway/filter/ReactiveLoadBalancerClientFilter.class</url>
           <line>41</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogServiceImpl.java</url>
-          <line>111</line>
-          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

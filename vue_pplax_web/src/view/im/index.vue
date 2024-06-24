@@ -211,7 +211,7 @@
       <!-- 房间列表 -->
       <div class="online">
         <ul class="online-item">
-          <li class="onlineLi hand-style">
+          <li @click="dialogNewCharRoomVisible = true" class="onlineLi hand-style">
             <div class="room-list-item">
               <div class="roomName el-icon-circle-plus-outline"></div>
               <span>/</span>
@@ -262,6 +262,57 @@
         >
       </span>
     </el-dialog>
+
+
+    <el-dialog center :title="title" :visible.sync="dialogNewCharRoomVisible">
+
+      <el-tabs >
+        <el-tab-pane label="搜索群聊">
+
+          <el-row>
+            <el-form :model="chatRoomSearchParam" label-width="68px">
+              <el-col :span="12">
+                <el-form-item label="分类名">
+                  <el-input v-model="chatRoomSearchParam.keyword" placeholder="请输入群聊名"/>
+                </el-form-item>
+              </el-col>
+              <el-col :span="6">
+                <el-form-item>
+                  <el-button type="primary" icon="el-icon-search" size="small" @click="handleSearchChatRoom">查找</el-button>
+                </el-form-item>
+              </el-col>
+            </el-form>
+          </el-row>
+
+          <el-row
+              v-for="(item) in searchedCharRoomList"
+          >
+            <el-divider></el-divider>
+            <el-col :span="4">
+              <el-avatar
+                  :src="item.avatar !== undefined ? item.avatar.fileUrl : ''"
+                  alt=""
+              />
+            </el-col>
+            <el-col :span="6">
+              <h3>{{ item.name }}</h3>
+            </el-col>
+            <el-col :span="4">
+              共{{ item.memberUids.split(',').length }}人
+            </el-col>
+            <el-col :span="4">
+              <el-button @click="handleJoinChatRoom(item)">
+                加入群聊
+              </el-button>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+        <el-tab-pane label="创建群聊">
+
+        </el-tab-pane>
+      </el-tabs>
+    </el-dialog>
+
     <image-preview :img="images"></image-preview>
   </div>
 </template>
@@ -269,7 +320,14 @@
 <script>
 let socket;
 import { imageUpload, withdraw, addRoom } from '@/api/im'
-import {getChatRoomList, deleteChatRoom, listChatMessage, addChatMessage, read} from "@/api/message";
+import {
+  getChatRoomList,
+  deleteChatRoom,
+  listChatMessage,
+  addChatMessage,
+  read,
+  searchChatRoomList, joinChatRoom
+} from "@/api/message";
 import { parseTime } from "@/utils";
 import { EStatus } from "@/base/EStatus";
 import Emoji from '@/components/emoji'
@@ -306,6 +364,12 @@ export default {
         currentPage: 1,
         pageSize: 10
       },
+      chatRoomSearchParam: {
+        currentPage: 1,
+        pageSize: 5,
+        keyword: ''
+      },
+      searchedCharRoomList: [],
       onlineUserList: [],
 
       roomList: [
@@ -315,7 +379,8 @@ export default {
       searchUrl: ['https://www.baidu.com/s?&wd=', 'https://search.gitee.com/?skin=rec&type=repository&q=', 'https://github.com/search?q='],
       lastEditRange: null,
       RegEx: /(?<=(img src="))[^"]*?(?=")/gims,
-      images: {}
+      images: {},
+      dialogNewCharRoomVisible: false
     }
   },
 
@@ -400,7 +465,7 @@ export default {
     },
 
     closeRoom(id, index) {
-      this.$confirm('此操作将把该聊天窗口删除, 是否继续?', '提示', {
+      this.$confirm('此操作将退出该群聊，如果您是群主，将直接解散群聊，是否确定?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         lockScroll: false,
@@ -786,12 +851,33 @@ export default {
     open() {
       console.log("websocket已打开");
       //获取房间列表
-      getChatRoomList(this.user.uid).then(res => {
-        this.roomList.push(...res.data)
+      getChatRoomList().then(res => {
+        this.roomList = res.data
       })
       //连接成功后获取历史聊天记录
       this.getHistoryList()
     },
+
+
+    /**
+     * 处理查找聊天室
+     */
+    handleSearchChatRoom() {
+      searchChatRoomList(this.chatRoomSearchParam).then(res => {
+        this.searchedCharRoomList = res.data
+      })
+    },
+
+    /**
+     * 处理加入群聊
+     */
+    handleJoinChatRoom(chatRoom) {
+      joinChatRoom(chatRoom.uid).then(res => {
+        this.$toast.success("加入成功");
+        this.open()
+        this.dialogNewCharRoomVisible = false
+      })
+    }
   }
 }
 </script>

@@ -13,7 +13,11 @@ public interface ChatRoomService extends SuperService<ChatRoom> {
 
     Page<ChatRoom> page(Long currentPage, Long pageSize);
 
-    List<ChatRoom> getByUserUid(String userUid);
+    List<ChatRoom> listByUserUid(String userUid);
+
+    Page<ChatRoom> pageGroupChatNotInByName(String userUid, String name, Long currentPage, Long pageSize);
 
     Boolean exitChatRoom(String userUid, String chatRoomUid);
+
+    Boolean joinChatRoom(String userUid, String chatRoomUid);
 }

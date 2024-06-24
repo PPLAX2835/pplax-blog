@@ -35,13 +35,23 @@ export function read(chatRoomUid) {
         method: 'get'
     })
 }
-export function getChatRoomList(userUid) {
+export function getChatRoomList() {
     return request({
         url: '/web/message/room/list',
+        method: 'get'
+    })
+}
+export function searchChatRoomList(param) {
+    return request({
+        url: '/web/message/room/search',
         method: 'get',
-        params: {
-            userUid: userUid
-        }
+        params: param
+    })
+}
+export function joinChatRoom(chatRoomUid) {
+    return request({
+        url: '/web/message/room/' + chatRoomUid + '/join',
+        method: 'put'
     })
 }
 export function deleteChatRoom(roomId) {

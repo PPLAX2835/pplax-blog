@@ -22,6 +22,7 @@ import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.MessageEditDto;
+import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
 import xyz.pplax.pplaxblog.xo.entity.Message;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.service.ChatRoomService;
@@ -94,8 +95,37 @@ public class MessageController extends SuperController {
 
     @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
     @GetMapping("/room/list")
-    public String getRoomList(@RequestParam("userUid") String userUid) {
-        return toJson(ResponseResult.success(chatRoomService.getByUserUid(userUid)));
+    public String getRoomList(HttpServletRequest httpServletRequest) {
+        String userUid = getUserUid(httpServletRequest);
+        return toJson(ResponseResult.success(chatRoomService.listByUserUid(userUid)));
+    }
+
+    @ApiOperation(value="搜索聊天室", notes="搜索聊天室")
+    @GetMapping("/room/search")
+    public String getRoomSearch(
+            HttpServletRequest httpServletRequest,
+            @RequestParam("keyword") String keyword,
+            @RequestParam(value = "currentPage") Long currentPage,
+            @RequestParam(value = "pageSize") Long pageSize
+    ) {
+        String userUid = getUserUid(httpServletRequest);
+
+        Page<ChatRoom> chatRoomPage = chatRoomService.pageGroupChatNotInByName(userUid, keyword, currentPage, pageSize);
+        return toJson(ResponseResult.success(chatRoomPage.getRecords(), chatRoomPage.getTotal()));
+    }
+
+    @ApiOperation(value="搜索聊天室", notes="搜索聊天室")
+    @PutMapping("/room/{roomUid}/join")
+    public String joinRoom(HttpServletRequest httpServletRequest, @PathVariable("roomUid") String roomUid) {
+        String userUid = getUserUid(httpServletRequest);
+
+        Boolean res = chatRoomService.joinChatRoom(userUid, roomUid);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value="退出聊天室", notes="退出聊天室")

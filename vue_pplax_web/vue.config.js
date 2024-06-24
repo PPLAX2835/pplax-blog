@@ -10,7 +10,10 @@ module.exports = defineConfig({
   lintOnSave: process.env.NODE_ENV === "development",
   devServer: {
     historyApiFallback: true,
-    port: 80
+    port: 80,
+    client: {
+      overlay: false,
+    },
   },
   configureWebpack: {
     plugins: [new NodePolyfillPlugin()],

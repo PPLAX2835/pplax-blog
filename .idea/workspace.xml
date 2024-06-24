@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修改用户可以修改非自己撰写的博客的bug">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/Add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/Add.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,14 +413,7 @@
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
-      <workItem from="1719190991961" duration="10027000" />
-    </task>
-    <task id="LOCAL-00402" summary="整理博客、评论回复、站点信息参数、业务逻辑">
-      <created>1713404075279</created>
-      <option name="number" value="00402" />
-      <option name="presentableId" value="LOCAL-00402" />
-      <option name="project" value="LOCAL" />
-      <updated>1713404075279</updated>
+      <workItem from="1719190991961" duration="11281000" />
     </task>
     <task id="LOCAL-00403" summary="整理说说接口，后续需要把说说的评论拿出来单独请求">
       <created>1713408011206</created>
@@ -761,7 +751,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719204207273</updated>
     </task>
-    <option name="localTasksCounter" value="451" />
+    <task id="LOCAL-00451" summary="修改说说定位相关bug">
+      <created>1719215136443</created>
+      <option name="number" value="00451" />
+      <option name="presentableId" value="LOCAL-00451" />
+      <option name="project" value="LOCAL" />
+      <updated>1719215136444</updated>
+    </task>
+    <option name="localTasksCounter" value="452" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -796,7 +793,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="后台 站点设置增加储存选项" />
     <MESSAGE value="整合七牛云" />
     <MESSAGE value="修改say 后台和前台查询混乱的问题" />
     <MESSAGE value="调整" />
@@ -821,7 +817,8 @@
     <MESSAGE value="更换天气组件，和风天气不能用了" />
     <MESSAGE value="修改前台编辑博客时重复点击保存草稿或提交审核会多次添加的问题" />
     <MESSAGE value="修改用户可以修改非自己撰写的博客的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改用户可以修改非自己撰写的博客的bug" />
+    <MESSAGE value="修改说说定位相关bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改说说定位相关bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

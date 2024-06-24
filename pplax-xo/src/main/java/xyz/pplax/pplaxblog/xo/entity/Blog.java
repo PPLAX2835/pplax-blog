@@ -91,7 +91,7 @@ public class Blog extends SuperEntity{
 	private Long likeCount;			// 点赞量
 
 	@TableField(exist = false)
-	private Integer collectCount; 		// 博客收藏数
+	private Long collectCount; 		// 博客收藏数
 
 	@TableField(exist = false)
 	private Boolean isCollect;			// 自己是否收藏

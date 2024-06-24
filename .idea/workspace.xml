@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/CommentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/sayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/sayServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,9 +260,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
       </list>
@@ -415,14 +414,7 @@
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
-      <workItem from="1719190991961" duration="1758000" />
-    </task>
-    <task id="LOCAL-00397" summary="整理评论接口">
-      <created>1713339022044</created>
-      <option name="number" value="00397" />
-      <option name="presentableId" value="LOCAL-00397" />
-      <option name="project" value="LOCAL" />
-      <updated>1713339022044</updated>
+      <workItem from="1719190991961" duration="4429000" />
     </task>
     <task id="LOCAL-00398" summary="整理聊天接口">
       <created>1713343025934</created>
@@ -760,7 +752,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719151480021</updated>
     </task>
-    <option name="localTasksCounter" value="446" />
+    <task id="LOCAL-00446" summary="说说以及其评论现在按时间顺序排序">
+      <created>1719193742388</created>
+      <option name="number" value="00446" />
+      <option name="presentableId" value="LOCAL-00446" />
+      <option name="project" value="LOCAL" />
+      <updated>1719193742389</updated>
+    </task>
+    <option name="localTasksCounter" value="447" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -795,7 +794,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理后台 面板部分的数据呈现" />
     <MESSAGE value="优化站点配置" />
     <MESSAGE value="简单调整" />
     <MESSAGE value="调整siteSetting相关方法" />
@@ -820,7 +818,8 @@
     <MESSAGE value="修改使用不存在的用户名或邮箱登录时的空指针异常问题" />
     <MESSAGE value="修改前台登录回车直接提交的问题" />
     <MESSAGE value="现在前台修改个人资料需要进行邮箱验证" />
-    <option name="LAST_COMMIT_MESSAGE" value="现在前台修改个人资料需要进行邮箱验证" />
+    <MESSAGE value="说说以及其评论现在按时间顺序排序" />
+    <option name="LAST_COMMIT_MESSAGE" value="说说以及其评论现在按时间顺序排序" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

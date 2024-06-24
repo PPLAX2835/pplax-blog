@@ -1,27 +1,6 @@
 <template>
   <div class="main-container container">
     <div class="main">
-      <el-tooltip
-          class="item"
-          effect="dark"
-          content="随机视频播放"
-          placement="right"
-      >
-        <div
-            @click="drawer = true"
-            class="hand-style"
-            style="
-            color: var(--theme-color);
-            position: fixed;
-            left: 20px;
-            bottom: 50%;
-            font-size: 1.5rem;
-          "
-        >
-          <i class="el-icon-d-arrow-right"></i>
-        </div>
-      </el-tooltip>
-
       <el-drawer title="我是标题" :visible.sync="drawer" :with-header="false">
         <div class="video-container">
           <video style="width: 100%" controls autoplay :src="videoSrc"></video>
@@ -150,11 +129,6 @@
                 </div>
               </div>
               <div class="bottumItem">
-                <div class="articleUser">
-                  <!--                                    <el-avatar class="userAvatar" :src="$store.state.webSiteInfo.authorAvatar"></el-avatar>-->
-                  <!--                                    <span>{{ $store.state.webSiteInfo.author }}</span>-->
-                </div>
-
                 <div class="tag">
                   <el-tooltip
                       class="item"
@@ -200,16 +174,10 @@
                     <i class="el-icon-chat-dot-round"></i>
                     <span class="name">评论</span>{{ item.commentCount }}
                   </span>
-                  <!-- <span class="item">
-                                        <span v-if="item.isCollect">
-                                            <i style="font-size: 1rem;" class="el-icon-star-on"></i>
-                                            <span class="name">收藏</span>{{ item.collectCount }}
-                                        </span>
-                                        <span v-else>
-                                            <i style="font-size: 1rem;" class="el-icon-star-off"></i>
-                                            <span class="name">收藏</span>{{ item.collectCount }}
-                                        </span>
-                                    </span> -->
+                  <span class="item">
+                    <i style="font-size: 1rem;" class="el-icon-star-off"></i>
+                    <span class="name">收藏</span>{{ item.collectCount }}
+                  </span>
                   <span class="item">
                     <i
                         style="font-size: 0.8rem"

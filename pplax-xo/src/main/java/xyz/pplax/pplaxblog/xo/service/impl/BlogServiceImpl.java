@@ -237,7 +237,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             blogPQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
         }
         if (!StringUtils.isEmpty(tagUid)) {
-            // 通过标签插叙你
+            // 通过标签查询
             blogPQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tagUid + "%");
         }
         blogPQueryWrapper.orderByAsc("case when status = " + EStatus.STICK.getStatus() + " then 1 else 2 end");
@@ -284,16 +284,23 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             commentPQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ZERO);
             commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, item.getUid());
 
-            long likeCount = commentService.count(commentPQueryWrapper);
+            long commentCount = commentService.count(commentPQueryWrapper);
 
             commentPQueryWrapper = new PQueryWrapper<>();
             commentPQueryWrapper.eq(CommentSQLConstants.TYPE, CharacterConstants.NUM_ONE);
             commentPQueryWrapper.eq(CommentSQLConstants.ORIGINAL_UID, item.getUid());
 
-            long commentCount = commentService.count(commentPQueryWrapper);
+            long likeCount = commentService.count(commentPQueryWrapper);
 
             item.setLikeCount(likeCount);
             item.setCommentCount(commentCount);
+
+            // 获得收藏量
+            PQueryWrapper<Collect> collectPQueryWrapper = new PQueryWrapper<>();
+            collectPQueryWrapper.eq(CollectSQLConstants.BLOG_UID, item.getUid());
+            long collectCount = collectService.count(collectPQueryWrapper);
+
+            item.setCollectCount(collectCount);
 
             //格式化时间为几秒前 几分钟前等
             item.setFormatCreateTime(RelativeDateFormat.format(item.getCreateTime()));
@@ -530,7 +537,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         // 获得收藏数
         PQueryWrapper<Collect> collectPQueryWrapper = new PQueryWrapper<>();
         collectPQueryWrapper.eq(CollectSQLConstants.BLOG_UID, blog.getUid());
-        int collectCount = collectService.count(collectPQueryWrapper);
+        long collectCount = collectService.count(collectPQueryWrapper);
         blog.setCollectCount(collectCount);
 
 

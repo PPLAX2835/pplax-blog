@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/ChatRoomFileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/ChatRoomFileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/ChatRoomEditDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/fileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/fileStorage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/message.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
@@ -127,11 +130,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="xyz.pplax.pplaxblog.commons.utils" />
-      <recent name="xyz.pplax.pplaxblog.file.controller" />
       <recent name="xyz.pplax.pplaxblog.file.service" />
+      <recent name="xyz.pplax.pplaxblog.file.controller" />
+      <recent name="xyz.pplax.pplaxblog.xo.dto.edit" />
+      <recent name="xyz.pplax.pplaxblog.commons.utils" />
       <recent name="xyz.pplax.pplaxblog.message.consumer" />
-      <recent name="xyz.pplax.pplaxblog.xo.dto" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -416,14 +419,7 @@
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
-      <workItem from="1719190991961" duration="22564000" />
-    </task>
-    <task id="LOCAL-00405" summary="整合mq">
-      <created>1713581964987</created>
-      <option name="number" value="00405" />
-      <option name="presentableId" value="LOCAL-00405" />
-      <option name="project" value="LOCAL" />
-      <updated>1713581964988</updated>
+      <workItem from="1719190991961" duration="28363000" />
     </task>
     <task id="LOCAL-00406" summary="整理服务层包结构">
       <created>1713583351601</created>
@@ -761,7 +757,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719220720506</updated>
     </task>
-    <option name="localTasksCounter" value="454" />
+    <task id="LOCAL-00454" summary="实现加入群聊操作">
+      <created>1719227596671</created>
+      <option name="number" value="00454" />
+      <option name="presentableId" value="LOCAL-00454" />
+      <option name="project" value="LOCAL" />
+      <updated>1719227596671</updated>
+    </task>
+    <option name="localTasksCounter" value="455" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -796,7 +799,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整" />
     <MESSAGE value="整合本地存储方式" />
     <MESSAGE value="整理blog服务类的方法名以及部分逻辑" />
     <MESSAGE value="整理blogSort服务类的方法名" />
@@ -821,7 +823,8 @@
     <MESSAGE value="修改说说定位相关bug" />
     <MESSAGE value="禁用了overlay" />
     <MESSAGE value="前台删除群聊修改为退出群聊" />
-    <option name="LAST_COMMIT_MESSAGE" value="前台删除群聊修改为退出群聊" />
+    <MESSAGE value="实现加入群聊操作" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现加入群聊操作" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

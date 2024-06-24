@@ -60,3 +60,10 @@ export function deleteChatRoom(roomId) {
         method: 'delete'
     })
 }
+export function createChatRoom(param) {
+    return request({
+        url: '/web/message/room',
+        method: 'post',
+        data: param
+    })
+}

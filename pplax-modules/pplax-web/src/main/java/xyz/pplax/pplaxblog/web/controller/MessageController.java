@@ -21,6 +21,7 @@ import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.dto.edit.ChatRoomEditDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.MessageEditDto;
 import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
 import xyz.pplax.pplaxblog.xo.entity.Message;
@@ -93,6 +94,27 @@ public class MessageController extends SuperController {
         return success();
     }
 
+    @ApiOperation(value="创建聊天室", notes="创建聊天室")
+    @PostMapping("/room")
+    public String createChatRoom(HttpServletRequest httpServletRequest, @RequestBody ChatRoomEditDto chatRoomEditDto) {
+        String userUid = getUserUid(httpServletRequest);
+
+        ChatRoom chatRoom = new ChatRoom();
+        chatRoom.setOwnerUid(userUid);
+        chatRoom.setMemberUids(userUid);
+        chatRoom.setName(chatRoomEditDto.getName());
+        chatRoom.setAvatarUid(chatRoomEditDto.getAvatarUid());
+        chatRoom.setType(1);
+
+        boolean res = chatRoomService.save(chatRoom);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
     @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
     @GetMapping("/room/list")
     public String getRoomList(HttpServletRequest httpServletRequest) {
@@ -114,7 +136,7 @@ public class MessageController extends SuperController {
         return toJson(ResponseResult.success(chatRoomPage.getRecords(), chatRoomPage.getTotal()));
     }
 
-    @ApiOperation(value="搜索聊天室", notes="搜索聊天室")
+    @ApiOperation(value="加入聊天室", notes="加入聊天室")
     @PutMapping("/room/{roomUid}/join")
     public String joinRoom(HttpServletRequest httpServletRequest, @PathVariable("roomUid") String roomUid) {
         String userUid = getUserUid(httpServletRequest);

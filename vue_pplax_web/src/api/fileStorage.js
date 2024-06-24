@@ -163,3 +163,18 @@ export function sayImageUpload(param) {
     data: param
   })
 }
+
+/**
+ * 聊天室头像上传
+ * @param param
+ * @returns {*}
+ */
+export function chatRoomAvatarUpload(param) {
+
+  return service({
+    url: '/file/chatRoom/avatar',
+    method: 'POST',
+    headers:{'Content-Type': 'multipart/form-data'},
+    data: param
+  })
+}

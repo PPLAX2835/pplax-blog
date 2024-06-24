@@ -308,7 +308,29 @@
           </el-row>
         </el-tab-pane>
         <el-tab-pane label="创建群聊">
-
+          <el-form :rules="newChatRoomRules" ref="dataForm" :model="newChatRoomForm">
+            <el-form-item prop="avatarUid" label="群聊头像" >
+              <el-upload
+                  class="avatar-uploader"
+                  :show-file-list="false"
+                  ref="upload"
+                  name="filedatas"
+                  action=""
+                  :http-request="uploadChatRoomAvatar"
+                  multiple
+              >
+                <el-avatar
+                    v-if="chatRoomAvatarUrl"
+                    :src="chatRoomAvatarUrl"
+                />
+                <i v-else class="el-icon-plus avatar-img-icon"></i>
+              </el-upload>
+            </el-form-item>
+            <el-form-item prop="name" label="群聊名">
+              <el-input v-model="newChatRoomForm.name" autocomplete="off"></el-input>
+            </el-form-item>
+          </el-form>
+          <el-button type="primary" @click="handleAddChatRoom">确定</el-button>
         </el-tab-pane>
       </el-tabs>
     </el-dialog>
@@ -318,6 +340,8 @@
 </template>
 
 <script>
+import {avatarUpload, chatRoomAvatarUpload} from "@/api/fileStorage";
+
 let socket;
 import { imageUpload, withdraw, addRoom } from '@/api/im'
 import {
@@ -326,7 +350,7 @@ import {
   listChatMessage,
   addChatMessage,
   read,
-  searchChatRoomList, joinChatRoom
+  searchChatRoomList, joinChatRoom, createChatRoom
 } from "@/api/message";
 import { parseTime } from "@/utils";
 import { EStatus } from "@/base/EStatus";
@@ -369,6 +393,17 @@ export default {
         pageSize: 5,
         keyword: ''
       },
+      newChatRoomForm: {
+        name: '',
+        avatarUid: ''
+      },
+      newChatRoomRules: {
+          name: [
+            { required: true, message: '请输入分类名', trigger: 'blue' },
+            { min: 1, max: 15, message: '长度在1到15之间', trigger: 'change' }
+          ]
+      },
+      chatRoomAvatarUrl: '',
       searchedCharRoomList: [],
       onlineUserList: [],
 
@@ -876,6 +911,44 @@ export default {
         this.$toast.success("加入成功");
         this.open()
         this.dialogNewCharRoomVisible = false
+      })
+    },
+
+    /**
+     * 上传聊天室头像
+     * @param param
+     */
+    uploadChatRoomAvatar: function (param) {
+      let file = param.file
+      // FormData 对象
+      var formData = new FormData()
+      // 文件对象
+      formData.append('file', file)
+      chatRoomAvatarUpload(formData).then(res => {
+        this.newChatRoomForm.avatarUid = res.data.uid
+        this.chatRoomAvatarUrl = res.data.fileUrl
+      })
+    },
+
+    /**
+     * 添加新群聊
+     */
+    handleAddChatRoom: function () {
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+
+          createChatRoom(this.newChatRoomForm).then(res => {
+            this.$toast.success("创建成功");
+            this.name = ''
+            this.avatarUid = ''
+            this.open()
+            this.dialogNewCharRoomVisible = false
+          })
+
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
       })
     }
   }

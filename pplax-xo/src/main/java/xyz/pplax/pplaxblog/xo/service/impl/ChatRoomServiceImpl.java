@@ -116,6 +116,10 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         newMemberUids = StringUtils.removeStart(newMemberUids, ",");
         newMemberUids = StringUtils.removeEnd(newMemberUids, ",");
 
+        if (newMemberUids.split(",").length > 50) {
+            return false;
+        }
+
         chatRoom.setMemberUids(newMemberUids);
 
         return updateById(chatRoom);

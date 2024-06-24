@@ -545,6 +545,22 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         return blog;
     }
 
+    /**
+     * 用户进行博客编辑操作时需要避免非自己的博客修改成功的情况
+     * @param userUid
+     * @param blogEditDto
+     * @return
+     */
+    @Override
+    public Boolean userUpdateById(String userUid, BlogEditDto blogEditDto) {
+        Blog blog = getById(blogEditDto.getUid());
+        if (blog == null || !blog.getUserUid().equals(userUid)) {
+            return false;
+        }
+
+        return updateById(blogEditDto);
+    }
+
     @Override
     @Transactional
     public Boolean updateById(BlogEditDto blogEditDto) {

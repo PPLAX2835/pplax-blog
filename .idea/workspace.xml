@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修改前台编辑博客时重复点击保存草稿或提交审核会多次添加的问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/blog/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/blog/Edit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -258,11 +261,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.serve" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.serve" />
+        <item itemvalue="Spring Boot.AdminApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -412,14 +415,7 @@
       <workItem from="1718432802060" duration="874000" />
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
-      <workItem from="1719190991961" duration="6413000" />
-    </task>
-    <task id="LOCAL-00400" summary="整理个人信息相关接口">
-      <created>1713348903746</created>
-      <option name="number" value="00400" />
-      <option name="presentableId" value="LOCAL-00400" />
-      <option name="project" value="LOCAL" />
-      <updated>1713348903746</updated>
+      <workItem from="1719190991961" duration="7555000" />
     </task>
     <task id="LOCAL-00401" summary="完成博客编辑功能">
       <created>1713398370487</created>
@@ -757,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719202832416</updated>
     </task>
-    <option name="localTasksCounter" value="449" />
+    <task id="LOCAL-00449" summary="修改前台编辑博客时重复点击保存草稿或提交审核会多次添加的问题">
+      <created>1719203155863</created>
+      <option name="number" value="00449" />
+      <option name="presentableId" value="LOCAL-00449" />
+      <option name="project" value="LOCAL" />
+      <updated>1719203155863</updated>
+    </task>
+    <option name="localTasksCounter" value="450" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -792,7 +795,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整siteSetting相关方法" />
     <MESSAGE value="调整文件处理逻辑，取消注入配置的方式，这样就能在修改配置后动态切换了" />
     <MESSAGE value="后台 站点设置增加储存选项" />
     <MESSAGE value="整合七牛云" />
@@ -817,7 +819,8 @@
     <MESSAGE value="说说以及其评论现在按时间顺序排序" />
     <MESSAGE value="修改评论量和点赞量显示反过来的问题；前台博客列表显示收藏量" />
     <MESSAGE value="更换天气组件，和风天气不能用了" />
-    <option name="LAST_COMMIT_MESSAGE" value="更换天气组件，和风天气不能用了" />
+    <MESSAGE value="修改前台编辑博客时重复点击保存草稿或提交审核会多次添加的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改前台编辑博客时重复点击保存草稿或提交审核会多次添加的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

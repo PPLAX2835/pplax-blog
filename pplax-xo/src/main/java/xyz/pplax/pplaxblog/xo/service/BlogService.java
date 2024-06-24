@@ -34,6 +34,8 @@ public interface BlogService extends SuperService<Blog> {
 
     Boolean updateById(BlogEditDto blogEditDto);
 
+    Boolean userUpdateById(String userUid, BlogEditDto blogEditDto);
+
     Boolean promote(String blogUid);
 
     Boolean promoteCancel(String blogUid);

@@ -183,9 +183,10 @@ public class BlogController extends SuperController {
 
     @ApiOperation(value="编辑博客", notes="编辑博客")
     @PutMapping("/{blogUid}")
-    public String updateBlog(@PathVariable("blogUid") String blogUid, @RequestBody @Validated(value = {Update.class}) BlogEditDto blogEditDto) {
+    public String updateBlog(HttpServletRequest httpServletRequest, @PathVariable("blogUid") String blogUid, @RequestBody @Validated(value = {Update.class}) BlogEditDto blogEditDto) {
+        String userUid = getUserUid(httpServletRequest);
         blogEditDto.setUid(blogUid);
-        Boolean res = blogService.updateById(blogEditDto);
+        Boolean res = blogService.userUpdateById(userUid, blogEditDto);
 
         if (res) {
             return success();

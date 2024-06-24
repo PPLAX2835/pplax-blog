@@ -432,9 +432,8 @@ export default {
 
           if (this.blogUid) {
             updateBlog(this.blogUid, this.form).then(res => {
-              this.blogUid = res.data.uid
               this.$toast.success("已保存")
-              this.fetchBlogList()
+              this.blogUid = res.data.uid
             }).catch(err => {
               console.error(err)
             })
@@ -444,8 +443,6 @@ export default {
 
               this.blogUid = res.data.uid
               this.isEditForm = true;
-
-              this.fetchBlogList()
             })
 
           }

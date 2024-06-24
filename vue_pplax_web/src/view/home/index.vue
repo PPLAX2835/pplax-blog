@@ -206,22 +206,6 @@
 
         <!-- 右侧内容 -->
         <div class="rightBox">
-          <!--                    <el-card class="box-card" style="perspective: 1000px;position: relative;height: 120px;">-->
-          <!--                        <div class="front">-->
-          <!--                            <img style="width: 100%;" src="https://img.shiyit.com/1.jpg" alt="">-->
-          <!--                        </div>-->
-          <!--                        <div class="back">-->
-          <!--                            <div style="width: 50%;">-->
-          <!--                                <h2>-->
-          <!--                                    扫一扫-->
-          <!--                                </h2>-->
-          <!--                                <span style="margin-left: 20px;">-->
-          <!--                                    体验小程序-->
-          <!--                                </span>-->
-          <!--                            </div>-->
-          <!--                            <img src="https://img.shiyit.com/20231117_1700185199582.jpg" alt="">-->
-          <!--                        </div>-->
-          <!--                    </el-card>-->
           <!-- 推荐文章 -->
           <el-card class="box-card recomArticle" v-if="newBlogList.length">
             <div class="clearfix">
@@ -250,93 +234,12 @@
                       {{ item.title }}
                     </router-link>
 
-                    <span class="time">{{ item.createTime }}</span>
+                    <span class="time">{{ timeFormat(item.createTime) }}</span>
                   </p>
                 </div>
               </li>
             </ul>
           </el-card>
-
-          <!--                    &lt;!&ndash; 关注我 &ndash;&gt;-->
-          <!--                    <el-card class="box-card guanzhu">-->
-          <!--                        <div class="clearfix">-->
-          <!--                            <span class="card-title">关注我</span>-->
-          <!--                        </div>-->
-          <!--                        <ul class="guanzhuList">-->
-          <!--                            <li v-show="isShow(2)">-->
-          <!--                                <div class="guanzhu-item qq">-->
-          <!--                                    <svg-icon icon-class="qq" />-->
-          <!--                                    <a class="hand-style"-->
-          <!--                                        :href="'//wpa.qq.com/msgrd?v=3&amp;uin=' + $store.state.webSiteInfo.qqNumber + '&amp;site=qq&amp;menu=yes'"-->
-          <!--                                        target="_blank">-->
-          <!--                                        {{ $store.state.webSiteInfo.qqNumber }}-->
-          <!--                                    </a>-->
-          <!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.qqNumber)"-->
-          <!--                                        class="copyBtn name hand-style">-->
-          <!--                                        QQ号-->
-          <!--                                    </span>-->
-          <!--                                </div>-->
-          <!--                            </li>-->
-          <!--                            <li v-show="isShow(6)">-->
-          <!--                                <div class="guanzhu-item qqgroup">-->
-          <!--                                    <svg-icon icon-class="qqgroup" />-->
-          <!--                                    <a class="hand-style" href="javascript:;">-->
-          <!--                                        {{ $store.state.webSiteInfo.qqGroup }}-->
-          <!--                                    </a>-->
-          <!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.qqGroup)"-->
-          <!--                                        class="copyBtn name hand-style">-->
-          <!--                                        QQ群-->
-          <!--                                    </span>-->
-          <!--                                </div>-->
-          <!--                            </li>-->
-          <!--                            <li v-show="isShow(3)">-->
-          <!--                                <div class="guanzhu-item github">-->
-          <!--                                    <svg-icon icon-class="github" />-->
-          <!--                                    <a class="hand-style" :href="$store.state.webSiteInfo.github" target="_blank">-->
-          <!--                                        {{ $store.state.webSiteInfo.github }}-->
-          <!--                                    </a>-->
-          <!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.github)"-->
-          <!--                                        class="copyBtn name hand-style">-->
-          <!--                                        github-->
-          <!--                                    </span>-->
-          <!--                                </div>-->
-          <!--                            </li>-->
-          <!--                            <li v-show="isShow(4)">-->
-          <!--                                <div class="guanzhu-item gitee">-->
-          <!--                                    <svg-icon icon-class="gitee" />-->
-          <!--                                    <a class="hand-style" :href="$store.state.webSiteInfo.gitee" target="_blank">-->
-          <!--                                        {{ $store.state.webSiteInfo.gitee }}-->
-          <!--                                    </a>-->
-          <!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.gitee)"-->
-          <!--                                        class="copyBtn name hand-style">-->
-          <!--                                        gitee-->
-          <!--                                    </span>-->
-          <!--                                </div>-->
-          <!--                            </li>-->
-          <!--                            <li v-show="isShow(1)">-->
-          <!--                                <div class="guanzhu-item email">-->
-          <!--                                    <svg-icon icon-class="email" />-->
-          <!--                                    <a class="hand-style" :href="'mailto:' + $store.state.webSiteInfo.email" target="_blank"-->
-          <!--                                        title="邮箱">-->
-          <!--                                        {{ $store.state.webSiteInfo.email }}-->
-          <!--                                    </a>-->
-          <!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.email)"-->
-          <!--                                        class="copyBtn name hand-style">-->
-          <!--                                        邮箱-->
-          <!--                                    </span>-->
-          <!--                                </div>-->
-          <!--                            </li>-->
-          <!--                            <li v-show="isShow(5)">-->
-          <!--                                <div class="guanzhu-item wechat">-->
-          <!--                                    <svg-icon icon-class="wechat" /> {{ $store.state.webSiteInfo.wechat }}-->
-          <!--                                    <span title="点击复制" @click="copy($store.state.webSiteInfo.wechat)"-->
-          <!--                                        class="copyBtn name hand-style">-->
-          <!--                                        微信-->
-          <!--                                    </span>-->
-          <!--                                </div>-->
-          <!--                            </li>-->
-          <!--                        </ul>-->
-          <!--                    </el-card>-->
 
           <!-- 标签墙 -->
           <el-card class="box-card tag_container">
@@ -362,9 +265,9 @@
           <!-- 天气组件 -->
           <el-card class="box-card weather">
             <div class="clearfix">
-              <span class="card-title"> 今日天气</span>
+              <span class="card-title">今日天气</span>
             </div>
-            <div id="he-plugin-standard"></div>
+            <div id="ww_a6c9996f8800c" v='1.3' loc='auto' a='{"t":"horizontal","lang":"zh","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/zh/" id="ww_a6c9996f8800c_u" target="_blank">天气插件</a></div>
           </el-card>
         </div>
       </div>
@@ -373,6 +276,7 @@
 </template>
 
 <script>
+import { parseTime } from "@/utils";
 import { fetchBlogSortList } from "@/api/blogSort";
 import { fetchBlogList } from "@/api/blog";
 import { fetchHomeData } from "@/api/home";
@@ -467,19 +371,8 @@ export default {
       })
     },
     insertWeather() {
-      window.WIDGET = {
-        "CONFIG": {
-          "layout": "2",
-          "width": 230,
-          "height": 270,
-          "background": "2",
-          "dataColor": "000000",
-          "borderRadius": "5",
-          "key": "632bf35b75f643fda4f7154697df9f47"
-        }
-      }
       const script = document.createElement('script')
-      script.src = 'https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0'
+      script.src = 'https://app2.weatherwidget.org/js/?id=ww_a6c9996f8800c'
       document.body.appendChild(script)
     },
     handleClike(uid, path) {
@@ -1169,8 +1062,8 @@ export default {
         }
 
         .weather {
-          /deep/ #he-plugin-standard {
-            width: 100% !important;
+          /deep/ #ww_a6c9996f8800c {
+            width: 250px !important;
             background-color: var(--background-color) !important;
 
             span,

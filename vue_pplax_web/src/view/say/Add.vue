@@ -41,8 +41,7 @@
                 <el-button
                     @click="fetchAddress"
                     icon="el-icon-location-outline"
-                >{{ form.address }}</el-button
-                >
+                >{{ form.address }}</el-button>
               </el-row>
             </el-form-item>
             <el-form-item label="开放查看" prop="isPublic">
@@ -83,7 +82,9 @@ export default {
       sayImages: [],
       form: {
         imageUids: '',
-        isPublic: "1"
+        isPublic: '',
+        address: '',
+        content: ''
       },
       rules: {
         content: [
@@ -228,7 +229,7 @@ export default {
     }
 
     .say-right {
-      width: 35%;
+      width: 50%;
       height: 100%;
       display: flex;
       flex-direction: column;

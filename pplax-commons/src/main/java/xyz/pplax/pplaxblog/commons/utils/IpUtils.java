@@ -78,6 +78,7 @@ public class IpUtils {
      * @return
      */
     public static String getCityInfo(String ip) {
+        System.out.println(ip);
         try {
             // 结果的固定格式 国家|区域|省份|城市|ISP 缺省补0
             return searcher.search(ip);

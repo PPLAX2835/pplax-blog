@@ -35,9 +35,9 @@ export function read(chatRoomUid) {
         method: 'get'
     })
 }
-export function getChatRoomList() {
+export function getChatRoomList(isOwner) {
     return request({
-        url: '/web/message/room/list',
+        url: '/web/message/room/list?isOwner=' + isOwner,
         method: 'get'
     })
 }
@@ -64,6 +64,13 @@ export function createChatRoom(param) {
     return request({
         url: '/web/message/room',
         method: 'post',
+        data: param
+    })
+}
+export function updateChatRoom(chatRoomUid, param) {
+    return request({
+        url: '/web/message/room/' + chatRoomUid,
+        method: 'put',
         data: param
     })
 }

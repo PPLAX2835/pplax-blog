@@ -1,9 +1,6 @@
 package xyz.pplax.pplaxblog.web.controller;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,9 +13,7 @@ import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
-import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
-import xyz.pplax.pplaxblog.feign.AdminFeignClient;
 import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.dto.edit.ChatRoomEditDto;
@@ -117,9 +112,9 @@ public class MessageController extends SuperController {
 
     @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
     @GetMapping("/room/list")
-    public String getRoomList(HttpServletRequest httpServletRequest) {
+    public String getRoomList(HttpServletRequest httpServletRequest, @RequestParam("isOwner") boolean isOwner) {
         String userUid = getUserUid(httpServletRequest);
-        return toJson(ResponseResult.success(chatRoomService.listByUserUid(userUid)));
+        return toJson(ResponseResult.success(chatRoomService.listByUserUid(userUid, isOwner)));
     }
 
     @ApiOperation(value="搜索聊天室", notes="搜索聊天室")
@@ -156,6 +151,32 @@ public class MessageController extends SuperController {
         String userUid = getUserUid(httpServletRequest);
 
         Boolean res = chatRoomService.exitChatRoom(userUid, chatRoomUid);
+
+        if (res) {
+            return success();
+        }
+
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+    @ApiOperation(value="修改聊天室", notes="修改聊天室")
+    @PutMapping("/room/{chatRoomUid}")
+    public String updateChatRoom(
+            HttpServletRequest httpServletRequest,
+            @PathVariable("chatRoomUid") String chatRoomUid,
+            @RequestBody ChatRoomEditDto chatRoomEditDto
+    ) {
+        String userUid = getUserUid(httpServletRequest);
+
+        ChatRoom chatRoom = chatRoomService.getById(chatRoomUid);
+        if (chatRoom == null || !chatRoom.getOwnerUid().equals(userUid)) {
+            return toJson(ResponseResult.error(HttpStatus.BAD_REQUEST));
+        }
+
+        chatRoom.setName(chatRoomEditDto.getName());
+        chatRoom.setAvatarUid(chatRoomEditDto.getAvatarUid());
+
+        Boolean res = chatRoomService.updateById(chatRoom);
 
         if (res) {
             return success();

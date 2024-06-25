@@ -159,16 +159,22 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
     }
 
     @Override
-    public List<ChatRoom> listByUserUid(String userUid) {
+    public List<ChatRoom> listByUserUid(String userUid, Boolean isOwner) {
         PQueryWrapper<ChatRoom> chatRoomPQueryWrapper = new PQueryWrapper<>();
 
-        chatRoomPQueryWrapper
-                .and(
-                        QueryWrapper -> QueryWrapper
-                        .eq(ChatRoomSQLConstants.OWNER_UID, userUid)
-                        .or()
-                        .like(ChatRoomSQLConstants.MEMBER_UIDS, "%" + userUid + "%")
-                );
+        if (isOwner) {
+            // 如果只查询自己是群主的
+            chatRoomPQueryWrapper.eq(ChatRoomSQLConstants.OWNER_UID, userUid);
+        } else {
+            // 查询所有自己所在的群
+            chatRoomPQueryWrapper
+                    .and(
+                            QueryWrapper -> QueryWrapper
+                                    .eq(ChatRoomSQLConstants.OWNER_UID, userUid)
+                                    .or()
+                                    .like(ChatRoomSQLConstants.MEMBER_UIDS, "%" + userUid + "%")
+                    );
+        }
 
         List<ChatRoom> chatRoomList = list(chatRoomPQueryWrapper);
 

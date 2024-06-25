@@ -308,7 +308,10 @@
           </el-row>
         </el-tab-pane>
         <el-tab-pane label="创建群聊">
-          <el-form :rules="newChatRoomRules" ref="dataForm" :model="newChatRoomForm">
+          <div slot="label" @click="editChatRoomForm = {name: '', avatarUid: ''}; chatRoomAvatarUrl = ''">
+            创建群聊
+          </div>
+          <el-form :rules="editChatRoomRules" ref="dataForm" :model="editChatRoomForm">
             <el-form-item prop="avatarUid" label="群聊头像" >
               <el-upload
                   class="avatar-uploader"
@@ -327,11 +330,84 @@
               </el-upload>
             </el-form-item>
             <el-form-item prop="name" label="群聊名">
-              <el-input v-model="newChatRoomForm.name" autocomplete="off"></el-input>
+              <el-input v-model="editChatRoomForm.name" autocomplete="off"></el-input>
             </el-form-item>
           </el-form>
           <el-button type="primary" @click="handleAddChatRoom">确定</el-button>
         </el-tab-pane>
+
+        <el-tab-pane label="我的群聊">
+          <div slot="label" @click="fetchMyChatRoomList">
+            我的群聊
+          </div>
+          <el-col :span="14">
+            <el-row
+                v-for="(item) in myChatRoomList"
+            >
+              <el-divider></el-divider>
+              <el-col :span="4">
+                <el-avatar
+                    :src="item.avatar !== undefined ? item.avatar.fileUrl : ''"
+                    alt=""
+                />
+              </el-col>
+              <el-col :span="10">
+                <h3>{{ item.name }}</h3>
+              </el-col>
+              <el-col :span="4">
+                <span v-if="item.type === 1">
+                  共{{ item.memberUids.split(',').length }}人
+                </span>
+                <span v-else-if="item.type === 0">
+                  公共群聊
+                </span>
+              </el-col>
+              <el-col :span="4">
+                <el-button @click="handleViewChatRoom(item)">
+                  查看
+                </el-button>
+              </el-col>
+            </el-row>
+          </el-col>
+
+          <el-col :span="2">
+            <el-divider direction="vertical"></el-divider>
+          </el-col>
+
+          <el-col :span="8">
+            <el-row>
+              <el-form :rules="editChatRoomRules" ref="dataForm" :model="editChatRoomForm">
+                <el-form-item prop="avatarUid" label="群聊头像" >
+                  <el-upload
+                      class="avatar-uploader"
+                      :show-file-list="false"
+                      ref="upload"
+                      name="filedatas"
+                      action=""
+                      :http-request="uploadChatRoomAvatar"
+                      multiple
+                  >
+                    <el-avatar
+                        v-if="chatRoomAvatarUrl"
+                        :src="chatRoomAvatarUrl"
+                    />
+                    <i v-else class="el-icon-plus avatar-img-icon"></i>
+                  </el-upload>
+                </el-form-item>
+                <el-form-item prop="name" label="群聊名">
+                  <el-input v-model="editChatRoomForm.name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-button v-if="this.editChatRoomForm.uid" type="primary" size="small" @click="handleUpdateChatRoom">保存</el-button>
+              </el-form>
+            </el-row>
+            <el-row>
+              <!-- 这里可以加上群成员管理 -->
+
+
+            </el-row>
+          </el-col>
+        </el-tab-pane>
+
       </el-tabs>
     </el-dialog>
 
@@ -350,7 +426,7 @@ import {
   listChatMessage,
   addChatMessage,
   read,
-  searchChatRoomList, joinChatRoom, createChatRoom
+  searchChatRoomList, joinChatRoom, createChatRoom, updateChatRoom
 } from "@/api/message";
 import { parseTime } from "@/utils";
 import { EStatus } from "@/base/EStatus";
@@ -393,11 +469,12 @@ export default {
         pageSize: 5,
         keyword: ''
       },
-      newChatRoomForm: {
+      editChatRoomForm: {
+        uid: '',
         name: '',
         avatarUid: ''
       },
-      newChatRoomRules: {
+      editChatRoomRules: {
           name: [
             { required: true, message: '请输入分类名', trigger: 'blue' },
             { min: 1, max: 15, message: '长度在1到15之间', trigger: 'change' }
@@ -405,7 +482,7 @@ export default {
       },
       chatRoomAvatarUrl: '',
       searchedCharRoomList: [],
-      onlineUserList: [],
+      myChatRoomList: [],
 
       roomList: [
       ],
@@ -886,7 +963,7 @@ export default {
     open() {
       console.log("websocket已打开");
       //获取房间列表
-      getChatRoomList().then(res => {
+      getChatRoomList(false).then(res => {
         this.roomList = res.data
       })
       //连接成功后获取历史聊天记录
@@ -925,7 +1002,7 @@ export default {
       // 文件对象
       formData.append('file', file)
       chatRoomAvatarUpload(formData).then(res => {
-        this.newChatRoomForm.avatarUid = res.data.uid
+        this.editChatRoomForm.avatarUid = res.data.uid
         this.chatRoomAvatarUrl = res.data.fileUrl
       })
     },
@@ -937,10 +1014,11 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
 
-          createChatRoom(this.newChatRoomForm).then(res => {
+          createChatRoom(this.editChatRoomForm).then(res => {
             this.$toast.success("创建成功");
             this.name = ''
             this.avatarUid = ''
+            this.chatRoomAvatarUrl = ''
             this.open()
             this.dialogNewCharRoomVisible = false
           })
@@ -950,6 +1028,51 @@ export default {
           return false;
         }
       })
+    },
+
+    /**
+     * 更新群聊
+     */
+    handleUpdateChatRoom: function () {
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+
+          updateChatRoom(this.editChatRoomForm.uid, this.editChatRoomForm).then(res => {
+            this.$toast.success("修改成功");
+            this.editChatRoomForm.name = ''
+            this.editChatRoomForm.avatarUid = ''
+            this.editChatRoomForm.uid = ''
+            this.chatRoomAvatarUrl = ''
+            this.open()
+            this.dialogNewCharRoomVisible = false
+
+            this.fetchMyChatRoomList()
+          })
+
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      })
+    },
+
+    /**
+     * 获取我是群主的群聊
+     */
+    fetchMyChatRoomList: function () {
+      getChatRoomList(true).then(res => {
+        this.myChatRoomList = res.data
+      })
+    },
+
+    /**
+     * 处理查看该群聊
+     */
+    handleViewChatRoom: function (chatRoom) {
+      this.editChatRoomForm.uid = chatRoom.uid
+      this.editChatRoomForm.name = chatRoom.name
+      this.editChatRoomForm.avatarUid = chatRoom.avatarUid
+      this.chatRoomAvatarUrl = chatRoom.avatar ? chatRoom.avatar.fileUrl : ''
     }
   }
 }

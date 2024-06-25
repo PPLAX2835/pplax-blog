@@ -109,7 +109,7 @@
           </div>
         </div>
         <!-- 输入框 -->
-        <div class="bottom">
+        <div v-if="chatRoomUid" class="bottom">
           <!-- 输入选择 如表情、图片等 -->
           <div class="toolbars">
             <div>
@@ -143,7 +143,7 @@
               @input="updateContent"
               contenteditable="true"
               @paste="optimizePasteEvent"
-              @keydown="handkeyEnter"
+              @keydown="handleKeyEnter"
               data-placeholder="说点什么呢"
           ></div>
           <el-button class="btn" @click="send($refs.inputRef.innerHTML, 1)"
@@ -189,13 +189,13 @@
               <i class="el-icon-caret-right" style=""></i>
 
               <ul class="sousuomenu">
-                <li @click="handleSearch(0)">
+                <li @click="handleSearchByMessage(0)">
                   <div class="menuitem hand-style">百度搜索</div>
                 </li>
-                <li @click="handleSearch(1)">
+                <li @click="handleSearchByMessage(1)">
                   <div class="menuitem hand-style">Gitee搜索</div>
                 </li>
-                <li @click="handleSearch(2)">
+                <li @click="handleSearchByMessage(2)">
                   <div class="menuitem hand-style">Github搜索</div>
                 </li>
               </ul>
@@ -219,7 +219,7 @@
               v-for="(item, index) in roomList"
               :key="index"
           >
-            <div class="room-list-item" @click="selectUserIm(item, index)">
+            <div class="room-list-item" @click="selectChatRoom(item, index)">
               <div class="room-list-item">
                 <el-avatar
                     class="img"
@@ -462,7 +462,7 @@ export default {
       textImg: null,
       selectIndex: null,
       title: "PPLAX blog",
-      lastIndex: null,
+      lastSelectedRoomIndex: null,
       userId: this.$route.query.userId,
       chatRoomUid: null,
       pageData: {
@@ -560,6 +560,10 @@ export default {
     getWebSiteInfoValue(key) {
       return getWebSiteInfoValue(this.$store.state.webSiteInfo, key)
     },
+    /**
+     * 输入事件
+     * @param event
+     */
     updateContent(event) {
       let selection = window.getSelection()
       this.lastEditRange = selection.getRangeAt(0);
@@ -570,8 +574,11 @@ export default {
         return;
       }
     },
+    /**
+     * 监听粘贴内容到输入框事件，对内容进行处理 处理掉复制的样式标签，只拿取文本部分
+     * @param e
+     */
     optimizePasteEvent(e) {
-      // 监听粘贴内容到输入框事件，对内容进行处理 处理掉复制的样式标签，只拿取文本部分
       e.stopPropagation()
       e.preventDefault()
       let text = '', event = (e.originalEvent || e)
@@ -586,11 +593,19 @@ export default {
         document.execCommand('paste', false, text)
       }
     },
-    handleSearch(type) {
+    /**
+     * 处理根据聊天记录搜索
+     * @param type
+     */
+    handleSearchByMessage(type) {
       let url = this.searchUrl[type] + this.message.content.trim()
       window.open(url, '_blank')
     },
-
+    /**
+     * 退出/删除聊天室
+     * @param id
+     * @param index
+     */
     closeRoom(id, index) {
       this.$confirm('此操作将退出该群聊，如果您是群主，将直接解散群聊，是否确定?', '提示', {
         confirmButtonText: '确定',
@@ -607,10 +622,11 @@ export default {
         this.$toast.info("已取消删除");
       });
     },
-
-    //发送图片
+    /**
+     * 发送图片
+     * @param param
+     */
     uploadSectionFile: function (param) {
-
       var formData = new FormData()
       if (!param) {
         var dialogImg = document.getElementById('dialogImg');
@@ -639,7 +655,6 @@ export default {
         this.files = param.file
         formData.append('file', this.files)
       }
-
       imageUpload(formData).then(res => {
         //上传之后发送消息
         let content = `<img src="${res.data.fileUrl}" alt="" class="messageImg" style="width: 150px;height: 150px;">`
@@ -650,29 +665,36 @@ export default {
 
       })
     },
-    //截取地址
+    /**
+     * 截取ip地址
+     * @param address
+     * @returns {*}
+     */
     splitIpAddress(address) {
       let splitedAddress = address.split("|")
       return splitedAddress[splitedAddress.length - 1]
     },
-    //选择用户单聊
-    selectUserIm(item, index) {
-
-      if (this.lastIndex != null) {
-        this.$refs.room[this.lastIndex].className = "onlineLi"
+    /**
+     * 选择用户单聊
+     * @param item
+     * @param index
+     */
+    selectChatRoom(item, index) {
+      if (this.lastSelectedRoomIndex != null) {
+        // 将上一次选择的房间选中状态样式取消
+        this.$refs.room[this.lastSelectedRoomIndex].className = "onlineLi"
       }
       this.$refs.room[0].className = "onlineLi"
       this.$refs.room[index].className += " active"
-      this.lastIndex = index
-
+      this.lastSelectedRoomIndex = index    // 记录本次选中的房间index
 
       this.pageData.currentPage = 1
       this.chatRoomUid = item.uid
 
-      //为空则是群聊
       this.title = item.name
       this.messageList = []
       this.selectUserOnline = item
+      // 获取聊天记录
       listChatMessage(this.chatRoomUid, this.pageData).then(res => {
         let arr = res.data
         for (let i = arr.length - 1; i >= 0; i--) {
@@ -699,8 +721,9 @@ export default {
       this.message = item
       this.message.index = index
     },
-
-    //撤回
+    /**
+     * 撤回
+     */
     withdraw() {
       console.log(this.message)
       withdraw(this.message.chatRoomUid, this.message.uid).then(re => {
@@ -732,12 +755,16 @@ export default {
         this.closeRightClickMenu()
       })
     },
-    //翻译
+    /**
+     * 翻译
+     */
     translate() {
       window.open("https://fanyi.baidu.com/?aldtype=16047#zh/en/" + this.message.content, '_blank')
       this.closeRightClickMenu()
     },
-    //复制
+    /**
+     * 复制
+     */
     clipboard() {
       const clipboard = new this.Clipboard('.copyBtn', {
         text: () => this.message.content
@@ -752,7 +779,9 @@ export default {
         this.closeRightClickMenu()
       })
     },
-    //关闭菜单
+    /**
+     * 关闭菜单
+     */
     closeRightClickMenu() {
       this.rightClickMenuVisible = false; //关闭菜单
     },
@@ -764,7 +793,9 @@ export default {
     timeFormat(time) {
       return parseTime(time);
     },
-    //加载更多消息
+    /**
+     * 加载更多消息
+     */
     handleMore() {
       this.pageData.currentPage++;
       this.isBackTop = true
@@ -788,20 +819,11 @@ export default {
         this.isLoding = false
       })
     },
-    //获取群聊历史记录
-    getHistoryList() {
-      if (this.chatRoomUid) {
-        listChatMessage(this.chatRoomUid, this.pageData).then(res => {
-          let arr = res.data.records
-          for (let i = arr.length - 1; i >= 0; i--) {
-            this.messageList.push(arr[i])
-          }
-          this.totalPage = res.data.pages
-        })
-      }
-    },
-    //Enter事件
-    handkeyEnter(event) {
+    /**
+     * Enter事件
+     * @param event
+     */
+    handleKeyEnter(event) {
       // 判断是否按下了Ctrl+Enter键
       if (event.ctrlKey && event.keyCode === 13) {
         // 在光标位置插入换行符
@@ -819,31 +841,39 @@ export default {
         // 阻止默认的换行行为
         return;
       }
-      if (event.keyCode == 13) {
+      if (event.keyCode === 13) {
         // 阻止默认的换行行为
         event.preventDefault();
         this.send(this.$refs.inputRef.innerHTML)
       }
     },
-    //打开表情框
+    /**
+     * 打开表情框
+     */
     handleOpen() {
       this.emojiShow = !this.emojiShow
     },
-    //关闭表情框
+    /**
+     * 关闭表情框
+     * @param e
+     */
     handleClose(e) {
-      if (e.target.className == "messageImg") {
+      if (e.target.className === "messageImg") {
         this.images = {
           urls: e.target.currentSrc,
           time: new Date().getTime()
         }
       }
-      if (e.target.className != "el-radio-button__orig-radio" && e.target.className != "el-radio-button__inner"
-          && e.target.className != "el-upload__input" && e.target.className != "el-icon-plus avatar-uploader-icon") {
+      if (e.target.className !== "el-radio-button__orig-radio" && e.target.className !== "el-radio-button__inner"
+          && e.target.className !== "el-upload__input" && e.target.className !== "el-icon-plus avatar-uploader-icon") {
         this.emojiShow = false
       }
 
     },
-    //添加表情
+    /**
+     * 添加表情
+     * @param value
+     */
     handleChooseEmoji(value) {
       // 创建一个img标签（表情）
       let img = document.createElement('img');
@@ -880,10 +910,13 @@ export default {
         selection.selectAllChildren(edit)
         // 合并到最后面，即实现了添加一个表情后，把光标移到最后面
         selection.collapseToEnd()
-        return
       }
     },
-    //发送消息
+    /**
+     * 发送消息
+     * @param content
+     * @param type
+     */
     send(content, type) {
 
       if (typeof (WebSocket) == "undefined") {
@@ -992,15 +1025,11 @@ export default {
     },
 
     open() {
-      console.log("websocket已打开");
       //获取房间列表
       getChatRoomList(false).then(res => {
         this.roomList = res.data
       })
-      //连接成功后获取历史聊天记录
-      this.getHistoryList()
     },
-
 
     /**
      * 处理查找聊天室

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="现在可以创建群聊了">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" afterDir="false" />
@@ -263,10 +263,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.dev" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -417,14 +417,7 @@
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
       <workItem from="1719190991961" duration="29011000" />
-      <workItem from="1719272302227" duration="3959000" />
-    </task>
-    <task id="LOCAL-00407" summary="发送的留言和聊天消息交给消费者处理">
-      <created>1713599593815</created>
-      <option name="number" value="00407" />
-      <option name="presentableId" value="LOCAL-00407" />
-      <option name="project" value="LOCAL" />
-      <updated>1713599593816</updated>
+      <workItem from="1719272302227" duration="11473000" />
     </task>
     <task id="LOCAL-00408" summary="实现注册及发送邮件功能">
       <created>1713664685106</created>
@@ -762,7 +755,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719238651418</updated>
     </task>
-    <option name="localTasksCounter" value="456" />
+    <task id="LOCAL-00456" summary="现在可以修改群聊了">
+      <created>1719276372277</created>
+      <option name="number" value="00456" />
+      <option name="presentableId" value="LOCAL-00456" />
+      <option name="project" value="LOCAL" />
+      <updated>1719276372277</updated>
+    </task>
+    <option name="localTasksCounter" value="457" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -797,7 +797,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="整理blog服务类的方法名以及部分逻辑" />
     <MESSAGE value="整理blogSort服务类的方法名" />
     <MESSAGE value="修改siteSettingService中map方法在redis中获取对象时反序列化异常的问题" />
     <MESSAGE value="设置默认角色" />
@@ -822,7 +821,8 @@
     <MESSAGE value="前台删除群聊修改为退出群聊" />
     <MESSAGE value="实现加入群聊操作" />
     <MESSAGE value="现在可以创建群聊了" />
-    <option name="LAST_COMMIT_MESSAGE" value="现在可以创建群聊了" />
+    <MESSAGE value="现在可以修改群聊了" />
+    <option name="LAST_COMMIT_MESSAGE" value="现在可以修改群聊了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

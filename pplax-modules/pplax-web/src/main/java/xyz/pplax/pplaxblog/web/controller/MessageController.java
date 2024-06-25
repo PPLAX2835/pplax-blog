@@ -185,6 +185,31 @@ public class MessageController extends SuperController {
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
+    @ApiOperation(value="获取成员列表", notes="获取成员列表")
+    @GetMapping("/room/{chatRoomUid}/member/list")
+    public String getChatRoomMemberList(
+            @PathVariable("chatRoomUid") String chatRoomUid
+    ) {
+        return success(chatRoomService.listChatRoomMember(chatRoomUid));
+    }
+
+    @ApiOperation(value="踢出群成员", notes="踢出群成员")
+    @DeleteMapping("/room/{chatRoomUid}/member/{memberUid}")
+    public String kickChatRoomMember(
+            HttpServletRequest httpServletRequest,
+            @PathVariable("chatRoomUid") String chatRoomUid,
+            @PathVariable("memberUid") String memberUid
+    ) {
+        String userUid = getUserUid(httpServletRequest);
+
+        Boolean res = chatRoomService.kickChatRoomMember(userUid, chatRoomUid, memberUid);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
     @ApiOperation(value = "获取聊天记录", httpMethod = "GET", response = ResponseResult.class, notes = "获取聊天记录")
     @GetMapping("/room/{chatRoomUid}/chat/list")
     public String getChatMessageList(

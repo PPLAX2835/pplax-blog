@@ -74,3 +74,15 @@ export function updateChatRoom(chatRoomUid, param) {
         data: param
     })
 }
+export function getChatRoomMemberList(chatRoomUid) {
+    return request({
+        url: '/web/message/room/' + chatRoomUid + '/member/list',
+        method: 'get'
+    })
+}
+export function kickChatRoomMember(chatRoomUid, memberUid) {
+    return request({
+        url: '/web/message/room/' + chatRoomUid + '/member/' + memberUid,
+        method: 'delete'
+    })
+}

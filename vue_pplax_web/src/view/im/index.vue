@@ -397,13 +397,22 @@
                 <el-form-item prop="name" label="群聊名">
                   <el-input v-model="editChatRoomForm.name" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-button v-if="this.editChatRoomForm.uid" type="primary" size="small" @click="handleUpdateChatRoom">保存</el-button>
+                <el-button v-if="editChatRoomForm.uid" type="primary" size="small" @click="handleUpdateChatRoom">保存</el-button>
               </el-form>
             </el-row>
             <el-row>
               <!-- 这里可以加上群成员管理 -->
-
-
+              <el-col v-for="member in chatRoomMemberList" :key="member.uid" :span="4" class="member-col">
+                <el-tooltip :content="member.userInfo.nickname + '(' + (member.uid === user.uid ? '群主' : '') + ')'">
+                  <a :href="'/user?userUid=' + member.uid">
+                    <el-avatar :src="member.userInfo.avatar ? member.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')"></el-avatar>
+                  </a>
+                </el-tooltip>
+                <span class="kick-member-span">
+                  <i v-if="member.uid !== user.uid" class="el-icon-close kick-member-icon" @click="handleKickChatRoomMember(editChatRoomForm.uid, member.uid)"></i>
+                  <svg-icon v-else icon-class="bozhu"></svg-icon>
+                </span>
+              </el-col>
             </el-row>
           </el-col>
         </el-tab-pane>
@@ -416,7 +425,7 @@
 </template>
 
 <script>
-import {avatarUpload, chatRoomAvatarUpload} from "@/api/fileStorage";
+import {chatRoomAvatarUpload} from "@/api/fileStorage";
 
 let socket;
 import { imageUpload, withdraw, addRoom } from '@/api/im'
@@ -426,9 +435,9 @@ import {
   listChatMessage,
   addChatMessage,
   read,
-  searchChatRoomList, joinChatRoom, createChatRoom, updateChatRoom
+  searchChatRoomList, joinChatRoom, createChatRoom, updateChatRoom, getChatRoomMemberList, kickChatRoomMember
 } from "@/api/message";
-import { parseTime } from "@/utils";
+import {getWebSiteInfoValue, parseTime} from "@/utils";
 import { EStatus } from "@/base/EStatus";
 import Emoji from '@/components/emoji'
 import imagePreview from '@/components/imagePreview'
@@ -483,6 +492,7 @@ export default {
       chatRoomAvatarUrl: '',
       searchedCharRoomList: [],
       myChatRoomList: [],
+      chatRoomMemberList: [],
 
       roomList: [
       ],
@@ -545,6 +555,14 @@ export default {
   },
   methods: {
 
+    /**
+     * 获得网站配置value
+     * @param key
+     * @returns {*|string}
+     */
+    getWebSiteInfoValue(key) {
+      return getWebSiteInfoValue(this.$store.state.webSiteInfo, key)
+    },
     updateContent(event) {
       let selection = window.getSelection()
       this.lastEditRange = selection.getRangeAt(0);
@@ -1073,6 +1091,36 @@ export default {
       this.editChatRoomForm.name = chatRoom.name
       this.editChatRoomForm.avatarUid = chatRoom.avatarUid
       this.chatRoomAvatarUrl = chatRoom.avatar ? chatRoom.avatar.fileUrl : ''
+
+      getChatRoomMemberList(chatRoom.uid).then(res => {
+        this.chatRoomMemberList = res.data
+      })
+    },
+
+    /**
+     * 将成员踢出群聊
+     */
+    handleKickChatRoomMember: function (chatRoomUid, memberUid) {
+      this.$confirm('此操作将会踢出该群成员，是否确定?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        lockScroll: false,
+        type: 'warning'
+      }).then(() => {
+        kickChatRoomMember(chatRoomUid, memberUid).then(res => {
+          this.$toast.info("已踢出该成员");
+          this.handleViewChatRoom({
+            uid: this.editChatRoomForm.uid,
+            name: this.editChatRoomForm.name,
+            avatarUid: this.editChatRoomForm.avatarUid,
+            avatar: {
+              fileUrl: this.chatRoomAvatarUrl
+            }
+          })
+        })
+      }).catch(() => {
+        this.$toast.info("已取消");
+      });
     }
   }
 }
@@ -1536,5 +1584,38 @@ export default {
       }
     }
   }
+}
+
+.member-col {
+  position: relative;
+}
+
+.kick-member-span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f6416c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.member-col:hover .kick-member-span {
+  opacity: 1;
+}
+
+.member-col:active .kick-member-span {
+  background-color: #999;
+}
+
+.kick-member-icon {
+  font-size: 12px;
+  color: #f8f3d4;
 }
 </style>

@@ -63,6 +63,35 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         return pageList;
     }
 
+    @Override
+    public Boolean kickChatRoomMember(String userUid, String chatRoomUid, String memberUid) {
+        ChatRoom chatRoom = getById(chatRoomUid);
+
+        // 如果不是群主就直接返回
+        if (!chatRoom.getOwnerUid().equals(userUid)) {
+            return false;
+        }
+
+        // 创建一个列表来存放保留的UID
+        String[] uidArray = chatRoom.getMemberUids().split(",");
+
+        // 使用StringBuilder来构建新的字符串
+        StringBuilder result = new StringBuilder();
+
+        for (String uid : uidArray) {
+            // 如果当前uid不是要移除的那个，才追加到结果中
+            if (!uid.equals(memberUid)) {
+                if (result.length() > 0) {
+                    result.append(",");
+                }
+                result.append(uid);
+            }
+        }
+        chatRoom.setMemberUids(result.toString());
+
+        return updateById(chatRoom);
+    }
+
     /**
      * 退出聊天室，如果是群主就直接解散
      * @param userUid
@@ -184,5 +213,30 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         }
 
         return chatRoomList;
+    }
+
+    /**
+     * 获取群成员列表
+     * @param chatRoomUid
+     * @return
+     */
+    @Override
+    public List<User> listChatRoomMember(String chatRoomUid) {
+        ChatRoom chatRoom = getById(chatRoomUid);
+
+        if (chatRoom != null && !StringUtils.isEmpty(chatRoom.getMemberUids())) {
+            String[] memberUids = chatRoom.getMemberUids().split(",");
+            List<User> memberList = userService.listByIds(Arrays.asList(memberUids));
+
+            // 封装用户信息
+            for (User user : memberList) {
+                user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
+                user.sensitiveDataRemove();
+            }
+
+            return memberList;
+        }
+
+        return null;
     }
 }

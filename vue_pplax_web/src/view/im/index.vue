@@ -423,12 +423,13 @@
 import {chatRoomAvatarUpload} from "@/api/fileStorage";
 
 let socket;
-import { imageUpload, withdraw, addRoom } from '@/api/im'
+import { imageUpload } from '@/api/im'
 import {
   getChatRoomList,
   deleteChatRoom,
   listChatMessage,
   addChatMessage,
+  withdraw,
   read,
   searchChatRoomList, joinChatRoom, createChatRoom, updateChatRoom, getChatRoomMemberList, kickChatRoomMember
 } from "@/api/message";
@@ -701,20 +702,13 @@ export default {
 
     //撤回
     withdraw() {
-      let message = {
-        code: this.selectUserOnline == null ? 2 : 1,
-        content: "消息已撤回",
-        fromUserId: this.message.fromUserId,
-        id: this.message.id,
-        index: this.message.index,
-        isRead: 0,
-        isWithdraw: 1,
-        toUserId: this.message.toUserId,
-        type: 1
-      }
-      // 将组装好的json发送给服务端，由服务端进行转发
-      withdraw(message).then(re => {
-
+      console.log(this.message)
+      withdraw(this.message.chatRoomUid, this.message.uid).then(re => {
+        for (let i = 0; i < this.messageList.length; i++) {
+          if (this.messageList[i].uid === this.message.uid) {
+            this.messageList[i].status = 13
+          }
+        }
       })
     },
     /**

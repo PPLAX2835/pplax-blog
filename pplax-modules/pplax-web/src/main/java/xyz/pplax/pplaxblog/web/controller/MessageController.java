@@ -237,6 +237,23 @@ public class MessageController extends SuperController {
         return success();
     }
 
+    @ApiOperation(value = "撤回消息", httpMethod = "DELETE", response = ResponseResult.class, notes = "撤回消息")
+    @DeleteMapping("/room/{chatRoomUid}/chat/{chatMessageUid}")
+    public String withdrawChatMessage(
+            HttpServletRequest httpServletRequest,
+            @PathVariable(value = "chatRoomUid") String chatRoomUid,
+            @PathVariable(value = "chatMessageUid") String chatMessageUid
+    ){
+        String userUid = getUserUid(httpServletRequest);
+
+        Boolean res = messageService.withdraw(userUid, chatRoomUid, chatMessageUid);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
     @ApiOperation(value = "添加聊天消息", httpMethod = "POST", response = ResponseResult.class, notes = "添加聊天消息")
     @PostMapping("/room/{chatRoomUid}/chat")
     public String addChatMessage(

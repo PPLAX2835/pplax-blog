@@ -21,6 +21,7 @@ import xyz.pplax.pplaxblog.xo.service.UserService;
 import xyz.pplax.pplaxblog.xo.service.UserInfoService;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -159,6 +160,29 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
         }
 
         return pageList;
+    }
+
+    @Override
+    public Boolean withdraw(String userUid, String chatRoomUid, String chatMessageUid) {
+        Message chatMessage = getById(chatMessageUid);
+        if (chatMessage == null || !chatMessage.getChatRoomUid().equals(chatRoomUid) || !chatMessage.getUserUid().equals(userUid)) {
+            return false;
+        }
+
+        // 检查是否超过两分钟
+        Date createTime = chatMessage.getCreateTime();
+        // 获取当前时间
+        Date now = new Date();
+        // 计算时间差（以毫秒为单位）
+        long differenceInMillis = now.getTime() - createTime.getTime();
+        // 两分钟等于120000毫秒
+        long twoMinutesInMillis = 2 * 60 * 1000;
+        if (differenceInMillis > twoMinutesInMillis) {
+            return false;
+        }
+
+        chatMessage.setStatus(EStatus.WITHDRAW.getStatus());
+        return updateById(chatMessage);
     }
 
     @Override

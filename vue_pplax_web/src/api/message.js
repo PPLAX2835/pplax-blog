@@ -86,3 +86,9 @@ export function kickChatRoomMember(chatRoomUid, memberUid) {
         method: 'delete'
     })
 }
+export function withdraw(chatRoomUid, chatMessageUid) {
+    return request({
+        url: '/web/message/room/' + chatRoomUid + '/chat/' + chatMessageUid,
+        method: 'delete'
+    })
+}

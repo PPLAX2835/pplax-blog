@@ -17,4 +17,6 @@ public interface MessageService extends SuperService<Message> {
     Page<Message> pageLeaveMessage(Long currentPage, Long pageSize);
 
     Boolean read(String userUid, String chatRoomUid);
+
+    Boolean withdraw(String userUid, String chatRoomUid, String chatMessageUid);
 }

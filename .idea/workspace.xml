@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ChatRoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -259,8 +262,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
       </list>
@@ -413,14 +416,7 @@
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
       <workItem from="1719190991961" duration="29011000" />
-      <workItem from="1719272302227" duration="13715000" />
-    </task>
-    <task id="LOCAL-00409" summary="忘记密码的重置密码功能实现了">
-      <created>1713689158412</created>
-      <option name="number" value="00409" />
-      <option name="presentableId" value="LOCAL-00409" />
-      <option name="project" value="LOCAL" />
-      <updated>1713689158413</updated>
+      <workItem from="1719272302227" duration="19450000" />
     </task>
     <task id="LOCAL-00410" summary="评论也交给消息队列了">
       <created>1713756942427</created>
@@ -758,7 +754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719293298543</updated>
     </task>
-    <option name="localTasksCounter" value="458" />
+    <task id="LOCAL-00458" summary="整理到右键菜单：调整变量名，修改显示问题">
+      <created>1719300745411</created>
+      <option name="number" value="00458" />
+      <option name="presentableId" value="LOCAL-00458" />
+      <option name="project" value="LOCAL" />
+      <updated>1719300745411</updated>
+    </task>
+    <option name="localTasksCounter" value="459" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -793,8 +796,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改siteSettingService中map方法在redis中获取对象时反序列化异常的问题" />
-    <MESSAGE value="设置默认角色" />
     <MESSAGE value="修改小bug" />
     <MESSAGE value="修复个人资料上传头像后不能正确显示的bug" />
     <MESSAGE value="修复编辑博客时上传的封面不能正常保存的问题" />
@@ -818,7 +819,9 @@
     <MESSAGE value="现在可以创建群聊了" />
     <MESSAGE value="现在可以修改群聊了" />
     <MESSAGE value="增加踢出群成员功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加踢出群成员功能" />
+    <MESSAGE value="整理到右键菜单" />
+    <MESSAGE value="整理到右键菜单：调整变量名，修改显示问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理到右键菜单：调整变量名，修改显示问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

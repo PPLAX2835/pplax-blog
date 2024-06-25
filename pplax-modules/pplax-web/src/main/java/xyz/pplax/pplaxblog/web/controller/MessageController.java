@@ -94,14 +94,13 @@ public class MessageController extends SuperController {
     public String createChatRoom(HttpServletRequest httpServletRequest, @RequestBody ChatRoomEditDto chatRoomEditDto) {
         String userUid = getUserUid(httpServletRequest);
 
-        ChatRoom chatRoom = new ChatRoom();
-        chatRoom.setOwnerUid(userUid);
-        chatRoom.setMemberUids(userUid);
-        chatRoom.setName(chatRoomEditDto.getName());
-        chatRoom.setAvatarUid(chatRoomEditDto.getAvatarUid());
-        chatRoom.setType(1);
-
-        boolean res = chatRoomService.save(chatRoom);
+        boolean res = chatRoomService.createChatRoom(
+                userUid,
+                chatRoomEditDto.getName(),
+                chatRoomEditDto.getAvatarUid(),
+                chatRoomEditDto.getType(),
+                chatRoomEditDto.getMemberUids()
+        );
 
         if (res) {
             return success();

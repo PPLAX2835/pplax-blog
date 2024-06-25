@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.xo.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
+import xyz.pplax.pplaxblog.xo.dto.edit.ChatRoomEditDto;
 import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
 import xyz.pplax.pplaxblog.xo.entity.User;
 
@@ -25,4 +26,7 @@ public interface ChatRoomService extends SuperService<ChatRoom> {
     Boolean kickChatRoomMember(String userUid, String chatRoomUid, String memberUid);
 
     Boolean joinChatRoom(String userUid, String chatRoomUid);
+
+    Boolean createChatRoom(String userUid, String name, String avatarUid, Integer type, String memberUids);
+
 }

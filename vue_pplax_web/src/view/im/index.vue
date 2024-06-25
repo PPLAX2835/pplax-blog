@@ -26,7 +26,7 @@
                 :class="item.status === statusList.WITHDRAW ? 'withdraw' : 'left'"
                 v-if="user && item.userUid !== user.uid"
             >
-              <a :href="'/user?userUid=' + item.uid">
+              <a v-if="item.status !== statusList.WITHDRAW" :href="'/user?userUid=' + item.userUid">
                 <el-avatar
                     class="noSelect"
                     :src="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')) : ''"
@@ -51,7 +51,7 @@
                     v-if="item.status !== statusList.WITHDRAW"
                     v-html="item.content"
                     class="messageContent"
-                    @contextmenu.prevent="openMenu($event, item, index)"
+                    @contextmenu.prevent="openRightClickMenu($event, item, index)"
                 >
                 </span>
                 <span class="noSelect" v-else style="color: var(--text-color)">
@@ -68,9 +68,10 @@
             >
               <div class="info">
                 <div>
-                  <img
+                  <el-avatar
+                      v-if="item.status !== statusList.WITHDRAW"
                       class="noSelect"
-                      v-lazy="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : '') : ''"
+                      :src="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')) : getWebSiteInfoValue('touristAvatar')"
                       :key="item.userUid"
                   />
                 </div>
@@ -85,11 +86,6 @@
                     ><i class="el-icon-location-information"></i>
                       IP属地:{{ splitIpAddress(item.address) }}
                     </span>
-                    <!--                                        <span v-if="item.fromUserId == 1">-->
-                    <!--                                            <el-tooltip effect="dark" content="作者" placement="top">-->
-                    <!--                                                <svg-icon class="tag" icon-class="bozhu"></svg-icon>-->
-                    <!--                                            </el-tooltip>-->
-                    <!--                                        </span>-->
                     <span
                         class="noSelect"
                     >{{ item.userInfo !== undefined ? item.userInfo.nickname : '' }}</span
@@ -100,7 +96,7 @@
                       v-if="item.status !== statusList.WITHDRAW"
                       v-html="item.content"
                       class="nowMessageContent"
-                      @contextmenu.prevent="openMenu($event, item, index)"
+                      @contextmenu.prevent="openRightClickMenu($event, item, index)"
                   ></div>
                   <div style="color: var(--text-color)" v-else class="noSelect">
                     "
@@ -125,7 +121,7 @@
                   :show-file-list="false"
                   ref="upload"
                   name="filedatas"
-                  :action="uploadPictureHost"
+                  action=""
                   :http-request="uploadSectionFile"
                   multiple
               >
@@ -173,13 +169,16 @@
           </li>
           <li
               @click="handlePrivate"
-              v-if="message && message.fromUserId != user.id"
+              v-if="message && message.userUid !== user.uid"
           >
             <div class="menuitem hand-style">
               <i class="el-icon-chat-dot-round"></i>私信
             </div>
           </li>
-          <li @click="withdraw" v-if="message && message.userUid === user.uid">
+          <li
+              @click="withdraw"
+              v-else-if="message && message.userUid === user.uid"
+          >
             <div class="menuitem hand-style">
               <i class="iconfont icon-chehui"></i>撤回
             </div>
@@ -207,7 +206,7 @@
       <!-- 房间列表 -->
       <div class="online">
         <ul class="online-item">
-          <li @click="dialogNewCharRoomVisible = true" class="onlineLi hand-style">
+          <li @click="dialogNewChatRoomVisible = true" class="onlineLi hand-style">
             <div class="room-list-item">
               <div class="roomName el-icon-circle-plus-outline"></div>
               <span>/</span>
@@ -260,7 +259,7 @@
     </el-dialog>
 
 
-    <el-dialog center :title="title" :visible.sync="dialogNewCharRoomVisible">
+    <el-dialog center :title="title" :visible.sync="dialogNewChatRoomVisible">
 
       <el-tabs >
         <el-tab-pane label="搜索群聊">
@@ -477,7 +476,8 @@ export default {
       editChatRoomForm: {
         uid: '',
         name: '',
-        avatarUid: ''
+        avatarUid: '',
+        type: ''
       },
       editChatRoomRules: {
           name: [
@@ -498,7 +498,7 @@ export default {
       lastEditRange: null,
       RegEx: /(?<=(img src="))[^"]*?(?=")/gims,
       images: {},
-      dialogNewCharRoomVisible: false
+      dialogNewChatRoomVisible: false
     }
   },
 
@@ -519,9 +519,9 @@ export default {
     //   监听属性对象，newValue为新的值，也就是改变后的值
     visible(newValue, oldValue) {
       if (newValue) {
-        document.body.addEventListener("click", this.closeMenu);
+        document.body.addEventListener("click", this.closeRightClickMenu);
       } else {
-        document.body.removeEventListener("click", this.closeMenu);
+        document.body.removeEventListener("click", this.closeRightClickMenu);
       }
     },
     user(newName) {
@@ -689,7 +689,7 @@ export default {
      * @param item
      * @param index
      */
-    openMenu(e, item, index) {
+    openRightClickMenu(e, item, index) {
       var x = e.pageX; //这个应该是相对于整个浏览器页面的x坐标，左上角为坐标原点（0,0）
       var y = e.pageY; //这个应该是相对于整个浏览器页面的y坐标，左上角为坐标原点（0,0）
       this.rightClickMenuTop = y;
@@ -717,15 +717,31 @@ export default {
 
       })
     },
-    //私信
+    /**
+     * 创建私信
+     */
     handlePrivate() {
-      addRoom(this.message.fromUserId).then(res => {
-        this.roomList.push(res.data)
+      this.editChatRoomForm.uid = ''
+      this.editChatRoomForm.name = ''
+      this.editChatRoomForm.avatarUid = ''
+      this.editChatRoomForm.type = 2
+      this.editChatRoomForm.memberUids = this.user.uid + ',' + this.message.userUid
+
+      createChatRoom(this.editChatRoomForm).then(res => {
+        this.name = ''
+        this.avatarUid = ''
+        this.chatRoomAvatarUrl = ''
+        this.editChatRoomForm.type = ''
+        this.editChatRoomForm.memberUids = undefined
+        this.open()
+        this.dialogNewChatRoomVisible = false
+        this.closeRightClickMenu()
       })
     },
     //翻译
     translate() {
       window.open("https://fanyi.baidu.com/?aldtype=16047#zh/en/" + this.message.content, '_blank')
+      this.closeRightClickMenu()
     },
     //复制
     clipboard() {
@@ -734,14 +750,16 @@ export default {
       })
       clipboard.on('success', () => {
         clipboard.destroy()
+        this.closeRightClickMenu()
       })
       clipboard.on('error', () => {
         this.$toast.error("复制失败");
         clipboard.destroy()
+        this.closeRightClickMenu()
       })
     },
     //关闭菜单
-    closeMenu() {
+    closeRightClickMenu() {
       this.rightClickMenuVisible = false; //关闭菜单
     },
     /**
@@ -1006,7 +1024,7 @@ export default {
       joinChatRoom(chatRoom.uid).then(res => {
         this.$toast.success("加入成功");
         this.open()
-        this.dialogNewCharRoomVisible = false
+        this.dialogNewChatRoomVisible = false
       })
     },
 
@@ -1033,13 +1051,15 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
 
+          this.editChatRoomForm.type = 1
           createChatRoom(this.editChatRoomForm).then(res => {
             this.$toast.success("创建成功");
             this.name = ''
             this.avatarUid = ''
             this.chatRoomAvatarUrl = ''
+            this.editChatRoomForm.type = ''
             this.open()
-            this.dialogNewCharRoomVisible = false
+            this.dialogNewChatRoomVisible = false
           })
 
         } else {
@@ -1063,7 +1083,7 @@ export default {
             this.editChatRoomForm.uid = ''
             this.chatRoomAvatarUrl = ''
             this.open()
-            this.dialogNewCharRoomVisible = false
+            this.dialogNewChatRoomVisible = false
 
             this.fetchMyChatRoomList()
           })

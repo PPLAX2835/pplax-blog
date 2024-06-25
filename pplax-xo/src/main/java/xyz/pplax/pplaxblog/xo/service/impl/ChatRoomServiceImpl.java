@@ -9,8 +9,10 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.ChatRoomSQLConstants;
+import xyz.pplax.pplaxblog.xo.dto.edit.ChatRoomEditDto;
 import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
 import xyz.pplax.pplaxblog.xo.entity.User;
+import xyz.pplax.pplaxblog.xo.entity.UserInfo;
 import xyz.pplax.pplaxblog.xo.mapper.ChatRoomMapper;
 import xyz.pplax.pplaxblog.xo.service.ChatRoomService;
 import xyz.pplax.pplaxblog.xo.service.FileStorageService;
@@ -102,8 +104,8 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
     public Boolean exitChatRoom(String userUid, String chatRoomUid) {
         ChatRoom chatRoom = getById(chatRoomUid);
 
-        // 如果是群主就直接解散
-        if (chatRoom.getOwnerUid().equals(userUid)) {
+        // 如果是自己群主就直接解散，如果是私信就直接删除
+        if (chatRoom.getType() == 2 || chatRoom.getOwnerUid().equals(userUid)) {
             return removeById(chatRoomUid);
         }
 
@@ -187,6 +189,49 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         return pageList;
     }
 
+    /**
+     * 创建聊天室
+     * @param userUid
+     * @param name
+     * @param avatarUid
+     * @param type
+     * @param memberUids
+     * @return
+     */
+    @Override
+    public Boolean createChatRoom(String userUid, String name, String avatarUid, Integer type, String memberUids) {
+        if (type == null || (type != 1 && type != 2)) {
+            type = 1;
+        }
+        ChatRoom chatRoom = new ChatRoom();
+        if (type == 1) {
+            chatRoom.setOwnerUid(userUid);
+            chatRoom.setMemberUids(userUid);            // 如果是群聊，那么刚开始创建的时候成员只有群主一人
+        } else {
+            // 检查一下私聊是否已经创建过了
+            PQueryWrapper<ChatRoom> chatRoomPQueryWrapper = new PQueryWrapper<>();
+            chatRoomPQueryWrapper.eq(ChatRoomSQLConstants.TYPE, 2);
+
+            String[] memberUidArr = memberUids.split(",");
+            for (String memberUid : memberUidArr) {
+                chatRoomPQueryWrapper.like(ChatRoomSQLConstants.MEMBER_UIDS, "%" + memberUid + "%");
+            }
+
+            ChatRoom chatRoom1 = getOne(chatRoomPQueryWrapper);
+            if (chatRoom1 != null) {
+                // 晚点优化一下这里
+                return false;
+            }
+
+            chatRoom.setMemberUids(memberUids);        // 私聊只有两个人
+        }
+        chatRoom.setName(name);
+        chatRoom.setAvatarUid(avatarUid);
+        chatRoom.setType(type);
+
+        return save(chatRoom);
+    }
+
     @Override
     public List<ChatRoom> listByUserUid(String userUid, Boolean isOwner) {
         PQueryWrapper<ChatRoom> chatRoomPQueryWrapper = new PQueryWrapper<>();
@@ -208,8 +253,18 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         List<ChatRoom> chatRoomList = list(chatRoomPQueryWrapper);
 
         for (ChatRoom chatRoom : chatRoomList) {
-            // 封装头像
-            chatRoom.setAvatar(fileStorageService.getById(chatRoom.getAvatarUid()));
+            if (chatRoom.getType() == 2) {
+                // 私聊对象需要处理一下
+                String privateChatUserUid = chatRoom.getMemberUids().replace(userUid, "").replace(",", "");
+                UserInfo privateChatUserInfo = userInfoService.getByUserUid(privateChatUserUid);
+                if (privateChatUserInfo != null) {
+                    chatRoom.setAvatar(fileStorageService.getById(privateChatUserInfo.getAvatarPictureUid()));
+                    chatRoom.setName(privateChatUserInfo.getNickname());
+                }
+            } else {
+                // 封装头像
+                chatRoom.setAvatar(fileStorageService.getById(chatRoom.getAvatarUid()));
+            }
         }
 
         return chatRoomList;

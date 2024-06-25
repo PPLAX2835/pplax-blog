@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
-    </list>
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -413,14 +410,7 @@
       <workItem from="1718434448369" duration="10000" />
       <workItem from="1719137863722" duration="7420000" />
       <workItem from="1719190991961" duration="29011000" />
-      <workItem from="1719272302227" duration="23519000" />
-    </task>
-    <task id="LOCAL-00412" summary="个人空间增加撰写博客选项">
-      <created>1713758475895</created>
-      <option name="number" value="00412" />
-      <option name="presentableId" value="LOCAL-00412" />
-      <option name="project" value="LOCAL" />
-      <updated>1713758475895</updated>
+      <workItem from="1719272302227" duration="23848000" />
     </task>
     <task id="LOCAL-00413" summary="完成发表说说功能">
       <created>1713771990649</created>
@@ -758,7 +748,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719310037435</updated>
     </task>
-    <option name="localTasksCounter" value="461" />
+    <task id="LOCAL-00461" summary="整理页面带代码">
+      <created>1719311680237</created>
+      <option name="number" value="00461" />
+      <option name="presentableId" value="LOCAL-00461" />
+      <option name="project" value="LOCAL" />
+      <updated>1719311680237</updated>
+    </task>
+    <option name="localTasksCounter" value="462" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -793,7 +790,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复编辑博客时上传的封面不能正常保存的问题" />
     <MESSAGE value="修复标签列表方法引用量查询抛异常的问题" />
     <MESSAGE value="调整剩下的服务类方法名" />
     <MESSAGE value="去掉冗余的dto类" />
@@ -818,7 +814,8 @@
     <MESSAGE value="整理到右键菜单：调整变量名，修改显示问题" />
     <MESSAGE value="完成创建私信功能" />
     <MESSAGE value="可以撤回消息了" />
-    <option name="LAST_COMMIT_MESSAGE" value="可以撤回消息了" />
+    <MESSAGE value="整理页面带代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理页面带代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

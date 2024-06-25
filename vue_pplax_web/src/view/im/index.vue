@@ -26,20 +26,16 @@
                 :class="item.status === statusList.WITHDRAW ? 'withdraw' : 'left'"
                 v-if="user && item.userUid !== user.uid"
             >
-              <img
-                  class="noSelect"
-                  v-lazy="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : '') : ''"
-                  :key="item.userUid"
-                  @click="handleToUserMain(item.fromUserId)"
-              />
+              <a :href="'/user?userUid=' + item.uid">
+                <el-avatar
+                    class="noSelect"
+                    :src="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')) : ''"
+                    :key="item.userUid"
+                />
+              </a>
               <div class="info">
                 <div class="nickname noSelect userInfo">
-                  {{ item.userInfo !== undefined ? item.userInfo.nickname : '' }}
-                  <!--                                    <span v-if="item.fromUserId == 1">-->
-                  <!--                                        <el-tooltip effect="dark" content="作者" placement="top">-->
-                  <!--                                            <svg-icon class="tag" icon-class="bozhu"></svg-icon>-->
-                  <!--                                        </el-tooltip>-->
-                  <!--                                    </span>-->
+                  {{ item.userInfo ? item.userInfo.nickname : '' }}
                   <span v-if="item.ip" class="item">
                     <i class="el-icon-location-information"></i>
                     IP属地:{{ splitIpAddress(item.address) }}
@@ -161,8 +157,8 @@
 
         <!-- 自定义右键功能 -->
         <ul
-            v-show="visible"
-            :style="{ left: left + 'px', top: top + 'px' }"
+            v-show="rightClickMenuVisible"
+            :style="{ left: rightClickMenuLeft + 'px', top: rightClickMenuTop + 'px' }"
             class="contextmenu"
         >
           <li @click="clipboard" class="copyBtn">
@@ -183,7 +179,7 @@
               <i class="el-icon-chat-dot-round"></i>私信
             </div>
           </li>
-          <li @click="withdraw" v-if="message && message.fromUserId == user.id">
+          <li @click="withdraw" v-if="message && message.userUid === user.uid">
             <div class="menuitem hand-style">
               <i class="iconfont icon-chehui"></i>撤回
             </div>
@@ -451,11 +447,11 @@ export default {
       statusList: [],
       uploadPictureHost: process.env.VUE_APP_BASE_API + "/file/upload",
       websoketUrl: process.env.VUE_APP_WEBSOCKET_API,
-      visible: false,
+      rightClickMenuVisible: false,
       imgDialogVisible: false,
       isLoding: false,
-      top: 0,
-      left: 0,
+      rightClickMenuTop: 0,
+      rightClickMenuLeft: 0,
       text: "",
       messageList: [],
       emojiShow: false,
@@ -687,13 +683,18 @@ export default {
       read(item.uid)
       item.readNum = 0
     },
-    //右击
+    /**
+     * 打开右键菜单
+     * @param e
+     * @param item
+     * @param index
+     */
     openMenu(e, item, index) {
       var x = e.pageX; //这个应该是相对于整个浏览器页面的x坐标，左上角为坐标原点（0,0）
       var y = e.pageY; //这个应该是相对于整个浏览器页面的y坐标，左上角为坐标原点（0,0）
-      this.top = y;
-      this.left = x;
-      this.visible = true; //显示菜单
+      this.rightClickMenuTop = y;
+      this.rightClickMenuLeft = x;
+      this.rightClickMenuVisible = true; //显示菜单
       this.message = item
       this.message.index = index
     },
@@ -741,7 +742,7 @@ export default {
     },
     //关闭菜单
     closeMenu() {
-      this.visible = false; //关闭菜单
+      this.rightClickMenuVisible = false; //关闭菜单
     },
     /**
      * 格式化时间戳
@@ -768,7 +769,7 @@ export default {
       //     return;
       // }
       listChatMessage(this.chatRoomUid, this.pageData).then(res => {
-        let arr = res.data.records
+        let arr = res.data
         for (let i = 0; i < arr.length; i++) {
           this.messageList.unshift(arr[i])
         }

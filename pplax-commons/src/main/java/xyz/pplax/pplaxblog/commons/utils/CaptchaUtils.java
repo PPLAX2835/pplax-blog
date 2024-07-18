@@ -23,7 +23,7 @@ public class CaptchaUtils {
     /**
      * 网络图片地址
      **/
-    private final static String IMG_URL = "https://loyer.wang/view/ftp/wallpaper/%s.jpg";
+    private final static String IMG_URL = "http://127.0.0.1:9001/api/v1/buckets/pplax-blog/objects/download?preview=true&prefix=aW1nL2JhY2tncm91bmQvOTQwNTIyLnBuZw==&version_id=null";
 
     /**
      * 获取指定范围内的随机数
@@ -38,11 +38,8 @@ public class CaptchaUtils {
      **/
     public static BufferedImage getBufferedImage(Integer place) {
         try {
-            //随机图片
-            int nonce = getNonceByRange(1, 1000);
             //获取网络资源图片{
-            String imgUrl = String.format(IMG_URL, nonce);
-            URL url = new URL(imgUrl);
+            URL url = new URL(IMG_URL);
             return ImageIO.read(url.openStream());
         } catch (Exception e) {
             log.error("获取拼图资源失败：" + e.getMessage());

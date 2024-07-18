@@ -21,5 +21,7 @@ spring:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl     #打印sql日志
 ##logging
 logging:
-  root:
-    level: warn
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG

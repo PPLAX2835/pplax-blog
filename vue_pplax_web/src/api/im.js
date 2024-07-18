@@ -2,14 +2,6 @@ import request from '@/utils/request'
 import user from "@/view/user";
 
 // 聊天室接口
-export function imageUpload(data) {
-    return request({
-        url: '/file/message/image',
-        method: 'POST',
-        headers: { 'Content-Type': 'multipart/articles-data' },
-        data
-    })
-}
 export function addRoom(userId) {
     return request({
         url: '/v1/im/addRoom',

@@ -1,4 +1,5 @@
 import service from '@/utils/request'
+import request from "@/utils/request";
 
 /**
  * 头像上传
@@ -176,5 +177,19 @@ export function chatRoomAvatarUpload(param) {
     method: 'POST',
     headers:{'Content-Type': 'multipart/form-data'},
     data: param
+  })
+}
+
+/**
+ * 聊天图片上传
+ * @param data
+ * @returns {*}
+ */
+export function chatImageUpload(data) {
+  return request({
+    url: '/file/message/image',
+    method: 'POST',
+    headers: { 'Content-Type': 'multipart/articles-data' },
+    data
   })
 }

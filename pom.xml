@@ -42,6 +42,7 @@
         <ip2region.version>2.7.0</ip2region.version>
         <UserAgentUtils.version>1.21</UserAgentUtils.version>
         <spring-boot-starter-amqp.version>2.6.13</spring-boot-starter-amqp.version>
+        <spring-boot-starter-websocket.version>2.5.12</spring-boot-starter-websocket.version>
         <spring-boot-starter-thymeleaf.version>2.7.12</spring-boot-starter-thymeleaf.version>
     </properties>
 
@@ -114,6 +115,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${spring-boot-starter-amqp.version}</version>
+            </dependency>
+
+            <!--websocket-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-websocket</artifactId>
+                <version>${spring-boot-starter-websocket.version}</version>
             </dependency>
 
             <!-- jdbc -->

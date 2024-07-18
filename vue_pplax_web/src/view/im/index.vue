@@ -420,10 +420,9 @@
 </template>
 
 <script>
-import {chatRoomAvatarUpload} from "@/api/fileStorage";
 
 let socket;
-import { imageUpload } from '@/api/im'
+import {chatImageUpload, chatRoomAvatarUpload} from "@/api/fileStorage";
 import {
   getChatRoomList,
   deleteChatRoom,
@@ -431,7 +430,12 @@ import {
   addChatMessage,
   withdraw,
   read,
-  searchChatRoomList, joinChatRoom, createChatRoom, updateChatRoom, getChatRoomMemberList, kickChatRoomMember
+  searchChatRoomList,
+  joinChatRoom,
+  createChatRoom,
+  updateChatRoom,
+  getChatRoomMemberList,
+  kickChatRoomMember
 } from "@/api/message";
 import {getWebSiteInfoValue, parseTime} from "@/utils";
 import { EStatus } from "@/base/EStatus";
@@ -445,7 +449,6 @@ export default {
   data() {
     return {
       statusList: [],
-      uploadPictureHost: process.env.VUE_APP_BASE_API + "/file/upload",
       websoketUrl: process.env.VUE_APP_WEBSOCKET_API,
       rightClickMenuVisible: false,
       imgDialogVisible: false,
@@ -506,15 +509,6 @@ export default {
   mounted() {
     document.addEventListener("click", this.handleClose)
     document.getElementById("im").oncontextmenu = new Function("event.returnValue=false");
-    this.$refs['inputRef'].onclick = () => {
-      // 获取选定对象
-      let selection = window.getSelection()
-      // 设置最后光标对象
-      if (selection.rangeCount > 0) {
-        // 记录光标最后点击可编辑div中所选择的位置
-        this.lastEditRange = selection.getRangeAt(0);
-      }
-    }
   },
   watch: {
     //   监听属性对象，newValue为新的值，也就是改变后的值
@@ -523,15 +517,6 @@ export default {
         document.body.addEventListener("click", this.closeRightClickMenu);
       } else {
         document.body.removeEventListener("click", this.closeRightClickMenu);
-      }
-    },
-    user(newName) {
-      if (typeof (newName) == 'string') {
-        this.user = JSON.parse(newName)
-      } else {
-        this.user = newName
-        //发送soket连接
-        this.init()
       }
     },
     messageList() {
@@ -548,7 +533,7 @@ export default {
   },
   created() {
     this.statusList = EStatus
-    this.init()
+    this.open()
   },
   methods: {
 
@@ -655,7 +640,7 @@ export default {
         this.files = param.file
         formData.append('file', this.files)
       }
-      imageUpload(formData).then(res => {
+      chatImageUpload(formData).then(res => {
         //上传之后发送消息
         let content = `<img src="${res.data.fileUrl}" alt="" class="messageImg" style="width: 150px;height: 150px;">`
         this.send(content)
@@ -704,6 +689,8 @@ export default {
       })
       //修改为已读
       read(item.uid)
+      // 打开webSocket
+      this.webSocketInit()
       item.readNum = 0
     },
     /**
@@ -800,17 +787,6 @@ export default {
       this.pageData.currentPage++;
       this.isBackTop = true
       this.isLoding = true
-      // 这个应该是socket的，之后再说
-      // if (this.selectUserOnline) {
-      //     getUserImHistoryList(this.pageData).then(res => {
-      //         let arr = res.data.records
-      //         for (let i = 0; i < arr.length; i++) {
-      //             this.messageList.unshift(arr[i])
-      //         }
-      //         this.isLoding = false
-      //     })
-      //     return;
-      // }
       listChatMessage(this.chatRoomUid, this.pageData).then(res => {
         let arr = res.data
         for (let i = 0; i < arr.length; i++) {
@@ -940,6 +916,7 @@ export default {
       }
 
       //发送消息
+      socket.send(JSON.stringify(message))
       addChatMessage(this.chatRoomUid, message).then(res => {
         this.messageList.push(res.data)
       })
@@ -948,7 +925,7 @@ export default {
       this.atMember = ""
     },
     //初始化socket
-    init() {
+    webSocketInit() {
       let _this = this;
       if (!_this.user) {
         this.$toast.error("登录才能进行群聊");
@@ -957,7 +934,7 @@ export default {
       if (typeof (WebSocket) == "undefined") {
         console.log("您的浏览器不支持WebSocket");
       } else {
-        let socketUrl = _this.websoketUrl + "?userId=" + _this.user.uid;
+        let socketUrl = _this.websoketUrl + "/chat/room/" + _this.chatRoomUid + "/member/" + _this.user.uid;
         if (socket != null) {
           socket.close();
           socket = null;
@@ -965,51 +942,11 @@ export default {
         // 开启一个websocket服务
         socket = new WebSocket(socketUrl);
         //打开事件
-        socket.onopen = _this.open();
         //  浏览器端收消息，获得从服务端发送过来的文本消息
         socket.onmessage = function (msg) {
           console.log("收到数据====" + msg.data)
           let data = JSON.parse(msg.data)
-
-          //群聊
-          if (data.code == 2) {
-            if (_this.selectUserOnline) {
-              return;
-            }
-            // 这是撤回的逻辑
-            if (data.index != null) {
-              _this.messageList[data.index].content = data.content
-              _this.messageList[data.index].isWithdraw = 1
-              return;
-            }
-            _this.messageList.push(data)
-            return;
-          }
-          //单聊
-          if (data.code == 1) {
-            for (let index = 0; index < _this.roomList.length; index++) {
-
-              const room = _this.roomList[index]
-              if (room.receiveId == data.fromUserId) {
-                _this.roomList[index].readNum++
-              }
-            }
-            if (!_this.selectUserOnline) {
-              return;
-            }
-            if (_this.selectUserOnline.receiveId == data.fromUserId || _this.selectUserOnline.receiveId == data.toUserId) {
-
-              //这是撤回的逻辑
-              if (data.index != null) {
-                _this.messageList[data.index].content = data.content
-                _this.messageList[data.index].isWithdraw = 1
-                return;
-              }
-              _this.messageList.push(data)
-              return;
-            }
-            return;
-          }
+          _this.messageList.push(data)
         };
         //关闭事件
         socket.onclose = function () {

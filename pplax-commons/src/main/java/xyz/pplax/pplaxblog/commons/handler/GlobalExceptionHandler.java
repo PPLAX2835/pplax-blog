@@ -100,7 +100,7 @@ public class GlobalExceptionHandler {
             Matcher matcher = pattern.matcher(message);
 
             if (matcher.find()) {
-                return new ResponseResult(HttpStatus.UNAUTHORIZED, matcher.group(0));
+                return new ResponseResult(HttpStatus.UNAUTHORIZED, (Object) JSON.parseObject(matcher.group(0)));
             } else {
                 return new ResponseResult(HttpStatus.UNAUTHORIZED);
             }

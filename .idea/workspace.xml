@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="数据库">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_websocket_2_5_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_websocket_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/component/ChatWebSocket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/redis/ChatRedisConstants.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat：实现webSocket的聊天室&#10;现在聊天室可以实时进行收发消息了&#10;&#10;fix：更换登录的随机验证码图片地址&#10;登录的验证码图片的随机图床寄了，换了个新的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/nacos_config.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/nacos_config.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CaptchaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CaptchaUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/fileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/fileStorage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/im.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/im.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/handler/GlobalExceptionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,11 +113,11 @@
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter\pplax-amqp-starter\src\main\java\xyz\pplax\pplaxblog\starter\amqp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\doc" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-modules\pplax-file\src\main\java\xyz\pplax\pplaxblog\file\model" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-starter" />
       <recent name="G:\Workspace\IDEA\pplax-blog\pplax-commons\src\main\resources" />
-      <recent name="G:\Workspace\IDEA\pplax-blog\pplax-commons\src\main\java\xyz\pplax\pplaxblog\commons\enums" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="xyz.pplax" />
@@ -152,7 +139,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -272,10 +259,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.serve" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -434,14 +421,8 @@
       <workItem from="1719395632357" duration="12372000" />
       <workItem from="1719451206271" duration="3434000" />
       <workItem from="1721280433251" duration="861000" />
-      <workItem from="1721304385597" duration="5074000" />
-    </task>
-    <task id="LOCAL-00414" summary="优化鉴权">
-      <created>1713782452845</created>
-      <option name="number" value="00414" />
-      <option name="presentableId" value="LOCAL-00414" />
-      <option name="project" value="LOCAL" />
-      <updated>1713782452847</updated>
+      <workItem from="1721304385597" duration="5709000" />
+      <workItem from="1721373507417" duration="301000" />
     </task>
     <task id="LOCAL-00415" summary="在公共父级controller中编写根据request获取用户uid的方法（早该这么干的）">
       <created>1713947872075</created>
@@ -779,7 +760,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719312203630</updated>
     </task>
-    <option name="localTasksCounter" value="463" />
+    <task id="LOCAL-00463" summary="feat：实现webSocket的聊天室&#10;现在聊天室可以实时进行收发消息了&#10;&#10;fix：更换登录的随机验证码图片地址&#10;登录的验证码图片的随机图床寄了，换了个新的">
+      <created>1721309904443</created>
+      <option name="number" value="00463" />
+      <option name="presentableId" value="LOCAL-00463" />
+      <option name="project" value="LOCAL" />
+      <updated>1721309904443</updated>
+    </task>
+    <option name="localTasksCounter" value="464" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -814,7 +802,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整剩下的服务类方法名" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="去掉冗余的dto类" />
     <MESSAGE value="修改修改用户时参数验证报错、博客管理增加分类选项" />
     <MESSAGE value="修复权限配置的子菜单选择递归不生效的bug" />
@@ -839,7 +827,8 @@
     <MESSAGE value="可以撤回消息了" />
     <MESSAGE value="整理页面带代码" />
     <MESSAGE value="数据库" />
-    <option name="LAST_COMMIT_MESSAGE" value="数据库" />
+    <MESSAGE value="feat：实现webSocket的聊天室&#10;现在聊天室可以实时进行收发消息了&#10;&#10;fix：更换登录的随机验证码图片地址&#10;登录的验证码图片的随机图床寄了，换了个新的" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：实现webSocket的聊天室&#10;现在聊天室可以实时进行收发消息了&#10;&#10;fix：更换登录的随机验证码图片地址&#10;登录的验证码图片的随机图床寄了，换了个新的" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

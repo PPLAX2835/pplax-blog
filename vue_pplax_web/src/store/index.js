@@ -10,6 +10,7 @@ export default new Vuex.Store({
     searchDialogVisible: false,
     siteAccess: 0,
     visitorAccess: 0,
+    startRunTime: 0,
     systemNotcie: {},
     user: sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null,
     isCommentFlag: false,

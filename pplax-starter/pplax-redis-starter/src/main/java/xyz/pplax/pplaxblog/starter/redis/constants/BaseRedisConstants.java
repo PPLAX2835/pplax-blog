@@ -16,6 +16,11 @@ public class BaseRedisConstants {
     public final static String BLOG_SORT_BY_MONTH = "BLOG_SORT";
 
     /**
+     * 开始运行时间
+     */
+    public final static String START_RUN_TIME = "START_RUN_TIME";
+
+    /**
      * Redis分隔符
      */
     public final static String SEGMENTATION = ":";

@@ -66,7 +66,7 @@ export default {
         runTime() {
             var timeold =
                 new Date().getTime() -
-                new Date(1627747200000).getTime();
+                new Date(this.$store.state.startRunTime).getTime();
             var msPerDay = 24 * 60 * 60 * 1000;
             var daysold = Math.floor(timeold / msPerDay);
             var day = new Date();

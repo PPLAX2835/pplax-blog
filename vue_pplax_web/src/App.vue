@@ -90,6 +90,7 @@ export default {
         this.$store.commit("setWebSiteInfo", res.data)
         this.$store.state.siteAccess = res.extra.siteAccess
         this.$store.state.visitorAccess = res.extra.visitorAccess
+        this.$store.state.startRunTime = res.extra.startRunTime
       })
     },
     /**

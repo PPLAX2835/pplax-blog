@@ -13,6 +13,7 @@ import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
+import xyz.pplax.pplaxblog.starter.redis.constants.BaseRedisConstants;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.redis.SiteRedisConstants;
@@ -182,10 +183,14 @@ public class SiteServiceImpl implements SiteService {
 
         Map<String, Object> extra = new HashMap<>();
 
+        Long startRunTime = redisService.getCacheObject(BaseRedisConstants.START_RUN_TIME);
+
         //获取访问量
         extra.put("siteAccess", Optional.ofNullable(redisService.getCacheObject(SiteRedisConstants.BLOG_VIEWS_COUNT)).orElse(0));
         //获取访客量
         extra.put("visitorAccess", redisService.size(SiteRedisConstants.UNIQUE_VISITOR));
+        // 获取开始运行时间
+        extra.put("startRunTime", startRunTime);
 
         return ResponseResult.success(data, extra);
     }

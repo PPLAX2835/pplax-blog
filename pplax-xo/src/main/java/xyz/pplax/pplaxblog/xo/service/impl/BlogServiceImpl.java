@@ -473,7 +473,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     public Blog getByIdWithAll(String blogUid, String userUid) {
         Blog blog = getById(blogUid);
         if (blog == null) {
-            throw new SelectException(HttpStatus.DATA_NOT_EXIST.getMessage());
+            throw new SelectException(HttpStatus.DATA_NOT_EXIST);
         }
         blog.setBlogContent(getBlogContentByBlogUid(blogUid));
 
@@ -598,7 +598,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     public Boolean promote(String blogUid) {
         Blog blog = getById(blogUid);
         if (blog.getStatus() != EStatus.ENABLE.getStatus()) {
-            throw new UpdateException(HttpStatus.PROMOTE_FAIL.getMessage());
+            throw new UpdateException(HttpStatus.PROMOTE_FAIL);
         }
         blog.setStatus(EStatus.STICK.getStatus());
         return updateById(blog);

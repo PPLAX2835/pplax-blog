@@ -7,10 +7,14 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
  */
 public class SelectException extends CurdException {
     public SelectException() {
-        super();
+        super(HttpStatus.SELECT_FAIL);
     }
 
     public SelectException(String msg) {
         super(msg);
+    }
+
+    public SelectException(HttpStatus httpStatus) {
+        super(httpStatus);
     }
 }

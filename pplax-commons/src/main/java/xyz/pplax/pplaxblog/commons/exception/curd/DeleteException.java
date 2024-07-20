@@ -7,10 +7,14 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
  */
 public class DeleteException extends CurdException {
     public DeleteException() {
-        super();
+        super(HttpStatus.DELETE_FAIL);
     }
 
     public DeleteException(String msg) {
         super(msg);
+    }
+
+    public DeleteException(HttpStatus httpStatus) {
+        super(httpStatus);
     }
 }

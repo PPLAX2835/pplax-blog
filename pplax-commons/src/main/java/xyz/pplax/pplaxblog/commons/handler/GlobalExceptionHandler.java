@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.BaseException;
 import xyz.pplax.pplaxblog.commons.exception.curd.CurdException;
 import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
 import xyz.pplax.pplaxblog.commons.exception.curd.InsertException;
@@ -28,78 +29,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * <p>
  * 通用 Api Controller 全局异常处理
- * </p>
  */
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
     /**
-     * curd异常
+     * 自定义异常
      * @param e
      * @return
      */
-    @ExceptionHandler(value = CurdException.class)
-    public ResponseResult handleCurd(Exception e) {
-        /*
-         * 删除异常
-         */
-        if (e instanceof DeleteException) {
-            log.debug("Rest request error, {}", e.getMessage());
-            return ResponseResult.error(HttpStatus.DELETE_FAIL.getCode(), e.getMessage());
-        }
+    @ExceptionHandler(value = BaseException.class)
+    public ResponseResult handleCurd(BaseException e) {
+        HttpStatus httpStatus = e.getHttpStatus();
 
-        /*
-         * 插入异常
-         */
-        if (e instanceof InsertException) {
-            log.debug("Rest request error, {}", e.getMessage());
-            return ResponseResult.error(HttpStatus.INSERT_FAIL.getCode(), e.getMessage());
-        }
-
-        /*
-         * 查询异常
-         */
-        if (e instanceof SelectException) {
-            log.debug("Rest request error, {}", e.getMessage());
-            return ResponseResult.error(HttpStatus.SELECT_FAIL.getCode(), e.getMessage());
-        }
-
-        /*
-         * 系统内部异常，打印异常栈
-         */
-        log.error("Error: handleBadRequest StackTrace : %s", e);
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        log.debug("Rest request error, {}", e.getMessage());
+        return ResponseResult.error(httpStatus);
     }
 
     /**
-     * 请求异常
-     * @param e
-     * @return
-     */
-    @ExceptionHandler(value = RequestException.class)
-    public ResponseResult request(Exception e) {
-
-        /*
-         * 请求参数异常
-         */
-        if (e instanceof RequestParameterException) {
-            log.debug("Rest request error, {}", e.getMessage());
-            return ResponseResult.error(HttpStatus.BAD_REQUEST.getCode(), e.getMessage());
-        }
-
-        /*
-         * 系统内部异常，打印异常栈
-         */
-        log.error("Error: handleBadRequest StackTrace : %s", e);
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-
-    /**
-     * 自定义 REST 业务异常
+     * REST 业务异常
      */
     @ExceptionHandler(value = Exception.class)
     public ResponseResult restService(Exception e) {

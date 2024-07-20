@@ -8,10 +8,14 @@ import xyz.pplax.pplaxblog.commons.exception.BaseException;
  */
 public class CurdException extends BaseException {
     public CurdException() {
-        super(HttpStatus.INTERNAL_SERVER_ERROR.getMessage());
+        super();
     }
 
     public CurdException(String msg) {
         super(msg);
+    }
+
+    public CurdException(HttpStatus httpStatus) {
+        super(httpStatus);
     }
 }

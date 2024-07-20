@@ -7,10 +7,14 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
  */
 public class UpdateException extends CurdException {
     public UpdateException() {
-        super();
+        super(HttpStatus.UPDATE_FAIL);
     }
 
     public UpdateException(String msg) {
         super(msg);
+    }
+
+    public UpdateException(HttpStatus httpStatus) {
+        super(httpStatus);
     }
 }

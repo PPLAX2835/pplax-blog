@@ -220,7 +220,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
 
         if (count > 0) {
             // 存在非删除状态的文章，返回错误信息
-            throw new DeleteException(HttpStatus.BLOG_UNDER_THIS_SORT.getMessage());
+            throw new DeleteException(HttpStatus.BLOG_UNDER_THIS_SORT);
         }
 
         boolean res = super.removeById(blogSortUid);

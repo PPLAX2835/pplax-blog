@@ -8,10 +8,14 @@ import xyz.pplax.pplaxblog.commons.exception.BaseException;
  */
 public class RequestException extends BaseException {
     public RequestException() {
-        super(HttpStatus.BAD_REQUEST.getMessage());
+        super(HttpStatus.BAD_REQUEST);
     }
 
     public RequestException(String msg) {
         super(msg);
+    }
+
+    public RequestException(HttpStatus httpStatus) {
+        super(httpStatus);
     }
 }

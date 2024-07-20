@@ -7,10 +7,14 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
  */
 public class InsertException extends CurdException {
     public InsertException() {
-        super();
+        super(HttpStatus.INSERT_FAIL);
     }
 
     public InsertException(String msg) {
         super(msg);
+    }
+
+    public InsertException(HttpStatus httpStatus) {
+        super(httpStatus);
     }
 }

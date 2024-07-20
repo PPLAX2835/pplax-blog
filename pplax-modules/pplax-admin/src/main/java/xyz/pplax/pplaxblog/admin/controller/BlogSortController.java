@@ -70,13 +70,22 @@ public class BlogSortController extends SuperController {
     @ApiOperation(value="删除分类", notes="删除分类")
     @DeleteMapping("/{blogSortUid}")
     public String delete(@PathVariable("blogSortUid") String blogSortUid) {
-        return toJson(blogSortService.removeById(blogSortUid));
+        Boolean res = blogSortService.removeById(blogSortUid);
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value = "批量删除分类", notes = "批量删除分类")
     @DeleteMapping(value = "")
     public String delete(@RequestBody List<String> blogSortUidList) {
-        return toJson(blogSortService.removeByIds(blogSortUidList));
+
+        Boolean res = blogSortService.removeByIds(blogSortUidList);
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value="置顶分类", notes="置顶分类")

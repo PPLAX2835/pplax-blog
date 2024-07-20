@@ -25,8 +25,8 @@ public interface BlogSortService extends SuperService<BlogSort> {
 
     Boolean updateById(BlogSortEditDto blogSortEditDto);
 
-    ResponseResult removeById(String blogSortUid);
+    Boolean removeById(String blogSortUid);
 
-    ResponseResult removeByIds(List<String> blogSortUidList);
+    Boolean removeByIds(List<String> blogSortUidList);
 
 }

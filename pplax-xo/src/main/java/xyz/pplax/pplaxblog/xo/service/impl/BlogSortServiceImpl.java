@@ -2,6 +2,7 @@ package xyz.pplax.pplaxblog.xo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -210,7 +211,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
      * @return
      */
     @Override
-    public ResponseResult removeById(String blogSortUid) {
+    public Boolean removeById(String blogSortUid) {
         // 先查询该分类下有没有文章
         QueryWrapper<Blog> blogQueryWrapper = new QueryWrapper<>();
         blogQueryWrapper.eq(BlogSQLConstants.BLOG_SORT_UID, blogSortUid);
@@ -219,15 +220,15 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
 
         if (count > 0) {
             // 存在非删除状态的文章，返回错误信息
-            return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_SORT);
+            throw new DeleteException(HttpStatus.BLOG_UNDER_THIS_SORT.getMessage());
         }
 
         boolean res = super.removeById(blogSortUid);
         if (!res) {
-            return new ResponseResult(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new DeleteException();
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
     /**
@@ -237,18 +238,18 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
      */
     @Override
     @Transactional
-    public ResponseResult removeByIds(List<String> blogSortUidList) {
+    public Boolean removeByIds(List<String> blogSortUidList) {
         List<BlogSort> blogSortList = listByIds(blogSortUidList);
 
         for (BlogSort blogSort : blogSortList) {
             // 批量删除出问题就回滚
-            ResponseResult responseResult = removeById(blogSort.getUid());
-            if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
-                throw new DeleteException(responseResult.getMessage());
+            Boolean res = removeById(blogSort.getUid());
+            if (!res) {
+                throw new DeleteException();
             }
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
 }

@@ -172,7 +172,7 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
         Message chatMessage = getById(chatMessageUid);
         // 要撤回的消息不存在
         if (chatMessage == null) {
-            throw new SelectException(HttpStatus.SELECT_FAIL);
+            throw new SelectException(HttpStatus.DATA_NOT_EXIST);
         }
         // chatRoomUid对不上或者是自己不是群主
         if (!chatMessage.getChatRoomUid().equals(chatRoomUid) || !chatMessage.getUserUid().equals(userUid)) {

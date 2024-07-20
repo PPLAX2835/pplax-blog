@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
+import xyz.pplax.pplaxblog.commons.exception.curd.SelectException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
@@ -57,9 +58,6 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     @Autowired
     private FeedbackService feedbackService;
 
-    @Autowired
-    private FileStorageService fileStorageService;
-
     /**
      * 获取用户的角色，包含菜单
      * @param userUid
@@ -69,8 +67,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     public Role getRoleWithMenu(String userUid) {
         User user = getById(userUid);
         if (user == null) {
-            log.warn("没有获取到用户信息");
-            return null;
+            throw new SelectException(HttpStatus.DATA_NOT_EXIST);
         }
         Role role = roleService.getById(user.getRoleUid());
         return roleService.setMenu(role);
@@ -128,7 +125,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
      */
     @Override
     @Transactional
-    public ResponseResult removeById(String userUid) {
+    public Boolean removeById(String userUid) {
         User user = getById(userUid);
 
         // 检查该用户下是否还有别的数据
@@ -137,7 +134,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         int blogCount = blogService.count(blogPQueryWrapper);
         if (blogCount > 0) {
             // 还有博客，无法删除
-            return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_USER);
+            throw new DeleteException(HttpStatus.BLOG_UNDER_THIS_USER);
         }
 
         PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
@@ -145,7 +142,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         int sayCount = sayService.count(sayPQueryWrapper);
         if (sayCount > 0) {
             // 还有说说，无法删除
-            return new ResponseResult(HttpStatus.SAY_UNDER_THIS_USER);
+            throw new DeleteException(HttpStatus.SAY_UNDER_THIS_USER);
         }
 
         PQueryWrapper<Collect> collectPQueryWrapper = new PQueryWrapper<>();
@@ -153,7 +150,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         int collectCount = collectService.count(collectPQueryWrapper);
         if (collectCount > 0) {
             // 收藏还有东西，无法删除
-            return new ResponseResult(HttpStatus.COLLECTION_UNDER_THIS_USER);
+            throw new DeleteException(HttpStatus.COLLECTION_UNDER_THIS_USER);
         }
 
         PQueryWrapper<Comment> commentPQueryWrapper = new PQueryWrapper<>();
@@ -161,7 +158,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         int commentCount = commentService.count(commentPQueryWrapper);
         if (commentCount > 0) {
             // 还有评论
-            return new ResponseResult(HttpStatus.COMMENT_UNDER_THIS_USER);
+            throw new DeleteException(HttpStatus.COMMENT_UNDER_THIS_USER);
         }
 
         PQueryWrapper<Feedback> feedbackPQueryWrapper = new PQueryWrapper<>();
@@ -169,7 +166,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         int feedbackCount = feedbackService.count(feedbackPQueryWrapper);
         if (feedbackCount > 0) {
             // 还有反馈
-            return new ResponseResult(HttpStatus.FEEDBACK_UNDER_THIS_USER);
+            throw new DeleteException(HttpStatus.FEEDBACK_UNDER_THIS_USER);
         }
         
         boolean res1 = super.removeById(userUid);
@@ -180,7 +177,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             throw new RuntimeException();
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
     /**
@@ -190,19 +187,19 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
      */
     @Override
     @Transactional
-    public ResponseResult removeByIds(List<String> userUidList) {
+    public Boolean removeByIds(List<String> userUidList) {
 
         List<User> userList = listByIds(userUidList);
 
         for (User user : userList) {
             // 批量删除出问题就回滚
-            ResponseResult responseResult = removeById(user.getUid());
-            if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
-                throw new DeleteException(responseResult.getMessage());
+            Boolean res = removeById(user.getUid());
+            if (!res) {
+                throw new DeleteException();
             }
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
 

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/TagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/TagController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/TagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/TagServiceImpl.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor：tag业务层将模糊的返回修改为抛出异常">
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/MessageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,14 +425,7 @@
       <workItem from="1721280433251" duration="861000" />
       <workItem from="1721304385597" duration="5709000" />
       <workItem from="1721373507417" duration="4550000" />
-      <workItem from="1721434824799" duration="14466000" />
-    </task>
-    <task id="LOCAL-00427" summary="修改say 后台和前台查询混乱的问题">
-      <created>1714891228230</created>
-      <option name="number" value="00427" />
-      <option name="presentableId" value="LOCAL-00427" />
-      <option name="project" value="LOCAL" />
-      <updated>1714891228230</updated>
+      <workItem from="1721434824799" duration="15238000" />
     </task>
     <task id="LOCAL-00428" summary="调整">
       <created>1714891895237</created>
@@ -769,7 +763,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721467475774</updated>
     </task>
-    <option name="localTasksCounter" value="476" />
+    <task id="LOCAL-00476" summary="refactor：tag业务层将模糊的返回修改为抛出异常">
+      <created>1721467779978</created>
+      <option name="number" value="00476" />
+      <option name="presentableId" value="LOCAL-00476" />
+      <option name="project" value="LOCAL" />
+      <updated>1721467779978</updated>
+    </task>
+    <option name="localTasksCounter" value="477" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -805,7 +806,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="禁用了overlay" />
     <MESSAGE value="前台删除群聊修改为退出群聊" />
     <MESSAGE value="实现加入群聊操作" />
     <MESSAGE value="现在可以创建群聊了" />
@@ -830,7 +830,8 @@
     <MESSAGE value="refactor：message业务层将模糊的返回修改为抛出异常" />
     <MESSAGE value="refactor：role业务层将模糊的返回修改为抛出异常" />
     <MESSAGE value="refactor：siteSetting业务层将模糊的返回修改为抛出异常" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor：siteSetting业务层将模糊的返回修改为抛出异常" />
+    <MESSAGE value="refactor：tag业务层将模糊的返回修改为抛出异常" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor：tag业务层将模糊的返回修改为抛出异常" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

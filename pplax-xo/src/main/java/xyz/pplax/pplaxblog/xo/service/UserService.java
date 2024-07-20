@@ -22,9 +22,9 @@ public interface UserService extends SuperService<User> {
 
     Boolean isUsernameExist(String username);
 
-    ResponseResult removeById(String userUid);
+    Boolean removeById(String userUid);
 
-    ResponseResult removeByIds(List<String> userUidList);
+    Boolean removeByIds(List<String> userUidList);
 
     Boolean save(UserInfoEditDto userInfoEditDto);
 }

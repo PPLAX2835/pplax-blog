@@ -42,13 +42,23 @@ public class UserController extends SuperController {
     @ApiOperation(value = "删除用户", notes = "删除用户")
     @DeleteMapping(value = "/{userUid}")
     public String delete(@PathVariable("userUid") String userUid) {
-        return toJson(userService.removeById(userUid));
+        Boolean res = userService.removeById(userUid);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value = "批量删除用户", notes = "批量删除用户")
     @DeleteMapping(value = "")
     public String delete(@RequestBody List<String> userUidList) {
-        return toJson(userService.removeByIds(userUidList));
+        Boolean res = userService.removeByIds(userUidList);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
 

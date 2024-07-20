@@ -19,7 +19,7 @@ public interface MenuService extends SuperService<Menu> {
 
     Boolean updateById(MenuEditDto menuEditDto);
 
-    ResponseResult removeById(String menuUid);
+    Boolean removeById(String menuUid);
 
     List<Menu> organizeMenus(List<Menu> menuList);
 }

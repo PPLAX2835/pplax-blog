@@ -66,7 +66,12 @@ public class MenuController extends SuperController {
     @ApiOperation(value="删除标签", notes="删除标签")
     @DeleteMapping("/{menuUid}")
     public String delete(@PathVariable("menuUid") String menuUid) {
-        return toJson(menuService.removeById(menuUid));
+        Boolean res = menuService.removeById(menuUid);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 }
 

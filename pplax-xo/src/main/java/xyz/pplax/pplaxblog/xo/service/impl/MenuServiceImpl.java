@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
@@ -85,13 +86,13 @@ public class MenuServiceImpl extends SuperServiceImpl<MenuMapper, Menu> implemen
      * @return
      */
     @Override
-    public ResponseResult removeById(String menuUid) {
+    public Boolean removeById(String menuUid) {
         // 检查是否还有子菜单
         PQueryWrapper<Menu> menuPQueryWrapper = new PQueryWrapper<>();
         menuPQueryWrapper.eq(MenuSQLConstants.PARENT_UID, menuUid);
         int count = count(menuPQueryWrapper);
         if (count > 0) {
-            return new ResponseResult(HttpStatus.CHILDREN_UNDER_THIS_MENU);
+            throw new DeleteException(HttpStatus.CHILDREN_UNDER_THIS_MENU);
         }
 
         boolean res = super.removeById(menuUid);
@@ -99,7 +100,7 @@ public class MenuServiceImpl extends SuperServiceImpl<MenuMapper, Menu> implemen
             throw new RuntimeException();
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
     /**

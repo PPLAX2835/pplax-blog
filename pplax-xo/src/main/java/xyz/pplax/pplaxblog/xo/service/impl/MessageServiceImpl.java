@@ -17,6 +17,7 @@ import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.MessageSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.type.MessageTypeConstants;
 import xyz.pplax.pplaxblog.xo.entity.Message;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.MessageMapper;
@@ -69,7 +70,7 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
             chatMessage.setUserInfo(userInfoService.getByUserUid(chatMessage.getUserUid()));
 
             // 封装已读用户
-            if (chatMessage.getType() != 0) {
+            if (chatMessage.getType() != MessageTypeConstants.LEAVE_MESSAGE) {
                 // 只有聊天消息才封装
                 String[] readUserUids = chatMessage.getReadUserUids().split(",");
                 List<User> userList = userService.listByIds(Arrays.asList(readUserUids));
@@ -97,7 +98,7 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
     public Page<Message> pageChatMessage(String userUid, String chatRoomUid, Long currentPage, Long pageSize) {
         PQueryWrapper<Message> chatMessagePQueryWrapper = new PQueryWrapper<>();
 
-        chatMessagePQueryWrapper.eq(MessageSQLConstants.TYPE, CharacterConstants.NUM_ONE);
+        chatMessagePQueryWrapper.eq(MessageSQLConstants.TYPE, MessageTypeConstants.CHAT_MESSAGE);
         if (!StringUtils.isEmpty(chatRoomUid)) {
             chatMessagePQueryWrapper.eq(MessageSQLConstants.CHAT_ROOM_UID, chatRoomUid);
         }
@@ -113,7 +114,7 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
             // 封装用户信息
             chatMessage.setUserInfo(userInfoService.getByUserUid(chatMessage.getUserUid()));
 
-            if (chatMessage.getType() != 0) {
+            if (chatMessage.getType() != MessageTypeConstants.LEAVE_MESSAGE) {
                 // 只有聊天消息才封装
 
                 // 封装已读用户

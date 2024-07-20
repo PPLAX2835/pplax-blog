@@ -217,7 +217,7 @@ CREATE TABLE `t_feedback` (
   `title` varchar(128) DEFAULT NULL COMMENT '标题',
   `content` varchar(1000) DEFAULT NULL COMMENT '反馈的内容',
   `picture_uid` varchar(32) DEFAULT NULL COMMENT '附加图片uid',
-  `type` int DEFAULT '0' COMMENT '反馈类型 0问题 1缺陷',
+  `type` int DEFAULT '0' COMMENT '反馈类型 0反馈 1需求',
   `status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -568,4 +568,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-20 18:55:55
+-- Dump completed on 2024-07-20 19:34:31

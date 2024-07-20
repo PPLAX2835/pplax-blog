@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import xyz.pplax.pplaxblog.commons.exception.request.RequestParameterException;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.ChatRoomSQLConstants;
-import xyz.pplax.pplaxblog.xo.dto.edit.ChatRoomEditDto;
+import xyz.pplax.pplaxblog.xo.constants.type.ChatRoomTypeConstants;
 import xyz.pplax.pplaxblog.xo.entity.ChatRoom;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.entity.UserInfo;
@@ -24,7 +23,6 @@ import xyz.pplax.pplaxblog.xo.service.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.UserService;
 import xyz.pplax.pplaxblog.xo.service.UserInfoService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,7 +56,7 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
             chatRoom.setAvatar(fileStorageService.getById(chatRoom.getAvatarUid()));
 
             // 封装群主
-            if (chatRoom.getType() == CharacterConstants.NUM_ZERO || chatRoom.getType() == CharacterConstants.NUM_ONE) {
+            if (chatRoom.getType() == ChatRoomTypeConstants.PUBLIC_CHAT_ROOM || chatRoom.getType() == ChatRoomTypeConstants.CHAT_ROOM) {
                 User user = userService.getById(chatRoom.getOwnerUid());
                 if (user != null) {
                     user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
@@ -110,7 +108,7 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         ChatRoom chatRoom = getById(chatRoomUid);
 
         // 如果是自己群主就直接解散，如果是私信就直接删除
-        if (chatRoom.getType() == 2 || chatRoom.getOwnerUid().equals(userUid)) {
+        if (chatRoom.getType() == ChatRoomTypeConstants.PRIVATE_CHAT || chatRoom.getOwnerUid().equals(userUid)) {
             return removeById(chatRoomUid);
         }
 
@@ -262,7 +260,7 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
         List<ChatRoom> chatRoomList = list(chatRoomPQueryWrapper);
 
         for (ChatRoom chatRoom : chatRoomList) {
-            if (chatRoom.getType() == 2) {
+            if (chatRoom.getType() == ChatRoomTypeConstants.PRIVATE_CHAT) {
                 // 私聊对象需要处理一下
                 String privateChatUserUid = chatRoom.getMemberUids().replace(userUid, "").replace(",", "");
                 UserInfo privateChatUserInfo = userInfoService.getByUserUid(privateChatUserUid);

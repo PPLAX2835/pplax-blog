@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="docs：整理菜单">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix：修改前台用户修改个人空间图片失败的问题">
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/type/ChatRoomTypeConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/type/CommentTypeConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/type/FeedbackTypeConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/type/MessageTypeConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/MessageServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,11 +129,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.xo.constants.type" />
       <recent name="xyz.pplax.pplaxblog.commons.exception.request" />
       <recent name="xyz.pplax.pplaxblog.commons.exception" />
       <recent name="xyz.pplax.pplaxblog.xo.constants.redis" />
       <recent name="xyz.pplax.pplaxblog.message.config" />
-      <recent name="xyz.pplax.pplaxblog.file.service" />
     </key>
   </component>
   <component name="RunDashboard">

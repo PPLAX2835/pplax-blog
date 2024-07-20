@@ -3,11 +3,11 @@ package xyz.pplax.pplaxblog.xo.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.CommentSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.type.CommentTypeConstants;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
 import xyz.pplax.pplaxblog.xo.entity.*;
 import xyz.pplax.pplaxblog.xo.mapper.CommentMapper;
@@ -80,11 +80,11 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
 
         for (Comment comment : pageList.getRecords()) {
             // 封装所属原文
-            if (comment.getType() == 0 || comment.getType() == 1) {
+            if (comment.getType() == CommentTypeConstants.BLOG_COMMENT || comment.getType() == CommentTypeConstants.BLOG_LIKE) {
                 // 属于博客
                 Blog blog = blogService.getById(comment.getOriginalUid());
                 comment.setBlog(blog);
-            } else if (comment.getType() == 3 || comment.getType() == 4) {
+            } else if (comment.getType() == CommentTypeConstants.SAY_LIKE || comment.getType() == CommentTypeConstants.COMMENT_REPLY) {
                 // 属于说说
                 Say say = sayService.getById(comment.getOriginalUid());
                 comment.setSay(say);
@@ -211,7 +211,7 @@ public class CommentServiceImpl extends SuperServiceImpl<CommentMapper, Comment>
         Page<Comment> commentIPage = page(page, commentPQueryWrapper);
         for (Comment comment : commentIPage.getRecords()) {
             // 封装子评论
-            Page<Comment> childrenIPage = pageByOriginalUid(comment.getUid(), CharacterConstants.NUM_FOUR, 1L, 4L);
+            Page<Comment> childrenIPage = pageByOriginalUid(comment.getUid(), CommentTypeConstants.COMMENT_REPLY, 1L, 4L);
             comment.setChildrenTotal(childrenIPage.getTotal());
             comment.setChildren(childrenIPage.getRecords());
 

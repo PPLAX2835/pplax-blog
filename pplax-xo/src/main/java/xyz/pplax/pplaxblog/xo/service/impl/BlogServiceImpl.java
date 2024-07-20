@@ -1,13 +1,12 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.exception.curd.UpdateException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.RelativeDateFormat;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
@@ -584,7 +583,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         boolean res2 = blogContentService.updateById(blogContent);
 
         if (!(res1 && res2)) {
-            throw new RuntimeException();
+            throw new UpdateException();
         }
 
         return true;

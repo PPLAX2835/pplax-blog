@@ -93,7 +93,6 @@ public enum HttpStatus {
 
 
 
-
     /**
      * curd相关
      */
@@ -102,6 +101,14 @@ public enum HttpStatus {
     INSERT_FAIL(500002, "插入失败"),
     UPDATE_FAIL(500003, "更新失败"),
     DELETE_FAIL(500004, "删除失败"),
+    SELECT_FAIL(500005, "查询失败"),
+
+    /**
+     * blog表操作相关
+     */
+    // 失败   500100-500199
+    PROMOTE_FAIL(500100, "置顶失败"),
+    PROMOTE_CANCEL_FAIL(500100, "取消置顶失败"),
 
     /**
      * 参数相关

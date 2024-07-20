@@ -1,7 +1,6 @@
 package xyz.pplax.pplaxblog.xo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
-import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
+import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
@@ -245,7 +244,7 @@ public class BlogSortServiceImpl extends SuperServiceImpl<BlogSortMapper, BlogSo
             // 批量删除出问题就回滚
             ResponseResult responseResult = removeById(blogSort.getUid());
             if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
-                throw new DeleteFailException(responseResult.getMessage());
+                throw new DeleteException(responseResult.getMessage());
             }
         }
 

@@ -2,8 +2,6 @@ package xyz.pplax.pplaxblog.commons.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.api.IErrorCode;
-import com.baomidou.mybatisplus.extension.api.R;
-import com.baomidou.mybatisplus.extension.enums.ApiErrorCode;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
 import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +12,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
-import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
+import xyz.pplax.pplaxblog.commons.exception.curd.CurdException;
+import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
+import xyz.pplax.pplaxblog.commons.exception.curd.InsertException;
+import xyz.pplax.pplaxblog.commons.exception.curd.SelectException;
+import xyz.pplax.pplaxblog.commons.exception.request.RequestException;
+import xyz.pplax.pplaxblog.commons.exception.request.RequestParameterException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 
 import java.util.ArrayList;
@@ -34,34 +37,84 @@ import java.util.regex.Pattern;
 public class GlobalExceptionHandler {
 
     /**
-     * <p>
-     * 自定义 REST 业务异常
-     * <p>
-     *
-     * @param e 异常类型
+     * curd异常
+     * @param e
      * @return
      */
+    @ExceptionHandler(value = CurdException.class)
+    public ResponseResult handleCurd(Exception e) {
+        /*
+         * 删除异常
+         */
+        if (e instanceof DeleteException) {
+            log.debug("Rest request error, {}", e.getMessage());
+            return ResponseResult.error(HttpStatus.DELETE_FAIL.getCode(), e.getMessage());
+        }
+
+        /*
+         * 插入异常
+         */
+        if (e instanceof InsertException) {
+            log.debug("Rest request error, {}", e.getMessage());
+            return ResponseResult.error(HttpStatus.INSERT_FAIL.getCode(), e.getMessage());
+        }
+
+        /*
+         * 查询异常
+         */
+        if (e instanceof SelectException) {
+            log.debug("Rest request error, {}", e.getMessage());
+            return ResponseResult.error(HttpStatus.SELECT_FAIL.getCode(), e.getMessage());
+        }
+
+        /*
+         * 系统内部异常，打印异常栈
+         */
+        log.error("Error: handleBadRequest StackTrace : %s", e);
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * 请求异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = RequestException.class)
+    public ResponseResult request(Exception e) {
+
+        /*
+         * 请求参数异常
+         */
+        if (e instanceof RequestParameterException) {
+            log.debug("Rest request error, {}", e.getMessage());
+            return ResponseResult.error(HttpStatus.BAD_REQUEST.getCode(), e.getMessage());
+        }
+
+        /*
+         * 系统内部异常，打印异常栈
+         */
+        log.error("Error: handleBadRequest StackTrace : %s", e);
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    /**
+     * 自定义 REST 业务异常
+     */
     @ExceptionHandler(value = Exception.class)
-    public ResponseResult handleBadRequest(Exception e) {
+    public ResponseResult restService(Exception e) {
         /*
          * 业务逻辑异常
          */
         if (e instanceof ApiException) {
             IErrorCode errorCode = ((ApiException) e).getErrorCode();
             if (null != errorCode) {
-                log.debug("Rest request error, {}", errorCode.toString());
+                log.debug("Rest request error, {}", errorCode);
                 return ResponseResult.error(errorCode.toString());
             }
             log.debug("Rest request error, {}", e.getMessage());
-            return ResponseResult.error(e.getMessage());
-        }
-
-        /*
-         * 删除异常
-         */
-        if (e instanceof DeleteFailException) {
-            log.debug("Rest request error, {}", e.getMessage());
-            return new ResponseResult(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            long code = errorCode.getCode();
+            return ResponseResult.error((int) code, e.getMessage());
         }
 
         /*

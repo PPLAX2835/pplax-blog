@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
-import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
+import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
@@ -181,7 +181,7 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
             // 批量删除出问题就回滚
             ResponseResult responseResult = removeById(tag.getUid());
             if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
-                throw new DeleteFailException(responseResult.getMessage());
+                throw new DeleteException(responseResult.getMessage());
             }
         }
 

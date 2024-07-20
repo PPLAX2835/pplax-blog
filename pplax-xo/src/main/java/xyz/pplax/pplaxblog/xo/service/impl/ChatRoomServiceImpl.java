@@ -6,6 +6,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.curd.InsertException;
+import xyz.pplax.pplaxblog.commons.exception.curd.SelectException;
+import xyz.pplax.pplaxblog.commons.exception.curd.UpdateException;
+import xyz.pplax.pplaxblog.commons.exception.request.RequestParameterException;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.ChatRoomSQLConstants;
@@ -71,7 +76,7 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
 
         // 如果不是群主就直接返回
         if (!chatRoom.getOwnerUid().equals(userUid)) {
-            return false;
+            throw new RequestParameterException();
         }
 
         // 创建一个列表来存放保留的UID
@@ -139,16 +144,21 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
     public Boolean joinChatRoom(String userUid, String chatRoomUid) {
         ChatRoom chatRoom = getById(chatRoomUid);
 
-        if (chatRoom == null || chatRoom.getOwnerUid().equals(userUid) || chatRoom.getMemberUids().contains(userUid)) {
-            return false;
+        // 找不到群聊
+        if (chatRoom == null) {
+            throw new SelectException(HttpStatus.DATA_NOT_EXIST);
+        }
+        // 已经在群聊中
+        if (chatRoom.getOwnerUid().equals(userUid) || chatRoom.getMemberUids().contains(userUid)) {
+            throw new UpdateException(HttpStatus.ALREADY_IN_CHAT_ROOM);
         }
 
         String newMemberUids = chatRoom.getMemberUids() + "," + userUid;
         newMemberUids = StringUtils.removeStart(newMemberUids, ",");
         newMemberUids = StringUtils.removeEnd(newMemberUids, ",");
-
+        // 群聊已满
         if (newMemberUids.split(",").length > 50) {
-            return false;
+            throw new UpdateException(HttpStatus.CHAT_ROOM_IS_FULL);
         }
 
         chatRoom.setMemberUids(newMemberUids);
@@ -219,8 +229,7 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
 
             ChatRoom chatRoom1 = getOne(chatRoomPQueryWrapper);
             if (chatRoom1 != null) {
-                // 晚点优化一下这里
-                return false;
+                throw new InsertException(HttpStatus.ENTITY_EXIST);
             }
 
             chatRoom.setMemberUids(memberUids);        // 私聊只有两个人

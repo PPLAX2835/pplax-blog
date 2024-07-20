@@ -21,9 +21,9 @@ public interface TagService extends SuperService<Tag> {
 
     Integer count(String name);
 
-    ResponseResult removeById(String tagUid);
+    Boolean removeById(String tagUid);
 
-    ResponseResult removeByIds(List<String> tagUidList);
+    Boolean removeByIds(List<String> tagUidList);
 
     Boolean isTagNameExist(String name);
 }

@@ -150,13 +150,13 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
      * @return
      */
     @Override
-    public ResponseResult removeById(String tagUid) {
+    public Boolean removeById(String tagUid) {
         PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
         blogPQueryWrapper.like(BlogSQLConstants.TAG_UIDS, "%" + tagUid + "%");
         int count = blogService.count(blogPQueryWrapper);
 
         if (count > 0) {
-            return new ResponseResult(HttpStatus.BLOG_UNDER_THIS_TAG);
+            throw new DeleteException(HttpStatus.BLOG_UNDER_THIS_TAG);
         }
 
         boolean res = super.removeById(tagUid);
@@ -164,7 +164,7 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
             throw new RuntimeException();
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
     /**
@@ -174,18 +174,18 @@ public class TagServiceImpl extends SuperServiceImpl<TagMapper, Tag> implements 
      */
     @Override
     @Transactional
-    public ResponseResult removeByIds(List<String> tagUidList) {
+    public Boolean removeByIds(List<String> tagUidList) {
         List<Tag> tagList = listByIds(tagUidList);
 
         for (Tag tag : tagList) {
             // 批量删除出问题就回滚
-            ResponseResult responseResult = removeById(tag.getUid());
-            if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
-                throw new DeleteException(responseResult.getMessage());
+            Boolean res = removeById(tag.getUid());
+            if (!res) {
+                throw new DeleteException();
             }
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
     @Override

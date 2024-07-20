@@ -83,13 +83,23 @@ public class TagController extends SuperController {
     @ApiOperation(value="删除标签", notes="删除标签")
     @DeleteMapping("/{tagUid}")
     public String delete(@PathVariable("tagUid") String tagUid) {
-        return toJson(tagService.removeById(tagUid));
+        Boolean res = tagService.removeById(tagUid);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value = "批量删除标签", notes = "批量删除标签")
     @DeleteMapping(value = "")
     public String delete(@RequestBody List<String> tagUidList) {
-        return toJson(tagService.removeByIds(tagUidList));
+        Boolean res = tagService.removeByIds(tagUidList);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value="判断标签名是否存在", notes="判断标签名是否存在")

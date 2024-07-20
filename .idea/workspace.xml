@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/TagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/TagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/TagServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,21 +424,7 @@
       <workItem from="1721280433251" duration="861000" />
       <workItem from="1721304385597" duration="5709000" />
       <workItem from="1721373507417" duration="4550000" />
-      <workItem from="1721434824799" duration="13881000" />
-    </task>
-    <task id="LOCAL-00425" summary="后台 站点设置增加储存选项">
-      <created>1714825870079</created>
-      <option name="number" value="00425" />
-      <option name="presentableId" value="LOCAL-00425" />
-      <option name="project" value="LOCAL" />
-      <updated>1714825870079</updated>
-    </task>
-    <task id="LOCAL-00426" summary="整合七牛云">
-      <created>1714890049194</created>
-      <option name="number" value="00426" />
-      <option name="presentableId" value="LOCAL-00426" />
-      <option name="project" value="LOCAL" />
-      <updated>1714890049194</updated>
+      <workItem from="1721434824799" duration="14466000" />
     </task>
     <task id="LOCAL-00427" summary="修改say 后台和前台查询混乱的问题">
       <created>1714891228230</created>
@@ -769,7 +755,21 @@
       <option name="project" value="LOCAL" />
       <updated>1721466811489</updated>
     </task>
-    <option name="localTasksCounter" value="474" />
+    <task id="LOCAL-00474" summary="refactor：role业务层将模糊的返回修改为抛出异常">
+      <created>1721467189174</created>
+      <option name="number" value="00474" />
+      <option name="presentableId" value="LOCAL-00474" />
+      <option name="project" value="LOCAL" />
+      <updated>1721467189174</updated>
+    </task>
+    <task id="LOCAL-00475" summary="refactor：siteSetting业务层将模糊的返回修改为抛出异常">
+      <created>1721467475774</created>
+      <option name="number" value="00475" />
+      <option name="presentableId" value="LOCAL-00475" />
+      <option name="project" value="LOCAL" />
+      <updated>1721467475774</updated>
+    </task>
+    <option name="localTasksCounter" value="476" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -805,8 +805,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="修改用户可以修改非自己撰写的博客的bug" />
-    <MESSAGE value="修改说说定位相关bug" />
     <MESSAGE value="禁用了overlay" />
     <MESSAGE value="前台删除群聊修改为退出群聊" />
     <MESSAGE value="实现加入群聊操作" />
@@ -830,7 +828,9 @@
     <MESSAGE value="refactor：chatRoom业务层将模糊的返回修改为抛出异常" />
     <MESSAGE value="refactor：menu业务层将模糊的返回修改为抛出异常" />
     <MESSAGE value="refactor：message业务层将模糊的返回修改为抛出异常" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor：message业务层将模糊的返回修改为抛出异常" />
+    <MESSAGE value="refactor：role业务层将模糊的返回修改为抛出异常" />
+    <MESSAGE value="refactor：siteSetting业务层将模糊的返回修改为抛出异常" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor：siteSetting业务层将模糊的返回修改为抛出异常" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

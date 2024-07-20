@@ -254,6 +254,8 @@ public class ChatRoomServiceImpl extends SuperServiceImpl<ChatRoomMapper, ChatRo
                                     .eq(ChatRoomSQLConstants.OWNER_UID, userUid)
                                     .or()
                                     .like(ChatRoomSQLConstants.MEMBER_UIDS, "%" + userUid + "%")
+                                    .or()
+                                    .eq(ChatRoomSQLConstants.TYPE, ChatRoomTypeConstants.PUBLIC_CHAT_ROOM)
                     );
         }
 

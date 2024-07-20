@@ -94,4 +94,21 @@ public class UserController extends SuperController {
         return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
+    @ApiOperation(value="修改个人空间背景", notes="修改个人空间背景")
+    @PutMapping(value = "/userInfo/background")
+    public String updateBackground (HttpServletRequest httpServletRequest, @RequestBody UserInfoEditDto userInfoEditDto) {
+        String userUid = getUserUid(httpServletRequest);
+
+        // 只保留空间背景uid
+        UserInfoEditDto userInfoEditDto1 = new UserInfoEditDto();
+        userInfoEditDto1.setSpaceBackgroundPictureUid(userInfoEditDto.getSpaceBackgroundPictureUid());
+
+        Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto1);
+
+        if (res) {
+            return getMyUserInfo(httpServletRequest);
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
 }

@@ -266,7 +266,7 @@
 </template>
    
 <script>
-import { getBlogListByUserUid, getUserCount, getUserInfo, updateMyUserInfo } from "@/api/user";
+import {getBlogListByUserUid, getUserCount, getUserInfo, updateMyBackground, updateMyUserInfo} from "@/api/user";
 import {deleteBlog} from "@/api/blog";
 import { addFeedback } from "@/api/feedback";
 import { parseTime } from "@/utils";
@@ -476,6 +476,17 @@ export default {
                 this.editDialogTableVisible = false
             })
         },
+        updateBackgroundImage() {
+          updateMyBackground(this.userInfoForm).then(res => {
+            this.user = res.data
+            this.loginUser = res.data
+
+            this.$toast.success('修改成功')
+            this.userInfoForm.code = ''
+            this.after()
+            this.editDialogTableVisible = false
+          })
+        },
         handleClike(id, path) {
             this.$router.push({ path: path, query: { uid: id } })
         },
@@ -601,7 +612,7 @@ export default {
           formData.append('file', file)
           spaceBackgroundPictureUpload(formData).then(res => {
             this.userInfoForm.spaceBackgroundPictureUid = res.data.uid
-            this.updateUserInfo()
+            this.updateBackgroundImage()
             this.$bus.$emit('close')
           }).catch(err => {
             this.$bus.$emit('close')

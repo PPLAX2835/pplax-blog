@@ -15,6 +15,13 @@ export function updateMyUserInfo(data) {
     data
   })
 }
+export function updateMyBackground(data) {
+  return request({
+    url: '/web/user/userInfo/background',
+    method: 'put',
+    data
+  })
+}
 
 /**
  * 获得用户信息

@@ -6,7 +6,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
+import xyz.pplax.pplaxblog.commons.exception.curd.InsertException;
+import xyz.pplax.pplaxblog.commons.exception.curd.SelectException;
 import xyz.pplax.pplaxblog.commons.exception.curd.UpdateException;
+import xyz.pplax.pplaxblog.commons.exception.request.RequestParameterException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.RelativeDateFormat;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
@@ -468,7 +473,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     public Blog getByIdWithAll(String blogUid, String userUid) {
         Blog blog = getById(blogUid);
         if (blog == null) {
-            return null;
+            throw new SelectException(HttpStatus.DATA_NOT_EXIST.getMessage());
         }
         blog.setBlogContent(getBlogContentByBlogUid(blogUid));
 
@@ -554,7 +559,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     public Boolean userUpdateById(String userUid, BlogEditDto blogEditDto) {
         Blog blog = getById(blogEditDto.getUid());
         if (blog == null || !blog.getUserUid().equals(userUid)) {
-            return false;
+            throw new RequestParameterException();
         }
 
         return updateById(blogEditDto);
@@ -593,7 +598,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     public Boolean promote(String blogUid) {
         Blog blog = getById(blogUid);
         if (blog.getStatus() != EStatus.ENABLE.getStatus()) {
-            return false;
+            throw new UpdateException(HttpStatus.PROMOTE_FAIL.getMessage());
         }
         blog.setStatus(EStatus.STICK.getStatus());
         return updateById(blog);
@@ -636,7 +641,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         boolean res2 = blogContentService.save(blogContent);
 
         if (!(res1 && res2)) {
-            throw new RuntimeException();
+            throw new InsertException();
         }
 
         return blog;
@@ -657,7 +662,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
 
         // 没有同时删除就回滚
         if (!(res1 && res2)) {
-            throw new RuntimeException();
+            throw new DeleteException();
         }
 
         return true;
@@ -674,7 +679,7 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         for (String uid : blogUidList) {
             Boolean res = removeById(uid);
             if (!res) {
-                throw new RuntimeException();
+                throw new DeleteException();
             }
         }
         return true;

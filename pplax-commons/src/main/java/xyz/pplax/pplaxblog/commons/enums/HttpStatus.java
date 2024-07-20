@@ -97,11 +97,16 @@ public enum HttpStatus {
      * curd相关
      */
     // 失败   500000-500099
-    OPERATION_FAIL(500001,  "操作失败"),
-    INSERT_FAIL(500002, "插入失败"),
-    UPDATE_FAIL(500003, "更新失败"),
-    DELETE_FAIL(500004, "删除失败"),
-    SELECT_FAIL(500005, "查询失败"),
+    OPERATION_FAIL(500000,  "操作失败"),
+
+    INSERT_FAIL(500020, "插入失败"),
+
+    UPDATE_FAIL(500040, "更新失败"),
+
+    DELETE_FAIL(500060, "删除失败"),
+
+    SELECT_FAIL(500080, "查询失败"),
+    DATA_NOT_EXIST(500081, "查询的数据不存在"),
 
     /**
      * blog表操作相关

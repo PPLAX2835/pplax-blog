@@ -161,6 +161,7 @@ public enum HttpStatus {
     LAST_PASSWORD_NOT_ALLOWED(403026, "请不要修改上次使用的密码"),
     ALREADY_IN_CHAT_ROOM(403027, "已经在群聊中"),
     CHAT_ROOM_IS_FULL(403028, "群聊已满"),
+    MESSAGE_SENT_MORE_THAN_TWO_MINUTES(403029, "消息发送已经过去两分钟"),
 
     /**
      * 账户相关

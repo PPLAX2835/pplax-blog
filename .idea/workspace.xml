@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/MenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/MenuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/HttpStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/enums/HttpStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/MessageServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,14 +423,7 @@
       <workItem from="1721280433251" duration="861000" />
       <workItem from="1721304385597" duration="5709000" />
       <workItem from="1721373507417" duration="4550000" />
-      <workItem from="1721434824799" duration="13096000" />
-    </task>
-    <task id="LOCAL-00423" summary="调整siteSetting相关方法">
-      <created>1714809183625</created>
-      <option name="number" value="00423" />
-      <option name="presentableId" value="LOCAL-00423" />
-      <option name="project" value="LOCAL" />
-      <updated>1714809183626</updated>
+      <workItem from="1721434824799" duration="13506000" />
     </task>
     <task id="LOCAL-00424" summary="调整文件处理逻辑，取消注入配置的方式，这样就能在修改配置后动态切换了">
       <created>1714824598078</created>
@@ -769,7 +761,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721466200939</updated>
     </task>
-    <option name="localTasksCounter" value="472" />
+    <task id="LOCAL-00472" summary="refactor：menu业务层将模糊的返回修改为抛出异常">
+      <created>1721466394252</created>
+      <option name="number" value="00472" />
+      <option name="presentableId" value="LOCAL-00472" />
+      <option name="project" value="LOCAL" />
+      <updated>1721466394252</updated>
+    </task>
+    <option name="localTasksCounter" value="473" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -805,7 +804,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更换天气组件，和风天气不能用了" />
     <MESSAGE value="修改前台编辑博客时重复点击保存草稿或提交审核会多次添加的问题" />
     <MESSAGE value="修改用户可以修改非自己撰写的博客的bug" />
     <MESSAGE value="修改说说定位相关bug" />
@@ -830,7 +828,8 @@
     <MESSAGE value="refactor：blogSort业务层将模糊的返回修改为抛异常" />
     <MESSAGE value="refactor：优化全局异常" />
     <MESSAGE value="refactor：chatRoom业务层将模糊的返回修改为抛出异常" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor：chatRoom业务层将模糊的返回修改为抛出异常" />
+    <MESSAGE value="refactor：menu业务层将模糊的返回修改为抛出异常" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor：menu业务层将模糊的返回修改为抛出异常" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

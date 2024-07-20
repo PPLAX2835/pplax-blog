@@ -8,6 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
+import xyz.pplax.pplaxblog.commons.exception.curd.SelectException;
+import xyz.pplax.pplaxblog.commons.exception.request.RequestException;
+import xyz.pplax.pplaxblog.commons.exception.request.RequestParameterException;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
@@ -165,8 +170,13 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
     @Override
     public Boolean withdraw(String userUid, String chatRoomUid, String chatMessageUid) {
         Message chatMessage = getById(chatMessageUid);
-        if (chatMessage == null || !chatMessage.getChatRoomUid().equals(chatRoomUid) || !chatMessage.getUserUid().equals(userUid)) {
-            return false;
+        // 要撤回的消息不存在
+        if (chatMessage == null) {
+            throw new SelectException(HttpStatus.SELECT_FAIL);
+        }
+        // chatRoomUid对不上或者是自己不是群主
+        if (!chatMessage.getChatRoomUid().equals(chatRoomUid) || !chatMessage.getUserUid().equals(userUid)) {
+            throw new RequestParameterException();
         }
 
         // 检查是否超过两分钟
@@ -178,7 +188,7 @@ public class MessageServiceImpl extends SuperServiceImpl<MessageMapper, Message>
         // 两分钟等于120000毫秒
         long twoMinutesInMillis = 2 * 60 * 1000;
         if (differenceInMillis > twoMinutesInMillis) {
-            return false;
+            throw new RequestException(HttpStatus.MESSAGE_SENT_MORE_THAN_TWO_MINUTES);
         }
 
         chatMessage.setStatus(EStatus.WITHDRAW.getStatus());

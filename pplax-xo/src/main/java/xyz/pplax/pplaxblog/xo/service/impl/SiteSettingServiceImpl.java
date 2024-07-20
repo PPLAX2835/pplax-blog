@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.constants.SiteSettingConstants;
+import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.BaseException;
 import xyz.pplax.pplaxblog.commons.utils.CaptchaUtils;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
@@ -108,8 +110,7 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         // 检查一下captchaUrl是否可用
         BufferedImage bufferedImage = CaptchaUtils.getBufferedImage((String) data.get(SiteSettingConstants.CAPTCHA_URL_EN).getValue());
         if (bufferedImage == null) {
-            // 这里将来改成抛异常的形式
-            return false;
+            throw new BaseException(HttpStatus.CAPTCHA_GET_FAILED);
         }
 
         boolean res = updateBatchById(data.values());

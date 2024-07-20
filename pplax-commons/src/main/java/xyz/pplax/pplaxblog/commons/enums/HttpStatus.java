@@ -113,7 +113,15 @@ public enum HttpStatus {
      */
     // 失败   500100-500199
     PROMOTE_FAIL(500100, "置顶失败"),
-    PROMOTE_CANCEL_FAIL(500100, "取消置顶失败"),
+    PROMOTE_CANCEL_FAIL(500101, "取消置顶失败"),
+
+    /**
+     * 服务器内部错误相关
+     */
+    // 失败      500200-500299
+    TOKEN_GET_FAILED(500201, "token获取失败"),
+    CAPTCHA_GET_FAILED(500202, "验证码图片获取失败"),
+
 
     /**
      * 参数相关
@@ -191,11 +199,6 @@ public enum HttpStatus {
     RESTAPI_NO_PRIVILEGE(401107, "您无权进行该操作"),
     ACCESS_NO_PRIVILEGE(401108, "该资源无权限访问"),
     LOGIN_TIMEOUT(401109, "您已退出，请重新登录"),
-
-    /**
-     * 服务器内部错误相关
-     */
-    TOKEN_GET_FAILED(500005, "token获取失败"),
 
     /**
      * 上传，更新，修改，删除，下载文件相关

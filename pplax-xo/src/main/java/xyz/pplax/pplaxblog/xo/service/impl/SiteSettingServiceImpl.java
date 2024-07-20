@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
+import xyz.pplax.pplaxblog.commons.constants.SiteSettingConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.exception.DeleteFailException;
+import xyz.pplax.pplaxblog.commons.utils.CaptchaUtils;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.starter.redis.utils.RedisUtils;
@@ -22,6 +24,7 @@ import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.mapper.SiteSettingMapper;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -107,11 +110,18 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
 
     @Override
     public Boolean updateByMap(Map<String, SiteSetting> data) {
+        // 检查一下captchaUrl是否可用
+        BufferedImage bufferedImage = CaptchaUtils.getBufferedImage((String) data.get(SiteSettingConstants.CAPTCHA_URL_EN).getValue());
+        if (bufferedImage == null) {
+            // 这里将来改成抛异常的形式
+            return false;
+        }
+
         boolean res = updateBatchById(data.values());
 
         if (res) {
             // 删除缓存
-            boolean b = redisService.deleteObject(SiteRedisConstants.SITE_SETTING);
+            res = redisService.deleteObject(SiteRedisConstants.SITE_SETTING);
         }
 
         return res;
@@ -119,15 +129,19 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
 
     @Override
     public Map<String, SiteSetting> map() {
-        Map<String, SiteSetting> setting = redisService.getCacheMap(SiteRedisConstants.SITE_SETTING);
+        Map<String, SiteSetting> res = new HashMap<>();
+        Map<String, JSONObject> setting = redisService.getCacheMap(SiteRedisConstants.SITE_SETTING);
 
         // 如果缓存中有，直接返回即可
         if (setting != null && setting.size() != 0) {
-            return setting;
+            for (String key : setting.keySet()) {
+                res.put(key, JSON.toJavaObject(setting.get(key), SiteSetting.class));
+            }
+
+            return res;
         }
 
         List<SiteSetting> siteSettingList = list();
-        Map<String, SiteSetting> res = new HashMap<>();
         for (SiteSetting siteSetting : siteSettingList) {
             res.put(siteSetting.getNameEn(), siteSetting);
         }

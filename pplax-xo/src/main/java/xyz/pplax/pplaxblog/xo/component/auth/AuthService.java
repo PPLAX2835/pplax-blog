@@ -1,7 +1,6 @@
 package xyz.pplax.pplaxblog.xo.component.auth;
 
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
-import xyz.pplax.pplaxblog.commons.utils.CaptchaUtils;
 import xyz.pplax.pplaxblog.xo.base.service.SuperService;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
 import xyz.pplax.pplaxblog.xo.dto.EditPasswordDto;
@@ -10,9 +9,6 @@ import xyz.pplax.pplaxblog.xo.dto.RegisterDto;
 import xyz.pplax.pplaxblog.xo.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.awt.image.BufferedImage;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * 认证 服务类

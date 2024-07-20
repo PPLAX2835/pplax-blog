@@ -41,7 +41,7 @@ public class SiteSettingConstants {
     public static final String SUMMARY_NANE_EN = "summary";
     public static final String TOURIST_AVATAR_NAME_EN = "touristAvatar";
     public static final String TOURIST_BACKGROUND_NAME_EN = "touristBackground";
-
+    public static final String CAPTCHA_URL_EN = "captchaUrl";
 
 
 

@@ -69,6 +69,17 @@
           <el-form>
             <el-row>
               <el-col :span="6">
+                <el-form-item label="验证码随机图片" prop="captchaUrl">
+                  <el-tooltip>
+                    <div slot="content" style="text-align: center;min-width:180px;">
+                      <el-input v-model="settingMap.captchaUrl.value" auto-complete="off"></el-input>
+                    </div>
+                    <img :src="settingMap.captchaUrl.value" style="width: 80%" />
+                  </el-tooltip>
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="6">
                 <el-form-item label="游客头像" prop="touristAvatar">
                   <el-tooltip>
                     <div slot="content" style="text-align: center;min-width:180px;">
@@ -341,6 +352,7 @@ export default {
         pageSize: 5
       },
       settingMap: {
+        captchaUrl: {},
         aboutMe: {},
         apiDomain: {},
         author: {},

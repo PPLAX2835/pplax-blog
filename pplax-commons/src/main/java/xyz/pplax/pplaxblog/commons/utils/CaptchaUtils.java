@@ -21,11 +21,6 @@ public class CaptchaUtils {
     private static final Logger log = LogManager.getLogger(CaptchaUtils.class);
 
     /**
-     * 网络图片地址
-     **/
-    private final static String IMG_URL = "http://127.0.0.1:9001/api/v1/buckets/pplax-blog/objects/download?preview=true&prefix=aW1nL2JhY2tncm91bmQvOTQwNTIyLnBuZw==&version_id=null";
-
-    /**
      * 获取指定范围内的随机数
      **/
     public static int getNonceByRange(int start, int end) {
@@ -36,10 +31,10 @@ public class CaptchaUtils {
     /**
      * 获取验证码资源图
      **/
-    public static BufferedImage getBufferedImage(Integer place) {
+    public static BufferedImage getBufferedImage(String captchaUrl) {
         try {
             //获取网络资源图片{
-            URL url = new URL(IMG_URL);
+            URL url = new URL(captchaUrl);
             return ImageIO.read(url.openStream());
         } catch (Exception e) {
             log.error("获取拼图资源失败：" + e.getMessage());

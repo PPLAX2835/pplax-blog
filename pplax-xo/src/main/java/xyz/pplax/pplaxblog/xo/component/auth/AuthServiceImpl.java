@@ -24,13 +24,13 @@ import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AuthFeignClient;
 import xyz.pplax.pplaxblog.xo.constants.redis.AuthRedisConstants;
-import xyz.pplax.pplaxblog.xo.constants.sql.ChatRoomSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
 import xyz.pplax.pplaxblog.xo.dto.EditPasswordDto;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 import xyz.pplax.pplaxblog.xo.dto.RegisterDto;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
+import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.UserMapper;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
@@ -313,7 +313,9 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         int blockHeight = captcha.getBlockHeight();
         int blockRadius = captcha.getBlockRadius();
         //获取资源图
-        BufferedImage canvasImage = CaptchaUtils.getBufferedImage(captcha.getPlace());
+        Map<String, SiteSetting> stringSiteSettingMap = siteSettingService.map();
+        SiteSetting captchaUrlSetting = stringSiteSettingMap.get(SiteSettingConstants.CAPTCHA_URL_EN);
+        BufferedImage canvasImage = CaptchaUtils.getBufferedImage((String) captchaUrlSetting.getValue());
         //调整原图到指定大小
         canvasImage = CaptchaUtils.imageResize(canvasImage, canvasWidth, canvasHeight);
         //随机生成阻塞块坐标

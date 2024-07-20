@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.commons.exception.BaseException;
 import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
+import xyz.pplax.pplaxblog.commons.exception.request.RequestException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
@@ -85,7 +87,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     }
 
     @Override
-    public ResponseResult removeById(String roleUid) {
+    public Boolean removeById(String roleUid) {
         Role role = getById(roleUid);
         String[] menuUids = role.getMenuUids().split(",");
 
@@ -95,31 +97,31 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
         int count = menuService.count(menuPQueryWrapper);
 
         if (count > 0) {
-            return new ResponseResult(HttpStatus.MENU_UNDER_THIS_ROLE);
+            throw new RequestException(HttpStatus.MENU_UNDER_THIS_ROLE);
         }
 
         boolean res = super.removeById(roleUid);
         if (!res) {
-            throw new RuntimeException();
+            throw new BaseException();
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
     @Override
     @Transactional
-    public ResponseResult removeByIds(List<String> roleUidList) {
+    public Boolean removeByIds(List<String> roleUidList) {
         List<Role> roleList = listByIds(roleUidList);
 
         for (Role role : roleList) {
             // 批量删除出问题就回滚
-            ResponseResult responseResult = removeById(role.getUid());
-            if (!Objects.equals(responseResult.getCode(), HttpStatus.OK.getCode())) {
-                throw new DeleteException(responseResult.getMessage());
+            Boolean res = removeById(role.getUid());
+            if (!res) {
+                throw new DeleteException();
             }
         }
 
-        return ResponseResult.success(HttpStatus.DELETE_SUCCESS);
+        return true;
     }
 
     /**
@@ -157,7 +159,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     public Role setMenu(Role role) {
         if (role == null) {
             log.warn("参数为空");
-            return null;
+            throw new BaseException();
         }
 
         // 获得菜单

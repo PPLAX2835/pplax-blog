@@ -81,13 +81,23 @@ public class RoleController extends SuperController {
     @ApiOperation(value="删除角色", notes="删除角色")
     @DeleteMapping("/{roleUid}")
     public String delete(@PathVariable("roleUid") String roleUid) {
-        return toJson(roleService.removeById(roleUid));
+        Boolean res = roleService.removeById(roleUid);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @ApiOperation(value = "批量删除角色", notes = "批量删除角色")
     @DeleteMapping(value = "")
     public String delete(@RequestBody List<String> roleUidList) {
-        return toJson(roleService.removeByIds(roleUidList));
+        Boolean res = roleService.removeByIds(roleUidList);
+
+        if (res) {
+            return success();
+        }
+        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
 }

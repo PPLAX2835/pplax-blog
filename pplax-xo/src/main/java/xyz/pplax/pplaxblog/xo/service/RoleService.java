@@ -19,9 +19,9 @@ public interface RoleService extends SuperService<Role> {
 
     Boolean updateById(RoleEditDto roleEditDto);
 
-    ResponseResult removeById(String roleUid);
+    Boolean removeById(String roleUid);
 
-    ResponseResult removeByIds(List<String> roleUidList);
+    Boolean removeByIds(List<String> roleUidList);
 
     void preheat();
 

@@ -348,8 +348,11 @@ export default {
         content: this.$refs.textareaRef.innerHTML
       }
       postBlogComment(this.blogUid, comment).then(res => {
+        let that = this
         this.pageData.currentPage = 1
-        this.getComments()
+        setTimeout(function (){
+          that.getComments()
+        }, 1000)
         this.$toast.success('评论成功')
         this.$store.commit("isCommentFlag", true)
         this.$refs.textareaRef.innerHTML = ""

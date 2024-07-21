@@ -323,6 +323,7 @@ export default {
         // 合并到最后面，即实现了添加一个表情后，把光标移到最后面
         selection.collapseToEnd()
       }
+      this.content = edit.innerHTML
       this.showEmoji = false
     },
     //关闭操作框

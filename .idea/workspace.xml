@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix：整理菜单，补充部分内容；修复公共聊天室不能正常查询的问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ChatRoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/BlogServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +139,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -258,11 +258,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="npm.dev" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -424,13 +424,7 @@
       <workItem from="1721304385597" duration="5709000" />
       <workItem from="1721373507417" duration="4550000" />
       <workItem from="1721434824799" duration="19046000" />
-    </task>
-    <task id="LOCAL-00432" summary="修改siteSettingService中map方法在redis中获取对象时反序列化异常的问题">
-      <created>1714983820803</created>
-      <option name="number" value="00432" />
-      <option name="presentableId" value="LOCAL-00432" />
-      <option name="project" value="LOCAL" />
-      <updated>1714983820804</updated>
+      <workItem from="1721524318743" duration="1369000" />
     </task>
     <task id="LOCAL-00433" summary="设置默认角色">
       <created>1714987162078</created>
@@ -768,7 +762,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721475354339</updated>
     </task>
-    <option name="localTasksCounter" value="481" />
+    <task id="LOCAL-00481" summary="fix：整理菜单，补充部分内容；修复公共聊天室不能正常查询的问题">
+      <created>1721480248896</created>
+      <option name="number" value="00481" />
+      <option name="presentableId" value="LOCAL-00481" />
+      <option name="project" value="LOCAL" />
+      <updated>1721480248897</updated>
+    </task>
+    <option name="localTasksCounter" value="482" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -804,7 +805,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="增加踢出群成员功能" />
     <MESSAGE value="整理到右键菜单" />
     <MESSAGE value="整理到右键菜单：调整变量名，修改显示问题" />
     <MESSAGE value="完成创建私信功能" />
@@ -829,7 +829,8 @@
     <MESSAGE value="docs：更新数据库表" />
     <MESSAGE value="docs：整理菜单" />
     <MESSAGE value="refactor：对于有type属性的字段，使用对应的常量类进行赋值，增加可读性" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor：对于有type属性的字段，使用对应的常量类进行赋值，增加可读性" />
+    <MESSAGE value="fix：整理菜单，补充部分内容；修复公共聊天室不能正常查询的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix：整理菜单，补充部分内容；修复公共聊天室不能正常查询的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

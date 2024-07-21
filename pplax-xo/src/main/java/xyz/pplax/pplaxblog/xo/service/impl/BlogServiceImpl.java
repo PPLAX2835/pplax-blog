@@ -150,13 +150,12 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
     @Override
     public Page<Blog> pageByUserUid(String userUid, Boolean isCollect, Long currentPage, Long pageSize) {
         PQueryWrapper<Blog> blogPQueryWrapper = new PQueryWrapper<>();
-        blogPQueryWrapper.eq(BlogSQLConstants.USER_UID, userUid);
 
         Page<Blog> blogPage = new Page<>();
         blogPage.setCurrent(currentPage);
         blogPage.setPages(pageSize);
 
-        // 插叙你收藏列表
+        // 查询收藏列表
         if (isCollect) {
             PQueryWrapper<Collect> collectPQueryWrapper = new PQueryWrapper<>();
             collectPQueryWrapper.eq(CollectSQLConstants.USER_UID, userUid);
@@ -175,6 +174,8 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
             }
 
             blogPQueryWrapper.in(BlogSQLConstants.UID, blogUidList);
+        } else {
+            blogPQueryWrapper.eq(BlogSQLConstants.USER_UID, userUid);
         }
 
         Page<Blog> pageList = page(blogPage, blogPQueryWrapper);

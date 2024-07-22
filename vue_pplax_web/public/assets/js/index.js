@@ -83,14 +83,14 @@ color: rgb(30,152,255);
 var title1 = 'PPLAX blog'
 
 // => 读取配置型(在配置文件里配置这些会变动的网址)
-var offiUrl = 'https://www.shiyit.com/'
+var offiUrl = 'https://www.PPLAX.com/'
 var content = `
 版 本 号：1.0    
 编译日期：${new Date()}
 站点介绍：
 1. 一个想当全栈程序员的个人博客.
 🏠官网:  ${offiUrl}
-📞QQ/VX: 1248954763
+QQ: 1458667357
 `
 console.log(`%c${title1}
 %c${content}`, styleTitle1, styleContent)

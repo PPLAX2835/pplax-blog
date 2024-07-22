@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix：修复个人空间的收藏列表不能正确显示的问题">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Reply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Reply.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/say/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +147,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -261,9 +268,9 @@
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.serve" />
-        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -425,14 +432,8 @@
       <workItem from="1721304385597" duration="5709000" />
       <workItem from="1721373507417" duration="4550000" />
       <workItem from="1721434824799" duration="19046000" />
-      <workItem from="1721524318743" duration="5237000" />
-    </task>
-    <task id="LOCAL-00434" summary="修改小bug">
-      <created>1714990260060</created>
-      <option name="number" value="00434" />
-      <option name="presentableId" value="LOCAL-00434" />
-      <option name="project" value="LOCAL" />
-      <updated>1714990260061</updated>
+      <workItem from="1721524318743" duration="5795000" />
+      <workItem from="1721633335538" duration="296000" />
     </task>
     <task id="LOCAL-00435" summary="修改小bug">
       <created>1715071335988</created>
@@ -770,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721525777589</updated>
     </task>
-    <option name="localTasksCounter" value="483" />
+    <task id="LOCAL-00483" summary="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题">
+      <created>1721533093936</created>
+      <option name="number" value="00483" />
+      <option name="presentableId" value="LOCAL-00483" />
+      <option name="project" value="LOCAL" />
+      <updated>1721533093936</updated>
+    </task>
+    <option name="localTasksCounter" value="484" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -806,7 +814,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="整理到右键菜单：调整变量名，修改显示问题" />
     <MESSAGE value="完成创建私信功能" />
     <MESSAGE value="可以撤回消息了" />
     <MESSAGE value="整理页面带代码" />
@@ -831,7 +838,8 @@
     <MESSAGE value="refactor：对于有type属性的字段，使用对应的常量类进行赋值，增加可读性" />
     <MESSAGE value="fix：整理菜单，补充部分内容；修复公共聊天室不能正常查询的问题" />
     <MESSAGE value="fix：修复个人空间的收藏列表不能正确显示的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix：修复个人空间的收藏列表不能正确显示的问题" />
+    <MESSAGE value="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

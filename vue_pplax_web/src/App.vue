@@ -134,22 +134,22 @@ export default {
 <style lang="scss" scoped>
 #app {
   background: var(--body-color);
-  // background-color: #efefef;
-  // background-image: linear-gradient(90deg, rgba(60, 10, 30, .04) 3%, transparent 0), linear-gradient(1turn, rgba(60, 10, 30, .04) 3%, transparent 0);
-  // background-size: 20px 20px;
-  // background-position: 50%;
-  // background-repeat: repeat;
-  // &::before {
-  //   content: '';
-  //   z-index: -1;
-  //   background: url(https://img.shiyit.com/whitebackimg.jpg) center 0 no-repeat;
-  //   transition: opacity 1s;
-  //   background-size: cover !important;
-  //   position: fixed;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  // }
+  background-color: #efefef;
+  background-image: linear-gradient(90deg, rgba(60, 10, 30, .04) 3%, transparent 0), linear-gradient(1turn, rgba(60, 10, 30, .04) 3%, transparent 0);
+  background-size: 20px 20px;
+  background-position: 50%;
+  background-repeat: repeat;
+  &::before {
+    content: '';
+    z-index: -1;
+    background: url(../public/assets/img/background/1.png) center 0 no-repeat;
+    transition: opacity 1s;
+    background-size: cover !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 </style>

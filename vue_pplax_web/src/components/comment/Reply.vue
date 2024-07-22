@@ -247,7 +247,7 @@ export default {
             border-radius: 4px;
             background-color: transparent;
             border-style: none;
-            background: url("https://img.shiyit.com/plun.gif") 100% 100%
+            background: url(../../../public/assets/img/plun.jpg) 100% 100%
             no-repeat;
             transition: all 0.25s ease-in-out 0s;
 

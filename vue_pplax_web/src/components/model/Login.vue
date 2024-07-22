@@ -325,7 +325,7 @@ export default {
 
 <style lang="scss" scoped>
 /deep/ .el-dialog__wrapper {
-    background-image: url(https://img.shiyit.com/20231007_1696659441438.jpg) !important;
+    background-image: url(../../../public/assets/img/background/1.png) !important;
 }
 
 .dialog {

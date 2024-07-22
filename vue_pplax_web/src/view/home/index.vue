@@ -36,8 +36,8 @@
           <el-card class="soft">
             广告位
             <!--                        <a href="https://www.zhisu1.com/aff/DIHZPJNL" target="_blank" class="hand-style">-->
-            <!--                            <img v-lazy="'https://img.shiyit.com/20231010_1696930367538.jpg'"-->
-            <!--                                :key="'https://img.shiyit.com/20231010_1696930367538.jpg'" alt="">-->
+            <!--                            <img v-lazy="''"-->
+            <!--                                :key="''" alt="">-->
             <!--                            <div class="soft-title">-->
             <!--                                高效便宜可靠的服务器厂商知速云-->
             <!--                            </div>-->

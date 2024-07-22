@@ -1266,7 +1266,10 @@ export default {
     }
 
     .itemBox {
-      background-image: url(../../../public/assets/img/background/1.png);
+      background-image: url(../../../public/assets/img/background/2.jpg);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
       background-color: #323644;
       width: 100%;
       box-shadow: none;

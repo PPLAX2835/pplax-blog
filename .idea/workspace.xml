@@ -4,16 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/AppStarting.ani" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Arrow.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Cross.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Hand.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Handwriting.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Help.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/IBeam.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/NO.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeAll.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeNESW.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeNS.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeNWSE.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeWE.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/UpArrow.cur" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Wait.ani" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/plun.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/luoye.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Reply.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/Reply.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/comment/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/home/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -433,14 +448,7 @@
       <workItem from="1721373507417" duration="4550000" />
       <workItem from="1721434824799" duration="19046000" />
       <workItem from="1721524318743" duration="5795000" />
-      <workItem from="1721633335538" duration="296000" />
-    </task>
-    <task id="LOCAL-00435" summary="修改小bug">
-      <created>1715071335988</created>
-      <option name="number" value="00435" />
-      <option name="presentableId" value="LOCAL-00435" />
-      <option name="project" value="LOCAL" />
-      <updated>1715071335988</updated>
+      <workItem from="1721633335538" duration="1548000" />
     </task>
     <task id="LOCAL-00436" summary="修复个人资料上传头像后不能正确显示的bug">
       <created>1715130618134</created>
@@ -778,7 +786,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721533093936</updated>
     </task>
-    <option name="localTasksCounter" value="484" />
+    <task id="LOCAL-00484" summary="refactor：把来自shiyi大佬服务器的资源修改到自己这里">
+      <created>1721637274330</created>
+      <option name="number" value="00484" />
+      <option name="presentableId" value="LOCAL-00484" />
+      <option name="project" value="LOCAL" />
+      <updated>1721637274330</updated>
+    </task>
+    <option name="localTasksCounter" value="485" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -814,7 +829,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="完成创建私信功能" />
     <MESSAGE value="可以撤回消息了" />
     <MESSAGE value="整理页面带代码" />
     <MESSAGE value="数据库" />
@@ -839,7 +853,8 @@
     <MESSAGE value="fix：整理菜单，补充部分内容；修复公共聊天室不能正常查询的问题" />
     <MESSAGE value="fix：修复个人空间的收藏列表不能正确显示的问题" />
     <MESSAGE value="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题" />
+    <MESSAGE value="refactor：把来自shiyi大佬服务器的资源修改到自己这里" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor：把来自shiyi大佬服务器的资源修改到自己这里" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

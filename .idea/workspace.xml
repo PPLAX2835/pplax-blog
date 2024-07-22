@@ -4,32 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/AppStarting.ani" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Arrow.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Cross.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Hand.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Handwriting.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Help.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/IBeam.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/NO.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeAll.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeNESW.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeNS.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeNWSE.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/SizeWE.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/UpArrow.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/cursor/Wait.ani" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/plun.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/luoye.js" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor：设置前台背景；将樱花特效修改为落叶特效">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +140,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -281,11 +259,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.serve" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -448,14 +426,8 @@
       <workItem from="1721373507417" duration="4550000" />
       <workItem from="1721434824799" duration="19046000" />
       <workItem from="1721524318743" duration="5795000" />
-      <workItem from="1721633335538" duration="1548000" />
-    </task>
-    <task id="LOCAL-00436" summary="修复个人资料上传头像后不能正确显示的bug">
-      <created>1715130618134</created>
-      <option name="number" value="00436" />
-      <option name="presentableId" value="LOCAL-00436" />
-      <option name="project" value="LOCAL" />
-      <updated>1715130618134</updated>
+      <workItem from="1721633335538" duration="1923000" />
+      <workItem from="1721645019893" duration="1579000" />
     </task>
     <task id="LOCAL-00437" summary="修复编辑博客时上传的封面不能正常保存的问题">
       <created>1715156325461</created>
@@ -793,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721637274330</updated>
     </task>
-    <option name="localTasksCounter" value="485" />
+    <task id="LOCAL-00485" summary="refactor：设置前台背景；将樱花特效修改为落叶特效">
+      <created>1721639359054</created>
+      <option name="number" value="00485" />
+      <option name="presentableId" value="LOCAL-00485" />
+      <option name="project" value="LOCAL" />
+      <updated>1721639359054</updated>
+    </task>
+    <option name="localTasksCounter" value="486" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -829,7 +808,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="可以撤回消息了" />
     <MESSAGE value="整理页面带代码" />
     <MESSAGE value="数据库" />
     <MESSAGE value="feat：实现webSocket的聊天室&#10;现在聊天室可以实时进行收发消息了&#10;&#10;fix：更换登录的随机验证码图片地址&#10;登录的验证码图片的随机图床寄了，换了个新的" />
@@ -854,7 +832,8 @@
     <MESSAGE value="fix：修复个人空间的收藏列表不能正确显示的问题" />
     <MESSAGE value="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题" />
     <MESSAGE value="refactor：把来自shiyi大佬服务器的资源修改到自己这里" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor：把来自shiyi大佬服务器的资源修改到自己这里" />
+    <MESSAGE value="refactor：设置前台背景；将樱花特效修改为落叶特效" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor：设置前台背景；将樱花特效修改为落叶特效" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

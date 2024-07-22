@@ -63,12 +63,9 @@ service.interceptors.response.use(
             if (res.code === 401 || res.code === 401009) {
                 return res
             }
-            //如果是校验微信登录是否授权的接口 则不进行错误输出
-            if (response.config.url !== "/oauth/wechat/is_login") {
-                window.vm.$toast.error(res.message);
-            }
+            window.vm.$toast.error(res.code + ": " + res.message || 'Error');
 
-            return Promise.reject(new Error(res.message || 'Error'))
+            return Promise.reject(new Error(res.code + ": " + res.message || 'Error'))
         } else {
             return res
         }

@@ -301,7 +301,7 @@ export default {
                     login(this.form).then(res => {
                       console.log(res)
                         if (res.code !== 200) {
-                          that.$toast.error(res.message);
+                          that.$toast.error(res.code + ' ' + res.message + ": " + (res.data ? res.data.error_description : ''));
                         } else {
                           setToken('Bearer ' + res.extra.access_token)
                           setUserUid(res.extra.uid)

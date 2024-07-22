@@ -168,7 +168,7 @@
                 <div class="articleOhter">
                   <span class="item">
                     <i class="el-icon-view"></i>
-                    <span class="name">阅读</span>{{ item.quantity }}
+                    <span class="name">阅读</span>{{ item.clickCount }}
                   </span>
                   <span class="item">
                     <i class="el-icon-chat-dot-round"></i>

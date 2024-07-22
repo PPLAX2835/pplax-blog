@@ -476,6 +476,11 @@ public class BlogServiceImpl extends SuperServiceImpl<BlogMapper, Blog> implemen
         if (blog == null) {
             throw new SelectException(HttpStatus.DATA_NOT_EXIST);
         }
+
+        // 阅读量+1
+        blog.setClickCount(blog.getClickCount() + 1);
+        updateById(blog);
+
         blog.setBlogContent(getBlogContentByBlogUid(blogUid));
 
         // 封装作者

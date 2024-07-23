@@ -92,10 +92,10 @@ public class GlobalExceptionHandler {
         }
 
         /*
-         * Feign异常，目前只是针对调用oauth相关接口的非200返回，将来可能还要继续完善
+         * Feign异常
          */
         if (e instanceof FeignException) {
-            // 先获取异常信息中包含的json
+            // 先获取异常信息
             String message = e.getMessage();
             String regex = BaseRegexConstants.JSON_REGEX;
 
@@ -103,9 +103,10 @@ public class GlobalExceptionHandler {
             Matcher matcher = pattern.matcher(message);
 
             if (matcher.find()) {
+                // 如果包含json，说明是feign请求auth/token错误，需要返回认证错误
                 return new ResponseResult(HttpStatus.UNAUTHORIZED, (Object) JSON.parseObject(matcher.group(0)));
             } else {
-                return new ResponseResult(HttpStatus.UNAUTHORIZED);
+                return new ResponseResult(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 

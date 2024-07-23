@@ -137,7 +137,59 @@
               </el-col>
             </el-row>
 
+            <el-row>
+              <el-col :span="8">
+                <el-form-item label="登录背景" prop="loginBackground">
+                  <el-tooltip>
+                    <div slot="content" style="text-align: center;min-width:180px;">
+                      <el-input v-model="settingMap.loginBackground.value" auto-complete="off"></el-input>
+                    </div>
+                    <img :src="settingMap.loginBackground.value" style="width: 80%" />
+                  </el-tooltip>
+                </el-form-item>
+              </el-col>
 
+              <el-col :span="8">
+                <el-form-item label="聊天背景" prop="chatBackground">
+                  <el-tooltip>
+                    <div slot="content" style="text-align: center;min-width:180px;">
+                      <el-input v-model="settingMap.chatBackground.value" auto-complete="off"></el-input>
+                    </div>
+                    <img :src="settingMap.chatBackground.value" style="width: 80%" />
+                  </el-tooltip>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="主题" name="theme">
+          <el-form label-position="right" label-width="100px" >
+
+            <el-row v-if="themeListShow" v-for="(theme,key) in settingMap.theme.value.themes">
+              <el-col :span="3">
+                <el-radio v-model="settingMap.theme.value.currentTheme" :label="key" border>
+                </el-radio>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="主题背景图片" prop="themeBackground">
+                  <img :src="theme.background"  style="width: 80%"/>
+                </el-form-item>
+              </el-col>
+              <el-col :span="3">
+                <el-form-item label="坠落特效素材" prop="specialEffects">
+                  <img :src="theme.specialEffects"  style="width: 80%"/>
+                </el-form-item>
+              </el-col>
+              <el-col :span="3">
+                <el-button type="warning" size="mini" @click="handleEditTheme(key)">编辑</el-button>
+                <el-button v-if="Object.keys(settingMap.theme.value.themes).length > 1" type="danger" size="mini" @click="removeTheme(key)">移除</el-button>
+              </el-col>
+            </el-row>
+            <el-row style="margin: 10px">
+              <el-button @click="handleAddTheme">添加</el-button>
+            </el-row>
+            <el-row></el-row>
           </el-form>
         </el-tab-pane>
         <el-tab-pane label="作者信息" name="author">
@@ -327,6 +379,44 @@
         <el-button @click="submit" type="primary" >保存</el-button>
       </el-row>
     </el-card>
+
+    <el-dialog :title="themeEditFormTitle" fullscreen :visible.sync="themeEditFormShow">
+      <el-form ref="themeForm" :rules="themeEditRules" :model="themeEditForm" label-position="right" label-width="100px" >
+        <el-row>
+          <el-col :span="5">
+            <el-form-item label="主题名" prop="name">
+              <el-input v-model="themeEditForm.name" auto-complete="off"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="8">
+            <el-form-item label="主题背景图片" prop="themeBackground">
+              <el-tooltip>
+                <div slot="content" style="text-align: center;min-width:180px;">
+                  <el-input v-model="themeEditForm.background" auto-complete="off"></el-input>
+                </div>
+                <img :src="themeEditForm.background"  style="width: 80%"/>
+              </el-tooltip>
+            </el-form-item>
+          </el-col>
+          <el-col :span="3">
+            <el-form-item label="坠落特效素材" prop="specialEffects">
+              <el-tooltip>
+                <div slot="content" style="text-align: center;min-width:180px;">
+                  <el-input v-model="themeEditForm.specialEffects" auto-complete="off"></el-input>
+                </div>
+                <img :src="themeEditForm.specialEffects"  style="width: 80%"/>
+              </el-tooltip>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-col :span="3">
+          <el-button type="primary" @click="saveTheme">确定</el-button>
+          <el-button type="primary" @click="themeEditFormShow = false">取消</el-button>
+        </el-col>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
@@ -350,6 +440,21 @@ export default {
         keyword: '',
         currentPage: 1,
         pageSize: 5
+      },
+      themeListShow: true,
+      themeEditFormShow: false,
+      themeEditFormTitle: '',
+      themeEditForm: {
+        name: '',
+        background: 'background.pplax.xyz',
+        specialEffects: 'effects.pplax.xyz'
+      },
+      editingThemeName: '',
+      themeEditRules: {
+        name: [
+          { required: true, message: '主题名不能为空', trigger: 'blur' },
+          { min: 1, max: 20, message: '标题长度限制在1到20之间', trigger: 'change' }
+        ],
       },
       settingMap: {
         captchaUrl: {},
@@ -389,6 +494,14 @@ export default {
         summary: {},
         touristAvatar: {},
         touristBackground: {},
+        chatBackground: {},
+        loginBackground: {},
+        theme: {
+          value: {
+            themes: {},
+            currentTheme: ''
+          }
+        }
       }
     }
   },
@@ -409,6 +522,73 @@ export default {
       getRoleList(this.roleParam).then(res => {
         this.roleList = res.data
       })
+    },
+    saveTheme: function () {
+      this.$refs['themeForm'].validate((valid) => {
+        if (valid) {
+          this.settingMap.theme.value.themes[this.themeEditForm.name] = {
+            background: this.themeEditForm.background,
+            specialEffects: this.themeEditForm.specialEffects
+          }
+          this.themeEditForm = {
+            name: '',
+            background: 'background.pplax.xyz',
+            specialEffects: 'effects.pplax.xyz'
+          }
+          if (this.themeEditFormTitle !== '添加主题') {
+            delete this.settingMap.theme.value.themes[this.editingThemeName]
+            this.editingThemeName = ''
+          }
+          this.themeEditFormTitle = ''
+          this.themeEditFormShow = false
+        }
+      })
+    },
+    handleEditTheme: function (key) {
+      this.editingThemeName = key
+      this.themeEditForm = {
+        name: key,
+        background: this.settingMap.theme.value.themes[key].background,
+        specialEffects: this.settingMap.theme.value.themes[key].specialEffects
+      }
+      this.themeEditFormShow = true
+      this.themeEditFormTitle = '编辑主题'
+    },
+    handleAddTheme: function () {
+      this.themeEditForm = {
+        name: '',
+        background: 'background.pplax.xyz',
+        specialEffects: 'effects.pplax.xyz'
+      }
+      this.themeEditFormShow = true
+      this.themeEditFormTitle = '添加主题'
+    },
+    removeTheme: function (key) {
+
+      this.$confirm('确认移除吗？', '提示', {
+        lockScroll: false,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(_ => {
+          delete this.settingMap.theme.value.themes[key]
+          // 如果就剩一个了，那就默认这个了
+          if (Object.keys(this.settingMap.theme.value.themes).length === 1) {
+            this.settingMap.theme.value.currentTheme = Object.keys(this.settingMap.theme.value.themes)[0]
+          }
+
+          // 重新渲染组件
+          this.themeListShow = false
+          this.$nextTick(() => {
+            this.themeListShow = true
+          })
+
+        })
+        .catch(_ => {
+
+          this.$toast.info('取消关闭')
+        });
     },
     imageAttachAdd: function (pos, $file) {
       var formdata = new FormData();

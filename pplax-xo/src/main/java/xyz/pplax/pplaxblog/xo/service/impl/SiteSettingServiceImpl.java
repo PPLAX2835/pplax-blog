@@ -65,8 +65,11 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         List<SiteSetting> siteSettingList = list(siteSettingPQueryWrapper);
         for (SiteSetting siteSetting : siteSettingList) {
             // 如果是json形式就转化为json
-            if (!StringUtils.isBlank((String) siteSetting.getValue()) && (((String) siteSetting.getValue()).matches(BaseRegexConstants.JSON_REGEX))) {
-                siteSetting.setValue(JSON.toJSONString(JSON.parseObject((String) siteSetting.getValue())));
+            try {
+                String value = (String) siteSetting.getValue();
+                siteSetting.setValue(JSON.parse(value));
+            } catch (Exception ignored) {
+
             }
         }
 
@@ -80,9 +83,12 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         siteSetting.setUid(StringUtils.getUUID());
         siteSetting.setNameEn(siteSettingEditDto.getNameEn());
         siteSetting.setNameZh(siteSettingEditDto.getNameZh());
-        if ((siteSettingEditDto.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
-            siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSettingEditDto.getValue())));
-        } else {
+
+        // 如果是json形式就转化为json
+        try {
+            String value = siteSettingEditDto.getValue();
+            siteSetting.setValue(JSON.parse(value));
+        } catch (Exception ignored) {
             siteSetting.setValue(siteSettingEditDto.getValue());
         }
 
@@ -96,9 +102,12 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
         siteSetting.setUid(siteSettingEditDto.getUid());
         siteSetting.setNameEn(siteSettingEditDto.getNameEn());
         siteSetting.setNameZh(siteSettingEditDto.getNameZh());
-        if ((siteSettingEditDto.getValue().matches(BaseRegexConstants.JSON_REGEX))) {
-            siteSetting.setValue(JSON.toJSONString(JSON.parseObject(siteSettingEditDto.getValue())));
-        } else {
+
+        // 如果是json形式就转化为json
+        try {
+            String value = siteSettingEditDto.getValue();
+            siteSetting.setValue(JSON.parse(value));
+        } catch (Exception ignored) {
             siteSetting.setValue(siteSettingEditDto.getValue());
         }
 
@@ -139,6 +148,14 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
 
         List<SiteSetting> siteSettingList = list();
         for (SiteSetting siteSetting : siteSettingList) {
+
+            try {
+                String value = (String) siteSetting.getValue();
+                siteSetting.setValue(JSON.parse(value));
+            } catch (Exception ignored) {
+
+            }
+
             res.put(siteSetting.getNameEn(), siteSetting);
         }
         // 放到缓存中

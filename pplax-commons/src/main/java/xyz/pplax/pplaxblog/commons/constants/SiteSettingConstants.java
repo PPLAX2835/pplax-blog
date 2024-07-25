@@ -42,7 +42,14 @@ public class SiteSettingConstants {
     public static final String TOURIST_AVATAR_NAME_EN = "touristAvatar";
     public static final String TOURIST_BACKGROUND_NAME_EN = "touristBackground";
     public static final String CAPTCHA_URL_EN = "captchaUrl";
+    public static final String CHAT_BACKGROUND_EN = "chatBackground";
+    public static final String LOGIN_BACKGROUND_EN = "loginBackground";
 
+    public static final String THEME_EN = "theme";
+    public static final String THEMES = "themes";
+    public static final String CURRENT_THEME = "currentTheme";
+    public static final String BACKGROUND = "background";
+    public static final String SPECIAL_EFFECTS = "specialEffects";
 
 
 }

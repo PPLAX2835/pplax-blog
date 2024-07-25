@@ -126,7 +126,7 @@ public class SiteSettingServiceImpl extends SuperServiceImpl<SiteSettingMapper, 
 
         if (res) {
             // 删除缓存
-            res = redisService.deleteObject(SiteRedisConstants.SITE_SETTING);
+            redisService.deleteObject(SiteRedisConstants.SITE_SETTING);
         }
 
         return res;

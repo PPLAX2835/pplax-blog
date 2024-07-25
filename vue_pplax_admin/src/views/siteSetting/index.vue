@@ -526,6 +526,9 @@ export default {
     saveTheme: function () {
       this.$refs['themeForm'].validate((valid) => {
         if (valid) {
+          if (this.themeEditFormTitle === '编辑主题') {
+            delete this.settingMap.theme.value.themes[this.editingThemeName]
+          }
           this.settingMap.theme.value.themes[this.themeEditForm.name] = {
             background: this.themeEditForm.background,
             specialEffects: this.themeEditForm.specialEffects
@@ -535,10 +538,7 @@ export default {
             background: 'background.pplax.xyz',
             specialEffects: 'effects.pplax.xyz'
           }
-          if (this.themeEditFormTitle !== '添加主题') {
-            delete this.settingMap.theme.value.themes[this.editingThemeName]
-            this.editingThemeName = ''
-          }
+          this.editingThemeName = ''
           this.themeEditFormTitle = ''
           this.themeEditFormShow = false
         }

@@ -1266,7 +1266,7 @@ export default {
     }
 
     .itemBox {
-      background-image: url(../../../public/assets/img/background/2.jpg);
+      background-image: url('http://127.0.0.1:4390/api/web/style/background/chatBackground');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;

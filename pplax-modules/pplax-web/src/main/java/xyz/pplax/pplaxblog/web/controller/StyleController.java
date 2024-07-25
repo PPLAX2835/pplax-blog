@@ -33,6 +33,21 @@ public class StyleController extends SuperController {
 
     private static Logger log = LogManager.getLogger(StyleController.class);
 
+
+    @ApiOperation(value="重定向至logo", notes="重定向至logo")
+    @RequestMapping("/logo")
+    public void redirectLogo(HttpServletResponse response) throws IOException {
+
+        Map<String, SiteSetting> siteSettingMap = siteSettingService.map();
+        SiteSetting siteSetting = siteSettingMap.get(SiteSettingConstants.SITE_LOGO_MANE_EN);
+        if (siteSetting == null) {
+            return;
+        }
+        String redirectUrl = ((String) siteSetting.getValue()).trim(); // 确保URL没有空格或特殊字符
+
+        doResponse(response, redirectUrl);
+    }
+
     @ApiOperation(value="重定向至背景", notes="重定向至背景")
     @RequestMapping("/background/{type}")
     public void redirectBackground(
@@ -47,18 +62,8 @@ public class StyleController extends SuperController {
         }
         String redirectUrl = ((String) siteSetting.getValue()).trim(); // 确保URL没有空格或特殊字符
 
-        // Log the redirection URL for debugging purposes
-        log.info("Redirecting to URL: " + redirectUrl);
-
-        // Ensure that the URL is absolute and not relative
-        if (redirectUrl.startsWith("http://") || redirectUrl.startsWith("https://")) {
-            response.sendRedirect(redirectUrl);
-        } else {
-            log.error("Invalid URL: " + redirectUrl);
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid redirect URL");
-        }
+        doResponse(response, redirectUrl);
     }
-
 
     @ApiOperation(value="重定向至主题背景", notes="重定向至主题背景")
     @RequestMapping("/theme/{type}")
@@ -73,6 +78,17 @@ public class StyleController extends SuperController {
         String background = (String) currentThemeJsonObj.get(type);  // 获取背景 或特效素材
         String redirectUrl = background.trim(); // 确保URL没有空格或特殊字符
 
+        doResponse(response, redirectUrl);
+    }
+
+    /**
+     * 进行重定向操作
+     * @param response
+     * @param redirectUrl
+     * @throws IOException
+     */
+    private void doResponse(HttpServletResponse response, String redirectUrl) throws IOException {
+
         // Log the redirection URL for debugging purposes
         log.info("Redirecting to URL: " + redirectUrl);
 
@@ -83,5 +99,6 @@ public class StyleController extends SuperController {
             log.error("Invalid URL: " + redirectUrl);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid redirect URL");
         }
+
     }
 }

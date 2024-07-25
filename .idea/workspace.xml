@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat：主题之类的东西动态显示">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/StyleController.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pplax_blog.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/pplax_blog.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/SiteSettingConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/SiteSettingConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/SiteSettingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/SiteSettingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/img/background/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/luoye.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/effect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/yinhua.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/StyleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/StyleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +140,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -274,8 +262,8 @@
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -442,14 +430,8 @@
       <workItem from="1721645019893" duration="3222000" />
       <workItem from="1721701822715" duration="20365000" />
       <workItem from="1721889291094" duration="1919000" />
-      <workItem from="1721892078659" duration="797000" />
-    </task>
-    <task id="LOCAL-00443" summary="修改使用不存在的用户名或邮箱登录时的空指针异常问题">
-      <created>1719145563928</created>
-      <option name="number" value="00443" />
-      <option name="presentableId" value="LOCAL-00443" />
-      <option name="project" value="LOCAL" />
-      <updated>1719145563930</updated>
+      <workItem from="1721892078659" duration="883000" />
+      <workItem from="1721893272728" duration="293000" />
     </task>
     <task id="LOCAL-00444" summary="修改前台登录回车直接提交的问题">
       <created>1719146300066</created>
@@ -787,7 +769,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721738159715</updated>
     </task>
-    <option name="localTasksCounter" value="492" />
+    <task id="LOCAL-00492" summary="feat：主题之类的东西动态显示">
+      <created>1721892941298</created>
+      <option name="number" value="00492" />
+      <option name="presentableId" value="LOCAL-00492" />
+      <option name="project" value="LOCAL" />
+      <updated>1721892941299</updated>
+    </task>
+    <option name="localTasksCounter" value="493" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -823,7 +812,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat：完善统一异常处理&#10;新增curd相关异常和请求相关异常，HttpStatus新增一些自定义状态" />
     <MESSAGE value="refactor：blog业务层将模糊的返回修改为抛异常" />
     <MESSAGE value="refactor：blogSort业务层将模糊的返回修改为抛异常" />
     <MESSAGE value="refactor：优化全局异常" />
@@ -848,7 +836,8 @@
     <MESSAGE value="fix：json正则有问题，验证替换为别的写法" />
     <MESSAGE value="docs：补充注释，解释JSON正则用法" />
     <MESSAGE value="feat：添加主题配置和聊天、登录背景配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat：添加主题配置和聊天、登录背景配置" />
+    <MESSAGE value="feat：主题之类的东西动态显示" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：主题之类的东西动态显示" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

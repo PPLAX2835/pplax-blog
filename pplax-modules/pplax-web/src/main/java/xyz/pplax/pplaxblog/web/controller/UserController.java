@@ -44,7 +44,7 @@ public class UserController extends SuperController {
 
     @ApiOperation(value="获取自己的信息", notes="获取自己的信息")
     @GetMapping(value = "/userInfo")
-    public String getMyUserInfo (HttpServletRequest httpServletRequest) {
+    public ResponseResult getMyUserInfo (HttpServletRequest httpServletRequest) {
         String userUid = getUserUid(httpServletRequest);
 
         User user = userService.getById(userUid);
@@ -58,7 +58,7 @@ public class UserController extends SuperController {
 
     @ApiOperation(value="获取用户信息", notes="获取用户信息")
     @GetMapping(value = "/{userUid}/userInfo")
-    public String getUserInfo (@PathVariable("userUid") String userUid) {
+    public ResponseResult getUserInfo (@PathVariable("userUid") String userUid) {
         User user = userService.getById(userUid);
         if (user != null) {
             user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
@@ -77,13 +77,13 @@ public class UserController extends SuperController {
 
     @ApiOperation(value="修改个人信息", notes="修改个人信息")
     @PutMapping(value = "/userInfo")
-    public String updateUserInfo (HttpServletRequest httpServletRequest, @RequestBody UserInfoEditDto userInfoEditDto) {
+    public ResponseResult updateUserInfo (HttpServletRequest httpServletRequest, @RequestBody UserInfoEditDto userInfoEditDto) {
         String userUid = getUserUid(httpServletRequest);
 
         // 检查验证码
         String code = redisService.getCacheObject(AuthRedisConstants.EMAIL_CODE + AuthRedisConstants.SEGMENTATION + userInfoEditDto.getEmail());
         if (StringUtils.isEmpty(code) || !code.equals(userInfoEditDto.getCode())) {
-            return toJson(ResponseResult.error(HttpStatus.VALIDATION_CODE_INCORRECT));
+            return ResponseResult.error(HttpStatus.VALIDATION_CODE_INCORRECT);
         }
 
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);
@@ -91,12 +91,12 @@ public class UserController extends SuperController {
         if (res) {
             return getMyUserInfo(httpServletRequest);
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="修改个人空间背景", notes="修改个人空间背景")
     @PutMapping(value = "/userInfo/background")
-    public String updateBackground (HttpServletRequest httpServletRequest, @RequestBody UserInfoEditDto userInfoEditDto) {
+    public ResponseResult updateBackground (HttpServletRequest httpServletRequest, @RequestBody UserInfoEditDto userInfoEditDto) {
         String userUid = getUserUid(httpServletRequest);
 
         // 只保留空间背景uid
@@ -108,7 +108,7 @@ public class UserController extends SuperController {
         if (res) {
             return getMyUserInfo(httpServletRequest);
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

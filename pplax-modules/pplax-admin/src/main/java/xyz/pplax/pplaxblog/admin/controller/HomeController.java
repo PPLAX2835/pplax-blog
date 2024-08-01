@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.commons.enums.EStatus;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.DateUtil;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.constants.sql.*;
@@ -31,7 +32,7 @@ public class HomeController extends SuperController {
 
     @ApiOperation(value="初始化", notes="初始化")
     @GetMapping("/init")
-    public String init() {
+    public ResponseResult init() {
         return success(siteService.getDashboardData());
     }
 

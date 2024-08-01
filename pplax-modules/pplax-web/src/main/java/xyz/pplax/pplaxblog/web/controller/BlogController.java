@@ -63,19 +63,19 @@ public class BlogController extends SuperController {
 
     @ApiOperation(value = "查找", httpMethod = "GET", response = ResponseResult.class, notes = "查找")
     @GetMapping("/search")
-    public String search(
+    public ResponseResult search(
             @RequestParam(value = "keyword") String keyword,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
         Page<Blog> blogPage = blogService.search(keyword, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(blogPage.getRecords(), blogPage.getTotal()));
+        return ResponseResult.success(blogPage.getRecords(), blogPage.getTotal());
     }
 
     @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
     @GetMapping("/list")
-    public String getBlogList(
+    public ResponseResult getBlogList(
             @RequestParam(value = "blogSortUid", required = false) String blogSortUid,
             @RequestParam(value = "tagUid", required = false) String tagUid,
             @RequestParam(value = "orderByDesc", required = false) String orderByDesc,
@@ -83,12 +83,12 @@ public class BlogController extends SuperController {
             @RequestParam(value = "pageSize") Long pageSize
     ){
         Page<Blog> blogPage = blogService.pageHomeBlog(blogSortUid, tagUid, orderByDesc, currentPage, pageSize);
-        return toJson(ResponseResult.success(blogPage.getRecords(), blogPage.getTotal()));
+        return ResponseResult.success(blogPage.getRecords(), blogPage.getTotal());
     }
 
     @ApiOperation(value = "获取博客", httpMethod = "GET", response = ResponseResult.class, notes = "获取博客")
     @GetMapping("/{blogUid}")
-    public String getBlog(
+    public ResponseResult getBlog(
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "blogUid", required = false) String blogUid
     ){
@@ -99,7 +99,7 @@ public class BlogController extends SuperController {
 
     @ApiOperation(value = "博客点赞", httpMethod = "POST", response = ResponseResult.class, notes = "博客点赞")
     @PostMapping("/{blogUid}/like")
-    public String like(
+    public ResponseResult like(
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "blogUid") String blogUid
     ){
@@ -111,12 +111,12 @@ public class BlogController extends SuperController {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "收藏", httpMethod = "POST", response = ResponseResult.class, notes = "收藏")
     @PostMapping("/{blogUid}/collect")
-    public String collect(
+    public ResponseResult collect(
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "blogUid") String blogUid
     ){
@@ -133,7 +133,7 @@ public class BlogController extends SuperController {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
@@ -146,7 +146,7 @@ public class BlogController extends SuperController {
 
     @ApiOperation(value = "获取评论列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取评论列表")
     @GetMapping("/{blogUid}/comment/list")
-    public String getBlogList(
+    public ResponseResult getBlogList(
             @PathVariable(value = "blogUid") String blogUid,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
@@ -154,12 +154,12 @@ public class BlogController extends SuperController {
 
         Page<Comment> commentIPage = commentService.pageByBlogUid(blogUid, 0, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
+        return ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal());
     }
 
     @ApiOperation(value = "评论", httpMethod = "POST", response = ResponseResult.class, notes = "评论")
     @PostMapping("/{blogUid}/comment")
-    public String comment(
+    public ResponseResult comment(
             HttpServletRequest httpServletRequest,
             @PathVariable("blogUid") String blogUid,
             @RequestBody CommentEditDto commentEditDto
@@ -183,7 +183,7 @@ public class BlogController extends SuperController {
 
     @ApiOperation(value="编辑博客", notes="编辑博客")
     @PutMapping("/{blogUid}")
-    public String updateBlog(HttpServletRequest httpServletRequest, @PathVariable("blogUid") String blogUid, @RequestBody @Validated(value = {Update.class}) BlogEditDto blogEditDto) {
+    public ResponseResult updateBlog(HttpServletRequest httpServletRequest, @PathVariable("blogUid") String blogUid, @RequestBody @Validated(value = {Update.class}) BlogEditDto blogEditDto) {
         String userUid = getUserUid(httpServletRequest);
         blogEditDto.setUid(blogUid);
         Boolean res = blogService.userUpdateById(userUid, blogEditDto);
@@ -191,13 +191,13 @@ public class BlogController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @ApiOperation(value="添加博客", notes="添加博客")
     @PostMapping(value = "")
-    public String add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) BlogEditDto blogEditDto) {
+    public ResponseResult add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) BlogEditDto blogEditDto) {
 
         String userUid = getUserUid(httpServletRequest);
         blogEditDto.setUserUid(userUid);
@@ -207,7 +207,7 @@ public class BlogController extends SuperController {
         if (blog != null) {
             return success(blog);
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

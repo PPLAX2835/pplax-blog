@@ -29,7 +29,7 @@ public class BlogSortController extends SuperController {
 
     @ApiOperation(value = "获取博客分类列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取博客分类列表")
     @GetMapping("/list")
-    public String getBlogSortList(){
+    public ResponseResult getBlogSortList(){
         return success(blogSortService.list());
     }
 }

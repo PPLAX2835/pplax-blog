@@ -29,14 +29,14 @@ public class SpaceController extends SuperController {
 
     @ApiOperation(value="获取用户 数据", notes="获取用户 数据")
     @GetMapping(value = "/count")
-    public String getUserCount (@PathVariable("userUid") String userUid) {
+    public ResponseResult getUserCount (@PathVariable("userUid") String userUid) {
 
         return success(userInfoService.getUserCount(userUid));
     }
 
     @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取博客列表")
     @GetMapping("/blog/list")
-    public String getBlogList(
+    public ResponseResult getBlogList(
             @PathVariable("userUid") String userUid,
             @RequestParam(value = "isCollect") Boolean isCollect,
             @RequestParam(value = "currentPage") Long currentPage,
@@ -44,6 +44,6 @@ public class SpaceController extends SuperController {
     ){
 
         Page<Blog> blogPage = blogService.pageByUserUid(userUid, isCollect, currentPage, pageSize);
-        return toJson(ResponseResult.success(blogPage.getRecords(), blogPage.getTotal()));
+        return ResponseResult.success(blogPage.getRecords(), blogPage.getTotal());
     }
 }

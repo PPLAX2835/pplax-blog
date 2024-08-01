@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
@@ -34,12 +35,12 @@ public class ArchiveController extends SuperController {
 
     @ApiOperation(value="获得归档列表", notes="获得归档列表")
     @GetMapping("")
-    public String getArchive(HttpServletRequest httpServletRequest) {
+    public ResponseResult getArchive(HttpServletRequest httpServletRequest) {
 
         String userUid = getUserUid(httpServletRequest);
 
         // 目前还不是根据用户查询
-        return toJson(blogService.archive(userUid));
+        return blogService.archive(userUid);
     }
 
 }

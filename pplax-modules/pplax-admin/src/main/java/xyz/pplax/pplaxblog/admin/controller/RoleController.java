@@ -36,24 +36,24 @@ public class RoleController extends SuperController {
      * @return
      */
     @GetMapping(value = "/list")
-    public String getList(
+    public ResponseResult getList(
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "currentPage", required = false) Long currentPage,
             @RequestParam(value = "pageSize", required = false) Long pageSize
     ) {
         if (StringUtils.isEmpty(keyword) && currentPage == null && pageSize == null) {
             List<Role> roleList = roleService.list();
-            return toJson(ResponseResult.success(roleList, (long) roleList.size()));
+            return ResponseResult.success(roleList, (long) roleList.size());
         }
 
         Page<Role> roleIPage = roleService.page(keyword, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(roleIPage.getRecords(), roleIPage.getTotal()));
+        return ResponseResult.success(roleIPage.getRecords(), roleIPage.getTotal());
     }
 
     @ApiOperation(value="编辑角色", notes="编辑角色")
     @PutMapping("/{roleUid}")
-    public String update(@PathVariable("roleUid") String roleUid, @RequestBody @Validated(value = {Update.class}) RoleEditDto roleEditDto) {
+    public ResponseResult update(@PathVariable("roleUid") String roleUid, @RequestBody @Validated(value = {Update.class}) RoleEditDto roleEditDto) {
         roleEditDto.setUid(roleUid);
         Boolean res = roleService.updateById(roleEditDto);
 
@@ -62,12 +62,12 @@ public class RoleController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="新增角色", notes="新增角色")
     @PostMapping("")
-    public String add(@RequestBody @Validated(value = {Insert.class}) RoleEditDto roleEditDto) {
+    public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) RoleEditDto roleEditDto) {
         Boolean res = roleService.save(roleEditDto);
 
         roleService.preheat();
@@ -75,29 +75,29 @@ public class RoleController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="删除角色", notes="删除角色")
     @DeleteMapping("/{roleUid}")
-    public String delete(@PathVariable("roleUid") String roleUid) {
+    public ResponseResult delete(@PathVariable("roleUid") String roleUid) {
         Boolean res = roleService.removeById(roleUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "批量删除角色", notes = "批量删除角色")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> roleUidList) {
+    public ResponseResult delete(@RequestBody List<String> roleUidList) {
         Boolean res = roleService.removeByIds(roleUidList);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

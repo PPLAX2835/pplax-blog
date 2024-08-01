@@ -35,17 +35,17 @@ public class UserInfoController extends SuperController {
 
     @ApiOperation(value="获取用户信息", notes="获取用户信息")
     @GetMapping(value = "")
-    public String getUserInfo (@PathVariable("userUid") String userUid) {
+    public ResponseResult getUserInfo (@PathVariable("userUid") String userUid) {
         return success(userInfoService.getByUserUid(userUid));
     }
 
     @ApiOperation(value="更新用户信息", notes="更新用户信息")
     @PutMapping(value = "")
-    public String updateUserInfo(@PathVariable("userUid") String userUid, @Validated(value = {Update.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
+    public ResponseResult updateUserInfo(@PathVariable("userUid") String userUid, @Validated(value = {Update.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
         if (userService.isUsernameExist(userInfoEditDto.getUsername())) {
             User user = userService.getById(userUid);
             if (!user.getUsername().equals(userInfoEditDto.getUsername())) {
-                return toJson(ResponseResult.error(HttpStatus.USERNAME_EXIST));
+                return ResponseResult.error(HttpStatus.USERNAME_EXIST);
             }
         }
 
@@ -54,7 +54,7 @@ public class UserInfoController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

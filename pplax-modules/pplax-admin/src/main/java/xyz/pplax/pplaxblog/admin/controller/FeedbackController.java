@@ -31,7 +31,7 @@ public class FeedbackController extends SuperController {
 
     @ApiOperation(value="获取反馈列表", notes="获取反馈列表")
     @GetMapping("/list")
-    public String getList(
+    public ResponseResult getList(
             @RequestParam(value = "status", required = false) Integer status,
             @RequestParam(value = "type", required = false) Integer type,
             @RequestParam(value = "currentPage") Long currentPage,
@@ -39,46 +39,46 @@ public class FeedbackController extends SuperController {
     ) {
         Page<Feedback> feedbackIPage = feedbackService.page(type, status, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(feedbackIPage.getRecords(), feedbackIPage.getTotal()));
+        return ResponseResult.success(feedbackIPage.getRecords(), feedbackIPage.getTotal());
     }
 
 
     @ApiOperation(value="更新反馈", notes="更新反馈")
     @PutMapping("/{feedbackUid}")
-    public String updateFeedback(@PathVariable("feedbackUid") String feedbackUid, @RequestBody @Validated(value = {Update.class}) FeedbackEditDto feedbackEditDto) {
+    public ResponseResult updateFeedback(@PathVariable("feedbackUid") String feedbackUid, @RequestBody @Validated(value = {Update.class}) FeedbackEditDto feedbackEditDto) {
         Feedback feedback = new Feedback();
         feedback.setUid(feedbackUid);
         feedback.setType(feedbackEditDto.getType());
         feedback.setStatus(feedbackEditDto.getStatus());
-        Boolean res = feedbackService.updateById(feedback);
+        boolean res = feedbackService.updateById(feedback);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="删除反馈", notes="删除反馈")
     @DeleteMapping("/{feedbackUid}")
-    public String delete(@PathVariable("feedbackUid") String feedbackUid) {
+    public ResponseResult delete(@PathVariable("feedbackUid") String feedbackUid) {
         boolean res = feedbackService.removeById(feedbackUid);
 
         if (res) {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "批量删除反馈", notes = "批量删除反馈")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> feedbackUidList) {
+    public ResponseResult delete(@RequestBody List<String> feedbackUidList) {
         boolean res = feedbackService.removeByIds(feedbackUidList);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

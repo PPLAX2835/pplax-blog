@@ -55,8 +55,8 @@ public class SuperController {
 	 * @param data
 	 * @return
 	 */
-	public String response(Integer responseCode, Object data) {
-		return JSON.toJSONString(new ResponseResult(responseCode, data));
+	public ResponseResult response(Integer responseCode, Object data) {
+		return new ResponseResult(responseCode, data);
 	}
 
 	/**
@@ -65,8 +65,8 @@ public class SuperController {
 	 * @param message
 	 * @return
 	 */
-	public String response(Integer responseCode, String message) {
-		return JSON.toJSONString(new ResponseResult(responseCode, message));
+	public ResponseResult response(Integer responseCode, String message) {
+		return new ResponseResult(responseCode, message);
 	}
 
 	/**
@@ -76,24 +76,24 @@ public class SuperController {
 	 * @param message
 	 * @return
 	 */
-	public String response(Integer responseCode, Object data, String message) {
-		return JSON.toJSONString(new ResponseResult(responseCode, data, message));
+	public ResponseResult response(Integer responseCode, Object data, String message) {
+		return new ResponseResult(responseCode, data, message);
 	}
 
 	/**
 	 * 返回一个成功响应
 	 * @return
 	 */
-	public String success() {
-		return JSON.toJSONString(ResponseResult.success());
+	public ResponseResult success() {
+		return ResponseResult.success();
 	}
 
 	/**
 	 * 返回一个成功响应且携带数据
 	 * @return
 	 */
-	public String success(Object object) {
-		return JSON.toJSONString(ResponseResult.success(object));
+	public ResponseResult success(Object object) {
+		return ResponseResult.success(object);
 	}
 
 }

@@ -30,37 +30,37 @@ public class ChatRoomController extends SuperController {
 
     @ApiOperation(value="获取留言列表", notes="获取留言列表")
     @GetMapping("/list")
-    public String getList(
+    public ResponseResult getList(
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ) {
         // 封装
         Page<ChatRoom> chatRoomIPage = chatRoomService.page(currentPage, pageSize);
 
-        return toJson(ResponseResult.success(chatRoomIPage.getRecords(), chatRoomIPage.getTotal()));
+        return ResponseResult.success(chatRoomIPage.getRecords(), chatRoomIPage.getTotal());
     }
 
     @ApiOperation(value="删除聊天室", notes="删除聊天室")
     @DeleteMapping("/{chatRoomUid}")
-    public String delete(@PathVariable("chatRoomUid") String chatRoomUid) {
+    public ResponseResult delete(@PathVariable("chatRoomUid") String chatRoomUid) {
         boolean res = chatRoomService.removeById(chatRoomUid);
 
         if (res) {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "批量删除留言", notes = "批量删除留言")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> chatRoomUidList) {
+    public ResponseResult delete(@RequestBody List<String> chatRoomUidList) {
         boolean res = chatRoomService.removeByIds(chatRoomUidList);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

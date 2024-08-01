@@ -34,63 +34,63 @@ public class SiteSettingController extends SuperController {
 
     @ApiOperation(value="获取配置列表", notes="获取配置列表")
     @GetMapping("/list")
-    public String getList() {
+    public ResponseResult getList() {
         // 封装
-        return toJson(ResponseResult.success(siteSettingService.list()));
+        return ResponseResult.success(siteSettingService.list());
     }
 
     @ApiOperation(value="获取配置map形式", notes="获取配置map形式")
     @GetMapping("/map")
-    public String getMap() {
+    public ResponseResult getMap() {
         // 封装
-        return toJson(ResponseResult.success(siteSettingService.map()));
+        return ResponseResult.success(siteSettingService.map());
     }
 
     @ApiOperation(value="编辑配置", notes="编辑配置")
     @PutMapping("/{siteSettingUid}")
-    public String updateById(@PathVariable("siteSettingUid") String siteSettingUid, @RequestBody @Validated(value = {Update.class}) SiteSettingEditDto siteSettingEditDto) {
+    public ResponseResult updateById(@PathVariable("siteSettingUid") String siteSettingUid, @RequestBody @Validated(value = {Update.class}) SiteSettingEditDto siteSettingEditDto) {
         siteSettingEditDto.setUid(siteSettingUid);
         Boolean res = siteSettingService.updateById(siteSettingEditDto);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="编辑配置", notes="编辑配置")
     @PutMapping("")
-    public String updateByMap(@RequestBody Map<String, SiteSetting> data) {
+    public ResponseResult updateByMap(@RequestBody Map<String, SiteSetting> data) {
 
         Boolean res = siteSettingService.updateByMap(data);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="新增配置", notes="新增配置")
     @PostMapping("")
-    public String add(@RequestBody @Validated(value = {Insert.class}) SiteSettingEditDto siteSettingEditDto) {
+    public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) SiteSettingEditDto siteSettingEditDto) {
 
         Boolean res = siteSettingService.save(siteSettingEditDto);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="删除", notes="删除")
     @DeleteMapping("/{siteSettingUid}")
-    public String delete(@PathVariable("siteSettingUid") String siteSettingUid) {
+    public ResponseResult delete(@PathVariable("siteSettingUid") String siteSettingUid) {
         boolean res = siteSettingService.removeById(siteSettingUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

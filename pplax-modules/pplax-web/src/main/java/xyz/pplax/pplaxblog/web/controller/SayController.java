@@ -57,7 +57,7 @@ public class SayController extends SuperController {
 
     @ApiOperation(value="新增说说", notes="新增说说")
     @PostMapping("")
-    public String add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) SayEditDto sayEditDto) {
+    public ResponseResult add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) SayEditDto sayEditDto) {
         // 获取用户uid
         String userUid = getUserUid(httpServletRequest);
 
@@ -67,23 +67,23 @@ public class SayController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="删除说说", notes="删除说说")
     @DeleteMapping("/{sayUid}")
-    public String delete(@PathVariable("sayUid") String sayUid) {
+    public ResponseResult delete(@PathVariable("sayUid") String sayUid) {
         boolean res = sayService.removeById(sayUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "获取说说列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取说说列表")
     @GetMapping("/list")
-    public String getSayList(
+    public ResponseResult getSayList(
             HttpServletRequest httpServletRequest,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
@@ -92,12 +92,12 @@ public class SayController extends SuperController {
 
         Page<Say> sayIPage = sayService.pagePublic(userUid, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal()));
+        return ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal());
     }
 
     @ApiOperation(value="获取地理位置", notes="获取地理位置")
     @GetMapping("/address")
-    public String getAddress(HttpServletRequest httpServletRequest) {
+    public ResponseResult getAddress(HttpServletRequest httpServletRequest) {
         // 获取ip
         String ipAddress = IpUtils.getIpAddress(httpServletRequest);
         // 通过浏览器解析工具类UserAgent获取访问设备信息
@@ -113,7 +113,7 @@ public class SayController extends SuperController {
 
     @ApiOperation(value = "说说点赞", httpMethod = "POST", response = ResponseResult.class, notes = "说说点赞")
     @PostMapping("/{sayUid}/like")
-    public String like(
+    public ResponseResult like(
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "sayUid") String sayUid
     ){
@@ -125,13 +125,13 @@ public class SayController extends SuperController {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @ApiOperation(value = "评论", httpMethod = "POST", response = ResponseResult.class, notes = "评论")
     @PostMapping("/{sayUid}/comment")
-    public String comment(
+    public ResponseResult comment(
             HttpServletRequest httpServletRequest,
             @PathVariable("sayUid") String sayUid,
             @RequestBody CommentEditDto commentEditDto
@@ -169,13 +169,13 @@ public class SayController extends SuperController {
             return success(comment);
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @ApiOperation(value = "获取评论列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取评论列表")
     @GetMapping("/{sayUid}/comment/list")
-    public String getBlogList(
+    public ResponseResult getBlogList(
             @PathVariable(value = "sayUid") String sayUid,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
@@ -183,7 +183,7 @@ public class SayController extends SuperController {
 
         Page<Comment> commentIPage = commentService.pageByOriginalUid(sayUid, CharacterConstants.NUM_TWO, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
+        return ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal());
     }
 }
 

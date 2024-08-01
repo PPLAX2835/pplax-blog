@@ -44,7 +44,7 @@ public class SayController extends SuperController {
 
     @ApiOperation(value="获取说说列表", notes="获取说说列表")
     @GetMapping("/list")
-    public String getList(
+    public ResponseResult getList(
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "currentPage", required = false) Long currentPage,
             @RequestParam(value = "pageSize", required = false) Long pageSize
@@ -52,12 +52,12 @@ public class SayController extends SuperController {
 
         IPage<Say> sayIPage = sayService.page(keyword, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal()));
+        return ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal());
     }
 
     @ApiOperation(value="编辑标说说", notes="编辑说说")
     @PutMapping("/{sayUid}")
-    public String update(@PathVariable("sayUid") String sayUid, @RequestBody @Validated(value = {Update.class}) SayEditDto sayEditDto) {
+    public ResponseResult update(@PathVariable("sayUid") String sayUid, @RequestBody @Validated(value = {Update.class}) SayEditDto sayEditDto) {
 
         sayEditDto.setUid(sayUid);
         Boolean res = sayService.updateById(sayEditDto);
@@ -65,12 +65,12 @@ public class SayController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="新增说说", notes="新增说说")
     @PostMapping("")
-    public String add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) SayEditDto sayEditDto) {
+    public ResponseResult add(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {Insert.class}) SayEditDto sayEditDto) {
         // 获取用户uid
         String accessToken = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
         String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
@@ -83,34 +83,34 @@ public class SayController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="删除说说", notes="删除说说")
     @DeleteMapping("/{sayUid}")
-    public String delete(@PathVariable("sayUid") String sayUid) {
+    public ResponseResult delete(@PathVariable("sayUid") String sayUid) {
         boolean res = sayService.removeById(sayUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "批量删除说说", notes = "批量删除说说")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> sayUidList) {
+    public ResponseResult delete(@RequestBody List<String> sayUidList) {
         boolean res = sayService.removeByIds(sayUidList);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="获取地理位置", notes="获取地理位置")
     @GetMapping("/address")
-    public String getAddress(HttpServletRequest httpServletRequest) {
+    public ResponseResult getAddress(HttpServletRequest httpServletRequest) {
         // 获取ip
         String ipAddress = IpUtils.getIpAddress(httpServletRequest);
         // 通过浏览器解析工具类UserAgent获取访问设备信息

@@ -1,6 +1,5 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,7 +30,7 @@ public class BlogSortController extends SuperController {
 
     @ApiOperation(value="获取分类列表", notes="获取分类列表")
     @GetMapping("/list")
-    public String getList(
+    public ResponseResult getList(
         @RequestParam(value = "keyword", required = false) String keyword,
         @RequestParam(value = "sortByClickCount", required = false) Boolean sortByClickCount,
         @RequestParam(value = "sortByCites", required = false) Boolean sortByCites,
@@ -41,74 +40,74 @@ public class BlogSortController extends SuperController {
         // 封装
         Page<BlogSort> blogSortPage = blogSortService.page(keyword, sortByClickCount, sortByCites, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(blogSortPage.getRecords(), blogSortPage.getTotal()));
+        return ResponseResult.success(blogSortPage.getRecords(), blogSortPage.getTotal());
     }
 
     @ApiOperation(value="编辑分类", notes="编辑分类")
     @PutMapping("/{blogSortUid}")
-    public String update(@PathVariable("blogSortUid") String blogSortUid, @RequestBody @Validated(value = {Update.class}) BlogSortEditDto blogSortEditDto) {
+    public ResponseResult update(@PathVariable("blogSortUid") String blogSortUid, @RequestBody @Validated(value = {Update.class}) BlogSortEditDto blogSortEditDto) {
         blogSortEditDto.setUid(blogSortUid);
         Boolean res = blogSortService.updateById(blogSortEditDto);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="新增分类", notes="新增分类")
     @PostMapping("")
-    public String add(@RequestBody @Validated(value = {Insert.class}) BlogSortEditDto blogSortEditDto) {
+    public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) BlogSortEditDto blogSortEditDto) {
         Boolean res = blogSortService.save(blogSortEditDto);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="删除分类", notes="删除分类")
     @DeleteMapping("/{blogSortUid}")
-    public String delete(@PathVariable("blogSortUid") String blogSortUid) {
+    public ResponseResult delete(@PathVariable("blogSortUid") String blogSortUid) {
         Boolean res = blogSortService.removeById(blogSortUid);
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "批量删除分类", notes = "批量删除分类")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> blogSortUidList) {
+    public ResponseResult delete(@RequestBody List<String> blogSortUidList) {
 
         Boolean res = blogSortService.removeByIds(blogSortUidList);
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="置顶分类", notes="置顶分类")
     @PutMapping("/{blogSortUid}/promote")
-    public String promote(@PathVariable("blogSortUid") String blogSortUid) {
+    public ResponseResult promote(@PathVariable("blogSortUid") String blogSortUid) {
         Boolean res = blogSortService.promote(blogSortUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @ApiOperation(value="取消置顶", notes="取消置顶")
     @DeleteMapping("/{blogSortUid}/promote")
-    public String promoteCancel(@PathVariable("blogSortUid") String blogSortUid) {
+    public ResponseResult promoteCancel(@PathVariable("blogSortUid") String blogSortUid) {
         Boolean res = blogSortService.promoteCancel(blogSortUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 

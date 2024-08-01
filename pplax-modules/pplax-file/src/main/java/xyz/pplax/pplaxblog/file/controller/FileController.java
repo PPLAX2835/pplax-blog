@@ -39,14 +39,14 @@ public class FileController extends SuperController {
 
     @ApiOperation(value="获取文件列表", notes="获取文件列表")
     @GetMapping("/list")
-    public String getList(
+    public ResponseResult getList(
             @RequestParam(value = "currentPage", required = false) Long currentPage,
             @RequestParam(value = "pageSize", required = false) Long pageSize
     ) {
 
         Page<FileStorage> fileStorageIPage = fileStorageService.page(currentPage, pageSize);
 
-        return toJson(ResponseResult.success(fileStorageIPage.getRecords(), fileStorageIPage.getTotal()));
+        return ResponseResult.success(fileStorageIPage.getRecords(), fileStorageIPage.getTotal());
     }
 
     @ApiOperation(value="获取文件", notes="获取文件")
@@ -71,14 +71,14 @@ public class FileController extends SuperController {
 
     @ApiOperation(value="删除文件", notes="删除文件")
     @DeleteMapping("/{fileStorageUid}")
-    public String delete(@PathVariable("fileStorageUid") String fileStorageUid) throws Exception {
-        return toJson(fileService.delete(fileStorageUid));
+    public ResponseResult delete(@PathVariable("fileStorageUid") String fileStorageUid) throws Exception {
+        return fileService.delete(fileStorageUid);
     }
 
     @ApiOperation(value = "批量删除文件", notes = "批量删除文件")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> tagUidList) throws Exception {
-        return toJson(fileService.deleteBatch(tagUidList));
+    public ResponseResult delete(@RequestBody List<String> tagUidList) throws Exception {
+        return fileService.deleteBatch(tagUidList);
     }
 
 }

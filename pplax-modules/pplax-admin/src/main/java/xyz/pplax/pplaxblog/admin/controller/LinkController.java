@@ -31,7 +31,7 @@ public class LinkController extends SuperController {
 
     @ApiOperation(value="获取友链列表", notes="获取友链列表")
     @GetMapping("/list")
-    public String getList(
+    public ResponseResult getList(
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "status", required = false) Integer status,
             @RequestParam(value = "currentPage", required = false) Long currentPage,
@@ -40,12 +40,12 @@ public class LinkController extends SuperController {
 
         Page<Link> linkIPage = linkService.page(keyword, status, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(linkIPage.getRecords(), linkIPage.getTotal()));
+        return ResponseResult.success(linkIPage.getRecords(), linkIPage.getTotal());
     }
 
     @ApiOperation(value="编辑友链", notes="编辑友链")
     @PutMapping("/{linkUid}")
-    public String update(@PathVariable("linkUid") String linkUid, @RequestBody @Validated(value = {Update.class}) LinkEditDto linkEditDto) {
+    public ResponseResult update(@PathVariable("linkUid") String linkUid, @RequestBody @Validated(value = {Update.class}) LinkEditDto linkEditDto) {
 
         linkEditDto.setUid(linkUid);
         Boolean res = linkService.updateById(linkEditDto);
@@ -53,41 +53,41 @@ public class LinkController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @ApiOperation(value="新增友链", notes="新增友链")
     @PostMapping("")
-    public String add(@RequestBody @Validated(value = {Insert.class}) LinkEditDto linkEditDto) {
+    public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) LinkEditDto linkEditDto) {
         Boolean res = linkService.save(linkEditDto);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @ApiOperation(value="删除标签", notes="删除标签")
     @DeleteMapping("/{linkUid}")
-    public String delete(@PathVariable("linkUid") String linkUid) {
+    public ResponseResult delete(@PathVariable("linkUid") String linkUid) {
         boolean res = linkService.removeById(linkUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "批量删除标签", notes = "批量删除标签")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> linkUidList) {
+    public ResponseResult delete(@RequestBody List<String> linkUidList) {
         boolean res = linkService.removeByIds(linkUidList);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

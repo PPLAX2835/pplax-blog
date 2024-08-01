@@ -32,39 +32,39 @@ public class UserController extends SuperController {
 
     @ApiOperation(value="添加用户", notes="添加用户")
     @PostMapping(value = "")
-    public String add(@RequestBody @Validated(value = {Insert.class}) UserInfoEditDto userInfoEditDto) {
+    public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) UserInfoEditDto userInfoEditDto) {
         if (userService.isUsernameExist(userInfoEditDto.getUsername())) {
-            return toJson(ResponseResult.error(HttpStatus.USERNAME_EXIST));
+            return ResponseResult.error(HttpStatus.USERNAME_EXIST);
         }
         return success(userService.save(userInfoEditDto));
     }
 
     @ApiOperation(value = "删除用户", notes = "删除用户")
     @DeleteMapping(value = "/{userUid}")
-    public String delete(@PathVariable("userUid") String userUid) {
+    public ResponseResult delete(@PathVariable("userUid") String userUid) {
         Boolean res = userService.removeById(userUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "批量删除用户", notes = "批量删除用户")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> userUidList) {
+    public ResponseResult delete(@RequestBody List<String> userUidList) {
         Boolean res = userService.removeByIds(userUidList);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @ApiOperation(value="获取用户列表", notes="获取用户列表")
     @GetMapping(value = "/list")
-    public String getList(
+    public ResponseResult getList(
             @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "nickname", required = false) String nickname,
             @RequestParam(value = "currentPage") Long currentPage,
@@ -78,22 +78,22 @@ public class UserController extends SuperController {
         userGetListDto.setUsername(username);
         userGetListDto.setNickname(nickname);
 
-        return toJson(ResponseResult.success(
+        return ResponseResult.success(
                 userService.listByNicknameAndUsername(userGetListDto),
                 userService.countByNicknameAndUsername(userGetListDto)
-        ));
+        );
     }
 
     @ApiOperation(value="获取该用户的角色", notes="获取该用户的角色")
     @GetMapping(value = "/{userUid}/role")
-    public String getUserRole(@PathVariable("userUid") String userUid) {
+    public ResponseResult getUserRole(@PathVariable("userUid") String userUid) {
         return success(userService.getRoleWithMenu(userUid));
     }
 
 
     @ApiOperation(value="判断用户名是否存在", notes="判断用户名是否存在")
     @GetMapping(value = "/exist")
-    public String isUsernameExist(@RequestParam("username") String username) {
+    public ResponseResult isUsernameExist(@RequestParam("username") String username) {
         return success(userService.isUsernameExist(username));
     }
 

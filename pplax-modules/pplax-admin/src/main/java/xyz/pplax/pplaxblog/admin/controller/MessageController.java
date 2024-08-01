@@ -31,7 +31,7 @@ public class MessageController extends SuperController {
 
     @ApiOperation(value="获取消息列表", notes="获取消息列表")
     @GetMapping("/list")
-    public String getList(
+    public ResponseResult getList(
             @RequestParam(value = "type", required = false) Integer type,
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "currentPage") Long currentPage,
@@ -40,30 +40,30 @@ public class MessageController extends SuperController {
 
         Page<Message> messageIPage = messageService.page(keyword, type, null, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal()));
+        return ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal());
     }
 
     @ApiOperation(value="删除消息记录", notes="删除消息记录")
     @DeleteMapping("/{messageUid}")
-    public String delete(@PathVariable("messageUid") String messageUid) {
+    public ResponseResult delete(@PathVariable("messageUid") String messageUid) {
         boolean res = messageService.removeById(messageUid);
 
         if (res) {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "批量删除消息", notes = "批量删除消息")
     @DeleteMapping(value = "")
-    public String delete(@RequestBody List<String> messageUidList) {
+    public ResponseResult delete(@RequestBody List<String> messageUidList) {
         boolean res = messageService.removeByIds(messageUidList);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.file.service.ChatRoomFileService;
 import xyz.pplax.pplaxblog.file.service.MessageFileService;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
@@ -30,9 +31,9 @@ public class ChatRoomFileController extends SuperController {
 
     @ApiOperation(value = "上传聊天室头像", notes = "上传聊天室头像")
     @PostMapping(value = "/avatar")
-    public String avatarImageUpload(@RequestParam("file") MultipartFile file) throws Exception {
+    public ResponseResult avatarImageUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(chatRoomFileService.avatarUpload(file));
+        return chatRoomFileService.avatarUpload(file);
     }
 
 

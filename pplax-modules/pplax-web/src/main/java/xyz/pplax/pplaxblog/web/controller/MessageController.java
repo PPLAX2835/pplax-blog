@@ -59,20 +59,20 @@ public class MessageController extends SuperController {
 
     @ApiOperation(value = "获取留言列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取留言列表")
     @GetMapping("/leave/list")
-    public String getLeaveMessageList(
+    public ResponseResult getLeaveMessageList(
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
     ){
 
         Page<Message> messageIPage = messageService.pageLeaveMessage(currentPage, pageSize);
 
-        return toJson(ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal()));
+        return ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal());
     }
 
 
     @ApiOperation(value = "添加留言", httpMethod = "POST", response = ResponseResult.class, notes = "添加留言")
     @PostMapping("/leave")
-    public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody MessageEditDto messageEditDto){
+    public ResponseResult addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody MessageEditDto messageEditDto){
 
         String userUid = getUserUid(httpServletRequest);
 
@@ -91,7 +91,7 @@ public class MessageController extends SuperController {
 
     @ApiOperation(value="创建聊天室", notes="创建聊天室")
     @PostMapping("/room")
-    public String createChatRoom(HttpServletRequest httpServletRequest, @RequestBody ChatRoomEditDto chatRoomEditDto) {
+    public ResponseResult createChatRoom(HttpServletRequest httpServletRequest, @RequestBody ChatRoomEditDto chatRoomEditDto) {
         String userUid = getUserUid(httpServletRequest);
 
         boolean res = chatRoomService.createChatRoom(
@@ -106,19 +106,19 @@ public class MessageController extends SuperController {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
     @GetMapping("/room/list")
-    public String getRoomList(HttpServletRequest httpServletRequest, @RequestParam("isOwner") boolean isOwner) {
+    public ResponseResult getRoomList(HttpServletRequest httpServletRequest, @RequestParam("isOwner") boolean isOwner) {
         String userUid = getUserUid(httpServletRequest);
-        return toJson(ResponseResult.success(chatRoomService.listByUserUid(userUid, isOwner)));
+        return ResponseResult.success(chatRoomService.listByUserUid(userUid, isOwner));
     }
 
     @ApiOperation(value="搜索聊天室", notes="搜索聊天室")
     @GetMapping("/room/search")
-    public String getRoomSearch(
+    public ResponseResult getRoomSearch(
             HttpServletRequest httpServletRequest,
             @RequestParam("keyword") String keyword,
             @RequestParam(value = "currentPage") Long currentPage,
@@ -127,12 +127,12 @@ public class MessageController extends SuperController {
         String userUid = getUserUid(httpServletRequest);
 
         Page<ChatRoom> chatRoomPage = chatRoomService.pageGroupChatNotInByName(userUid, keyword, currentPage, pageSize);
-        return toJson(ResponseResult.success(chatRoomPage.getRecords(), chatRoomPage.getTotal()));
+        return ResponseResult.success(chatRoomPage.getRecords(), chatRoomPage.getTotal());
     }
 
     @ApiOperation(value="加入聊天室", notes="加入聊天室")
     @PutMapping("/room/{roomUid}/join")
-    public String joinRoom(HttpServletRequest httpServletRequest, @PathVariable("roomUid") String roomUid) {
+    public ResponseResult joinRoom(HttpServletRequest httpServletRequest, @PathVariable("roomUid") String roomUid) {
         String userUid = getUserUid(httpServletRequest);
 
         Boolean res = chatRoomService.joinChatRoom(userUid, roomUid);
@@ -141,12 +141,12 @@ public class MessageController extends SuperController {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="退出聊天室", notes="退出聊天室")
     @DeleteMapping("/room/{chatRoomUid}")
-    public String deleteChatRoom(HttpServletRequest httpServletRequest, @PathVariable("chatRoomUid") String chatRoomUid) {
+    public ResponseResult deleteChatRoom(HttpServletRequest httpServletRequest, @PathVariable("chatRoomUid") String chatRoomUid) {
         String userUid = getUserUid(httpServletRequest);
 
         Boolean res = chatRoomService.exitChatRoom(userUid, chatRoomUid);
@@ -155,12 +155,12 @@ public class MessageController extends SuperController {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="修改聊天室", notes="修改聊天室")
     @PutMapping("/room/{chatRoomUid}")
-    public String updateChatRoom(
+    public ResponseResult updateChatRoom(
             HttpServletRequest httpServletRequest,
             @PathVariable("chatRoomUid") String chatRoomUid,
             @RequestBody ChatRoomEditDto chatRoomEditDto
@@ -169,24 +169,24 @@ public class MessageController extends SuperController {
 
         ChatRoom chatRoom = chatRoomService.getById(chatRoomUid);
         if (chatRoom == null || !chatRoom.getOwnerUid().equals(userUid)) {
-            return toJson(ResponseResult.error(HttpStatus.BAD_REQUEST));
+            return ResponseResult.error(HttpStatus.BAD_REQUEST);
         }
 
         chatRoom.setName(chatRoomEditDto.getName());
         chatRoom.setAvatarUid(chatRoomEditDto.getAvatarUid());
 
-        Boolean res = chatRoomService.updateById(chatRoom);
+        boolean res = chatRoomService.updateById(chatRoom);
 
         if (res) {
             return success();
         }
 
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="获取成员列表", notes="获取成员列表")
     @GetMapping("/room/{chatRoomUid}/member/list")
-    public String getChatRoomMemberList(
+    public ResponseResult getChatRoomMemberList(
             @PathVariable("chatRoomUid") String chatRoomUid
     ) {
         return success(chatRoomService.listChatRoomMember(chatRoomUid));
@@ -194,7 +194,7 @@ public class MessageController extends SuperController {
 
     @ApiOperation(value="踢出群成员", notes="踢出群成员")
     @DeleteMapping("/room/{chatRoomUid}/member/{memberUid}")
-    public String kickChatRoomMember(
+    public ResponseResult kickChatRoomMember(
             HttpServletRequest httpServletRequest,
             @PathVariable("chatRoomUid") String chatRoomUid,
             @PathVariable("memberUid") String memberUid
@@ -206,12 +206,12 @@ public class MessageController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "获取聊天记录", httpMethod = "GET", response = ResponseResult.class, notes = "获取聊天记录")
     @GetMapping("/room/{chatRoomUid}/chat/list")
-    public String getChatMessageList(
+    public ResponseResult getChatMessageList(
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "chatRoomUid") String chatRoomUid,
             @RequestParam(value = "currentPage") Long currentPage,
@@ -221,12 +221,12 @@ public class MessageController extends SuperController {
 
         Page<Message> messageIPage = messageService.pageChatMessage(userUid, chatRoomUid, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal()));
+        return ResponseResult.success(messageIPage.getRecords(), messageIPage.getTotal());
     }
 
     @ApiOperation(value = "已读操作", httpMethod = "GET", response = ResponseResult.class, notes = "已读操作")
     @GetMapping("/room/{chatRoomUid}/chat/read")
-    public String readChatMessage(
+    public ResponseResult readChatMessage(
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "chatRoomUid") String chatRoomUid
     ){
@@ -239,7 +239,7 @@ public class MessageController extends SuperController {
 
     @ApiOperation(value = "撤回消息", httpMethod = "DELETE", response = ResponseResult.class, notes = "撤回消息")
     @DeleteMapping("/room/{chatRoomUid}/chat/{chatMessageUid}")
-    public String withdrawChatMessage(
+    public ResponseResult withdrawChatMessage(
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "chatRoomUid") String chatRoomUid,
             @PathVariable(value = "chatMessageUid") String chatMessageUid
@@ -251,12 +251,12 @@ public class MessageController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "添加聊天消息", httpMethod = "POST", response = ResponseResult.class, notes = "添加聊天消息")
     @PostMapping("/room/{chatRoomUid}/chat")
-    public String addChatMessage(
+    public ResponseResult addChatMessage(
             HttpServletRequest httpServletRequest,
             @PathVariable("chatRoomUid") String chatRoomUid,
             @RequestBody Message message

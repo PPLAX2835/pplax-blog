@@ -37,7 +37,7 @@ public class FeedbackController extends SuperController {
 
     @ApiOperation(value = "添加反馈", httpMethod = "POST", response = ResponseResult.class, notes = "添加反馈")
     @PostMapping("")
-    public String addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody Feedback feedback){
+    public ResponseResult addLeaveMessage(HttpServletRequest httpServletRequest, @RequestBody Feedback feedback){
 
         String userUid = getUserUid(httpServletRequest);
         feedback.setUserUid(userUid);
@@ -48,7 +48,7 @@ public class FeedbackController extends SuperController {
         if (save) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

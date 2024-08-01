@@ -32,15 +32,15 @@ public class MenuController extends SuperController {
 
     @ApiOperation(value="获取菜单树", notes="获取菜单树")
     @GetMapping("/tree")
-    public String getTree() {
+    public ResponseResult getTree() {
         List<Menu> tree = menuService.tree();
 
-        return toJson(ResponseResult.success(tree));
+        return ResponseResult.success(tree);
     }
 
     @ApiOperation(value="更新菜单", notes="更新菜单")
     @PutMapping(value = "/{menuUid}")
-    public String updateMenu(@PathVariable("menuUid") String menuUid, @Validated(value = {Update.class}) @RequestBody MenuEditDto menuEditDto) {
+    public ResponseResult updateMenu(@PathVariable("menuUid") String menuUid, @Validated(value = {Update.class}) @RequestBody MenuEditDto menuEditDto) {
         menuEditDto.setUid(menuUid);
 
         Boolean res = menuService.updateById(menuEditDto);
@@ -48,30 +48,30 @@ public class MenuController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="新增菜单", notes="新增菜单")
     @PostMapping("")
-    public String add(@RequestBody @Validated(value = {Insert.class}) MenuEditDto menuEditDto) {
+    public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) MenuEditDto menuEditDto) {
 
         Boolean res = menuService.save(menuEditDto);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value="删除标签", notes="删除标签")
     @DeleteMapping("/{menuUid}")
-    public String delete(@PathVariable("menuUid") String menuUid) {
+    public ResponseResult delete(@PathVariable("menuUid") String menuUid) {
         Boolean res = menuService.removeById(menuUid);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

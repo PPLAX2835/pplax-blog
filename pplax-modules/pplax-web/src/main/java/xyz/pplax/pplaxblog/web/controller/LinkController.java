@@ -34,22 +34,22 @@ public class LinkController extends SuperController {
 
     @ApiOperation(value="获得友链列表", notes="获得友链列表")
     @GetMapping("/list")
-    public String getLinkList(@RequestParam("currentPage") Long currentPage, @RequestParam("pageSize") Long pageSize) {
+    public ResponseResult getLinkList(@RequestParam("currentPage") Long currentPage, @RequestParam("pageSize") Long pageSize) {
         Page<Link> linkIPage = linkService.page(null, EStatus.ENABLE.getStatus(), currentPage, pageSize);
         // 目前还不是根据用户查询
-        return toJson(ResponseResult.success(linkIPage.getRecords(), linkIPage.getTotal()) );
+        return ResponseResult.success(linkIPage.getRecords(), linkIPage.getTotal());
     }
 
     @ApiOperation(value="申请友链", notes="申请友链")
     @PostMapping("")
-    public String add(@RequestBody @Validated(value = {Insert.class}) LinkEditDto linkEditDto) {
+    public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) LinkEditDto linkEditDto) {
 
         Boolean res = linkService.apply(linkEditDto);
 
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

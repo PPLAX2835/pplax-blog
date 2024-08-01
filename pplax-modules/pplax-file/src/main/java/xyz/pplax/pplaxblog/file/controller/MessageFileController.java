@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.file.service.MessageFileService;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 
@@ -30,9 +31,9 @@ public class MessageFileController extends SuperController {
 
     @ApiOperation(value = "上传消息图片", notes = "上传消息图片")
     @PostMapping(value = "/image")
-    public String iconImageUpload(@RequestParam("file") MultipartFile file) throws Exception {
+    public ResponseResult iconImageUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(messageFileService.imageUpload(file));
+        return messageFileService.imageUpload(file);
     }
 
 

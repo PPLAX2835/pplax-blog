@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.commons.validator.group.GetOne;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
@@ -44,15 +45,15 @@ public class AuthController extends SuperController {
 
 	@ApiOperation(value="获取token", notes="获取token")
 	@PostMapping("/token")
-	public String getToken(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {GetOne.class}) LoginDto loginDto) {
+	public ResponseResult getToken(HttpServletRequest httpServletRequest, @RequestBody @Validated(value = {GetOne.class}) LoginDto loginDto) {
 
-		return toJson(authService.getToken(httpServletRequest, loginDto));
+		return authService.getToken(httpServletRequest, loginDto);
 	}
 
 	@ApiOperation(value="注册", notes="注册")
 	@PostMapping("/register")
-	public String register( @RequestBody @Validated(value = {Insert.class}) RegisterDto registerDto) {
-		return toJson(authService.register(registerDto));
+	public ResponseResult register( @RequestBody @Validated(value = {Insert.class}) RegisterDto registerDto) {
+		return authService.register(registerDto);
 	}
 
 	@ApiOperation(value = "退出登录", notes = "退出登录", response = String.class)
@@ -64,13 +65,13 @@ public class AuthController extends SuperController {
 
 	@ApiOperation(value = "获取图片验证码", notes = "获取图片验证码", response = String.class)
 	@GetMapping(value = "/imageCaptcha")
-	public String getImageCaptcha() {
-		return toJson(authService.getImageCaptcha(new CaptchaDto()));
+	public ResponseResult getImageCaptcha() {
+		return authService.getImageCaptcha(new CaptchaDto());
 	}
 
 	@ApiOperation(value = "获取邮箱验证码", notes = "获取邮箱验证码", response = String.class)
 	@GetMapping(value = "/emailCaptcha")
-	public String getEmailCaptcha(@RequestParam("email") String email) {
+	public ResponseResult getEmailCaptcha(@RequestParam("email") String email) {
 
 		// 将6位随机码发给消息队列
 		rabbitTemplate.convertAndSend(MqConstants.EXCHANGE_DIRECT, MqConstants.PPLAX_EMAIL, email);
@@ -80,8 +81,8 @@ public class AuthController extends SuperController {
 
 	@ApiOperation(value = "忘记密码", notes = "忘记密码", response = String.class)
 	@PutMapping(value = "/password")
-	public String editPassword(HttpServletRequest httpServletRequest, @RequestBody EditPasswordDto editPasswordDto) {
-		return toJson(authService.forgetPassword(httpServletRequest, editPasswordDto));
+	public ResponseResult editPassword(HttpServletRequest httpServletRequest, @RequestBody EditPasswordDto editPasswordDto) {
+		return authService.forgetPassword(httpServletRequest, editPasswordDto);
 	}
 
 }

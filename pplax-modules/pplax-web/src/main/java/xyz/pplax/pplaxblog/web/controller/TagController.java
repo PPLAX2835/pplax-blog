@@ -32,7 +32,7 @@ public class TagController extends SuperController {
 
     @ApiOperation(value = "获取标签列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取标签列表")
     @GetMapping("/list")
-    public String getSayList(
+    public ResponseResult getSayList(
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
@@ -40,15 +40,15 @@ public class TagController extends SuperController {
 
         Page<Tag> tagIPage = tagService.page(keyword, false, false, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(tagIPage.getRecords(), tagIPage.getTotal()));
+        return ResponseResult.success(tagIPage.getRecords(), tagIPage.getTotal());
     }
 
 
     @ApiOperation(value="新增标签", notes="新增标签")
     @PostMapping("")
-    public String add(@RequestBody @Validated(value = {Insert.class}) TagEditDto tagEditDto) {
+    public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) TagEditDto tagEditDto) {
         if (tagService.isTagNameExist(tagEditDto.getName())) {
-            return toJson(ResponseResult.error(HttpStatus.TAG_NAME_EXIST));
+            return ResponseResult.error(HttpStatus.TAG_NAME_EXIST);
         }
 
         Boolean res = tagService.save(tagEditDto);
@@ -56,7 +56,7 @@ public class TagController extends SuperController {
         if (res) {
             return success();
         }
-        return toJson(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
+        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 

@@ -42,7 +42,7 @@ public class CommentController extends SuperController {
 
     @ApiOperation(value = "回复", httpMethod = "POST", response = ResponseResult.class, notes = "回复")
     @PostMapping("/{commentUid}/reply")
-    public String comment(
+    public ResponseResult comment(
             HttpServletRequest httpServletRequest,
             @PathVariable("commentUid") String commentUid,
             @RequestBody CommentEditDto commentEditDto
@@ -69,7 +69,7 @@ public class CommentController extends SuperController {
 
     @ApiOperation(value = "获得回复列表", httpMethod = "GET", response = ResponseResult.class, notes = "获得回复列表")
     @GetMapping("/{commentUid}/reply/list")
-    public String comment(
+    public ResponseResult comment(
             @PathVariable("commentUid") String commentUid,
             @RequestParam(value = "currentPage") Long currentPage,
             @RequestParam(value = "pageSize") Long pageSize
@@ -77,7 +77,7 @@ public class CommentController extends SuperController {
 
         Page<Comment> commentIPage = commentService.pageByOriginalUid(commentUid, CharacterConstants.NUM_FOUR, currentPage, pageSize);
 
-        return toJson(ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal()));
+        return ResponseResult.success(commentIPage.getRecords(), commentIPage.getTotal());
     }
 }
 

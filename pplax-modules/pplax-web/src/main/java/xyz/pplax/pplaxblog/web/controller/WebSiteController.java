@@ -29,20 +29,20 @@ public class WebSiteController extends SuperController {
 
     @ApiOperation(value="获取主页有关数据", httpMethod = "GET", notes="获取主页有关数据")
     @GetMapping("/homeData")
-    public String getInfo() {
-        return toJson(siteService.getHomeData());
+    public ResponseResult getInfo() {
+        return siteService.getHomeData();
     }
 
     @ApiOperation(value = "网站相关信息", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
     @GetMapping("/info")
-    public String getWebSiteInfo(){
-        return toJson(siteService.getWebSiteInfo());
+    public ResponseResult getWebSiteInfo(){
+        return siteService.getWebSiteInfo();
     }
 
     @ApiOperation(value="向网站报告，记录访问数据", notes="向网站报告，记录访问数据")
     @GetMapping("/report")
-    public String report(HttpServletRequest httpServletRequest) {
-        return toJson(siteService.report(httpServletRequest));
+    public ResponseResult report(HttpServletRequest httpServletRequest) {
+        return siteService.report(httpServletRequest);
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.file.service.UserFileService;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.file.service.FileService;
@@ -27,23 +28,23 @@ public class UserFileController extends SuperController {
 
     @ApiOperation(value = "上传头像", notes = "上传头像")
     @PostMapping(value = "/avatar")
-    public String avatarUpload( @RequestParam("file") MultipartFile file) throws Exception {
+    public ResponseResult avatarUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(userFileService.avatarUpload(file));
+        return userFileService.avatarUpload(file);
     }
 
     @ApiOperation(value = "删除头像", notes = "删除头像")
     @DeleteMapping(value = "/avatar/{fileUid}")
-    public String avatarDelete( @PathVariable String fileUid) throws Exception {
+    public ResponseResult avatarDelete( @PathVariable String fileUid) throws Exception {
 
-        return toJson(userFileService.delete(fileUid));
+        return userFileService.delete(fileUid);
     }
 
     @ApiOperation(value = "上传个人空间背景图片", notes = "上传个人空间背景图片")
     @PostMapping(value = "/spaceBackgroundPicture")
-    public String spaceBackgroundPictureUpload(@RequestParam("file") MultipartFile file) throws Exception {
+    public ResponseResult spaceBackgroundPictureUpload(@RequestParam("file") MultipartFile file) throws Exception {
 
-        return toJson(userFileService.spaceBackgroundPictureUpload(file));
+        return userFileService.spaceBackgroundPictureUpload(file);
     }
 
 

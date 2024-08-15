@@ -30,7 +30,7 @@ export function logout() {
  */
 export function getCaptcha() {
   return service({
-    url: '/admin/auth/captcha',
+    url: '/admin/auth/imageCaptcha',
     method: 'get',
   })
 }

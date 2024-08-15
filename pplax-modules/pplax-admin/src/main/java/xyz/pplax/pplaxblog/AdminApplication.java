@@ -26,7 +26,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.admin.component",
         "xyz.pplax.pplaxblog.feign",
         "xyz.pplax.pplaxblog.xo.service",
-        "xyz.pplax.pplaxblog.xo.component"
+        "xyz.pplax.pplaxblog.xo.component.auth"
 })
 public class AdminApplication {
 

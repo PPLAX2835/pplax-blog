@@ -44,10 +44,7 @@ public class UserController extends SuperController {
     public ResponseResult delete(@PathVariable("userUid") String userUid) {
         Boolean res = userService.removeById(userUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除用户", notes = "批量删除用户")
@@ -55,10 +52,7 @@ public class UserController extends SuperController {
     public ResponseResult delete(@RequestBody List<String> userUidList) {
         Boolean res = userService.removeByIds(userUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 

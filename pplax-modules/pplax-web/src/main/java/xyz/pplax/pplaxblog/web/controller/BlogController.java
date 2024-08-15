@@ -105,13 +105,9 @@ public class BlogController extends SuperController {
     ){
         String userUid = getUserUid(httpServletRequest);
 
-        boolean res = commentService.like(blogUid, userUid, CharacterConstants.NUM_ONE);
+        commentService.like(blogUid, userUid, CharacterConstants.NUM_ONE);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "收藏", httpMethod = "POST", response = ResponseResult.class, notes = "收藏")
@@ -127,13 +123,9 @@ public class BlogController extends SuperController {
         collect.setBlogUid(blogUid);
         collect.setUserUid(userUid);
 
-        boolean res = collectService.save(blogUid, userUid);
+        collectService.save(blogUid, userUid);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 
@@ -186,12 +178,9 @@ public class BlogController extends SuperController {
     public ResponseResult updateBlog(HttpServletRequest httpServletRequest, @PathVariable("blogUid") String blogUid, @RequestBody @Validated(value = {Update.class}) BlogEditDto blogEditDto) {
         String userUid = getUserUid(httpServletRequest);
         blogEditDto.setUid(blogUid);
-        Boolean res = blogService.userUpdateById(userUid, blogEditDto);
+        blogService.userUpdateById(userUid, blogEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 

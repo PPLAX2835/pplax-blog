@@ -50,47 +50,35 @@ public class SiteSettingController extends SuperController {
     @PutMapping("/{siteSettingUid}")
     public ResponseResult updateById(@PathVariable("siteSettingUid") String siteSettingUid, @RequestBody @Validated(value = {Update.class}) SiteSettingEditDto siteSettingEditDto) {
         siteSettingEditDto.setUid(siteSettingUid);
-        Boolean res = siteSettingService.updateById(siteSettingEditDto);
+        siteSettingService.updateById(siteSettingEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="编辑配置", notes="编辑配置")
     @PutMapping("")
     public ResponseResult updateByMap(@RequestBody Map<String, SiteSetting> data) {
 
-        Boolean res = siteSettingService.updateByMap(data);
+        siteSettingService.updateByMap(data);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="新增配置", notes="新增配置")
     @PostMapping("")
     public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) SiteSettingEditDto siteSettingEditDto) {
 
-        Boolean res = siteSettingService.save(siteSettingEditDto);
+        siteSettingService.save(siteSettingEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="删除", notes="删除")
     @DeleteMapping("/{siteSettingUid}")
     public ResponseResult delete(@PathVariable("siteSettingUid") String siteSettingUid) {
-        boolean res = siteSettingService.removeById(siteSettingUid);
+        siteSettingService.removeById(siteSettingUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 }
 

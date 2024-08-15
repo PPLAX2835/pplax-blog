@@ -48,46 +48,35 @@ public class LinkController extends SuperController {
     public ResponseResult update(@PathVariable("linkUid") String linkUid, @RequestBody @Validated(value = {Update.class}) LinkEditDto linkEditDto) {
 
         linkEditDto.setUid(linkUid);
-        Boolean res = linkService.updateById(linkEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        linkService.updateById(linkEditDto);
+
+        return success();
     }
 
 
     @ApiOperation(value="新增友链", notes="新增友链")
     @PostMapping("")
     public ResponseResult add(@RequestBody @Validated(value = {Insert.class}) LinkEditDto linkEditDto) {
-        Boolean res = linkService.save(linkEditDto);
+        linkService.save(linkEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 
     @ApiOperation(value="删除标签", notes="删除标签")
     @DeleteMapping("/{linkUid}")
     public ResponseResult delete(@PathVariable("linkUid") String linkUid) {
-        boolean res = linkService.removeById(linkUid);
+        linkService.removeById(linkUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除标签", notes = "批量删除标签")
     @DeleteMapping(value = "")
     public ResponseResult delete(@RequestBody List<String> linkUidList) {
-        boolean res = linkService.removeByIds(linkUidList);
+        linkService.removeByIds(linkUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 }

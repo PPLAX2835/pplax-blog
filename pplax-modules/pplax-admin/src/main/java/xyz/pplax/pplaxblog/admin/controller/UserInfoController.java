@@ -51,10 +51,7 @@ public class UserInfoController extends SuperController {
 
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 }

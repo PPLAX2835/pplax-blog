@@ -88,10 +88,7 @@ public class UserController extends SuperController {
 
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto);
 
-        if (res) {
-            return getMyUserInfo(httpServletRequest);
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return getMyUserInfo(httpServletRequest);
     }
 
     @ApiOperation(value="修改个人空间背景", notes="修改个人空间背景")
@@ -105,10 +102,7 @@ public class UserController extends SuperController {
 
         Boolean res = userInfoService.updateByUserUid(userUid, userInfoEditDto1);
 
-        if (res) {
-            return getMyUserInfo(httpServletRequest);
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return getMyUserInfo(httpServletRequest);
     }
 
 }

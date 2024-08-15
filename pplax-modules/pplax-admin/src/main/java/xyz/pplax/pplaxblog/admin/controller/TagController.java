@@ -58,10 +58,7 @@ public class TagController extends SuperController {
         tagEditDto.setUid(tagUid);
         Boolean res = tagService.updateById(tagEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="新增标签", notes="新增标签")
@@ -73,10 +70,7 @@ public class TagController extends SuperController {
 
         Boolean res = tagService.save(tagEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 
@@ -85,10 +79,7 @@ public class TagController extends SuperController {
     public ResponseResult delete(@PathVariable("tagUid") String tagUid) {
         Boolean res = tagService.removeById(tagUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除标签", notes = "批量删除标签")
@@ -96,10 +87,7 @@ public class TagController extends SuperController {
     public ResponseResult delete(@RequestBody List<String> tagUidList) {
         Boolean res = tagService.removeByIds(tagUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="判断标签名是否存在", notes="判断标签名是否存在")

@@ -62,10 +62,7 @@ public class SayController extends SuperController {
         sayEditDto.setUid(sayUid);
         Boolean res = sayService.updateById(sayEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="新增说说", notes="新增说说")
@@ -80,10 +77,7 @@ public class SayController extends SuperController {
         sayEditDto.setUserUid(userUid);
         Boolean res = sayService.save(sayEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="删除说说", notes="删除说说")
@@ -91,10 +85,7 @@ public class SayController extends SuperController {
     public ResponseResult delete(@PathVariable("sayUid") String sayUid) {
         boolean res = sayService.removeById(sayUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除说说", notes = "批量删除说说")
@@ -102,10 +93,7 @@ public class SayController extends SuperController {
     public ResponseResult delete(@RequestBody List<String> sayUidList) {
         boolean res = sayService.removeByIds(sayUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="获取地理位置", notes="获取地理位置")

@@ -66,12 +66,9 @@ public class BlogController extends SuperController {
 	@PutMapping("/{blogUid}")
 	public ResponseResult updateBlog(@PathVariable("blogUid") String blogUid, @RequestBody @Validated(value = {Update.class}) BlogEditDto blogEditDto) {
 		blogEditDto.setUid(blogUid);
-		Boolean res = blogService.updateById(blogEditDto);
+		blogService.updateById(blogEditDto);
 
-		if (res) {
-			return success();
-		}
-		return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+		return success();
 	}
 
 
@@ -116,24 +113,18 @@ public class BlogController extends SuperController {
 	@ApiOperation(value="置顶博客", notes="置顶博客")
 	@PutMapping("/{blogUid}/promote")
 	public ResponseResult promote(@PathVariable("blogUid") String blogUid) {
-		boolean res = blogService.promote(blogUid);
+		blogService.promote(blogUid);
 
-		if (res) {
-			return success();
-		}
-		return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+		return success();
 	}
 
 
 	@ApiOperation(value="取消置顶", notes="取消置顶")
 	@DeleteMapping("/{blogUid}/promote")
 	public ResponseResult promoteCancel(@PathVariable("blogUid") String blogUid) {
-		boolean res = blogService.promoteCancel(blogUid);
+		blogService.promoteCancel(blogUid);
 
-		if (res) {
-			return success();
-		}
-		return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+		return success();
 	}
 }
 

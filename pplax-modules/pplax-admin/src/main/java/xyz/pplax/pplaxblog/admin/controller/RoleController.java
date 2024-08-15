@@ -59,10 +59,7 @@ public class RoleController extends SuperController {
 
         roleService.preheat();
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="新增角色", notes="新增角色")
@@ -72,10 +69,7 @@ public class RoleController extends SuperController {
 
         roleService.preheat();
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="删除角色", notes="删除角色")
@@ -83,10 +77,7 @@ public class RoleController extends SuperController {
     public ResponseResult delete(@PathVariable("roleUid") String roleUid) {
         Boolean res = roleService.removeById(roleUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除角色", notes = "批量删除角色")
@@ -94,10 +85,7 @@ public class RoleController extends SuperController {
     public ResponseResult delete(@RequestBody List<String> roleUidList) {
         Boolean res = roleService.removeByIds(roleUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 }

@@ -52,10 +52,7 @@ public class FeedbackController extends SuperController {
         feedback.setStatus(feedbackEditDto.getStatus());
         boolean res = feedbackService.updateById(feedback);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="删除反馈", notes="删除反馈")
@@ -63,11 +60,7 @@ public class FeedbackController extends SuperController {
     public ResponseResult delete(@PathVariable("feedbackUid") String feedbackUid) {
         boolean res = feedbackService.removeById(feedbackUid);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除反馈", notes = "批量删除反馈")
@@ -75,10 +68,7 @@ public class FeedbackController extends SuperController {
     public ResponseResult delete(@RequestBody List<String> feedbackUidList) {
         boolean res = feedbackService.removeByIds(feedbackUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 }

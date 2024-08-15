@@ -94,7 +94,7 @@ public class MessageController extends SuperController {
     public ResponseResult createChatRoom(HttpServletRequest httpServletRequest, @RequestBody ChatRoomEditDto chatRoomEditDto) {
         String userUid = getUserUid(httpServletRequest);
 
-        boolean res = chatRoomService.createChatRoom(
+        chatRoomService.createChatRoom(
                 userUid,
                 chatRoomEditDto.getName(),
                 chatRoomEditDto.getAvatarUid(),
@@ -102,11 +102,7 @@ public class MessageController extends SuperController {
                 chatRoomEditDto.getMemberUids()
         );
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
@@ -135,13 +131,9 @@ public class MessageController extends SuperController {
     public ResponseResult joinRoom(HttpServletRequest httpServletRequest, @PathVariable("roomUid") String roomUid) {
         String userUid = getUserUid(httpServletRequest);
 
-        Boolean res = chatRoomService.joinChatRoom(userUid, roomUid);
+        chatRoomService.joinChatRoom(userUid, roomUid);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="退出聊天室", notes="退出聊天室")
@@ -149,13 +141,9 @@ public class MessageController extends SuperController {
     public ResponseResult deleteChatRoom(HttpServletRequest httpServletRequest, @PathVariable("chatRoomUid") String chatRoomUid) {
         String userUid = getUserUid(httpServletRequest);
 
-        Boolean res = chatRoomService.exitChatRoom(userUid, chatRoomUid);
+        chatRoomService.exitChatRoom(userUid, chatRoomUid);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="修改聊天室", notes="修改聊天室")
@@ -175,13 +163,9 @@ public class MessageController extends SuperController {
         chatRoom.setName(chatRoomEditDto.getName());
         chatRoom.setAvatarUid(chatRoomEditDto.getAvatarUid());
 
-        boolean res = chatRoomService.updateById(chatRoom);
+        chatRoomService.updateById(chatRoom);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="获取成员列表", notes="获取成员列表")
@@ -201,12 +185,9 @@ public class MessageController extends SuperController {
     ) {
         String userUid = getUserUid(httpServletRequest);
 
-        Boolean res = chatRoomService.kickChatRoomMember(userUid, chatRoomUid, memberUid);
+        chatRoomService.kickChatRoomMember(userUid, chatRoomUid, memberUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "获取聊天记录", httpMethod = "GET", response = ResponseResult.class, notes = "获取聊天记录")
@@ -246,12 +227,9 @@ public class MessageController extends SuperController {
     ){
         String userUid = getUserUid(httpServletRequest);
 
-        Boolean res = messageService.withdraw(userUid, chatRoomUid, chatMessageUid);
+        messageService.withdraw(userUid, chatRoomUid, chatMessageUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "添加聊天消息", httpMethod = "POST", response = ResponseResult.class, notes = "添加聊天消息")

@@ -47,11 +47,7 @@ public class CommentController extends SuperController {
     public ResponseResult delete(@PathVariable("commentUid") String commentUid) {
         boolean res = commentService.removeById(commentUid);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除评论", notes = "批量删除评论")
@@ -59,10 +55,7 @@ public class CommentController extends SuperController {
     public ResponseResult delete(@RequestBody List<String> commentUidList) {
         boolean res = commentService.removeByIds(commentUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 }
 

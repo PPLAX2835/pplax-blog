@@ -46,10 +46,7 @@ public class LinkController extends SuperController {
 
         Boolean res = linkService.apply(linkEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 }
 

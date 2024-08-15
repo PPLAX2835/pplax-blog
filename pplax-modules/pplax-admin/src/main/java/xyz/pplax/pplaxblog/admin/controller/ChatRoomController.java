@@ -43,24 +43,17 @@ public class ChatRoomController extends SuperController {
     @ApiOperation(value="删除聊天室", notes="删除聊天室")
     @DeleteMapping("/{chatRoomUid}")
     public ResponseResult delete(@PathVariable("chatRoomUid") String chatRoomUid) {
-        boolean res = chatRoomService.removeById(chatRoomUid);
+        chatRoomService.removeById(chatRoomUid);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除留言", notes = "批量删除留言")
     @DeleteMapping(value = "")
     public ResponseResult delete(@RequestBody List<String> chatRoomUidList) {
-        boolean res = chatRoomService.removeByIds(chatRoomUidList);
+        chatRoomService.removeByIds(chatRoomUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 }
 

@@ -48,11 +48,7 @@ public class MessageController extends SuperController {
     public ResponseResult delete(@PathVariable("messageUid") String messageUid) {
         boolean res = messageService.removeById(messageUid);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "批量删除消息", notes = "批量删除消息")
@@ -60,10 +56,7 @@ public class MessageController extends SuperController {
     public ResponseResult delete(@RequestBody List<String> messageUidList) {
         boolean res = messageService.removeByIds(messageUidList);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 }
 

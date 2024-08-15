@@ -64,10 +64,7 @@ public class SayController extends SuperController {
         sayEditDto.setUserUid(userUid);
         Boolean res = sayService.save(sayEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="删除说说", notes="删除说说")
@@ -75,10 +72,7 @@ public class SayController extends SuperController {
     public ResponseResult delete(@PathVariable("sayUid") String sayUid) {
         boolean res = sayService.removeById(sayUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value = "获取说说列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取说说列表")
@@ -121,11 +115,7 @@ public class SayController extends SuperController {
 
         boolean res = commentService.like(sayUid, userUid, CharacterConstants.NUM_THREE);
 
-        if (res) {
-            return success();
-        }
-
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 

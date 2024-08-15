@@ -53,10 +53,7 @@ public class TagController extends SuperController {
 
         Boolean res = tagService.save(tagEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
 

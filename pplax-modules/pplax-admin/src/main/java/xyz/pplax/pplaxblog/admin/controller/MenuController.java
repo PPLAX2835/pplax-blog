@@ -45,10 +45,7 @@ public class MenuController extends SuperController {
 
         Boolean res = menuService.updateById(menuEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="新增菜单", notes="新增菜单")
@@ -57,10 +54,7 @@ public class MenuController extends SuperController {
 
         Boolean res = menuService.save(menuEditDto);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 
     @ApiOperation(value="删除标签", notes="删除标签")
@@ -68,10 +62,7 @@ public class MenuController extends SuperController {
     public ResponseResult delete(@PathVariable("menuUid") String menuUid) {
         Boolean res = menuService.removeById(menuUid);
 
-        if (res) {
-            return success();
-        }
-        return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
+        return success();
     }
 }
 

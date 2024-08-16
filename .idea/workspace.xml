@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor：简化controller返回结果">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/SuperAuthController.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/WebApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/WebApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +138,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -263,11 +257,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.serve" />
+        <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -444,13 +438,8 @@
       <workItem from="1722583576818" duration="27000" />
       <workItem from="1723017715978" duration="119000" />
       <workItem from="1723686756453" duration="521000" />
-    </task>
-    <task id="LOCAL-00446" summary="说说以及其评论现在按时间顺序排序">
-      <created>1719193742388</created>
-      <option name="number" value="00446" />
-      <option name="presentableId" value="LOCAL-00446" />
-      <option name="project" value="LOCAL" />
-      <updated>1719193742389</updated>
+      <workItem from="1723701366709" duration="2109000" />
+      <workItem from="1723770581614" duration="1288000" />
     </task>
     <task id="LOCAL-00447" summary="修改评论量和点赞量显示反过来的问题；前台博客列表显示收藏量">
       <created>1719201236180</created>
@@ -788,7 +777,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722496334543</updated>
     </task>
-    <option name="localTasksCounter" value="495" />
+    <task id="LOCAL-00495" summary="refactor：设置基类AuthController，简化代码">
+      <created>1723691643271</created>
+      <option name="number" value="00495" />
+      <option name="presentableId" value="LOCAL-00495" />
+      <option name="project" value="LOCAL" />
+      <updated>1723691643271</updated>
+    </task>
+    <option name="localTasksCounter" value="496" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -824,7 +820,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor：优化全局异常" />
     <MESSAGE value="refactor：chatRoom业务层将模糊的返回修改为抛出异常" />
     <MESSAGE value="refactor：menu业务层将模糊的返回修改为抛出异常" />
     <MESSAGE value="refactor：message业务层将模糊的返回修改为抛出异常" />
@@ -849,7 +844,8 @@
     <MESSAGE value="feat：主题之类的东西动态显示" />
     <MESSAGE value="feat：logo也弄成动态的" />
     <MESSAGE value="refactor：controller响应结果不是toString的了" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor：controller响应结果不是toString的了" />
+    <MESSAGE value="refactor：设置基类AuthController，简化代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor：设置基类AuthController，简化代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

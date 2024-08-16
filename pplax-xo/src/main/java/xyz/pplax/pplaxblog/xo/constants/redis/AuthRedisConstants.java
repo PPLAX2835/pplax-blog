@@ -15,4 +15,9 @@ public class AuthRedisConstants extends BaseRedisConstants {
      */
     public final static String EMAIL_CODE = "EMAIL_CODE";
 
+    /**
+     * 用户token
+     */
+    public final static String USER_TOKEN = "USER_TOKEN";
+
 }

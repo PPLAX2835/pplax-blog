@@ -13,7 +13,9 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.validator.group.GetOne;
 import xyz.pplax.pplaxblog.feign.AuthFeignClient;
 import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
+import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.constants.redis.AuthRedisConstants;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
 import xyz.pplax.pplaxblog.xo.dto.LoginDto;
 
@@ -35,6 +37,9 @@ public class SuperAuthController extends SuperController {
 	private AuthFeignClient authFeignClient;
 
 	@Autowired
+	private RedisService redisService;
+
+	@Autowired
 	private AuthService authService;
 
 	@ApiOperation(value="获取token", notes="获取token")
@@ -48,6 +53,8 @@ public class SuperAuthController extends SuperController {
 	@DeleteMapping(value = "/token")
 	public String logout(HttpServletRequest httpServletRequest) {
 		String token = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
+		String userUid = getUserUid(httpServletRequest);
+		redisService.deleteObject(AuthRedisConstants.USER_TOKEN + AuthRedisConstants.SEGMENTATION + userUid);
 		return authFeignClient.deleteToken(token);
 	}
 

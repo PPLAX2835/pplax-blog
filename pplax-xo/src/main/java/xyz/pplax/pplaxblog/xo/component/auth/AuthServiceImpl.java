@@ -123,6 +123,9 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             userService.updateById(user);
             log.info("登录信息更新");
 
+            // 记录token到缓存
+            redisService.setCacheObject(AuthRedisConstants.USER_TOKEN + ":" + user.getUid(), map.get("access_token"));
+
             // 移除加密盐
             map.remove(BaseSysConstants.SALT);
 

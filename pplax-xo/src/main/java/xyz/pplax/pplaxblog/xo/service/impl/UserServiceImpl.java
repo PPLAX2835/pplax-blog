@@ -12,8 +12,12 @@ import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
 import xyz.pplax.pplaxblog.commons.exception.curd.SelectException;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
+import xyz.pplax.pplaxblog.feign.AuthFeignClient;
+import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
+import xyz.pplax.pplaxblog.xo.component.auth.AuthService;
+import xyz.pplax.pplaxblog.xo.constants.redis.AuthRedisConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.*;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
 import xyz.pplax.pplaxblog.xo.dto.list.UserGetListDto;
@@ -58,6 +62,12 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     @Autowired
     private FeedbackService feedbackService;
 
+    @Autowired
+    private RedisService redisService;
+
+    @Autowired
+    private AuthFeignClient authFeignClient;
+
     /**
      * 获取用户的角色，包含菜单
      * @param userUid
@@ -88,6 +98,8 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
             // 封装用户角色
             user.setRole(roleService.getById(user.getRoleUid()));
+            // 查看用户在线状态
+            user.setIsOnline(redisService.hasKey(AuthRedisConstants.USER_TOKEN + AuthRedisConstants.SEGMENTATION + user.getUid()));
 
             // 脱敏
             user.sensitiveDataRemove();
@@ -104,6 +116,16 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     @Override
     public Long countByNicknameAndUsername(UserGetListDto userGetListDto) {
         return userMapper.selectCountByNicknameAndUsername(userGetListDto);
+    }
+
+    @Override
+    public Boolean kickUser(String userUid) {
+        String token = redisService.getCacheObject(AuthRedisConstants.USER_TOKEN + AuthRedisConstants.SEGMENTATION + userUid);
+        redisService.deleteObject(AuthRedisConstants.USER_TOKEN + AuthRedisConstants.SEGMENTATION + userUid);
+
+        authFeignClient.deleteToken(token);
+
+        return true;
     }
 
     /**

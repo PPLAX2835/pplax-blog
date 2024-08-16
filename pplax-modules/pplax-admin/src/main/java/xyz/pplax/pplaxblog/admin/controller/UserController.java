@@ -55,6 +55,13 @@ public class UserController extends SuperController {
         return success();
     }
 
+    @ApiOperation(value = "踢用户下线", notes = "踢用户下线")
+    @DeleteMapping(value = "/{userUid}/kick")
+    public ResponseResult kickUser(@PathVariable("userUid") String userUid) {
+        userService.kickUser(userUid);
+
+        return success();
+    }
 
     @ApiOperation(value="获取用户列表", notes="获取用户列表")
     @GetMapping(value = "/list")

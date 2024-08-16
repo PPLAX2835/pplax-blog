@@ -93,6 +93,9 @@ public class User extends SuperEntity {
     @TableField(exist = false)
     private UserInfo userInfo; // 用户
 
+    @TableField(exist = false)
+    private Boolean isOnline; // 是否在线
+
     /**
      * 移除敏感数据
      */

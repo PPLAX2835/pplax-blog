@@ -68,8 +68,9 @@
             {{ timeFormat(scope.row.updateTime) }}
           </template>
         </el-table-column>
-        <el-table-column fixed="right" align="center" label="操作" width="180">
+        <el-table-column fixed="right" align="center" label="操作" width="250">
           <template slot-scope="scope">
+            <el-button v-if="scope.row.isOnline" type="warning" size="mini" @click="handleKick(scope)">强制下线</el-button>
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
             <el-button v-if="canDelete" type="danger" size="mini" @click="handleDelete(scope)">删除</el-button>
           </template>
@@ -145,7 +146,15 @@
 </template>
 
 <script>
-import {getUserList, updateUserInfo, addUser, deleteUser, deleteUserBatch, isUsernameExist} from '../../api/user'
+import {
+  getUserList,
+  updateUserInfo,
+  addUser,
+  deleteUser,
+  deleteUserBatch,
+  isUsernameExist,
+  kickUser
+} from '../../api/user'
 import { avatarUpload, spaceBackgroundPictureUpload } from "../../api/fileStorage";
 import { EStatus } from "../../base/EStatus"
 import { hasAuth } from "../../utils/auth";
@@ -385,6 +394,25 @@ export default {
       this.beforeShow("添加用户", 0)
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
+      })
+    },
+    /**
+     * 踢人下线按钮点击事件
+     * @param scope
+     */
+    handleKick: function (scope) {
+      this.$confirm('是否确定强制下线？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'error'
+      }).then(() => {
+        kickUser(scope.row.uid).then(res => {
+          this.fetchUserList()
+          this.$message.success('已强制下线');
+          this.loading.close()
+        }).catch(() => {
+          this.loading.close()
+        });
       })
     },
     /**

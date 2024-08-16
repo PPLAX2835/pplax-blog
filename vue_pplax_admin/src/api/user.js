@@ -59,6 +59,18 @@ export function deleteUser(userUid) {
   })
 }
 
+/**
+ * 踢用户下线
+ * @param userUid
+ * @returns {*}
+ */
+export function kickUser(userUid) {
+  return service({
+    url: '/admin/user/' + userUid + '/kick',
+    method: 'delete'
+  })
+}
+
 export function deleteUserBatch(userUids) {
   return service({
     url: '/admin/user',

@@ -20,6 +20,8 @@ public interface UserService extends SuperService<User> {
 
     Long countByNicknameAndUsername(UserGetListDto userGetListDto);
 
+    Boolean kickUser(String userUid);
+
     Boolean isUsernameExist(String username);
 
     Boolean removeById(String userUid);

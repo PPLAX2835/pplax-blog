@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/utils/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -439,14 +440,7 @@
       <workItem from="1723017715978" duration="119000" />
       <workItem from="1723686756453" duration="521000" />
       <workItem from="1723701366709" duration="2109000" />
-      <workItem from="1723770581614" duration="1526000" />
-    </task>
-    <task id="LOCAL-00448" summary="更换天气组件，和风天气不能用了">
-      <created>1719202832416</created>
-      <option name="number" value="00448" />
-      <option name="presentableId" value="LOCAL-00448" />
-      <option name="project" value="LOCAL" />
-      <updated>1719202832416</updated>
+      <workItem from="1723770581614" duration="2146000" />
     </task>
     <task id="LOCAL-00449" summary="修改前台编辑博客时重复点击保存草稿或提交审核会多次添加的问题">
       <created>1719203155863</created>
@@ -784,7 +778,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723773039569</updated>
     </task>
-    <option name="localTasksCounter" value="497" />
+    <task id="LOCAL-00497" summary="fix：修改后台因返回结果发生变化导致的日期显示错误问题">
+      <created>1723773123773</created>
+      <option name="number" value="00497" />
+      <option name="presentableId" value="LOCAL-00497" />
+      <option name="project" value="LOCAL" />
+      <updated>1723773123773</updated>
+    </task>
+    <option name="localTasksCounter" value="498" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

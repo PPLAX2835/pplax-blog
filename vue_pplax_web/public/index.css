@@ -9,6 +9,11 @@
  }
 
  /* 设置鼠标小手样式 */
+ a {
+     cursor: url(./assets/img/cursor/Hand.cur), pointer;
+ }
+
+ /* 设置鼠标小手样式 */
  .hand-style {
      cursor: url(./assets/img/cursor/Hand.cur), pointer;
  }

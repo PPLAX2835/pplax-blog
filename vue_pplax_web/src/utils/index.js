@@ -66,47 +66,49 @@ export const browserMatch = function matchVesion() {
  * @returns {string | null}
  */
 export function parseTime(time) {
-    if (arguments.length === 0 || !time) {
-        return null
+    if (!time) {
+        return null;
     }
-    const format =  '{y}-{m}-{d} {h}:{i}:{s}'
-    let date
+
+    let date;
+
     if (typeof time === 'object') {
-        date = time
+        date = time;
     } else {
-        if ((typeof time === 'string')) {
-            if ((/^[0-9]+$/.test(time))) {
-                // support "1548221490638"
-                time = parseInt(time)
+        if (typeof time === 'string') {
+            if (/^[0-9]+$/.test(time)) {
+                // Support timestamp in milliseconds
+                time = parseInt(time);
+            } else if (time.includes('T') && time.includes('+')) {
+                // Parse ISO 8601 format with timezone information (e.g., 2024-04-22T04:00:03.000+0000)
+                time = time.replace(/\.\d{3}/, ''); // Remove milliseconds if present
+                const [datePart, timePart] = time.split('T');
+                const [hourMinuteSecond, timezone] = timePart.split('+');
+                time = `${datePart}T${hourMinuteSecond}+00:00`; // Convert to UTC
             } else {
-                // support safari
-                // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
-                time = time.replace(new RegExp(/-/gm), '/')
+                // Support Safari
+                time = time.replace(/-/g, '/');
             }
         }
 
-        if ((typeof time === 'number') && (time.toString().length === 10)) {
-            time = time * 1000
+        if (typeof time === 'number' && time.toString().length === 10) {
+            time = time * 1000;
         }
-        date = new Date(time)
+
+        date = new Date(time);
     }
+
     const formatObj = {
         y: date.getFullYear(),
         m: date.getMonth() + 1,
         d: date.getDate(),
         h: date.getHours(),
-        i: date.getMinutes(),
-        s: date.getSeconds(),
-        a: date.getDay()
-    }
-    const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
-        const value = formatObj[key]
-        // Note: getDay() returns 0 on Sunday
-        if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
-        return value.toString().padStart(2, '0')
-    })
+        i: date.getMinutes()
+    };
 
-    return time_str
+    const time_str = `${formatObj.y}年${formatObj.m.toString().padStart(2, '0')}月${formatObj.d.toString().padStart(2, '0')}日 ${formatObj.h.toString().padStart(2, '0')}:${formatObj.i.toString().padStart(2, '0')}`;
+
+    return time_str;
 }
 
 

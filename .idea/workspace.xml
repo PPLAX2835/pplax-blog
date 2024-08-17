@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -441,14 +440,7 @@
       <workItem from="1723686756453" duration="521000" />
       <workItem from="1723701366709" duration="2109000" />
       <workItem from="1723770581614" duration="6015000" />
-      <workItem from="1723883532250" duration="1598000" />
-    </task>
-    <task id="LOCAL-00453" summary="前台删除群聊修改为退出群聊">
-      <created>1719220720505</created>
-      <option name="number" value="00453" />
-      <option name="presentableId" value="LOCAL-00453" />
-      <option name="project" value="LOCAL" />
-      <updated>1719220720506</updated>
+      <workItem from="1723883532250" duration="1779000" />
     </task>
     <task id="LOCAL-00454" summary="实现加入群聊操作">
       <created>1719227596671</created>
@@ -786,7 +778,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723885064383</updated>
     </task>
-    <option name="localTasksCounter" value="502" />
+    <task id="LOCAL-00502" summary="fix：修复用户管理界面中，有些没有配置图片的账号点击编辑按钮时会报错的情况">
+      <created>1723885163403</created>
+      <option name="number" value="00502" />
+      <option name="presentableId" value="LOCAL-00502" />
+      <option name="project" value="LOCAL" />
+      <updated>1723885163403</updated>
+    </task>
+    <option name="localTasksCounter" value="503" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

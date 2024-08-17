@@ -86,7 +86,7 @@
     <el-dialog center :title="title" :visible.sync="dialogFormVisible">
       <el-form :rules="rules" ref="dataForm" :model="form">
 
-        <el-form-item v-if="editingLinkUid" prop="avatar" label="logo图片" :label-width="formLabelWidth">
+        <el-form-item prop="avatar" label="logo图片" :label-width="formLabelWidth">
           <el-upload action="" class="avatar-uploader" :show-file-list="false"
                      :before-upload="uploadBefore" :http-request="uploadSectionIconImage">
             <img v-if="logoImageUrl" :src="logoImageUrl" class="avatar">

@@ -27,7 +27,7 @@
             </div>
             <p class="content" v-highlight v-html="item.content"></p>
             <div v-if="item.imageList">
-              <div
+              <el-col :span="8"
                   v-for="imageItem in item.imageList"
                   :class="ckeckImgClass(imageItem ? imageItem.fileUrl : '')"
               >
@@ -38,7 +38,7 @@
                 >
                   <img :key="imageItem.uid" v-lazy="imageItem ? imageItem.fileUrl : ''" alt="" />
                 </div>
-              </div>
+              </el-col>
             </div>
 
             <div class="bottomBox">

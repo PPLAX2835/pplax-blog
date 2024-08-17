@@ -42,7 +42,7 @@
         <el-table-column width="250" align="center" prop="content" label="内容"></el-table-column>
         <el-table-column width="170" align="center" label="附件图">
           <template slot-scope="scope">
-            <el-image v-if="scope.row.picture !== undefined && scope.row.picture.fileUrl !== undefined" :size="50" :src="scope.row.picture.fileUrl" class="article-cover" />
+            <el-image v-if="scope.row.picture && scope.row.picture.fileUrl" :size="50" :src="scope.row.picture.fileUrl" class="article-cover" />
             <i id="imgIcon" v-else class="el-icon-warning-outline" />
           </template>
         </el-table-column>

@@ -42,7 +42,7 @@
         </el-table-column>
         <el-table-column width="120" align="center" label="被评论人">
           <template slot-scope="scope">
-            {{ scope.row.targetUser === undefined ? '' : scope.row.targetUser.userInfo.nickname }}
+            {{ scope.row.targetUser ? scope.row.targetUser.userInfo.nickname : '' }}
           </template>
         </el-table-column>
         <el-table-column width="120" align="center" label="类型">
@@ -59,12 +59,17 @@
           <template slot-scope="scope">
             {{
               scope.row.type === 0 || scope.row.type === 1 ?
-                ( scope.row.blog === undefined ? '' : scope.row.blog.title)
+                ( scope.row.blog ? scope.row.blog.title : '')
                 :
-                ( scope.row.say === undefined ? '' : scope.row.say.content) }}
+                ( scope.row.say ? scope.row.say.content : '') }}
           </template>
         </el-table-column>
-        <el-table-column width="250" align="center" prop="content" label="内容"></el-table-column>
+        <el-table-column width="250" align="center" prop="content" label="内容">
+          <template slot-scope="scope">
+            <div v-html="scope.row.content"></div>
+          </template>
+        </el-table-column>
+        <el-table-column width="250" align="center" prop="content" label="原版内容"></el-table-column>
         <el-table-column width="120" align="center" prop="ip" label="ip"></el-table-column>
         <el-table-column width="120" align="center" prop="address" label="地址"></el-table-column>
         <el-table-column width="180" align="center" label="添加时间">

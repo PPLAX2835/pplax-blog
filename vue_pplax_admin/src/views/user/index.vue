@@ -26,7 +26,7 @@
         <el-table-column align="center" prop="avatar" label="头像"  width="120">
           <template slot-scope="scope">
             <div class="block">
-              <el-avatar v-if="scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined" :size="50" :src="scope.row.userInfo.avatar.fileUrl"></el-avatar>
+              <el-avatar v-if="scope.row.userInfo.avatar && scope.row.userInfo.avatar.fileUrl" :size="50" :src="scope.row.userInfo.avatar.fileUrl"></el-avatar>
               <el-avatar v-else :size="50"></el-avatar>
             </div>
           </template>
@@ -38,6 +38,12 @@
             <el-tag type="info">
               {{ scope.row.role.roleName }}
             </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" prop="isOnline" label="在线状态" width="80">
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.isOnline" type="success">在线</el-tag>
+            <el-tag v-else>下线</el-tag>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="status" label="状态" width="80">
@@ -420,10 +426,12 @@ export default {
      * @param scope
      */
     handleUpdate: function (scope) {
-      if (scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined) {
+      if (scope.row.userInfo.avatar && scope.row.userInfo.avatar.fileUrl) {
         this.form.avatarPictureUid = scope.row.userInfo.avatar.uid
+        this.avatarUrl = scope.row.userInfo.avatar.fileUrl
       } else {
         this.form.avatarPictureUid = ''
+        this.avatarUrl = ''
       }
       this.form.nickname = scope.row.userInfo.nickname
       this.form.roleUid = scope.row.roleUid
@@ -433,15 +441,12 @@ export default {
       this.form.summary = scope.row.userInfo.summary
       this.form.email = scope.row.email
       this.form.password = ''
-      if (scope.row.userInfo.avatar !== undefined && scope.row.userInfo.avatar.fileUrl !== undefined) {
-        this.avatarUrl = scope.row.userInfo.avatar.fileUrl
-      } else {
-        this.avatarUrl = ''
-      }
-      if (scope.row.userInfo.spaceBackgroundPicture !== undefined && scope.row.userInfo.spaceBackgroundPicture.fileUrl !== undefined) {
+      if (scope.row.userInfo.spaceBackgroundPicture && scope.row.userInfo.spaceBackgroundPicture.fileUrl) {
         this.spaceBackgroundPictureUrl = scope.row.userInfo.spaceBackgroundPicture.fileUrl
+        this.form.spaceBackgroundPictureUid = scope.row.userInfo.spaceBackgroundPicture.uid
       } else {
         this.spaceBackgroundPictureUrl = ''
+        this.form.spaceBackgroundPictureUid = ''
       }
       this.editingUserUid = scope.row.uid
       this.editingUserUsername = scope.row.username

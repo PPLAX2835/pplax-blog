@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/link/index.vue" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix：调整消息管理html内容的显示问题">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/message/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/message/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,14 +441,7 @@
       <workItem from="1723686756453" duration="521000" />
       <workItem from="1723701366709" duration="2109000" />
       <workItem from="1723770581614" duration="6015000" />
-      <workItem from="1723883532250" duration="1779000" />
-    </task>
-    <task id="LOCAL-00454" summary="实现加入群聊操作">
-      <created>1719227596671</created>
-      <option name="number" value="00454" />
-      <option name="presentableId" value="LOCAL-00454" />
-      <option name="project" value="LOCAL" />
-      <updated>1719227596671</updated>
+      <workItem from="1723883532250" duration="2078000" />
     </task>
     <task id="LOCAL-00455" summary="现在可以创建群聊了">
       <created>1719238651418</created>
@@ -785,7 +779,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723885163403</updated>
     </task>
-    <option name="localTasksCounter" value="503" />
+    <task id="LOCAL-00503" summary="fix：修复友链管理新增友链会提示必须包含图片的问题">
+      <created>1723885467674</created>
+      <option name="number" value="00503" />
+      <option name="presentableId" value="LOCAL-00503" />
+      <option name="project" value="LOCAL" />
+      <updated>1723885467674</updated>
+    </task>
+    <option name="localTasksCounter" value="504" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -821,7 +822,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor：tag业务层将模糊的返回修改为抛出异常" />
     <MESSAGE value="refactor：user业务层将模糊的返回修改为抛出异常" />
     <MESSAGE value="docs：更新数据库表" />
     <MESSAGE value="docs：整理菜单" />
@@ -846,7 +846,8 @@
     <MESSAGE value="feat：登录成功后将token记录到缓存" />
     <MESSAGE value="feat：实现踢人下线功能" />
     <MESSAGE value="fix：修复用户管理界面中，有些没有配置图片的账号点击编辑按钮时会报错的情况" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix：修复用户管理界面中，有些没有配置图片的账号点击编辑按钮时会报错的情况" />
+    <MESSAGE value="fix：修复友链管理新增友链会提示必须包含图片的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix：修复友链管理新增友链会提示必须包含图片的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

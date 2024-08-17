@@ -33,8 +33,12 @@
             <span>{{ scope.row.userInfo !== undefined ? scope.row.userInfo.nickname : '游客' }}</span>
           </template>
         </el-table-column>
-
-        <el-table-column width="280" align="center" prop="content" label="内容"></el-table-column>
+        <el-table-column width="280" align="center" prop="content" label="内容">
+          <template slot-scope="scope">
+            <div v-html="scope.row.content"></div>
+          </template>
+        </el-table-column>
+        <el-table-column width="280" align="center" prop="content" label="原版内容"></el-table-column>
         <el-table-column width="120" align="center" prop="ip" label="ip"></el-table-column>
         <el-table-column width="150" align="center" prop="address" label="地址"></el-table-column>
 

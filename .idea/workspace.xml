@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix：修复反馈管理列表不能正常显示的问题">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/comment/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/comment/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -441,14 +441,7 @@
       <workItem from="1723686756453" duration="521000" />
       <workItem from="1723701366709" duration="2109000" />
       <workItem from="1723770581614" duration="6015000" />
-      <workItem from="1723883532250" duration="3294000" />
-    </task>
-    <task id="LOCAL-00457" summary="增加踢出群成员功能">
-      <created>1719293298543</created>
-      <option name="number" value="00457" />
-      <option name="presentableId" value="LOCAL-00457" />
-      <option name="project" value="LOCAL" />
-      <updated>1719293298543</updated>
+      <workItem from="1723883532250" duration="3406000" />
     </task>
     <task id="LOCAL-00458" summary="整理到右键菜单：调整变量名，修改显示问题">
       <created>1719300745411</created>
@@ -786,7 +779,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723886104177</updated>
     </task>
-    <option name="localTasksCounter" value="506" />
+    <task id="LOCAL-00506" summary="fix：修复评论列表不能正常显示的问题">
+      <created>1723886913710</created>
+      <option name="number" value="00506" />
+      <option name="presentableId" value="LOCAL-00506" />
+      <option name="project" value="LOCAL" />
+      <updated>1723886913710</updated>
+    </task>
+    <option name="localTasksCounter" value="507" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -822,7 +822,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="docs：整理菜单" />
     <MESSAGE value="refactor：对于有type属性的字段，使用对应的常量类进行赋值，增加可读性" />
     <MESSAGE value="fix：整理菜单，补充部分内容；修复公共聊天室不能正常查询的问题" />
     <MESSAGE value="fix：修复个人空间的收藏列表不能正确显示的问题" />
@@ -847,7 +846,8 @@
     <MESSAGE value="fix：修复友链管理新增友链会提示必须包含图片的问题" />
     <MESSAGE value="fix：优化消息管理html内容的显示问题" />
     <MESSAGE value="fix：修复反馈管理列表不能正常显示的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix：修复反馈管理列表不能正常显示的问题" />
+    <MESSAGE value="fix：修复评论列表不能正常显示的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix：修复评论列表不能正常显示的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

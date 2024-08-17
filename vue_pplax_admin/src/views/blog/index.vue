@@ -42,7 +42,7 @@
         <el-table-column align="center" type="selection" />
         <el-table-column width="170" align="center" label="文章封面">
           <template slot-scope="scope">
-            <el-image v-if="scope.row.coverImage !== undefined && scope.row.coverImage.fileUrl !== undefined" :size="50" :src="scope.row.coverImage.fileUrl" class="article-cover" />
+            <el-image v-if="scope.row.coverImage && scope.row.coverImage.fileUrl" :size="50" :src="scope.row.coverImage.fileUrl" class="article-cover" />
             <i id="imgIcon" v-else class="el-icon-warning-outline" />
           </template>
         </el-table-column>
@@ -633,7 +633,7 @@ export default {
       }).then(() => {
         this.openLoading();
 
-        if (scope.row === undefined) {
+        if (!scope.row) {
 
           // 走的是批量删除
           if (this.multipleSelection.length) {
@@ -695,7 +695,7 @@ export default {
      */
     handleUpdate: function (scope) {
       this.editingBlogUid = scope.row.uid
-      if (scope.row.coverImage !== undefined) {
+      if (scope.row.coverImage) {
         this.editingBlogCoverImageUrl = scope.row.coverImage.fileUrl
       } else {
         this.editingBlogCoverImageUrl = ''

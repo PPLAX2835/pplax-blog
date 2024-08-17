@@ -6,6 +6,7 @@ const getters = {
   menu: state => state.user.menu,
   userRoleName: state => state.user.roleName,
   roleList: state => state.role.roleList,
+  siteSetting: state => state.map,
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
 }

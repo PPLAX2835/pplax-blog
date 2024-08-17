@@ -148,3 +148,7 @@ export function removeClass(ele, cls) {
     ele.className = ele.className.replace(reg, ' ')
   }
 }
+
+export const getWebSiteInfoValue = function (webSiteInfo, key) {
+  return webSiteInfo ? (webSiteInfo[key] ? webSiteInfo[key].value : '') : ''
+}

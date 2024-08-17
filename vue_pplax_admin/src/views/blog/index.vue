@@ -46,7 +46,12 @@
             <i id="imgIcon" v-else class="el-icon-warning-outline" />
           </template>
         </el-table-column>
-        <el-table-column width="180" align="center" prop="title" label="标题"></el-table-column>
+        <el-table-column width="180" align="center" prop="title" label="标题">
+          <template slot-scope="scope">
+            <el-link target="_blank" :href="getWebSiteInfoValue('siteDomain') + '/blog/' + scope.row.uid">
+              {{ scope.row.title }}</el-link>
+          </template>
+        </el-table-column>
         <el-table-column width="120" align="center" label="作者">
           <template slot-scope="scope">
             {{ scope.row.user.userInfo.nickname }}
@@ -296,7 +301,7 @@ import { getBlogList, getBlogContent, addBlog, updateBlog, deleteBlog, deleteBlo
 import { addTag, getTagList} from "../../api/tag";
 import { hasAuth, getUserUid } from "../../utils/auth";
 import { checkImgType } from "../../utils/validate"
-import { parseTime } from "../../utils";
+import {getWebSiteInfoValue, parseTime} from "../../utils";
 import IconPicker from "../../components/IconPicker"
 import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
@@ -942,7 +947,17 @@ export default {
           return false;
         }
       })
-    }
+    },
+
+
+    /**
+     * 获得网站配置value
+     * @param key
+     * @returns {*|string}
+     */
+    getWebSiteInfoValue(key) {
+      return getWebSiteInfoValue(this.$store.state.siteSetting.map, key)
+    },
   }
 }
 </script>

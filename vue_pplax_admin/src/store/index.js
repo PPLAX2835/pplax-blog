@@ -4,6 +4,7 @@ import app from './modules/app'
 import role from "./modules/role"
 import user from './modules/user'
 import tagsView from './modules/tagsView'
+import siteSetting from "./modules/siteSetting";
 import settings from './modules/settings'
 import getters from './getters'
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
     app,
     role,
     user,
+    siteSetting,
     settings,
     tagsView
   },

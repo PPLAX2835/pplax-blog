@@ -5,6 +5,19 @@
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class="card-panel">
           <div class="card-panel-icon-wrapper icon-money">
+            <el-avatar :src="getWebSiteInfoValue('siteLogo')"></el-avatar>
+          </div>
+          <div class="card-panel-description">
+            <div class="card-panel-text">站点域名：</div>
+            <el-link class="card-panel-num" :href="getWebSiteInfoValue('siteDomain')" target="_blank">
+              {{ getWebSiteInfoValue('siteDomain') }}</el-link>
+          </div>
+        </div>
+      </el-col>
+
+      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+        <div class="card-panel">
+          <div class="card-panel-icon-wrapper icon-money">
             <svg-icon icon-class="eye" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
@@ -70,8 +83,7 @@
             <el-table-column label="标题" width="300">
               <template slot-scope="scope">
                 <el-link style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" :underline="false"
-                         target="_blank" :href="'http://pplax.xyz/' + 'articleInfo?articleId=' + scope.row.uid">{{ scope.row.title }}</el-link>
-                <!-- 因为前台还没有，用了个临时的，这里记得后来改 -->
+                         target="_blank" :href="getWebSiteInfoValue('siteDomain') + '/blog/' + scope.row.uid">{{ scope.row.title }}</el-link>
               </template>
             </el-table-column>
             <el-table-column label="点击量" prop="clickCount" width="100" align="center" />
@@ -102,6 +114,7 @@ import { mapGetters } from "vuex";
 import CountTo from "vue-count-to";
 import tagcloud from "../layout/components/Navbar/tagcloud";
 import * as echarts from "echarts";
+import {getWebSiteInfoValue} from "../../utils";
 export default {
   name: "dashboard",
   computed: {
@@ -182,7 +195,15 @@ export default {
       };
 
       pieChart.setOption(option);
-    }
+    },
+    /**
+     * 获得网站配置value
+     * @param key
+     * @returns {*|string}
+     */
+    getWebSiteInfoValue(key) {
+      return getWebSiteInfoValue(this.$store.state.siteSetting.map, key)
+    },
   }
 };
 </script>

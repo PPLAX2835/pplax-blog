@@ -23,6 +23,7 @@ export default {
   created() {
     this.$store.dispatch('getCurrentUserRoleWithMenu')
     this.$store.dispatch('getRoleList')
+    this.$store.dispatch('getSiteSetting')
   },
   computed: {
     ...mapGetters([

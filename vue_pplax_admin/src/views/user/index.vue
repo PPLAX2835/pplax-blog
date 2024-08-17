@@ -76,7 +76,7 @@
         </el-table-column>
         <el-table-column fixed="right" align="center" label="操作" width="250">
           <template slot-scope="scope">
-            <el-button v-if="scope.row.isOnline" type="warning" size="mini" @click="handleKick(scope)">强制下线</el-button>
+            <el-button v-if="canKick && scope.row.isOnline" type="warning" size="mini" @click="handleKick(scope)">强制下线</el-button>
             <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
             <el-button v-if="canDelete" type="danger" size="mini" @click="handleDelete(scope)">删除</el-button>
           </template>
@@ -254,6 +254,13 @@ export default {
      */
     canDeleteBatch: function () {
       return hasAuth(this.menu, 'DELETE:/api/admin/user')
+    },
+    /**
+     * 检查是否有踢人下线的权限
+     * @returns {boolean|*}
+     */
+    canKick: function () {
+      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}/kick')
     },
     /**
      * 检查是否有删除的权限

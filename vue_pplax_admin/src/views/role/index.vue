@@ -505,6 +505,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           let menuUids = []
+          this.multipleMenuSelection = this.$refs['menuTable'].selection
           for (let i = 0; i < this.multipleMenuSelection.length; i++) {
             menuUids = menuUids.concat(this.getMenuSelectionUids(this.multipleMenuSelection[i]))
           }

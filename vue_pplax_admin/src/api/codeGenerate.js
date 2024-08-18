@@ -8,3 +8,11 @@ export function getTableList(params) {
     params
   })
 }
+
+export function getTable(tableName) {
+  return service({
+    url: '/admin/codeGenerate/table/' + tableName,
+    method: 'get'
+  })
+}
+

@@ -32,4 +32,9 @@ public class CodeGenerateServiceImpl extends SuperServiceImpl<CodeGenerateMapper
     public int count(String tableName) {
         return codeGenerateMapper.selectCount(tableName);
     }
+
+    @Override
+    public List<Map<String, Object>> tableColumns(String tableName) {
+        return codeGenerateMapper.selectTableColumns(tableName);
+    }
 }

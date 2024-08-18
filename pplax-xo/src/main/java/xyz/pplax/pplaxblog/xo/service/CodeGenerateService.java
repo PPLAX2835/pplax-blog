@@ -14,4 +14,6 @@ public interface CodeGenerateService extends SuperService<SuperEntity> {
     List<Map<String, Object>> list(String keyword, Long currentPage, Long pageSize);
 
     int count(String tableName);
+
+    List<Map<String, Object>> tableColumns(String tableName);
 }

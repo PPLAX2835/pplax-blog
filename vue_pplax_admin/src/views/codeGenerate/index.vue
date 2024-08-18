@@ -27,7 +27,7 @@
         </el-table-column>
         <el-table-column width="250" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
-<!--            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>-->
+            <el-button v-if="canViewTable" type="primary" size="mini" @click="handleViewTable(scope)">查看字段</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -41,17 +41,26 @@
       </el-pagination>
     </div>
 
+    <!-- 数据库表详情 -->
+    <el-dialog center :title="dbTableTitle" :visible.sync="dialogDbTableVisible" width="62%" :fullscreen="isFullScreen">
+      <el-table border :data="dbTableData">
+        <el-table-column width="180" align="center" prop="columnName" label="列名"></el-table-column>
+        <el-table-column width="180" align="center" prop="dataType" label="数据类型"></el-table-column>
+        <el-table-column width="180" align="center" prop="columnComment" label="描述"></el-table-column>
+        <el-table-column width="180" align="center" prop="columnKey" label="key"></el-table-column>
+        <el-table-column width="180" align="center" prop="EXTRA" label="EXTRA"></el-table-column>
+      </el-table>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
-import { getMenuTree } from "../../api/menu";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
-import { EStatus } from "../../base/EStatus"
 import { mapGetters } from "vuex";
-import {getTableList} from "../../api/codeGenerate";
+import {getTable, getTableList} from "../../api/codeGenerate";
 
 export default {
   components: {
@@ -61,7 +70,6 @@ export default {
   data() {
     return {
       multipleSelection: [],
-      multipleMenuSelection: [],
       showSearch: true,
       isFullScreen: false,
       params: {
@@ -69,14 +77,15 @@ export default {
         currentPage: 1,
         pageSize: 10
       },
-      statusList: [],
       // 数据总数
       total:0,
       // 加载层信息
       loading: [],
       tableData: [],
-      menuTree: [],
-      isMenuFullSelect: false
+      // 展示数据库表数据
+      dialogDbTableVisible: false,
+      dbTableTitle: '',
+      dbTableData: []
     }
   },
   computed: {
@@ -84,53 +93,22 @@ export default {
       'menu'
     ]),
     /**
-     * 检查是否有批量删除的权限
+     * 检查是否有查看表详情的权限
      * @returns {boolean|*}
      */
-    canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/role')
-    },
-    /**
-     * 检查是否有删除的权限
-     * @returns {boolean|*}
-     */
-    canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/role/{uid}')
-    },
-    /**
-     * 检查是否有添加的权限
-     * @returns {boolean|*}
-     */
-    canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/role')
-    },
-    /**
-     * 检查是否有更新的权限
-     * @returns {boolean|*}
-     */
-    canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/role/{uid}')
+    canViewTable: function () {
+      return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/{tableName}')
     },
   },
   created() {
-    this.statusList = EStatus;
     this.openLoading();
     this.fetchTableList();
-    this.fetchMenuTree();
   },
   methods: {
     fetchTableList: function (){
       getTableList(this.params).then(res =>{
         this.tableData = res.data
         this.total = res.total
-        this.loading.close()
-      }).catch(err =>{
-        console.log(err)
-      })
-    },
-    fetchMenuTree: function (){
-      getMenuTree().then(res =>{
-        this.menuTree = res.data
         this.loading.close()
       }).catch(err =>{
         console.log(err)
@@ -180,27 +158,19 @@ export default {
       this.multipleSelection = val;
     },
 
-
-
     /**
-     * 处理菜单复选框选择事件
-     * @param val
+     * 处理查看表详情按钮点击事件
+     * @param scope
      */
-    handleMenuSelectionChange: function (val) {
-      this.multipleMenuSelection = val;
+    handleViewTable(scope) {
+      this.dialogDbTableVisible = true
+      this.dbTableTitle = scope.row.tableName
+
+      getTable(this.dbTableTitle).then(res => {
+        this.dbTableData = res.data
+      })
     },
-    /**
-     * 处理用户手动选中事件
-     * @param selection
-     * @param row
-     */
-    handleMenuSelection: function (selection, row) {
-      let selected = (selection.length > 0) && selection.indexOf(row) !== -1; //为true时选中，为false未选中
-      if (!selected && this.isMenuFullSelect) {
-        this.isMenuFullSelect = false
-      }
-      this.menuRecursionSelection(row, selected)
-    },
+
 
 
 

@@ -25,7 +25,7 @@ public class CodeGenerateController extends SuperController {
     private CodeGenerateService codeGenerateService;
 
     @ApiOperation(value="获得数据库表的列表", notes="获得数据库表的列表")
-    @RequestMapping("/table/list")
+    @GetMapping("/table/list")
     public ResponseResult list(
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "currentPage", required = false) Long currentPage,
@@ -38,4 +38,10 @@ public class CodeGenerateController extends SuperController {
         return ResponseResult.success(list, count);
     }
 
+    @ApiOperation(value="获得数据库表的列表", notes="获得数据库表的列表")
+    @GetMapping("/table/{tableName}")
+    public ResponseResult list(@PathVariable("tableName") String tableName) {
+        //查询列表数据
+        return success(codeGenerateService.tableColumns(tableName));
+    }
 }

@@ -152,7 +152,7 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
 
                 if (method.equals(menuMethod)) {
                     // 处理并判断url
-                    menuUrl = menuUrl.replaceAll("\\{uid}", "\\\\w+") + "$";
+                    menuUrl = menuUrl.replaceAll("\\{.*?}", "\\\\w+") + "$";
                     Pattern pattern = Pattern.compile(menuUrl);
                     Matcher matcher = pattern.matcher(url);
                     if (matcher.matches()) {

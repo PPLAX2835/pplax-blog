@@ -116,6 +116,12 @@ export const constantRouterMap = [
                 name: 'Menu',
                 component: () => import('@/views/menu/index'),
                 meta: { title: '菜单管理', icon: 'table' }
+              },
+              {
+                path: 'codeGenerate',
+                name: 'CodeGenerate',
+                component: () => import('@/views/codeGenerate/index'),
+                meta: { title: '代码生成', icon: 'table' }
               }
             ]
           },

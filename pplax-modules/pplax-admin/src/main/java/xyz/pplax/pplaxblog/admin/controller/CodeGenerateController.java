@@ -39,7 +39,7 @@ public class CodeGenerateController extends SuperController {
     }
 
     @ApiOperation(value="获得数据库表的列表", notes="获得数据库表的列表")
-    @GetMapping("/table/{tableName}")
+    @GetMapping("/table/{tableName}/columns")
     public ResponseResult list(@PathVariable("tableName") String tableName) {
         //查询列表数据
         return success(codeGenerateService.tableColumns(tableName));

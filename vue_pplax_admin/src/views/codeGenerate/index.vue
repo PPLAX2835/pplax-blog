@@ -97,7 +97,7 @@ export default {
      * @returns {boolean|*}
      */
     canViewTable: function () {
-      return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/{tableName}')
+      return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/{uid}/columns')
     },
   },
   created() {

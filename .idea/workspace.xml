@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/codeGenerate.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/codeGenerate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/codeGenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/codeGenerate/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/role/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/role/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -445,14 +448,7 @@
       <workItem from="1723902479698" duration="1159000" />
       <workItem from="1723939343580" duration="840000" />
       <workItem from="1723940474240" duration="58000" />
-      <workItem from="1723946309644" duration="12039000" />
-    </task>
-    <task id="LOCAL-00463" summary="feat：实现webSocket的聊天室&#10;现在聊天室可以实时进行收发消息了&#10;&#10;fix：更换登录的随机验证码图片地址&#10;登录的验证码图片的随机图床寄了，换了个新的">
-      <created>1721309904443</created>
-      <option name="number" value="00463" />
-      <option name="presentableId" value="LOCAL-00463" />
-      <option name="project" value="LOCAL" />
-      <updated>1721309904443</updated>
+      <workItem from="1723946309644" duration="13685000" />
     </task>
     <task id="LOCAL-00464" summary="fix：登录异常的错误返回信息的反序列化&#10;终于可以划掉这一条了">
       <created>1721373945753</created>
@@ -790,7 +786,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723957868241</updated>
     </task>
-    <option name="localTasksCounter" value="512" />
+    <task id="LOCAL-00512" summary="fix：修复角色权限配置菜单的全选反选问题">
+      <created>1723966065215</created>
+      <option name="number" value="00512" />
+      <option name="presentableId" value="LOCAL-00512" />
+      <option name="project" value="LOCAL" />
+      <updated>1723966065215</updated>
+    </task>
+    <option name="localTasksCounter" value="513" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -826,7 +829,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor：设置前台背景；将樱花特效修改为落叶特效" />
     <MESSAGE value="refactor：完善前台错误弹窗显示内容" />
     <MESSAGE value="fix：调整css，使背景的图片可以显示出来" />
     <MESSAGE value="fix：修复点击博客，阅读量不增加的问题" />
@@ -851,7 +853,8 @@
     <MESSAGE value="feat：设置了后台向前台动态访问" />
     <MESSAGE value="feat：新增代码生成功能，目前实现查询数据库表" />
     <MESSAGE value="feat：可以查看表字段信息了" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat：可以查看表字段信息了" />
+    <MESSAGE value="fix：修复角色权限配置菜单的全选反选问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix：修复角色权限配置菜单的全选反选问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

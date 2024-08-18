@@ -11,7 +11,7 @@ export function getTableList(params) {
 
 export function getTable(tableName) {
   return service({
-    url: '/admin/codeGenerate/table/' + tableName,
+    url: '/admin/codeGenerate/table/' + tableName + '/columns',
     method: 'get'
   })
 }

@@ -475,39 +475,13 @@ export default {
 
     },
 
-    /**
-     * 获得选中项的uid
-     */
-    getMenuSelectionUids: function (node) {
-      // 初始化一个空数组来存储uid
-      let uids = [];
-
-      // 检查节点是否存在uid属性
-      if (node.uid) {
-        // 如果存在，添加到数组中
-        uids.push(node.uid);
-      }
-
-      // 检查节点是否存在children数组
-      if (Array.isArray(node.children)) {
-        // 对每个子节点递归调用extractUIDs函数
-        // 并将返回的uid数组合并到当前数组的末尾
-        node.children.forEach(child => {
-          uids = uids.concat(this.getMenuSelectionUids(child));
-        });
-      }
-
-      // 返回存储了所有uid的数组
-      return uids;
-    },
-
     submit: function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           let menuUids = []
           this.multipleMenuSelection = this.$refs['menuTable'].selection
           for (let i = 0; i < this.multipleMenuSelection.length; i++) {
-            menuUids = menuUids.concat(this.getMenuSelectionUids(this.multipleMenuSelection[i]))
+            menuUids = menuUids.concat(this.multipleMenuSelection[i].uid)
           }
           this.form.menuUids = menuUids.toString()
 

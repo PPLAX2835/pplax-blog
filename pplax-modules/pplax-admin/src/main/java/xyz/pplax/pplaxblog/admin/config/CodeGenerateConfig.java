@@ -15,8 +15,7 @@ public class CodeGenerateConfig {
         codeGenerateParam.setOutputDir("G:\\tmp\\mybatis");
         codeGenerateParam.setAuthor("pplax");
         codeGenerateParam.setPackageName("xyz.pplax.pplaxblog");
-        codeGenerateParam.setTemplatePath("codegen/controller");
-
+        codeGenerateParam.setTemplatePath("codegen/%s");
 
         return codeGenerateParam;
     }

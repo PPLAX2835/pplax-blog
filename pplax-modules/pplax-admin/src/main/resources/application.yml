@@ -11,7 +11,7 @@ spring:
     cache: false   #关闭缓存
     prefix: classpath:/templates/
     suffix: .ftl
-    mode: TEXT
+    mode: HTML
     encoding: utf-8
   devtools:
     restart:

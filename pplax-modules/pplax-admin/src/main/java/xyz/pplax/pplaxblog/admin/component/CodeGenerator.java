@@ -6,9 +6,10 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import xyz.pplax.pplaxblog.admin.model.CodeGenerateParam;
+import xyz.pplax.pplaxblog.commons.utils.JavaMySQLTypeConverter;
+import xyz.pplax.pplaxblog.commons.utils.NamingUtils;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -31,16 +32,59 @@ public class CodeGenerator {
     private final String COLUM_NAME = "columnName";
 
     public void generate(Map<String, Object> table, List<Map<String, Object>> columns) {
-        System.out.println(table);
-        System.out.println(columns);
+        String entityStr = entityGenerate(table, columns, "t_");
+
+        System.out.println(entityStr);
+    }
+
+    public String entityGenerate(
+            Map<String, Object> table,
+            List<Map<String, Object>> columns,
+            String replacePrefix
+    ) {
+        if (replacePrefix == null) {
+            replacePrefix = "";
+        }
+
+        String tableComment = (String) table.get(TABLE_COMMENT);
+        String author = codeGenerateParam.getAuthor();
+        String date = (new Date()).toString();
+        String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
+        String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
+
+        StringBuilder attributes = new StringBuilder();
+        for (Map<String, Object> column : columns) {
+            String attributeComment = (String) column.get(COLUM_COMMENT);
+            String attributeType = JavaMySQLTypeConverter.mysqlToJava((String) column.get(DATA_TYPE));
+            String attributeName = NamingUtils.snakeToCamel((String) column.get(COLUM_NAME));
+
+            if (
+                "uid".equals(attributeName) ||
+                "status".equals(attributeName) ||
+                "createTime".equals(attributeName) ||
+                "updateTime".equals(attributeName)
+            ) {
+                continue;
+            }
+
+            // <#list>标签不能正常解析，现在使用嵌套填充的方式
+            String attribute =
+                    "\n" +
+                    "    /**\n" +
+                    "     * %s\n" +
+                    "     */\n" +
+                    "    private %s %s;\n";
+            attributes.append(String.format(attribute, attributeComment, attributeType, attributeName));
+        }
 
         Context context = new Context();
-        context.setVariable("className", "className");
-        context.setVariable("fieldType", "fieldType");
-        context.setVariable("fieldName", "fieldName");
+        context.setVariable("tableComment", tableComment);
+        context.setVariable("author", author);
+        context.setVariable("date", date);
+        context.setVariable("tableName", tableName);
+        context.setVariable("className", className);
+        context.setVariable("attributes", attributes.toString());
 
-        String process1 = templateEngine.process("codegen/controller.java", context);
-
-        System.out.println(process1);
+        return templateEngine.process(String.format(codeGenerateParam.getTemplatePath(), "entity.java"), context);
     }
 }

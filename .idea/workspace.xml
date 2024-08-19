@@ -4,25 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix：修复角色权限配置菜单的全选反选问题和调整接口地址">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/model/CodeGenerateParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/controller.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JavaMySQLTypeConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/NamingUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/entity.java.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/AdminApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/pplax-email-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/pplax-email-starter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/CodeGenerateMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/mapper/CodeGenerateMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/CodeGenerateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/CodeGenerateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/CodeGenerateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/CodeGenerateServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/CodeGenerateMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/CodeGenerateMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/codeGenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/codeGenerate/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,11 +128,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="templates.codegen" />
       <recent name="xyz.pplax.pplaxblog.xo.service.impl" />
       <recent name="xyz.pplax.pplaxblog.xo.service" />
       <recent name="xyz.pplax.pplaxblog.xo.mapper" />
       <recent name="xyz.pplax.pplaxblog.admin.controller" />
-      <recent name="xyz.pplax.pplaxblog.xo.component.auth" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -155,7 +144,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -252,18 +241,7 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/vue_pplax_web/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="serve" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="npm.serve" />
       <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.MessageApplication" />
@@ -277,7 +255,6 @@
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -462,14 +439,8 @@
       <workItem from="1723939343580" duration="840000" />
       <workItem from="1723940474240" duration="58000" />
       <workItem from="1723946309644" duration="21789000" />
-      <workItem from="1724034322364" duration="5703000" />
-    </task>
-    <task id="LOCAL-00465" summary="fix：修复前台页面运行时间不能正常显示的问题">
-      <created>1721375357227</created>
-      <option name="number" value="00465" />
-      <option name="presentableId" value="LOCAL-00465" />
-      <option name="project" value="LOCAL" />
-      <updated>1721375357227</updated>
+      <workItem from="1724034322364" duration="5965000" />
+      <workItem from="1724051065284" duration="12486000" />
     </task>
     <task id="LOCAL-00466" summary="feat：滑动认证验证码链接设置为动态配置">
       <created>1721437350824</created>
@@ -807,7 +778,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723967756584</updated>
     </task>
-    <option name="localTasksCounter" value="514" />
+    <task id="LOCAL-00514" summary="feat:初步整合代码代码生成">
+      <created>1724049508748</created>
+      <option name="number" value="00514" />
+      <option name="presentableId" value="LOCAL-00514" />
+      <option name="project" value="LOCAL" />
+      <updated>1724049508749</updated>
+    </task>
+    <option name="localTasksCounter" value="515" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -843,7 +821,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix：调整css，使背景的图片可以显示出来" />
     <MESSAGE value="fix：修复点击博客，阅读量不增加的问题" />
     <MESSAGE value="fix：json正则有问题，验证替换为别的写法" />
     <MESSAGE value="docs：补充注释，解释JSON正则用法" />
@@ -868,7 +845,8 @@
     <MESSAGE value="feat：可以查看表字段信息了" />
     <MESSAGE value="fix：修复角色权限配置菜单的全选反选问题" />
     <MESSAGE value="fix：修复角色权限配置菜单的全选反选问题和调整接口地址" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix：修复角色权限配置菜单的全选反选问题和调整接口地址" />
+    <MESSAGE value="feat:初步整合代码代码生成" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:初步整合代码代码生成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

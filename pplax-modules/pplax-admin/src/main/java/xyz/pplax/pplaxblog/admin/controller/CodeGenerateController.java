@@ -6,6 +6,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.admin.component.CodeGenerator;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.service.CodeGenerateService;
@@ -23,6 +24,9 @@ public class CodeGenerateController extends SuperController {
 
     @Autowired
     private CodeGenerateService codeGenerateService;
+
+    @Autowired
+    private CodeGenerator codeGenerator;
 
     @ApiOperation(value="获得数据库表的列表", notes="获得数据库表的列表")
     @GetMapping("/table/list")
@@ -42,6 +46,19 @@ public class CodeGenerateController extends SuperController {
     @GetMapping("/table/{tableName}/columns")
     public ResponseResult list(@PathVariable("tableName") String tableName) {
         //查询列表数据
-        return success(codeGenerateService.tableColumns(tableName));
+        return success(codeGenerateService.getTableColumns(tableName));
+    }
+
+    @ApiOperation(value="生成", notes="生成")
+    @PostMapping("/table/{tableName}/generate")
+    public ResponseResult generate(@PathVariable("tableName") String tableName) {
+        Map<String, Object> table = codeGenerateService.getOne(tableName);
+        List<Map<String, Object>> tableColumns = null;
+        if (table != null) {
+            tableColumns = codeGenerateService.getTableColumns(tableName);
+        }
+
+        codeGenerator.generate(table, tableColumns);
+        return success();
     }
 }

@@ -6,8 +6,13 @@ server:
 spring:
   application:
     name: admin-server
+  # thymeleaf
   thymeleaf:
-    cache: true   #关闭缓存
+    cache: false   #关闭缓存
+    prefix: classpath:/templates/
+    suffix: .ftl
+    mode: TEXT
+    encoding: utf-8
   devtools:
     restart:
       enabled: false #启动热部署

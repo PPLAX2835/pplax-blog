@@ -29,12 +29,17 @@ public class CodeGenerateServiceImpl extends SuperServiceImpl<CodeGenerateMapper
     }
 
     @Override
+    public Map<String, Object> getOne(String tableName) {
+        return codeGenerateMapper.selectOne(tableName);
+    }
+
+    @Override
     public int count(String tableName) {
         return codeGenerateMapper.selectCount(tableName);
     }
 
     @Override
-    public List<Map<String, Object>> tableColumns(String tableName) {
+    public List<Map<String, Object>> getTableColumns(String tableName) {
         return codeGenerateMapper.selectTableColumns(tableName);
     }
 }

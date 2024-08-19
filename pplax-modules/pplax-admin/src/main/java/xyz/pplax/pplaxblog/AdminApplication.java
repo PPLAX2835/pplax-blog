@@ -24,6 +24,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.starter.redis",
         "xyz.pplax.pplaxblog.admin.controller",
         "xyz.pplax.pplaxblog.admin.component",
+        "xyz.pplax.pplaxblog.admin.config",
         "xyz.pplax.pplaxblog.feign",
         "xyz.pplax.pplaxblog.xo.service",
         "xyz.pplax.pplaxblog.xo.component.auth"

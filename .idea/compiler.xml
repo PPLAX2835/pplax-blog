@@ -31,6 +31,7 @@
       <module name="pplax-amqp-starter" target="8" />
       <module name="pplax-auth" target="8" />
       <module name="pplax-blog" target="8" />
+      <module name="pplax-codegen-starter" target="8" />
       <module name="pplax-commons" target="8" />
       <module name="pplax-durid-starter" target="8" />
       <module name="pplax-email-starter" target="8" />

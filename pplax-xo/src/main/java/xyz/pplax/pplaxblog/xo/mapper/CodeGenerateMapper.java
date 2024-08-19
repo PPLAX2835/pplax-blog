@@ -14,6 +14,8 @@ public interface CodeGenerateMapper extends SuperMapper<SuperEntity> {
 
     List<Map<String, Object>> selectPage(@Param("tableName") String tableName, @Param("offset") Long offset, @Param("limit") Long limit);
 
+    Map<String, Object> selectOne(@Param("tableName") String tableName);
+
     int selectCount(@Param("tableName") String tableName);
 
     List<Map<String, Object>> selectTableColumns(String tableName);

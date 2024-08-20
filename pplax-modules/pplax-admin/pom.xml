@@ -86,10 +86,10 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-        <!-- thymeleaf -->
+        <!-- freemarker -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
         <!-- sfl4j -->

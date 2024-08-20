@@ -9,15 +9,22 @@ import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 import java.util.List;
 
 /**
- * @description [[${tableComment}]]
- * @author [[${author}]]
- * @date [[${date}]]
+ * @description ${tableComment}
+ * @author ${author}
+ * @date ${date}
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("[[${tableName}]]")
-public class [[${className}]] extends SuperEntity {
+@TableName("${tableName}")
+public class ${className} extends SuperEntity {
 
     private static final long serialVersionUID = 1L;
-[[${attributes}]]
+
+<#list attributes as attribute>
+    /**
+    * ${attribute.attributeComment}
+    */
+    private ${attribute.attributeType} ${attribute.attributeName};
+
+</#list>
 }

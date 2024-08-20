@@ -44,6 +44,7 @@
         <spring-boot-starter-amqp.version>2.6.13</spring-boot-starter-amqp.version>
         <spring-boot-starter-websocket.version>2.5.12</spring-boot-starter-websocket.version>
         <spring-boot-starter-thymeleaf.version>2.7.12</spring-boot-starter-thymeleaf.version>
+        <spring-boot-starter-freemarker.version>2.7.10</spring-boot-starter-freemarker.version>
     </properties>
 
     <dependencyManagement>
@@ -101,6 +102,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
                 <version>${spring-boot-starter-thymeleaf.version}</version>
+            </dependency>
+
+            <!-- freemarker -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-freemarker</artifactId>
+                <version>${spring-boot-starter-freemarker.version}</version>
             </dependency>
 
             <!-- redis -->

@@ -6,13 +6,9 @@ server:
 spring:
   application:
     name: admin-server
-  # thymeleaf
-  thymeleaf:
-    cache: false   #关闭缓存
-    prefix: classpath:/templates/
-    suffix: .ftl
-    mode: HTML
-    encoding: utf-8
+  # freemarker
+  freemarker:
+    template-loader-path: classpath:/templates/
   devtools:
     restart:
       enabled: false #启动热部署

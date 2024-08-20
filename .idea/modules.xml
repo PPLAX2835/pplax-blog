@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-email-starter/pplax-email-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/pplax-email-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-feign/pplax-feign.iml" filepath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-freemarker-starter/pplax-freemarker-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-freemarker-starter/pplax-freemarker-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-modules.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-modules.iml" />
@@ -19,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pplax-security-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/pplax-swagger-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/pplax-swagger-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pplax-starter/pplax-thymeleaf-starter/pplax-thymeleaf-starter.iml" filepath="$PROJECT_DIR$/pplax-starter/pplax-thymeleaf-starter/pplax-thymeleaf-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" filepath="$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pplax-xo/pplax-xo.iml" filepath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" />
     </modules>

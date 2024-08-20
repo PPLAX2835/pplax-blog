@@ -20,10 +20,12 @@
         <module name="pplax-message" />
         <module name="pplax-xo" />
         <module name="pplax-redis-starter" />
+        <module name="pplax-thymeleaf-starter" />
         <module name="pplax-commons" />
         <module name="pplax-mybatis-starter" />
         <module name="pplax-admin" />
         <module name="pplax-file" />
+        <module name="pplax-freemarker-starter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -37,6 +39,7 @@
       <module name="pplax-email-starter" target="8" />
       <module name="pplax-feign" target="8" />
       <module name="pplax-file" target="8" />
+      <module name="pplax-freemarker-starter" target="8" />
       <module name="pplax-gateway" target="8" />
       <module name="pplax-message" target="8" />
       <module name="pplax-modules" target="8" />
@@ -45,6 +48,7 @@
       <module name="pplax-security-starter" target="8" />
       <module name="pplax-starter" target="8" />
       <module name="pplax-swagger-starter" target="8" />
+      <module name="pplax-thymeleaf-starter" target="8" />
       <module name="pplax-utils" target="8" />
       <module name="pplax-web" target="8" />
       <module name="pplax-xo" target="8" />

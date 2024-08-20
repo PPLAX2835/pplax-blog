@@ -69,6 +69,7 @@
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-email-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-feign-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-feign-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-starter/pplax-freemarker-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-nacos-starter/src/main/java" charset="UTF-8" />
@@ -87,6 +88,7 @@
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-spring-boot-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pplax-starter/pplax-thymeleaf-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pplax-utils/src/main/java" charset="UTF-8" />

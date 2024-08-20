@@ -98,6 +98,10 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.2.4.RELEASE" level="project" />
     <orderEntry type="module" module-name="pplax-redis-starter" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.73" level="project" />
+    <orderEntry type="module" module-name="pplax-freemarker-starter" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-freemarker:2.7.10" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.29" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.2.4.RELEASE" level="project" />
@@ -236,9 +240,6 @@
     <orderEntry type="library" name="Maven: com.netflix.archaius:archaius-core:0.7.6" level="project" />
     <orderEntry type="library" name="Maven: com.netflix.hystrix:hystrix-core:1.5.18" level="project" />
     <orderEntry type="library" name="Maven: org.hdrhistogram:HdrHistogram:2.1.9" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-freemarker:2.7.10" level="project" />
-    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.29" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />

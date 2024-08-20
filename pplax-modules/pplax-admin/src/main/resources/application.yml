@@ -6,9 +6,6 @@ server:
 spring:
   application:
     name: admin-server
-  # freemarker
-  freemarker:
-    template-loader-path: classpath:/templates/
   devtools:
     restart:
       enabled: false #启动热部署

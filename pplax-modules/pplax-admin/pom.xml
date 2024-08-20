@@ -48,6 +48,10 @@
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-redis-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-freemarker-starter</artifactId>
+        </dependency>
         <!-- starter end -->
 
         <dependency>
@@ -84,12 +88,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
-        <!-- freemarker -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
         <!-- sfl4j -->

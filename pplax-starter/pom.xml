@@ -13,6 +13,8 @@
         <module>pplax-redis-starter</module>
         <module>pplax-amqp-starter</module>
         <module>pplax-email-starter</module>
+        <module>pplax-freemarker-starter</module>
+        <module>pplax-thymeleaf-starter</module>
     </modules>
 
     <parent>

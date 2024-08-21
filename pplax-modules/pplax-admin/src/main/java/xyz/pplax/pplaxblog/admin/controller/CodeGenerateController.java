@@ -11,6 +11,10 @@ import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.service.CodeGenerateService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -50,15 +54,22 @@ public class CodeGenerateController extends SuperController {
     }
 
     @ApiOperation(value="生成", notes="生成")
-    @PostMapping("/table/{tableName}/generate")
-    public ResponseResult generate(@PathVariable("tableName") String tableName) {
+    @RequestMapping("/table/{tableName}/generate")
+    public void generate(@PathVariable("tableName") String tableName, HttpServletResponse response) throws IOException {
         Map<String, Object> table = codeGenerateService.getOne(tableName);
         List<Map<String, Object>> tableColumns = null;
         if (table != null) {
             tableColumns = codeGenerateService.getTableColumns(tableName);
         }
 
-        codeGenerator.generate(table, tableColumns);
-        return success();
+        ByteArrayOutputStream byteArrayOutputStream = codeGenerator.generate(table, tableColumns, "t_");
+
+        // 设置响应的内容类型和头信息，准备下载
+        response.setContentType("application/zip");
+        response.setHeader("Content-Disposition", "attachment;filename=example-with-dir.zip");
+
+        // 将生成的压缩包写入响应的输出流中
+        response.getOutputStream().write(byteArrayOutputStream.toByteArray());
+        response.getOutputStream().flush();
     }
 }

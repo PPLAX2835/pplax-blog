@@ -10,9 +10,13 @@ import xyz.pplax.pplaxblog.admin.model.CodeGenerateParam;
 import xyz.pplax.pplaxblog.commons.utils.JavaMySQLTypeConverter;
 import xyz.pplax.pplaxblog.commons.utils.NamingUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 @Slf4j
 @Component
@@ -34,26 +38,82 @@ public class CodeGenerator {
     private final String COLUM_KEY = "columnKey";
     private final String COLUM_NAME = "columnName";
 
-    public void generate(Map<String, Object> table, List<Map<String, Object>> columns) {
-        String entityStr = entityGenerate(table, columns, "t_");
-        String mapperStr = mapperGenerate(table, "t_");
-        String mapperXmlStr = mapperXmlGenerate(table, columns, "t_");
-        String serviceStr = serviceGenerate(table, "t_");
-        String serviceImplStr = serviceImplGenerate(table, "t_");
-        String sqlConstantsStr = sqlConstantsGenerate(table, columns, "t_");
+    public ByteArrayOutputStream generate(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) throws IOException {
+        // 获得代码字符串
+        String entityStr = entityGenerate(table, columns, replacePrefix);
+        String mapperStr = mapperGenerate(table, replacePrefix);
+        String mapperXmlStr = mapperXmlGenerate(table, columns, replacePrefix);
+        String serviceStr = serviceGenerate(table, replacePrefix);
+        String serviceImplStr = serviceImplGenerate(table, replacePrefix);
+        String sqlConstantsStr = sqlConstantsGenerate(table, columns, replacePrefix);
 
-        System.out.println("****");
-        System.out.println(entityStr);
-        System.out.println("****");
-        System.out.println(mapperStr);
-        System.out.println("****");
-        System.out.println(mapperXmlStr);
-        System.out.println("****");
-        System.out.println(serviceStr);
-        System.out.println("****");
-        System.out.println(serviceImplStr);
-        System.out.println("****");
-        System.out.println(sqlConstantsStr);
+        // 获得className
+        String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
+        String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
+
+        // 文件目录
+        String baseDir = "src/main/java/xyz/pplax/pplaxblog/xo/";
+
+        String entityDir = baseDir + "entity/";
+        String mapperDir = baseDir + "mapper/";
+        String mapperXmlDir = "src/main/resources/mapper/";
+        String serviceDir = baseDir + "service/";
+        String serviceImplDir = baseDir + "service/impl/";
+        String sqlConstantsDir = baseDir + "constants/sql/";
+
+        // 创建内存中的字节数组输出流
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        // 使用 ZipOutputStream 包装字节数组输出流
+        ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream);
+        // 创建目录 ZipEntry
+        ZipEntry dirEntry = new ZipEntry(entityDir);              // entity
+        zipOutputStream.putNextEntry(dirEntry);
+        zipOutputStream.closeEntry();
+        dirEntry = new ZipEntry(mapperDir);              // mapper
+        zipOutputStream.putNextEntry(dirEntry);
+        zipOutputStream.closeEntry();
+        dirEntry = new ZipEntry(mapperXmlDir);        // mapperXml
+        zipOutputStream.putNextEntry(dirEntry);
+        zipOutputStream.closeEntry();
+        dirEntry = new ZipEntry(serviceDir);            // service
+        zipOutputStream.putNextEntry(dirEntry);
+        zipOutputStream.closeEntry();
+        dirEntry = new ZipEntry(serviceImplDir);    // serviceImpl
+        zipOutputStream.putNextEntry(dirEntry);
+        zipOutputStream.closeEntry();
+        dirEntry = new ZipEntry(sqlConstantsDir);  // sqlConstants
+        zipOutputStream.putNextEntry(dirEntry);
+        zipOutputStream.closeEntry();
+
+        // 创建文件的 ZipEntry（包含目录路径）,并将字符串内容写入到文件 ZipEntry 中
+        ZipEntry fileEntry = new ZipEntry(entityDir + className + ".java");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(entityStr.getBytes());
+
+        fileEntry = new ZipEntry(mapperDir + className + "Mapper.java");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(mapperStr.getBytes());
+
+        fileEntry = new ZipEntry(mapperXmlDir + className + "Mapper.xml");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(mapperXmlStr.getBytes());
+
+        fileEntry = new ZipEntry(serviceDir + className + "Service.java");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(serviceStr.getBytes());
+
+        fileEntry = new ZipEntry(serviceImplDir + className + "ServiceImpl.java");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(serviceImplStr.getBytes());
+
+        fileEntry = new ZipEntry(sqlConstantsDir + className + "SQLConstants.java");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(sqlConstantsStr.getBytes());
+
+        zipOutputStream.closeEntry();
+
+        return byteArrayOutputStream;
     }
 
     /**

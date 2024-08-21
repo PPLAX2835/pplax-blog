@@ -11,6 +11,6 @@ import java.util.List;
  * @author ${author}
  * @date ${date}
  */
-public interface service extends SuperService<${className}> {
+public interface ${className}service extends SuperService<${className}> {
 
 }

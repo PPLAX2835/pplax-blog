@@ -39,11 +39,13 @@ public class CodeGenerator {
         String mapperStr = mapperGenerate(table, "t_");
         String mapperXmlStr = mapperXmlGenerate(table, columns, "t_");
         String serviceStr = serviceGenerate(table, "t_");
+        String serviceImplStr = serviceImplGenerate(table, "t_");
 
         System.out.println(entityStr);
         System.out.println(mapperStr);
         System.out.println(mapperXmlStr);
         System.out.println(serviceStr);
+        System.out.println(serviceImplStr);
     }
 
     /**
@@ -186,6 +188,31 @@ public class CodeGenerator {
         context.put("className", className);
 
         return processTemplate("service.java.ftl", context);
+    }
+
+    /**
+     * 生成serviceImpl 代码字符串
+     * @param table
+     * @param replacePrefix
+     * @return
+     */
+    public String serviceImplGenerate(Map<String, Object> table, String replacePrefix) {
+        if (replacePrefix == null) {
+            replacePrefix = "";
+        }
+
+        String author = codeGenerateParam.getAuthor();
+        String date = (new Date()).toString();
+        String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
+        String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
+
+        Map<String, Object> context = new HashMap<>();
+        context.put("author", author);
+        context.put("date", date);
+        context.put("tableName", tableName);
+        context.put("className", className);
+
+        return processTemplate("serviceImpl.java.ftl", context);
     }
 
     /**

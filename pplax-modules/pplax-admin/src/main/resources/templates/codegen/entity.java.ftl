@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import xyz.pplax.pplaxblog.xo.base.entity.SuperEntity;
 
-import java.sql.*;
-
 /**
  * @description ${tableComment}
  * @author ${author}

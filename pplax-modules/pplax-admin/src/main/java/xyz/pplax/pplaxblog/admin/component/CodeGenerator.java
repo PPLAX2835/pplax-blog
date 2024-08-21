@@ -40,12 +40,20 @@ public class CodeGenerator {
         String mapperXmlStr = mapperXmlGenerate(table, columns, "t_");
         String serviceStr = serviceGenerate(table, "t_");
         String serviceImplStr = serviceImplGenerate(table, "t_");
+        String sqlConstantsStr = sqlConstantsGenerate(table, columns, "t_");
 
+        System.out.println("****");
         System.out.println(entityStr);
+        System.out.println("****");
         System.out.println(mapperStr);
+        System.out.println("****");
         System.out.println(mapperXmlStr);
+        System.out.println("****");
         System.out.println(serviceStr);
+        System.out.println("****");
         System.out.println(serviceImplStr);
+        System.out.println("****");
+        System.out.println(sqlConstantsStr);
     }
 
     /**
@@ -73,9 +81,18 @@ public class CodeGenerator {
         for (Map<String, Object> column : columns) {
             Map<String, String> attribute = new HashMap<>();
 
+            String attributeName = NamingUtils.snakeToCamel((String) column.get(COLUM_NAME));
+            if (
+                "uid".equals(attributeName) ||
+                "status".equals(attributeName) ||
+                "createTime".equals(attributeName) ||
+                "updateTime".equals(attributeName)
+            ) {
+                continue;
+            }
+
             String attributeComment = (String) column.get(COLUM_COMMENT);
             String attributeType = JavaMySQLTypeConverter.mysqlToJava((String) column.get(DATA_TYPE));
-            String attributeName = NamingUtils.snakeToCamel((String) column.get(COLUM_NAME));
 
             attribute.put("attributeComment", attributeComment);
             attribute.put("attributeType", attributeType);
@@ -213,6 +230,51 @@ public class CodeGenerator {
         context.put("className", className);
 
         return processTemplate("serviceImpl.java.ftl", context);
+    }
+
+
+    /**
+     * 生成SQLConstants常量 代码字符串
+     * @param table
+     * @param replacePrefix
+     * @return
+     */
+    public String sqlConstantsGenerate(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) {
+        if (replacePrefix == null) {
+            replacePrefix = "";
+        }
+
+        // 获取数据
+        String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
+        String author = codeGenerateParam.getAuthor();
+        String date = (new Date()).toString();
+        String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
+        List<Map<String, String>> attributes = new ArrayList<>();
+
+        // 循环封装attributes
+        for (Map<String, Object> column : columns) {
+            Map<String, String> attribute = new HashMap<>();
+
+            String attributeComment = (String) column.get(COLUM_COMMENT);
+            String columnName = (String) column.get(COLUM_NAME);
+            String columnVariableName = columnName.toUpperCase();
+
+            attribute.put("attributeComment", attributeComment);
+            attribute.put("columnName", columnName);
+            attribute.put("columnVariableName", columnVariableName);
+
+            attributes.add(attribute);
+        }
+
+        // 填充模板
+        Map<String, Object> context = new HashMap<>();
+        context.put("author", author);
+        context.put("date", date);
+        context.put("tableName", tableName);
+        context.put("className", className);
+        context.put("attributes", attributes);
+
+        return processTemplate("SQLConstants.java.ftl", context);
     }
 
     /**

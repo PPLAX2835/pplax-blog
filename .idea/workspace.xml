@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat:现在可以将生成的代码作为zip下载下来了">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/controller.java.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/admin.vue.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/api.js.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/NamingUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/NamingUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/model/CodeGenerateParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/model/CodeGenerateParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +92,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-xo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_admin/src" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -110,18 +111,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_admin\src" />
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\resources\templates\codegen" />
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_admin\src\views" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-xo" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-starter\pplax-thymeleaf-starter\src\main\resources" />
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-starter\pplax-freemarker-starter\src\main\resources" />
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\resources\templates\codegen" />
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_admin" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\java\xyz\pplax\pplaxblog\admin\model" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\resources" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\java\xyz\pplax\pplaxblog\admin\component" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\java\xyz\pplax\pplaxblog\admin" />
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-starter\pplax-codegen-starter\src\main\resources\template\codegen" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="xyz.pplax" />
@@ -251,10 +252,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.WebApplication" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="Spring Boot.AdminApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -451,14 +452,8 @@
       <workItem from="1724378765851" duration="275000" />
       <workItem from="1724379067631" duration="148000" />
       <workItem from="1724379388036" duration="2506000" />
-      <workItem from="1724394300640" duration="3264000" />
-    </task>
-    <task id="LOCAL-00472" summary="refactor：menu业务层将模糊的返回修改为抛出异常">
-      <created>1721466394252</created>
-      <option name="number" value="00472" />
-      <option name="presentableId" value="LOCAL-00472" />
-      <option name="project" value="LOCAL" />
-      <updated>1721466394252</updated>
+      <workItem from="1724394300640" duration="7929000" />
+      <workItem from="1724411329988" duration="2424000" />
     </task>
     <task id="LOCAL-00473" summary="refactor：message业务层将模糊的返回修改为抛出异常">
       <created>1721466811489</created>
@@ -796,7 +791,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724243585745</updated>
     </task>
-    <option name="localTasksCounter" value="521" />
+    <task id="LOCAL-00521" summary="feat:可以根据参数生成controller或xo">
+      <created>1724398297144</created>
+      <option name="number" value="00521" />
+      <option name="presentableId" value="LOCAL-00521" />
+      <option name="project" value="LOCAL" />
+      <updated>1724398297144</updated>
+    </task>
+    <option name="localTasksCounter" value="522" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -832,7 +834,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor：controller响应结果不是toString的了" />
     <MESSAGE value="refactor：设置基类AuthController，简化代码" />
     <MESSAGE value="fix：修改后台因返回结果发生变化导致的日期显示错误问题" />
     <MESSAGE value="fix：修复前台小手效果a标签效果不显示" />
@@ -857,7 +858,8 @@
     <MESSAGE value="feat:可以生成serviceImpl代码了" />
     <MESSAGE value="feat:必须的代码字符串现在基本能够正确生成字符串了" />
     <MESSAGE value="feat:现在可以将生成的代码作为zip下载下来了" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:现在可以将生成的代码作为zip下载下来了" />
+    <MESSAGE value="feat:可以根据参数生成controller或xo" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:可以根据参数生成controller或xo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

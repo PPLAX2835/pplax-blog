@@ -12,8 +12,9 @@ public class CodeGenerateConfig {
         CodeGenerateParam codeGenerateParam = new CodeGenerateParam();
 
         // 这里先写死，跑通了再整理
-        codeGenerateParam.setAuthor("pplax");
+        codeGenerateParam.setAuthor("PPLAX");
         codeGenerateParam.setTemplatePath("codegen/%s");
+        codeGenerateParam.setDefaultPackage("xyz.pplax.pplaxblog");
 
         return codeGenerateParam;
     }

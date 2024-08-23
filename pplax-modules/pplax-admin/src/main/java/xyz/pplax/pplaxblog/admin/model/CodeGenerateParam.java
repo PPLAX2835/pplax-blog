@@ -13,5 +13,9 @@ public class CodeGenerateParam {
      * freemarker模块文件路径
      */
     private String templatePath;
+    /**
+     * 默认包路径
+     */
+    private String defaultPackage;
 
 }

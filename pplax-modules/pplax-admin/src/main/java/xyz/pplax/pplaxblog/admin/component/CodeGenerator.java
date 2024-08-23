@@ -40,7 +40,7 @@ public class CodeGenerator {
     private static final String COLUM_NAME = "columnName";
 
     /**
-     * 获得controller文件
+     * 获得controller文件字节输出流
      * @param table
      * @param packageName
      * @param replacePrefix
@@ -74,9 +74,61 @@ public class CodeGenerator {
         return outputStream;
     }
 
+    /**
+     * 获得管理后台相关代码的压缩包字节输出流
+     * @param table
+     * @param replacePrefix
+     * @return
+     * @throws IOException
+     */
+    public ByteArrayOutputStream generateAdminWeb(
+            Map<String, Object> table,
+            String requestPath,
+            String replacePrefix
+    ) throws IOException {
+        // 获得代码字符串
+        String apiJsCode = getApiJsCode(table, requestPath, replacePrefix);
+        String adminVueCode = getAdminVueCode(table, replacePrefix);
+
+        // 获得className
+        String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
+        String attributeName = NamingUtils.snakeToCamel(tableName);
+
+        // 文件目录
+        String baseDir = "src/";
+
+        // 获得保存目录
+        String apiJsDir = baseDir + "api/";
+        String adminVueDir = baseDir + "views/" + attributeName + "/";
+
+        // 创建内存中的字节数组输出流
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        // 使用 ZipOutputStream 包装字节数组输出流
+        ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream);
+
+        // 创建目录 ZipEntry
+        ZipEntry dirEntry = new ZipEntry(apiJsDir);              // apiJs
+        zipOutputStream.putNextEntry(dirEntry);
+        dirEntry = new ZipEntry(adminVueDir);              // adminVue
+        zipOutputStream.putNextEntry(dirEntry);
+
+        // 创建文件的 ZipEntry（包含目录路径）,并将字符串内容写入到文件 ZipEntry 中
+        ZipEntry fileEntry = new ZipEntry(apiJsDir + attributeName + ".js");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(apiJsCode.getBytes());
+
+        fileEntry = new ZipEntry(adminVueDir + "index.vue");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(adminVueCode.getBytes());
+
+        zipOutputStream.closeEntry();
+
+        return byteArrayOutputStream;
+    }
 
     /**
-     * 生成xo
+     * 生成xo的压缩包字节输出流
      * @param table
      * @param columns
      * @param packageName
@@ -417,13 +469,74 @@ public class CodeGenerator {
         context.put("author", author);
         context.put("date", date);
         context.put("apiName", apiName);
-        context.put("tableName", tableName);
         context.put("tableComment", tableComment);
         context.put("className", className);
 
         return processTemplate("controller.java.ftl", context);
     }
 
+    /**
+     * 获得管理后台（前端）封装的请求api代码
+     * @param table
+     * @param requestPath
+     * @param replacePrefix
+     * @return
+     */
+    public String getApiJsCode(
+            Map<String, Object> table,
+            String requestPath,
+            String replacePrefix
+    ) {
+        if (replacePrefix == null) {
+            replacePrefix = "";
+        }
+
+        String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
+        String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
+        String author = codeGenerateParam.getAuthor();
+        String date = (new Date()).toString();
+        String apiName = NamingUtils.snakeToCamel(tableName);
+
+        Map<String, Object> context = new HashMap<>();
+        context.put("tableName", tableName);
+        context.put("author", author);
+        context.put("date", date);
+        context.put("className", className);
+        context.put("apiName", apiName);
+        context.put("requestPath", requestPath);
+
+        return processTemplate("api.js.ftl", context);
+    }
+
+    /**
+     * 获得管理后台（前端）的页面代码
+     * @param table
+     * @param replacePrefix
+     * @return
+     */
+    public String getAdminVueCode(
+            Map<String, Object> table,
+            String replacePrefix
+    ) {
+        if (replacePrefix == null) {
+            replacePrefix = "";
+        }
+
+        String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
+        String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
+        String author = codeGenerateParam.getAuthor();
+        String date = (new Date()).toString();
+        String apiName = NamingUtils.snakeToCamel(tableName);
+
+        Map<String, Object> context = new HashMap<>();
+        context.put("tableName", tableName);
+        context.put("author", author);
+        context.put("date", date);
+        context.put("className", className);
+        context.put("apiName", apiName);
+
+        return processTemplate("admin.vue.ftl", context);
+    }
 
     /**
      * 处理模板并返回生成的字符串

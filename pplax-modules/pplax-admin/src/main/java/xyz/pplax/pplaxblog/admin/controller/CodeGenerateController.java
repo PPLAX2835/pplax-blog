@@ -7,8 +7,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.component.CodeGenerator;
+import xyz.pplax.pplaxblog.admin.model.CodeGenerateParam;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.NamingUtils;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.service.CodeGenerateService;
 
@@ -32,6 +34,9 @@ public class CodeGenerateController extends SuperController {
 
     @Autowired
     private CodeGenerator codeGenerator;
+
+    @Autowired
+    private CodeGenerateParam codeGenerateParam;
 
     @ApiOperation(value="获得数据库表的列表", notes="获得数据库表的列表")
     @GetMapping("/table/list")
@@ -58,8 +63,9 @@ public class CodeGenerateController extends SuperController {
     @RequestMapping("/table/{tableName}/generate")
     public void generate(
             @PathVariable("tableName") String tableName,
-            @RequestParam("packageName") String packageName,
-            @RequestParam("prefix") String prefix,
+            @RequestParam(value = "packageName") String packageName,
+            @RequestParam(value = "prefix") String prefix,
+            @RequestParam(value = "requestPath") String requestPath,
             @RequestParam("type") String type,
             HttpServletResponse response
     ) throws IOException {
@@ -67,6 +73,10 @@ public class CodeGenerateController extends SuperController {
         List<Map<String, Object>> tableColumns = null;
         if (table != null) {
             tableColumns = codeGenerateService.getTableColumns(tableName);
+        }
+
+        if (!StringUtils.isEmpty(packageName)) {
+            packageName = codeGenerateParam.getTemplatePath();
         }
 
         // 定义变量
@@ -88,6 +98,14 @@ public class CodeGenerateController extends SuperController {
             byteArrayOutputStream = codeGenerator.generateController(
                     table,
                     packageName,
+                    prefix
+            );
+        } else if ("adminWeb".equals(type)) {
+            String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName.replaceFirst(prefix, "")));
+            fileName = className + "AdminWeb.zip";
+            byteArrayOutputStream = codeGenerator.generateAdminWeb(
+                    table,
+                    requestPath,
                     prefix
             );
         }

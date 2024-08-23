@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.admin.component.CodeGenerator;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.NamingUtils;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.service.CodeGenerateService;
 
@@ -55,21 +56,50 @@ public class CodeGenerateController extends SuperController {
 
     @ApiOperation(value="生成", notes="生成")
     @RequestMapping("/table/{tableName}/generate")
-    public void generate(@PathVariable("tableName") String tableName, HttpServletResponse response) throws IOException {
+    public void generate(
+            @PathVariable("tableName") String tableName,
+            @RequestParam("packageName") String packageName,
+            @RequestParam("prefix") String prefix,
+            @RequestParam("type") String type,
+            HttpServletResponse response
+    ) throws IOException {
         Map<String, Object> table = codeGenerateService.getOne(tableName);
         List<Map<String, Object>> tableColumns = null;
         if (table != null) {
             tableColumns = codeGenerateService.getTableColumns(tableName);
         }
 
-        ByteArrayOutputStream byteArrayOutputStream = codeGenerator.generate(table, tableColumns, "t_");
+        // 定义变量
+        ByteArrayOutputStream byteArrayOutputStream = null;
+        String fileName = null;
+
+        // 判断是生成xo还是controller
+        if ("xo".equals(type)) {
+            fileName = "xo.zip";
+            byteArrayOutputStream = codeGenerator.generateXo(
+                    table,
+                    tableColumns,
+                    packageName,
+                    prefix
+            );
+        } else if ("controller".equals(type)) {
+            String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName.replaceFirst(prefix, "")));
+            fileName = className + "Controller.java";
+            byteArrayOutputStream = codeGenerator.generateController(
+                    table,
+                    packageName,
+                    prefix
+            );
+        }
 
         // 设置响应的内容类型和头信息，准备下载
         response.setContentType("application/zip");
-        response.setHeader("Content-Disposition", "attachment;filename=example-with-dir.zip");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
 
         // 将生成的压缩包写入响应的输出流中
-        response.getOutputStream().write(byteArrayOutputStream.toByteArray());
-        response.getOutputStream().flush();
+        if (byteArrayOutputStream != null) {
+            response.getOutputStream().write(byteArrayOutputStream.toByteArray());
+            response.getOutputStream().flush();
+        }
     }
 }

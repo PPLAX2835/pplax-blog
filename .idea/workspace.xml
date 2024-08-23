@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat:现在可以将生成的代码作为zip下载下来了">
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/controller.java.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/NamingUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/NamingUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/model/CodeGenerateParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/model/CodeGenerateParam.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,15 +50,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/say.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SayEditDto.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/say.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -445,14 +445,13 @@
       <workItem from="1724156234760" duration="4127000" />
       <workItem from="1724161037578" duration="174000" />
       <workItem from="1724208462114" duration="600000" />
-      <workItem from="1724236885317" duration="6630000" />
-    </task>
-    <task id="LOCAL-00471" summary="refactor：chatRoom业务层将模糊的返回修改为抛出异常">
-      <created>1721466200939</created>
-      <option name="number" value="00471" />
-      <option name="presentableId" value="LOCAL-00471" />
-      <option name="project" value="LOCAL" />
-      <updated>1721466200939</updated>
+      <workItem from="1724236885317" duration="6646000" />
+      <workItem from="1724325424603" duration="88000" />
+      <workItem from="1724374694720" duration="15000" />
+      <workItem from="1724378765851" duration="275000" />
+      <workItem from="1724379067631" duration="148000" />
+      <workItem from="1724379388036" duration="2506000" />
+      <workItem from="1724394300640" duration="3264000" />
     </task>
     <task id="LOCAL-00472" summary="refactor：menu业务层将模糊的返回修改为抛出异常">
       <created>1721466394252</created>
@@ -790,7 +789,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724241245501</updated>
     </task>
-    <option name="localTasksCounter" value="520" />
+    <task id="LOCAL-00520" summary="feat:现在可以将生成的代码作为zip下载下来了">
+      <created>1724243585745</created>
+      <option name="number" value="00520" />
+      <option name="presentableId" value="LOCAL-00520" />
+      <option name="project" value="LOCAL" />
+      <updated>1724243585745</updated>
+    </task>
+    <option name="localTasksCounter" value="521" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -826,7 +832,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat：logo也弄成动态的" />
     <MESSAGE value="refactor：controller响应结果不是toString的了" />
     <MESSAGE value="refactor：设置基类AuthController，简化代码" />
     <MESSAGE value="fix：修改后台因返回结果发生变化导致的日期显示错误问题" />
@@ -851,7 +856,8 @@
     <MESSAGE value="feat:可以生成service代码了" />
     <MESSAGE value="feat:可以生成serviceImpl代码了" />
     <MESSAGE value="feat:必须的代码字符串现在基本能够正确生成字符串了" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:必须的代码字符串现在基本能够正确生成字符串了" />
+    <MESSAGE value="feat:现在可以将生成的代码作为zip下载下来了" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:现在可以将生成的代码作为zip下载下来了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

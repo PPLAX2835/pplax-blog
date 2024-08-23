@@ -37,6 +37,11 @@ public class NamingUtils {
         return camelCase.toString();
     }
 
+    /**
+     * 获得类名
+     * @param camelName
+     * @return
+     */
     public static String getClassName(String camelName) {
         if (camelName == null || camelName.isEmpty()) {
             return camelName;

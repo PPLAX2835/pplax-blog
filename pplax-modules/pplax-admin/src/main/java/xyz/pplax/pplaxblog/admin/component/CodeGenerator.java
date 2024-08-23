@@ -10,10 +10,11 @@ import xyz.pplax.pplaxblog.admin.model.CodeGenerateParam;
 import xyz.pplax.pplaxblog.commons.utils.JavaMySQLTypeConverter;
 import xyz.pplax.pplaxblog.commons.utils.NamingUtils;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -29,30 +30,80 @@ public class CodeGenerator {
     private FreeMarkerConfigurer freeMarkerConfigurer;
 
     // map中会用到的key
-    private final String CREATE_TIME = "createTime";        // 表相关
-    private final String ENGINE = "ENGINE";
-    private final String TABLE_COMMENT = "tableComment";
-    private final String TABLE_NAME = "tableName";
-    private final String DATA_TYPE = "dataType";            // 列相关
-    private final String COLUM_COMMENT = "columnComment";
-    private final String COLUM_KEY = "columnKey";
-    private final String COLUM_NAME = "columnName";
+    private static final String CREATE_TIME = "createTime";        // 表相关
+    private static final String ENGINE = "ENGINE";
+    private static final String TABLE_COMMENT = "tableComment";
+    private static final String TABLE_NAME = "tableName";
+    private static final String DATA_TYPE = "dataType";            // 列相关
+    private static final String COLUM_COMMENT = "columnComment";
+    private static final String COLUM_KEY = "columnKey";
+    private static final String COLUM_NAME = "columnName";
 
-    public ByteArrayOutputStream generate(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) throws IOException {
+    /**
+     * 获得controller文件
+     * @param table
+     * @param packageName
+     * @param replacePrefix
+     * @return
+     */
+    public ByteArrayOutputStream generateController(
+            Map<String, Object> table,
+            String packageName,
+            String replacePrefix
+    ) throws IOException {
+        // 获得代码
+        String controllerCode = getControllerCode(table, packageName, replacePrefix);
+
+        // 将字符串内容转换为字节数组
+        byte[] contentBytes = controllerCode.getBytes(StandardCharsets.UTF_8);
+        // 使用ByteArrayInputStream读取内容
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(contentBytes);
+        // 创建ByteArrayOutputStream来写入文件内容
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        // 逐字节将内容写入输出流
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, length);
+        }
+        // 关闭输入流和输出流
+        inputStream.close();
+        outputStream.close();
+
+        // 返回输出流
+        return outputStream;
+    }
+
+
+    /**
+     * 生成xo
+     * @param table
+     * @param columns
+     * @param packageName
+     * @param replacePrefix
+     * @return
+     * @throws IOException
+     */
+    public ByteArrayOutputStream generateXo(
+            Map<String, Object> table,
+            List<Map<String, Object>> columns,
+            String packageName,
+            String replacePrefix
+    ) throws IOException {
         // 获得代码字符串
-        String entityStr = entityGenerate(table, columns, replacePrefix);
-        String mapperStr = mapperGenerate(table, replacePrefix);
-        String mapperXmlStr = mapperXmlGenerate(table, columns, replacePrefix);
-        String serviceStr = serviceGenerate(table, replacePrefix);
-        String serviceImplStr = serviceImplGenerate(table, replacePrefix);
-        String sqlConstantsStr = sqlConstantsGenerate(table, columns, replacePrefix);
+        String entityStr = getEntityCode(table, columns, replacePrefix);
+        String mapperStr = getMapperCode(table, replacePrefix);
+        String mapperXmlStr = getMapperXmlCode(table, columns, replacePrefix);
+        String serviceStr = getServiceCode(table, replacePrefix);
+        String serviceImplStr = getServiceImplCode(table, replacePrefix);
+        String sqlConstantsStr = getSQLConstantsCode(table, columns, replacePrefix);
 
         // 获得className
         String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
         String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
 
         // 文件目录
-        String baseDir = "src/main/java/xyz/pplax/pplaxblog/xo/";
+        String baseDir = "src/main/java/" + "/" + packageName.replace(".", "/") + "/";
 
         String entityDir = baseDir + "entity/";
         String mapperDir = baseDir + "mapper/";
@@ -123,7 +174,7 @@ public class CodeGenerator {
      * @param replacePrefix
      * @return
      */
-    public String entityGenerate(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) {
+    public String getEntityCode(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) {
         // 检查前缀
         if (replacePrefix == null) {
             replacePrefix = "";
@@ -179,7 +230,7 @@ public class CodeGenerator {
      * @param replacePrefix
      * @return
      */
-    public String mapperGenerate(Map<String, Object> table, String replacePrefix) {
+    public String getMapperCode(Map<String, Object> table, String replacePrefix) {
         if (replacePrefix == null) {
             replacePrefix = "";
         }
@@ -205,7 +256,7 @@ public class CodeGenerator {
      * @param replacePrefix
      * @return
      */
-    public String mapperXmlGenerate(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) {
+    public String getMapperXmlCode(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) {
         if (replacePrefix == null) {
             replacePrefix = "";
         }
@@ -248,7 +299,7 @@ public class CodeGenerator {
      * @param replacePrefix
      * @return
      */
-    public String serviceGenerate(Map<String, Object> table, String replacePrefix) {
+    public String getServiceCode(Map<String, Object> table, String replacePrefix) {
         if (replacePrefix == null) {
             replacePrefix = "";
         }
@@ -273,7 +324,7 @@ public class CodeGenerator {
      * @param replacePrefix
      * @return
      */
-    public String serviceImplGenerate(Map<String, Object> table, String replacePrefix) {
+    public String getServiceImplCode(Map<String, Object> table, String replacePrefix) {
         if (replacePrefix == null) {
             replacePrefix = "";
         }
@@ -299,7 +350,7 @@ public class CodeGenerator {
      * @param replacePrefix
      * @return
      */
-    public String sqlConstantsGenerate(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) {
+    public String getSQLConstantsCode(Map<String, Object> table, List<Map<String, Object>> columns, String replacePrefix) {
         if (replacePrefix == null) {
             replacePrefix = "";
         }
@@ -336,6 +387,43 @@ public class CodeGenerator {
 
         return processTemplate("SQLConstants.java.ftl", context);
     }
+
+
+    /**
+     * 生成controller 代码字符串
+     * @param table
+     * @param replacePrefix
+     * @return
+     */
+    public String getControllerCode(
+            Map<String, Object> table,
+            String packageName,
+            String replacePrefix
+    ) {
+        if (replacePrefix == null) {
+            replacePrefix = "";
+        }
+
+        String author = codeGenerateParam.getAuthor();
+        String date = (new Date()).toString();
+        String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
+        String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
+        String apiName = NamingUtils.snakeToCamel(tableName);
+        String tableComment = (String) table.get(TABLE_COMMENT);
+
+        Map<String, Object> context = new HashMap<>();
+        context.put("packageName", packageName);
+        context.put("tableName", tableName);
+        context.put("author", author);
+        context.put("date", date);
+        context.put("apiName", apiName);
+        context.put("tableName", tableName);
+        context.put("tableComment", tableComment);
+        context.put("className", className);
+
+        return processTemplate("controller.java.ftl", context);
+    }
+
 
     /**
      * 处理模板并返回生成的字符串

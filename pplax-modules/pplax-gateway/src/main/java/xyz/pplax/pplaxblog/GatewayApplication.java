@@ -7,14 +7,12 @@ import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-//import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @EnableTransactionManagement
 @SpringCloudApplication
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 @EnableFeignClients
-//@EnableSwagger2
 @ComponentScan(basePackages = {
     "xyz.pplax.pplaxblog.starter.security",
     "xyz.pplax.pplaxblog.starter.redis",

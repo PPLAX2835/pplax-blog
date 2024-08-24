@@ -17,6 +17,7 @@
         <module name="pplax-email-starter" />
         <module name="pplax-security-starter" />
         <module name="pplax-amqp-starter" />
+        <module name="pplax-iputils-starter" />
         <module name="pplax-message" />
         <module name="pplax-xo" />
         <module name="pplax-redis-starter" />
@@ -41,6 +42,7 @@
       <module name="pplax-file" target="8" />
       <module name="pplax-freemarker-starter" target="8" />
       <module name="pplax-gateway" target="8" />
+      <module name="pplax-iputils-starter" target="8" />
       <module name="pplax-message" target="8" />
       <module name="pplax-modules" target="8" />
       <module name="pplax-mybatis-starter" target="8" />

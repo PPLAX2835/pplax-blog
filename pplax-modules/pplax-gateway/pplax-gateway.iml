@@ -34,7 +34,6 @@
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.5" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" level="project" />
-    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.12" level="project" />
     <orderEntry type="library" name="Maven: com.zaxxer:HikariCP:3.4.2" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.13" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-openfeign:2.2.2.RELEASE" level="project" />
@@ -102,7 +101,6 @@
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.64" level="project" />
     <orderEntry type="module" module-name="pplax-redis-starter" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.73" level="project" />
-    <orderEntry type="module" module-name="pplax-xo" />
     <orderEntry type="module" module-name="pplax-amqp-starter" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-amqp:2.6.13" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.2.4.RELEASE" level="project" />
@@ -110,6 +108,8 @@
     <orderEntry type="library" name="Maven: com.rabbitmq:amqp-client:5.7.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.amqp:spring-amqp:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.retry:spring-retry:1.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.12" level="project" />
+    <orderEntry type="module" module-name="pplax-xo" />
     <orderEntry type="module" module-name="pplax-feign" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.2.5.RELEASE" level="project" />

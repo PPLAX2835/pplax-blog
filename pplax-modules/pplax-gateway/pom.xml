@@ -29,6 +29,10 @@
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-redis-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-amqp-starter</artifactId>
+        </dependency>
         <!-- starter end -->
 
         <dependency>

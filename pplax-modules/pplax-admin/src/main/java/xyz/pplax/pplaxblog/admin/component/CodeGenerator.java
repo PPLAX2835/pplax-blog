@@ -244,7 +244,7 @@ public class CodeGenerator {
         context.put("tableComment", tableComment);
         context.put("author", author);
         context.put("date", date);
-        context.put("tableName", tableName);
+        context.put("tableName", replacePrefix + tableName);
         context.put("className", className);
         context.put("attributes", attributes);
 
@@ -270,7 +270,7 @@ public class CodeGenerator {
         Map<String, Object> context = new HashMap<>();
         context.put("author", author);
         context.put("date", date);
-        context.put("tableName", tableName);
+        context.put("tableName", replacePrefix + tableName);
         context.put("className", className);
 
         return processTemplate("mapper.java.ftl", context);
@@ -312,7 +312,6 @@ public class CodeGenerator {
         }
 
         Map<String, Object> context = new HashMap<>();
-        context.put("tableName", tableName);
         context.put("className", className);
         context.put("columnsStr", columnsStr.toString());
         context.put("columnConverters", columnConverters);
@@ -339,7 +338,7 @@ public class CodeGenerator {
         Map<String, Object> context = new HashMap<>();
         context.put("author", author);
         context.put("date", date);
-        context.put("tableName", tableName);
+        context.put("tableName", replacePrefix + tableName);
         context.put("className", className);
 
         return processTemplate("service.java.ftl", context);
@@ -364,7 +363,7 @@ public class CodeGenerator {
         Map<String, Object> context = new HashMap<>();
         context.put("author", author);
         context.put("date", date);
-        context.put("tableName", tableName);
+        context.put("tableName", replacePrefix + tableName);
         context.put("className", className);
 
         return processTemplate("serviceImpl.java.ftl", context);
@@ -408,7 +407,7 @@ public class CodeGenerator {
         Map<String, Object> context = new HashMap<>();
         context.put("author", author);
         context.put("date", date);
-        context.put("tableName", tableName);
+        context.put("tableName", replacePrefix + tableName);
         context.put("className", className);
         context.put("attributes", attributes);
 
@@ -440,7 +439,7 @@ public class CodeGenerator {
 
         Map<String, Object> context = new HashMap<>();
         context.put("packageName", packageName);
-        context.put("tableName", tableName);
+        context.put("tableName", replacePrefix + tableName);
         context.put("author", author);
         context.put("date", date);
         context.put("apiName", apiName);
@@ -471,7 +470,7 @@ public class CodeGenerator {
         String apiName = NamingUtils.snakeToCamel(tableName);
 
         Map<String, Object> context = new HashMap<>();
-        context.put("tableName", tableName);
+        context.put("tableName", replacePrefix + tableName);
         context.put("author", author);
         context.put("date", date);
         context.put("className", className);
@@ -501,7 +500,7 @@ public class CodeGenerator {
         String apiName = NamingUtils.snakeToCamel(tableName);
 
         Map<String, Object> context = new HashMap<>();
-        context.put("tableName", tableName);
+        context.put("tableName", replacePrefix + tableName);
         context.put("author", author);
         context.put("date", date);
         context.put("className", className);

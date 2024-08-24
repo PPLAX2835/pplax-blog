@@ -6,15 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/component/CodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/config/CodeGenerateConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/model/CodeGenerateParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/model/CodeGenerateParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/api.js.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/api.js.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/codeGenerate.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/codeGenerate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/codeGenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/codeGenerate/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,8 +247,8 @@
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -456,14 +447,7 @@
       <workItem from="1724379388036" duration="2506000" />
       <workItem from="1724394300640" duration="7929000" />
       <workItem from="1724411329988" duration="11106000" />
-      <workItem from="1724460762600" duration="2851000" />
-    </task>
-    <task id="LOCAL-00474" summary="refactor：role业务层将模糊的返回修改为抛出异常">
-      <created>1721467189174</created>
-      <option name="number" value="00474" />
-      <option name="presentableId" value="LOCAL-00474" />
-      <option name="project" value="LOCAL" />
-      <updated>1721467189174</updated>
+      <workItem from="1724460762600" duration="3764000" />
     </task>
     <task id="LOCAL-00475" summary="refactor：siteSetting业务层将模糊的返回修改为抛出异常">
       <created>1721467475774</created>
@@ -801,7 +785,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724414071417</updated>
     </task>
-    <option name="localTasksCounter" value="523" />
+    <task id="LOCAL-00523" summary="feat:优化生成操作">
+      <created>1724463955557</created>
+      <option name="number" value="00523" />
+      <option name="presentableId" value="LOCAL-00523" />
+      <option name="project" value="LOCAL" />
+      <updated>1724463955558</updated>
+    </task>
+    <option name="localTasksCounter" value="524" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -837,7 +828,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix：修改后台因返回结果发生变化导致的日期显示错误问题" />
     <MESSAGE value="fix：修复前台小手效果a标签效果不显示" />
     <MESSAGE value="feat：登录成功后将token记录到缓存" />
     <MESSAGE value="feat：实现踢人下线功能" />
@@ -862,7 +852,8 @@
     <MESSAGE value="feat:现在可以将生成的代码作为zip下载下来了" />
     <MESSAGE value="feat:可以根据参数生成controller或xo" />
     <MESSAGE value="feat:可以生成前端管理界面的代码了" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:可以生成前端管理界面的代码了" />
+    <MESSAGE value="feat:优化生成操作" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:优化生成操作" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

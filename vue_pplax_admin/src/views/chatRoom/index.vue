@@ -138,7 +138,7 @@ export default {
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/chatRoom/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/chatRoom/*')
     },
   },
   created() {

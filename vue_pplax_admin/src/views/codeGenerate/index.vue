@@ -140,14 +140,14 @@ export default {
      * @returns {boolean|*}
      */
     canViewTable: function () {
-      return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/{tableName}/columns')
+      return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/*/columns')
     },
     /**
      * 检查是否有生成代码的权限
      * @returns {boolean|*}
      */
     canGenerate: function () {
-      return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/{tableName}/generate')
+      return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/*/generate')
     },
   },
   created() {

@@ -421,7 +421,7 @@ export default {
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/blog/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/blog/*')
     },
     /**
      * 检查是否有添加的权限
@@ -435,14 +435,14 @@ export default {
      * @returns {boolean|*}
      */
     canPromote: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/blog/{uid}/promote') && hasAuth(this.menu, 'DELETE:/api/admin/blog/{uid}/promote')
+      return hasAuth(this.menu, 'PUT:/api/admin/blog/*/promote') && hasAuth(this.menu, 'DELETE:/api/admin/blog/*/promote')
     },
     /**
      * 检查是否有更新的权限
      * @returns {boolean|*}
      */
     canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/blog/{uid}')
+      return hasAuth(this.menu, 'PUT:/api/admin/blog/*')
     },
   },
   created() {

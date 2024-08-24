@@ -260,14 +260,14 @@ export default {
      * @returns {boolean|*}
      */
     canKick: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}/kick')
+      return hasAuth(this.menu, 'DELETE:/api/admin/user/*/kick')
     },
     /**
      * 检查是否有删除的权限
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/user/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/user/*')
     },
     /**
      * 检查是否有添加的权限
@@ -281,7 +281,7 @@ export default {
      * @returns {boolean|*}
      */
     canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/user/{uid}/userInfo')
+      return hasAuth(this.menu, 'PUT:/api/admin/user/*/userInfo')
     },
   },
   created() {

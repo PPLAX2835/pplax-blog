@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.web.server.authorization.AuthorizationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
@@ -43,6 +44,8 @@ import java.util.regex.Pattern;
 public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
 
     private static final Logger log = LogManager.getLogger(PPLAXReactiveAuthorizationManager.class);
+
+    private static final AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     @Autowired
     private TokenStore redisTokenStore;
@@ -150,14 +153,9 @@ public class PPLAXReactiveAuthorizationManager implements ReactiveAuthorizationM
                 String menuMethod = urlArr[0];                              // 请求方式
                 String menuUrl = urlArr[1];                                 // 请求url
 
-                if (method.equals(menuMethod)) {
-                    // 处理并判断url
-                    menuUrl = menuUrl.replaceAll("\\{.*?}", "\\\\w+") + "$";
-                    Pattern pattern = Pattern.compile(menuUrl);
-                    Matcher matcher = pattern.matcher(url);
-                    if (matcher.matches()) {
-                        return true;
-                    }
+                if (method.equals(menuMethod) && antPathMatcher.match(menuUrl, url)) {
+                    // 判断url
+                    return true;
                 }
             }
             // 向子菜单递归

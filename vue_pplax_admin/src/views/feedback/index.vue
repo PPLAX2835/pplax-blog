@@ -179,14 +179,14 @@ export default {
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/feedback/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/feedback/*')
     },
     /**
      * 检查是否有更新的权限
      * @returns {boolean|*}
      */
     canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/feedback/{uid}')
+      return hasAuth(this.menu, 'PUT:/api/admin/feedback/*')
     },
   },
   created() {

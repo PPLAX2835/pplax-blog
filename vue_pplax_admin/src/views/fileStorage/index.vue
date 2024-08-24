@@ -136,7 +136,7 @@ export default {
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/file/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/file/*')
     },
   },
   created() {

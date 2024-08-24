@@ -177,7 +177,7 @@ export default {
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/comment/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/comment/*')
     },
   },
   created() {

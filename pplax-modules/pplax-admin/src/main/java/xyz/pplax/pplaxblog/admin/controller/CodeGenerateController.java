@@ -35,9 +35,6 @@ public class CodeGenerateController extends SuperController {
     @Autowired
     private CodeGenerator codeGenerator;
 
-    @Autowired
-    private CodeGenerateParam codeGenerateParam;
-
     @ApiOperation(value="获得数据库表的列表", notes="获得数据库表的列表")
     @GetMapping("/table/list")
     public ResponseResult list(
@@ -63,9 +60,7 @@ public class CodeGenerateController extends SuperController {
     @RequestMapping("/table/{tableName}/generate")
     public void generate(
             @PathVariable("tableName") String tableName,
-            @RequestParam(value = "packageName") String packageName,
-            @RequestParam(value = "prefix") String prefix,
-            @RequestParam(value = "requestPath") String requestPath,
+            @RequestParam(value = "prefix", required = false) String prefix,
             @RequestParam("type") String type,
             HttpServletResponse response
     ) throws IOException {
@@ -75,37 +70,22 @@ public class CodeGenerateController extends SuperController {
             tableColumns = codeGenerateService.getTableColumns(tableName);
         }
 
-        if (!StringUtils.isEmpty(packageName)) {
-            packageName = codeGenerateParam.getTemplatePath();
-        }
-
         // 定义变量
         ByteArrayOutputStream byteArrayOutputStream = null;
         String fileName = null;
 
         // 判断是生成xo还是controller
-        if ("xo".equals(type)) {
+        if ("java".equals(type)) {
             fileName = "xo.zip";
             byteArrayOutputStream = codeGenerator.generateXo(
                     table,
                     tableColumns,
-                    packageName,
                     prefix
             );
-        } else if ("controller".equals(type)) {
-            String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName.replaceFirst(prefix, "")));
-            fileName = className + "Controller.java";
-            byteArrayOutputStream = codeGenerator.generateController(
-                    table,
-                    packageName,
-                    prefix
-            );
-        } else if ("adminWeb".equals(type)) {
-            String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName.replaceFirst(prefix, "")));
-            fileName = className + "AdminWeb.zip";
+        } else if ("web".equals(type)) {
+            fileName = "AdminWeb.zip";
             byteArrayOutputStream = codeGenerator.generateAdminWeb(
                     table,
-                    requestPath,
                     prefix
             );
         }

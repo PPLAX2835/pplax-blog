@@ -40,41 +40,6 @@ public class CodeGenerator {
     private static final String COLUM_NAME = "columnName";
 
     /**
-     * 获得controller文件字节输出流
-     * @param table
-     * @param packageName
-     * @param replacePrefix
-     * @return
-     */
-    public ByteArrayOutputStream generateController(
-            Map<String, Object> table,
-            String packageName,
-            String replacePrefix
-    ) throws IOException {
-        // 获得代码
-        String controllerCode = getControllerCode(table, packageName, replacePrefix);
-
-        // 将字符串内容转换为字节数组
-        byte[] contentBytes = controllerCode.getBytes(StandardCharsets.UTF_8);
-        // 使用ByteArrayInputStream读取内容
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(contentBytes);
-        // 创建ByteArrayOutputStream来写入文件内容
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        // 逐字节将内容写入输出流
-        byte[] buffer = new byte[1024];
-        int length;
-        while ((length = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, length);
-        }
-        // 关闭输入流和输出流
-        inputStream.close();
-        outputStream.close();
-
-        // 返回输出流
-        return outputStream;
-    }
-
-    /**
      * 获得管理后台相关代码的压缩包字节输出流
      * @param table
      * @param replacePrefix
@@ -83,11 +48,10 @@ public class CodeGenerator {
      */
     public ByteArrayOutputStream generateAdminWeb(
             Map<String, Object> table,
-            String requestPath,
             String replacePrefix
     ) throws IOException {
         // 获得代码字符串
-        String apiJsCode = getApiJsCode(table, requestPath, replacePrefix);
+        String apiJsCode = getApiJsCode(table, replacePrefix);
         String adminVueCode = getAdminVueCode(table, replacePrefix);
 
         // 获得className
@@ -131,7 +95,6 @@ public class CodeGenerator {
      * 生成xo的压缩包字节输出流
      * @param table
      * @param columns
-     * @param packageName
      * @param replacePrefix
      * @return
      * @throws IOException
@@ -139,9 +102,9 @@ public class CodeGenerator {
     public ByteArrayOutputStream generateXo(
             Map<String, Object> table,
             List<Map<String, Object>> columns,
-            String packageName,
             String replacePrefix
     ) throws IOException {
+        String packageName = codeGenerateParam.getBasePackage() + ".xo";
         // 获得代码字符串
         String entityStr = getEntityCode(table, columns, replacePrefix);
         String mapperStr = getMapperCode(table, replacePrefix);
@@ -149,13 +112,14 @@ public class CodeGenerator {
         String serviceStr = getServiceCode(table, replacePrefix);
         String serviceImplStr = getServiceImplCode(table, replacePrefix);
         String sqlConstantsStr = getSQLConstantsCode(table, columns, replacePrefix);
+        String controllerCode = getControllerCode(table, packageName, replacePrefix);
 
         // 获得className
         String tableName = ((String) table.get(TABLE_NAME)).replaceFirst(replacePrefix, "");
         String className = NamingUtils.getClassName(NamingUtils.snakeToCamel(tableName));
 
         // 文件目录
-        String baseDir = "src/main/java/" + "/" + packageName.replace(".", "/") + "/";
+        String baseDir = "src/main/java/" + packageName.replace(".", "/") + "/";
 
         String entityDir = baseDir + "entity/";
         String mapperDir = baseDir + "mapper/";
@@ -163,6 +127,10 @@ public class CodeGenerator {
         String serviceDir = baseDir + "service/";
         String serviceImplDir = baseDir + "service/impl/";
         String sqlConstantsDir = baseDir + "constants/sql/";
+        String controllerDir =
+            "src/main/java/" +
+            codeGenerateParam.getBasePackage().replace(".", "/") +
+            "/admin/controller/";
 
         // 创建内存中的字节数组输出流
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -186,6 +154,9 @@ public class CodeGenerator {
         zipOutputStream.putNextEntry(dirEntry);
         zipOutputStream.closeEntry();
         dirEntry = new ZipEntry(sqlConstantsDir);  // sqlConstants
+        zipOutputStream.putNextEntry(dirEntry);
+        zipOutputStream.closeEntry();
+        dirEntry = new ZipEntry(controllerDir);  // sqlConstants
         zipOutputStream.putNextEntry(dirEntry);
         zipOutputStream.closeEntry();
 
@@ -213,6 +184,10 @@ public class CodeGenerator {
         fileEntry = new ZipEntry(sqlConstantsDir + className + "SQLConstants.java");
         zipOutputStream.putNextEntry(fileEntry);
         zipOutputStream.write(sqlConstantsStr.getBytes());
+
+        fileEntry = new ZipEntry(controllerDir + className + "Controller.java");
+        zipOutputStream.putNextEntry(fileEntry);
+        zipOutputStream.write(controllerCode.getBytes());
 
         zipOutputStream.closeEntry();
 
@@ -478,13 +453,11 @@ public class CodeGenerator {
     /**
      * 获得管理后台（前端）封装的请求api代码
      * @param table
-     * @param requestPath
      * @param replacePrefix
      * @return
      */
     public String getApiJsCode(
             Map<String, Object> table,
-            String requestPath,
             String replacePrefix
     ) {
         if (replacePrefix == null) {
@@ -503,7 +476,6 @@ public class CodeGenerator {
         context.put("date", date);
         context.put("className", className);
         context.put("apiName", apiName);
-        context.put("requestPath", requestPath);
 
         return processTemplate("api.js.ftl", context);
     }

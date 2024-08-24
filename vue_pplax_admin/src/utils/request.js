@@ -9,6 +9,12 @@ const service = axios.create({
   timeout: 5000 // 请求超时时间
 })
 
+// 创建简单axios实例
+const simpleRequest = axios.create({
+  baseURL: process.env.BASE_API, // api 的 base_url
+  timeout: 5000 // 请求超时时间
+})
+
 // request拦截器
 service.interceptors.request.use(
   config => {
@@ -20,6 +26,17 @@ service.interceptors.request.use(
         config.data = JSON.stringify(config.data)
       }
     }
+    return config
+  },
+  error => {
+    // Do something with request error
+    console.log(error) // for debug
+    Promise.reject(error)
+  }
+)
+simpleRequest.interceptors.request.use(
+  config => {
+    config.headers['Authorization'] = getToken()                                      // 让每个请求携带自定义token
     return config
   },
   error => {
@@ -75,3 +92,4 @@ service.interceptors.response.use(
 )
 
 export default service
+export { simpleRequest }

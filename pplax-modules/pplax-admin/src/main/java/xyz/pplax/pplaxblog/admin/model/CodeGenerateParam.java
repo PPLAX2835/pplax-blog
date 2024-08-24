@@ -16,6 +16,6 @@ public class CodeGenerateParam {
     /**
      * 默认包路径
      */
-    private String defaultPackage;
+    private String basePackage;
 
 }

@@ -14,7 +14,7 @@ import service from "../utils/request";
  */
 export function get${className}List(params) {
   return service({
-    url: '/${requestPath}/${apiName}/list',
+    url: '/admin/${apiName}/list',
     method: 'get',
     params
   })
@@ -27,7 +27,7 @@ export function get${className}List(params) {
  */
 export function get${className}(uid) {
   return service({
-    url: '/${requestPath}/${apiName}/' + uid,
+    url: '/admin/${apiName}/' + uid,
     method: 'get'
   })
 }
@@ -39,7 +39,7 @@ export function get${className}(uid) {
  */
 export function add${className}(data) {
   return service({
-    url: '/${requestPath}/${apiName}',
+    url: '/admin/${apiName}',
     method: 'post',
     data: data
   })
@@ -53,7 +53,7 @@ export function add${className}(data) {
  */
 export function update${className}(uid, data) {
   return service({
-    url: '/${requestPath}/${apiName}/' + uid,
+    url: '/admin/${apiName}/' + uid,
     method: 'put',
     data: data
   })
@@ -67,7 +67,7 @@ export function update${className}(uid, data) {
  */
 export function delete${className}(uid) {
   return service({
-    url: '/${requestPath}/${apiName}/' + uid,
+    url: '/admin/${apiName}/' + uid,
     method: 'delete'
   })
 }
@@ -79,7 +79,7 @@ export function delete${className}(uid) {
  */
 export function delete${className}Batch(uids) {
   return service({
-    url: '/${requestPath}/${apiName}',
+    url: '/admin/${apiName}',
     method: 'delete',
     data: uids
   })

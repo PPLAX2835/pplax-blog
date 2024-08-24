@@ -28,6 +28,7 @@
         <el-table-column width="250" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
             <el-button v-if="canViewTable" type="primary" size="mini" @click="handleViewTable(scope)">查看字段</el-button>
+            <el-button v-if="canGenerate" type="primary" size="mini" @click="handleGenerateCode(scope)">生成代码</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -52,10 +53,32 @@
       </el-table>
     </el-dialog>
 
+    <!-- 代码生成 -->
+    <el-dialog center :title="generateTitle" :visible.sync="generateFormVisible" width="62%" :fullscreen="isFullScreen">
+
+      <el-form :rules="rules" ref="dataForm" :model="form">
+        <el-form-item prop="type" label="类型" :label-width="formLabelWidth">
+          <div>
+            <el-radio v-model="form.type" :label="'web'" border>生成前端管理端</el-radio>
+            <el-radio v-model="form.type" :label="'java'" border>生成后端</el-radio>
+          </div>
+        </el-form-item>
+        <el-form-item prop="prefix" label="替换前缀" :label-width="formLabelWidth">
+          <el-input v-model="form.prefix" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="generateFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="handleGenerate">确 定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
+import { saveAs } from 'file-saver';
+import { generateCode } from "../../api/codeGenerate";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import IconPicker from "../../components/IconPicker"
@@ -69,6 +92,7 @@ export default {
 
   data() {
     return {
+      formLabelWidth: '120px',
       multipleSelection: [],
       showSearch: true,
       isFullScreen: false,
@@ -85,7 +109,26 @@ export default {
       // 展示数据库表数据
       dialogDbTableVisible: false,
       dbTableTitle: '',
-      dbTableData: []
+      dbTableData: [],
+      // 代码生成弹窗
+      generateFormVisible: false,
+      generateTitle: '',
+      form: {
+        type: '',
+        prefix: '',
+      },
+      tableName: '',
+      rules: {
+        type: [
+          { required: true, message: '请选择类型', trigger: 'change' },
+        ],
+        packageName: [
+          { pattern: /^[a-z_][a-z0-9_]*(\.[a-z_][a-z0-9_]*)*$/, message: '请输入合法的包名', trigger: 'change' },
+        ],
+        requestPath: [
+          { required: true, message: '请输入基本路径', trigger: 'change' },
+        ]
+      },
     }
   },
   computed: {
@@ -98,6 +141,13 @@ export default {
      */
     canViewTable: function () {
       return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/{tableName}/columns')
+    },
+    /**
+     * 检查是否有生成代码的权限
+     * @returns {boolean|*}
+     */
+    canGenerate: function () {
+      return hasAuth(this.menu, 'GET:/api/admin/codeGenerate/table/{tableName}/generate')
     },
   },
   created() {
@@ -170,9 +220,51 @@ export default {
         this.dbTableData = res.data
       })
     },
+    /**
+     * 处理生成代码的按钮点击事件
+     * @param scope
+     */
+    handleGenerateCode(scope) {
+      this.generateFormVisible = true
+      this.generateTitle = '代码生成'
+      this.tableName = scope.row.tableName
+    },
 
+    /**
+     * 处理生成按钮点击事件
+     */
+    handleGenerate: function () {
+      if (this.form.requestPath === '') {
+        this.form.requestPath = 'admin'
+      }
+      if (this.form.packageName === '') {
+        this.form.packageName = 'xyz.pplax.pplaxblog.admin.controller'
+      }
+      if (this.form.packageName === '') {
+        this.form.packageName = 'xyz.pplax.pplaxblog.xo'
+      }
 
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          generateCode(this.tableName, this.form)
+            .then(response => {
+              // 从响应头中获取文件名
+              const contentDisposition = response.headers['Content-Disposition'];
+              let fileName = 'download.zip';
+              if (contentDisposition) {
+                const fileNameMatch = contentDisposition.match(/attachment;filename="(.+)"/);
+                if (fileNameMatch && fileNameMatch.length === 2) {
+                  fileName = fileNameMatch[1];
+                }
+              }
 
+              // 使用FileSaver.js保存文件
+              saveAs(response.data, fileName);
+            })
+        }
+      })
+
+    },
 
 
 

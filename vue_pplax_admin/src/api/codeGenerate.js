@@ -1,5 +1,5 @@
 import service from '@/utils/request'
-
+import {simpleRequest} from "../utils/request";
 
 export function getTableList(params) {
   return service({
@@ -16,3 +16,11 @@ export function getTable(tableName) {
   })
 }
 
+export function generateCode(tableName, params) {
+  return simpleRequest({
+    url: '/admin/codeGenerate/table/' + tableName + '/generate',
+    method: 'get',
+    params: params,
+    responseType: 'blob', // 关键设置，确保Axios将响应数据处理为Blob
+  })
+}

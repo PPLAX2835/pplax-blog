@@ -5,32 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor:整理ip相关配置，减少冗余">
-      <change afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/redis/RequestLogRedisConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-feign/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pplax-gateway.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/component/RequestLogGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/RequestLogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/RequestLogConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-amqp-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-durid-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-durid-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-email-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-freemarker-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-freemarker-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-iputils-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-iputils-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-redis-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-swagger-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-thymeleaf-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-thymeleaf-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -283,10 +261,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.serve" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -488,14 +466,7 @@
       <workItem from="1724460762600" duration="3764000" />
       <workItem from="1724477036480" duration="17528000" />
       <workItem from="1724548277763" duration="2830000" />
-      <workItem from="1724554669749" duration="637000" />
-    </task>
-    <task id="LOCAL-00481" summary="fix：整理菜单，补充部分内容；修复公共聊天室不能正常查询的问题">
-      <created>1721480248896</created>
-      <option name="number" value="00481" />
-      <option name="presentableId" value="LOCAL-00481" />
-      <option name="project" value="LOCAL" />
-      <updated>1721480248897</updated>
+      <workItem from="1724554669749" duration="5540000" />
     </task>
     <task id="LOCAL-00482" summary="fix：修复个人空间的收藏列表不能正确显示的问题">
       <created>1721525777588</created>
@@ -833,7 +804,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724494756677</updated>
     </task>
-    <option name="localTasksCounter" value="530" />
+    <task id="LOCAL-00530" summary="refactor:整理maven">
+      <created>1724555361482</created>
+      <option name="number" value="00530" />
+      <option name="presentableId" value="LOCAL-00530" />
+      <option name="project" value="LOCAL" />
+      <updated>1724555361483</updated>
+    </task>
+    <option name="localTasksCounter" value="531" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -869,7 +847,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix：修复反馈管理列表不能正常显示的问题" />
     <MESSAGE value="fix：修复评论列表不能正常显示的问题" />
     <MESSAGE value="fix：修复博客管理列表不能正常显示的问题" />
     <MESSAGE value="refactor：优化前台说说图片排列方式" />
@@ -894,7 +871,8 @@
     <MESSAGE value="fix: 修复因为前缀替换导致的后续问题" />
     <MESSAGE value="更新sql脚本" />
     <MESSAGE value="refactor:整理ip相关配置，减少冗余" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor:整理ip相关配置，减少冗余" />
+    <MESSAGE value="refactor:整理maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor:整理maven" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

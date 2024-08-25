@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "xyz.pplax.pplaxblog.gateway.config",
     "xyz.pplax.pplaxblog.gateway.properties",
     "xyz.pplax.pplaxblog.gateway.handler",
-    "xyz.pplax.pplaxblog.gateway.component",
+    "xyz.pplax.pplaxblog.gateway.filter",
     "xyz.pplax.pplaxblog.gateway.security"
 })
 public class GatewayApplication {

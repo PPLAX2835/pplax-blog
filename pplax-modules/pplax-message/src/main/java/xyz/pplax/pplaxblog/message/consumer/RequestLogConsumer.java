@@ -1,13 +1,13 @@
 package xyz.pplax.pplaxblog.message.consumer;
 
-import com.alibaba.fastjson.JSON;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
+import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
+import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.MenuSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.type.MenuTypeConstants;
@@ -15,8 +15,6 @@ import xyz.pplax.pplaxblog.xo.entity.Menu;
 import xyz.pplax.pplaxblog.xo.entity.RequestLog;
 import xyz.pplax.pplaxblog.xo.service.MenuService;
 import xyz.pplax.pplaxblog.xo.service.RequestLogService;
-
-import java.util.Map;
 
 
 /**
@@ -34,6 +32,9 @@ public class RequestLogConsumer {
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private RedisService redisService;
 
     @RabbitListener(queues = MqConstants.PPLAX_REQUEST_LOG)
     public void saveMessage(RequestLog requestLog) {
@@ -55,6 +56,8 @@ public class RequestLogConsumer {
         if (menu != null) {
             requestLog.setMenuUid(menu.getUid());
         }
+
+        requestLog.setUid(StringUtils.getUUID());
 
         // 持久化
         requestLogService.save(requestLog);

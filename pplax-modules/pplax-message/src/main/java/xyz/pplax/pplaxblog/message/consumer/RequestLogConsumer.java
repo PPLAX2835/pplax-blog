@@ -48,7 +48,9 @@ public class RequestLogConsumer {
         menuPQueryWrapper.isNotNull(MenuSQLConstants.ENDPOINT)
                 .eq(MenuSQLConstants.TYPE, MenuTypeConstants.BUTTON)
                 .ne(MenuSQLConstants.ENDPOINT, "")
-                .apply("'" + fullPath + "' LIKE REPLACE(endpoint, '*', '%')");
+                .apply("'" + fullPath + "' LIKE REPLACE(endpoint, '*', '%')")
+                .orderByDesc("LENGTH(endpoint)")
+                .last("limit 1");
         // 查询
         Menu menu = menuService.getOne(menuPQueryWrapper);
 

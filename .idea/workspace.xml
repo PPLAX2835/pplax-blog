@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor:整理ip相关配置，减少冗余">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor:现在可以记录请求日志了">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/component/RequestLogGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/RequestLogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/RequestLogConsumer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -261,8 +259,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
       </list>
@@ -466,14 +464,7 @@
       <workItem from="1724460762600" duration="3764000" />
       <workItem from="1724477036480" duration="17528000" />
       <workItem from="1724548277763" duration="2830000" />
-      <workItem from="1724554669749" duration="5540000" />
-    </task>
-    <task id="LOCAL-00482" summary="fix：修复个人空间的收藏列表不能正确显示的问题">
-      <created>1721525777588</created>
-      <option name="number" value="00482" />
-      <option name="presentableId" value="LOCAL-00482" />
-      <option name="project" value="LOCAL" />
-      <updated>1721525777589</updated>
+      <workItem from="1724554669749" duration="7724000" />
     </task>
     <task id="LOCAL-00483" summary="fix：修复评论完成后不能立即显示的问题；修复评论添加表情后点击发送按钮不生效的问题">
       <created>1721533093936</created>
@@ -811,7 +802,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724555361483</updated>
     </task>
-    <option name="localTasksCounter" value="531" />
+    <task id="LOCAL-00531" summary="refactor:现在可以记录请求日志了">
+      <created>1724562062113</created>
+      <option name="number" value="00531" />
+      <option name="presentableId" value="LOCAL-00531" />
+      <option name="project" value="LOCAL" />
+      <updated>1724562062113</updated>
+    </task>
+    <option name="localTasksCounter" value="532" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -847,7 +845,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix：修复评论列表不能正常显示的问题" />
     <MESSAGE value="fix：修复博客管理列表不能正常显示的问题" />
     <MESSAGE value="refactor：优化前台说说图片排列方式" />
     <MESSAGE value="feat：设置了后台向前台动态访问" />
@@ -872,7 +869,8 @@
     <MESSAGE value="更新sql脚本" />
     <MESSAGE value="refactor:整理ip相关配置，减少冗余" />
     <MESSAGE value="refactor:整理maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor:整理maven" />
+    <MESSAGE value="refactor:现在可以记录请求日志了" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor:现在可以记录请求日志了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

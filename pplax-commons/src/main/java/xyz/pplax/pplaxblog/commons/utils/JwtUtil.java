@@ -8,10 +8,11 @@ import java.util.Map;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import org.apache.commons.lang3.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.crypto.SecretKey;
 
+@Slf4j
 public class JwtUtil {
 
     private static final long EXPIRE = 60 * 1000; //过期时间
@@ -91,7 +92,7 @@ public class JwtUtil {
                     .parseClaimsJws(token);
             return true;
         }catch (JwtException  e){
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
             return false;
         }
     }
@@ -206,20 +207,20 @@ public class JwtUtil {
         Map<String,Object> map = new HashMap<>();
         map.put("userId","test122");
         String token =  generate(map);
-        System.out.println(token);
+        log.info(token);
 
-        System.out.println("claim:" + getClaim(token).get("userId"));
-        System.out.println("header:" + getHeader(token));
-        //    System.out.println(getIssuedAt(token));
+        log.info("claim:" + getClaim(token).get("userId"));
+        log.info("header:" + getHeader(token));
+        //    log.info(getIssuedAt(token));
         Claims claims=getClaim(token);
 
-        //  System.out.println(getHeaderByBase64(token));
-        System.out.println(getPayloadByBase64(token));
+        //  log.info(getHeaderByBase64(token));
+        log.info(getPayloadByBase64(token));
 
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy‐MM‐dd hh:mm:ss");
-        System.out.println("签发时间:"+sdf.format(claims.getIssuedAt()));
-        System.out.println("过期时间:"+sdf.format(claims.getExpiration()));
-        System.out.println("当前时间:"+sdf.format(new Date()) );
+        log.info("签发时间:"+sdf.format(claims.getIssuedAt()));
+        log.info("过期时间:"+sdf.format(claims.getExpiration()));
+        log.info("当前时间:"+sdf.format(new Date()) );
 
     }
 }

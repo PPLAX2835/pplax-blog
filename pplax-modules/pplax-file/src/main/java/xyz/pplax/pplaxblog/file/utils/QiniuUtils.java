@@ -10,6 +10,7 @@ import com.qiniu.storage.model.BatchStatus;
 import com.qiniu.storage.model.FileListing;
 import com.qiniu.util.Auth;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.InputStream;
 
@@ -19,6 +20,7 @@ import java.io.InputStream;
  * @create: 2024-05-05 12:43
  */
 @Data
+@Slf4j
 public class QiniuUtils {
 
     // 端点
@@ -268,10 +270,10 @@ public class QiniuUtils {
      * @Param: response
      */
     public void printResult(Response response) {
-        System.out.println(String.format("状态码：[%d]", response.statusCode)); // 状态码：[200]
-        System.out.println(String.format("耗时：[%f]", response.duration)); // 耗时：[0.366000] 单位毫秒
+        log.info(String.format("状态码：[%d]", response.statusCode)); // 状态码：[200]
+        log.info(String.format("耗时：[%f]", response.duration)); // 耗时：[0.366000] 单位毫秒
         try {
-            System.out.println(String.format("响应结果：[%s]", response.bodyString())); // 响应结果：[["32123","222"]]
+            log.info(String.format("响应结果：[%s]", response.bodyString())); // 响应结果：[["32123","222"]]
         } catch (QiniuException e) {
             e.printStackTrace();
         }

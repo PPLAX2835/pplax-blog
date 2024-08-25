@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="优化全局拦截器逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CaptchaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CaptchaUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CookieUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CookieUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/RelativeDateFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/RelativeDateFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/QiniuUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/QiniuUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -465,14 +471,7 @@
       <workItem from="1724477036480" duration="17528000" />
       <workItem from="1724548277763" duration="2830000" />
       <workItem from="1724554669749" duration="8997000" />
-      <workItem from="1724572431631" duration="2289000" />
-    </task>
-    <task id="LOCAL-00485" summary="refactor：设置前台背景；将樱花特效修改为落叶特效">
-      <created>1721639359054</created>
-      <option name="number" value="00485" />
-      <option name="presentableId" value="LOCAL-00485" />
-      <option name="project" value="LOCAL" />
-      <updated>1721639359054</updated>
+      <workItem from="1724572431631" duration="3147000" />
     </task>
     <task id="LOCAL-00486" summary="refactor：完善前台错误弹窗显示内容">
       <created>1721647255715</created>
@@ -810,7 +809,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724572977306</updated>
     </task>
-    <option name="localTasksCounter" value="534" />
+    <task id="LOCAL-00534" summary="优化全局拦截器逻辑">
+      <created>1724574879428</created>
+      <option name="number" value="00534" />
+      <option name="presentableId" value="LOCAL-00534" />
+      <option name="project" value="LOCAL" />
+      <updated>1724574879428</updated>
+    </task>
+    <option name="localTasksCounter" value="535" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -846,7 +852,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat：设置了后台向前台动态访问" />
     <MESSAGE value="feat：新增代码生成功能，目前实现查询数据库表" />
     <MESSAGE value="feat：可以查看表字段信息了" />
     <MESSAGE value="fix：修复角色权限配置菜单的全选反选问题" />
@@ -871,7 +876,8 @@
     <MESSAGE value="refactor:现在可以记录请求日志了" />
     <MESSAGE value="fix:修改查询menu表时查出多个符合条件的导致异常和消息队列阻塞的问题" />
     <MESSAGE value="调整全局异常api响应处理类的位置" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整全局异常api响应处理类的位置" />
+    <MESSAGE value="优化全局拦截器逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化全局拦截器逻辑" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

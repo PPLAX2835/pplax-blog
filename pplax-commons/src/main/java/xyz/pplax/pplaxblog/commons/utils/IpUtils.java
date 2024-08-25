@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog.commons.utils;
 
 import eu.bitwalker.useragentutils.UserAgent;
+import lombok.extern.slf4j.Slf4j;
 import org.lionsoul.ip2region.xdb.Searcher;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 获取用户访问的ip
  */
+@Slf4j
 public class IpUtils {
 
     private static Searcher searcher = null;
@@ -21,14 +23,14 @@ public class IpUtils {
         try {
             vIndex = Searcher.loadVectorIndexFromFile(dbPath);
         } catch (Exception e) {
-            System.out.printf("failed to load vector index from `%s`: %s\n", dbPath, e);
+            log.error(String.format("failed to load vector index from `%s`: %s", dbPath, e));
         }
 
         // 2、使用全局的 vIndex 创建带 VectorIndex 缓存的查询对象。
         try {
             searcher = Searcher.newWithVectorIndex(dbPath, vIndex);
         } catch (Exception e) {
-            System.out.printf("failed to create vectorIndex cached searcher with `%s`: %s\n", dbPath, e);
+            log.error(String.format("failed to create vectorIndex cached searcher with `%s`: %s", dbPath, e));
         }
     }
 
@@ -78,12 +80,12 @@ public class IpUtils {
      * @return
      */
     public static String getCityInfo(String ip) {
-        System.out.println(ip);
+        log.info("Current ip is:" + ip);
         try {
             // 结果的固定格式 国家|区域|省份|城市|ISP 缺省补0
             return searcher.search(ip);
         } catch (Exception e) {
-            System.out.printf("failed to search(%s): %s\n", ip, e);
+            log.error(String.format("failed to search(%s): %s\n", ip, e));
         }
         return "未知";
     }

@@ -171,7 +171,7 @@ public class CaptchaUtils {
             String base64 = Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
             return String.format("data:image/%s;base64,%s", type, base64);
         } catch (IOException e) {
-            System.out.println("图片资源转换BASE64失败");
+            log.error("Image to base64 fail");
             //异常处理
             return null;
         }

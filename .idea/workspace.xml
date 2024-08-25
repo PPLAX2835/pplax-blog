@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="优化全局拦截器逻辑">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor: 替换所有System.out.print相关的方法为log的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CaptchaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CaptchaUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CookieUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CookieUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/RelativeDateFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/RelativeDateFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/QiniuUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/QiniuUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/BlogFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/BlogFileController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -471,14 +467,7 @@
       <workItem from="1724477036480" duration="17528000" />
       <workItem from="1724548277763" duration="2830000" />
       <workItem from="1724554669749" duration="8997000" />
-      <workItem from="1724572431631" duration="3147000" />
-    </task>
-    <task id="LOCAL-00486" summary="refactor：完善前台错误弹窗显示内容">
-      <created>1721647255715</created>
-      <option name="number" value="00486" />
-      <option name="presentableId" value="LOCAL-00486" />
-      <option name="project" value="LOCAL" />
-      <updated>1721647255715</updated>
+      <workItem from="1724572431631" duration="5156000" />
     </task>
     <task id="LOCAL-00487" summary="fix：调整css，使背景的图片可以显示出来">
       <created>1721650156170</created>
@@ -816,7 +805,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724574879428</updated>
     </task>
-    <option name="localTasksCounter" value="535" />
+    <task id="LOCAL-00535" summary="refactor: 替换所有System.out.print相关的方法为log的">
+      <created>1724575685339</created>
+      <option name="number" value="00535" />
+      <option name="presentableId" value="LOCAL-00535" />
+      <option name="project" value="LOCAL" />
+      <updated>1724575685339</updated>
+    </task>
+    <option name="localTasksCounter" value="536" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -852,7 +848,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat：新增代码生成功能，目前实现查询数据库表" />
     <MESSAGE value="feat：可以查看表字段信息了" />
     <MESSAGE value="fix：修复角色权限配置菜单的全选反选问题" />
     <MESSAGE value="fix：修复角色权限配置菜单的全选反选问题和调整接口地址" />
@@ -877,7 +872,8 @@
     <MESSAGE value="fix:修改查询menu表时查出多个符合条件的导致异常和消息队列阻塞的问题" />
     <MESSAGE value="调整全局异常api响应处理类的位置" />
     <MESSAGE value="优化全局拦截器逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化全局拦截器逻辑" />
+    <MESSAGE value="refactor: 替换所有System.out.print相关的方法为log的" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: 替换所有System.out.print相关的方法为log的" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

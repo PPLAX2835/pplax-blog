@@ -496,6 +496,6 @@ public class StringUtils {
 	}
 
 	public static void main(String[] args) {
-		log.info(underLine(new StringBuffer("dogId")));
+		log.info(underLine(new StringBuffer("dogId")).toString());
 	}
 }

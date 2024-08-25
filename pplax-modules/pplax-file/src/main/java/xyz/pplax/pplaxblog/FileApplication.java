@@ -12,15 +12,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableFeignClients
 @ComponentScan(basePackages = {
-        "xyz.pplax.pplaxblog.commons.handler",
         "xyz.pplax.pplaxblog.starter.durid",
         "xyz.pplax.pplaxblog.starter.mybatis",
         "xyz.pplax.pplaxblog.starter.swagger",
         "xyz.pplax.pplaxblog.starter.redis",
-        "xyz.pplax.pplaxblog.xo.service",
+        "xyz.pplax.pplaxblog.file.service",
         "xyz.pplax.pplaxblog.file.controller",
         "xyz.pplax.pplaxblog.feign",
-        "xyz.pplax.pplaxblog.file.service"
+        "xyz.pplax.pplaxblog.xo.service",
+        "xyz.pplax.pplaxblog.xo.component.handler"
 })
 public class FileApplication {
 

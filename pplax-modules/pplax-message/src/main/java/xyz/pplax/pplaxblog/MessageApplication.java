@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableFeignClients
 @ComponentScan(basePackages = {
-        "xyz.pplax.pplaxblog.commons.handler",
         "xyz.pplax.pplaxblog.starter.durid",
         "xyz.pplax.pplaxblog.starter.mybatis",
         "xyz.pplax.pplaxblog.starter.swagger",
@@ -20,8 +19,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.starter.amqp",
         "xyz.pplax.pplaxblog.starter.email",
         "xyz.pplax.pplaxblog.feign",
+        "xyz.pplax.pplaxblog.message",
         "xyz.pplax.pplaxblog.xo.service",
-        "xyz.pplax.pplaxblog.message"
+        "xyz.pplax.pplaxblog.xo.component.handler"
 })
 public class MessageApplication {
 

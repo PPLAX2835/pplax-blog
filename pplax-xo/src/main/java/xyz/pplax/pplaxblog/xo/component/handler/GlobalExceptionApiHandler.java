@@ -1,4 +1,4 @@
-package xyz.pplax.pplaxblog.commons.handler;
+package xyz.pplax.pplaxblog.xo.component.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.api.IErrorCode;
@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
  */
 @RestControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler {
+public class GlobalExceptionApiHandler {
 
     /**
      * 自定义异常

@@ -8,7 +8,8 @@
     <parent>
         <artifactId>pplax-blog</artifactId>
         <groupId>xyz.pplax</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${pplaxblog.version}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <properties>
@@ -23,12 +24,12 @@
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-redis-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${pplaxblog.version}</version>
         </dependency>
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-amqp-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${pplaxblog.version}</version>
         </dependency>
         <!-- starter end -->
 
@@ -36,14 +37,14 @@
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-commons</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${pplaxblog.version}</version>
         </dependency>
 
         <!-- 引入pplax-feign -->
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-feign</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${pplaxblog.version}</version>
         </dependency>
 
     </dependencies>

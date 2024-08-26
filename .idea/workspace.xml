@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor: 替换所有System.out.print相关的方法为log的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/BlogFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/BlogFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/FileAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +140,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -262,9 +261,9 @@
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="Spring Boot.AdminApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -467,14 +466,8 @@
       <workItem from="1724477036480" duration="17528000" />
       <workItem from="1724548277763" duration="2830000" />
       <workItem from="1724554669749" duration="8997000" />
-      <workItem from="1724572431631" duration="5156000" />
-    </task>
-    <task id="LOCAL-00487" summary="fix：调整css，使背景的图片可以显示出来">
-      <created>1721650156170</created>
-      <option name="number" value="00487" />
-      <option name="presentableId" value="LOCAL-00487" />
-      <option name="project" value="LOCAL" />
-      <updated>1721650156170</updated>
+      <workItem from="1724572431631" duration="7028000" />
+      <workItem from="1724659077926" duration="3246000" />
     </task>
     <task id="LOCAL-00488" summary="fix：修复点击博客，阅读量不增加的问题">
       <created>1721650885883</created>
@@ -812,7 +805,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724575685339</updated>
     </task>
-    <option name="localTasksCounter" value="536" />
+    <task id="LOCAL-00536" summary="refactor: 替换所有System.out.print相关的方法为log的">
+      <created>1724591995879</created>
+      <option name="number" value="00536" />
+      <option name="presentableId" value="LOCAL-00536" />
+      <option name="project" value="LOCAL" />
+      <updated>1724591995879</updated>
+    </task>
+    <option name="localTasksCounter" value="537" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -113,7 +113,7 @@ export function linkIconImageUpload(param) {
  */
 export function getFileStorageList(params) {
   return service({
-    url: '/file/list',
+    url: '/file/admin/list',
     method: 'get',
     params
   })
@@ -121,14 +121,14 @@ export function getFileStorageList(params) {
 
 export function deleteFileStorage(fileStorageUid) {
   return service({
-    url: '/file/' + fileStorageUid,
+    url: '/file/admin/' + fileStorageUid,
     method: 'delete'
   })
 }
 
 export function deleteFileStorageBatch(fileStorageUids) {
   return service({
-    url: '/file',
+    url: '/file/admin',
     method: 'delete',
     data: fileStorageUids
   })

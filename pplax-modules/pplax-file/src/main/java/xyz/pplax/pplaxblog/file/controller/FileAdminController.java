@@ -26,10 +26,10 @@ import java.util.List;
  * @date 2024/1/18 14:37
  */
 @RestController
-@RequestMapping("")
-@Api(value = "文件相关接口", tags = {"文件相关接口"})
-public class FileController extends SuperController {
-    private static final Logger log = LogManager.getLogger(FileController.class);
+@RequestMapping("/admin")
+@Api(value = "文件操作相关接口", tags = {"文件操作相关接口"})
+public class FileAdminController extends SuperController {
+    private static final Logger log = LogManager.getLogger(FileAdminController.class);
 
     @Autowired
     private FileStorageService fileStorageService;

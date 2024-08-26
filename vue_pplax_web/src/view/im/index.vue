@@ -29,7 +29,7 @@
               <a v-if="item.status !== statusList.WITHDRAW" :href="'/user?userUid=' + item.userUid">
                 <el-avatar
                     class="noSelect"
-                    :src="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')) : ''"
+                    :src="item.userInfo ? (item.userInfo.avatar ? item.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')) : ''"
                     :key="item.userUid"
                 />
               </a>
@@ -56,7 +56,7 @@
                 </span>
                 <span class="noSelect" v-else style="color: var(--text-color)">
                   "
-                  {{ item.userInfo !== undefined ? item.userInfo.nickname : '' }}
+                  {{ item.userInfo ? item.userInfo.nickname : '' }}
                   " 撤回了一条消息
                 </span>
               </div>
@@ -71,7 +71,7 @@
                   <el-avatar
                       v-if="item.status !== statusList.WITHDRAW"
                       class="noSelect"
-                      :src="item.userInfo !== undefined ? (item.userInfo.avatar !== undefined ? item.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')) : getWebSiteInfoValue('touristAvatar')"
+                      :src="item.userInfo ? (item.userInfo.avatar ? item.userInfo.avatar.fileUrl : getWebSiteInfoValue('touristAvatar')) : getWebSiteInfoValue('touristAvatar')"
                       :key="item.userUid"
                   />
                 </div>
@@ -88,7 +88,7 @@
                     </span>
                     <span
                         class="noSelect"
-                    >{{ item.userInfo !== undefined ? item.userInfo.nickname : '' }}</span
+                    >{{ item.userInfo ? item.userInfo.nickname : '' }}</span
                     >
                   </div>
 
@@ -100,7 +100,7 @@
                   ></div>
                   <div style="color: var(--text-color)" v-else class="noSelect">
                     "
-                    {{ item.userInfo !== undefined ? item.userInfo.nickname : '' }}
+                    {{ item.userInfo ? item.userInfo.nickname : '' }}
                     " 撤回了一条消息
                   </div>
                 </div>
@@ -223,7 +223,7 @@
               <div class="room-list-item">
                 <el-avatar
                     class="img"
-                    :src="item.avatar !== undefined ? item.avatar.fileUrl : ''"
+                    :src="item.avatar ? item.avatar.fileUrl : ''"
                     alt=""
                 />
                 <div class="roomName">
@@ -285,7 +285,7 @@
             <el-divider></el-divider>
             <el-col :span="4">
               <el-avatar
-                  :src="item.avatar !== undefined ? item.avatar.fileUrl : ''"
+                  :src="item.avatar ? item.avatar.fileUrl : ''"
                   alt=""
               />
             </el-col>
@@ -342,7 +342,7 @@
               <el-divider></el-divider>
               <el-col :span="4">
                 <el-avatar
-                    :src="item.avatar !== undefined ? item.avatar.fileUrl : ''"
+                    :src="item.avatar ? item.avatar.fileUrl : ''"
                     alt=""
                 />
               </el-col>

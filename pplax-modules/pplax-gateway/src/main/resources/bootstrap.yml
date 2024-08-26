@@ -11,14 +11,14 @@ spring:
         username: nacos
         password: nacos
         shared-configs:
-          - data-id: pplax-config.yaml                    # 自定义配置
+          - data-id: pplax-config.yaml                        # 自定义配置
             group: PPLAX_BLOG
         extension-configs:
-          - data-id: gateway-config.yaml
+          - data-id: gateway-config.yaml                      # 网关配置
             group: PPLAX_BLOG
-          - data-id: redis-config.yaml                    # redis的相关配置
+          - data-id: redis-config.yaml                        # redis的相关配置
             group: PPLAX_BLOG
-          - data-id: oauth-config.yaml                    # oauth的相关配置
+          - data-id: oauth-config.yaml                        # oauth的相关配置
             group: PPLAX_BLOG
-          - data-id: amqp-config.yaml                     # 消息队列相关配置
+          - data-id: amqp-config.yaml                         # 消息队列相关配置
             group: PPLAX_BLOG

@@ -7,12 +7,15 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.pplax.pplaxblog.commons.constants.SiteSettingConstants;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.FileUtils;
 import xyz.pplax.pplaxblog.file.service.FileService;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
+import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.service.FileStorageService;
+import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +40,9 @@ public class FileAdminController extends SuperController {
     @Autowired
     private FileService fileService;
 
+    @Autowired
+    private SiteSettingService siteSettingService;
+
     @ApiOperation(value="获取文件列表", notes="获取文件列表")
     @GetMapping("/list")
     public ResponseResult getList(
@@ -59,7 +65,8 @@ public class FileAdminController extends SuperController {
         }
 
         // 从classpath中读取文件
-        File file = new File(FileUtils.path("G:/tmp/pplax-blog/" + fileStorage.getFilePath() + fileStorage.getFileName()));
+        SiteSetting localStorageBasePath = siteSettingService.getByNameEn(SiteSettingConstants.LOCAL_STORAGE_BASE_PATH_NAME_EN);
+        File file = new File(FileUtils.path(localStorageBasePath.getValue() + fileStorage.getFilePath() + fileStorage.getFileName()));
         InputStream inputStream = new FileInputStream(file);
         // 将文件转换为字节数组
         byte[] fileData = new byte[inputStream.available()];

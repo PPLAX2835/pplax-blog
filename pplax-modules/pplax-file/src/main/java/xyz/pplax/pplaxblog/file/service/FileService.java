@@ -110,7 +110,7 @@ public class FileService {
 
             if (res) {
                 String apiDomain = getApiDomain();
-                fileStorage.setFileUrl(apiDomain + "/api/file/localStorage/" + fileStorage.getUid());
+                fileStorage.setFileUrl(apiDomain + "/api/file/admin/localStorage/" + fileStorage.getUid());
                 fileStorageService.save(fileStorage);
             }
         } else if (StorageModeConstants.QINIU.equals(storageMode)) {

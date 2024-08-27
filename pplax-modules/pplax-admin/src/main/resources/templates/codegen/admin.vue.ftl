@@ -116,7 +116,7 @@ export default {
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/${apiName}/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/${apiName}/*')
     },
     /**
      * 检查是否有添加的权限
@@ -130,7 +130,7 @@ export default {
      * @returns {boolean|*}
      */
     canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/${apiName}/{uid}')
+      return hasAuth(this.menu, 'PUT:/api/admin/${apiName}/*')
     },
   },
   created() {

@@ -58,7 +58,11 @@ public class RequestLogGlobalFilter implements GlobalFilter, Ordered {
                     .map(this::bufferToString)
                     .reduce("", String::concat);
 
-            requestLog.setParamsJson(convertRequestParamsToJson(request.getQueryParams(), JSON.parseObject(requestBody)));
+            if (requestBody.startsWith("[")) {
+                requestLog.setParamsJson(convertRequestParamsToJson(request.getQueryParams(), JSON.parseArray(requestBody)));
+            } else if (requestBody.startsWith("{")) {
+                requestLog.setParamsJson(convertRequestParamsToJson(request.getQueryParams(), JSON.parseObject(requestBody)));
+            }
 
             ServerHttpRequestDecorator decoratedRequest = new ServerHttpRequestDecorator(request) {
                 @Override

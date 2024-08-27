@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor:简单将file服务的相同代码封装为方法">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/requestLog.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/requestLog/index.vue" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat:requestLog管理可以进行删除和批量删除了">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/CodeGenerateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/admin.vue.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/admin.vue.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/controller.java.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/resources/templates/codegen/controller.java.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/RequestLogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/java/xyz/pplax/pplaxblog/message/consumer/RequestLogConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/RequestLogSQLConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/constants/sql/RequestLogSQLConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/RequestLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/entity/RequestLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/RequestLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/RequestLogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/RequestLogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/RequestLogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/RequestLogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/RequestLogMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/requestLog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/requestLog/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,8 +261,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
       </list>

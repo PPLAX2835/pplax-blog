@@ -25,6 +25,9 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
         <el-button icon="el-icon-refresh" size="small" @click="resetQuery">重置</el-button>
+        <el-button v-if="canDeleteBatch" :disabled="!multipleSelection.length" type="danger" icon="el-icon-delete" size="small"
+                   @click="handleDelete">批量删除
+        </el-button>
       </el-form-item>
 
     </el-form>
@@ -175,7 +178,7 @@ export default {
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/requestLog/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/requestLog/*')
     },
   },
   created() {

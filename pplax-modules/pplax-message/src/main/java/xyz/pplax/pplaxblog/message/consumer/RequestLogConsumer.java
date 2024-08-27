@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
@@ -60,6 +61,13 @@ public class RequestLogConsumer {
         }
 
         requestLog.setUid(StringUtils.getUUID());
+        if (requestLog.getAddress().length() > 1048) {
+            requestLog.setAddress(IpUtils.getCityInfo(requestLog.getIp()));
+
+            if (requestLog.getAddress().length() > 1048){
+                requestLog.setAddress("未知");
+            }
+        }
 
         // 持久化
         requestLogService.save(requestLog);

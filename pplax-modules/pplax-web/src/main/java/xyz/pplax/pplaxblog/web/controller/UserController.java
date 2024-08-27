@@ -3,6 +3,8 @@ package xyz.pplax.pplaxblog.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +59,9 @@ public class UserController extends SuperController {
     }
 
     @ApiOperation(value="获取用户信息", notes="获取用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userUid",value = "用户uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @GetMapping(value = "/{userUid}/userInfo")
     public ResponseResult getUserInfo (@PathVariable("userUid") String userUid) {
         User user = userService.getById(userUid);
@@ -69,6 +74,9 @@ public class UserController extends SuperController {
     }
 
     @ApiOperation(value="判断用户名是否存在", notes="判断用户名是否存在")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username",value = "用户名",defaultValue = "",paramType = "query",dataType="String",required = true)
+    })
     @GetMapping(value = "/exist")
     public String isUsernameExist(@RequestParam("username") String username) {
         return adminFeignClient.isUsernameExist(username);

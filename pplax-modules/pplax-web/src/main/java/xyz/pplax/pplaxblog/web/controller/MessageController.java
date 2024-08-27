@@ -3,6 +3,8 @@ package xyz.pplax.pplaxblog.web.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -58,10 +60,14 @@ public class MessageController extends SuperController {
 
 
     @ApiOperation(value = "获取留言列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取留言列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/leave/list")
     public ResponseResult getLeaveMessageList(
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ){
 
         Page<Message> messageIPage = messageService.pageLeaveMessage(currentPage, pageSize);
@@ -106,19 +112,30 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value="获得聊天室列表", notes="获得聊天室列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "isOwner",value = "是否是群主", defaultValue = "false",paramType = "query",dataType="boolean",required = true)
+    })
     @GetMapping("/room/list")
-    public ResponseResult getRoomList(HttpServletRequest httpServletRequest, @RequestParam("isOwner") boolean isOwner) {
+    public ResponseResult getRoomList(
+            HttpServletRequest httpServletRequest,
+            @RequestParam("isOwner") boolean isOwner
+    ) {
         String userUid = getUserUid(httpServletRequest);
         return ResponseResult.success(chatRoomService.listByUserUid(userUid, isOwner));
     }
 
     @ApiOperation(value="搜索聊天室", notes="搜索聊天室")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword",value = "关键词",defaultValue = "",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/room/search")
     public ResponseResult getRoomSearch(
             HttpServletRequest httpServletRequest,
-            @RequestParam("keyword") String keyword,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "keyword", required = true) String keyword,
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ) {
         String userUid = getUserUid(httpServletRequest);
 
@@ -127,6 +144,9 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value="加入聊天室", notes="加入聊天室")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PutMapping("/room/{roomUid}/join")
     public ResponseResult joinRoom(HttpServletRequest httpServletRequest, @PathVariable("roomUid") String roomUid) {
         String userUid = getUserUid(httpServletRequest);
@@ -137,6 +157,9 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value="退出聊天室", notes="退出聊天室")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/room/{chatRoomUid}")
     public ResponseResult deleteChatRoom(HttpServletRequest httpServletRequest, @PathVariable("chatRoomUid") String chatRoomUid) {
         String userUid = getUserUid(httpServletRequest);
@@ -147,6 +170,9 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value="修改聊天室", notes="修改聊天室")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PutMapping("/room/{chatRoomUid}")
     public ResponseResult updateChatRoom(
             HttpServletRequest httpServletRequest,
@@ -169,6 +195,9 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value="获取成员列表", notes="获取成员列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @GetMapping("/room/{chatRoomUid}/member/list")
     public ResponseResult getChatRoomMemberList(
             @PathVariable("chatRoomUid") String chatRoomUid
@@ -177,6 +206,10 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value="踢出群成员", notes="踢出群成员")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true),
+            @ApiImplicitParam(name = "memberUid",value = "成员uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f71",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/room/{chatRoomUid}/member/{memberUid}")
     public ResponseResult kickChatRoomMember(
             HttpServletRequest httpServletRequest,
@@ -191,12 +224,17 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value = "获取聊天记录", httpMethod = "GET", response = ResponseResult.class, notes = "获取聊天记录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true),
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/room/{chatRoomUid}/chat/list")
     public ResponseResult getChatMessageList(
             HttpServletRequest httpServletRequest,
             @PathVariable(value = "chatRoomUid") String chatRoomUid,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ){
         String userUid = getUserUid(httpServletRequest);
 
@@ -206,6 +244,9 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value = "已读操作", httpMethod = "GET", response = ResponseResult.class, notes = "已读操作")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @GetMapping("/room/{chatRoomUid}/chat/read")
     public ResponseResult readChatMessage(
             HttpServletRequest httpServletRequest,
@@ -219,6 +260,10 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value = "撤回消息", httpMethod = "DELETE", response = ResponseResult.class, notes = "撤回消息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true),
+            @ApiImplicitParam(name = "chatMessageUid",value = "聊天uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f71",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/room/{chatRoomUid}/chat/{chatMessageUid}")
     public ResponseResult withdrawChatMessage(
             HttpServletRequest httpServletRequest,
@@ -233,6 +278,9 @@ public class MessageController extends SuperController {
     }
 
     @ApiOperation(value = "添加聊天消息", httpMethod = "POST", response = ResponseResult.class, notes = "添加聊天消息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "roomUid",value = "聊天室uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PostMapping("/room/{chatRoomUid}/chat")
     public ResponseResult addChatMessage(
             HttpServletRequest httpServletRequest,

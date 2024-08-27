@@ -2,6 +2,8 @@ package xyz.pplax.pplaxblog.web.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -31,11 +33,16 @@ public class TagController extends SuperController {
     private TagService tagService;
 
     @ApiOperation(value = "获取标签列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取标签列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword",value = "关键词",defaultValue = "",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/list")
     public ResponseResult getSayList(
             @RequestParam(value = "keyword", required = false) String keyword,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ){
 
         Page<Tag> tagIPage = tagService.page(keyword, false, false, currentPage, pageSize);

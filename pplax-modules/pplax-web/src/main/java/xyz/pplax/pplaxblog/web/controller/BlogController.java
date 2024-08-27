@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -62,11 +64,16 @@ public class BlogController extends SuperController {
     private CollectService collectService;
 
     @ApiOperation(value = "查找", httpMethod = "GET", response = ResponseResult.class, notes = "查找")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword",value = "关键词",defaultValue = "",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/search")
     public ResponseResult search(
-            @RequestParam(value = "keyword") String keyword,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ){
         Page<Blog> blogPage = blogService.search(keyword, currentPage, pageSize);
 
@@ -74,19 +81,29 @@ public class BlogController extends SuperController {
     }
 
     @ApiOperation(value = "获取博客列表", httpMethod = "GET", response = ResponseResult.class, notes = "网站相关信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogSortUid",value = "博客分类uid",defaultValue = "",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "tagUid",value = "标签uid",defaultValue = "",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "orderByDesc",value = "降序排序方式",defaultValue = "",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/list")
     public ResponseResult getBlogList(
             @RequestParam(value = "blogSortUid", required = false) String blogSortUid,
             @RequestParam(value = "tagUid", required = false) String tagUid,
             @RequestParam(value = "orderByDesc", required = false) String orderByDesc,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ){
         Page<Blog> blogPage = blogService.pageHomeBlog(blogSortUid, tagUid, orderByDesc, currentPage, pageSize);
         return ResponseResult.success(blogPage.getRecords(), blogPage.getTotal());
     }
 
     @ApiOperation(value = "获取博客", httpMethod = "GET", response = ResponseResult.class, notes = "获取博客")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogUid",value = "博客uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @GetMapping("/{blogUid}")
     public ResponseResult getBlog(
             HttpServletRequest httpServletRequest,
@@ -98,6 +115,9 @@ public class BlogController extends SuperController {
     }
 
     @ApiOperation(value = "博客点赞", httpMethod = "POST", response = ResponseResult.class, notes = "博客点赞")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogUid",value = "博客uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PostMapping("/{blogUid}/like")
     public ResponseResult like(
             HttpServletRequest httpServletRequest,
@@ -111,6 +131,9 @@ public class BlogController extends SuperController {
     }
 
     @ApiOperation(value = "收藏", httpMethod = "POST", response = ResponseResult.class, notes = "收藏")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogUid",value = "博客uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PostMapping("/{blogUid}/collect")
     public ResponseResult collect(
             HttpServletRequest httpServletRequest,
@@ -130,6 +153,9 @@ public class BlogController extends SuperController {
 
 
     @ApiOperation(value = "删除", httpMethod = "DELETE", response = ResponseResult.class, notes = "删除")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogUid",value = "博客uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/{blogUid}")
     public String delete(@PathVariable(value = "blogUid") String blogUid){
         return adminFeignClient.deleteBlog(blogUid);
@@ -137,11 +163,16 @@ public class BlogController extends SuperController {
 
 
     @ApiOperation(value = "获取评论列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取评论列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogUid",value = "博客uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true),
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/{blogUid}/comment/list")
     public ResponseResult getBlogList(
             @PathVariable(value = "blogUid") String blogUid,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ){
 
         Page<Comment> commentIPage = commentService.pageByBlogUid(blogUid, 0, currentPage, pageSize);
@@ -150,6 +181,9 @@ public class BlogController extends SuperController {
     }
 
     @ApiOperation(value = "评论", httpMethod = "POST", response = ResponseResult.class, notes = "评论")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogUid",value = "博客uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PostMapping("/{blogUid}/comment")
     public ResponseResult comment(
             HttpServletRequest httpServletRequest,
@@ -174,6 +208,9 @@ public class BlogController extends SuperController {
 
 
     @ApiOperation(value="编辑博客", notes="编辑博客")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "blogUid",value = "博客uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PutMapping("/{blogUid}")
     public ResponseResult updateBlog(HttpServletRequest httpServletRequest, @PathVariable("blogUid") String blogUid, @RequestBody @Validated(value = {Update.class}) BlogEditDto blogEditDto) {
         String userUid = getUserUid(httpServletRequest);

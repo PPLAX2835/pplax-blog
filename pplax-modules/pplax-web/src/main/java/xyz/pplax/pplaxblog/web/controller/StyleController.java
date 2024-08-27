@@ -3,6 +3,8 @@ package xyz.pplax.pplaxblog.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -49,6 +51,9 @@ public class StyleController extends SuperController {
     }
 
     @ApiOperation(value="重定向至背景", notes="重定向至背景")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "type",value = "类型",defaultValue = "",paramType = "path",dataType="String",required = true)
+    })
     @RequestMapping("/background/{type}")
     public void redirectBackground(
             HttpServletResponse response,
@@ -66,6 +71,9 @@ public class StyleController extends SuperController {
     }
 
     @ApiOperation(value="重定向至主题背景", notes="重定向至主题背景")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "type",value = "类型",defaultValue = "",paramType = "path",dataType="String",required = true)
+    })
     @RequestMapping("/theme/{type}")
     public void redirectTheme(HttpServletResponse response, @PathVariable("type") String type) throws IOException {
 

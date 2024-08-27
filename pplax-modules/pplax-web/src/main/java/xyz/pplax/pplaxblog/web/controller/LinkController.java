@@ -3,6 +3,8 @@ package xyz.pplax.pplaxblog.web.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -33,8 +35,15 @@ public class LinkController extends SuperController {
     private static Logger log = LogManager.getLogger(LinkController.class);
 
     @ApiOperation(value="获得友链列表", notes="获得友链列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/list")
-    public ResponseResult getLinkList(@RequestParam("currentPage") Long currentPage, @RequestParam("pageSize") Long pageSize) {
+    public ResponseResult getLinkList(
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
+    ) {
         Page<Link> linkIPage = linkService.page(null, EStatus.ENABLE.getStatus(), currentPage, pageSize);
         // 目前还不是根据用户查询
         return ResponseResult.success(linkIPage.getRecords(), linkIPage.getTotal());

@@ -5,6 +5,8 @@ import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -68,6 +70,9 @@ public class SayController extends SuperController {
     }
 
     @ApiOperation(value="删除说说", notes="删除说说")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sayUid",value = "说说uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/{sayUid}")
     public ResponseResult delete(@PathVariable("sayUid") String sayUid) {
         boolean res = sayService.removeById(sayUid);
@@ -76,11 +81,15 @@ public class SayController extends SuperController {
     }
 
     @ApiOperation(value = "获取说说列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取说说列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/list")
     public ResponseResult getSayList(
             HttpServletRequest httpServletRequest,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ){
         String userUid = getUserUid(httpServletRequest);
 
@@ -106,6 +115,9 @@ public class SayController extends SuperController {
     }
 
     @ApiOperation(value = "说说点赞", httpMethod = "POST", response = ResponseResult.class, notes = "说说点赞")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sayUid",value = "说说uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PostMapping("/{sayUid}/like")
     public ResponseResult like(
             HttpServletRequest httpServletRequest,
@@ -120,6 +132,9 @@ public class SayController extends SuperController {
 
 
     @ApiOperation(value = "评论", httpMethod = "POST", response = ResponseResult.class, notes = "评论")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sayUid",value = "说说uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PostMapping("/{sayUid}/comment")
     public ResponseResult comment(
             HttpServletRequest httpServletRequest,
@@ -164,11 +179,16 @@ public class SayController extends SuperController {
 
 
     @ApiOperation(value = "获取评论列表", httpMethod = "GET", response = ResponseResult.class, notes = "获取评论列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sayUid",value = "说说uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true),
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/{sayUid}/comment/list")
     public ResponseResult getBlogList(
             @PathVariable(value = "sayUid") String sayUid,
-            @RequestParam(value = "currentPage") Long currentPage,
-            @RequestParam(value = "pageSize") Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ){
 
         Page<Comment> commentIPage = commentService.pageByOriginalUid(sayUid, CharacterConstants.NUM_TWO, currentPage, pageSize);

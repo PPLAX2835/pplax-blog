@@ -29,6 +29,11 @@ public class RequestLog extends SuperEntity {
     private String menuUid;
 
     /**
+     * restful端点，menu_uid查不出来就存这个
+     */
+    private String endpoint;
+
+    /**
     * ip
     */
     private String ip;
@@ -64,8 +69,9 @@ public class RequestLog extends SuperEntity {
     private Integer type;
 
     @TableField(exist = false)
-    private String path;
+    private Menu menu;
 
     @TableField(exist = false)
-    private String method;
+    private User user;
+
 }

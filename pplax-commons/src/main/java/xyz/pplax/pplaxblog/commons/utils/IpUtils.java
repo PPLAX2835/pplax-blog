@@ -81,6 +81,9 @@ public class IpUtils {
      */
     public static String getCityInfo(String ip) {
         log.info("Current ip is:" + ip);
+        if ("127.0.0.1".equals(ip) || "localhost".equals(ip)) {
+            return "本机";
+        }
         try {
             // 结果的固定格式 国家|区域|省份|城市|ISP 缺省补0
             return searcher.search(ip);

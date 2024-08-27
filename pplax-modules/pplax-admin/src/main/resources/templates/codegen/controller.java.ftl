@@ -13,7 +13,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
 */
 @RestController
 @RequestMapping("/${apiName}")
-@Api(value="${tableName}Controller", tags={"${tableComment}"})
+@Api(value="${tableName}表Controller", tags={"${tableComment}"})
 public class ${className}Controller extends SuperController {
 
     private static final Logger log = LogManager.getLogger(${className}Controller.class);

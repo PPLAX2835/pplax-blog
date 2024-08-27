@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
-import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.sql.MenuSQLConstants;
 import xyz.pplax.pplaxblog.xo.constants.type.MenuTypeConstants;
@@ -34,22 +33,14 @@ public class RequestLogConsumer {
     @Autowired
     private MenuService menuService;
 
-    @Autowired
-    private RedisService redisService;
-
     @RabbitListener(queues = MqConstants.PPLAX_REQUEST_LOG)
     public void saveMessage(RequestLog requestLog) {
-        // 获得三个携带的数据
-        String path = requestLog.getPath();
-        String method = requestLog.getMethod();
-        String fullPath = method + ":" + path;
-
         // 创建查询
         PQueryWrapper<Menu> menuPQueryWrapper = new PQueryWrapper<>();
         menuPQueryWrapper.isNotNull(MenuSQLConstants.ENDPOINT)
                 .eq(MenuSQLConstants.TYPE, MenuTypeConstants.BUTTON)
                 .ne(MenuSQLConstants.ENDPOINT, "")
-                .apply("'" + fullPath + "' LIKE REPLACE(endpoint, '*', '%')")
+                .apply("'" + requestLog.getEndpoint() + "' LIKE REPLACE(endpoint, '*', '%')")
                 .orderByDesc("LENGTH(endpoint)")
                 .last("limit 1");
         // 查询
@@ -60,18 +51,8 @@ public class RequestLogConsumer {
             requestLog.setMenuUid(menu.getUid());
         }
 
-        requestLog.setUid(StringUtils.getUUID());
-        if (requestLog.getAddress().length() > 1048) {
-            requestLog.setAddress(IpUtils.getCityInfo(requestLog.getIp()));
-
-            if (requestLog.getAddress().length() > 1048){
-                requestLog.setAddress("未知");
-            }
-        }
-
         // 持久化
         requestLogService.save(requestLog);
     }
-
 
 }

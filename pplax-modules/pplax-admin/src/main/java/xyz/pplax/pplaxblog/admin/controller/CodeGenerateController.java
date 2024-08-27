@@ -72,7 +72,7 @@ public class CodeGenerateController extends SuperController {
             @ApiImplicitParam(name = "prefix",value = "替换前缀",defaultValue = "t_",paramType = "query",dataType="String",required = false),
             @ApiImplicitParam(name = "type",value = "类型",defaultValue = "java",paramType = "query",dataType="String",required = true)
     })
-    @RequestMapping("/table/{tableName}/generate")
+    @GetMapping("/table/{tableName}/generate")
     public void generate(
             @PathVariable("tableName") String tableName,
             @RequestParam(value = "prefix", required = false) String prefix,

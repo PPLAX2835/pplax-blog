@@ -1,14 +1,26 @@
 <template>
   <!--
-    description ${tableName}表 管理页面
-    author ${author}
-    date ${date}
+    description t_request_log表 管理页面
+    author PPLAX
+    date Tue Aug 27 14:29:54 CST 2024
   -->
   <div class="app-container">
     <!--查询or其他操作-->
     <el-form v-show="showSearch" :inline="true" ref="form" :model="params" label-width="68px">
-      <el-form-item label="关键词">
-        <el-input style="width: 150px" size="small" v-model="params.keyword" placeholder="请输入关键词"/>
+      <el-form-item label="类型">
+        <el-select style="width: 130px" size="small" v-model="params.type" placeholder="请选择分类">
+          <el-option label="全部" value=""></el-option>
+          <el-option label="前台接口" :value="1"></el-option>
+          <el-option label="后台接口" :value="0"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="开始时间">
+        <el-date-picker v-model="params.startTime" type="datetime" placeholder="选择开始时间" value-format="yyyy-MM-dd HH:mm:ss">
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="结束时间">
+        <el-date-picker v-model="params.endTime" type="datetime" placeholder="选择结束时间" value-format="yyyy-MM-dd HH:mm:ss">
+        </el-date-picker>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="small" @click="handleFind">查找</el-button>
@@ -23,6 +35,53 @@
                 @selection-change="handleSelectionChange">
         <el-table-column align="center" type="selection" />
 
+        <el-table-column width="130" align="center" label="请求用户头像">
+          <template slot-scope="scope">
+            <el-avatar v-if="scope.row.user" :src="scope.row.user.userInfo.avatar ? scope.row.user.userInfo.avatar.fileUrl : ''"></el-avatar>
+            <span v-else>无</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column width="110" align="center" label="请求用户昵称">
+          <template slot-scope="scope">
+            <span>{{scope.row.user ? scope.row.user.userInfo.nickname : '无'}}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column width="80" align="center" label="请求方法">
+          <template slot-scope="scope">
+            <el-tag>{{scope.row.endpoint.split(':')[0]}}</el-tag>
+          </template>
+        </el-table-column>
+
+        <el-table-column width="250" align="center" label="请求路径">
+          <template slot-scope="scope">
+            <span>{{scope.row.endpoint.split(':')[1]}}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column width="250" align="center" label="请求名">
+          <template slot-scope="scope">
+            <span>{{scope.row.menu ? scope.row.menu.title : '无'}}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column width="120" align="center" prop="ip" label="ip"></el-table-column>
+        <el-table-column width="120" align="center" prop="address" label="地址"></el-table-column>
+        <el-table-column width="80" align="center" label="请求耗时">
+          <template slot-scope="scope">
+            <span>{{scope.row.spendTime}}mm</span>
+          </template>
+        </el-table-column>
+        <el-table-column width="180" align="center" prop="browser" label="浏览器"></el-table-column>
+        <el-table-column width="100" align="center" prop="accessOs" label="操作系统"></el-table-column>
+        <el-table-column width="100" align="center" label="类型">
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.type === 1" type="success">前台接口</el-tag>
+            <el-tag v-else-if="scope.row.type === 0" type="warning">后台接口</el-tag>
+          </template>
+        </el-table-column>
+
         <el-table-column width="180" align="center" label="添加时间">
           <template slot-scope="scope">
             <span>{{ timeFormat(scope.row.createTime) }}</span>
@@ -35,7 +94,6 @@
         </el-table-column>
         <el-table-column width="250" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
-            <el-button v-if="canUpdate" type="primary" size="mini" @click="handleUpdate(scope)">编辑</el-button>
             <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
           </template>
         </el-table-column>
@@ -66,10 +124,11 @@
 </template>
 
 <script>
-import { get${className}List, update${className}, add${className}, delete${className}Batch, delete${className} } from "../../api/${apiName}";
+import { getRequestLogList, updateRequestLog, addRequestLog, deleteRequestLogBatch, deleteRequestLog } from "../../api/requestLog";
 import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import { EStatus } from "../../base/EStatus"
+import {mapGetters} from "vuex";
 
 export default {
   data() {
@@ -79,7 +138,7 @@ export default {
       showSearch: true,
       isFullScreen: false,
       params: {
-        keyword: '',
+        type: '',
         currentPage: 1,
         pageSize: 10
       },
@@ -88,7 +147,7 @@ export default {
       isEditForm: false,
       dialogFormVisible: false,
       title: '',
-      editing${className}Uid: '',
+      editingRequestLogUid: '',
       form: {
       },
       rules: {
@@ -109,38 +168,24 @@ export default {
      * @returns {boolean|*}
      */
     canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/${apiName}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/requestLog')
     },
     /**
      * 检查是否有删除的权限
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/admin/${apiName}/{uid}')
-    },
-    /**
-     * 检查是否有添加的权限
-     * @returns {boolean|*}
-     */
-    canAdd: function () {
-      return hasAuth(this.menu, 'POST:/api/admin/${apiName}')
-    },
-    /**
-     * 检查是否有更新的权限
-     * @returns {boolean|*}
-     */
-    canUpdate: function () {
-      return hasAuth(this.menu, 'PUT:/api/admin/${apiName}/{uid}')
+      return hasAuth(this.menu, 'DELETE:/api/admin/requestLog/{uid}')
     },
   },
   created() {
     this.statusList = EStatus;
     this.openLoading();
-    this.fetch${className}List();
+    this.fetchRequestLogList();
   },
   methods: {
-    fetch${className}List: function (){
-      get${className}List(this.params).then(res =>{
+    fetchRequestLogList: function (){
+      getRequestLogList(this.params).then(res =>{
         this.tableData = res.data
         this.total = res.total
         this.loading.close()
@@ -151,14 +196,18 @@ export default {
      */
     handleFind: function () {
       this.params.currentPage = 1;
-      this.fetch${className}List()
+      this.fetchRequestLogList()
     },
     /**
      * 重置查询参数
      */
     resetQuery: function (){
-      this.params.keyword=''
-      this.fetch${className}List()
+      this.params = {
+          type: '',
+          currentPage: 1,
+          pageSize: 10
+      }
+      this.fetchRequestLogList()
     },
     /**
      * 单页大小处理
@@ -166,7 +215,7 @@ export default {
      */
     handleSizeChange: function (val) {
       this.params.pageSize = val
-      this.fetch${className}List()
+      this.fetchRequestLogList()
     },
     /**
      * 页数变化处理
@@ -174,7 +223,7 @@ export default {
      */
     handleCurrentChange: function (val) {
       this.params.currentPage = val
-      this.fetch${className}List()
+      this.fetchRequestLogList()
     },
     /**
      * 时间戳格式化
@@ -217,7 +266,7 @@ export default {
      * @param scope
      */
     handleUpdate: function (scope) {
-      this.editing${className}Uid = scope.row.uid
+      this.editingRequestLogUid = scope.row.uid
 
       this.isFullScreen = false;
       this.beforeShow("编辑", 1)
@@ -245,8 +294,8 @@ export default {
             for (let i = 0; i < selections.length; i++) {
               uids[i] = selections[i].uid
             }
-            delete${className}Batch(uids).then(res => {
-              this.fetch${className}List()
+            deleteRequestLogBatch(uids).then(res => {
+              this.fetchRequestLogList()
               this.$message.success('删除成功');
               this.loading.close()
             }).catch(() => {
@@ -255,8 +304,8 @@ export default {
           }
         } else {
           // 走单独删除
-          delete${className}(scope.row.uid).then(res => {
-            this.fetch${className}List()
+          deleteRequestLog(scope.row.uid).then(res => {
+            this.fetchRequestLogList()
             this.$message.success('删除成功');
             this.loading.close()
           }).catch(() => {
@@ -273,17 +322,17 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (this.isEditForm) {
-            update${className}(this.editing${className}Uid, this.form).then(res => {
+            updateRequestLog(this.editingRequestLogUid, this.form).then(res => {
               this.$message.success("修改成功")
-              this.editing${className}Uid = ''
-              this.fetch${className}List()
+              this.editingRequestLogUid = ''
+              this.fetchRequestLogList()
               this.dialogFormVisible = false;
               this.close()
             })
           } else {
-            add${className}(this.form).then(res => {
+            addRequestLog(this.form).then(res => {
               this.$message.success("添加成功")
-              this.fetch${className}List()
+              this.fetchRequestLogList()
               this.dialogFormVisible = false;
               this.close()
             })

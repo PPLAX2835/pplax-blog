@@ -7,6 +7,7 @@
         <id column="uid" property="uid" />
         <result column="user_uid" property="userUid" />
         <result column="menu_uid" property="menuUid" />
+        <result column="endpoint" property="endpoint" />
         <result column="ip" property="ip" />
         <result column="address" property="address" />
         <result column="spend_time" property="spendTime" />
@@ -21,7 +22,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        `uid`, `user_uid`, `menu_uid`, `ip`, `address`, `spend_time`, `params_json`, `browser`, `access_os`, `type`, `status`, `create_time`, `update_time`
+        `uid`, `user_uid`, `menu_uid`, `endpoint`, `ip`, `address`, `spend_time`, `params_json`, `browser`, `access_os`, `type`, `status`, `create_time`, `update_time`
     </sql>
 
 </mapper>

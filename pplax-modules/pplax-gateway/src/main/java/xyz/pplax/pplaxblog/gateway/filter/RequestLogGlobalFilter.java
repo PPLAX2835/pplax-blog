@@ -91,8 +91,7 @@ public class RequestLogGlobalFilter implements GlobalFilter, Ordered {
 
     private RequestLog createRequestLog(ServerHttpRequest request, String path, String method) {
         RequestLog requestLog = new RequestLog();
-        requestLog.setPath(path);
-        requestLog.setMethod(method);
+        requestLog.setEndpoint(method + ":" + path);
         requestLog.setUserUid(getUserUid(request));
         requestLog.setIp(getIpAddress(request));
         requestLog.setAddress(IpUtils.getCityInfo(requestLog.getIp()));

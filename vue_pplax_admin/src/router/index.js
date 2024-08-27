@@ -170,7 +170,7 @@ export const constantRouterMap = [
             component: {
               render(c) { return c('router-view'); }
             },
-            name: 'Message',
+            name: 'Website',
             meta: { title: '网站管理', icon: 'table' },
             children: [
               {
@@ -190,6 +190,25 @@ export const constantRouterMap = [
                 name: 'FileStorage',
                 component: () => import('@/views/fileStorage/index'),
                 meta: { title: '文件管理', icon: 'table' }
+              }
+            ]
+          },
+
+
+          {
+            path: 'monitor',
+            redirect: 'monitor/requestLog',
+            component: {
+              render(c) { return c('router-view'); }
+            },
+            name: 'Monitor',
+            meta: { title: '监控管理', icon: 'table' },
+            children: [
+              {
+                path: 'requestLog',
+                name: 'RequestLog',
+                component: () => import('@/views/requestLog/index'),
+                meta: { title: '请求日志管理', icon: 'table' }
               }
             ]
           }

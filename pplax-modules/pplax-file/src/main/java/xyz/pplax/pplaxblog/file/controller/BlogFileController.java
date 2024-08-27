@@ -18,7 +18,7 @@ import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
  */
 @RestController
 @RequestMapping("/blog")
-@Api(value = "用户文件上传服务相关接口", tags = {"用户文件上传相关接口"})
+@Api(value = "封面文件上传服务相关接口", tags = {"封面文件上传相关接口"})
 @Slf4j
 public class BlogFileController extends SuperController {
 

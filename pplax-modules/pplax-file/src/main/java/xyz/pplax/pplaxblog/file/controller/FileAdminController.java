@@ -2,6 +2,8 @@ package xyz.pplax.pplaxblog.file.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -44,10 +46,14 @@ public class FileAdminController extends SuperController {
     private SiteSettingService siteSettingService;
 
     @ApiOperation(value="获取文件列表", notes="获取文件列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/list")
     public ResponseResult getList(
-            @RequestParam(value = "currentPage", required = false) Long currentPage,
-            @RequestParam(value = "pageSize", required = false) Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ) {
 
         Page<FileStorage> fileStorageIPage = fileStorageService.page(currentPage, pageSize);
@@ -56,10 +62,13 @@ public class FileAdminController extends SuperController {
     }
 
     @ApiOperation(value="获取文件", notes="获取文件")
-    @GetMapping("/localStorage/{fileUid}")
-    public void getFile(@PathVariable("fileUid") String fileUid, HttpServletResponse httpServletResponse) throws IOException {
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "fileStorageUid",value = "文件uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
+    @GetMapping("/localStorage/{fileStorageUid}")
+    public void getFile(@PathVariable("fileStorageUid") String fileStorageUid, HttpServletResponse httpServletResponse) throws IOException {
 
-        FileStorage fileStorage = fileStorageService.getById(fileUid);
+        FileStorage fileStorage = fileStorageService.getById(fileStorageUid);
         if (fileStorage == null ) {
             return;
         }
@@ -77,15 +86,21 @@ public class FileAdminController extends SuperController {
     }
 
     @ApiOperation(value="删除文件", notes="删除文件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "fileStorageUid",value = "文件uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/{fileStorageUid}")
     public ResponseResult delete(@PathVariable("fileStorageUid") String fileStorageUid) throws Exception {
         return fileService.delete(fileStorageUid);
     }
 
     @ApiOperation(value = "批量删除文件", notes = "批量删除文件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "fileStorageUidList",value = "文件uidList", defaultValue = "",dataType="List<String>",required = true)
+    })
     @DeleteMapping(value = "")
-    public ResponseResult delete(@RequestBody List<String> tagUidList) throws Exception {
-        return fileService.deleteBatch(tagUidList);
+    public ResponseResult delete(@RequestBody List<String> fileStorageUidList) throws Exception {
+        return fileService.deleteBatch(fileStorageUidList);
     }
 
 }

@@ -1,13 +1,15 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
@@ -23,6 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/menu")
+@Api(value="菜单Controller", tags={"菜单Controller"})
 public class MenuController extends SuperController {
 
     @Autowired
@@ -39,6 +42,9 @@ public class MenuController extends SuperController {
     }
 
     @ApiOperation(value="更新菜单", notes="更新菜单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "menuUid",value = "菜单uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PutMapping(value = "/{menuUid}")
     public ResponseResult updateMenu(@PathVariable("menuUid") String menuUid, @Validated(value = {Update.class}) @RequestBody MenuEditDto menuEditDto) {
         menuEditDto.setUid(menuUid);
@@ -57,7 +63,10 @@ public class MenuController extends SuperController {
         return success();
     }
 
-    @ApiOperation(value="删除标签", notes="删除标签")
+    @ApiOperation(value="删除菜单", notes="删除菜单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "menuUid",value = "菜单uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/{menuUid}")
     public ResponseResult delete(@PathVariable("menuUid") String menuUid) {
         Boolean res = menuService.removeById(menuUid);

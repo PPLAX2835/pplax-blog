@@ -1,13 +1,14 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.commons.validator.group.Update;
@@ -47,6 +48,9 @@ public class SiteSettingController extends SuperController {
     }
 
     @ApiOperation(value="编辑配置", notes="编辑配置")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "siteSettingUid",value = "配置uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PutMapping("/{siteSettingUid}")
     public ResponseResult updateById(@PathVariable("siteSettingUid") String siteSettingUid, @RequestBody @Validated(value = {Update.class}) SiteSettingEditDto siteSettingEditDto) {
         siteSettingEditDto.setUid(siteSettingUid);
@@ -74,6 +78,9 @@ public class SiteSettingController extends SuperController {
     }
 
     @ApiOperation(value="删除", notes="删除")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "siteSettingUid",value = "配置uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/{siteSettingUid}")
     public ResponseResult delete(@PathVariable("siteSettingUid") String siteSettingUid) {
         siteSettingService.removeById(siteSettingUid);

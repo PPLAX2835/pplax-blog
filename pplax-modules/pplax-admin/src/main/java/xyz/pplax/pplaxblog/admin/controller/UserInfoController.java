@@ -1,6 +1,8 @@
 package xyz.pplax.pplaxblog.admin.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -34,12 +36,18 @@ public class UserInfoController extends SuperController {
     private UserService userService;
 
     @ApiOperation(value="获取用户信息", notes="获取用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userUid",value = "用户uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @GetMapping(value = "")
     public ResponseResult getUserInfo (@PathVariable("userUid") String userUid) {
         return success(userInfoService.getByUserUid(userUid));
     }
 
     @ApiOperation(value="更新用户信息", notes="更新用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userUid",value = "用户uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PutMapping(value = "")
     public ResponseResult updateUserInfo(@PathVariable("userUid") String userUid, @Validated(value = {Update.class}) @RequestBody UserInfoEditDto userInfoEditDto) {
         if (userService.isUsernameExist(userInfoEditDto.getUsername())) {

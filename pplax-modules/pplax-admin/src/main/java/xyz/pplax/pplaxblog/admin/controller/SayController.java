@@ -8,6 +8,8 @@ import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -43,11 +45,16 @@ public class SayController extends SuperController {
     private static Logger log = LogManager.getLogger(SayController.class);
 
     @ApiOperation(value="获取说说列表", notes="获取说说列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword",value = "关键词",defaultValue = "",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "currentPage",value = "当前页码",defaultValue = "0",paramType = "query",dataType="Long",required = false),
+            @ApiImplicitParam(name = "pageSize",value = "单页长度",defaultValue = "20",paramType = "query",dataType="Long",required = false)
+    })
     @GetMapping("/list")
     public ResponseResult getList(
             @RequestParam(value = "keyword", required = false) String keyword,
-            @RequestParam(value = "currentPage", required = false) Long currentPage,
-            @RequestParam(value = "pageSize", required = false) Long pageSize
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") Long currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") Long pageSize
     ) {
 
         IPage<Say> sayIPage = sayService.page(keyword, currentPage, pageSize);
@@ -55,7 +62,10 @@ public class SayController extends SuperController {
         return ResponseResult.success(sayIPage.getRecords(), sayIPage.getTotal());
     }
 
-    @ApiOperation(value="编辑标说说", notes="编辑说说")
+    @ApiOperation(value="编辑说说", notes="编辑说说")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sayUid",value = "编辑uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @PutMapping("/{sayUid}")
     public ResponseResult update(@PathVariable("sayUid") String sayUid, @RequestBody @Validated(value = {Update.class}) SayEditDto sayEditDto) {
 
@@ -81,6 +91,9 @@ public class SayController extends SuperController {
     }
 
     @ApiOperation(value="删除说说", notes="删除说说")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sayUid",value = "编辑uid", defaultValue = "04f53a39f0ba4ef2a9e3b1571eb16f70",paramType = "path",dataType="String",required = true)
+    })
     @DeleteMapping("/{sayUid}")
     public ResponseResult delete(@PathVariable("sayUid") String sayUid) {
         boolean res = sayService.removeById(sayUid);
@@ -89,6 +102,9 @@ public class SayController extends SuperController {
     }
 
     @ApiOperation(value = "批量删除说说", notes = "批量删除说说")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sayUidList",value = "说说uidList", defaultValue = "",dataType="List<String>",required = true)
+    })
     @DeleteMapping(value = "")
     public ResponseResult delete(@RequestBody List<String> sayUidList) {
         boolean res = sayService.removeByIds(sayUidList);

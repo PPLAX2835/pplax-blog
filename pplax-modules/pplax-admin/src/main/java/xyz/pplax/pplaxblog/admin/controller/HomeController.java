@@ -3,6 +3,7 @@ package xyz.pplax.pplaxblog.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -23,6 +24,7 @@ import java.util.*;
  */
 @RestController
 @RequestMapping("/home")
+@Api(value="首页Controller", tags={"首页Controller"})
 public class HomeController extends SuperController {
 
     private static final Logger log = LogManager.getLogger(HomeController.class);

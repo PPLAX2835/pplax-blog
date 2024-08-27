@@ -1,41 +1,31 @@
 package xyz.pplax.pplaxblog.file.service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import io.minio.MinioClient;
 import io.minio.ObjectWriteResponse;
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
+import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.constants.SiteSettingConstants;
 import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
-import xyz.pplax.pplaxblog.commons.enums.EStatus;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.FileUtils;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.file.utils.MinioUtils;
 import xyz.pplax.pplaxblog.file.utils.QiniuUtils;
-import xyz.pplax.pplaxblog.xo.constants.sql.FileStorageSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.FileStorage;
 import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.service.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 @Service
@@ -174,6 +164,60 @@ public class FileService {
         return ResponseResult.success();
     }
 
+    /**
+     * 判断是否是图片
+     * @return
+     */
+    public Boolean isImage(MultipartFile file) {
+        // 判断是否是图片
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("image/")) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 判断是否是图片
+     * @return
+     */
+    public Boolean isVideo(MultipartFile file) {
+        // 判断是否是图片
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("video/")) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 放缩图片
+     * @param file
+     * @param targetWidth
+     * @param targetHeight
+     * @return
+     * @throws IOException
+     */
+    public BufferedImage imageResize(MultipartFile file, Integer targetWidth, Integer targetHeight) throws IOException {
+        BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+        return Scalr.resize(bufferedImage, 1280, 800);
+    }
+
+    /**
+     * BufferedImage 转化为 byte[]
+     * @param bufferedImage
+     * @return
+     * @throws IOException
+     */
+    public byte[] bufferedImageToByteArray(BufferedImage bufferedImage) throws IOException {
+        //BufferedImage 转化为 ByteArrayOutputStream
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, CharacterConstants.FILE_SUFFIX_JPG, byteArrayOutputStream);
+        //ByteArrayOutputStream 转化为 byte[]
+        return byteArrayOutputStream.toByteArray();
+    }
 
     /**
      * 获取minioUtils

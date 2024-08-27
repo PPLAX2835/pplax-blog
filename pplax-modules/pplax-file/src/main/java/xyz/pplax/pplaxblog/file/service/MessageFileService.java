@@ -19,8 +19,7 @@ public class MessageFileService extends FileService {
     public ResponseResult imageUpload(MultipartFile file) throws Exception {
 
         // 判断是否是图片
-        String contentType = file.getContentType();
-        if (contentType == null || !contentType.startsWith("image/")) {
+        if (!isImage(file)) {
             return ResponseResult.error(HttpStatus.NOT_IMAGE);
         }
 

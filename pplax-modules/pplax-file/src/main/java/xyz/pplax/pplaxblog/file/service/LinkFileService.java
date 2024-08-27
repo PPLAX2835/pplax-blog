@@ -27,19 +27,15 @@ public class LinkFileService extends FileService {
     public ResponseResult iconImageUpload(MultipartFile file) throws Exception {
 
         // 判断是否是图片
-        String contentType = file.getContentType();
-        if (contentType == null || !contentType.startsWith("image/")) {
-            return ResponseResult.error(HttpStatus.BAD_REQUEST);
+        if (!isImage(file)) {
+            return ResponseResult.error(HttpStatus.NOT_IMAGE);
         }
         // 放缩图片
         BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
         BufferedImage resizeImage = Scalr.resize(bufferedImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, 200);
 
-        //BufferedImage 转化为 ByteArrayOutputStream
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(resizeImage, CharacterConstants.FILE_SUFFIX_JPG, byteArrayOutputStream);
-        //ByteArrayOutputStream 转化为 byte[]
-        byte[] imageByte = byteArrayOutputStream.toByteArray();
+        // BufferedImage 转化为 byte[]
+        byte[] imageByte = bufferedImageToByteArray(resizeImage);
 
         ConvertToMultipartFile convertToMultipartFile = new ConvertToMultipartFile(imageByte, file.getName(), file.getOriginalFilename(), file.getContentType(), file.getSize());
 

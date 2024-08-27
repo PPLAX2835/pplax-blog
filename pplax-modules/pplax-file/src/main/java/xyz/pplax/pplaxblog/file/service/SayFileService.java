@@ -20,9 +20,8 @@ public class SayFileService extends FileService {
     public ResponseResult imageUpload(MultipartFile file) throws Exception {
 
         // 判断是否是图片
-        String contentType = file.getContentType();
-        if (contentType == null || !contentType.startsWith("image/")) {
-            return ResponseResult.error(HttpStatus.BAD_REQUEST);
+        if (!isImage(file)) {
+            return ResponseResult.error(HttpStatus.NOT_IMAGE);
         }
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

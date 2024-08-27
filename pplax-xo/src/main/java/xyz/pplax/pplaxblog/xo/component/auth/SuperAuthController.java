@@ -2,6 +2,8 @@ package xyz.pplax.pplaxblog.xo.component.auth;
 
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -65,6 +67,9 @@ public class SuperAuthController extends SuperController {
 	}
 
 	@ApiOperation(value = "获取邮箱验证码", notes = "获取邮箱验证码", response = String.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "email",value = "邮箱", defaultValue = "12345@qq.com",paramType = "query",dataType="String",required = true)
+	})
 	@GetMapping(value = "/emailCaptcha")
 	public ResponseResult getEmailCaptcha(@RequestParam("email") String email) {
 

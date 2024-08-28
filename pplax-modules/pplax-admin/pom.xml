@@ -57,6 +57,10 @@
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-iputils-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-amqp-starter</artifactId>
+        </dependency>
         <!-- starter end -->
 
         <dependency>

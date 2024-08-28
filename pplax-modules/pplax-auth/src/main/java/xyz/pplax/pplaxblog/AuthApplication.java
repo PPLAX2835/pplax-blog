@@ -16,6 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.starter.durid",
         "xyz.pplax.pplaxblog.starter.mybatis",
         "xyz.pplax.pplaxblog.starter.redis",
+        "xyz.pplax.pplaxblog.starter.amqp",
         "xyz.pplax.pplaxblog.auth.controller",
         "xyz.pplax.pplaxblog.auth.config",
         "xyz.pplax.pplaxblog.auth.service",

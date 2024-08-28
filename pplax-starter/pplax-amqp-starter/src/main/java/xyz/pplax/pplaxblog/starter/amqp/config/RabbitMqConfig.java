@@ -94,6 +94,16 @@ public class RabbitMqConfig {
     }
 
     /**
+     * 声明EXCEPTION_LOG队列
+     *
+     * @return
+     */
+    @Bean(MqConstants.PPLAX_EXCEPTION_LOG)
+    public Queue PPLAX_EXCEPTION_LOG() {
+        return new Queue(MqConstants.PPLAX_EXCEPTION_LOG);
+    }
+
+    /**
      * pplax.blog 队列绑定交换机，指定routingKey
      *
      * @param queue
@@ -174,6 +184,18 @@ public class RabbitMqConfig {
     @Bean
     public Binding BINDING_QUEUE_INFORM_REQUEST_LOG(@Qualifier(MqConstants.PPLAX_REQUEST_LOG) Queue queue, @Qualifier(MqConstants.EXCHANGE_DIRECT) Exchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(MqConstants.ROUTING_KEY_REQUEST_LOG).noargs();
+    }
+
+    /**
+     * pplax.exceptionLog 队列绑定交换机，指定routingKey
+     *
+     * @param queue
+     * @param exchange
+     * @return
+     */
+    @Bean
+    public Binding BINDING_QUEUE_INFORM_EXCEPTION_LOG(@Qualifier(MqConstants.PPLAX_EXCEPTION_LOG) Queue queue, @Qualifier(MqConstants.EXCHANGE_DIRECT) Exchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(MqConstants.ROUTING_KEY_EXCEPTION_LOG).noargs();
     }
 
     @Bean

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.pplax.pplaxblog.xo.mapper.ExceptionLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="xyz.pplax.pplaxblog.xo.entity.ExceptionLog">
+        <id column="uid" property="uid" />
+        <result column="user_uid" property="userUid" />
+        <result column="menu_uid" property="menuUid" />
+        <result column="endpoint" property="endpoint" />
+        <result column="ip" property="ip" />
+        <result column="address" property="address" />
+        <result column="params_json" property="paramsJson" />
+        <result column="class_name" property="className" />
+        <result column="method_name" property="methodName" />
+        <result column="exception_json" property="exceptionJson" />
+        <result column="exception_message" property="exceptionMessage" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `uid`, `user_uid`, `menu_uid`, `endpoint`, `ip`, `address`, `params_json`, `class_name`, `method_name`, `exception_json`, `exception_message`, `status`, `create_time`, `update_time`
+    </sql>
+
+</mapper>

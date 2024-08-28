@@ -21,8 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "xyz.pplax.pplaxblog.gateway.properties",
     "xyz.pplax.pplaxblog.gateway.handler",
     "xyz.pplax.pplaxblog.gateway.filter",
-    "xyz.pplax.pplaxblog.gateway.security",
-    "xyz.pplax.pplaxblog.xo.component.handler"
+    "xyz.pplax.pplaxblog.gateway.security"
 })
 public class GatewayApplication {
 

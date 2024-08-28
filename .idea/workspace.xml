@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat:requestLog管理可以进行删除和批量删除了">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/requestLog/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/requestLog/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,8 +114,8 @@
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-xo\src\main\resources\mapper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\java\xyz\pplax\pplaxblog\admin\controller" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\doc" />
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\java\xyz\pplax\pplaxblog\admin\controller" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_admin" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\java\xyz\pplax\pplaxblog\admin\model" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-admin\src\main\resources" />
@@ -141,7 +140,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -263,8 +262,8 @@
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -470,13 +469,7 @@
       <workItem from="1724572431631" duration="7028000" />
       <workItem from="1724659077926" duration="12937000" />
       <workItem from="1724719054579" duration="19065000" />
-    </task>
-    <task id="LOCAL-00498" summary="fix：修复前台小手效果a标签效果不显示">
-      <created>1723774711393</created>
-      <option name="number" value="00498" />
-      <option name="presentableId" value="LOCAL-00498" />
-      <option name="project" value="LOCAL" />
-      <updated>1723774711393</updated>
+      <workItem from="1724809201519" duration="2040000" />
     </task>
     <task id="LOCAL-00499" summary="feat：登录成功后将token记录到缓存">
       <created>1723776039563</created>
@@ -814,7 +807,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724728715640</updated>
     </task>
-    <option name="localTasksCounter" value="547" />
+    <task id="LOCAL-00547" summary="feat:requestLog管理可以进行删除和批量删除了&#10;fix:修复网关过滤器在遇到请求体参数为数组的情况fastjson抛异常的问题">
+      <created>1724762360087</created>
+      <option name="number" value="00547" />
+      <option name="presentableId" value="LOCAL-00547" />
+      <option name="project" value="LOCAL" />
+      <updated>1724762360087</updated>
+    </task>
+    <option name="localTasksCounter" value="548" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -850,7 +850,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat:现在可以将生成的代码作为zip下载下来了" />
     <MESSAGE value="feat:可以根据参数生成controller或xo" />
     <MESSAGE value="feat:可以生成前端管理界面的代码了" />
     <MESSAGE value="feat:优化生成操作" />
@@ -875,7 +874,8 @@
     <MESSAGE value="refactor:整理file服务的swagger" />
     <MESSAGE value="fix:处理消息队列中requestLog的address被封装乱码的问题" />
     <MESSAGE value="refactor:简单将file服务的相同代码封装为方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor:简单将file服务的相同代码封装为方法" />
+    <MESSAGE value="feat:requestLog管理可以进行删除和批量删除了&#10;fix:修复网关过滤器在遇到请求体参数为数组的情况fastjson抛异常的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:requestLog管理可以进行删除和批量删除了&#10;fix:修复网关过滤器在遇到请求体参数为数组的情况fastjson抛异常的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

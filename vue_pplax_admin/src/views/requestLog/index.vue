@@ -35,7 +35,24 @@
     <!-- 表格区域 -->
     <div style="margin-top: 5px">
       <el-table border :data="tableData" style="width: 100%"
-                @selection-change="handleSelectionChange">
+                @selection-change="handleSelectionChange"
+      >
+
+        <el-table-column align="center" type="expand" >
+          <template slot-scope="scope">
+            <el-descriptions title="更多">
+              <el-descriptions-item label="请求参数">
+                <json-viewer
+                  :value="JSON.parse(scope.row.paramsJson)"
+                  :expand-depth=5
+                  copyable
+                  boxed
+                  sort
+                ></json-viewer>
+              </el-descriptions-item>
+            </el-descriptions>
+          </template>
+        </el-table-column>
         <el-table-column align="center" type="selection" />
 
         <el-table-column width="130" align="center" label="请求用户头像">
@@ -95,7 +112,7 @@
             <span>{{ timeFormat(scope.row.updateTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column width="250" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
+        <el-table-column width="120" fixed="right" align="center" label="操作" class-name="small-padding fixed-width">
           <template slot-scope="scope">
             <el-button v-if="canDelete" size="mini" type="danger" @click="handleDelete(scope)">删除</el-button>
           </template>
@@ -132,6 +149,7 @@ import { hasAuth } from "../../utils/auth";
 import { parseTime } from "../../utils";
 import { EStatus } from "../../base/EStatus"
 import {mapGetters} from "vuex";
+import JsonViewer from 'vue-json-viewer'
 
 export default {
   data() {
@@ -161,6 +179,9 @@ export default {
       loading: [],
       tableData: [],
     }
+  },
+  components: {
+    JsonViewer
   },
   computed: {
     ...mapGetters([

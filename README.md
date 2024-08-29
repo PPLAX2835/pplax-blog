@@ -2,17 +2,21 @@
 
 个人开发的一个博客项目，因为看见别人的博客项目，就觉得很厉害，然后自己也想整一个（当前部署不了，租的服务器太拉...）
 
-目前做到了Spring Gateway + Oauth2的统一登录认证、权限及菜单动态分配、mysql与缓存相关的优化、统一异常处理、消息队列对评论等相关数据的处理、restful风格的api等
+目前做到了`Spring Gateway + Oauth2的统一登录认证`​、`权限及菜单动态分配`​、`mysql与缓存相关的优化`​、`统一异常处理`​、`消息队列对评论等相关数据的处理`​、`restful风格的api`​、`代码生成`​、`请求日志和异常日志监控`​、`前台动态主题`​、`websocket聊天室`​等
 
 ## 页面图片
 
 后台
 
-​![image](assets/image-20240503204942-z6txsse.png)​
+​![image](assets/image-20240829152832-y0h5a6o.png)​
+
+​![image](assets/image-20240829154010-1qm6y8e.png)​
 
 前台
 
-​![image](assets/image-20240503205008-7plb5q8.png)​
+​![image](assets/image-20240829152851-9txnyj1.png)​
+
+​![image](assets/image-20240829152943-ji90qwz.png)​
 
 就展示这点吧
 
@@ -42,135 +46,24 @@
 
 ## 如何跑起来
 
-### 环境依赖
+### 环境
 
-​`MySQL 8`​ `rabbitmq 3.9.1`​ `nacos-server 2.2.0`​ `minio`​ `nodejs 12.22.12`​ `Java 8`​ 大概是这些
+ `nodejs 12.22.12`​ `Java 8`​ `Maven3.8.8`​
 
-#### docker-compose
+### 中间件
 
-```bash
-# MySQL 8 可参考： https://hub.docker.com/_/mysqlersion: '3'
-services:
-  mysql:
-    image: registry.cn-hangzhou.aliyuncs.com/zhengqing/mysql:8.0  # 原镜像`mysql:8.0`
-    container_name: mysql8                                    # 容器名为'mysql8'
-    restart: unless-stopped                                               # 指定容器退出后的重启策略为始终重启，但是不考虑在Docker守护进程启动时就已经停止了的容器
-    volumes:                                                      # 数据卷挂载路径设置,将本机目录映射到容器目录
-      - "./mysql/my.cnf:/etc/mysql/my.cnf"
-      - "./mysql/data:/var/lib/mysql"
-#      - "./mysql/conf.d:/etc/mysql/conf.d"
-      - "./mysql/mysql-files:/var/lib/mysql-files"
-    environment:                        # 设置环境变量,相当于docker run命令中的-e
-      TZ: Asia/Shanghai
-      LANG: en_US.UTF-8
-      MYSQL_ROOT_PASSWORD: root         # 设置root用户密码
-      MYSQL_DATABASE: demo              # 初始化的数据库名称
-    privileged: true
-    user: root
-    ports:                              # 映射端口
-      - "3306:3306"
+​`MySQL 8`​ `rabbitmq 3.9.1`​ `nacos-server 2.2.0`​ `minio`​ `redis`​
 
-```
+### 需要调整的配置
 
-```bash
-# docker-compose参考：https://github.com/nacos-group/nacos-docker/blob/master/example/standalone-mysql-5.7.yaml
-# Nacos文档：https://nacos.io/zh-cn/index.html
-version: '3'
+访问nacos面板，红框中的需要改成自己的
 
-# 网桥 -> 方便相互通讯
-networks:
-  nacos:
-    driver: bridge
+​![image](assets/image-20240829153729-bgc4p7w.png)​
 
-services:
-  nacos:
-    image: registry.cn-hangzhou.aliyuncs.com/zhengqing/nacos-server:2.2.0    # 原镜像`nacos/nacos-server:2.2.0`
-    container_name: nacos_server                                 # 容器名为'nacos_server'
-    restart: unless-stopped                                              # 指定容器退出后的重启策略为始终重启，但是不考虑在Docker守护进程启动时就已经停止了的容器
-    volumes:                                                     # 数据卷挂载路径设置,将本机目录映射到容器目录
-      - "./nacos/logs:/home/nacos/logs"
-    environment:                        # 设置环境变量,相当于docker run命令中的-e
-      - PREFER_HOST_MODE=hostname                 # 如果支持主机名可以使用hostname,否则使用ip，默认也是ip
-      - MODE=standalone                           # 单机模式启动
-      - SPRING_DATASOURCE_PLATFORM=mysql          # 数据源平台 仅支持mysql或不保存empty
-      # TODO 修改mysql连接信息
-      - MYSQL_SERVICE_HOST=192.168.32.1          # 注：这里不能为`127.0.0.1`或`localhost`方式！！！
-      - MYSQL_SERVICE_DB_NAME=nacos_config        # 这里需要执行nacos_config.sql
-      - MYSQL_SERVICE_PORT=3306
-      - MYSQL_SERVICE_USER=root
-      - MYSQL_SERVICE_PASSWORD=root
-      # TODO 修改JVM调优参数
-      - JVM_XMS=128m   #-Xms default :2g
-      - JVM_XMX=128m   #-Xmx default :2g
-      - JVM_XMN=64m    #-Xmn default :1g
-      - JVM_MS=32m     #-XX:MetaspaceSize default :128m
-      - JVM_MMS=32m    #-XX:MaxMetaspaceSize default :320m
-    ports:
-      - "8848:8848"
-    networks:
-      - nacos
-    mem_limit: 1000m   # 最大使用内存
+​![image](assets/image-20240829153751-5ob0d48.png)​
 
-```
+​![image](assets/image-20240829153825-xaifuwc.png)​
 
-```bash
-# 环境变量可参考： https://www.rabbitmq.com/configure.html
-#               https://github.com/rabbitmq/rabbitmq-server/blob/master/deps/rabbit/docs/rabbitmq.conf.example
-version: '3'
-services:
-  rabbitmq:
-    image: registry.cn-hangzhou.aliyuncs.com/zhengqing/rabbitmq:3.9.1-management        # 镜像`rabbitmq:3.9.1-management` 【 注：该版本包含了web控制页面 】
-    container_name: rabbitmq            # 容器名为'rabbitmq'
-    hostname: my-rabbit
-    restart: unless-stopped                                       # 指定容器退出后的重启策略为始终重启，但是不考虑在Docker守护进程启动时就已经停止了的容器
-    environment:                        # 设置环境变量,相当于docker run命令中的-e
-      TZ: Asia/Shanghai
-      LANG: en_US.UTF-8
-    volumes:                            # 数据卷挂载路径设置,将本机目录映射到容器目录
-      - "./rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
-      - "./rabbitmq/config/10-default-guest-user.conf:/etc/rabbitmq/conf.d/10-default-guest-user.conf"
-      - "./rabbitmq/data:/var/lib/rabbitmq"
-      - "./rabbitmq/plugins/rabbitmq_delayed_message_exchange-3.9.0.ez:/opt/rabbitmq/plugins/rabbitmq_delayed_message_exchange-3.9.0.ez"
-#      - "./rabbitmq/log:/var/log/rabbitmq"
-    ports:                              # 映射端口
-      - "5672:5672"
-      - "15672:15672"
+​![image](assets/image-20240829153841-n8cunb3.png)​
 
-```
-
-```bash
-# 可参考 https://docs.min.io/docs/minio-docker-quickstart-guide.html
-version: '3'
-services:
-  minio:
-    image: minio/minio:latest                                    # 原镜像`minio/minio:latest`
-    container_name: minio                                        # 容器名为'minio'
-    restart: unless-stopped                                              # 指定容器退出后的重启策略为始终重启，但是不考虑在Docker守护进程启动时就已经停止了的容器
-    volumes:                                                     # 数据卷挂载路径设置,将本机目录映射到容器目录
-      - "./minio/data:/data"
-      - "./minio/minio:/minio"
-      - "./minio/config:/root/.minio"
-    environment:                                      # 设置环境变量,相当于docker run命令中的-e
-      TZ: Asia/Shanghai
-      LANG: en_US.UTF-8
-      MINIO_PROMETHEUS_AUTH_TYPE: "public"
-      MINIO_ACCESS_KEY: "root"                        # 登录账号
-      MINIO_SECRET_KEY: "password"                    # 登录密码
-    command: server /data  --console-address ":9001"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
-    ports:                              # 映射端口
-      - "9002:9000" # 文件上传&预览端口
-      - "9001:9001" # 控制台访问端口
-
-```
-
-#### 用到的sql脚本
-
-分别创建对应文件名的数据库，然后分别执行就好
-
-[nacos_config.sql](assets/nacos_config-20240503210201-w0t84y5.sql)
-
-[pplax_blog.sql](assets/pplax_blog-20240503210201-9ehnzum.sql)
+‍

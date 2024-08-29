@@ -6,20 +6,6 @@ server:
 spring:
   application:
     name: message-server
-  # mail
-  mail:
-    host: smtp.qq.com
-    username: 1458667357@qq.com
-    password: jcwbzpcyhhwzjdcd
-    default-encoding: utf-8
-    protocol: smtp
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
   devtools:
     restart:
       enabled: false #启动热部署

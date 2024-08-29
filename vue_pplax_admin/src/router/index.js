@@ -209,6 +209,12 @@ export const constantRouterMap = [
                 name: 'RequestLog',
                 component: () => import('@/views/requestLog/index'),
                 meta: { title: '请求日志管理', icon: 'table' }
+              },
+              {
+                path: 'exceptionLog',
+                name: 'WxceptionLog',
+                component: () => import('@/views/exceptionLog/index'),
+                meta: { title: '异常日志管理', icon: 'table' }
               }
             ]
           }

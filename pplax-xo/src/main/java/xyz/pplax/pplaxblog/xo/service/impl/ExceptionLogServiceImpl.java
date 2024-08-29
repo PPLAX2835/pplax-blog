@@ -8,9 +8,8 @@ import org.springframework.stereotype.Service;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
-import xyz.pplax.pplaxblog.xo.constants.sql.RequestLogSQLConstants;
+import xyz.pplax.pplaxblog.xo.constants.sql.ExceptionLogSQLConstants;
 import xyz.pplax.pplaxblog.xo.entity.ExceptionLog;
-import xyz.pplax.pplaxblog.xo.entity.RequestLog;
 import xyz.pplax.pplaxblog.xo.entity.User;
 import xyz.pplax.pplaxblog.xo.mapper.ExceptionLogMapper;
 import xyz.pplax.pplaxblog.xo.service.ExceptionLogService;
@@ -44,13 +43,13 @@ public class ExceptionLogServiceImpl extends SuperServiceImpl<ExceptionLogMapper
         // 查询参数
         PQueryWrapper<ExceptionLog> exceptionLogPQueryWrapper = new PQueryWrapper<>();
         if (startTime != null && endTime != null) {
-            exceptionLogPQueryWrapper.between(RequestLogSQLConstants.CREATE_TIME, startTime, endTime);
+            exceptionLogPQueryWrapper.between(ExceptionLogSQLConstants.CREATE_TIME, startTime, endTime);
         } else if (startTime != null) {
-            exceptionLogPQueryWrapper.ge(RequestLogSQLConstants.CREATE_TIME, startTime); // 查询 createTime >= startTime
+            exceptionLogPQueryWrapper.ge(ExceptionLogSQLConstants.CREATE_TIME, startTime); // 查询 createTime >= startTime
         } else if (endTime != null) {
-            exceptionLogPQueryWrapper.le(RequestLogSQLConstants.CREATE_TIME, endTime);   // 查询 createTime <= endTime
+            exceptionLogPQueryWrapper.le(ExceptionLogSQLConstants.CREATE_TIME, endTime);   // 查询 createTime <= endTime
         }
-        exceptionLogPQueryWrapper.orderByDesc(RequestLogSQLConstants.CREATE_TIME);
+        exceptionLogPQueryWrapper.orderByDesc(ExceptionLogSQLConstants.CREATE_TIME);
 
         Page<ExceptionLog> exceptionLogPage = new Page<>();
         exceptionLogPage.setCurrent(currentPage);

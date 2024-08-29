@@ -84,6 +84,8 @@ public class GlobalExceptionApiHandler {
             }
             exceptionLog.setParamsJson(JSON.toJSONString(res));
         }
+        exceptionLog.setClassName(e.getStackTrace()[0].getClassName());
+        exceptionLog.setMethodName(e.getStackTrace()[0].getMethodName());
         exceptionLog.setExceptionJson(JSON.toJSONString(e));
         exceptionLog.setExceptionMessage(e.getMessage());
 

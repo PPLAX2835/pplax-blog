@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat:编写异常日志表的相关接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/ExceptionLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/ExceptionLogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ExceptionLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ExceptionLogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ExceptionLogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ExceptionLogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/gateway/filter/RequestLogGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +142,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -266,8 +264,8 @@
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -474,14 +472,7 @@
       <workItem from="1724659077926" duration="12937000" />
       <workItem from="1724719054579" duration="19065000" />
       <workItem from="1724809201519" duration="13844000" />
-      <workItem from="1724891627841" duration="1921000" />
-    </task>
-    <task id="LOCAL-00502" summary="fix：修复用户管理界面中，有些没有配置图片的账号点击编辑按钮时会报错的情况">
-      <created>1723885163403</created>
-      <option name="number" value="00502" />
-      <option name="presentableId" value="LOCAL-00502" />
-      <option name="project" value="LOCAL" />
-      <updated>1723885163403</updated>
+      <workItem from="1724891627841" duration="4798000" />
     </task>
     <task id="LOCAL-00503" summary="fix：修复友链管理新增友链会提示必须包含图片的问题">
       <created>1723885467674</created>
@@ -819,7 +810,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724892844498</updated>
     </task>
-    <option name="localTasksCounter" value="551" />
+    <task id="LOCAL-00551" summary="feat:编写异常日志表的相关接口">
+      <created>1724893623415</created>
+      <option name="number" value="00551" />
+      <option name="presentableId" value="LOCAL-00551" />
+      <option name="project" value="LOCAL" />
+      <updated>1724893623415</updated>
+    </task>
+    <option name="localTasksCounter" value="552" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -855,7 +853,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor:将鉴权修改为通配符匹配形式" />
     <MESSAGE value="refactor:简单整理项目" />
     <MESSAGE value="feat:实现将每次请求都记录在日志表中" />
     <MESSAGE value="fix: 修复因为前缀替换导致的后续问题" />
@@ -880,7 +877,8 @@
     <MESSAGE value="feat:requestLog管理的表格项可以展开显示参数json了" />
     <MESSAGE value="feat:现在全局异常捕获会持久化异常日志" />
     <MESSAGE value="补充封装className和methodName" />
-    <option name="LAST_COMMIT_MESSAGE" value="补充封装className和methodName" />
+    <MESSAGE value="feat:编写异常日志表的相关接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:编写异常日志表的相关接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

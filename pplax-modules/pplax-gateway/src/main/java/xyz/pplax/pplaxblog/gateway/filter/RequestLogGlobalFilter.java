@@ -48,8 +48,14 @@ public class RequestLogGlobalFilter implements GlobalFilter, Ordered {
 
         RequestLog requestLog = createRequestLog(request, path, method);
 
+        // 记录原始路径到请求头
+        String originalPath = path;
+        ServerHttpRequest modifiedRequest = request.mutate()
+                .header("X-Original-Path", originalPath)
+                .build();
+
         if ("POST".equals(method) && path.startsWith("/api/file")) {
-            return chain.filter(exchange)
+            return chain.filter(exchange.mutate().request(modifiedRequest).build())
                     .doFinally(signalType -> logRequest(requestLog, startTime, "file params"));
         }
 
@@ -64,7 +70,7 @@ public class RequestLogGlobalFilter implements GlobalFilter, Ordered {
                 requestLog.setParamsJson(convertRequestParamsToJson(request.getQueryParams(), JSON.parseObject(requestBody)));
             }
 
-            ServerHttpRequestDecorator decoratedRequest = new ServerHttpRequestDecorator(request) {
+            ServerHttpRequestDecorator decoratedRequest = new ServerHttpRequestDecorator(modifiedRequest) {
                 @Override
                 public Flux<DataBuffer> getBody() {
                     return Flux.just(new DefaultDataBufferFactory().wrap(requestBody.getBytes(StandardCharsets.UTF_8)));

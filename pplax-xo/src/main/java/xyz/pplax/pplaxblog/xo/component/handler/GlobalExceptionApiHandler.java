@@ -53,7 +53,7 @@ public class GlobalExceptionApiHandler {
          * 封装异常信息
          */
         String method = httpServletRequest.getMethod();
-        String requestURI = httpServletRequest.getRequestURI();
+        String requestURI = httpServletRequest.getHeader("X-Original-Path");
         ExceptionLog exceptionLog = new ExceptionLog();
         exceptionLog.setUserUid(getUserUid(httpServletRequest));
         exceptionLog.setEndpoint(method + ":" + requestURI);

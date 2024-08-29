@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat:现在全局异常捕获会持久化异常日志">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/ExceptionLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/ExceptionLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/RequestLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ExceptionLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/ExceptionLogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ExceptionLogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/ExceptionLogServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,8 +263,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.GatewayApplication" />
+        <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
@@ -471,14 +474,7 @@
       <workItem from="1724659077926" duration="12937000" />
       <workItem from="1724719054579" duration="19065000" />
       <workItem from="1724809201519" duration="13844000" />
-      <workItem from="1724891627841" duration="1024000" />
-    </task>
-    <task id="LOCAL-00501" summary="fix：修复用户管理界面中，有些没有配置图片的账号点击编辑按钮时会报错的情况">
-      <created>1723885064383</created>
-      <option name="number" value="00501" />
-      <option name="presentableId" value="LOCAL-00501" />
-      <option name="project" value="LOCAL" />
-      <updated>1723885064383</updated>
+      <workItem from="1724891627841" duration="1921000" />
     </task>
     <task id="LOCAL-00502" summary="fix：修复用户管理界面中，有些没有配置图片的账号点击编辑按钮时会报错的情况">
       <created>1723885163403</created>
@@ -816,7 +812,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724857366061</updated>
     </task>
-    <option name="localTasksCounter" value="550" />
+    <task id="LOCAL-00550" summary="补充封装className和methodName">
+      <created>1724892844498</created>
+      <option name="number" value="00550" />
+      <option name="presentableId" value="LOCAL-00550" />
+      <option name="project" value="LOCAL" />
+      <updated>1724892844498</updated>
+    </task>
+    <option name="localTasksCounter" value="551" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -852,7 +855,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat:优化生成操作" />
     <MESSAGE value="refactor:将鉴权修改为通配符匹配形式" />
     <MESSAGE value="refactor:简单整理项目" />
     <MESSAGE value="feat:实现将每次请求都记录在日志表中" />
@@ -877,7 +879,8 @@
     <MESSAGE value="feat:requestLog管理可以进行删除和批量删除了&#10;fix:修复网关过滤器在遇到请求体参数为数组的情况fastjson抛异常的问题" />
     <MESSAGE value="feat:requestLog管理的表格项可以展开显示参数json了" />
     <MESSAGE value="feat:现在全局异常捕获会持久化异常日志" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:现在全局异常捕获会持久化异常日志" />
+    <MESSAGE value="补充封装className和methodName" />
+    <option name="LAST_COMMIT_MESSAGE" value="补充封装className和methodName" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

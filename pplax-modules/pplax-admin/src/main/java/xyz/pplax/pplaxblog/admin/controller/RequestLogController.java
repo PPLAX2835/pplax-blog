@@ -68,7 +68,7 @@ public class RequestLogController extends SuperController {
 
     @ApiOperation(value = "批量删除请求日志", notes = "批量删除请求日志")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "blogUidList",value = "博客uids", defaultValue = "",dataType="List<String>",required = true)
+            @ApiImplicitParam(name = "blogUidList",value = "请求日志uids", defaultValue = "",dataType="List<String>",required = true)
     })
     @DeleteMapping(value = "")
     public ResponseResult delete(@RequestBody List<String> requestLogUidList) {

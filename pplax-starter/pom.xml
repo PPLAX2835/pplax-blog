@@ -21,7 +21,7 @@
     <parent>
         <artifactId>pplax-blog</artifactId>
         <groupId>xyz.pplax</groupId>
-        <version>${pplaxblog.version}</version>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -38,13 +38,13 @@
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-commons</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
 
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-xo</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
 
         </dependencies>

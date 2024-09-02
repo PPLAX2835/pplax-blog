@@ -83,7 +83,7 @@ color: rgb(30,152,255);
 var title1 = 'PPLAX blog'
 
 // => 读取配置型(在配置文件里配置这些会变动的网址)
-var offiUrl = 'https://www.PPLAX.com/'
+var offiUrl = 'https://www.pplax.xyz/'
 var content = `
 版 本 号：1.0    
 编译日期：${new Date()}

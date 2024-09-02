@@ -10,10 +10,9 @@
     <description>Blog project for Spring Boot</description>
     <!-- 首先修改打包方式 -->
     <packaging>pom</packaging>
-    <version>${pplaxblog.version}</version>
+    <version>1.0</version>
 
     <properties>
-        <pplaxblog.version>1.0</pplaxblog.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- <spring-data-releasetrain.version>Fowler-SR2</spring-data-releasetrain.version> -->
@@ -254,14 +253,16 @@
 
     </dependencies>
 
-    <!-- 如果mapper.xml是放在src/main/java目录下，需配置以下-->
     <build>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
                 <filtering>false</filtering>
                 <includes>
+                    <!-- 如果mapper.xml是放在src/main/java目录下，需配置以下-->
                     <include>**/mapper/*.xml</include>
+                    <!-- 配置ip2region.xdb -->
+                    <include>ip2region.xdb</include>
                 </includes>
             </resource>
         </resources>

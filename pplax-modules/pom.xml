@@ -5,7 +5,7 @@
     <parent>
         <artifactId>pplax-blog</artifactId>
         <groupId>xyz.pplax</groupId>
-        <version>${pplaxblog.version}</version>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -25,52 +25,52 @@
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-durid-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-swagger-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-mybatis-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-security-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-redis-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-amqp-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-email-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-freemarker-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-thymeleaf-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-iputils-starter</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
             <!-- starter end -->
 
@@ -78,21 +78,21 @@
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-feign</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
 
             <!-- 引入pplax-xo相关 -->
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-xo</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
 
             <!-- 引入pplax-commons相关 -->
             <dependency>
                 <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-commons</artifactId>
-                <version>${pplaxblog.version}</version>
+                <version>1.0</version>
             </dependency>
 
         </dependencies>

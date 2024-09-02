@@ -5,10 +5,11 @@
     <parent>
         <artifactId>pplax-starter</artifactId>
         <groupId>xyz.pplax</groupId>
-        <version>${pplaxblog.version}</version>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <version>1.0</version>
 
     <artifactId>pplax-thymeleaf-starter</artifactId>
 

@@ -10,8 +10,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="pplax-durid-starter" />
         <module name="pplax-feign" />
-        <module name="pplax-swagger-starter" />
         <module name="pplax-web" />
+        <module name="pplax-swagger-starter" />
         <module name="pplax-gateway" />
         <module name="pplax-auth" />
         <module name="pplax-email-starter" />
@@ -19,9 +19,9 @@
         <module name="pplax-amqp-starter" />
         <module name="pplax-iputils-starter" />
         <module name="pplax-message" />
-        <module name="pplax-xo" />
         <module name="pplax-redis-starter" />
         <module name="pplax-thymeleaf-starter" />
+        <module name="pplax-xo" />
         <module name="pplax-commons" />
         <module name="pplax-mybatis-starter" />
         <module name="pplax-admin" />
@@ -59,8 +59,20 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="pplax-admin" options="" />
+      <module name="pplax-auth" options="" />
       <module name="pplax-blog" options="" />
       <module name="pplax-commons" options="" />
+      <module name="pplax-feign" options="" />
+      <module name="pplax-file" options="" />
+      <module name="pplax-freemarker-starter" options="" />
+      <module name="pplax-gateway" options="" />
+      <module name="pplax-iputils-starter" options="" />
+      <module name="pplax-message" options="" />
+      <module name="pplax-mybatis-starter" options="" />
+      <module name="pplax-redis-starter" options="" />
+      <module name="pplax-security-starter" options="" />
+      <module name="pplax-swagger-starter" options="" />
+      <module name="pplax-thymeleaf-starter" options="" />
       <module name="pplax-utils" options="" />
       <module name="pplax-web" options="" />
       <module name="pplax-xo" options="" />

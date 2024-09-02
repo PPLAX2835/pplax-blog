@@ -4,11 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>pplax-xo</artifactId>
+    <version>1.0</version>
 
     <parent>
         <artifactId>pplax-blog</artifactId>
         <groupId>xyz.pplax</groupId>
-        <version>${pplaxblog.version}</version>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -24,12 +25,12 @@
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-redis-starter</artifactId>
-            <version>${pplaxblog.version}</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-amqp-starter</artifactId>
-            <version>${pplaxblog.version}</version>
+            <version>1.0</version>
         </dependency>
         <!-- starter end -->
 
@@ -37,14 +38,14 @@
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-commons</artifactId>
-            <version>${pplaxblog.version}</version>
+            <version>1.0</version>
         </dependency>
 
         <!-- 引入pplax-feign -->
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-feign</artifactId>
-            <version>${pplaxblog.version}</version>
+            <version>1.0</version>
         </dependency>
 
     </dependencies>

@@ -325,7 +325,7 @@ export default {
 
 <style lang="scss" scoped>
 /deep/ .el-dialog__wrapper {
-  background-image: url('http://127.0.0.1:4390/api/web/style/background/loginBackground') !important;
+  background-image: url('http://pplax.xyz:4390/api/web/style/background/loginBackground') !important;
 }
 
 .dialog {

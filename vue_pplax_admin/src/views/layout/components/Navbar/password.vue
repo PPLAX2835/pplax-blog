@@ -29,7 +29,7 @@
 import { editPassword, logout } from "../../../../api/auth";
 import { getToken, removeToken, removeUserUid } from '../../../../utils/auth'
 export default {
-  name: 'ShiYiPassword',
+  name: 'Password',
   data() {
     return {
       formLabelWidth: '120px',

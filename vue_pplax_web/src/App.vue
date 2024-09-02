@@ -144,7 +144,7 @@ export default {
   &::after {
     content: '';
     z-index: -1;
-    background: url('http://127.0.0.1:4390/api/web/style/theme/background') center 0 no-repeat;
+    background: url('http://pplax.xyz:4390/api/web/style/theme/background') center 0 no-repeat;
     transition: opacity 1s;
     background-size: cover !important;
     position: fixed;

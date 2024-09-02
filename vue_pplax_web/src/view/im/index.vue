@@ -1266,7 +1266,7 @@ export default {
     }
 
     .itemBox {
-      background-image: url('http://127.0.0.1:4390/api/web/style/background/chatBackground');
+      background-image: url('http://pplax.xyz:4390/api/web/style/background/chatBackground');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;

@@ -26,7 +26,7 @@ public class LinkEditDto extends BaseDto<LinkEditDto> {
     @Range(required = false, min = 1, max = 50, groups = {Update.class, Insert.class}, message = "介绍长度限制在1到50之间")
     private String summary;
 
-    @ApiModelProperty(example = "www.pplax.xyz", notes = "url", required = true)
+    @ApiModelProperty(example = "pplax.xyz", notes = "url", required = true)
     @Range(max = 255, groups = {Update.class, Insert.class}, message = "介绍长度最大不超过255")
     private String url;
 

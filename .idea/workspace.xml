@@ -5,23 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/image-20240829152832-y0h5a6o.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image-20240829152851-9txnyj1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image-20240829152943-ji90qwz.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image-20240829153729-bgc4p7w.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image-20240829153751-5ob0d48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image-20240829153825-xaifuwc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image-20240829153841-n8cunb3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image-20240829154010-1qm6y8e.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/image-20240503204942-z6txsse.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/image-20240503205008-7plb5q8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/nacos_config-20240503210201-w0t84y5.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pplax_blog-20240503210201-9ehnzum.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/nacos_config.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/nacos_config.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/templates/mail.html" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/src/main/resources/templates/mail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/LinkEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/LinkEditDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/build/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/build/build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/build/webpack.prod.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/build/webpack.prod.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Navbar/password.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Navbar/password.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/login/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/effect.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/effect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +153,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.build (1)">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -243,43 +240,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/vue_pplax_admin/package.json" />
+    <configuration name="build (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/vue_pplax_web/package.json" />
       <command value="run" />
       <scripts>
-        <script value="dev" />
+        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/vue_pplax_web/package.json" />
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/vue_pplax_admin/package.json" />
       <command value="run" />
       <scripts>
-        <script value="serve" />
+        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="npm.serve" />
-      <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.MessageApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="npm.build" />
+      <item itemvalue="npm.build (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build (1)" />
+        <item itemvalue="npm.build" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="npm.serve" />
-        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -486,14 +483,12 @@
       <workItem from="1724659077926" duration="12937000" />
       <workItem from="1724719054579" duration="19065000" />
       <workItem from="1724809201519" duration="13844000" />
-      <workItem from="1724891627841" duration="11501000" />
-    </task>
-    <task id="LOCAL-00506" summary="fix：修复评论列表不能正常显示的问题">
-      <created>1723886913710</created>
-      <option name="number" value="00506" />
-      <option name="presentableId" value="LOCAL-00506" />
-      <option name="project" value="LOCAL" />
-      <updated>1723886913710</updated>
+      <workItem from="1724891627841" duration="14314000" />
+      <workItem from="1725109274240" duration="14000" />
+      <workItem from="1725109335703" duration="662000" />
+      <workItem from="1725110282190" duration="978000" />
+      <workItem from="1725238291976" duration="3628000" />
+      <workItem from="1725242380792" duration="3843000" />
     </task>
     <task id="LOCAL-00507" summary="fix：修复博客管理列表不能正常显示的问题">
       <created>1723887036757</created>
@@ -831,7 +826,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724914099736</updated>
     </task>
-    <option name="localTasksCounter" value="555" />
+    <task id="LOCAL-00555" summary="更新readme">
+      <created>1724917330099</created>
+      <option name="number" value="00555" />
+      <option name="presentableId" value="LOCAL-00555" />
+      <option name="project" value="LOCAL" />
+      <updated>1724917330099</updated>
+    </task>
+    <option name="localTasksCounter" value="556" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -867,7 +869,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新sql脚本" />
     <MESSAGE value="refactor:整理ip相关配置，减少冗余" />
     <MESSAGE value="refactor:整理maven" />
     <MESSAGE value="refactor:现在可以记录请求日志了" />
@@ -892,7 +893,8 @@
     <MESSAGE value="fix:修改被转发的服务因为路径重写匹配不上菜单表的问题" />
     <MESSAGE value="feat: 可以管理异常日志了" />
     <MESSAGE value="feat: 代码生成controller层添加删除接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 代码生成controller层添加删除接口" />
+    <MESSAGE value="更新readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

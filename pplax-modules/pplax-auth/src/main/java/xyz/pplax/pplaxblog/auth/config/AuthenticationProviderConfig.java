@@ -12,6 +12,7 @@ import xyz.pplax.pplaxblog.starter.security.exception.EmailUnactivatedException;
 import xyz.pplax.pplaxblog.starter.security.exception.MobileUnactivatedException;
 import xyz.pplax.pplaxblog.auth.service.UserDetailService;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
+import xyz.pplax.pplaxblog.starter.security.exception.PasswordErrorException;
 import xyz.pplax.pplaxblog.starter.security.model.SecurityUserDetails;
 
 @Configuration
@@ -34,11 +35,11 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
 
         // 验证一下userDetails有没有问题
         if (HttpStatus.EMAIL_UNACTIVATED.getMessage().equals(securityUserDetails.getUsername())) {
-            throw new EmailUnactivatedException(HttpStatus.EMAIL_UNACTIVATED.getMessage());
+            throw new EmailUnactivatedException();
         } else if (HttpStatus.MOBILE_UNACTIVATED.getMessage().equals(securityUserDetails.getUsername())) {
-            throw new MobileUnactivatedException(HttpStatus.EMAIL_UNACTIVATED.getMessage());
+            throw new MobileUnactivatedException();
         } else if (HttpStatus.ACCOUNT_IS_NOT_REGISTERED.getMessage().equals(securityUserDetails.getUsername())) {
-            throw new AccountIsNotRegisteredException(HttpStatus.ACCOUNT_IS_NOT_REGISTERED.getMessage());
+            throw new AccountIsNotRegisteredException();
         }
 
         // 获得密文密码和盐
@@ -55,7 +56,7 @@ public class AuthenticationProviderConfig implements AuthenticationProvider {
         }
 
         // 校验失败
-        throw new AuthenticationException(HttpStatus.ERROR_PASSWORD.getMessage()) {};
+        throw new PasswordErrorException();
     }
 
     @Override

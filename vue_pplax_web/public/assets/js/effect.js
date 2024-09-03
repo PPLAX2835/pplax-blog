@@ -1,4 +1,4 @@
-var stop, staticx; var img = new Image(); img.src = "http://pplax.xyz:4390/api/web/style/theme/specialEffects"; function Sakura(x, y, s, r, fn) { this.x = x; this.y = y; this.s = s; this.r = r; this.fn = fn; }
+var stop, staticx; var img = new Image(); img.src = "http://127.0.0.1:4390/api/web/style/theme/specialEffects"; function Sakura(x, y, s, r, fn) { this.x = x; this.y = y; this.s = s; this.r = r; this.fn = fn; }
 Sakura.prototype.draw = function (cxt) {
     cxt.save(); var xc = 25 * this.s / 4; cxt.translate(this.x, this.y); cxt.rotate(this.r); cxt.drawImage(img, 0, 0, 25 * this.s, 25 * this.s)
     cxt.restore();

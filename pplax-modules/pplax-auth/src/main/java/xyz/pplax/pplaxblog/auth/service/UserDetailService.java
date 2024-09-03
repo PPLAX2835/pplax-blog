@@ -40,7 +40,7 @@ public class UserDetailService  implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (StringUtils.isEmpty(username)) {
-            throw new UsernameNullException(HttpStatus.USERNAME_IS_NULL.getMessage());
+            throw new UsernameNullException();
         }
 
         // 邮箱的正则

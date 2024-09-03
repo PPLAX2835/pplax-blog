@@ -19,7 +19,7 @@ public class SuperController {
 	 * @param httpServletRequest
 	 * @return
 	 */
-	public String getUserUid(HttpServletRequest httpServletRequest) {
+	public static String getUserUid(HttpServletRequest httpServletRequest) {
 		String userUid = null;
 		String authorization = httpServletRequest.getHeader("Authorization");
 		if (!StringUtils.isEmpty(authorization)) {
@@ -37,7 +37,7 @@ public class SuperController {
 	 * @param object
 	 * @return
 	 */
-	public String toJson(Object object) {
+	public static String toJson(Object object) {
 		return JSON.toJSONString(object);
 	}
 
@@ -45,7 +45,7 @@ public class SuperController {
 	 * 将json串转为map对象
 	 * @return
 	 */
-	public HashMap toMap(String json) {
+	public static HashMap toMap(String json) {
 		return JSON.parseObject(json, HashMap.class);
 	}
 

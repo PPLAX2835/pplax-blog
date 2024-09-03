@@ -20,9 +20,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.auth.controller",
         "xyz.pplax.pplaxblog.auth.config",
         "xyz.pplax.pplaxblog.auth.service",
+        "xyz.pplax.pplaxblog.auth.handler",
         "xyz.pplax.pplaxblog.feign",
         "xyz.pplax.pplaxblog.xo.service",
-        "xyz.pplax.pplaxblog.xo.component.handler"
 })
 public class AuthApplication {
 

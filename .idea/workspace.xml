@@ -5,28 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="修改打包配置">
-      <change afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/PasswordErrorException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/handler/OAuth2ResponseExceptionTranslator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthenticationProviderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/UserDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/AccountIsNotRegisteredException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/AccountIsNotRegisteredException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/EmailUnactivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/EmailUnactivatedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/MobileUnactivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/MobileUnactivatedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/UsernameNullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-security-starter/src/main/java/xyz/pplax/pplaxblog/starter/security/exception/UsernameNullException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/pplax-xo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/effect.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/effect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/controller/SuperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/controller/SuperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,17 +50,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SayEditDto.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/say.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -145,11 +130,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="xyz.pplax.pplaxblog.starter.security.handler" />
       <recent name="xyz.pplax.pplaxblog.starter.security.exception" />
+      <recent name="xyz.pplax.pplaxblog.auth.handler" />
+      <recent name="xyz.pplax.pplaxblog.starter.security.handler" />
       <recent name="xyz.pplax.pplaxblog.message.consumer" />
       <recent name="xyz.pplax.pplaxblog.xo.constants.redis" />
-      <recent name="xyz.pplax.pplaxblog.xo.constants.type" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -887,7 +872,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/community" />
+                        <option value="community" />
                       </list>
                     </value>
                   </entry>

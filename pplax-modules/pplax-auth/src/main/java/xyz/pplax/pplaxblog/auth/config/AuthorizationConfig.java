@@ -12,8 +12,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import xyz.pplax.pplaxblog.auth.handler.OAuth2ResponseExceptionTranslator;
 import xyz.pplax.pplaxblog.commons.constants.BaseSysConstants;
 import xyz.pplax.pplaxblog.starter.security.config.JwtAccessTokenEnhancer;
 
@@ -51,7 +51,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .userDetailsService(userDetailsService)                 // 设置用户验证服务
                 .tokenStore(redisTokenStore)                              //指定 token 的存储方式
                 .tokenEnhancer(new JwtAccessTokenEnhancer())            // 指定自己的tokenEnhancer
-                .allowedTokenEndpointRequestMethods(HttpMethod.POST);   // 只允许POST提交访问令牌，uri：/oauth/token，可以添加多个
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST)   // 只允许POST提交访问令牌，uri：/oauth/token，可以添加多个
+                .exceptionTranslator(new OAuth2ResponseExceptionTranslator());// 自定义异常转换类
     }
 
     @Override

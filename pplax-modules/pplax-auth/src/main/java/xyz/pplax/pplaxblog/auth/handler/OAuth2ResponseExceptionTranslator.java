@@ -23,20 +23,20 @@ public class OAuth2ResponseExceptionTranslator implements WebResponseExceptionTr
         log.error("认证服务器认证异常：{}", e.getMessage());
         //对异常进行转换
         if (e instanceof UnsupportedGrantTypeException){
-            return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON)
+            return ResponseEntity.status(HttpStatus.INVALID_TOKEN.getCode()).contentType(MediaType.APPLICATION_JSON)
                     .body(ResponseResult.error(HttpStatus.INVALID_TOKEN));
         }
         if (e instanceof InvalidTokenException) {
-            return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON)
+            return ResponseEntity.status(HttpStatus.INVALID_TOKEN.getCode()).contentType(MediaType.APPLICATION_JSON)
                     .body(ResponseResult.error(HttpStatus.INVALID_TOKEN));
         }
         // 认证相关异常，包含自定义异常
         if (e instanceof AuthenticationException) {
-            return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON)
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED.getCode()).contentType(MediaType.APPLICATION_JSON)
                     .body(ResponseResult.error(HttpStatus.UNAUTHORIZED.getCode(), e.getMessage()));
         }
 
-        return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON)
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.getCode()).contentType(MediaType.APPLICATION_JSON)
                 .body(ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 

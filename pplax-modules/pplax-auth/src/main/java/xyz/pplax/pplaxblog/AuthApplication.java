@@ -1,6 +1,7 @@
 package xyz.pplax.pplaxblog;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringCloudApplication
 @EnableSwagger2
 @EnableFeignClients
+@ServletComponentScan
 @ComponentScan(basePackages = {
         "xyz.pplax.pplaxblog.starter.security",
         "xyz.pplax.pplaxblog.starter.durid",
@@ -23,6 +25,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "xyz.pplax.pplaxblog.auth.handler",
         "xyz.pplax.pplaxblog.feign",
         "xyz.pplax.pplaxblog.xo.service",
+        "xyz.pplax.pplaxblog.xo.component.filter"
 })
 public class AuthApplication {
 

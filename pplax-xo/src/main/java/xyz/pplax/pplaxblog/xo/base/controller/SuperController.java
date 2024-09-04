@@ -25,8 +25,10 @@ public class SuperController {
 		if (!StringUtils.isEmpty(authorization)) {
 			String accessToken = authorization.replace("Bearer ", "");
 			String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);
-			JSONObject jsonObject = JSON.parseObject(payloadByBase64);
-			userUid = (String) jsonObject.get("uid");
+			if (!StringUtils.isEmpty(payloadByBase64)) {
+				JSONObject jsonObject = JSON.parseObject(payloadByBase64);
+				userUid = (String) jsonObject.get("uid");
+			}
 		}
 
 		return userUid;

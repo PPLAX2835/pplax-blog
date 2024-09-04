@@ -98,16 +98,6 @@ public class AuthServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
                 }
         );
 
-        Integer code = (Integer) map.get("code");
-        if (code == null) {
-            log.warn("token未获取到");
-            return ResponseResult.error(HttpStatus.TOKEN_GET_FAILED);
-        }
-
-        if (!code.equals(HttpStatus.OK.getCode())) {
-            return ResponseResult.error(code, (String) map.get("message"));
-        }
-
         if (!StringUtils.isEmpty((String) map.get("access_token"))) {
             log.info("获取token成功，进行登录信息的储存");
 

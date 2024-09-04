@@ -3,6 +3,7 @@ package xyz.pplax.pplaxblog.xo.component.handler;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.api.IErrorCode;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class GlobalExceptionApiHandler {
      * REST 业务异常
      */
     @ExceptionHandler(value = Exception.class)
-    public ResponseResult handleException(Exception e, HandlerMethod handlerMethod, HttpServletRequest httpServletRequest) throws IOException {
+    public ResponseResult handleException(Exception e, HandlerMethod handlerMethod, HttpServletRequest httpServletRequest) throws IOException, ClassNotFoundException {
 
         // 发送异常信息
         sendToMq(e, handlerMethod, httpServletRequest);
@@ -85,6 +86,15 @@ public class GlobalExceptionApiHandler {
             }
         }
 
+        /*
+         * Feign异常
+         */
+        if (e instanceof FeignException) {
+            FeignException feignException = (FeignException) e;
+
+            return JSON.toJavaObject(JSON.parseObject(feignException.contentUTF8()), ResponseResult.class);
+        }
+
         /**
          * 自定义异常
          */
@@ -104,7 +114,7 @@ public class GlobalExceptionApiHandler {
         return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    protected void sendToMq(Exception e, HandlerMethod handlerMethod, HttpServletRequest httpServletRequest) throws IOException {
+    private void sendToMq(Exception e, HandlerMethod handlerMethod, HttpServletRequest httpServletRequest) throws IOException {
         /*
          * 封装异常信息
          */

@@ -27,4 +27,25 @@
         </dependency>
 
     </dependencies>
+
+    <!-- Package as an executable jar -->
+    <build>
+        <finalName>pplax-thymeleaf-starter</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**.*</include>
+                    <include>**/*.*</include><!-- i18n能读取到 -->
+                    <include>**/*/*.*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

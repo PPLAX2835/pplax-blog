@@ -244,7 +244,7 @@ public class FileService {
     private QiniuUtils getQiniuUtils() {
         SiteSetting qiniuEndpointSetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_ENDPOINT_NAME_EN);
         SiteSetting qiniuBucketNameSetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_BUCKET_NAME_NAME_EN);
-        SiteSetting qiniuAccessKeySetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_SECRET_KEY_NAME_EN);
+        SiteSetting qiniuAccessKeySetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_ACCESS_KEY_NAME_EN);
         SiteSetting qiniuSecretKeySetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_SECRET_KEY_NAME_EN);
         SiteSetting qiniuZoneSetting = siteSettingService.getByNameEn(SiteSettingConstants.QINIU_ZONE_NAME_EN);
 

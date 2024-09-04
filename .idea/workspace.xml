@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix:加回来feign异常处理（优化）">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_qiniu_qiniu_java_sdk_7_2_29.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_qiniu_qiniu_java_sdk_7_15_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-freemarker-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-freemarker-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-iputils-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-iputils-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-thymeleaf-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-thymeleaf-starter/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +144,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="JUnit.FileTestApplication.standardUpLoad_file">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -158,6 +158,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UploadDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.file.UploadDemo" />
+      <module name="pplax-file" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.file.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileTestApplication.standardUpLoad_file" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pplax-file" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.file.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="xyz.pplax.pplaxblog.file" />
+      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.file.FileTestApplication" />
+      <option name="METHOD_NAME" value="standardUpLoad_file" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -170,31 +199,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="pplax-auth [spring-boot:run]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="spring-boot:run" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/pplax-modules/pplax-auth" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
     </configuration>
     <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-admin" />
@@ -203,14 +207,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pplax-auth" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="xyz.pplax.pplaxblog.AuthApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -271,23 +269,24 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Maven.pplax-auth [spring-boot:run]" />
       <item itemvalue="npm.serve" />
       <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.MessageApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
-      <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="JUnit.FileTestApplication.standardUpLoad_file" />
+      <item itemvalue="Application.UploadDemo" />
+      <item itemvalue="Spring Boot.AuthApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
-        <item itemvalue="npm.serve" />
+        <item itemvalue="JUnit.FileTestApplication.standardUpLoad_file" />
+        <item itemvalue="Application.UploadDemo" />
         <item itemvalue="npm.dev" />
-        <item itemvalue="Maven.pplax-auth [spring-boot:run]" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -504,14 +503,8 @@
       <workItem from="1725274038146" duration="8057000" />
       <workItem from="1725320783194" duration="177000" />
       <workItem from="1725323606580" duration="1383000" />
-      <workItem from="1725414574940" duration="8632000" />
-    </task>
-    <task id="LOCAL-00510" summary="feat：新增代码生成功能，目前实现查询数据库表">
-      <created>1723950278282</created>
-      <option name="number" value="00510" />
-      <option name="presentableId" value="LOCAL-00510" />
-      <option name="project" value="LOCAL" />
-      <updated>1723950278283</updated>
+      <workItem from="1725414574940" duration="10505000" />
+      <workItem from="1725446945219" duration="5011000" />
     </task>
     <task id="LOCAL-00511" summary="feat：可以查看表字段信息了">
       <created>1723957868241</created>
@@ -849,7 +842,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725433644133</updated>
     </task>
-    <option name="localTasksCounter" value="559" />
+    <task id="LOCAL-00559" summary="fix:配置pom.xml资源编译">
+      <created>1725436352609</created>
+      <option name="number" value="00559" />
+      <option name="presentableId" value="LOCAL-00559" />
+      <option name="project" value="LOCAL" />
+      <updated>1725436352609</updated>
+    </task>
+    <option name="localTasksCounter" value="560" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -885,7 +885,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix:修改查询menu表时查出多个符合条件的导致异常和消息队列阻塞的问题" />
     <MESSAGE value="调整全局异常api响应处理类的位置" />
     <MESSAGE value="优化全局拦截器逻辑" />
     <MESSAGE value="refactor: 替换所有System.out.print相关的方法为log的" />
@@ -910,7 +909,8 @@
     <MESSAGE value="修改打包配置" />
     <MESSAGE value="fix:优化oauth2的异常处理（终于看破本质了，那个feign异常终于能去掉了）" />
     <MESSAGE value="fix:加回来feign异常处理（优化）" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:加回来feign异常处理（优化）" />
+    <MESSAGE value="fix:配置pom.xml资源编译" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:配置pom.xml资源编译" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -923,6 +923,11 @@
           <url>jar://E:/Environment/Maven/Repository/org/springframework/cloud/spring-cloud-gateway-core/2.2.2.RELEASE/spring-cloud-gateway-core-2.2.2.RELEASE.jar!/org/springframework/cloud/gateway/filter/ReactiveLoadBalancerClientFilter.class</url>
           <line>41</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pplax-starter/pplax-email-starter/src/main/java/xyz/pplax/pplaxblog/starter/email/service/EmailService.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

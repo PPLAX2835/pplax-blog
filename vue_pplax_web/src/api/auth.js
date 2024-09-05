@@ -8,7 +8,7 @@ import request from "@/utils/request";
  */
 export function login(data) {
   return service({
-    url: '/web/auth/token',
+    url: '/pOauth/token',
     method: 'post',
     data
   })
@@ -20,7 +20,7 @@ export function login(data) {
  */
 export function logout() {
   return service({
-    url: '/web/auth/token',
+    url: '/pOauth/token',
     method: 'delete'
   })
 }
@@ -32,14 +32,14 @@ export function logout() {
  */
 export function register(data) {
   return service({
-    url: '/web/auth/register',
+    url: '/pOauth/register',
     method: 'post',
     data
   })
 }
-export function forgetPassword(data) {
+export function editPassword(data) {
   return request({
-    url: '/web/auth/password',
+    url: '/pOauth/password',
     method: 'put',
     data
   })
@@ -50,7 +50,7 @@ export function forgetPassword(data) {
  */
 export function getImageCaptcha() {
   return service({
-    url: '/web/auth/imageCaptcha',
+    url: '/pOauth/imageCaptcha',
     method: 'get',
   })
 }
@@ -61,18 +61,10 @@ export function getImageCaptcha() {
  */
 export function getEmailCaptcha(email) {
   return service({
-    url: '/web/auth/emailCaptcha',
+    url: '/pOauth/emailCaptcha',
     method: 'get',
     params: {
       email: email
     }
-  })
-}
-
-export function editPassword(data) {
-  return service({
-    url: '/web/auth/password',
-    method: 'put',
-    data
   })
 }

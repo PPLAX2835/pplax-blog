@@ -1,5 +1,6 @@
 package xyz.pplax.pplaxblog.auth.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(value = "/pOauth")
+@Api(value="自定义登录认证相关Controller",tags={"自定义登录认证相关Controller"})
 public class POauthController extends SuperController {
 
     @Autowired

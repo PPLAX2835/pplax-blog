@@ -1,7 +1,5 @@
 package xyz.pplax.pplaxblog.auth.service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +20,11 @@ import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.CaptchaUtils;
 import xyz.pplax.pplaxblog.commons.utils.IpUtils;
-import xyz.pplax.pplaxblog.commons.utils.JwtUtil;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AuthFeignClient;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
+import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
 import xyz.pplax.pplaxblog.xo.constants.redis.AuthRedisConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.UserSQLConstants;
 import xyz.pplax.pplaxblog.xo.dto.CaptchaDto;
@@ -150,7 +148,7 @@ public class POauthService {
             log.info("登录信息更新");
 
             // 记录token到缓存
-            redisService.setCacheObject(AuthRedisConstants.USER_TOKEN + ":" + user.getUid(), map.get("access_token"));
+            redisService.setCacheObject(AuthRedisConstants.USER_TOKEN + ":" + user.getUid(), resultToken.getValue());
 
             // 移除加密盐
             map.remove(BaseSysConstants.SALT);
@@ -172,6 +170,8 @@ public class POauthService {
         }
         OAuth2AccessToken oAuth2AccessToken = redisTokenStore.readAccessToken(token);
         redisTokenStore.removeAccessToken(oAuth2AccessToken);
+        // 移除缓存token
+        redisService.deleteObject(AuthRedisConstants.USER_TOKEN + ":" + SuperController.getUserUid(httpServletRequest));
     }
 
 
@@ -230,8 +230,10 @@ public class POauthService {
         }
 
         // 查找用户
-        String userUid = SuperController.getUserUid(httpServletRequest);
-        User user = userService.getById(userUid);
+        PQueryWrapper<User> pQueryWrapper = new PQueryWrapper<>();
+        pQueryWrapper.eq(UserSQLConstants.EMAIL, editPasswordDto.getEmail());
+
+        User user = userService.getOne(pQueryWrapper);
         if (user == null) {
             throw new POauthException(HttpStatus.EMAIL_UNACTIVATED);
         }

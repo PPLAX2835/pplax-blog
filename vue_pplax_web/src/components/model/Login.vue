@@ -93,10 +93,9 @@
 </template>
 
 <script>
-import { wxIsLogin, getWechatLoginCode } from "@/api";
-import { login, getEmailCaptcha, register, forgetPassword} from "@/api/auth";
+import {login, getEmailCaptcha, register, editPassword} from "@/api/auth";
 import { isUsernameExist } from "@/api/user";
-import { setUrl, setToken, setUserUid } from '@/utils/cookieUtil'
+import { setToken, setUserUid } from '@/utils/cookieUtil'
 import sliderVerify from "@/components/sliderVerify/sliderVerify";
 
 export default {
@@ -175,7 +174,7 @@ export default {
         forgetPassword() {
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    forgetPassword(this.form).then(res => {
+                  editPassword(this.form).then(res => {
 
                         this.$toast.success('修改成功');
                         this.$store.state.loginFlag = true;
@@ -303,8 +302,8 @@ export default {
                         if (res.code !== 200) {
                           that.$toast.error(res.code + ' ' + res.message + ": " + (res.data ? res.data.error_description : ''));
                         } else {
-                          setToken('Bearer ' + res.extra.access_token)
-                          setUserUid(res.extra.uid)
+                          setToken('Bearer ' + res.data.access_token)
+                          setUserUid(res.data.uid)
                           that.$toast.success("登录成功");
                           setTimeout(function (){
                             location.reload()

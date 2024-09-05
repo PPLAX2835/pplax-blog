@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="一些前端资源地址改为线上的">
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/exception/POauthException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="初步重构认证代码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/controller/SuperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/controller/SuperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/PPLAXOauthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/PPLAXOauthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" root0="FORCE_HIGHLIGHTING" />
@@ -143,7 +145,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -251,8 +253,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -472,14 +474,8 @@
       <workItem from="1725414574940" duration="10505000" />
       <workItem from="1725446945219" duration="5301000" />
       <workItem from="1725516538729" duration="3129000" />
-      <workItem from="1725539382307" duration="1625000" />
-    </task>
-    <task id="LOCAL-00512" summary="fix：修复角色权限配置菜单的全选反选问题">
-      <created>1723966065215</created>
-      <option name="number" value="00512" />
-      <option name="presentableId" value="LOCAL-00512" />
-      <option name="project" value="LOCAL" />
-      <updated>1723966065215</updated>
+      <workItem from="1725539382307" duration="1732000" />
+      <workItem from="1725541915296" duration="2703000" />
     </task>
     <task id="LOCAL-00513" summary="fix：修复角色权限配置菜单的全选反选问题和调整接口地址">
       <created>1723967756584</created>
@@ -817,7 +813,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725452279892</updated>
     </task>
-    <option name="localTasksCounter" value="561" />
+    <task id="LOCAL-00561" summary="初步重构认证代码">
+      <created>1725541123424</created>
+      <option name="number" value="00561" />
+      <option name="presentableId" value="LOCAL-00561" />
+      <option name="project" value="LOCAL" />
+      <updated>1725541123425</updated>
+    </task>
+    <option name="localTasksCounter" value="562" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -853,7 +856,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="优化全局拦截器逻辑" />
     <MESSAGE value="refactor: 替换所有System.out.print相关的方法为log的" />
     <MESSAGE value="fix: 调整文件管理接口，修改swagger地址被占用的情况" />
     <MESSAGE value="feat:完成网关聚合swagger" />
@@ -878,7 +880,8 @@
     <MESSAGE value="fix:加回来feign异常处理（优化）" />
     <MESSAGE value="fix:配置pom.xml资源编译" />
     <MESSAGE value="fix:修改七牛云不能上传的bug，被自己蠢到" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:修改七牛云不能上传的bug，被自己蠢到" />
+    <MESSAGE value="初步重构认证代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="初步重构认证代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

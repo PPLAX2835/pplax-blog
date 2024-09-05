@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_qiniu_qiniu_java_sdk_7_2_29.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_qiniu_qiniu_java_sdk_7_15_1.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix:修改七牛云不能上传的bug，被自己蠢到">
+      <change afterPath="$PROJECT_DIR$/pplax-feign/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/effect.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/effect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/view/im/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +148,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="JUnit.FileTestApplication.standardUpLoad_file">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -154,35 +158,6 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="amqp-api" />
       <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UploadDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.file.UploadDemo" />
-      <module name="pplax-file" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.file.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FileTestApplication.standardUpLoad_file" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="pplax-file" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.file.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="xyz.pplax.pplaxblog.file" />
-      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.file.FileTestApplication" />
-      <option name="METHOD_NAME" value="standardUpLoad_file" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -275,16 +250,12 @@
       <item itemvalue="Spring Boot.MessageApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
-      <item itemvalue="Spring Boot.GatewayApplication" />
-      <item itemvalue="JUnit.FileTestApplication.standardUpLoad_file" />
-      <item itemvalue="Application.UploadDemo" />
       <item itemvalue="Spring Boot.AuthApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="JUnit.FileTestApplication.standardUpLoad_file" />
-        <item itemvalue="Application.UploadDemo" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
       </list>
@@ -504,14 +475,8 @@
       <workItem from="1725320783194" duration="177000" />
       <workItem from="1725323606580" duration="1383000" />
       <workItem from="1725414574940" duration="10505000" />
-      <workItem from="1725446945219" duration="5011000" />
-    </task>
-    <task id="LOCAL-00511" summary="feat：可以查看表字段信息了">
-      <created>1723957868241</created>
-      <option name="number" value="00511" />
-      <option name="presentableId" value="LOCAL-00511" />
-      <option name="project" value="LOCAL" />
-      <updated>1723957868241</updated>
+      <workItem from="1725446945219" duration="5301000" />
+      <workItem from="1725516538729" duration="3129000" />
     </task>
     <task id="LOCAL-00512" summary="fix：修复角色权限配置菜单的全选反选问题">
       <created>1723966065215</created>
@@ -849,7 +814,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725436352609</updated>
     </task>
-    <option name="localTasksCounter" value="560" />
+    <task id="LOCAL-00560" summary="fix:修改七牛云不能上传的bug，被自己蠢到">
+      <created>1725452279892</created>
+      <option name="number" value="00560" />
+      <option name="presentableId" value="LOCAL-00560" />
+      <option name="project" value="LOCAL" />
+      <updated>1725452279892</updated>
+    </task>
+    <option name="localTasksCounter" value="561" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -885,7 +857,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="调整全局异常api响应处理类的位置" />
     <MESSAGE value="优化全局拦截器逻辑" />
     <MESSAGE value="refactor: 替换所有System.out.print相关的方法为log的" />
     <MESSAGE value="fix: 调整文件管理接口，修改swagger地址被占用的情况" />
@@ -910,7 +881,8 @@
     <MESSAGE value="fix:优化oauth2的异常处理（终于看破本质了，那个feign异常终于能去掉了）" />
     <MESSAGE value="fix:加回来feign异常处理（优化）" />
     <MESSAGE value="fix:配置pom.xml资源编译" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:配置pom.xml资源编译" />
+    <MESSAGE value="fix:修改七牛云不能上传的bug，被自己蠢到" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:修改七牛云不能上传的bug，被自己蠢到" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -928,6 +900,16 @@
           <url>file://$PROJECT_DIR$/pplax-starter/pplax-email-starter/src/main/java/xyz/pplax/pplaxblog/starter/email/service/EmailService.java</url>
           <line>50</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/QiniuUtils.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

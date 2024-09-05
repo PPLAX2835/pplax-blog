@@ -15,13 +15,22 @@ import java.util.HashMap;
 public class SuperController {
 
 	/**
+	 * 获得请求头Authorization
+	 * @param httpServletRequest
+	 * @return
+	 */
+	public static String getHeaderAuthorization(HttpServletRequest httpServletRequest) {
+		return httpServletRequest.getHeader("Authorization");
+	}
+
+	/**
 	 * 获取登录用户uid
 	 * @param httpServletRequest
 	 * @return
 	 */
 	public static String getUserUid(HttpServletRequest httpServletRequest) {
 		String userUid = null;
-		String authorization = httpServletRequest.getHeader("Authorization");
+		String authorization = getHeaderAuthorization(httpServletRequest);
 		if (!StringUtils.isEmpty(authorization)) {
 			String accessToken = authorization.replace("Bearer ", "");
 			String payloadByBase64 = JwtUtil.getPayloadByBase64(accessToken);

@@ -132,7 +132,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item v-if="editingBlogUid" label="标题图" prop="coverImageUid" :label-width="formLabelWidth">
+            <el-form-item label="标题图" prop="coverImageUid" :label-width="formLabelWidth">
               <el-col :span="2">
                 <el-upload action="" class="avatar-uploader" :show-file-list="false"
                            :before-upload="uploadBefore" :http-request="uploadSelectionCoverImage">

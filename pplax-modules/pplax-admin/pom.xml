@@ -31,6 +31,12 @@
             <artifactId>pplax-xo</artifactId>
         </dependency>
 
+        <!-- 引入pplax-commons相关 -->
+        <dependency>
+            <groupId>xyz.pplax</groupId>
+            <artifactId>pplax-commons</artifactId>
+        </dependency>
+
         <!-- 引入starter 相关 -->
         <dependency>
             <groupId>xyz.pplax</groupId>
@@ -51,10 +57,6 @@
         <dependency>
             <groupId>xyz.pplax</groupId>
             <artifactId>pplax-freemarker-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-iputils-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>xyz.pplax</groupId>

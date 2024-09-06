@@ -138,14 +138,11 @@
                 <filtering>false</filtering>
             </resource>
             <resource>
-                <directory>${basedir}/src/main/resources</directory>
+                <directory>src/main/resources</directory>
                 <includes>
-                    <!--<include>contexts/</include>-->
-                    <!--<include>*.xml</include>-->
-                    <include>*.yml</include>
-                    <include>*.properties</include>
-                    <include>*.xml</include>
-                    <include>enc_pri</include>
+                    <include>**.*</include>
+                    <include>**/*.*</include><!-- i18n能读取到 -->
+                    <include>**/*/*.*</include>
                 </includes>
             </resource>
             <!--end-->

@@ -15,7 +15,6 @@
         <module>pplax-email-starter</module>
         <module>pplax-freemarker-starter</module>
         <module>pplax-thymeleaf-starter</module>
-        <module>pplax-iputils-starter</module>
     </modules>
 
     <parent>

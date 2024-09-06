@@ -17,7 +17,6 @@
         <module name="pplax-email-starter" />
         <module name="pplax-security-starter" />
         <module name="pplax-amqp-starter" />
-        <module name="pplax-iputils-starter" />
         <module name="pplax-message" />
         <module name="pplax-redis-starter" />
         <module name="pplax-thymeleaf-starter" />

@@ -67,11 +67,6 @@
                 <artifactId>pplax-thymeleaf-starter</artifactId>
                 <version>1.0</version>
             </dependency>
-            <dependency>
-                <groupId>xyz.pplax</groupId>
-                <artifactId>pplax-iputils-starter</artifactId>
-                <version>1.0</version>
-            </dependency>
             <!-- starter end -->
 
             <!-- 引入pplax-feign相关 -->

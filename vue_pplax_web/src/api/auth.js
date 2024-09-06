@@ -37,6 +37,12 @@ export function register(data) {
     data
   })
 }
+
+/**
+ * 编辑密码
+ * @param data
+ * @returns {*}
+ */
 export function editPassword(data) {
   return request({
     url: '/pOauth/password',

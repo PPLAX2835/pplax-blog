@@ -7,7 +7,7 @@ import service from "../utils/request";
  */
 export function login(data) {
   return service({
-    url: '/admin/auth/token',
+    url: '/pOauth/token',
     method: 'post',
     data
   })
@@ -19,7 +19,7 @@ export function login(data) {
  */
 export function logout() {
   return service({
-    url: '/admin/auth/token',
+    url: '/pOauth/token',
     method: 'delete'
   })
 }
@@ -30,14 +30,33 @@ export function logout() {
  */
 export function getCaptcha() {
   return service({
-    url: '/admin/auth/imageCaptcha',
+    url: '/pOauth/imageCaptcha',
     method: 'get',
   })
 }
 
+/**
+ * 获得邮箱验证码
+ * @returns {*}
+ */
+export function getEmailCaptcha(email) {
+  return service({
+    url: '/pOauth/emailCaptcha',
+    method: 'get',
+    params: {
+      email: email
+    }
+  })
+}
+
+/**
+ * 编辑密码
+ * @param data
+ * @returns {*}
+ */
 export function editPassword(data) {
   return service({
-    url: '/admin/auth/password',
+    url: '/pOauth/password',
     method: 'put',
     data
   })

@@ -41,7 +41,13 @@ public class UserInfoController extends SuperController {
     })
     @GetMapping(value = "")
     public ResponseResult getUserInfo (@PathVariable("userUid") String userUid) {
-        return success(userInfoService.getByUserUid(userUid));
+        User user = userService.getById(userUid);
+        if (user != null) {
+            user.setUserInfo(userInfoService.getById(user.getUserInfoUid()));
+            user.sensitiveDataRemove();
+        }
+
+        return success(user);
     }
 
     @ApiOperation(value="更新用户信息", notes="更新用户信息")

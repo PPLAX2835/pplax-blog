@@ -217,11 +217,10 @@ public class POauthService {
 
     /**
      * 忘记密码，重置操作
-     * @param httpServletRequest
      * @param editPasswordDto
      * @return
      */
-    public Boolean editPassword(HttpServletRequest httpServletRequest, EditPasswordDto editPasswordDto) {
+    public Boolean editPassword(EditPasswordDto editPasswordDto) {
         // 检查验证码
         String code = redisService.getCacheObject(AuthRedisConstants.EMAIL_CODE + AuthRedisConstants.SEGMENTATION + editPasswordDto.getEmail());
         // 检查验证码

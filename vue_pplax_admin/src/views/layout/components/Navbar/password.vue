@@ -6,14 +6,22 @@
     <div>
       <el-dialog width="500px" title="修改密码" :visible.sync="dialogFormVisible">
         <el-form ref="passwordForm" label-width="130px" :rules="rule" :model="form">
-          <el-form-item prop="oldPassword" label="旧密码" :label-width="formLabelWidth">
-            <el-input type="password" style="width: 250px" v-model="form.oldPassword" autocomplete="off"></el-input>
+          <el-form-item prop="email" label="邮箱" :label-width="formLabelWidth">
+            <el-input style="width: 250px" v-model="form.email" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item prop="newPassword" label="新密码" :label-width="formLabelWidth">
-            <el-input type="password" style="width: 250px" v-model="form.newPassword" autocomplete="off"></el-input>
+          <el-form-item prop="password" label="新密码" :label-width="formLabelWidth">
+            <el-input type="password" style="width: 250px" v-model="form.password" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item prop="confirmPassword" label="确认密码" :label-width="formLabelWidth">
-            <el-input type="password" style="width: 250px" v-model="form.confirmPassword" autocomplete="off"></el-input>
+          <el-form-item prop="code" label="邮箱验证码" :label-width="formLabelWidth">
+            <el-row>
+              <el-col :span="8">
+                <el-input v-model="form.code" autocomplete="off"></el-input>
+              </el-col>
+              <el-col :span="4">
+                <el-button v-if="countdown === 0" @click="handleSendEmailCode" type="primary">发送邮箱验证码</el-button>
+                <el-button v-else disabled>{{ countdown }}秒后可重新发送</el-button>
+              </el-col>
+            </el-row>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -26,8 +34,9 @@
 </template>
 
 <script>
-import { editPassword, logout } from "../../../../api/auth";
-import { getToken, removeToken, removeUserUid } from '../../../../utils/auth'
+import {editPassword, getEmailCaptcha, logout} from "../../../../api/auth";
+import { removeToken, removeUserUid } from '../../../../utils/auth'
+import {isUsernameExist} from "../../../../api/user";
 export default {
   name: 'Password',
   data() {
@@ -35,25 +44,25 @@ export default {
       formLabelWidth: '120px',
       dialogFormVisible: false,
       form: {
-        oldPassword: null,
-        newPassword: null,
-        confirmPassword: null,
+        email: null,
+        password: null,
+        code: null
       },
+      countdown: 0,
+      countdownTimer: null,
       rule: {
-        oldPassword: [
-          { required: true, message: '请输入', trigger: 'blur' },
-          { pattern: /^[0-9a-zA-Z_]+$/, message: '请輸入字码、数字、下划线格式', trigger: 'blur' },
-          // { min: 8, max: 16, message: '长度在8到16个字符' },
-        ],
-        newPassword: [
+        password: [
           { required: true, message: '请输入', trigger: 'blur' },
           { pattern: /^[0-9a-zA-Z_]+$/, message: '请輸入字码、数字、下划线格式', trigger: 'blur' },
           { min: 8, max: 16, message: '长度在8到16个字符' },
         ],
-        confirmPassword: [
+        code: [
           { required: true, message: '请输入', trigger: 'blur' },
-          { pattern: /^[0-9a-zA-Z_]+$/, message: '请輸入字码、数字、下划线格式', trigger: 'blur' },
-          { min: 8, max: 16, message: '长度在8到16个字符' },
+        ],
+        email: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' },
+          { pattern: /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/, message: '请输入合法的邮箱', trigger: 'blur' },
+          { validator: this.isEmailCorrect, trigger: 'blur' },
         ],
       }
     }
@@ -63,6 +72,33 @@ export default {
       console.log('open')
       this.dialogFormVisible = true
       this.form = {}
+    },
+    handleSendEmailCode() {
+      getEmailCaptcha(this.$store.state.user.email).then(res => {
+        this.$message.success("邮件已发送，请注意查收");
+        this.countdown = 60
+        let that = this
+        this.countdownTimer = setInterval(function () {
+          that.countdown--
+          if (that.countdown === 0) {
+            clearInterval(that.countdownTimer)
+          }
+        }, 1000)
+      })
+    },
+
+    /**
+     * 检查邮箱是否是自己的邮箱
+     * @param rule
+     * @param value
+     * @param callback
+     */
+    isEmailCorrect(rule, value, callback) {
+      if (this.$store.state.user.email !== value) {
+          callback(new Error('请输入自己的邮箱'))
+      } else {
+        callback()
+      }
     },
     edit() {
       this.$refs['passwordForm'].validate((valid) => {

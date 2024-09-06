@@ -6,6 +6,7 @@ const user = {
   state: {
     nickname: '',
     avatar: '',
+    email: '',
     menu: [],
     roleName: ''
   },
@@ -16,6 +17,9 @@ const user = {
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
+    },
+    SET_EMAIL: (state, email) => {
+      state.email = email
     },
     SET_MENU: (state, menu) => {
       state.menu = menu
@@ -34,7 +38,7 @@ const user = {
       return new Promise((resolve, reject) => {
 
         login(loginForm).then(response => {
-          const data = response.extra
+          const data = response.data
           // 存token
           setToken('Bearer ' + data.access_token)
           // 存用户uid
@@ -52,10 +56,13 @@ const user = {
       return new Promise((resolve, reject) => {
         getUserInfo(getUserUid()).then(response => {
           const data = response.data
+          const userInfo = data.userInfo
           // 存昵称
-          commit('SET_NICKNAME', data.nickname)
+          commit('SET_NICKNAME', userInfo.nickname)
           // 存头像
-          commit('SET_AVATAR', data.avatar.fileUrl)
+          commit('SET_AVATAR', userInfo.avatar.fileUrl)
+          // 存邮箱
+          commit('SET_EMAIL', data.email)
 
           resolve(response)
         }).catch(error => {

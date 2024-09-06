@@ -54,8 +54,8 @@ public class POauthController extends SuperController {
 
     @ApiOperation(value = "修改密码", notes = "修改密码", response = String.class)
     @PutMapping(value = "/password")
-    public ResponseResult editPassword(HttpServletRequest httpServletRequest, @RequestBody EditPasswordDto editPasswordDto) {
-        pOauthService.editPassword(httpServletRequest, editPasswordDto);
+    public ResponseResult editPassword(@RequestBody EditPasswordDto editPasswordDto) {
+        pOauthService.editPassword(editPasswordDto);
         return success();
     }
 

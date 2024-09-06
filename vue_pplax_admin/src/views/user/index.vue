@@ -33,6 +33,13 @@
         </el-table-column>
         <el-table-column align="center" prop="username" label="用户名" width="120" />
         <el-table-column align="center" prop="userInfo.nickname" label="昵称" width="180" />
+        <el-table-column align="center" prop="email" label="邮箱" width="150" />
+        <el-table-column align="center" label="邮箱是否激活" width="120">
+          <template slot-scope="scope">
+            <el-tag type="success" v-if="scope.row.isEmailActivated">是</el-tag>
+            <el-tag type="warning" v-else>否</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column align="center" label="用户角色" width="120">
           <template slot-scope="scope">
             <el-tag type="info">
@@ -111,6 +118,15 @@
         </el-form-item>
         <el-form-item prop="username" label="用户名" :label-width="formLabelWidth">
           <el-input v-model="form.username" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item prop="email" label="邮箱" :label-width="formLabelWidth">
+          <el-input v-model="form.email" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item prop="status" label="是否激活邮箱" :label-width="formLabelWidth">
+          <div>
+            <el-radio v-model="form.isEmailActivated" :label="true" border>是</el-radio>
+            <el-radio v-model="form.isEmailActivated" :label="false" border>否</el-radio>
+          </div>
         </el-form-item>
         <el-form-item v-if="!isEditForm" prop="password" label="密码" :label-width="formLabelWidth">
           <el-input v-model="form.password" type="password" autocomplete="off"></el-input>
@@ -191,6 +207,7 @@ export default {
       spaceBackgroundPictureUrl: '',
       confirmPassword: '',
       form: {
+        isEmailActivated: '',
         avatarPictureUid: '',
         spaceBackgroundPictureUid: '',
         password: '',
@@ -207,6 +224,10 @@ export default {
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { validator: this.isExist, trigger: 'change'},
           { min: 3, max: 30, message: '长度在3到30个字符' },
+        ],
+        email: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' },
+          { pattern: /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/, message: '请输入合法的邮箱', trigger: 'blur' }
         ],
         nickname: [
           { required: true, message: '请输入昵称', trigger: 'blur' },
@@ -457,6 +478,8 @@ export default {
       }
       this.editingUserUid = scope.row.uid
       this.editingUserUsername = scope.row.username
+      this.form.email = scope.row.email
+      this.form.isEmailActivated = scope.row.isEmailActivated
 
       this.beforeShow("修改用户", 1)
       this.$nextTick(() => {

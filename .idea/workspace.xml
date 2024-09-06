@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-commons/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-iputils-starter/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-iputils-starter/pplax-iputils-starter.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-iputils-starter/src/main/resources/ip2region.xdb" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/resources/ip2region.xdb" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="去掉了iputils-starter">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -502,14 +496,7 @@
       <workItem from="1725516538729" duration="3129000" />
       <workItem from="1725539382307" duration="1732000" />
       <workItem from="1725541915296" duration="2791000" />
-      <workItem from="1725617734491" duration="10675000" />
-    </task>
-    <task id="LOCAL-00520" summary="feat:现在可以将生成的代码作为zip下载下来了">
-      <created>1724243585745</created>
-      <option name="number" value="00520" />
-      <option name="presentableId" value="LOCAL-00520" />
-      <option name="project" value="LOCAL" />
-      <updated>1724243585745</updated>
+      <workItem from="1725617734491" duration="12447000" />
     </task>
     <task id="LOCAL-00521" summary="feat:可以根据参数生成controller或xo">
       <created>1724398297144</created>
@@ -847,7 +834,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725628777079</updated>
     </task>
-    <option name="localTasksCounter" value="569" />
+    <task id="LOCAL-00569" summary="去掉了iputils-starter">
+      <created>1725629480933</created>
+      <option name="number" value="00569" />
+      <option name="presentableId" value="LOCAL-00569" />
+      <option name="project" value="LOCAL" />
+      <updated>1725629480933</updated>
+    </task>
+    <option name="localTasksCounter" value="570" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -883,7 +877,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor:整理file服务的swagger" />
     <MESSAGE value="fix:处理消息队列中requestLog的address被封装乱码的问题" />
     <MESSAGE value="refactor:简单将file服务的相同代码封装为方法" />
     <MESSAGE value="feat:requestLog管理可以进行删除和批量删除了&#10;fix:修复网关过滤器在遇到请求体参数为数组的情况fastjson抛异常的问题" />
@@ -908,7 +901,8 @@
     <MESSAGE value="图片验证码key加上ip，防止一个请求使用了来自另一个请求生成的验证码通过的情况" />
     <MESSAGE value="fix:修复撰写博客时不能上传封面图的问题" />
     <MESSAGE value="整理nacos配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理nacos配置" />
+    <MESSAGE value="去掉了iputils-starter" />
+    <option name="LAST_COMMIT_MESSAGE" value="去掉了iputils-starter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -931,6 +925,11 @@
           <url>file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/utils/QiniuUtils.java</url>
           <line>73</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserInfoServiceImpl.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -85,6 +85,12 @@ public class UserInfoServiceImpl extends SuperServiceImpl<UserInfoMapper, UserIn
             user.setStatus(userInfoEditDto.getStatus());
             flag++;
         }
+        if (!StringUtils.isEmpty(userInfoEditDto.getEmail())) {
+            // 邮箱
+            user.setEmail(userInfoEditDto.getEmail());
+        }
+        // 是否激活邮箱
+        user.setIsEmailActivated(userInfoEditDto.getIsEmailActivated());
 
         if (flag != 0) {
             res = res && userService.updateById(user);

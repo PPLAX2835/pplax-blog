@@ -11,9 +11,9 @@
         <result column="password" property="password" />
         <result column="salt" property="salt" />
         <result column="email" property="email" />
-        <result column="is_email_enabled" property="isEmailActivated" />
+        <result column="is_email_activated" property="isEmailActivated" />
         <result column="mobile" property="mobile" />
-        <result column="is_mobile_enabled" property="isMobileActivated" />
+        <result column="is_mobile_activated" property="isMobileActivated" />
         <result column="login_count" property="loginCount" />
         <result column="last_login_time" property="lastLoginTime" />
         <result column="last_login_ip" property="lastLoginIp" />

@@ -4,8 +4,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants;
 import xyz.pplax.pplaxblog.commons.validator.annotion.NotBlank;
 import xyz.pplax.pplaxblog.commons.validator.annotion.Range;
+import xyz.pplax.pplaxblog.commons.validator.annotion.Regex;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.xo.base.dto.BaseDto;
 
@@ -24,11 +26,13 @@ public class RegisterDto extends BaseDto {
 
     @ApiModelProperty(example = "用户名", notes = "用户名", required = true)
     @NotBlank(groups = {Insert.class}, message = "用户名username不能为空")
-    @Range(min = 3, max = 30, groups = {Insert.class})
+    @Regex(groups = {Insert.class}, value = BaseRegexConstants.VARIABLE_LEGALITY_REGEX, message = "必须为字母、数字或下划线")
+    @Range(min = 3, max = 30, groups = {Insert.class}, message = "长度在3到30个字符")
     private String username;
 
     @ApiModelProperty(example = "密码", notes = "密码", required = true)
     @NotBlank(groups = {Insert.class}, message = "密码password不能为空")
+    @Regex(groups = {Insert.class}, value = BaseRegexConstants.VARIABLE_LEGALITY_REGEX, message = "必须为字母、数字或下划线")
     @Range(min = 8, max = 16, groups = {Insert.class}, message = "长度在8到16个字符")
     private String password;
 

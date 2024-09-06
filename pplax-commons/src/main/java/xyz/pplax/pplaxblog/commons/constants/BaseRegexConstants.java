@@ -16,7 +16,7 @@ public class BaseRegexConstants {
     public static final String EMAIL_REGEX = "[a-zA-Z0-9_]+@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+";
 
     /**
-     * json正则，用于将一段字符串中的json串匹配出来，注意不要误用
+     * 变量合法性正则，用于验证是否由字母、数字、下划线组成
      */
-    public static final String JSON_REGEX = "\\{\\s*\"(?:[^\"\\\\]|\\\\.)*\"\\s*:\\s*(?:\"(?:[^\"\\\\]|\\\\.)*\"|(?:-?\\d+(?:\\.\\d*)?(?:[eE][+-]?\\d+)?|true|false|null)\\s*)(?:,\\s*\"(?:[^\"\\\\]|\\\\.)*\"\\s*:\\s*(?:\"(?:[^\"\\\\]|\\\\.)*\"|(?:-?\\d+(?:\\.\\d*)?(?:[eE][+-]?\\d+)?|true|false|null)\\s*))*\\s*\\}";
+    public static final String VARIABLE_LEGALITY_REGEX = "^(?![A-Za-z]+$)(?![A-Z0-9_\\W]+$)(?![a-z0-9_\\W]+$)[\\w\\W]{8,}$";
 }

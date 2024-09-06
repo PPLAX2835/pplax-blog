@@ -124,6 +124,7 @@ export default {
                   { required: true, message: '请输入用户名', trigger: 'blur' },
                   { validator: this.isExist, trigger: 'change'},
                   { min: 3, max: 30, message: '长度在3到30个字符' },
+                  { pattern: /^\w{3,30}$/, message: '必须为字母、数字或下划线', trigger: 'change'}
                 ],
                 email: [
                     { required: true, message: '请输入邮箱', trigger: 'blur' },
@@ -136,6 +137,7 @@ export default {
                 password: [
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     { min: 8, max: 16, message: '长度在8到16个字符' },
+                  { pattern: /^\w{8,16}$/, message: '必须为字母、数字或下划线', trigger: 'change'}
                 ],
                 code: [
                     { required: true, message: '请输入验证码', trigger: 'blur' },

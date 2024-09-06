@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -76,13 +77,14 @@ public class GlobalExceptionApiHandler {
 
             if (null != bindingResult && bindingResult.hasErrors()) {
                 List<Object> jsonList = new ArrayList<Object>();
-                bindingResult.getFieldErrors().stream().forEach(fieldError -> {
+                List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+                for (FieldError fieldError : fieldErrors) {
                     Map<String, Object> jsonObject = new HashMap<String, Object>(2);
                     jsonObject.put("name", fieldError.getField());
                     jsonObject.put("msg", fieldError.getDefaultMessage());
                     jsonList.add(jsonObject);
-                });
-                return new ResponseResult(HttpStatus.BAD_REQUEST, jsonList);
+                }
+                return ResponseResult.error(HttpStatus.BAD_REQUEST.getCode(), JSON.toJSONString(jsonList));
             }
         }
 
@@ -152,7 +154,12 @@ public class GlobalExceptionApiHandler {
         }
         exceptionLog.setClassName(e.getStackTrace()[0].getClassName());
         exceptionLog.setMethodName(e.getStackTrace()[0].getMethodName());
-        exceptionLog.setExceptionJson(JSON.toJSONString(e));
+        try {
+            exceptionLog.setExceptionJson(JSON.toJSONString(e));
+        } catch (Exception exception) {
+            exceptionLog.setExceptionJson(e.getClass().toString());
+            log.error(e.getMessage());
+        }
         exceptionLog.setExceptionMessage(e.getMessage());
 
 

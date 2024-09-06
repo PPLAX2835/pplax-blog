@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="初步重构认证代码">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="前台部分完成新认证接口对接">
+      <change afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/validator/annotion/Regex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/validator/constraint/RegexValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/PPLAXOauthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/PPLAXOauthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseRegexConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/BaseRegexConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/RegisterDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/RegisterDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,11 +129,11 @@
       <recent name="xyz.pplax" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="xyz.pplax.pplaxblog.commons.validator.constraint" />
+      <recent name="xyz.pplax.pplaxblog.commons.validator.annotion" />
       <recent name="xyz.pplax.pplaxblog.starter.security.exception" />
       <recent name="xyz.pplax.pplaxblog.auth.handler" />
       <recent name="xyz.pplax.pplaxblog.starter.security.handler" />
-      <recent name="xyz.pplax.pplaxblog.message.consumer" />
-      <recent name="xyz.pplax.pplaxblog.xo.constants.redis" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -145,7 +145,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -253,8 +253,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -475,14 +475,8 @@
       <workItem from="1725446945219" duration="5301000" />
       <workItem from="1725516538729" duration="3129000" />
       <workItem from="1725539382307" duration="1732000" />
-      <workItem from="1725541915296" duration="2703000" />
-    </task>
-    <task id="LOCAL-00513" summary="fix：修复角色权限配置菜单的全选反选问题和调整接口地址">
-      <created>1723967756584</created>
-      <option name="number" value="00513" />
-      <option name="presentableId" value="LOCAL-00513" />
-      <option name="project" value="LOCAL" />
-      <updated>1723967756584</updated>
+      <workItem from="1725541915296" duration="2791000" />
+      <workItem from="1725617734491" duration="3552000" />
     </task>
     <task id="LOCAL-00514" summary="feat:初步整合代码代码生成">
       <created>1724049508748</created>
@@ -820,7 +814,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725541123425</updated>
     </task>
-    <option name="localTasksCounter" value="562" />
+    <task id="LOCAL-00562" summary="前台部分完成新认证接口对接">
+      <created>1725544709015</created>
+      <option name="number" value="00562" />
+      <option name="presentableId" value="LOCAL-00562" />
+      <option name="project" value="LOCAL" />
+      <updated>1725544709016</updated>
+    </task>
+    <option name="localTasksCounter" value="563" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -856,7 +857,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor: 替换所有System.out.print相关的方法为log的" />
     <MESSAGE value="fix: 调整文件管理接口，修改swagger地址被占用的情况" />
     <MESSAGE value="feat:完成网关聚合swagger" />
     <MESSAGE value="refactor:整理本地存储方式" />
@@ -881,7 +881,8 @@
     <MESSAGE value="fix:配置pom.xml资源编译" />
     <MESSAGE value="fix:修改七牛云不能上传的bug，被自己蠢到" />
     <MESSAGE value="初步重构认证代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="初步重构认证代码" />
+    <MESSAGE value="前台部分完成新认证接口对接" />
+    <option name="LAST_COMMIT_MESSAGE" value="前台部分完成新认证接口对接" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -905,11 +906,6 @@
           <line>73</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -920,6 +916,11 @@
         <PinnedItemInfo parentTag="org.springframework.aop.framework.ProxyFactory" memberName="active" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="((BeanPropertyBindingResult)bindingResult).conversionService" custom="org.springframework.validation.BeanPropertyBindingResult" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

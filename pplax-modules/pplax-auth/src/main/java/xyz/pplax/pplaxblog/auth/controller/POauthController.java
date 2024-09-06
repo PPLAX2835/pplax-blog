@@ -12,6 +12,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 import xyz.pplax.pplaxblog.auth.service.POauthService;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.IpUtils;
 import xyz.pplax.pplaxblog.commons.validator.group.Insert;
 import xyz.pplax.pplaxblog.starter.amqp.constants.MqConstants;
 import xyz.pplax.pplaxblog.xo.base.controller.SuperController;
@@ -69,8 +70,8 @@ public class POauthController extends SuperController {
 
     @ApiOperation(value = "获取图片验证码", notes = "获取图片验证码", response = String.class)
     @GetMapping(value = "/imageCaptcha")
-    public ResponseResult getImageCaptcha() {
-        return pOauthService.getImageCaptcha(new CaptchaDto());
+    public ResponseResult getImageCaptcha(HttpServletRequest httpServletRequest) {
+        return pOauthService.getImageCaptcha(new CaptchaDto(), IpUtils.getIpAddress(httpServletRequest));
     }
 
     @ApiOperation(value = "获取邮箱验证码", notes = "获取邮箱验证码", response = String.class)

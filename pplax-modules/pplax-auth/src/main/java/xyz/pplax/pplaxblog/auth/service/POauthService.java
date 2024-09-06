@@ -101,7 +101,7 @@ public class POauthService {
      */
     public OAuth2AccessToken getToken(HttpServletRequest httpServletRequest, LoginDto loginDto) throws HttpRequestMethodNotSupportedException {
         // 先检查验证码
-        checkImageCode(loginDto.getNonceStr(), loginDto.getValue());
+        checkImageCode(loginDto.getNonceStr() + IpUtils.getIpAddress(httpServletRequest), loginDto.getValue());
 
         //创建客户端信息,客户端信息可以写死进行处理，因为Oauth2密码模式，客户端双信息必须存在，所以伪装一个
         //如果不想这么用，需要重写比较多的代码
@@ -277,7 +277,7 @@ public class POauthService {
      * @param captcha
      * @return
      */
-    public ResponseResult getImageCaptcha(CaptchaDto captcha) {
+    public ResponseResult getImageCaptcha(CaptchaDto captcha, String ip) {
 
         //设置画布宽度默认值
         if (captcha.getCanvasWidth() == null) {
@@ -326,8 +326,8 @@ public class POauthService {
         CaptchaUtils.cutByTemplate(canvasImage, blockImage, blockWidth, blockHeight, blockRadius, blockX, blockY);
         // 移动横坐标
         String nonceStr = StringUtils.getUUID();
-        // 缓存
-        saveImageCode(nonceStr,String.valueOf(blockX));
+        // 缓存， 现在加上ip，防止一个请求使用了来自另一个请求生成的验证码通过的情况
+        saveImageCode(nonceStr + ip,String.valueOf(blockX));
         //设置返回参数
         captcha.setNonceStr(nonceStr);
         captcha.setBlockY(blockY);

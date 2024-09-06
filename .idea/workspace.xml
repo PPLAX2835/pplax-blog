@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/UserInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AuthFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/AuthFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/src/main/java/xyz/pplax/pplaxblog/feign/FileFeignClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/AuthController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/store/modules/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Navbar/password.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/layout/components/Navbar/password.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/api/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/AuthServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/auth/SuperAuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -476,14 +478,7 @@
       <workItem from="1725516538729" duration="3129000" />
       <workItem from="1725539382307" duration="1732000" />
       <workItem from="1725541915296" duration="2791000" />
-      <workItem from="1725617734491" duration="7271000" />
-    </task>
-    <task id="LOCAL-00515" summary="feat:可以生成entity的代码了">
-      <created>1724069452071</created>
-      <option name="number" value="00515" />
-      <option name="presentableId" value="LOCAL-00515" />
-      <option name="project" value="LOCAL" />
-      <updated>1724069452071</updated>
+      <workItem from="1725617734491" duration="8224000" />
     </task>
     <task id="LOCAL-00516" summary="fix:将thymeleaf与freemarker的代码生成内容调整为单纯的freemarker">
       <created>1724159731600</created>
@@ -821,7 +816,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725622318317</updated>
     </task>
-    <option name="localTasksCounter" value="564" />
+    <task id="LOCAL-00564" summary="将管理后台的认证接口对接到新接口">
+      <created>1725625963516</created>
+      <option name="number" value="00564" />
+      <option name="presentableId" value="LOCAL-00564" />
+      <option name="project" value="LOCAL" />
+      <updated>1725625963516</updated>
+    </task>
+    <option name="localTasksCounter" value="565" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -857,7 +859,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat:完成网关聚合swagger" />
     <MESSAGE value="refactor:整理本地存储方式" />
     <MESSAGE value="fix:修改file服务获取本地存储方式文件的api被拒绝的问题" />
     <MESSAGE value="refactor:整理admin服务的swagger" />
@@ -882,7 +883,8 @@
     <MESSAGE value="初步重构认证代码" />
     <MESSAGE value="前台部分完成新认证接口对接" />
     <MESSAGE value="fix:修改前端注册使用不合法数据能够注册成功的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:修改前端注册使用不合法数据能够注册成功的问题" />
+    <MESSAGE value="将管理后台的认证接口对接到新接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="将管理后台的认证接口对接到新接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

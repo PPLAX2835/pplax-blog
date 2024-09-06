@@ -10,13 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.exception.curd.DeleteException;
 import xyz.pplax.pplaxblog.commons.exception.curd.SelectException;
-import xyz.pplax.pplaxblog.commons.response.ResponseResult;
 import xyz.pplax.pplaxblog.commons.utils.StringUtils;
 import xyz.pplax.pplaxblog.feign.AuthFeignClient;
 import xyz.pplax.pplaxblog.starter.redis.service.RedisService;
 import xyz.pplax.pplaxblog.xo.base.serviceImpl.SuperServiceImpl;
 import xyz.pplax.pplaxblog.xo.base.wrapper.PQueryWrapper;
-import xyz.pplax.pplaxblog.xo.component.auth.AuthService;
 import xyz.pplax.pplaxblog.xo.constants.redis.AuthRedisConstants;
 import xyz.pplax.pplaxblog.xo.constants.sql.*;
 import xyz.pplax.pplaxblog.xo.dto.edit.UserInfoEditDto;
@@ -120,11 +118,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
 
     @Override
     public Boolean kickUser(String userUid) {
-        String token = redisService.getCacheObject(AuthRedisConstants.USER_TOKEN + AuthRedisConstants.SEGMENTATION + userUid);
-        redisService.deleteObject(AuthRedisConstants.USER_TOKEN + AuthRedisConstants.SEGMENTATION + userUid);
-
-        authFeignClient.deleteToken(token);
-
+        authFeignClient.removeToken(userUid);
         return true;
     }
 

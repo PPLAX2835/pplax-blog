@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,13 @@ public class POauthController extends SuperController {
     @DeleteMapping("/token")
     public ResponseResult removeToken(HttpServletRequest httpServletRequest) {
         pOauthService.removeToken(httpServletRequest);
+        return success();
+    }
+
+    @ApiOperation(value="对指定用户进行登出操作", notes="对指定用户进行登出操作")
+    @DeleteMapping("/user/{userUid}/token")
+    public ResponseResult removeToken(@PathVariable("userUid") String userUid) {
+        pOauthService.removeToken(userUid);
         return success();
     }
 

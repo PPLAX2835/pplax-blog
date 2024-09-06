@@ -53,9 +53,6 @@ public class POauthService {
     private SiteSettingService siteSettingService;
 
     @Autowired
-    private AuthFeignClient authFeignClient;
-
-    @Autowired
     private RedisService redisService;
 
     @Autowired
@@ -172,6 +169,19 @@ public class POauthService {
         redisTokenStore.removeAccessToken(oAuth2AccessToken);
         // 移除缓存token
         redisService.deleteObject(AuthRedisConstants.USER_TOKEN + ":" + SuperController.getUserUid(httpServletRequest));
+    }
+
+    /**
+     * 通过userUid进行登出操作
+     * @param userUid
+     */
+    public void removeToken(String userUid) {
+        // 移除缓存token
+        String token = redisService.getCacheObject(AuthRedisConstants.USER_TOKEN + ":" + userUid);
+        OAuth2AccessToken oAuth2AccessToken = redisTokenStore.readAccessToken(token);
+        redisTokenStore.removeAccessToken(oAuth2AccessToken);
+        // 移除缓存token
+        redisService.deleteObject(AuthRedisConstants.USER_TOKEN + ":" + userUid);
     }
 
 

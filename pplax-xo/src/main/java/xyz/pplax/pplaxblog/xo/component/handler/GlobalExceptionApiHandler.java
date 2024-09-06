@@ -116,7 +116,7 @@ public class GlobalExceptionApiHandler {
         return ResponseResult.error(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    private void sendToMq(Exception e, HandlerMethod handlerMethod, HttpServletRequest httpServletRequest) throws IOException {
+    protected void sendToMq(Exception e, HandlerMethod handlerMethod, HttpServletRequest httpServletRequest) throws IOException {
         /*
          * 封装异常信息
          */

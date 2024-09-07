@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix:mysql数据库无法保存表情符号，调整字符集">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/IpUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-feign/pplax-feign.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,9 +270,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="npm.build (1)" />
         <item itemvalue="npm.build" />
-        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
       </list>
@@ -494,14 +497,7 @@
       <workItem from="1725539382307" duration="1732000" />
       <workItem from="1725541915296" duration="2791000" />
       <workItem from="1725617734491" duration="13909000" />
-      <workItem from="1725674525747" duration="748000" />
-    </task>
-    <task id="LOCAL-00523" summary="feat:优化生成操作">
-      <created>1724463955557</created>
-      <option name="number" value="00523" />
-      <option name="presentableId" value="LOCAL-00523" />
-      <option name="project" value="LOCAL" />
-      <updated>1724463955558</updated>
+      <workItem from="1725674525747" duration="4837000" />
     </task>
     <task id="LOCAL-00524" summary="refactor:将鉴权修改为通配符匹配形式">
       <created>1724475589171</created>
@@ -839,7 +835,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725631795373</updated>
     </task>
-    <option name="localTasksCounter" value="572" />
+    <task id="LOCAL-00572" summary="fix:mysql数据库无法保存表情符号，调整字符集">
+      <created>1725675529903</created>
+      <option name="number" value="00572" />
+      <option name="presentableId" value="LOCAL-00572" />
+      <option name="project" value="LOCAL" />
+      <updated>1725675529903</updated>
+    </task>
+    <option name="localTasksCounter" value="573" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -875,7 +878,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat:requestLog管理可以进行删除和批量删除了&#10;fix:修复网关过滤器在遇到请求体参数为数组的情况fastjson抛异常的问题" />
     <MESSAGE value="feat:requestLog管理的表格项可以展开显示参数json了" />
     <MESSAGE value="feat:现在全局异常捕获会持久化异常日志" />
     <MESSAGE value="补充封装className和methodName" />
@@ -900,7 +902,8 @@
     <MESSAGE value="去掉了iputils-starter" />
     <MESSAGE value="补充编辑用户邮箱的功能" />
     <MESSAGE value="fix:因为改成自定义auth接口，原本的转换类不能用了，现在调整为api异常处理类" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:因为改成自定义auth接口，原本的转换类不能用了，现在调整为api异常处理类" />
+    <MESSAGE value="fix:mysql数据库无法保存表情符号，调整字符集" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:mysql数据库无法保存表情符号，调整字符集" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -5,6 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.lionsoul.ip2region.xdb.Searcher;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -16,21 +20,45 @@ public class IpUtils {
     private static Searcher searcher = null;
 
     static {
-        String dbPath = IpUtils.class.getResource("/ip2region.xdb").getPath();
+        InputStream dbStream = IpUtils.class.getClassLoader().getResourceAsStream("ip2region.xdb");
 
-        // 1、从 dbPath 中预先加载 VectorIndex 缓存，并且把这个得到的数据作为全局变量，后续反复使用。
+        if (dbStream == null) {
+            log.error("Failed to load ip2region.xdb from classpath.");
+        }
+
+        // 将资源写入临时文件
+        File tempFile = null;
+        try {
+            tempFile = File.createTempFile("ip2region", ".xdb");
+            try (FileOutputStream out = new FileOutputStream(tempFile)) {
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = dbStream.read(buffer)) != -1) {
+                    out.write(buffer, 0, length);
+                }
+            }
+            log.info("Temporary ip2region.xdb file created at: " + tempFile.getAbsolutePath());
+        } catch (IOException e) {
+            log.error("Failed to create temporary file for ip2region.xdb: " + e.getMessage());
+        }
+
+        String dbPath = tempFile.getAbsolutePath();
+
+        // 1、从 dbPath 中预先加载 VectorIndex 缓存
         byte[] vIndex = new byte[0];
         try {
             vIndex = Searcher.loadVectorIndexFromFile(dbPath);
+            log.info("Vector index loaded successfully from: " + dbPath);
         } catch (Exception e) {
-            log.error(String.format("failed to load vector index from `%s`: %s", dbPath, e));
+            log.error(String.format("Failed to load vector index from `%s`: %s", dbPath, e));
         }
 
-        // 2、使用全局的 vIndex 创建带 VectorIndex 缓存的查询对象。
+        // 2、使用全局的 vIndex 创建带 VectorIndex 缓存的查询对象
         try {
             searcher = Searcher.newWithVectorIndex(dbPath, vIndex);
+            log.info("Searcher with vector index created successfully.");
         } catch (Exception e) {
-            log.error(String.format("failed to create vectorIndex cached searcher with `%s`: %s", dbPath, e));
+            log.error(String.format("Failed to create vectorIndex cached searcher with `%s`: %s", dbPath, e));
         }
     }
 

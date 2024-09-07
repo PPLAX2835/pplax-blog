@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.ImageUtils;
+import xyz.pplax.pplaxblog.file.model.ConvertToMultipartFile;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,11 +25,14 @@ public class MessageFileService extends FileService {
         if (!isImage(file)) {
             return ResponseResult.error(HttpStatus.NOT_IMAGE);
         }
+        // 压缩图片
+        byte[] imageByte = ImageUtils.compressPicForScale(file.getBytes(), 0.5f);
+        ConvertToMultipartFile convertToMultipartFile = new ConvertToMultipartFile(imageByte, file.getName(), file.getOriginalFilename(), file.getContentType(), file.getSize());
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
-        return upload("/message/" + simpleDateFormat.format(date) + "/", file);
+        return upload("/message/" + simpleDateFormat.format(date) + "/", convertToMultipartFile);
     }
 
 }

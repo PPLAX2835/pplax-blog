@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.ImageUtils;
 import xyz.pplax.pplaxblog.file.model.ConvertToMultipartFile;
 
 import javax.imageio.ImageIO;
@@ -30,12 +31,8 @@ public class LinkFileService extends FileService {
         if (!isImage(file)) {
             return ResponseResult.error(HttpStatus.NOT_IMAGE);
         }
-        // 放缩图片
-        BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-        BufferedImage resizeImage = Scalr.resize(bufferedImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, 200);
-
-        // BufferedImage 转化为 byte[]
-        byte[] imageByte = bufferedImageToByteArray(resizeImage);
+        // 压缩图片并 转化为 byte[]
+        byte[] imageByte = ImageUtils.compressPicForScale(file.getBytes(), 0.5f);
 
         ConvertToMultipartFile convertToMultipartFile = new ConvertToMultipartFile(imageByte, file.getName(), file.getOriginalFilename(), file.getContentType(), file.getSize());
 

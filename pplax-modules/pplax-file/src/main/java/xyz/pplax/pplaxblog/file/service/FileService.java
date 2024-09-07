@@ -1,12 +1,10 @@
 package xyz.pplax.pplaxblog.file.service;
 
 import io.minio.ObjectWriteResponse;
-import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import xyz.pplax.pplaxblog.commons.constants.CharacterConstants;
 import xyz.pplax.pplaxblog.commons.constants.SiteSettingConstants;
 import xyz.pplax.pplaxblog.commons.constants.StorageModeConstants;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
@@ -20,11 +18,6 @@ import xyz.pplax.pplaxblog.xo.entity.SiteSetting;
 import xyz.pplax.pplaxblog.xo.service.FileStorageService;
 import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
@@ -192,32 +185,6 @@ public class FileService {
         return true;
     }
 
-    /**
-     * 放缩图片
-     * @param file
-     * @param targetWidth
-     * @param targetHeight
-     * @return
-     * @throws IOException
-     */
-    public BufferedImage imageResize(MultipartFile file, Integer targetWidth, Integer targetHeight) throws IOException {
-        BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-        return Scalr.resize(bufferedImage, 1280, 800);
-    }
-
-    /**
-     * BufferedImage 转化为 byte[]
-     * @param bufferedImage
-     * @return
-     * @throws IOException
-     */
-    public byte[] bufferedImageToByteArray(BufferedImage bufferedImage) throws IOException {
-        //BufferedImage 转化为 ByteArrayOutputStream
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, CharacterConstants.FILE_SUFFIX_JPG, byteArrayOutputStream);
-        //ByteArrayOutputStream 转化为 byte[]
-        return byteArrayOutputStream.toByteArray();
-    }
 
     /**
      * 获取minioUtils

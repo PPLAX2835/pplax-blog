@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.pplax.pplaxblog.commons.enums.HttpStatus;
 import xyz.pplax.pplaxblog.commons.response.ResponseResult;
+import xyz.pplax.pplaxblog.commons.utils.ImageUtils;
 import xyz.pplax.pplaxblog.file.model.ConvertToMultipartFile;
 
-import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,11 +25,8 @@ public class BlogFileService extends FileService {
         if (!isImage(file)) {
             return ResponseResult.error(HttpStatus.NOT_IMAGE);
         }
-        // 放缩图片
-        BufferedImage resizeImage = imageResize(file, 1280, 800);
-
-        // BufferedImage 转化为 byte[]
-        byte[] imageByte = bufferedImageToByteArray(resizeImage);
+        // 压缩图片并转化为 byte[]
+        byte[] imageByte = ImageUtils.compressPicForScale(file.getBytes(), 0.5f);
 
         ConvertToMultipartFile convertToMultipartFile = new ConvertToMultipartFile(imageByte, file.getName(), file.getOriginalFilename(), file.getContentType(), file.getSize());
 
@@ -65,6 +62,8 @@ public class BlogFileService extends FileService {
         if (!isImage(file)) {
             return ResponseResult.error(HttpStatus.NOT_IMAGE);
         }
+        // 压缩图片
+        ImageUtils.compressPicForScale(file.getBytes(), 0.5f);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();

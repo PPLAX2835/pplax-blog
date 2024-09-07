@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/handler/OAuth2ResponseExceptionTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/handler/OAuth2ResponseExceptionTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +138,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.build (1)">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -258,22 +256,22 @@
     <list>
       <item itemvalue="npm.serve" />
       <item itemvalue="npm.dev" />
+      <item itemvalue="npm.build" />
+      <item itemvalue="npm.build (1)" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.MessageApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
-      <item itemvalue="npm.build" />
-      <item itemvalue="npm.build (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build (1)" />
+        <item itemvalue="npm.build" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.serve" />
-        <item itemvalue="npm.build (1)" />
-        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -495,14 +493,8 @@
       <workItem from="1725516538729" duration="3129000" />
       <workItem from="1725539382307" duration="1732000" />
       <workItem from="1725541915296" duration="2791000" />
-      <workItem from="1725617734491" duration="12945000" />
-    </task>
-    <task id="LOCAL-00522" summary="feat:可以生成前端管理界面的代码了">
-      <created>1724414071416</created>
-      <option name="number" value="00522" />
-      <option name="presentableId" value="LOCAL-00522" />
-      <option name="project" value="LOCAL" />
-      <updated>1724414071417</updated>
+      <workItem from="1725617734491" duration="13909000" />
+      <workItem from="1725674525747" duration="748000" />
     </task>
     <task id="LOCAL-00523" summary="feat:优化生成操作">
       <created>1724463955557</created>
@@ -840,7 +832,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725631053953</updated>
     </task>
-    <option name="localTasksCounter" value="571" />
+    <task id="LOCAL-00571" summary="fix:因为改成自定义auth接口，原本的转换类不能用了，现在调整为api异常处理类">
+      <created>1725631795373</created>
+      <option name="number" value="00571" />
+      <option name="presentableId" value="LOCAL-00571" />
+      <option name="project" value="LOCAL" />
+      <updated>1725631795373</updated>
+    </task>
+    <option name="localTasksCounter" value="572" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -876,7 +875,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor:简单将file服务的相同代码封装为方法" />
     <MESSAGE value="feat:requestLog管理可以进行删除和批量删除了&#10;fix:修复网关过滤器在遇到请求体参数为数组的情况fastjson抛异常的问题" />
     <MESSAGE value="feat:requestLog管理的表格项可以展开显示参数json了" />
     <MESSAGE value="feat:现在全局异常捕获会持久化异常日志" />
@@ -901,7 +899,8 @@
     <MESSAGE value="整理nacos配置" />
     <MESSAGE value="去掉了iputils-starter" />
     <MESSAGE value="补充编辑用户邮箱的功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="补充编辑用户邮箱的功能" />
+    <MESSAGE value="fix:因为改成自定义auth接口，原本的转换类不能用了，现在调整为api异常处理类" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:因为改成自定义auth接口，原本的转换类不能用了，现在调整为api异常处理类" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

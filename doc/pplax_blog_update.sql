@@ -1,0 +1,20 @@
+
+alter table t_blog convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_blog_content convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_blog_sort convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_chat_room convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_collect convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_comment convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_exception_log convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_feedback convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_file_storage convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_link convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_menu convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_message convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_request_log convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_role convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_say convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_site_setting convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_tag convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_user convert to character set utf8mb4 collate utf8mb4_bin;
+alter table t_user_info convert to character set utf8mb4 collate utf8mb4_bin;

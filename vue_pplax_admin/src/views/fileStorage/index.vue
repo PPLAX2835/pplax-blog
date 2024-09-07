@@ -129,14 +129,14 @@ export default {
      * @returns {boolean|*}
      */
     canDeleteBatch: function () {
-      return hasAuth(this.menu, 'DELETE:/api/file')
+      return hasAuth(this.menu, 'DELETE:/api/file/admin')
     },
     /**
      * 检查是否有删除的权限
      * @returns {boolean|*}
      */
     canDelete: function () {
-      return hasAuth(this.menu, 'DELETE:/api/file/*')
+      return hasAuth(this.menu, 'DELETE:/api/file/admin/*')
     },
   },
   created() {

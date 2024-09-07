@@ -117,15 +117,15 @@ public class SayController extends SuperController {
     public ResponseResult getAddress(HttpServletRequest httpServletRequest) {
         // 获取ip
         String ipAddress = IpUtils.getIpAddress(httpServletRequest);
-        // 通过浏览器解析工具类UserAgent获取访问设备信息
-        UserAgent userAgent = IpUtils.getUserAgent(httpServletRequest);
-        Browser browser = userAgent.getBrowser();
-        OperatingSystem operatingSystem = userAgent.getOperatingSystem();
-        // 生成唯一用户标识
-        String uuid = ipAddress + browser.getName() + operatingSystem.getName();
-        String md5 = DigestUtils.md5DigestAsHex(uuid.getBytes());
 
-        return success(IpUtils.getCityInfo(ipAddress));
+        // 获取所在的省
+        String cityInfo = IpUtils.getCityInfo(ipAddress);
+        String[] split = cityInfo.split("\\|");
+        if (split.length >= 2) {
+            return success(split[2]);
+        }
+
+        return success(cityInfo);
     }
 
 }

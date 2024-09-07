@@ -478,14 +478,14 @@ export default {
     submit: function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          let menuUids = []
-          this.multipleMenuSelection = this.$refs['menuTable'].selection
-          for (let i = 0; i < this.multipleMenuSelection.length; i++) {
-            menuUids = menuUids.concat(this.multipleMenuSelection[i].uid)
-          }
-          this.form.menuUids = menuUids.toString()
-
           if (this.isEditForm) {
+            let menuUids = []
+            this.multipleMenuSelection = this.$refs['menuTable'].selection
+            for (let i = 0; i < this.multipleMenuSelection.length; i++) {
+              menuUids = menuUids.concat(this.multipleMenuSelection[i].uid)
+            }
+            this.form.menuUids = menuUids.toString()
+
             updateRole(this.editingRoleUid, this.form).then(res => {
               this.$message.success("修改成功")
               this.editingRoleUid = ''

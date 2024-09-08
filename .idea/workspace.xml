@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -497,14 +498,8 @@
       <workItem from="1725674525747" duration="7939000" />
       <workItem from="1725689259354" duration="10135000" />
       <workItem from="1725758318081" duration="20426000" />
-      <workItem from="1725782153417" duration="1043000" />
-    </task>
-    <task id="LOCAL-00530" summary="refactor:整理maven">
-      <created>1724555361482</created>
-      <option name="number" value="00530" />
-      <option name="presentableId" value="LOCAL-00530" />
-      <option name="project" value="LOCAL" />
-      <updated>1724555361483</updated>
+      <workItem from="1725782153417" duration="1161000" />
+      <workItem from="1725795948139" duration="544000" />
     </task>
     <task id="LOCAL-00531" summary="refactor:现在可以记录请求日志了">
       <created>1724562062113</created>
@@ -842,7 +837,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725781084879</updated>
     </task>
-    <option name="localTasksCounter" value="579" />
+    <task id="LOCAL-00579" summary="fix:配置有点错误，改正">
+      <created>1725783317351</created>
+      <option name="number" value="00579" />
+      <option name="presentableId" value="LOCAL-00579" />
+      <option name="project" value="LOCAL" />
+      <updated>1725783317351</updated>
+    </task>
+    <option name="localTasksCounter" value="580" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -878,7 +880,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat: 代码生成controller层添加删除接口" />
     <MESSAGE value="更新readme" />
     <MESSAGE value="修改打包配置" />
     <MESSAGE value="fix:优化oauth2的异常处理（终于看破本质了，那个feign异常终于能去掉了）" />
@@ -903,7 +904,8 @@
     <MESSAGE value="feat:优化图片上传，使其能够压缩图片，减小流量负担" />
     <MESSAGE value="feat:说说获取地址信息只返回省份" />
     <MESSAGE value="feat:优化动态主题配置，现在主题可以配置粒子特效了" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:优化动态主题配置，现在主题可以配置粒子特效了" />
+    <MESSAGE value="fix:配置有点错误，改正" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:配置有点错误，改正" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

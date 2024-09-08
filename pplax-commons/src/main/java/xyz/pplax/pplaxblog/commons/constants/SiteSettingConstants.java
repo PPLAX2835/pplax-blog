@@ -49,7 +49,9 @@ public class SiteSettingConstants {
     public static final String THEMES = "themes";
     public static final String CURRENT_THEME = "currentTheme";
     public static final String BACKGROUND = "background";
-    public static final String SPECIAL_EFFECTS = "specialEffects";
+    public static final String EFFECTS_PARTICLE = "effectParticle";
+    public static final String PARTICLE_JS_PARAMS = "particleJsParams";
+    public static final String PARTICLE_JS_PARAM_NAME = "particleJsParamName";
 
 
 }

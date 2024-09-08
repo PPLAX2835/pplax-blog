@@ -20,6 +20,7 @@ import xyz.pplax.pplaxblog.xo.service.SiteSettingService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
@@ -80,13 +81,26 @@ public class StyleController extends SuperController {
         Map<String, SiteSetting> siteSettingMap = siteSettingService.map();
         SiteSetting siteSetting = siteSettingMap.get(SiteSettingConstants.THEME_EN);
         JSONObject valueJsonObj = JSON.parseObject(siteSetting.getValue().toString());            // 获取value
-        String currentTheme = (String) valueJsonObj.get(SiteSettingConstants.CURRENT_THEME);    // 获取当前主题名
-        JSONObject themesJsonObj = (JSONObject) valueJsonObj.get(SiteSettingConstants.THEMES);  // 获取themes
-        JSONObject currentThemeJsonObj = (JSONObject) themesJsonObj.get(currentTheme);          // 获取当前theme
-        String background = (String) currentThemeJsonObj.get(type);  // 获取背景 或特效素材
-        String redirectUrl = background.trim(); // 确保URL没有空格或特殊字符
 
-        doResponse(response, redirectUrl);
+        JSONObject currentThemeJsonObj = (JSONObject) valueJsonObj.get(SiteSettingConstants.CURRENT_THEME);// 获取当前主题
+        if ("background".equals(type)) {
+            String background = (String) currentThemeJsonObj.get(SiteSettingConstants.BACKGROUND);
+            String redirectUrl = background.trim(); // 确保URL没有空格或特殊字符
+            doResponse(response, redirectUrl);
+        } else if ("effectParticle".equals(type)) {
+            String effectParticle = (String) currentThemeJsonObj.get(SiteSettingConstants.EFFECTS_PARTICLE);
+            String redirectUrl = effectParticle.trim(); // 确保URL没有空格或特殊字符
+            doResponse(response, redirectUrl);
+        } else if ("particleJsParam".equals(type)) {
+            String effectParticleName = (String) currentThemeJsonObj.get(SiteSettingConstants.PARTICLE_JS_PARAM_NAME);  // 获取当前特效名
+            JSONObject themesJsonObj = (JSONObject) valueJsonObj.get(SiteSettingConstants.THEMES); // 获取themes的map
+            JSONObject particleJsParamsJsonObj = (JSONObject) themesJsonObj.get(SiteSettingConstants.PARTICLE_JS_PARAMS);// 获取particleJsParams的map
+            String particleJsParam = JSON.toJSONString(particleJsParamsJsonObj.get(effectParticleName));        // 获得最后的结果
+
+            String res = String.format("particlesJS('particles-effect', %s);", particleJsParam);
+            response.setContentType("text/javascript");
+            response.getOutputStream().write(res.getBytes(StandardCharsets.UTF_8));
+        }
     }
 
     /**

@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="feat:说说获取地址信息只返回省份">
+      <change afterPath="$PROJECT_DIR$/doc/pplax-blog-update 2024.9.8 14.27.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/particles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/src/main/java/xyz/pplax/pplaxblog/admin/controller/SayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/SayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/SiteSettingConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/SiteSettingConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/StyleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/StyleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/siteSetting/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/assets/js/effect.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +94,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pplax-commons/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_web/public/assets/js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -107,11 +113,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_web\public\assets\js" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-commons\src\main\resources" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-web\src\main\resources" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-message\src\main\resources" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-gateway\src\main\resources" />
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-file\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\code\IDEA\pplax-blog\doc" />
@@ -140,7 +146,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -236,13 +242,13 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="npm.serve" />
+      <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.MessageApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
-      <item itemvalue="npm.serve" />
-      <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.GatewayApplication" />
     </list>
     <recent_temporary>
@@ -473,14 +479,8 @@
       <workItem from="1725541915296" duration="2791000" />
       <workItem from="1725617734491" duration="13909000" />
       <workItem from="1725674525747" duration="7939000" />
-      <workItem from="1725689259354" duration="9498000" />
-    </task>
-    <task id="LOCAL-00528" summary="更新sql脚本">
-      <created>1724493353109</created>
-      <option name="number" value="00528" />
-      <option name="presentableId" value="LOCAL-00528" />
-      <option name="project" value="LOCAL" />
-      <updated>1724493353109</updated>
+      <workItem from="1725689259354" duration="10135000" />
+      <workItem from="1725758318081" duration="19904000" />
     </task>
     <task id="LOCAL-00529" summary="refactor:整理ip相关配置，减少冗余">
       <created>1724494756677</created>
@@ -818,7 +818,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725719595186</updated>
     </task>
-    <option name="localTasksCounter" value="577" />
+    <task id="LOCAL-00577" summary="feat:说说获取地址信息只返回省份">
+      <created>1725721325373</created>
+      <option name="number" value="00577" />
+      <option name="presentableId" value="LOCAL-00577" />
+      <option name="project" value="LOCAL" />
+      <updated>1725721325373</updated>
+    </task>
+    <option name="localTasksCounter" value="578" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -854,7 +861,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix:修改被转发的服务因为路径重写匹配不上菜单表的问题" />
     <MESSAGE value="feat: 可以管理异常日志了" />
     <MESSAGE value="feat: 代码生成controller层添加删除接口" />
     <MESSAGE value="更新readme" />
@@ -879,7 +885,8 @@
     <MESSAGE value="fix:修复管理后台不能添加角色的问题" />
     <MESSAGE value="fix:修复管理后台文件管理删除按钮不显示的问题" />
     <MESSAGE value="feat:优化图片上传，使其能够压缩图片，减小流量负担" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:优化图片上传，使其能够压缩图片，减小流量负担" />
+    <MESSAGE value="feat:说说获取地址信息只返回省份" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:说说获取地址信息只返回省份" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -907,6 +914,12 @@
           <url>file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/service/impl/UserInfoServiceImpl.java</url>
           <line>92</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/constants/SiteSettingConstants.java</url>
+          <line>30</line>
+          <properties field="QINIU_BUCKET_NAME_NAME_EN" class="xyz.pplax.pplaxblog.commons.constants.SiteSettingConstants" />
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

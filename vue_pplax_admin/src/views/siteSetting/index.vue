@@ -165,31 +165,93 @@
         </el-tab-pane>
         <el-tab-pane label="主题" name="theme">
           <el-form label-position="right" label-width="100px" >
-
-            <el-row v-if="themeListShow" v-for="(theme,key) in settingMap.theme.value.themes">
-              <el-col :span="3">
-                <el-radio v-model="settingMap.theme.value.currentTheme" :label="key" border>
-                </el-radio>
-              </el-col>
+            <el-row v-if="themeListShow" >
               <el-col :span="8">
-                <el-form-item label="主题背景图片" prop="themeBackground">
-                  <img :src="theme.background"  style="width: 80%"/>
-                </el-form-item>
+                <el-card>
+                  <div slot="header" class="clearfix">
+                    <span>主题背景</span>
+                    <el-button
+                      style="float: right; padding: 3px 0" type="text"
+                      @click="settingMap.theme.value.themes.backgrounds.unshift('')"
+                    >添加</el-button>
+                  </div>
+                  <el-row v-for="(background,index) in settingMap.theme.value.themes.backgrounds">
+                    <el-col :span="20">
+                      <el-radio v-model="settingMap.theme.value.currentTheme.background" :label="background">
+                        <el-tooltip>
+                          <div slot="content" style="text-align: center;min-width:180px;">
+                            <el-input v-model="settingMap.theme.value.themes.backgrounds[index]" auto-complete="off"></el-input>
+                          </div>
+                          <el-image :src="background"  style="width: 95%" />
+                        </el-tooltip>
+                      </el-radio>
+                      <el-divider></el-divider>
+                    </el-col>
+                    <el-col :span="4">
+                      <el-button type="danger" icon="el-icon-delete" @click="handleRemoveBackaground(index)"></el-button>
+                    </el-col>
+                  </el-row>
+                </el-card>
               </el-col>
-              <el-col :span="3">
-                <el-form-item label="坠落特效素材" prop="specialEffects">
-                  <img :src="theme.specialEffects"  style="width: 80%"/>
-                </el-form-item>
+              <el-col :span="12">
+                <el-card>
+                  <div slot="header" class="clearfix">
+                    <el-col :span="10">
+                      <span>particle.js参数</span>
+                    </el-col>
+                    <el-col :span="11">
+                      <el-form ref="particleJsParamForm" :rules="particleJsParamEditRules" :model="particleJsParamNameEditForm" label-position="right" label-width="100px" >
+                        <el-form-item label="特效名" prop="name">
+                          <el-input v-model="particleJsParamNameEditForm.name" placeholder="请输入特效名" auto-complete="off"></el-input>
+                        </el-form-item>
+                      </el-form>
+                    </el-col>
+                    <el-col :span="3">
+                      <el-button
+                        style="float: right; padding: 3px 0" type="text"
+                        @click="handleAddParticleJsParam"
+                      >添加</el-button>
+                    </el-col>
+                  </div>
+                  <div v-for="(particleJsParam,key) in settingMap.theme.value.themes.particleJsParams">
+                    <el-radio v-model="settingMap.theme.value.currentTheme.particleJsParamName" :label="key" border></el-radio>
+                    <el-button type="danger" @click="handleRemoveParticleJsParam(key)"  icon="el-icon-delete"></el-button>
+                    <json-editor
+                      :value="particleJsParam"
+                      v-model="settingMap.theme.value.themes.particleJsParams[key]"
+                    ></json-editor>
+                    <el-divider></el-divider>
+                  </div>
+                </el-card>
               </el-col>
-              <el-col :span="3">
-                <el-button type="warning" size="mini" @click="handleEditTheme(key)">编辑</el-button>
-                <el-button v-if="Object.keys(settingMap.theme.value.themes).length > 1" type="danger" size="mini" @click="removeTheme(key)">移除</el-button>
+              <el-col :span="4">
+                <el-card>
+                  <div slot="header" class="clearfix">
+                    <span>粒子特效素材</span>
+                    <el-button
+                      style="float: right; padding: 3px 0" type="text"
+                      @click="settingMap.theme.value.themes.effectParticles.unshift('')"
+                    >添加</el-button>
+                  </div>
+                  <el-row v-for="(effectParticle,index) in settingMap.theme.value.themes.effectParticles">
+                    <el-col :span="20">
+                      <el-radio v-model="settingMap.theme.value.currentTheme.effectParticle" :label="effectParticle">
+                        <el-tooltip>
+                          <div slot="content" style="text-align: center;min-width:180px;">
+                            <el-input v-model="settingMap.theme.value.themes.effectParticles[index]" auto-complete="off"></el-input>
+                          </div>
+                          <el-image :src="effectParticle" style="width: 95%"/>
+                        </el-tooltip>
+                      </el-radio>
+                      <el-divider></el-divider>
+                    </el-col>
+                    <el-col :span="4">
+                      <el-button type="danger" icon="el-icon-delete" @click="handleRemoveEffectParticle(index)"></el-button>
+                    </el-col>
+                  </el-row>
+                </el-card>
               </el-col>
             </el-row>
-            <el-row style="margin: 10px">
-              <el-button @click="handleAddTheme">添加</el-button>
-            </el-row>
-            <el-row></el-row>
           </el-form>
         </el-tab-pane>
         <el-tab-pane label="作者信息" name="author">
@@ -380,43 +442,6 @@
       </el-row>
     </el-card>
 
-    <el-dialog :title="themeEditFormTitle" fullscreen :visible.sync="themeEditFormShow">
-      <el-form ref="themeForm" :rules="themeEditRules" :model="themeEditForm" label-position="right" label-width="100px" >
-        <el-row>
-          <el-col :span="5">
-            <el-form-item label="主题名" prop="name">
-              <el-input v-model="themeEditForm.name" auto-complete="off"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="8">
-            <el-form-item label="主题背景图片" prop="themeBackground">
-              <el-tooltip>
-                <div slot="content" style="text-align: center;min-width:180px;">
-                  <el-input v-model="themeEditForm.background" auto-complete="off"></el-input>
-                </div>
-                <img :src="themeEditForm.background"  style="width: 80%"/>
-              </el-tooltip>
-            </el-form-item>
-          </el-col>
-          <el-col :span="3">
-            <el-form-item label="坠落特效素材" prop="specialEffects">
-              <el-tooltip>
-                <div slot="content" style="text-align: center;min-width:180px;">
-                  <el-input v-model="themeEditForm.specialEffects" auto-complete="off"></el-input>
-                </div>
-                <img :src="themeEditForm.specialEffects"  style="width: 80%"/>
-              </el-tooltip>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-col :span="3">
-          <el-button type="primary" @click="saveTheme">确定</el-button>
-          <el-button type="primary" @click="themeEditFormShow = false">取消</el-button>
-        </el-col>
-      </el-form>
-    </el-dialog>
   </div>
 </template>
 
@@ -426,9 +451,11 @@ import {getRoleList} from "../../api/role";
 import {aboutMeImageAttachUpload} from "../../api/fileStorage";
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import JsonEditor from 'vue-json-editor'
 
 export default {
   components: {
+    JsonEditor,
     'mavonEditor': mavonEditor.mavonEditor
   },
   name: "SiteSetting",
@@ -442,18 +469,14 @@ export default {
         pageSize: 5
       },
       themeListShow: true,
-      themeEditFormShow: false,
-      themeEditFormTitle: '',
-      themeEditForm: {
-        name: '',
-        background: 'background.pplax.xyz',
-        specialEffects: 'effects.pplax.xyz'
+      particleJsParamNameEditForm: {
+        name: ''
       },
-      editingThemeName: '',
-      themeEditRules: {
+      particleJsParamEditRules: {
         name: [
-          { required: true, message: '主题名不能为空', trigger: 'blur' },
-          { min: 1, max: 20, message: '标题长度限制在1到20之间', trigger: 'change' }
+          { required: true, message: '特效名不能为空', trigger: 'blur' },
+          { min: 1, max: 20, message: '长度限制在1到20之间', trigger: 'change' },
+          { validator: this.isExist, trigger: 'change' },
         ],
       },
       settingMap: {
@@ -498,8 +521,16 @@ export default {
         loginBackground: {},
         theme: {
           value: {
-            themes: {},
-            currentTheme: ''
+            themes: {
+              backgrounds: [],
+              effectParticles: [],
+              particleJsParams: []
+            },
+            currentTheme: {
+              background: '',
+              effectParticle: '',
+              particleJsParamName: ''
+            }
           }
         }
       }
@@ -523,47 +554,29 @@ export default {
         this.roleList = res.data
       })
     },
-    saveTheme: function () {
-      this.$refs['themeForm'].validate((valid) => {
+
+    /**
+     * 检查特效名是否存在
+     * @param rule
+     * @param value
+     * @param callback
+     */
+    isExist(rule, value, callback) {
+        if (this.settingMap.theme.value.themes.particleJsParams[value]) {
+          callback(new Error('该特效名已存在'))
+        } else {
+          callback()
+        }
+    },
+    handleAddParticleJsParam: function () {
+      this.$refs['particleJsParamForm'].validate((valid) => {
         if (valid) {
-          if (this.themeEditFormTitle === '编辑主题') {
-            delete this.settingMap.theme.value.themes[this.editingThemeName]
-          }
-          this.settingMap.theme.value.themes[this.themeEditForm.name] = {
-            background: this.themeEditForm.background,
-            specialEffects: this.themeEditForm.specialEffects
-          }
-          this.themeEditForm = {
-            name: '',
-            background: 'background.pplax.xyz',
-            specialEffects: 'effects.pplax.xyz'
-          }
-          this.editingThemeName = ''
-          this.themeEditFormTitle = ''
-          this.themeEditFormShow = false
+          this.settingMap.theme.value.themes.particleJsParams[this.particleJsParamNameEditForm.name] = {}
+          this.particleJsParamNameEditForm.name = ''
         }
       })
     },
-    handleEditTheme: function (key) {
-      this.editingThemeName = key
-      this.themeEditForm = {
-        name: key,
-        background: this.settingMap.theme.value.themes[key].background,
-        specialEffects: this.settingMap.theme.value.themes[key].specialEffects
-      }
-      this.themeEditFormShow = true
-      this.themeEditFormTitle = '编辑主题'
-    },
-    handleAddTheme: function () {
-      this.themeEditForm = {
-        name: '',
-        background: 'background.pplax.xyz',
-        specialEffects: 'effects.pplax.xyz'
-      }
-      this.themeEditFormShow = true
-      this.themeEditFormTitle = '添加主题'
-    },
-    removeTheme: function (key) {
+    handleRemoveParticleJsParam: function (key) {
 
       this.$confirm('确认移除吗？', '提示', {
         lockScroll: false,
@@ -572,18 +585,57 @@ export default {
         type: 'warning'
       })
         .then(_ => {
-          delete this.settingMap.theme.value.themes[key]
-          // 如果就剩一个了，那就默认这个了
-          if (Object.keys(this.settingMap.theme.value.themes).length === 1) {
-            this.settingMap.theme.value.currentTheme = Object.keys(this.settingMap.theme.value.themes)[0]
-          }
+          delete this.settingMap.theme.value.themes.particleJsParams[key]
 
           // 重新渲染组件
           this.themeListShow = false
           this.$nextTick(() => {
             this.themeListShow = true
           })
+        })
+        .catch(_ => {
 
+          this.$toast.info('取消关闭')
+        });
+    },
+    handleRemoveBackaground: function (index) {
+
+      this.$confirm('确认移除吗？' + index, '提示', {
+        lockScroll: false,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(_ => {
+          this.settingMap.theme.value.themes.backgrounds.splice(index, 1)
+
+          // 重新渲染组件
+          this.themeListShow = false
+          this.$nextTick(() => {
+            this.themeListShow = true
+          })
+        })
+        .catch(_ => {
+
+          this.$toast.info('取消关闭')
+        });
+    },
+    handleRemoveEffectParticle: function (index) {
+
+      this.$confirm('确认移除吗？' + index, '提示', {
+        lockScroll: false,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(_ => {
+          this.settingMap.theme.value.themes.effectParticles.splice(index, 1)
+
+          // 重新渲染组件
+          this.themeListShow = false
+          this.$nextTick(() => {
+            this.themeListShow = true
+          })
         })
         .catch(_ => {
 

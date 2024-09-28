@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/smartfox_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/handler/OAuth2ResponseExceptionTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/handler/OAuth2ResponseExceptionTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/RegisterDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/RegisterDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -507,14 +505,7 @@
       <workItem from="1725795948139" duration="611000" />
       <workItem from="1725950410949" duration="43000" />
       <workItem from="1727057664198" duration="1197000" />
-      <workItem from="1727487235179" duration="2029000" />
-    </task>
-    <task id="LOCAL-00533" summary="调整全局异常api响应处理类的位置">
-      <created>1724572977306</created>
-      <option name="number" value="00533" />
-      <option name="presentableId" value="LOCAL-00533" />
-      <option name="project" value="LOCAL" />
-      <updated>1724572977306</updated>
+      <workItem from="1727487235179" duration="2686000" />
     </task>
     <task id="LOCAL-00534" summary="优化全局拦截器逻辑">
       <created>1724574879428</created>
@@ -852,7 +843,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727489208818</updated>
     </task>
-    <option name="localTasksCounter" value="582" />
+    <task id="LOCAL-00582" summary="fix:补充异常处理逻辑">
+      <created>1727489427178</created>
+      <option name="number" value="00582" />
+      <option name="presentableId" value="LOCAL-00582" />
+      <option name="project" value="LOCAL" />
+      <updated>1727489427178</updated>
+    </task>
+    <option name="localTasksCounter" value="583" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -888,7 +886,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix:优化oauth2的异常处理（终于看破本质了，那个feign异常终于能去掉了）" />
     <MESSAGE value="fix:加回来feign异常处理（优化）" />
     <MESSAGE value="fix:配置pom.xml资源编译" />
     <MESSAGE value="fix:修改七牛云不能上传的bug，被自己蠢到" />
@@ -913,7 +910,8 @@
     <MESSAGE value="fix:配置有点错误，改正" />
     <MESSAGE value="fix:调整特效层样式，防止影响界面交互" />
     <MESSAGE value="fix:修改注册参数验证不严谨的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:修改注册参数验证不严谨的问题" />
+    <MESSAGE value="fix:补充异常处理逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:补充异常处理逻辑" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

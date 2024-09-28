@@ -40,32 +40,6 @@ public class OAuth2ResponseExceptionTranslator extends GlobalExceptionApiHandler
         // 发送异常信息
         sendToMq(e, handlerMethod, httpServletRequest);
 
-
-        /*
-         * 参数校验异常
-         */
-        if (e instanceof BindException || e instanceof MethodArgumentNotValidException) {
-            BindingResult bindingResult = null;
-            if (e instanceof MethodArgumentNotValidException) {
-                MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
-                bindingResult = methodArgumentNotValidException.getBindingResult();
-            } else {
-                bindingResult = ((BindException) e).getBindingResult();
-            }
-
-            if (null != bindingResult && bindingResult.hasErrors()) {
-                List<Object> jsonList = new ArrayList<Object>();
-                List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-                for (FieldError fieldError : fieldErrors) {
-                    Map<String, Object> jsonObject = new HashMap<String, Object>(2);
-                    jsonObject.put("name", fieldError.getField());
-                    jsonObject.put("msg", fieldError.getDefaultMessage());
-                    jsonList.add(jsonObject);
-                }
-                return ResponseResult.error(HttpStatus.BAD_REQUEST.getCode(), JSON.toJSONString(jsonList));
-            }
-        }
-
         //对异常进行转换
         if (e instanceof UnsupportedGrantTypeException){
             return ResponseResult.error(HttpStatus.INVALID_TOKEN);

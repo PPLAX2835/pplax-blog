@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/RegisterDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/RegisterDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +139,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="Application.BaseRegexConstants">
+  <component name="RunManager" selected="npm.serve">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -149,19 +149,6 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="amqp-api" />
       <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BaseRegexConstants" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants" />
-      <module name="pplax-commons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="xyz.pplax.pplaxblog.commons.constants.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -267,13 +254,11 @@
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
-      <item itemvalue="Application.BaseRegexConstants" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BaseRegexConstants" />
-        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="npm.build (1)" />
         <item itemvalue="npm.build" />
       </list>
@@ -505,14 +490,7 @@
       <workItem from="1725795948139" duration="611000" />
       <workItem from="1725950410949" duration="43000" />
       <workItem from="1727057664198" duration="1197000" />
-      <workItem from="1727487235179" duration="2686000" />
-    </task>
-    <task id="LOCAL-00534" summary="优化全局拦截器逻辑">
-      <created>1724574879428</created>
-      <option name="number" value="00534" />
-      <option name="presentableId" value="LOCAL-00534" />
-      <option name="project" value="LOCAL" />
-      <updated>1724574879428</updated>
+      <workItem from="1727487235179" duration="3382000" />
     </task>
     <task id="LOCAL-00535" summary="refactor: 替换所有System.out.print相关的方法为log的">
       <created>1724575685339</created>
@@ -850,7 +828,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727489427178</updated>
     </task>
-    <option name="localTasksCounter" value="583" />
+    <task id="LOCAL-00583" summary="整理">
+      <created>1727490093191</created>
+      <option name="number" value="00583" />
+      <option name="presentableId" value="LOCAL-00583" />
+      <option name="project" value="LOCAL" />
+      <updated>1727490093191</updated>
+    </task>
+    <option name="localTasksCounter" value="584" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -886,7 +871,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix:加回来feign异常处理（优化）" />
     <MESSAGE value="fix:配置pom.xml资源编译" />
     <MESSAGE value="fix:修改七牛云不能上传的bug，被自己蠢到" />
     <MESSAGE value="初步重构认证代码" />
@@ -911,7 +895,8 @@
     <MESSAGE value="fix:调整特效层样式，防止影响界面交互" />
     <MESSAGE value="fix:修改注册参数验证不严谨的问题" />
     <MESSAGE value="fix:补充异常处理逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:补充异常处理逻辑" />
+    <MESSAGE value="整理" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

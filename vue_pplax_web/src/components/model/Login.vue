@@ -122,9 +122,9 @@ export default {
             rules: {
                 username: [
                   { required: true, message: '请输入用户名', trigger: 'blur' },
-                  { validator: this.isExist, trigger: 'change'},
+                //   { validator: this.isExist, trigger: 'change'},
                   { min: 3, max: 30, message: '长度在3到30个字符' },
-                  { pattern: /^\w{3,30}$/, message: '必须为字母、数字或下划线', trigger: 'change'}
+                  { pattern: /^[a-zA-Z0-9]+$/, message: '只能由字母或数字组成', trigger: 'change'}
                 ],
                 email: [
                     { required: true, message: '请输入邮箱', trigger: 'blur' },
@@ -137,7 +137,7 @@ export default {
                 password: [
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     { min: 8, max: 16, message: '长度在8到16个字符' },
-                  { pattern: /^\w{8,16}$/, message: '必须为字母、数字或下划线', trigger: 'change'}
+                  { pattern: /(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+/, message: '必须包含大小写字母、数字和特殊字符', trigger: 'change'}
                 ],
                 code: [
                     { required: true, message: '请输入验证码', trigger: 'blur' },

@@ -1,9 +1,14 @@
 package xyz.pplax.pplaxblog.auth.handler;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.security.oauth2.common.exceptions.UnsupportedGrantTypeException;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.HandlerMethod;
@@ -14,6 +19,10 @@ import xyz.pplax.pplaxblog.xo.component.handler.GlobalExceptionApiHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 认证 Api Controller 异常处理
@@ -30,6 +39,32 @@ public class OAuth2ResponseExceptionTranslator extends GlobalExceptionApiHandler
 
         // 发送异常信息
         sendToMq(e, handlerMethod, httpServletRequest);
+
+
+        /*
+         * 参数校验异常
+         */
+        if (e instanceof BindException || e instanceof MethodArgumentNotValidException) {
+            BindingResult bindingResult = null;
+            if (e instanceof MethodArgumentNotValidException) {
+                MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
+                bindingResult = methodArgumentNotValidException.getBindingResult();
+            } else {
+                bindingResult = ((BindException) e).getBindingResult();
+            }
+
+            if (null != bindingResult && bindingResult.hasErrors()) {
+                List<Object> jsonList = new ArrayList<Object>();
+                List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+                for (FieldError fieldError : fieldErrors) {
+                    Map<String, Object> jsonObject = new HashMap<String, Object>(2);
+                    jsonObject.put("name", fieldError.getField());
+                    jsonObject.put("msg", fieldError.getDefaultMessage());
+                    jsonList.add(jsonObject);
+                }
+                return ResponseResult.error(HttpStatus.BAD_REQUEST.getCode(), JSON.toJSONString(jsonList));
+            }
+        }
 
         //对异常进行转换
         if (e instanceof UnsupportedGrantTypeException){

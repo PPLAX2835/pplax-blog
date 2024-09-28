@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/smartfox_info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/handler/OAuth2ResponseExceptionTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/handler/OAuth2ResponseExceptionTranslator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,16 +46,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-file/src/main/java/xyz/pplax/pplaxblog/file/controller/SayFileController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SayEditDto.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/say.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/api/fileStorage.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/blog/index.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-gateway/src/main/java/xyz/pplax/pplaxblog/GatewayApplication.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/dto/edit/SayEditDto.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/vue_pplax_admin/src/views/say/index.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/component/handler/GlobalExceptionApiHandler.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -139,7 +141,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="Application.BaseRegexConstants">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -149,6 +151,19 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="amqp-api" />
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BaseRegexConstants" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="xyz.pplax.pplaxblog.commons.constants.BaseRegexConstants" />
+      <module name="pplax-commons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.pplax.pplaxblog.commons.constants.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -234,16 +249,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/vue_pplax_admin/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/vue_pplax_web/package.json" />
       <command value="run" />
@@ -256,7 +261,6 @@
     </configuration>
     <list>
       <item itemvalue="npm.serve" />
-      <item itemvalue="npm.dev" />
       <item itemvalue="npm.build" />
       <item itemvalue="npm.build (1)" />
       <item itemvalue="Spring Boot.AdminApplication" />
@@ -265,14 +269,15 @@
       <item itemvalue="Spring Boot.WebApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Application.BaseRegexConstants" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BaseRegexConstants" />
         <item itemvalue="Spring Boot.GatewayApplication" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.build (1)" />
         <item itemvalue="npm.build" />
-        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -499,21 +504,10 @@
       <workItem from="1725689259354" duration="10135000" />
       <workItem from="1725758318081" duration="20426000" />
       <workItem from="1725782153417" duration="1161000" />
-      <workItem from="1725795948139" duration="544000" />
-    </task>
-    <task id="LOCAL-00531" summary="refactor:现在可以记录请求日志了">
-      <created>1724562062113</created>
-      <option name="number" value="00531" />
-      <option name="presentableId" value="LOCAL-00531" />
-      <option name="project" value="LOCAL" />
-      <updated>1724562062113</updated>
-    </task>
-    <task id="LOCAL-00532" summary="fix:修改查询menu表时查出多个符合条件的导致异常和消息队列阻塞的问题">
-      <created>1724564294837</created>
-      <option name="number" value="00532" />
-      <option name="presentableId" value="LOCAL-00532" />
-      <option name="project" value="LOCAL" />
-      <updated>1724564294837</updated>
+      <workItem from="1725795948139" duration="611000" />
+      <workItem from="1725950410949" duration="43000" />
+      <workItem from="1727057664198" duration="1197000" />
+      <workItem from="1727487235179" duration="2029000" />
     </task>
     <task id="LOCAL-00533" summary="调整全局异常api响应处理类的位置">
       <created>1724572977306</created>
@@ -844,7 +838,21 @@
       <option name="project" value="LOCAL" />
       <updated>1725783317351</updated>
     </task>
-    <option name="localTasksCounter" value="580" />
+    <task id="LOCAL-00580" summary="fix:调整特效层样式，防止影响界面交互">
+      <created>1725796541580</created>
+      <option name="number" value="00580" />
+      <option name="presentableId" value="LOCAL-00580" />
+      <option name="project" value="LOCAL" />
+      <updated>1725796541580</updated>
+    </task>
+    <task id="LOCAL-00581" summary="fix:修改注册参数验证不严谨的问题">
+      <created>1727489208818</created>
+      <option name="number" value="00581" />
+      <option name="presentableId" value="LOCAL-00581" />
+      <option name="project" value="LOCAL" />
+      <updated>1727489208818</updated>
+    </task>
+    <option name="localTasksCounter" value="582" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -880,8 +888,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新readme" />
-    <MESSAGE value="修改打包配置" />
     <MESSAGE value="fix:优化oauth2的异常处理（终于看破本质了，那个feign异常终于能去掉了）" />
     <MESSAGE value="fix:加回来feign异常处理（优化）" />
     <MESSAGE value="fix:配置pom.xml资源编译" />
@@ -905,7 +911,9 @@
     <MESSAGE value="feat:说说获取地址信息只返回省份" />
     <MESSAGE value="feat:优化动态主题配置，现在主题可以配置粒子特效了" />
     <MESSAGE value="fix:配置有点错误，改正" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:配置有点错误，改正" />
+    <MESSAGE value="fix:调整特效层样式，防止影响界面交互" />
+    <MESSAGE value="fix:修改注册参数验证不严谨的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:修改注册参数验证不严谨的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

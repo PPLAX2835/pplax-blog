@@ -44,9 +44,9 @@ public class UserDetailService  implements UserDetailsService {
         }
 
         // 邮箱的正则
-        String emailRegex = BaseRegexConstants.EMAIL_REGEX;
+        String emailRegex = BaseRegexConstants.EMAIL;
         // 手机的正则
-        String mobileRegex = BaseRegexConstants.MOBILE_REGEX;
+        String mobileRegex = BaseRegexConstants.PHONE_NUMBER;
 
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         User user = null;

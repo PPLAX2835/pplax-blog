@@ -22,7 +22,7 @@ public class RegexValidator implements ConstraintValidator<Regex, String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         String regex = constraintAnnotation.value();
-        return StringUtils.isEmpty(value) && Pattern.matches(regex, value);
+        return StringUtils.isNotEmpty(value) && Pattern.matches(regex, value);
     }
 
 

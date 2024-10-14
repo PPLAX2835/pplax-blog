@@ -41,6 +41,9 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     @Value("${pplax.oauth.client-secret:pplax123456}")
     private String clientSecret;
 
+    @Value("${pplax.oauth.access-token-validity-seconds:7776000}") // token 90天后过期
+    private int accessTokenValiditySeconds;
+
     /**
      * redis token 方式
      */
@@ -61,7 +64,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .secret(passwordEncoder.encode(clientSecret))
                 .authorizedGrantTypes(BaseSysConstants.PASSWORD)            // 使用密码模式
                 .scopes("all")
-                .accessTokenValiditySeconds(3600);
+                .accessTokenValiditySeconds(accessTokenValiditySeconds);    // 令牌过期时间 单位秒
     }
 
     @Override

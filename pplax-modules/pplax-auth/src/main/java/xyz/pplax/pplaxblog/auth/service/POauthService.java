@@ -67,6 +67,8 @@ public class POauthService {
     @Value("${pplax.oauth.client-secret:pplax123456}")
     private String clientSecret;
 
+    @Value("${pplax.oauth.access-token-validity-seconds:7776000}") // token 90天后过期
+    private long accessTokenValiditySeconds;
 
     /**
      * 拼图验证码允许偏差
@@ -145,7 +147,12 @@ public class POauthService {
             log.info("登录信息更新");
 
             // 记录token到缓存
-            redisService.setCacheObject(AuthRedisConstants.USER_TOKEN + ":" + user.getUid(), resultToken.getValue());
+            redisService.setCacheObject(
+                    AuthRedisConstants.USER_TOKEN + ":" + user.getUid(),
+                    resultToken.getValue(),
+                    accessTokenValiditySeconds,
+                    TimeUnit.SECONDS
+            );
 
             // 移除加密盐
             map.remove(BaseSysConstants.SALT);

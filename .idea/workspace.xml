@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="refactor:">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_web/src/components/model/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/config/AuthorizationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/service/POauthService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +98,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25740552" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
     <property name="ts.external.directory.path" value="E:\Program Files\JetBrains\IntelliJ IDEA 2021.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -214,21 +215,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="build (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/vue_pplax_web/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/vue_pplax_admin/package.json" />
       <command value="run" />
       <scripts>
-        <script value="build" />
+        <script value="dev" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -246,8 +237,7 @@
     </configuration>
     <list>
       <item itemvalue="npm.serve" />
-      <item itemvalue="npm.build" />
-      <item itemvalue="npm.build (1)" />
+      <item itemvalue="npm.dev" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.MessageApplication" />
       <item itemvalue="Spring Boot.FileApplication" />
@@ -257,10 +247,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.serve" />
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.build (1)" />
-        <item itemvalue="npm.build" />
+        <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -490,14 +479,14 @@
       <workItem from="1725795948139" duration="611000" />
       <workItem from="1725950410949" duration="43000" />
       <workItem from="1727057664198" duration="1197000" />
-      <workItem from="1727487235179" duration="3382000" />
-    </task>
-    <task id="LOCAL-00535" summary="refactor: 替换所有System.out.print相关的方法为log的">
-      <created>1724575685339</created>
-      <option name="number" value="00535" />
-      <option name="presentableId" value="LOCAL-00535" />
-      <option name="project" value="LOCAL" />
-      <updated>1724575685339</updated>
+      <workItem from="1727487235179" duration="4140000" />
+      <workItem from="1727515867823" duration="17000" />
+      <workItem from="1727523879269" duration="4946000" />
+      <workItem from="1727529741399" duration="593000" />
+      <workItem from="1727757905153" duration="21000" />
+      <workItem from="1728874933194" duration="157000" />
+      <workItem from="1728875142145" duration="265000" />
+      <workItem from="1728875460942" duration="2016000" />
     </task>
     <task id="LOCAL-00536" summary="refactor: 替换所有System.out.print相关的方法为log的">
       <created>1724591995879</created>
@@ -835,7 +824,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727490093191</updated>
     </task>
-    <option name="localTasksCounter" value="584" />
+    <task id="LOCAL-00584" summary="fix：修改前端表单验证">
+      <created>1727490815716</created>
+      <option name="number" value="00584" />
+      <option name="presentableId" value="LOCAL-00584" />
+      <option name="project" value="LOCAL" />
+      <updated>1727490815716</updated>
+    </task>
+    <option name="localTasksCounter" value="585" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -871,7 +867,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix:配置pom.xml资源编译" />
     <MESSAGE value="fix:修改七牛云不能上传的bug，被自己蠢到" />
     <MESSAGE value="初步重构认证代码" />
     <MESSAGE value="前台部分完成新认证接口对接" />
@@ -896,7 +891,8 @@
     <MESSAGE value="fix:修改注册参数验证不严谨的问题" />
     <MESSAGE value="fix:补充异常处理逻辑" />
     <MESSAGE value="整理" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理" />
+    <MESSAGE value="fix：修改前端表单验证" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix：修改前端表单验证" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

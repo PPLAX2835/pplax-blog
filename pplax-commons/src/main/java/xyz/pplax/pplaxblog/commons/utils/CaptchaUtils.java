@@ -32,65 +32,20 @@ public class CaptchaUtils {
      * 获取验证码资源图
      **/
     public static BufferedImage getBufferedImage(String captchaUrl) {
+        BufferedImage bufferedImage = null;
         try {
             //获取网络资源图片{
             URL url = new URL(captchaUrl);
-            return ImageIO.read(url.openStream());
+            bufferedImage = ImageIO.read(url.openStream());
+            if (bufferedImage == null) {
+                bufferedImage = getRandomBufferedImage(320, 155);
+            }
         } catch (Exception e) {
             log.error("获取拼图资源失败，使用默认图片：" + e.getMessage());
 
-            // 创建BufferedImage对象
-            BufferedImage image = new BufferedImage(500, 400, BufferedImage.TYPE_INT_RGB);
-
-            // 获取Graphics2D对象用于绘制
-            Graphics2D g2d = image.createGraphics();
-
-            // 设置背景颜色
-            g2d.setColor(Color.DARK_GRAY);
-            g2d.fillRect(0, 0, 500, 400);
-
-            // 设置绘制内容
-            g2d.setColor(Color.lightGray);
-            g2d.setFont(new Font("Arial", Font.BOLD, 30));
-            g2d.drawString("This is a image", 50, 100);
-
-            // 创建随机数生成器
-            Random random = new Random();
-
-            // 循环绘制随机图形
-            for (int i = 0; i < 6; i++) {
-                // 随机生成颜色
-                Color randomColor = new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
-                g2d.setColor(randomColor);
-
-                // 随机选择要绘制的图形类型
-                int shapeType = random.nextInt(3); // 0-矩形，1-椭圆，2-线条
-
-                // 随机生成图形的位置和大小
-                int x = random.nextInt(500);
-                int y = random.nextInt(400);
-                int shapeWidth = random.nextInt(100) + 20;  // 宽度范围为20-120
-                int shapeHeight = random.nextInt(100) + 20; // 高度范围为20-120
-
-                switch (shapeType) {
-                    case 0: // 矩形
-                        g2d.fillRect(x, y, shapeWidth, shapeHeight);
-                        break;
-                    case 1: // 椭圆
-                        g2d.fillOval(x, y, shapeWidth, shapeHeight);
-                        break;
-                    case 2: // 线条
-                        int x2 = random.nextInt(500);
-                        int y2 = random.nextInt(400);
-                        g2d.drawLine(x, y, x2, y2);
-                        break;
-                }
-            }
-
-            // 释放Graphics2D资源
-            g2d.dispose();
-            return image;
+            bufferedImage = getRandomBufferedImage(320, 155);
         }
+        return bufferedImage;
     }
 
     /**
@@ -225,5 +180,59 @@ public class CaptchaUtils {
             //异常处理
             return null;
         }
+    }
+
+    private static BufferedImage getRandomBufferedImage(int width, int height) {
+        // 创建BufferedImage对象
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+        // 获取Graphics2D对象用于绘制
+        Graphics2D g2d = image.createGraphics();
+
+        // 设置背景颜色
+        g2d.setColor(Color.DARK_GRAY);
+        g2d.fillRect(0, 0, width, height);
+
+        // 设置绘制内容
+        g2d.setColor(Color.lightGray);
+        g2d.setFont(new Font("Arial", Font.BOLD, 30));
+        g2d.drawString("This is a image", 50, 100);
+
+        // 创建随机数生成器
+        Random random = new Random();
+
+        // 循环绘制随机图形
+        for (int i = 0; i < 6; i++) {
+            // 随机生成颜色
+            Color randomColor = new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
+            g2d.setColor(randomColor);
+
+            // 随机选择要绘制的图形类型
+            int shapeType = random.nextInt(3); // 0-矩形，1-椭圆，2-线条
+
+            // 随机生成图形的位置和大小
+            int x = random.nextInt(width);
+            int y = random.nextInt(height);
+            int shapeWidth = random.nextInt(100) + 20;  // 宽度范围为20-120
+            int shapeHeight = random.nextInt(100) + 20; // 高度范围为20-120
+
+            switch (shapeType) {
+                case 0: // 矩形
+                    g2d.fillRect(x, y, shapeWidth, shapeHeight);
+                    break;
+                case 1: // 椭圆
+                    g2d.fillOval(x, y, shapeWidth, shapeHeight);
+                    break;
+                case 2: // 线条
+                    int x2 = random.nextInt(width);
+                    int y2 = random.nextInt(height);
+                    g2d.drawLine(x, y, x2, y2);
+                    break;
+            }
+        }
+
+        // 释放Graphics2D资源
+        g2d.dispose();
+        return image;
     }
 }

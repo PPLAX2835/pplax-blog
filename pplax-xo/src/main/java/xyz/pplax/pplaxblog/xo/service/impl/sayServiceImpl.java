@@ -48,9 +48,14 @@ public class sayServiceImpl extends SuperServiceImpl<SayMapper, Say> implements 
     @Override
     public Page<Say> pagePublic(String userUid, Long currentPage, Long pageSize) {
         PQueryWrapper<Say> sayPQueryWrapper = new PQueryWrapper<>();
-        sayPQueryWrapper.eq(SaySQLConstants.IS_PUBLIC, true);
+        sayPQueryWrapper.and(
+                    e -> e
+                    .eq(SaySQLConstants.IS_PUBLIC, true)
+                    .or()
+                    .eq(SaySQLConstants.USER_UID, userUid)
+                );
         sayPQueryWrapper.orderByDesc(SaySQLConstants.C_CREATE_TIME);
-
+        String targetSql = sayPQueryWrapper.getTargetSql();
         //分页
         Page<Say> page = new Page<>();
         page.setCurrent(currentPage);

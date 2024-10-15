@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="优化实现方式">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CaptchaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-commons/src/main/java/xyz/pplax/pplaxblog/commons/utils/CaptchaUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/src/main/java/xyz/pplax/pplaxblog/starter/mybatis/MetaObjectHandlerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pplax-mybatis-starter/src/main/java/xyz/pplax/pplaxblog/starter/mybatis/MetaObjectHandlerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/entity/SuperEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-xo/src/main/java/xyz/pplax/pplaxblog/xo/base/entity/SuperEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/utils/request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +141,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -247,8 +249,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -485,14 +487,11 @@
       <workItem from="1727757905153" duration="21000" />
       <workItem from="1728874933194" duration="157000" />
       <workItem from="1728875142145" duration="265000" />
-      <workItem from="1728875460942" duration="4448000" />
-    </task>
-    <task id="LOCAL-00538" summary="feat:完成网关聚合swagger">
-      <created>1724676531514</created>
-      <option name="number" value="00538" />
-      <option name="presentableId" value="LOCAL-00538" />
-      <option name="project" value="LOCAL" />
-      <updated>1724676531514</updated>
+      <workItem from="1728875460942" duration="5584000" />
+      <workItem from="1728896363123" duration="1292000" />
+      <workItem from="1728978194539" duration="3773000" />
+      <workItem from="1728982085267" duration="1590000" />
+      <workItem from="1728987586657" duration="3128000" />
     </task>
     <task id="LOCAL-00539" summary="refactor:整理本地存储方式">
       <created>1724677632046</created>
@@ -830,7 +829,14 @@
       <option name="project" value="LOCAL" />
       <updated>1728887133906</updated>
     </task>
-    <option name="localTasksCounter" value="587" />
+    <task id="LOCAL-00587" summary="优化实现方式">
+      <created>1728888485086</created>
+      <option name="number" value="00587" />
+      <option name="presentableId" value="LOCAL-00587" />
+      <option name="project" value="LOCAL" />
+      <updated>1728888485086</updated>
+    </task>
+    <option name="localTasksCounter" value="588" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -866,7 +872,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="前台部分完成新认证接口对接" />
     <MESSAGE value="fix:修改前端注册使用不合法数据能够注册成功的问题" />
     <MESSAGE value="将管理后台的认证接口对接到新接口" />
     <MESSAGE value="移除淘汰掉的代码" />
@@ -891,7 +896,8 @@
     <MESSAGE value="fix：修改前端表单验证" />
     <MESSAGE value="refactor: token过期时间改为通过配置修改" />
     <MESSAGE value="fix: 修复配置的验证码图片url失效后登录功能不能正常使用的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 修复配置的验证码图片url失效后登录功能不能正常使用的问题" />
+    <MESSAGE value="优化实现方式" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化实现方式" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

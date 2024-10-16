@@ -34,10 +34,6 @@
         <!-- 引入starter 相关 -->
         <dependency>
             <groupId>xyz.pplax</groupId>
-            <artifactId>pplax-durid-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>xyz.pplax</groupId>
             <artifactId>pplax-swagger-starter</artifactId>
         </dependency>
         <dependency>
@@ -81,6 +77,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <!-- druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- spring-cloud-starter-alibaba -->

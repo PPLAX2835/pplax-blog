@@ -8,7 +8,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="pplax-durid-starter" />
         <module name="pplax-feign" />
         <module name="pplax-web" />
         <module name="pplax-swagger-starter" />

@@ -6,7 +6,6 @@
     <artifactId>pplax-starter</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>pplax-durid-starter</module>
         <module>pplax-mybatis-starter</module>
         <module>pplax-swagger-starter</module>
         <module>pplax-security-starter</module>

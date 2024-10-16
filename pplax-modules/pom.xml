@@ -24,11 +24,6 @@
             <!-- pplax-starter相关 -->
             <dependency>
                 <groupId>xyz.pplax</groupId>
-                <artifactId>pplax-durid-starter</artifactId>
-                <version>1.0</version>
-            </dependency>
-            <dependency>
-                <groupId>xyz.pplax</groupId>
                 <artifactId>pplax-swagger-starter</artifactId>
                 <version>1.0</version>
             </dependency>

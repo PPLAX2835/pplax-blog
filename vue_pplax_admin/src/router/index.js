@@ -116,12 +116,6 @@ export const constantRouterMap = [
                 name: 'Menu',
                 component: () => import('@/views/menu/index'),
                 meta: { title: '菜单管理', icon: 'table' }
-              },
-              {
-                path: 'codeGenerate',
-                name: 'CodeGenerate',
-                component: () => import('@/views/codeGenerate/index'),
-                meta: { title: '代码生成', icon: 'table' }
               }
             ]
           },
@@ -196,13 +190,13 @@ export const constantRouterMap = [
 
 
           {
-            path: 'monitor',
-            redirect: 'monitor/requestLog',
+            path: 'log',
+            redirect: 'log/requestLog',
             component: {
               render(c) { return c('router-view'); }
             },
-            name: 'Monitor',
-            meta: { title: '监控管理', icon: 'table' },
+            name: 'Log',
+            meta: { title: '日志管理', icon: 'table' },
             children: [
               {
                 path: 'requestLog',
@@ -215,6 +209,50 @@ export const constantRouterMap = [
                 name: 'WxceptionLog',
                 component: () => import('@/views/exceptionLog/index'),
                 meta: { title: '异常日志管理', icon: 'table' }
+              }
+            ]
+          },
+
+
+          {
+            path: 'tools',
+            redirect: 'tools/codeGenerate',
+            component: {
+              render(c) { return c('router-view'); }
+            },
+            name: 'CodeGenerate',
+            meta: { title: '代码生成', icon: 'table' },
+            children: [
+              {
+                path: 'codeGenerate',
+                name: 'CodeGenerate',
+                component: () => import('@/views/codeGenerate/index'),
+                meta: { title: '代码生成', icon: 'table' }
+              },
+              {
+                path: 'swagger',
+                name: 'Swagger',
+                component: () => import('@/views/swagger/index'),
+                meta: { title: '接口文档', icon: 'table' }
+              }
+            ]
+          },
+
+
+          {
+            path: 'monitor',
+            redirect: 'monitor/druid',
+            component: {
+              render(c) { return c('router-view'); }
+            },
+            name: 'druid',
+            meta: { title: '代码生成', icon: 'table' },
+            children: [
+              {
+                path: 'druid',
+                name: 'Druid',
+                component: () => import('@/views/druid/index'),
+                meta: { title: 'druid监控', icon: 'table' }
               }
             ]
           }

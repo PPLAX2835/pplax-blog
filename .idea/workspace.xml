@@ -4,28 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix:druid">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_spring_boot_starter_1_1_22.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_22.xml" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix:druid配置&#10;原来的配置不能正常使用，现在调整好了">
+      <change afterPath="$PROJECT_DIR$/doc/pplax-blog-update 2024.10.16 18.31.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/swagger.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/druid/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/nacos_config.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doc/nacos_config.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-admin/pplax-admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pplax-auth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-file/pplax-file.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-message/pplax-message.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/pplax-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-starter/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-durid-starter/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-durid-starter/pplax-durid-starter.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-starter/pplax-durid-starter/src/main/java/xyz/pplax/pplaxblog/starter/durid/DruidConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +93,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_web/public/assets/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vue_pplax_admin/src/api" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -125,11 +112,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_admin\src\api" />
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_admin" />
+      <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_admin\src\views" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\vue_pplax_web\public\assets\js" />
       <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-commons\src\main\resources" />
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-web\src\main\resources" />
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-message\src\main\resources" />
-      <recent name="G:\Workspace\code\IDEA\pplax-blog\pplax-modules\pplax-gateway\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Workspace\code\IDEA\pplax-blog\doc" />
@@ -158,7 +145,7 @@
     </option>
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="amqp-api" />
       <method v="2">
@@ -266,8 +253,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GatewayApplication" />
-        <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -510,14 +497,9 @@
       <workItem from="1728982085267" duration="1590000" />
       <workItem from="1728987586657" duration="5380000" />
       <workItem from="1729043764247" duration="2173000" />
-      <workItem from="1729048486532" duration="4983000" />
-    </task>
-    <task id="LOCAL-00541" summary="refactor:整理admin服务的swagger">
-      <created>1724724699816</created>
-      <option name="number" value="00541" />
-      <option name="presentableId" value="LOCAL-00541" />
-      <option name="project" value="LOCAL" />
-      <updated>1724724699816</updated>
+      <workItem from="1729048486532" duration="5889000" />
+      <workItem from="1729074642102" duration="4826000" />
+      <workItem from="1729127865273" duration="9316000" />
     </task>
     <task id="LOCAL-00542" summary="refactor:整理admin服务的swagger">
       <created>1724724724135</created>
@@ -855,7 +837,14 @@
       <option name="project" value="LOCAL" />
       <updated>1728992272670</updated>
     </task>
-    <option name="localTasksCounter" value="590" />
+    <task id="LOCAL-00590" summary="fix:druid配置&#10;原来的配置不能正常使用，现在调整好了">
+      <created>1729059883785</created>
+      <option name="number" value="00590" />
+      <option name="presentableId" value="LOCAL-00590" />
+      <option name="project" value="LOCAL" />
+      <updated>1729059883785</updated>
+    </task>
+    <option name="localTasksCounter" value="591" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -891,7 +880,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="移除淘汰掉的代码" />
     <MESSAGE value="图片验证码key加上ip，防止一个请求使用了来自另一个请求生成的验证码通过的情况" />
     <MESSAGE value="fix:修复撰写博客时不能上传封面图的问题" />
     <MESSAGE value="整理nacos配置" />
@@ -916,7 +904,8 @@
     <MESSAGE value="优化实现方式" />
     <MESSAGE value="fix:解决了上古遗留问题&#10;mybatis-plus自动填充修改字段名为驼峰命名，解决了自动填充一直没有生效的问题&#10;管理后台请求超时时间调整为10秒" />
     <MESSAGE value="fix:说说显示问题&#10;修改了不能查看自己发布的非公开说说的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:说说显示问题&#10;修改了不能查看自己发布的非公开说说的问题" />
+    <MESSAGE value="fix:druid配置&#10;原来的配置不能正常使用，现在调整好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:druid配置&#10;原来的配置不能正常使用，现在调整好了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

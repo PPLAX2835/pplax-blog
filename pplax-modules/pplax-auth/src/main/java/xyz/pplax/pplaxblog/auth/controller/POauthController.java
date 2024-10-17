@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,7 @@ import xyz.pplax.pplaxblog.xo.dto.RegisterDto;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping(value = "/pOauth")
+@RequestMapping(value = "")
 @Api(value="自定义登录认证相关Controller",tags={"自定义登录认证相关Controller"})
 public class POauthController extends SuperController {
 

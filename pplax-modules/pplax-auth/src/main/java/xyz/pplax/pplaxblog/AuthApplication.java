@@ -15,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ServletComponentScan
 @ComponentScan(basePackages = {
         "xyz.pplax.pplaxblog.starter.security",
+        "xyz.pplax.pplaxblog.starter.swagger",
         "xyz.pplax.pplaxblog.starter.mybatis",
         "xyz.pplax.pplaxblog.starter.redis",
         "xyz.pplax.pplaxblog.starter.amqp",

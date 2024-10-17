@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="fix:druid配置&#10;原来的配置不能正常使用，现在调整好了">
-      <change afterPath="$PROJECT_DIR$/doc/pplax-blog-update 2024.10.16 18.31.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/swagger.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/druid/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/index.vue" afterDir="false" />
+    <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/dev.env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/config/prod.env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/AuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -499,14 +495,7 @@
       <workItem from="1729043764247" duration="2173000" />
       <workItem from="1729048486532" duration="5889000" />
       <workItem from="1729074642102" duration="4826000" />
-      <workItem from="1729127865273" duration="9316000" />
-    </task>
-    <task id="LOCAL-00542" summary="refactor:整理admin服务的swagger">
-      <created>1724724724135</created>
-      <option name="number" value="00542" />
-      <option name="presentableId" value="LOCAL-00542" />
-      <option name="project" value="LOCAL" />
-      <updated>1724724724135</updated>
+      <workItem from="1729127865273" duration="10007000" />
     </task>
     <task id="LOCAL-00543" summary="refactor:整理web服务的swagger">
       <created>1724726648299</created>
@@ -844,7 +833,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729059883785</updated>
     </task>
-    <option name="localTasksCounter" value="591" />
+    <task id="LOCAL-00591" summary="feat：管理后台添加swagger和druid页面">
+      <created>1729146071354</created>
+      <option name="number" value="00591" />
+      <option name="presentableId" value="LOCAL-00591" />
+      <option name="project" value="LOCAL" />
+      <updated>1729146071355</updated>
+    </task>
+    <option name="localTasksCounter" value="592" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -880,7 +876,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="图片验证码key加上ip，防止一个请求使用了来自另一个请求生成的验证码通过的情况" />
     <MESSAGE value="fix:修复撰写博客时不能上传封面图的问题" />
     <MESSAGE value="整理nacos配置" />
     <MESSAGE value="去掉了iputils-starter" />
@@ -905,7 +900,8 @@
     <MESSAGE value="fix:解决了上古遗留问题&#10;mybatis-plus自动填充修改字段名为驼峰命名，解决了自动填充一直没有生效的问题&#10;管理后台请求超时时间调整为10秒" />
     <MESSAGE value="fix:说说显示问题&#10;修改了不能查看自己发布的非公开说说的问题" />
     <MESSAGE value="fix:druid配置&#10;原来的配置不能正常使用，现在调整好了" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:druid配置&#10;原来的配置不能正常使用，现在调整好了" />
+    <MESSAGE value="feat：管理后台添加swagger和druid页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：管理后台添加swagger和druid页面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

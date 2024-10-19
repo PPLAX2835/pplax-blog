@@ -15,7 +15,7 @@
 
 <script>
 import apiIndex from "./apiIndex";
-import { getSwaggerResources, getV2ApiDocs} from "../../api/swagger";
+import { getSwaggerResources} from "../../api/swagger";
 
 export default {
   data() {

@@ -4,11 +4,8 @@
       <el-col :span="24" >
         <el-tabs tab-position="left" v-model="activeName">
           <el-tab-pane v-for="(menu, index) in menuTree" :key="index" :label="menu.name" :name="menu.name">
-              <api-details v-for="path in menu.paths" :path="path"></api-details>
+              <api-details v-for="path in menu.paths" :path="path" :route-name="resource.name"></api-details>
           </el-tab-pane>
-<!--          <el-tab-pane label="接口测试" name="second">-->
-<!--            <api-test></api-test>-->
-<!--          </el-tab-pane>-->
           <el-tab-pane label="响应模型">
             <el-collapse >
               <el-collapse-item v-for="(definition, name) in v2ApiDocs.definitions" :name="name" class="collapse-class">
@@ -34,7 +31,6 @@
 import JsonViewer from "vue-json-viewer";
 import apiDetails from "./apiDetails";
 import {getV2ApiDocs} from "../../api/swagger";
-// import apiTest from "./apiTest";
 export default {
   props: [
     'resource'

@@ -1,4 +1,5 @@
 import axios from "axios";
+import service from "../utils/request";
 
 /**
  * 获得指定服务api文档
@@ -12,9 +13,22 @@ export function getV2ApiDocs(resource) {
   })
 }
 
+/**
+ * 获得指定捷resource的阿皮文档
+ * @returns {AxiosPromise}
+ */
 export function getSwaggerResources() {
   return axios({
     url: process.env.BASE_API + '/../swagger-resources',
     method: 'get'
   })
+}
+
+/**
+ * api测试
+ * @returns {AxiosPromise}
+ */
+export function apiTest(params) {
+  params.url = process.env.BASE_API + params.url
+  return service(params)
 }

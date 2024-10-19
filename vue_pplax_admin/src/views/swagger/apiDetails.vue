@@ -105,6 +105,16 @@
             <div style="color:red; text-align: center" v-if="!path.parameters">无参数</div>
           </el-collapse-item>
 
+          <el-collapse-item name="5">
+            <template slot="title" >
+              <div class="panel-title">
+                接口测试
+                <i class="header-icon el-icon-thumb"></i>
+              </div>
+            </template>
+            <api-test :path="path" :route-name="routeName"></api-test>
+          </el-collapse-item>
+
         </el-collapse>
       </el-collapse-item>
     </el-collapse>
@@ -112,17 +122,22 @@
 </template>
 
 <script>
+import apiTest from "./apiTest";
 
 export default {
   props: [
-    'path'
+    'path',
+    'routeName'
   ],
   data() {
     return {
-      activeNames:['1','2','3','4'],
+      activeNames:['1','2','3','4', '5'],
       openTree :false,
       marksTree : true
     };
+  },
+  components: {
+    apiTest
   },
   methods : {
 

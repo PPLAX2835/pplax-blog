@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37937526-4943-47e4-8643-3716452b5dd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiDetails.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiIndex.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiTest.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-auth/src/main/java/xyz/pplax/pplaxblog/auth/controller/POauthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/StyleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pplax-modules/pplax-web/src/main/java/xyz/pplax/pplaxblog/web/controller/StyleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/api/swagger.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/api/swagger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiIndex.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiTest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/apiTest.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue_pplax_admin/src/views/swagger/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -500,14 +499,7 @@
       <workItem from="1729074642102" duration="4826000" />
       <workItem from="1729127865273" duration="15870000" />
       <workItem from="1729237160128" duration="6541000" />
-      <workItem from="1729325004948" duration="5056000" />
-    </task>
-    <task id="LOCAL-00544" summary="refactor:整理file服务的swagger">
-      <created>1724726878246</created>
-      <option name="number" value="00544" />
-      <option name="presentableId" value="LOCAL-00544" />
-      <option name="project" value="LOCAL" />
-      <updated>1724726878246</updated>
+      <workItem from="1729325004948" duration="7903000" />
     </task>
     <task id="LOCAL-00545" summary="fix:处理消息队列中requestLog的address被封装乱码的问题">
       <created>1724727589341</created>
@@ -845,7 +837,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729146751623</updated>
     </task>
-    <option name="localTasksCounter" value="593" />
+    <task id="LOCAL-00593" summary="feat: 后台可以查看swagger详情了">
+      <created>1729340313810</created>
+      <option name="number" value="00593" />
+      <option name="presentableId" value="LOCAL-00593" />
+      <option name="project" value="LOCAL" />
+      <updated>1729340313810</updated>
+    </task>
+    <option name="localTasksCounter" value="594" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -881,7 +880,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="整理nacos配置" />
     <MESSAGE value="去掉了iputils-starter" />
     <MESSAGE value="补充编辑用户邮箱的功能" />
     <MESSAGE value="fix:因为改成自定义auth接口，原本的转换类不能用了，现在调整为api异常处理类" />
@@ -906,7 +904,8 @@
     <MESSAGE value="fix:druid配置&#10;原来的配置不能正常使用，现在调整好了" />
     <MESSAGE value="feat：管理后台添加swagger和druid页面" />
     <MESSAGE value="fix: 修复auth服务swagger没有正确重定向的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 修复auth服务swagger没有正确重定向的问题" />
+    <MESSAGE value="feat: 后台可以查看swagger详情了" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 后台可以查看swagger详情了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

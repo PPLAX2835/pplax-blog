@@ -28,7 +28,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/style")
-@Api(value="风格 Controller，用来获取先前配置的如背景图片等文件地址", tags={"风格 Controller，用来获取先前配置的如背景图片等文件地址"})
+@Api(value="风格 Controller", tags={"风格 Controller"})
 public class StyleController extends SuperController {
 
     @Autowired

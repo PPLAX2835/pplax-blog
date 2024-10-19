@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(value = "")
-@Api(value="自定义登录认证相关Controller",tags={"自定义登录认证相关Controller"})
+@Api(value="登录认证相关Controller",tags={"登录认证相关Controller"})
 public class POauthController extends SuperController {
 
     @Autowired

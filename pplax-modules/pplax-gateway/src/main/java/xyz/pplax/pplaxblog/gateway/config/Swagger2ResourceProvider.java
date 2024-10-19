@@ -10,6 +10,7 @@ import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * 聚合swagger配置类
@@ -39,14 +40,19 @@ public class Swagger2ResourceProvider implements SwaggerResourcesProvider {
         List<SwaggerResource> resources = new ArrayList<>();
         List<String> routes = new ArrayList<>();
         routeLocator.getRoutes().subscribe(route -> routes.add(route.getId()));
+
+        // 使用正则表达式匹配以"-api-route"结尾的路由ID
+        Pattern apiRoutePattern = Pattern.compile(".*-api-route");
+
         // 遍历配置文件中配置的所有服务
         gatewayProperties.getRoutes().stream()
-                // 过滤同名服务
-                .filter(routeDefinition -> routes.contains(routeDefinition.getId()))
+                // 过滤同名服务，并且ID匹配*-api-route
+                .filter(routeDefinition -> routes.contains(routeDefinition.getId())
+                        && apiRoutePattern.matcher(routeDefinition.getId()).matches())
                 .forEach(route -> route.getPredicates().stream()
                         // 忽略配置文件中断言中配置的Path为空的配置项
                         .filter(predicateDefinition -> ("Path").equalsIgnoreCase(predicateDefinition.getName()))
-                        // 将Path中的路由地址由**改为v2/api-docs，swagger就是通过这个地址来获取接口文档数据的，可以通过访问：ip:port/v2/api-docs来体会接口数据
+                        // 将Path中的路由地址由**改为v2/api-docs，swagger就是通过这个地址来获取接口文档数据的
                         .forEach(predicateDefinition -> resources
                                 .add(swaggerResource(route.getId(), predicateDefinition.getArgs()
                                         .get(NameUtils.GENERATED_NAME_PREFIX + "0").replace("**", API_URI)))));

@@ -1,13 +1,10 @@
 package xyz.pplax.pplaxblog.gateway.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authorization.ReactiveAuthorizationManager;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -18,13 +15,8 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
 import org.springframework.security.web.server.authorization.AuthorizationContext;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsUtils;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
-import org.springframework.web.server.ServerWebExchange;
-import org.springframework.web.server.WebFilter;
-import org.springframework.web.server.WebFilterChain;
-import reactor.core.publisher.Mono;
 import xyz.pplax.pplaxblog.gateway.handler.PPLAXAccessDeniedHandler;
 import xyz.pplax.pplaxblog.gateway.handler.PPLAXAuthenticationEntryPoint;
 import xyz.pplax.pplaxblog.gateway.properties.GatewayProperty;
@@ -77,7 +69,7 @@ public class GatewaySecurityConfig {
                 .accessDeniedHandler(pplaxAccessDeniedHandler)
                 .and()
                 // 跨域过滤器
-                .addFilterAt(corsFilter(), SecurityWebFiltersOrder.CORS)
+                .addFilterAt(corsWebFilter(), SecurityWebFiltersOrder.CORS)
                 // token的认证过滤器，用于校验token和认证
                 .addFilterAt(authenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION);
         return httpSecurity.build();
@@ -87,14 +79,15 @@ public class GatewaySecurityConfig {
      * 跨域请求过滤器
      */
     @Bean
-    public CorsWebFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*");
-        config.setAllowCredentials(true);
-        config.addAllowedHeader("*");
+        config.addAllowedOrigin("*");  // 允许所有跨域访问，生产环境建议限定域名
         config.addAllowedMethod("*");
-        source.registerCorsConfiguration("/**", config);
+        config.addAllowedHeader("*");
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);  // 应用到所有路径
 
         return new CorsWebFilter(source);
     }
